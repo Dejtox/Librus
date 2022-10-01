@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Dziennik.Data;
 using Dziennik.Models;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Identity;
 
 namespace Dziennik.Pages.Students
 {
@@ -28,15 +31,20 @@ namespace Dziennik.Pages.Students
 
         [BindProperty]
         public Student Student { get; set; }
-        
-
+        public string PasswordHash(string userName, string password)
+        {
+            PasswordHasher<string> pw = new PasswordHasher<string>();
+            string passwordHashed = pw.HashPassword(userName, password);
+            return passwordHashed;
+        }
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
+            Student.Password= PasswordHash(Student.Login, Student.Password);
 
             _context.Student.Add(Student);
             await _context.SaveChangesAsync();

@@ -2,6 +2,10 @@
 @using Microsoft.AspNetCore.Mvc.ViewEngines
 @inject IWebHostEnvironment Environment
 @inject ICompositeViewEngine Engine
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">

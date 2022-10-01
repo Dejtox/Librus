@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Dziennik.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Dziennik.Data
 {
-    public class SchoolContext : DbContext
+    public class SchoolContext : IdentityDbContext<IdentityUser>
     {
         public SchoolContext (DbContextOptions<SchoolContext> options)
             : base(options)
@@ -22,4 +23,5 @@ namespace Dziennik.Data
         public DbSet<Dziennik.Models.Teacher> Teacher { get; set; }
 
     }
+    
 }

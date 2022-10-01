@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "J:\\ProjektLibrus\\NowyProjektLibrus\\Dziennik\\Dziennik.csproj": {}
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\Dziennik.csproj": {}
   },
   "projects": {
-    "J:\\ProjektLibrus\\NowyProjektLibrus\\Dziennik\\Dziennik.csproj": {
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\Dziennik.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\NowyProjektLibrus\\Dziennik\\Dziennik.csproj",
+        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\Dziennik.csproj",
         "projectName": "Dziennik",
-        "projectPath": "J:\\ProjektLibrus\\NowyProjektLibrus\\Dziennik\\Dziennik.csproj",
+        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Dziennik.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\NowyProjektLibrus\\Dziennik\\obj\\",
+        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -44,6 +44,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.9, )"
@@ -55,6 +59,14 @@
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -79,6 +91,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Microsoft.Windows.Compatibility": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [

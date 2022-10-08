@@ -28,7 +28,7 @@ namespace Dziennik.Pages.Students
                 return NotFound();
             }
 
-            var student = await _context.Student.FirstOrDefaultAsync(m => m.ID == id);
+            var student = await _context.Student.FirstOrDefaultAsync(m => m.StudentID == id);
             if (student == null)
             {
                 return NotFound();

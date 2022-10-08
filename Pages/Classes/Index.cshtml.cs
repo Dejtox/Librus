@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Dziennik.Data;
 using Dziennik.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
 
 namespace Dziennik.Pages.Classes
-{    
+{
     public class IndexModel : PageModel
     {
         private readonly Dziennik.Data.SchoolContext _context;

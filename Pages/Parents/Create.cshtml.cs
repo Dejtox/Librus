@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Dziennik.Data;
 using Dziennik.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Dziennik.Pages.Parents
 {
@@ -27,14 +28,20 @@ namespace Dziennik.Pages.Parents
         [BindProperty]
         public Parent Parent { get; set; }
         
-
+        public string PasswordHash(string userName, string password)
+        {
+            PasswordHasher<string> pw = new PasswordHasher<string>();
+            string passwordHashed = pw.HashPassword(userName, password);
+            return passwordHashed;
+        }
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+        if (!ModelState.IsValid)
             {
                 return Page();
             }
+            Parent.Password= PasswordHash(Parent.Login, Parent.Password);
 
             _context.Parent.Add(Parent);
             await _context.SaveChangesAsync();

@@ -956,3 +956,10 @@ J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\runtimes\win\lib\net6.0\System
 J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.ServiceProcess.ServiceController.dll
 J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Speech.dll
 J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Threading.AccessControl.dll
+J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\System.Web.Mvc.dll
+J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\System.Web.Razor.dll
+J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\System.Web.Helpers.dll
+J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\System.Web.WebPages.dll
+J:\ProjektLibrus\Librus\Dziennik\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll

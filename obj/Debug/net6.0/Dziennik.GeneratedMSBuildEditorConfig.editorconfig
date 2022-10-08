@@ -8,205 +8,237 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Dziennik
 build_property.RootNamespace = Dziennik
-build_property.ProjectDir = J:\ProjektLibrus\Librus\Dziennik\
+build_property.ProjectDir = j:\ProjektLibrus\Librus\Dziennik\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = J:\ProjektLibrus\Librus\Dziennik
+build_property.MSBuildProjectDirectory = j:\ProjektLibrus\Librus\Dziennik
 build_property._RazorSourceGeneratorDebug = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/Login.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/Logout.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/Register.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/_ViewImports.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/_ViewStart.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Create.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Attendances/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Attendances/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Attendances/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Attendances/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Attendances/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Delete.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Details.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Edit.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Index.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Classes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Create.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Delete.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Details.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Edit.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Index.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Enrollments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Error.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Index.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Grades/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Grades/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Grades/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Grades/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Grades/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Create.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Delete.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Details.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Edit.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Index.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Parents/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Privacy.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Shared/_Layout.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Shared/_LoginPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Students/Create.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Students/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Students/Delete.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Students/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Students/Details.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Students/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Students/Edit.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Students/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Students/Index.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Students/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Students/LoginStudent.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNcTG9naW5TdHVkZW50LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Students/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Create.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Delete.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Details.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Edit.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Index.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Subjects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Create.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Delete.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Details.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Edit.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Index.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/Teachers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/_ValidationScriptsPartial.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/_ViewImports.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/Pages/_ViewStart.cshtml]
+[j:/ProjektLibrus/Librus/Dziennik/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

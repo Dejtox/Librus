@@ -56,9 +56,11 @@ namespace Dziennik.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ParentPesel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ParentRole = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,11 +73,13 @@ namespace Dziennik.Migrations
                 {
                     TeacherID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TeacherLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherFirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherPesel = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TeacherRole = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -232,19 +236,19 @@ namespace Dziennik.Migrations
                 name: "Student",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    StudentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ParentID = table.Column<int>(type: "int", nullable: false),
                     ClassID = table.Column<int>(type: "int", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StudentPesel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentRole = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.ID);
+                    table.PrimaryKey("PK_Student", x => x.StudentID);
                     table.ForeignKey(
                         name: "FK_Student_Class_ClassID",
                         column: x => x.ClassID,
@@ -284,6 +288,80 @@ namespace Dziennik.Migrations
                         column: x => x.SubjectID1,
                         principalTable: "Subject",
                         principalColumn: "SubjectID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Grade",
+                columns: table => new
+                {
+                    GradeID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    SubjectID = table.Column<int>(type: "int", nullable: false),
+                    GradeNumber = table.Column<int>(type: "int", nullable: false),
+                    GradeWeight = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Grade", x => x.GradeID);
+                    table.ForeignKey(
+                        name: "FK_Grade_Student_StudentID",
+                        column: x => x.StudentID,
+                        principalTable: "Student",
+                        principalColumn: "StudentID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Grade_Subject_SubjectID",
+                        column: x => x.SubjectID,
+                        principalTable: "Subject",
+                        principalColumn: "SubjectID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Attendance",
+                columns: table => new
+                {
+                    AttendanceID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EnrollmentID = table.Column<int>(type: "int", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Attendance", x => x.AttendanceID);
+                    table.ForeignKey(
+                        name: "FK_Attendance_Enrollment_EnrollmentID",
+                        column: x => x.EnrollmentID,
+                        principalTable: "Enrollment",
+                        principalColumn: "EnrollmentID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AttendanceStudent",
+                columns: table => new
+                {
+                    AttendancesAttendanceID = table.Column<int>(type: "int", nullable: false),
+                    StudentsStudentID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttendanceStudent", x => new { x.AttendancesAttendanceID, x.StudentsStudentID });
+                    table.ForeignKey(
+                        name: "FK_AttendanceStudent_Attendance_AttendancesAttendanceID",
+                        column: x => x.AttendancesAttendanceID,
+                        principalTable: "Attendance",
+                        principalColumn: "AttendanceID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AttendanceStudent_Student_StudentsStudentID",
+                        column: x => x.StudentsStudentID,
+                        principalTable: "Student",
+                        principalColumn: "StudentID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -326,6 +404,16 @@ namespace Dziennik.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Attendance_EnrollmentID",
+                table: "Attendance",
+                column: "EnrollmentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AttendanceStudent_StudentsStudentID",
+                table: "AttendanceStudent",
+                column: "StudentsStudentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Class_TeacherID",
                 table: "Class",
                 column: "TeacherID",
@@ -342,6 +430,16 @@ namespace Dziennik.Migrations
                 column: "SubjectID1");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Grade_StudentID",
+                table: "Grade",
+                column: "StudentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Grade_SubjectID",
+                table: "Grade",
+                column: "SubjectID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Student_ClassID",
                 table: "Student",
                 column: "ClassID");
@@ -349,8 +447,7 @@ namespace Dziennik.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Student_ParentID",
                 table: "Student",
-                column: "ParentID",
-                unique: true);
+                column: "ParentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Subject_TeacherID",
@@ -376,10 +473,10 @@ namespace Dziennik.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Enrollment");
+                name: "AttendanceStudent");
 
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "Grade");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -388,13 +485,22 @@ namespace Dziennik.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Subject");
+                name: "Attendance");
+
+            migrationBuilder.DropTable(
+                name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Enrollment");
+
+            migrationBuilder.DropTable(
+                name: "Parent");
 
             migrationBuilder.DropTable(
                 name: "Class");
 
             migrationBuilder.DropTable(
-                name: "Parent");
+                name: "Subject");
 
             migrationBuilder.DropTable(
                 name: "Teacher");

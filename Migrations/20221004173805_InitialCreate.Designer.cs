@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dziennik.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20221001164927_InitialCreate")]
+    [Migration("20221004173805_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,45 @@ namespace Dziennik.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("AttendanceStudent", b =>
+                {
+                    b.Property<int>("AttendancesAttendanceID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsStudentID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AttendancesAttendanceID", "StudentsStudentID");
+
+                    b.HasIndex("StudentsStudentID");
+
+                    b.ToTable("AttendanceStudent");
+                });
+
+            modelBuilder.Entity("Dziennik.Models.Attendance", b =>
+                {
+                    b.Property<int>("AttendanceID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttendanceID"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EnrollmentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AttendanceID");
+
+                    b.HasIndex("EnrollmentID");
+
+                    b.ToTable("Attendance");
+                });
 
             modelBuilder.Entity("Dziennik.Models.Class", b =>
                 {
@@ -78,6 +117,38 @@ namespace Dziennik.Migrations
                     b.ToTable("Enrollment");
                 });
 
+            modelBuilder.Entity("Dziennik.Models.Grade", b =>
+                {
+                    b.Property<int>("GradeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeID"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GradeNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GradeWeight")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectID")
+                        .HasColumnType("int");
+
+                    b.HasKey("GradeID");
+
+                    b.HasIndex("StudentID");
+
+                    b.HasIndex("SubjectID");
+
+                    b.ToTable("Grade");
+                });
+
             modelBuilder.Entity("Dziennik.Models.Parent", b =>
                 {
                     b.Property<int>("ParentID")
@@ -95,7 +166,13 @@ namespace Dziennik.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ParentPesel")
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentRole")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -108,11 +185,11 @@ namespace Dziennik.Migrations
 
             modelBuilder.Entity("Dziennik.Models.Student", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("StudentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"), 1L, 1);
 
                     b.Property<int>("ClassID")
                         .HasColumnType("int");
@@ -132,15 +209,14 @@ namespace Dziennik.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StudentPesel")
+                    b.Property<string>("StudentRole")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("StudentID");
 
                     b.HasIndex("ClassID");
 
-                    b.HasIndex("ParentID")
-                        .IsUnique();
+                    b.HasIndex("ParentID");
 
                     b.ToTable("Student");
                 });
@@ -174,19 +250,25 @@ namespace Dziennik.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherID"), 1L, 1);
 
-                    b.Property<string>("TeacherEmail")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeacherFirstName")
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeacherLastName")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeacherPesel")
+                    b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeacherPhoneNumber")
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeacherRole")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TeacherID");
@@ -396,6 +478,32 @@ namespace Dziennik.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("AttendanceStudent", b =>
+                {
+                    b.HasOne("Dziennik.Models.Attendance", null)
+                        .WithMany()
+                        .HasForeignKey("AttendancesAttendanceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dziennik.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsStudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dziennik.Models.Attendance", b =>
+                {
+                    b.HasOne("Dziennik.Models.Enrollment", "Enrollment")
+                        .WithMany("Attendances")
+                        .HasForeignKey("EnrollmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Enrollment");
+                });
+
             modelBuilder.Entity("Dziennik.Models.Class", b =>
                 {
                     b.HasOne("Dziennik.Models.Teacher", "Teacher")
@@ -410,7 +518,7 @@ namespace Dziennik.Migrations
             modelBuilder.Entity("Dziennik.Models.Enrollment", b =>
                 {
                     b.HasOne("Dziennik.Models.Class", "Class")
-                        .WithMany()
+                        .WithMany("Enrollments")
                         .HasForeignKey("ClassID1");
 
                     b.HasOne("Dziennik.Models.Subject", "Subject")
@@ -418,6 +526,25 @@ namespace Dziennik.Migrations
                         .HasForeignKey("SubjectID1");
 
                     b.Navigation("Class");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Dziennik.Models.Grade", b =>
+                {
+                    b.HasOne("Dziennik.Models.Student", "Student")
+                        .WithMany("Grades")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dziennik.Models.Subject", "Subject")
+                        .WithMany("Grades")
+                        .HasForeignKey("SubjectID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Student");
 
                     b.Navigation("Subject");
                 });
@@ -431,8 +558,8 @@ namespace Dziennik.Migrations
                         .IsRequired();
 
                     b.HasOne("Dziennik.Models.Parent", "Parent")
-                        .WithOne("Student")
-                        .HasForeignKey("Dziennik.Models.Student", "ParentID")
+                        .WithMany("Students")
+                        .HasForeignKey("ParentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -505,17 +632,31 @@ namespace Dziennik.Migrations
 
             modelBuilder.Entity("Dziennik.Models.Class", b =>
                 {
+                    b.Navigation("Enrollments");
+
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Dziennik.Models.Enrollment", b =>
+                {
+                    b.Navigation("Attendances");
                 });
 
             modelBuilder.Entity("Dziennik.Models.Parent", b =>
                 {
-                    b.Navigation("Student");
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Dziennik.Models.Student", b =>
+                {
+                    b.Navigation("Grades");
                 });
 
             modelBuilder.Entity("Dziennik.Models.Subject", b =>
                 {
                     b.Navigation("Enrollments");
+
+                    b.Navigation("Grades");
                 });
 
             modelBuilder.Entity("Dziennik.Models.Teacher", b =>

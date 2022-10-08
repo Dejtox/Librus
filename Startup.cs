@@ -56,6 +56,7 @@ namespace Dziennik
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddSession();
 
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
@@ -159,6 +160,7 @@ namespace Dziennik
 
             //app.UseAuthorization();
             app.UseAuthentication();
+            app.UseSession(); 
             app.UseMvc();
 
             app.UseEndpoints(endpoints =>

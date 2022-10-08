@@ -21,6 +21,8 @@ namespace Dziennik.Data
         public DbSet<Dziennik.Models.Parent> Parent { get; set; }
         public DbSet<Dziennik.Models.Subject> Subject { get; set; }
         public DbSet<Dziennik.Models.Teacher> Teacher { get; set; }
+        public DbSet<Dziennik.Models.Grade> Grade { get; set; }
+        public DbSet<Dziennik.Models.Attendance> Attendance { get; set; }
 
     }
     

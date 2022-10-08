@@ -17,5 +17,7 @@ namespace Dziennik.Models
 
         public Subject Subject { get; set; }
         public Class Class { get; set; }
+        
+        public ICollection<Attendance> Attendances { get; set; }
     }
 }

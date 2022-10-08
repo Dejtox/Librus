@@ -30,7 +30,7 @@ namespace Dziennik.Pages.Students
                 return NotFound();
             }
 
-            var student =  await _context.Student.FirstOrDefaultAsync(m => m.ID == id);
+            var student =  await _context.Student.FirstOrDefaultAsync(m => m.StudentID == id);
             if (student == null)
             {
                 return NotFound();
@@ -58,7 +58,7 @@ namespace Dziennik.Pages.Students
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(Student.ID))
+                if (!StudentExists(Student.StudentID))
                 {
                     return NotFound();
                 }
@@ -73,7 +73,7 @@ namespace Dziennik.Pages.Students
 
         private bool StudentExists(int id)
         {
-          return _context.Student.Any(e => e.ID == id);
+          return _context.Student.Any(e => e.StudentID == id);
         }
     }
 }

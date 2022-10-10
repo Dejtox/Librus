@@ -12,5 +12,7 @@ namespace Dziennik.Models
         public ICollection<Student> Students { get; set; }
         public Enrollment Enrollment { get; set; }
 
+        
+
     }
 }

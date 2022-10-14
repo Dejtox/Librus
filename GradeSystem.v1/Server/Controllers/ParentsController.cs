@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GradeSystem.v1.Server.Data;
+using System.Runtime.CompilerServices;
 
 namespace GradeSystem.v1.Server.Controllers
 {
@@ -22,7 +23,7 @@ namespace GradeSystem.v1.Server.Controllers
 
         // GET: api/Parents
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Parent>>> GetParent()
+        public async Task<ActionResult<List<Parent>>> GetParent()
         {
             return await _context.Parent.ToListAsync();
         }
@@ -44,56 +45,46 @@ namespace GradeSystem.v1.Server.Controllers
         // PUT: api/Parents/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParent(int id, Parent parent)
+        public async Task<ActionResult<List<Parent>>> PutParent( Parent parent, int id)
         {
-            if (id != parent.ParentID)
+            var dbParent = await _context.Parent.FirstOrDefaultAsync(p => p.ParentID == id);
+            if (dbParent == null)
             {
-                return BadRequest();
+                return NotFound("Sory no Parent...");
             }
-
-            _context.Entry(parent).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ParentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            dbParent.FirstName=parent.FirstName;
+            dbParent.LastName=parent.LastName;
+            dbParent.Email=parent.Email;
+            dbParent.PhoneNumber=parent.PhoneNumber;
+            dbParent.Login = parent.Login;
+            dbParent.Password = parent.Password;
+            await _context.SaveChangesAsync();
+            return Ok(await GetAllHeroes());
         }
 
         // POST: api/Parents
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Parent>> PostParent(Parent parent)
+        public async Task<ActionResult<List<Parent>>> PostParent(Parent parent)
         {
+            parent.ParentID = 10;
             _context.Parent.Add(parent);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetParent", new { id = parent.ParentID }, parent);
+            return Ok(await GetAllHeroes());
         }
 
         // DELETE: api/Parents/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteParent(int id)
         {
-            var parent = await _context.Parent.FindAsync(id);
-            if (parent == null)
+            var dbParent = await _context.Parent.FirstOrDefaultAsync(p => p.ParentID == id);
+            if (dbParent == null)
             {
-                return NotFound();
+                return NotFound("Sory no Parent...");
             }
 
-            _context.Parent.Remove(parent);
+            _context.Parent.Remove(dbParent);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,6 +93,10 @@ namespace GradeSystem.v1.Server.Controllers
         private bool ParentExists(int id)
         {
             return _context.Parent.Any(e => e.ParentID == id);
+        }
+        private async Task<List<Parent>> GetAllHeroes()
+        {
+            return await _context.Parent.ToListAsync();
         }
     }
 }

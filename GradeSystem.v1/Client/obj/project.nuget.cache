@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9hU5/XjQSKkpKuA9g1rOvozGZ+tBT1bB6bnTOoTBAjRl90t99C22EhE13yuUYIHvFYsZpGUizO1Q72zLCa4amA==",
+  "dgSpecHash": "joybSYJp5aohCbcF0v1gGM1QQZ0ApXyfDendCDf5pHzAbmhO2AJiS2tAr/xZQ3cf0vJPnLbffBVho+mipfsAxQ==",
   "success": true,
-  "projectFilePath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+  "projectFilePath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.9\\microsoft.aspnetcore.authorization.6.0.9.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.9\\microsoft.aspnetcore.components.6.0.9.nupkg.sha512",

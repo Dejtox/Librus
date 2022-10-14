@@ -1,0 +1,36 @@
+﻿@page "/student"
+@page "/student/{id:int}"
+@inject IStudentService StudentService
+
+@if(ID==null)
+{
+    <PageTitle>Add new student</PageTitle>
+    <h3>Add new student</h3>
+}
+else
+{
+    <PageTitle>Edit @student.FirstName @student.LastName</PageTitle>
+    <h3>Edit @student.FirstName @student.LastName</h3>
+}
+<EditForm Model="student"></EditForm>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    Student student = new Student { Parent = new Parent() };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+
+        }
+        else
+        {
+            student = await StudentService.GetStudentById((int)ID);
+        }
+    }
+
+
+}

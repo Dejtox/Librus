@@ -9,5 +9,4 @@
         public string Login {get; set; } = String.Empty;
         public string Password {get; set; } = String.Empty;
         public string ParentRole {get; set; } = String.Empty;
-        public ICollection<Student>? Students {get; set; }
     }

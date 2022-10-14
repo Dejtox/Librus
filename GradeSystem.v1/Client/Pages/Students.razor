@@ -1,11 +1,12 @@
 ﻿@page "/students"
 @inject IStudentService StudentService
+@inject NavigationManager NavigationMenager
 
 <PageTitle> Students </PageTitle>
 
 <h3>Students</h3>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Last Name</th>
@@ -14,12 +15,34 @@
             <th>Pasword</th>
             <th>Parent</th>
             <th>Class</th>
-            <th>Grades</th>
-            <th>Attendances</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach(var student in StudentService.Students )
+        {
+            <tr>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Login</td>
+                <td>@student.Password</td>
+                <td>@student.StudentRole</td>
+                <td>@student.Parent.FirstName</td>
+                <td>@student.Class.ClassName</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowStudent(student.StudentID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 @code {
-
+    protected override async Task OnInitializedAsync()
+    {
+        await StudentService.GetStudents();
+    }
+    void ShowStudent(int id)
+    {
+        NavigationMenager.NavigateTo($"student/{id}");
+    }
 }

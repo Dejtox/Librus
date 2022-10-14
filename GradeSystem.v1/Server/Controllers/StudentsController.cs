@@ -20,6 +20,7 @@ namespace GradeSystem.v1.Server.Controllers
             _context = context;
         }
 
+
         // GET: api/Students
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudent()

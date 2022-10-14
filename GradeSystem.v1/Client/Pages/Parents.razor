@@ -1,0 +1,54 @@
+﻿@page "/parents"
+@inject IParentService ParentService
+@inject NavigationManager NavigationMenager
+
+<PageTitle> Parents </PageTitle>
+
+<h3>Parents</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+            <th>Login</th>
+            <th>Pasword</th>
+            <th>Phone Number</th>
+            <th>Parent Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var parent in ParentService.Parents)
+        {
+            <tr>
+                <td>@parent.FirstName</td>
+                <td>@parent.LastName</td>
+                <td>@parent.Email</td>
+                <td>@parent.Login</td>
+                <td>@parent.Password</td>
+                <td>@parent.PhoneNumber</td>
+                <td>@parent.ParentRole</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowParent(parent.ParentID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateParent">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ParentService.GetParents();
+    }
+    void ShowParent(int id)
+    {
+        NavigationMenager.NavigateTo($"parent/{id}");
+    }
+    void CreateParent()
+    {
+        NavigationMenager.NavigateTo("/parent");
+    }
+}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {}
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {}
   },
   "projects": {
-    "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
         "projectName": "GradeSystem.v1.Client",
-        "projectPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Client\\obj\\",
+        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-                "projectPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+              "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
               }
             }
           }
@@ -89,14 +89,14 @@
         }
       }
     },
-    "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
         "projectName": "GradeSystem.v1.Server",
-        "projectPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Server\\obj\\",
+        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -117,11 +117,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
-                "projectPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
+              "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+                "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
               },
-              "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-                "projectPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+              "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
               }
             }
           }
@@ -140,15 +140,25 @@
               "target": "Package",
               "version": "[6.0.9, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0-rc.2.22472.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0-rc.2.22472.11, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.10, )"
+              "version": "[7.0.0-rc.2.22472.11, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.10, )"
+              "version": "[7.0.0-rc.2.22472.11, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -178,14 +188,14 @@
         }
       }
     },
-    "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "projectName": "GradeSystem.v1.Shared",
-        "projectPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\GradeSystem\\GradeSystem.v1\\GradeSystem.v1\\Shared\\obj\\",
+        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"

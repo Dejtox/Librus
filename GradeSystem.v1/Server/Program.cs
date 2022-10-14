@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore;
+﻿global using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using GradeSystem.v1.Server.Data;
 

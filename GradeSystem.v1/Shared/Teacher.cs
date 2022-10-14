@@ -11,5 +11,4 @@
         public string TeacherRole {get; set; } = String.Empty;
 
         public ICollection<Subject>? Subjects { get; set; }
-        public Class? Class { get; set; }
     }

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeSystem.v1.Server", "GradeSystem.v1\Server\GradeSystem.v1.Server.csproj", "{7732EB21-5710-48AB-83D1-058D29F9BAAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradeSystem.v1.Server", "GradeSystem.v1\Server\GradeSystem.v1.Server.csproj", "{7732EB21-5710-48AB-83D1-058D29F9BAAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeSystem.v1.Client", "GradeSystem.v1\Client\GradeSystem.v1.Client.csproj", "{30AB8CAF-A9F0-4A60-8C60-1E43F6841460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradeSystem.v1.Client", "GradeSystem.v1\Client\GradeSystem.v1.Client.csproj", "{30AB8CAF-A9F0-4A60-8C60-1E43F6841460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeSystem.v1.Shared", "GradeSystem.v1\Shared\GradeSystem.v1.Shared.csproj", "{EAC03B4C-A283-4F51-AFCE-F22E151C7E8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GradeSystem.v1.Shared", "GradeSystem.v1\Shared\GradeSystem.v1.Shared.csproj", "{EAC03B4C-A283-4F51-AFCE-F22E151C7E8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

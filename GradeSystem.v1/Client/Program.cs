@@ -1,4 +1,5 @@
 global using GradeSystem.v1.Client.Services.StudentService;
+global using GradeSystem.v1.Client.Services.ParentService;
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

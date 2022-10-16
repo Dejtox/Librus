@@ -67,7 +67,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Parent>>> PostParent(Parent parent)
         {
-            parent.ParentID = 10;
+ 
             _context.Parent.Add(parent);
             await _context.SaveChangesAsync();
 

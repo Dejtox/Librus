@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "joybSYJp5aohCbcF0v1gGM1QQZ0ApXyfDendCDf5pHzAbmhO2AJiS2tAr/xZQ3cf0vJPnLbffBVho+mipfsAxQ==",
+  "dgSpecHash": "09VkQVQz/qC9sz/MhwHampIXq+bGftRvvgGU3wlkKzT63BmozTTbc2kHhbCHF6z1yxcPyAhaVFWg/dVMPT6Pqg==",
   "success": true,
   "projectFilePath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
   "expectedPackageFiles": [
@@ -33,7 +33,7 @@
     "C:\\Users\\marci\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
-    "C:\\Users\\marci\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.9\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.9.nupkg.sha512"
+    "C:\\Users\\marci\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.10\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.10.nupkg.sha512"
   ],
   "logs": []
 }

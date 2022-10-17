@@ -59,7 +59,7 @@ namespace GradeSystem.v1.Server.Controllers
             dbParent.Login = parent.Login;
             dbParent.Password = parent.Password;
             await _context.SaveChangesAsync();
-            return Ok(await GetAllHeroes());
+            return Ok(await GetParent());
         }
 
         // POST: api/Parents
@@ -67,11 +67,18 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Parent>>> PostParent(Parent parent)
         {
- 
-            _context.Parent.Add(parent);
-            await _context.SaveChangesAsync();
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                parent.ParentID = Int32.Parse(parent.Login);
+                 _context.Parent.Add(parent);
+                _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent ON;");
+                await _context.SaveChangesAsync();
+                _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent OFF;");
+                transaction.Commit();
+            }
 
-            return Ok(await GetAllHeroes());
+
+            return Ok(await GetParent());
         }
 
         // DELETE: api/Parents/5
@@ -83,20 +90,15 @@ namespace GradeSystem.v1.Server.Controllers
             {
                 return NotFound("Sory no Parent...");
             }
+            else
+            {
 
-            _context.Parent.Remove(dbParent);
-            await _context.SaveChangesAsync();
+                _context.Parent.Remove(dbParent);
+                await _context.SaveChangesAsync();
+            }
+               
 
-            return NoContent();
-        }
-
-        private bool ParentExists(int id)
-        {
-            return _context.Parent.Any(e => e.ParentID == id);
-        }
-        private async Task<List<Parent>> GetAllHeroes()
-        {
-            return await _context.Parent.ToListAsync();
+            return Ok();
         }
     }
 }

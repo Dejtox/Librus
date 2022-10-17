@@ -26,8 +26,6 @@ namespace GradeSystem.v1.Client.Services.ParentService
 
         private async Task SetParents(HttpResponseMessage result)
         {
-            var response = await result.Content.ReadFromJsonAsync<List<Parent>>();
-            Parents = response;
             _navigationManager.NavigateTo("Parents");
         }
 

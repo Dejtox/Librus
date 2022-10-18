@@ -88,7 +88,7 @@ namespace GradeSystem.v1.Server.Controllers
             var dbParent = await _context.Parent.FirstOrDefaultAsync(p => p.ParentID == id);
             if (dbParent == null)
             {
-                return NotFound("Sory no Parent...");
+                return NotFound("Sorry no Parent...");
             }
             else
             {

@@ -11,49 +11,49 @@ build_property.EnableTrimAnalyzer = true
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = GradeSystem.v1.Client
 build_property.RootNamespace = GradeSystem.v1.Client
-build_property.ProjectDir = J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\
+build_property.ProjectDir = C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client
+build_property.MSBuildProjectDirectory = C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client
 build_property._RazorSourceGeneratorDebug = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/App.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/Index.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/ParentAddEdit.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Pages/ParentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50QWRkRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/Parents.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Pages/Parents.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/Students.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Pages/Students.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Shared/SurveyPrompt.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/_Imports.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Shared/MainLayout.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-08mlx414po
 
-[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Shared/NavMenu.razor]
+[C:/Users/HARDPC/Documents/Mój Pan/gitkraken/Librus/GradeSystem.v1/Client/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-fb9r1d6ewe

@@ -3,8 +3,8 @@
     {
 
         public int EnrollmentID { get; set; }
-        public string SubjectID { get; set; } = String.Empty;
-        public string ClassID { get; set; } = String.Empty;
+        public string SubjectID { get; set; } = string.Empty;
+        public string ClassID { get; set; } = string.Empty;
         public DateTime? Date { get; set; }
 
         public Subject? Subject { get; set; }

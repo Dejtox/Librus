@@ -6,7 +6,7 @@
         public int SubjectID {get; set; }
         public int GradeNumber {get; set; }
         public int GradeWeight {get; set; }
-        public string Description { get; set; } = String.Empty;
+        public string Description { get; set; } = string.Empty;
 
 
         public Student? Student {get; set; }

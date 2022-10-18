@@ -10,7 +10,7 @@
         "dependencies": {
           "GradeSystem.v1.Client": "1.0.0",
           "GradeSystem.v1.Shared": "1.0.0",
-          "Microsoft.AspNetCore.Components.WebAssembly.Server": "6.0.9",
+          "Microsoft.AspNetCore.Components.WebAssembly.Server": "6.0.10",
           "Microsoft.EntityFrameworkCore": "7.0.0-rc.2.22472.11",
           "Microsoft.EntityFrameworkCore.Design": "7.0.0-rc.2.22472.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0-rc.2.22472.11",
@@ -156,11 +156,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.WebAssembly.Server/6.0.9": {
+      "Microsoft.AspNetCore.Components.WebAssembly.Server/6.0.10": {
         "runtime": {
           "lib/net6.0/Microsoft.AspNetCore.Components.WebAssembly.Server.dll": {
-            "assemblyVersion": "6.0.9.0",
-            "fileVersion": "6.0.922.41926"
+            "assemblyVersion": "6.0.10.0",
+            "fileVersion": "6.0.1022.47617"
           }
         }
       },
@@ -2663,12 +2663,12 @@
       "path": "microsoft.aspnetcore.components.webassembly/6.0.9",
       "hashPath": "microsoft.aspnetcore.components.webassembly.6.0.9.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Components.WebAssembly.Server/6.0.9": {
+    "Microsoft.AspNetCore.Components.WebAssembly.Server/6.0.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TtNNN2x3WNwnJLE7W09dKDgHMQx5bq0JoQpI7nCwK276uFMyU0qCh9W+ixPHNabGFJH6OIgVByjGNoiTr2F9tQ==",
-      "path": "microsoft.aspnetcore.components.webassembly.server/6.0.9",
-      "hashPath": "microsoft.aspnetcore.components.webassembly.server.6.0.9.nupkg.sha512"
+      "sha512": "sha512-5y6hKYdZLoAyD60h/wlNtjc7s6i2RABAKvO7Q6PxKkPMZz1BBIbPgh0eoUYpkCmH3eQkuERBh01tayFWpfHVvg==",
+      "path": "microsoft.aspnetcore.components.webassembly.server/6.0.10",
+      "hashPath": "microsoft.aspnetcore.components.webassembly.server.6.0.10.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Metadata/6.0.9": {
       "type": "package",

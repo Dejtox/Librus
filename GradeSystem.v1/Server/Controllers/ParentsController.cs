@@ -71,9 +71,9 @@ namespace GradeSystem.v1.Server.Controllers
             {
                 parent.ParentID = Int32.Parse(parent.Login);
                  _context.Parent.Add(parent);
-                //_context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent ON;");
+                _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent ON;");
                 await _context.SaveChangesAsync();
-                //_context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent OFF;");
+                _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent OFF;");
                 transaction.Commit();
             }
 

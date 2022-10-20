@@ -26,8 +26,8 @@
                 <td>@student.Login</td>
                 <td>@student.Password</td>
                 <td>@student.StudentRole</td>
-                <td>@student.Parent.FirstName</td>
-                <td>@student.Class.ClassName</td>
+                @*<td>@student.Parent.FirstName</td>*@
+                @*<td>@student.Class.ClassName</td>*@
                 <td>
                     <button class="btn btn-primary" @onclick="(()=>ShowStudent(student.StudentID))"><i class="oi oi-pencil"></i></button>
                 </td>
@@ -35,6 +35,7 @@
         }
     </tbody>
 </table>
+<button type="button" class="btn btn-primary" @onclick="CreateStudent">Create New</button>
 
 @code {
     protected override async Task OnInitializedAsync()
@@ -44,5 +45,9 @@
     void ShowStudent(int id)
     {
         NavigationMenager.NavigateTo($"student/{id}");
+    }
+    void CreateStudent()
+    {
+        NavigationMenager.NavigateTo("/student");
     }
 }

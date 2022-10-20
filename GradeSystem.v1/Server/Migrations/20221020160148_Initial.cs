@@ -16,7 +16,7 @@ namespace GradeSystem.v1.Server.Migrations
                 columns: table => new
                 {
                     ParentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "2, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -194,7 +194,7 @@ namespace GradeSystem.v1.Server.Migrations
                         column: x => x.StudentID,
                         principalTable: "Student",
                         principalColumn: "StudentID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Grade_Subject_SubjectID",
                         column: x => x.SubjectID,

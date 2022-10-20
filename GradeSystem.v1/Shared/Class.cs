@@ -6,6 +6,5 @@
         public string ClassName { get; set; } = string.Empty;
 
         public Teacher? Teacher { get; set; }
-        public ICollection<Enrollment>? Enrollments { get; set; }
 
     }

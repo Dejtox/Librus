@@ -6,6 +6,9 @@
 
         public string LastName {get; set; } = string.Empty;
         public string FirstName {get; set; } = string.Empty;
+        public int Pesel { get; set; }
+
+        public string Address { get; set; } = string.Empty;
 
         public string Login {get; set; } = string.Empty;
         public string Password {get; set; } = string.Empty;
@@ -13,7 +16,4 @@
 
         public Parent? Parent {get; set; }
         public Class? Class {get; set; }
-
-        
-
     }

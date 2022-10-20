@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GradeSystem.v1.Server.Migrations
 {
     [DbContext(typeof(GradeSystemv1ServerContext))]
-    [Migration("20221016221104_Initial")]
+    [Migration("20221020160148_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

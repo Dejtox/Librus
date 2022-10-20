@@ -10,5 +10,4 @@
         public string Password {get; set; } = string.Empty;
         public string TeacherRole {get; set; } = string.Empty;
 
-        public ICollection<Subject>? Subjects { get; set; }
     }

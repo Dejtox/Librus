@@ -12,13 +12,40 @@ else
     <PageTitle>Edit @student.FirstName @student.LastName</PageTitle>
     <h3>Edit @student.FirstName @student.LastName</h3>
 }
-<EditForm Model="student"></EditForm>
+<EditForm Model="student" OnSubmit="HandleSubmit">
+    <div>
+        <label for="firstname">First Name</label>
+        <InputText id="firstname" @bind-Value="student.FirstName" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="lasttname">Last Name</label>
+        <InputText id="lastname" @bind-Value="student.LastName" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="login">Login</label>
+        <InputText id="login" @bind-Value="student.Login" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <InputText id="password" @bind-Value="student.Password" class="form-control"></InputText>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+    <button type="button" class="btn btn-danger" @onclick="DelateParent">Delete Parent</button>
+
+</EditForm>
 
 @code {
     [Parameter]
     public int? ID { get; set; }
 
-    Student student = new Student { Parent = new Parent() };
+    Student student = new Student { Parent = new Parent(), Class = new Class()};
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Parent" : "Update Parent";
+        await StudentService.GetStudents();
+    }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -30,6 +57,24 @@ else
         {
             student = await StudentService.GetStudentById((int)ID);
         }
+    }
+    async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            student.StudentRole = "Student";
+            await StudentService.CreateStudent(student);
+        }
+        else
+        {
+            await StudentService.UpdateStudent(student);
+        }
+    }
+    async Task DelateParent()
+    {
+
+        await StudentService.DeleteStudent(student.ParentID);
+
     }
 
 

@@ -1,0 +1,54 @@
+﻿@page "/teachers"
+@inject ITeacherService TeacherService
+@inject NavigationManager NavigationMenager
+
+<PageTitle> Teachers </PageTitle>
+
+<h3>Teachers</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Phone Number</th>
+            <th>Teacher Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teacher in TeacherService.Teachers)
+        {
+            <tr>
+                <td>@teacher.FirstName</td>
+                <td>@teacher.LastName</td>
+                <td>@teacher.Email</td>
+                <td>@teacher.Login</td>
+                <td>@teacher.Password</td>
+                <td>@teacher.PhoneNumber</td>
+                <td>@teacher.TeacherRole</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowTeacher(teacher.TeacherID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateTeacher">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await TeacherService.GetTeachers();
+    }
+    void ShowTeacher(int id)
+    {
+        NavigationMenager.NavigateTo($"teacher/{id}");
+    }
+    void CreateTeacher()
+    {
+        NavigationMenager.NavigateTo("/teacher");
+    }
+}

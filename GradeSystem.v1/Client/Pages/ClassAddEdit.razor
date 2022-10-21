@@ -22,9 +22,10 @@ else
     <div>
         <label for="classname">Teacher</label>
         <InputSelect @bind-Value="classs.TeacherID" class="form-select">
+            
             @foreach (var teacher in ClassService.Teachers)
             {
-                <options value="@teacher.TeacherID">@teacher.FirstName @teacher.LastName</options>
+                <option value="@teacher.TeacherID">@teacher.FirstName @teacher.LastName</option>
 
             }
         </InputSelect>      

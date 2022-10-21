@@ -24,14 +24,14 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Subject>>> GetSubject()
         {
-            return await _context.Subject.ToListAsync();
+            return await _context.Subject.Include(s=>s.Teacher).ToListAsync();
         }
 
         // GET: api/Subjects/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Subject>> GetSubject(int id)
         {
-            var subject = await _context.Subject.FindAsync(id);
+            var subject = await _context.Subject.Include(s => s.Teacher).FirstOrDefaultAsync(s => s.SubjectID == id);
 
             if (subject == null)
             {
@@ -77,6 +77,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Subject>> PostSubject(Subject subject)
         {
+            subject.Teacher = null;
             _context.Subject.Add(subject);
             await _context.SaveChangesAsync();
 

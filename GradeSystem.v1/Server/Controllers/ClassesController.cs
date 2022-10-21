@@ -79,6 +79,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Class>> PostClass(Class @classe)
         {
+            classe.Teacher = null;
             _context.Class.Add(@classe);
             await _context.SaveChangesAsync();
 

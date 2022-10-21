@@ -1,0 +1,85 @@
+﻿@page "/subject"
+@page "/subject/{id:int}"
+@inject ISubjectService SubjectService
+
+@if (ID == null)
+{
+    <PageTitle>Add new Subject</PageTitle>
+    <h3>Add new Subject</h3>
+}
+else
+{
+    <PageTitle>Edit @subject.SubjectName</PageTitle>
+    <h3>Edit @subject.SubjectName</h3>
+}
+
+
+<EditForm Model="subject" OnSubmit="HandleSubmit">
+    <div>
+        <label for="classname">Subject Name</label>
+        <InputText id="firstname" @bind-Value="subject.SubjectName" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="classname">Teacher</label>
+        <InputSelect @bind-Value="subject.TeacherID" class="form-select">
+
+            @foreach (var teacher in SubjectService.Teachers)
+            {
+                <option value="@teacher.TeacherID">@teacher.FirstName @teacher.LastName</option>
+
+            }
+        </InputSelect>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+    <button type="button" class="btn btn-danger" @onclick="DelateTeacher">Delete Teacher</button>
+
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    Subject subject = new Subject();
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Class" : "Update Class";
+        await SubjectService.GetTeachers();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await SubjectService.GetTeachers();
+            subject.Teacher = SubjectService.Teachers[0];
+            Console.WriteLine(SubjectService.Teachers[0].FirstName);
+            subject.TeacherID = subject.Teacher.TeacherID;
+        }
+        else
+        {
+            subject = await SubjectService.GetSubjectByID((int)ID);
+        }
+    }
+    async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            await SubjectService.CreateSubject(subject);
+        }
+        else
+        {
+            await SubjectService.UpdateSubject(subject);
+        }
+    }
+    async Task DelateTeacher()
+    {
+
+        await SubjectService.DeleteSubject(subject.TeacherID);
+
+    }
+
+}

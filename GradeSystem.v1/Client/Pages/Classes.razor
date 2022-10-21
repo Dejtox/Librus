@@ -1,0 +1,46 @@
+﻿@page "/classes"
+@inject IClassService ClassService
+@inject NavigationManager NavigationMenager
+
+<PageTitle> Classes </PageTitle>
+
+<h3>Classes</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Teacher First Name</th>
+            <th>Teacher Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var classs in ClassService.Classes)
+        {
+            <tr>
+                <td>@classs.ClassName</td>
+                <td>@classs.Teacher.FirstName</td>
+                <td>@classs.Teacher.LastName</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowClass(classs.ClassID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateClass">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ClassService.GetClasses();
+    }
+    void ShowClass(int id)
+    {
+        NavigationMenager.NavigateTo($"classs/{id}");
+    }
+    void CreateClass()
+    {
+        NavigationMenager.NavigateTo("/classs");
+    }
+}

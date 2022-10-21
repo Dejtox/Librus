@@ -44,6 +44,8 @@ namespace GradeSystem.v1.Server.Migrations
 
                     b.HasIndex("EnrollmentID");
 
+                    b.HasIndex("StudentID");
+
                     b.ToTable("Attendance");
                 });
 
@@ -77,28 +79,20 @@ namespace GradeSystem.v1.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"));
 
-                    b.Property<string>("ClassID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ClassID1")
+                    b.Property<int>("ClassID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SubjectID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SubjectID1")
+                    b.Property<int>("SubjectID")
                         .HasColumnType("int");
 
                     b.HasKey("EnrollmentID");
 
-                    b.HasIndex("ClassID1");
+                    b.HasIndex("ClassID");
 
-                    b.HasIndex("SubjectID1");
+                    b.HasIndex("SubjectID");
 
                     b.ToTable("Enrollment");
                 });
@@ -185,8 +179,9 @@ namespace GradeSystem.v1.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"));
 
-                    b.Property<int?>("AttendanceID")
-                        .HasColumnType("int");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ClassID")
                         .HasColumnType("int");
@@ -210,13 +205,14 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Pesel")
+                        .HasColumnType("int");
+
                     b.Property<string>("StudentRole")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StudentID");
-
-                    b.HasIndex("AttendanceID");
 
                     b.HasIndex("ClassID");
 
@@ -296,7 +292,15 @@ namespace GradeSystem.v1.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Student", "Students")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Enrollment");
+
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("Class", b =>
@@ -313,12 +317,16 @@ namespace GradeSystem.v1.Server.Migrations
             modelBuilder.Entity("Enrollment", b =>
                 {
                     b.HasOne("Class", "Class")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("ClassID1");
+                        .WithMany()
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectID1");
+                        .HasForeignKey("SubjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Class");
 
@@ -346,10 +354,6 @@ namespace GradeSystem.v1.Server.Migrations
 
             modelBuilder.Entity("Student", b =>
                 {
-                    b.HasOne("Attendance", null)
-                        .WithMany("Students")
-                        .HasForeignKey("AttendanceID");
-
                     b.HasOne("Class", "Class")
                         .WithMany()
                         .HasForeignKey("ClassID")
@@ -370,27 +374,12 @@ namespace GradeSystem.v1.Server.Migrations
             modelBuilder.Entity("Subject", b =>
                 {
                     b.HasOne("Teacher", "Teacher")
-                        .WithMany("Subjects")
+                        .WithMany()
                         .HasForeignKey("TeacherID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("Attendance", b =>
-                {
-                    b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("Class", b =>
-                {
-                    b.Navigation("Enrollments");
-                });
-
-            modelBuilder.Entity("Teacher", b =>
-                {
-                    b.Navigation("Subjects");
                 });
 #pragma warning restore 612, 618
         }

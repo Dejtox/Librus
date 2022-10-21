@@ -24,14 +24,16 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Class>>> GetClass()
         {
-            return await _context.Class.ToListAsync();
+            return await _context.Class.Include(c => c.Teacher).ToListAsync();
         }
 
         // GET: api/Classes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Class>> GetClass(int id)
         {
-            var @classe = await _context.Class.FindAsync(id);
+            var @classe = await _context.Class
+                .Include(c=>c.Teacher)
+                .FirstOrDefaultAsync(c=>c.ClassID==id);
 
             if (@classe == null)
             {

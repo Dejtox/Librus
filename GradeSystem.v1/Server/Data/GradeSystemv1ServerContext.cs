@@ -1,5 +1,4 @@
-﻿
-namespace GradeSystem.v1.Server.Data
+﻿namespace GradeSystem.v1.Server.Data
 {
     public class GradeSystemv1ServerContext : DbContext
     {

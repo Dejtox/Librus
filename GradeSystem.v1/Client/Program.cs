@@ -3,6 +3,7 @@ global using GradeSystem.v1.Client.Services.ParentService;
 global using GradeSystem.v1.Client.Services.TeacherService;
 global using GradeSystem.v1.Client.Services.ClassService;
 global using GradeSystem.v1.Client.Services.SubjectService;
+global using GradeSystem.v1.Client.Services.EnrollmentService;
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -18,5 +19,6 @@ builder.Services.AddScoped<IParentService, ParentService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddScoped<ISubjectService, SubjectService>();
+builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 
 await builder.Build().RunAsync();

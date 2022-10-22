@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using GradeSystem.v1.Server.Data;
+using Smart.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<GradeSystemv1ServerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GradeSystemv1ServerContext") ?? throw new InvalidOperationException("Connection string 'GradeSystemv1ServerContext' not found.")));
-
+builder.Services.AddSmart();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

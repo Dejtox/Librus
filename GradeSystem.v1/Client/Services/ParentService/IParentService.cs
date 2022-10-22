@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿
+using System.ComponentModel;
 
 namespace GradeSystem.v1.Client.Services.ParentService
 {

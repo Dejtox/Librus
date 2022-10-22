@@ -1,4 +1,4 @@
-    public class Student
+public class Student
     {
         public int StudentID {get; set; }
         public int ParentID {get; set; }

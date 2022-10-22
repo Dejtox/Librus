@@ -1,4 +1,6 @@
-﻿namespace GradeSystem.v1.Client.Services.StudentService
+﻿
+
+namespace GradeSystem.v1.Client.Services.StudentService
 {
     public interface IStudentService
     {

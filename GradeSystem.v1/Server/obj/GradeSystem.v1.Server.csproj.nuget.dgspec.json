@@ -56,6 +56,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Smart.Blazor": {
+              "target": "Package",
+              "version": "[14.2.18, )"
             }
           },
           "imports": [

@@ -1,7 +1,5 @@
-﻿using GradeSystem.v1.Client.Pages;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
-using static System.Net.WebRequestMethods;
 
 namespace GradeSystem.v1.Client.Services.StudentService
 {

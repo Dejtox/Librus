@@ -1,0 +1,104 @@
+﻿@page "/enrollment"
+@page "/enrollment/{id:int}"
+@inject IEnrollmentService EnrollmentService
+
+@if (ID == null)
+{
+    <PageTitle>Add new Enrollment</PageTitle>
+    <h3>Add new Enrollment</h3>
+}
+else
+{
+    <PageTitle>Edit @enrollment.Date </PageTitle>
+    <h3>Edit @enrollment.Date</h3>
+}
+
+
+<EditForm Model="enrollment" OnSubmit="HandleSubmit">
+    <div>
+        <label for="Enrollment-time">Enrolment Date</label>
+        <input type="datetime-local" id="meeting-time"
+               name="enrollment-time" @bind-value="enrollment.Date">
+        
+    </div>
+    <div>
+        <label for="enrollment">Class</label>
+        <InputSelect @bind-Value="enrollment.ClassID" class="form-select">
+
+            @foreach (var classs in EnrollmentService.Classes)
+            {
+                <option value="@classs.ClassID">@classs.ClassName</option>
+
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label for="enrollment">Subject</label>
+        <InputSelect @bind-Value="enrollment.SubjectID" class="form-select">
+
+            @foreach (var subject in EnrollmentService.Subjects)
+            {
+                <option value="@subject.SubjectID">@subject.SubjectName</option>
+
+            }
+        </InputSelect>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+    <button type="button" class="btn btn-danger" @onclick="DelateEnrollment">Delete Enrollment</button>
+
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    Enrollment enrollment = new Enrollment();
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Enrollment" : "Update Enrollment";
+        await EnrollmentService.GetClasses();
+        await EnrollmentService.GetSubjects();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await EnrollmentService.GetClasses();
+            await EnrollmentService.GetSubjects();
+
+            enrollment.Class = EnrollmentService.Classes[0];
+            enrollment.ClassID = enrollment.Class.ClassID;
+
+            enrollment.Subject = EnrollmentService.Subjects[0];
+            enrollment.SubjectID = enrollment.Subject.SubjectID;
+        }
+        else
+        {
+            enrollment = await EnrollmentService.GetEnrollmentByID((int)ID);
+        }
+        
+    }
+    async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            await EnrollmentService.CreateEnrollment(enrollment);
+        }
+        else
+        {
+            await EnrollmentService.UpdateEnrollment(enrollment);
+        }
+    }
+    async Task DelateEnrollment()
+    {
+
+        await EnrollmentService.DeleteEnrollment(enrollment.EnrollmentID);
+
+    }
+
+}

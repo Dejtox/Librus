@@ -1,0 +1,46 @@
+﻿@page "/enrollments"
+@inject IEnrollmentService EnrollmentService
+@inject NavigationManager NavigationMenager
+
+<PageTitle> Enrollment </PageTitle>
+
+<h3>Enrollment</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Enrollment Date</th>
+            <th>Class Name</th>
+            <th>Subject Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enrollment in EnrollmentService.Enrollments)
+        {
+            <tr>
+                <td>@enrollment.Date</td>
+                <td>@enrollment.Class.ClassName</td>
+                <td>@enrollment.Subject.SubjectName</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowEnrollment(enrollment.EnrollmentID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateEnrollment">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await EnrollmentService.GetEnrollments();
+    }
+    void ShowEnrollment(int id)
+    {
+        NavigationMenager.NavigateTo($"enrollment/{id}");
+    }
+    void CreateEnrollment()
+    {
+        NavigationMenager.NavigateTo("/enrollment");
+    }
+}

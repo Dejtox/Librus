@@ -92,6 +92,7 @@ else
     {
         if (ID == null)
         {
+            student.Password = BCrypt.HashPassword(student.Password);
             student.StudentRole = "Student";
             await StudentService.CreateStudent(student);
         }

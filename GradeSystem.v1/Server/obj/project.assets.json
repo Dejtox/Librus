@@ -46,6 +46,19 @@
           }
         }
       },
+      "BCrypt.Net-Next/4.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -3980,6 +3993,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "GradeSystem.v1.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "6.0.9",
           "Smart.Blazor": "14.2.18"
@@ -4040,6 +4054,37 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "type": "package",
+      "path": "bcrypt.net-next/4.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.0.3.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "ico.png",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/net6.0/BCrypt.Net-Next.dll",
+        "lib/net6.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml",
+        "readme.md"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -12156,23 +12201,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marci\\.nuget\\packages\\": {},
-    "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\HARDPC\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+      "projectUniqueName": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
       "projectName": "GradeSystem.v1.Server",
-      "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
-      "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-      "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\obj\\",
+      "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+      "packagesPath": "C:\\Users\\HARDPC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HARDPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -12187,11 +12232,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
-              "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
+            "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+              "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
             },
-            "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+            "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+              "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
             }
           }
         }

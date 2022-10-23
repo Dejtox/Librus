@@ -1,0 +1,107 @@
+﻿@page "/grade"
+@page "/grade/{id:int}"
+@inject IGradeService GradeService
+
+@if (ID == null)
+{
+    <PageTitle>Add new Grade</PageTitle>
+    <h3>Add new Grade</h3>
+}
+else
+{
+    <PageTitle>Edit @grade </PageTitle>
+    <h3>Edit @grade</h3>
+}
+
+
+<EditForm Model="grade" OnSubmit="HandleSubmit">
+    
+    <div>
+        <label for="grade">Student</label>
+        <InputSelect @bind-Value="grade.StudentID" class="form-select">
+
+            @foreach (var student in GradeService.Students)
+            {
+                <option value="@student.StudentID">@student.FirstName @student.LastName</option>
+
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label for="grade">Subject</label>
+        <InputSelect @bind-Value="grade.SubjectID" class="form-select">
+
+            @foreach (var subject in GradeService.Subjects)
+            {
+                <option value="@subject.SubjectID">@subject.SubjectName-@subject.Teacher.FirstName @subject.Teacher.LastName</option>
+
+            }
+        </InputSelect>
+    </div>
+
+    <div>
+        <label for="gradenumber">Grade Number</label>
+        <InputNumber id="gradenumber" @bind-Value="grade.GradeNumber" class="form-control"></InputNumber>
+    </div>
+    <div>
+        <label for="gradeweight">Grade Weight</label>
+        <InputNumber id="gradeweight" @bind-Value="grade.GradeWeight" class="form-control"></InputNumber>
+    </div>
+
+    <div>
+        <label for="description">Description</label>
+        <InputText @bind-Value="grade.Description" class="form-control"></InputText>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+    <button type="button" class="btn btn-danger" @onclick="DelateGrade">Delete Grade</button>
+
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    Grade grade = new Grade();
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Grade" : "Update Grade";
+        await GradeService.GetStudents();
+        await GradeService.GetSubjects();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await GradeService.GetStudents();
+            await GradeService.GetSubjects();
+        }
+        else
+        {
+            grade = await GradeService.GetGradeByID((int)ID);
+        }
+
+    }
+    async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            await GradeService.CreateGrade(grade);
+        }
+        else
+        {
+            await GradeService.UpdateGrade(grade);
+        }
+    }
+    async Task DelateGrade()
+    {
+
+        await GradeService.DeleteGrade(grade.GradeID);
+
+    }
+
+}

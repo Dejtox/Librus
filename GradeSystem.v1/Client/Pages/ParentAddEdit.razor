@@ -54,6 +54,7 @@ else
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
     {
+        parent.Password = BCrypt.HashPassword(parent.Password);
         btnText = ID == null ? "Save New Parent" : "Update Parent";
         await ParentService.GetParents();
     }

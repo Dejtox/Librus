@@ -73,6 +73,7 @@ else
     {
         if (ID == null)
         {
+            teacher.Password = BCrypt.HashPassword(teacher.Password);
             teacher.TeacherRole = "Teacher";
             await TeacherService.CreateTeacher(teacher);
         }

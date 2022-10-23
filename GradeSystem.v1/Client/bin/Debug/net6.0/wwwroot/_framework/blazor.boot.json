@@ -7,6 +7,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "BCrypt.Net-Next.dll": "sha256-EVufr\/i5CaGgi2WzFQWOsYLAxMOnfBn81fTanaSdSmM=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-HG+bnQWiEA1\/F6r\/8GQWduuLOyXyKN99vVSdpwio0zA=",
       "Microsoft.AspNetCore.Components.dll": "sha256-aJkTDmfPVpkW57SUuoxuimwnL7hXtTTmrPu2e\/VSnJU=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-u9dpNv+WDt12I+80FSS8i0N1ilvLsQQYe6+53qDxg8A=",
@@ -198,18 +199,18 @@
       "mscorlib.dll": "sha256-SboUbkX8s5RVQGtnN5Q67MBZW0I\/P3aeEMENJq8gv8M=",
       "netstandard.dll": "sha256-lZ8L5iiSghlvyt2ie2YdBYAtJbVa4mvpvBX3W9ihjLc=",
       "System.Private.CoreLib.dll": "sha256-jECkJy2Sjpl59QEL3nO3p8nwKGXvnJpXaKQF\/+MTw04=",
-      "GradeSystem.v1.Shared.dll": "sha256-pSbcw8HsrphfrlboO4cJe2E5nNj0sUwS5KvmKjNfYJY=",
-      "GradeSystem.v1.Client.dll": "sha256-acGKPYWjQo94MqmMSJ2twK\/n+eh1Hjf0EA4N9u1MSPY="
+      "GradeSystem.v1.Shared.dll": "sha256-l+wlkc8tuiUmCV7nNEyFC5xwzTg8AfB8a2HY6GE3PVk=",
+      "GradeSystem.v1.Client.dll": "sha256-WfmfKQwpFOKc4y++yY45f+mtNHkGo9aH0WbqtSs0hI8="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "GradeSystem.v1.Shared.pdb": "sha256-Uccb1vYnH+ts+IOQgwRmR6t8RCgHzoir5FM908LSs7s=",
-      "GradeSystem.v1.Client.pdb": "sha256-y8AcEjtbQfR1GuLnpOibBWwxhHAlVlN3ISOAXcVY3IQ="
+      "GradeSystem.v1.Shared.pdb": "sha256-dR+k5A+1hGX7p3t5xxaAuGQ8fvEn8gzLpnao2ZpRf2E=",
+      "GradeSystem.v1.Client.pdb": "sha256-cOX7BQlbc0yxw+u4UJT5LLPxr+d0WrC9md5j53LErKY="
     },
     "runtime": {
-      "dotnet.6.0.10.t4254qefq4.js": "sha256-KtM3Wrooexmrt5NmqvZfWoDPtNIe6wZqLopR6ToqUPg=",
+      "dotnet.6.0.10.i7trtsjxzb.js": "sha256-KtM3Wrooexmrt5NmqvZfWoDPtNIe6wZqLopR6ToqUPg=",
       "dotnet.timezones.blat": "sha256-MAD3ryDxIcf60DIJlI9AVB+F2QC4oWJU0p02C7K2LpU=",
       "dotnet.wasm": "sha256-rbp\/Kz57XpMKaVoap0YLS3sN1D7cPKdTFCpoCR2YrFg=",
       "icudt.dat": "sha256-Zuq0dWAsBm6\/2lSOsz7+H9PvFaRn61KIXHMMwXDfvyE=",

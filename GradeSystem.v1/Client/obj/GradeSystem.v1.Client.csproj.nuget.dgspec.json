@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {}
+    "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {}
   },
   "projects": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+    "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "projectUniqueName": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
         "projectName": "GradeSystem.v1.Client",
-        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-        "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\obj\\",
+        "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "packagesPath": "C:\\Users\\HARDPC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HARDPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-                "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+              "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
               }
             }
           }
@@ -48,6 +48,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[6.0.9, )"
@@ -93,20 +97,20 @@
         }
       }
     },
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+    "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "projectName": "GradeSystem.v1.Shared",
-        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-        "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "packagesPath": "C:\\Users\\HARDPC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HARDPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

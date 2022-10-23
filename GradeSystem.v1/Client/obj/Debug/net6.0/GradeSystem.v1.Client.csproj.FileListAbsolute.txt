@@ -2475,3 +2475,15 @@ J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Newtonso
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Smart.Blazor.dll
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\3FJBg6df.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\A2t6LbJA.gz
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Newtonsoft.Json.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Smart.Blazor.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Newtonsoft.Json.dll.gz
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Smart.Blazor.dll.gz
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\Smart.Blazor.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\1UBnD6Dj.gz
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\KbWQ1BGh.gz
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\BCrypt.Net-Next.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\BCrypt.Net-Next.dll.gz
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Gip6cgSF.gz

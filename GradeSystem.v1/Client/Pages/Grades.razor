@@ -1,0 +1,52 @@
+﻿@page "/grades"
+@inject IGradeService GradeService
+@inject NavigationManager NavigationMenager
+
+<PageTitle> Grade </PageTitle>
+
+<h3>Grade</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Grade Number</th>
+            <th>Grade Weight</th>
+            <th>Student First Name</th>
+            <th>Student Last Name</th>
+            <th>Subject</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grade in GradeService.Grades)
+        {
+            <tr>
+                <td>@grade.GradeNumber</td>
+                <td>@grade.GradeWeight</td>
+                <td>@grade.Student.FirstName</td>
+                <td>@grade.Student.LastName</td>
+                <td>@grade.Subject.SubjectName</td>
+                <td>@grade.Description</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowGrade(grade.GradeID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateGrade">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await GradeService.GetGrades();
+    }
+    void ShowGrade(int id)
+    {
+        NavigationMenager.NavigateTo($"grade/{id}");
+    }
+    void CreateGrade()
+    {
+        NavigationMenager.NavigateTo("/grade");
+    }
+}

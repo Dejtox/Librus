@@ -887,3 +887,5 @@ C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\De
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.genruntimeconfig.cache
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\ref\GradeSystem.v1.Server.dll
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Smart.Blazor.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\Smart.Blazor.dll
+C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\BCrypt.Net-Next.dll

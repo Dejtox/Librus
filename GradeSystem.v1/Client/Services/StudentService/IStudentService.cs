@@ -6,16 +6,11 @@ namespace GradeSystem.v1.Client.Services.StudentService
     {
         IList<Student> Students { get; set; }
         IList<Parent> Parents { get; set; }
-        IList<Class> Classs { get; set; }
-        IList<Grade> Grades { get; set; }
-        IList<Attendance> Attendances { get; set; }
+        IList<Class> Classes { get; set; }
         Task<Student> GetStudentById(int id);
-        Task<Student> GetStudentByName(string name);
         Task GetStudents();
         Task GetParents();
         Task GetClasses();
-        Task GetGrades();
-        Task GetAttendances();
 
         Task CreateStudent(Student student);
         Task UpdateStudent(Student student);

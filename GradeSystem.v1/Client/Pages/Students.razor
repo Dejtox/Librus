@@ -11,10 +11,13 @@
         <tr>
             <th>Last Name</th>
             <th>First Name</th>
+            <th>Address</th>
             <th>Login</th>
             <th>Pasword</th>
-            <th>Parent</th>
-            <th>Class</th>
+            <th>Role</th>
+            <th>Parent First Name</th>
+            <th>Parent Last Name</th>
+            <th>Class Name</th>
         </tr>
     </thead>
     <tbody>
@@ -23,11 +26,13 @@
             <tr>
                 <td>@student.FirstName</td>
                 <td>@student.LastName</td>
+                <td>@student.Address</td>
                 <td>@student.Login</td>
                 <td>@student.Password</td>
                 <td>@student.StudentRole</td>
-                @*<td>@student.Parent.FirstName</td>*@
-                @*<td>@student.Class.ClassName</td>*@
+                <td>@student.Parent.FirstName</td>
+                <td>@student.Parent.LastName</td>
+                <td>@student.Class.ClassName</td>
                 <td>
                     <button class="btn btn-primary" @onclick="(()=>ShowStudent(student.StudentID))"><i class="oi oi-pencil"></i></button>
                 </td>

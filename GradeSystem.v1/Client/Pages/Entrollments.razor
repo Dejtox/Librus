@@ -12,6 +12,7 @@
             <th>Enrollment Date</th>
             <th>Class Name</th>
             <th>Subject Name</th>
+            <th>Class Room</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
                 <td>@enrollment.Date</td>
                 <td>@enrollment.Class.ClassName</td>
                 <td>@enrollment.Subject.SubjectName</td>
+                <td>@enrollment.ClassRoom</td>
                 <td>
                     <button class="btn btn-primary" @onclick="(()=>ShowEnrollment(enrollment.EnrollmentID))"><i class="oi oi-pencil"></i></button>
                 </td>

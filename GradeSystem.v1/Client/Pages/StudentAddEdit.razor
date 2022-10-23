@@ -22,12 +22,41 @@ else
         <InputText id="lastname" @bind-Value="student.LastName" class="form-control"></InputText>
     </div>
     <div>
+        <label for="address">Address</label>
+        <InputText id="address" @bind-Value="student.Address" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="pesel">Pesel</label>
+        <InputText id="pesel" @bind-Value="student.Pesel" class="form-control"></InputText>
+    </div>
+    <div>
         <label for="login">Login</label>
         <InputText id="login" @bind-Value="student.Login" class="form-control"></InputText>
     </div>
     <div>
         <label for="password">Password</label>
         <InputText id="password" @bind-Value="student.Password" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="classname">Class</label>
+        <InputSelect @bind-Value="student.ClassID" class="form-select">
+
+            @foreach (var classs in StudentService.Classes)
+            {
+                <option value="@classs.ClassID">@classs.ClassName</option>
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label for="parentname">Parent</label>
+        <InputSelect @bind-Value="student.ParentID" class="form-select">
+
+            @foreach (var parent in StudentService.Parents)
+            {
+                <option value="@parent.ParentID">@parent.FirstName @parent.LastName</option>
+
+            }
+        </InputSelect>
     </div>
     <br />
     <button type="submit" class="btn btn-primary">@btnText</button>
@@ -39,7 +68,7 @@ else
     [Parameter]
     public int? ID { get; set; }
 
-    Student student = new Student { Parent = new Parent(), Class = new Class()};
+    Student student = new Student();
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
     {
@@ -51,7 +80,8 @@ else
     {
         if (ID == null)
         {
-
+            await StudentService.GetParents();
+            await StudentService.GetClasses();
         }
         else
         {

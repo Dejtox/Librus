@@ -82,7 +82,11 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<int>("ClassID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<string>("ClassRoom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("SubjectID")
@@ -205,8 +209,9 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Pesel")
-                        .HasColumnType("int");
+                    b.Property<string>("Pesel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StudentRole")
                         .IsRequired()
@@ -292,7 +297,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Student", "Students")
+                    b.HasOne("Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -300,7 +305,7 @@ namespace GradeSystem.v1.Server.Migrations
 
                     b.Navigation("Enrollment");
 
-                    b.Navigation("Students");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Class", b =>

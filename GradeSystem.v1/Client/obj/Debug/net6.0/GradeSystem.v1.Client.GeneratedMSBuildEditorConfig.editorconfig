@@ -22,6 +22,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/AttendanceAddEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZUFkZEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/Attendances.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [J:/ProjektLibrus/Librus/Dziennik/GradeSystem.v1/Client/Pages/ClassAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3NBZGRFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

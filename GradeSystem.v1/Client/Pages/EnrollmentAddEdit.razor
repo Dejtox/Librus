@@ -38,10 +38,14 @@ else
 
             @foreach (var subject in EnrollmentService.Subjects)
             {
-                <option value="@subject.SubjectID">@subject.SubjectName</option>
+                <option value="@subject.SubjectID">@subject.SubjectName-@subject.Teacher.FirstName @subject.Teacher.LastName</option>
 
             }
         </InputSelect>
+    </div>
+    <div>
+        <label for="classroom">Class Room</label>
+        <InputText id="classroom" @bind-Value="enrollment.ClassRoom" class="form-control"></InputText>
     </div>
 
     <br />
@@ -70,12 +74,6 @@ else
         {
             await EnrollmentService.GetClasses();
             await EnrollmentService.GetSubjects();
-
-            enrollment.Class = EnrollmentService.Classes[0];
-            enrollment.ClassID = enrollment.Class.ClassID;
-
-            enrollment.Subject = EnrollmentService.Subjects[0];
-            enrollment.SubjectID = enrollment.Subject.SubjectID;
         }
         else
         {

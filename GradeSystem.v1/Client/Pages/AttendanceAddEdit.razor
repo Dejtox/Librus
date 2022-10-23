@@ -1,0 +1,102 @@
+﻿@page "/attendance"
+@page "/attendance/{id:int}"
+@inject IAttendanceService AttendanceService
+
+@if (ID == null)
+{
+    <PageTitle>Add new Attendance</PageTitle>
+    <h3>Add new Attendance</h3>
+}
+else
+{
+    <PageTitle>Edit @attendance.Description </PageTitle>
+    <h3>Edit @attendance.Description</h3>
+}
+
+
+<EditForm Model="attendance" OnSubmit="HandleSubmit">
+    <div>
+        <label for="Attendance">Student</label>
+        <InputSelect @bind-Value="attendance.StudentID" class="form-select">
+
+            @foreach (var student in AttendanceService.Students)
+            {
+                <option value="@student.StudentID">@student.FirstName @student.LastName</option>
+
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <InputSelect @bind-Value="attendance.Description" class="form-select">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+            <option value="Late"> Late</option>
+            <option value="Excused">Excused</option>
+        </InputSelect>
+    </div>
+    
+    <div>
+        <label for="Attendance">Enrollment</label>
+        <InputSelect @bind-Value="attendance.EnrollmentID" class="form-select">
+
+            @foreach (var enrollment in AttendanceService.Enrollments)
+            {
+                <option value="@enrollment.EnrollmentID">@enrollment.Class.ClassName @enrollment.Subject.SubjectName @enrollment.Date </option>
+
+            }
+        </InputSelect>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+    <button type="button" class="btn btn-danger" @onclick="DelateAttendance">Delete Attendance</button>
+
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    Attendance attendance = new Attendance();
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Attendance" : "Update Attendance";
+        await AttendanceService.GetStudents();
+        await AttendanceService.GetEnrollments();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await AttendanceService.GetStudents();
+            await AttendanceService.GetEnrollments();
+        }
+        else
+        {
+            attendance = await AttendanceService.GetAttendanceByID((int)ID);
+        }
+
+    }
+    async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            await AttendanceService.CreateAttendance(attendance);
+        }
+        else
+        {
+            await AttendanceService.UpdateAttendance(attendance);
+        }
+    }
+    async Task DelateAttendance()
+    {
+
+        await AttendanceService.DeleteAttendance(attendance.AttendanceID);
+
+    }
+
+}

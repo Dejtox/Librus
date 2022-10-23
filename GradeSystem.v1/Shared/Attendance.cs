@@ -5,7 +5,7 @@
         public int EnrollmentID { get; set; }
         public int StudentID { get; set; }
         public string Description { get; set; } = string.Empty;
-        public Student? Students { get; set; }
+        public Student? Student { get; set; }
         public Enrollment? Enrollment { get; set; }
 
     }

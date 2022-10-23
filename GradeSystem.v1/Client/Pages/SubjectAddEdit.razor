@@ -55,9 +55,6 @@ else
         if (ID == null)
         {
             await SubjectService.GetTeachers();
-            subject.Teacher = SubjectService.Teachers[0];
-            Console.WriteLine(SubjectService.Teachers[0].FirstName);
-            subject.TeacherID = subject.Teacher.TeacherID;
         }
         else
         {

@@ -6,7 +6,7 @@ public class Student
 
         public string LastName {get; set; } = string.Empty;
         public string FirstName {get; set; } = string.Empty;
-        public int Pesel { get; set; }
+        public string Pesel { get; set; } = string.Empty;
 
         public string Address { get; set; } = string.Empty;
 

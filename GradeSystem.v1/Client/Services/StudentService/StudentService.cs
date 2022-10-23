@@ -12,44 +12,31 @@ namespace GradeSystem.v1.Client.Services.StudentService
         }
         public IList<Student> Students { get ; set ; } = new List<Student>();
         public IList<Parent> Parents { get ; set; } = new List<Parent>();
-        public IList<Class> Classs { get ; set ; } = new List<Class>();
-        public IList<Grade> Grades { get; set; } = new List<Grade>();
-        public IList<Attendance> Attendances { get ; set ; } = new List<Attendance>();
+        public IList<Class> Classes { get ; set ; } = new List<Class>();
+
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
 
         public async Task CreateStudent(Student student)
         {
-            var result = await _http.PostAsJsonAsync("api/Student", student);
+            var result = await _http.PostAsJsonAsync("api/Students", student);
             await SetStudents(result);
         }
 
         public async Task DeleteStudent(int id)
         {
-            var result = await _http.DeleteAsync($"api/Student/{id}");
+            var result = await _http.DeleteAsync($"api/Students/{id}");
             await SetStudents(result);
         }
 
-        public async Task GetAttendances()
-        {
-            var result = await _http.GetFromJsonAsync<List<Attendance>>("api/Attendances");
-            if (result != null)
-                Attendances = result;
-        }
 
         public async Task GetClasses()
         {
             var result = await _http.GetFromJsonAsync<List<Class>>("api/Classes");
             if (result != null)
-                Classs = result;
+                Classes = result;
         }
 
-        public async Task GetGrades()
-        {
-            var result = await _http.GetFromJsonAsync<List<Grade>>("api/Grades");
-            if (result != null)
-                Grades = result;
-        }
 
         public async Task GetParents()
         {
@@ -64,11 +51,6 @@ namespace GradeSystem.v1.Client.Services.StudentService
             if (result != null)
                 return result;
             throw new Exception("Student no find");
-        }
-
-        public Task<Student> GetStudentByName(string name)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task GetStudents()

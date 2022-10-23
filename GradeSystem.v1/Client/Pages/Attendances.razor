@@ -1,0 +1,50 @@
+﻿@page "/attendances"
+@inject IAttendanceService AttendanceService
+@inject NavigationManager NavigationMenager
+
+<PageTitle> Attendances </PageTitle>
+<h3>Attendances</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student First Name</th>
+            <th>Student Last Name</th>
+            <th>Description</th>
+            <th>Subject Name</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var attendance in AttendanceService.Attendances)
+        { 
+            <tr>
+                <td>@attendance.Student.FirstName</td>
+                <td>@attendance.Student.LastName</td>
+                <td>@attendance.Description</td>
+                <td>@attendance.Enrollment.Subject.SubjectName</td>
+                <td>@attendance.Enrollment.Date</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowAttendance(attendance.AttendanceID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateAttendance">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await AttendanceService.GetAttendances(); 
+
+    }
+    void ShowAttendance(int id)
+    {
+        NavigationMenager.NavigateTo($"attendance/{id}");
+    }
+    void CreateAttendance()
+    {
+        NavigationMenager.NavigateTo("/attendance");
+    }
+}

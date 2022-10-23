@@ -24,14 +24,14 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Attendance>>> GetAttendance()
         {
-            return await _context.Attendance.ToListAsync();
+            return await _context.Attendance.Include(e => e.Enrollment).Include(s => s.Student).Include(sb => sb.Enrollment.Subject).ToListAsync();
         }
 
         // GET: api/Attendances/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Attendance>> GetAttendance(int id)
         {
-            var attendance = await _context.Attendance.FindAsync(id);
+            var attendance = await _context.Attendance.Include(e => e.Enrollment).Include(s => s.Student).FirstOrDefaultAsync(i=>i.AttendanceID == id);
 
             if (attendance == null)
             {
@@ -77,6 +77,8 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Attendance>> PostAttendance(Attendance attendance)
         {
+            attendance.Student = null;
+            attendance.Enrollment = null;
             _context.Attendance.Add(attendance);
             await _context.SaveChangesAsync();
 

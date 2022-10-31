@@ -566,24 +566,6 @@ J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\obj\Debug\net6.0\refint\G
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.pdb
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.genruntimeconfig.cache
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\obj\Debug\net6.0\ref\GradeSystem.v1.Server.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Azure.Core.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Azure.Identity.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Mono.TextTemplating.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\System.CodeDom.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\System.Memory.Data.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\System.Text.Json.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugHost.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json
@@ -886,6 +868,17 @@ C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\De
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.pdb
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.genruntimeconfig.cache
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\ref\GradeSystem.v1.Server.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Smart.Blazor.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\Smart.Blazor.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\BCrypt.Net-Next.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.OpenApi.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.MvcApplicationPartsAssemblyInfo.cs
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Authorization.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Blazored.SessionStorage.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\System.Web.Http.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

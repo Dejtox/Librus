@@ -18,14 +18,14 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Parent>>> GetParent()
         {
-            return await _context.Parent.ToListAsync();
+            return await _context.Parent.Include(u=>u.User).ToListAsync();
         }
 
         // GET: api/Parents/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Parent>> GetParent(int id)
         {
-            var parent = await _context.Parent.FindAsync(id);
+            var parent = await _context.Parent.Include(u => u.User).FirstOrDefaultAsync(p=>p.ParentID==id);
 
             if (parent == null)
             {
@@ -40,20 +40,6 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutParent( Parent parent, int id)
         {
-            /* var dbParent = await _context.Parent.FirstOrDefaultAsync(p => p.ParentID == id);
-            if (dbParent == null)
-            {
-                return NotFound("Sory no Parent...");
-            }
-            dbParent.FirstName=parent.FirstName;
-            dbParent.LastName=parent.LastName;
-            dbParent.Email=parent.Email;
-            dbParent.PhoneNumber=parent.PhoneNumber;
-            dbParent.Login = parent.Login;
-            dbParent.Password = parent.Password;
-            await _context.SaveChangesAsync();
-            return Ok(await GetParent());
-            */
 
             if (id != parent.ParentID)
             {
@@ -87,19 +73,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Parent>> PostParent(Parent parent)
         {
-            /*using (var transaction = _context.Database.BeginTransaction())
-            {
-                parent.ParentID = Int32.Parse(parent.Login);
-                 _context.Parent.Add(parent);
-                _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent ON;");
-                await _context.SaveChangesAsync();
-                _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Parent OFF;");
-                transaction.Commit();
-            }
-
-            
-            return Ok(await GetParent()); */
-
+            parent.User = null;
             _context.Parent.Add(parent);
             await _context.SaveChangesAsync();
 

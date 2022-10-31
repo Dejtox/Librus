@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
-namespace GradeSystem.v1.Client.Services.Nowy_folder
+namespace GradeSystem.v1.Client.Services.ClassService
 {
     public class ClassService : IClassService
     {

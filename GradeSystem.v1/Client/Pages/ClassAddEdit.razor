@@ -55,9 +55,6 @@ else
         if (ID == null)
         {
             await ClassService.GetTeachers();
-            classs.Teacher = ClassService.Teachers[0];
-            Console.WriteLine(ClassService.Teachers[0].FirstName);
-            classs.TeacherID = classs.Teacher.TeacherID;
         }
         else
         {

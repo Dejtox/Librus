@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GradeSystem.v1.Server.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GradeSystem.v1.Server.Controllers
 {
@@ -24,14 +25,14 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Teacher>>> GetTeacher()
         {
-            return await _context.Teacher.ToListAsync();
+            return await _context.Teacher.Include(u => u.User).ToListAsync();
         }
 
         // GET: api/Teachers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Teacher>> GetTeacher(int id)
         {
-            var teacher = await _context.Teacher.FindAsync(id);
+            var teacher = await _context.Teacher.Include(u => u.User).FirstOrDefaultAsync(t=>t.TeacherID==id);
 
             if (teacher == null)
             {
@@ -77,6 +78,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Teacher>> PostTeacher(Teacher teacher)
         {
+            teacher.User = null;
             _context.Teacher.Add(teacher);
             await _context.SaveChangesAsync();
 

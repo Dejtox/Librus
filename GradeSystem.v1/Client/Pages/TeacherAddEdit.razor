@@ -1,6 +1,7 @@
 ﻿@page "/teacher"
 @page "/teacher/{id:int}"
 @inject ITeacherService TeacherService
+@inject IUserService UserService
 
 @if (ID == null)
 {
@@ -33,11 +34,11 @@ else
     </div>
     <div>
         <label for="login">Login</label>
-        <InputText id="login" @bind-Value="teacher.Login" class="form-control"></InputText>
+        <InputText id="login" @bind-Value="user.Login" class="form-control"></InputText>
     </div>
     <div>
         <label for="password">Password</label>
-        <InputText id="password" @bind-Value="teacher.Password" class="form-control"></InputText>
+        <InputText id="password" @bind-Value="user.PasswordHash" class="form-control"></InputText>
     </div>
     <br />
     <button type="submit" class="btn btn-primary">@btnText</button>
@@ -51,6 +52,10 @@ else
     public int? ID { get; set; }
 
     Teacher teacher = new Teacher();
+    User user = new User();
+    List<User> users = new List<User>();
+
+
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
     {
@@ -67,26 +72,31 @@ else
         else
         {
             teacher = await TeacherService.GetTeacherByID((int)ID);
+            user = await UserService.GetUserByID(teacher.UserID);
         }
     }
     async Task HandleSubmit()
     {
         if (ID == null)
         {
-            teacher.Password = BCrypt.HashPassword(teacher.Password);
-            teacher.TeacherRole = "Teacher";
+            user.UserRole = "Teacher";
+            await UserService.CreateUser(user);
+            await UserService.GetUsers();
+            teacher.UserID = UserService.Users[UserService.Users.Count - 1].UserID;
             await TeacherService.CreateTeacher(teacher);
+            
         }
         else
         {
+            user.UserRole = "Teacher";
             await TeacherService.UpdateTeacher(teacher);
+            await UserService.UpdateUser(user);
         }
     }
     async Task DelateTeacher()
     {
-
+        await UserService.DeleteUser(teacher.UserID);
         await TeacherService.DeleteTeacher(teacher.TeacherID);
-
     }
 
 }

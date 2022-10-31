@@ -1429,12 +1429,9 @@ J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSys
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.AssemblyInfo.cs
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.csproj.CoreCompileInputs.cache
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.MvcApplicationPartsAssemblyInfo.cache
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\MozxlDa6.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Ohfs+x+T.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\W9mEiIpC.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\r8KOBWh+.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\svRYkKrW.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\ALgV8x40.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\SgEBAzhY.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\ZhSD7BPM.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\1YgpHSO1.gz
@@ -2467,14 +2464,6 @@ C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\De
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\refint\GradeSystem.v1.Client.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.pdb
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\ref\GradeSystem.v1.Client.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Newtonsoft.Json.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Smart.Blazor.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Newtonsoft.Json.dll.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Smart.Blazor.dll.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Newtonsoft.Json.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Smart.Blazor.dll
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\3FJBg6df.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\A2t6LbJA.gz
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Newtonsoft.Json.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Smart.Blazor.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Newtonsoft.Json.dll.gz
@@ -2487,3 +2476,94 @@ C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\De
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\BCrypt.Net-Next.dll.gz
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\bin\Debug\net6.0\BCrypt.Net-Next.dll
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Gip6cgSF.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Authorization.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Authentication.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Authentication.Core.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Authentication.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Cryptography.Internal.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.DataProtection.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.DataProtection.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Hosting.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.Extensions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.Features.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.WebUtilities.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Extensions.Hosting.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Extensions.ObjectPool.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Extensions.WebEncoders.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Net.Http.Headers.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\System.Security.Cryptography.Pkcs.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\System.Security.Cryptography.Xml.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\System.Security.Permissions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Authentication.Abstractions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Cryptography.Internal.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\System.Security.Cryptography.Pkcs.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.DataProtection.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Authentication.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.DataProtection.Abstractions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\System.Security.Cryptography.Xml.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Hosting.Abstractions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\System.Security.Permissions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Extensions.ObjectPool.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Extensions.WebEncoders.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Extensions.Hosting.Abstractions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.Extensions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.Features.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.Net.Http.Headers.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Authentication.Core.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.WebUtilities.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Microsoft.AspNetCore.Http.Abstractions.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Core.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.DataProtection.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.DataProtection.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Hosting.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Http.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Extensions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Features.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.AspNetCore.WebUtilities.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.Extensions.Hosting.Abstractions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.Extensions.ObjectPool.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.Extensions.WebEncoders.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Microsoft.Net.Http.Headers.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\System.Security.Cryptography.Xml.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\System.Security.Permissions.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\BhynBZF+.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\+taXe9y+.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\U9YxFvfF.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\4cU83Y9j.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\b7mva+tQ.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\CWYXWKp2.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\eYA5SaOc.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\ks0MTbrd.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\qj+IB5qc.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\vzXVGG2+.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Qvu+6tYt.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\qXu4hVba.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\uDMIzSV5.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\PmXHUXhk.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\iRVAjvlA.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\LWL3wyLo.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\TOfQqZME.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\7GhPEo2I.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\DelrzOk4.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\GAH5OvwB.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Blazored.SessionStorage.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\wwwroot\_framework\Blazored.SessionStorage.dll.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\bin\Debug\net6.0\Blazored.SessionStorage.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\nOzc2src.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\MozxlDa6.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Ohfs+x+T.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\XLh8tSnj.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\ALgV8x40.gz

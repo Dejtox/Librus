@@ -1,5 +1,7 @@
 ﻿using GradeSystem.v1.Client.Pages;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using System.Data;
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
@@ -38,7 +40,7 @@ namespace GradeSystem.v1.Client.Services.GradeService
                 return result;
             throw new Exception("Grade not found");
         }
-
+        [Authorize(Roles = "Teacher")]
         public async Task GetGrades()
         {
             var result = await _http.GetFromJsonAsync<List<Grade>>("api/Grades");

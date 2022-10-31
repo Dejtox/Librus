@@ -1,4 +1,5 @@
-﻿namespace GradeSystem.v1.Server.Data
+﻿using Microsoft.EntityFrameworkCore;
+namespace GradeSystem.v1.Server.Data
 {
     public class GradeSystemv1ServerContext : DbContext
     {
@@ -22,5 +23,7 @@
         public DbSet<Grade> Grade { get; set; }
 
         public DbSet<Enrollment> Enrollment { get; set; }
+
+        public DbSet<User> User { get; set; }
     }
 }

@@ -1,6 +1,13 @@
 ﻿@page "/grades"
+@using GradeSystem.v1.Client.Auth
+@using System.Net.Http.Headers
 @inject IGradeService GradeService
 @inject NavigationManager NavigationMenager
+@attribute [Authorize(Roles ="Teacher")]
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager navMenager
+
+@inject HttpClient httpClient
 
 <PageTitle> Grade </PageTitle>
 
@@ -49,4 +56,7 @@
     {
         NavigationMenager.NavigateTo("/grade");
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 ﻿@page "/teachers"
 @inject ITeacherService TeacherService
 @inject NavigationManager NavigationMenager
+@attribute [Authorize(Roles = "Teacher")]
 
 <PageTitle> Teachers </PageTitle>
 
@@ -12,9 +13,9 @@
             <th>Last Name</th>
             <th>First Name</th>
             <th>Email</th>
+            <th>Phone Number</th>
             <th>Login</th>
             <th>Password</th>
-            <th>Phone Number</th>
             <th>Teacher Role</th>
         </tr>
     </thead>
@@ -25,10 +26,10 @@
                 <td>@teacher.FirstName</td>
                 <td>@teacher.LastName</td>
                 <td>@teacher.Email</td>
-                <td>@teacher.Login</td>
-                <td>@teacher.Password</td>
                 <td>@teacher.PhoneNumber</td>
-                <td>@teacher.TeacherRole</td>
+                <td>@teacher.User.Login</td>
+                <td>@teacher.User.PasswordHash</td>
+                <td>@teacher.User.UserRole</td>
                 <td>
                     <button class="btn btn-primary" @onclick="(()=>ShowTeacher(teacher.TeacherID))"><i class="oi oi-pencil"></i></button>
                 </td>

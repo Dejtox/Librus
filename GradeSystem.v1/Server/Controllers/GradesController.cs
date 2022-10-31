@@ -6,15 +6,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GradeSystem.v1.Server.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GradeSystem.v1.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class GradesController : ControllerBase
     {
+        
         private readonly GradeSystemv1ServerContext _context;
-
+        
         public GradesController(GradeSystemv1ServerContext context)
         {
             _context = context;
@@ -22,6 +25,7 @@ namespace GradeSystem.v1.Server.Controllers
 
         // GET: api/Grades
         [HttpGet]
+        
         public async Task<ActionResult<IEnumerable<Grade>>> GetGrade()
         {
             return await _context.Grade.Include(s=>s.Student).Include(s=>s.Subject).Include(t=>t.Subject.Teacher).ToListAsync();

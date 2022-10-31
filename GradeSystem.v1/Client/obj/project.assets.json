@@ -2,15 +2,72 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "BCrypt.Net-Next/4.0.3": {
+      "Blazored.SessionStorage/2.2.0": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
         "compile": {
-          "lib/net6.0/BCrypt.Net-Next.dll": {
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
+          "Microsoft.AspNetCore.DataProtection": "2.2.0",
+          "Microsoft.AspNetCore.Http": "2.2.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "Microsoft.Extensions.WebEncoders": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/BCrypt.Net-Next.dll": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Core/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Http": "2.2.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.dll": {
             "related": ".xml"
           }
         }
@@ -54,6 +111,23 @@
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/6.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.3",
+          "Microsoft.AspNetCore.Components": "6.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.AspNetCore.Components.Forms/6.0.9": {
@@ -121,6 +195,163 @@
           "build/Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets": {}
         }
       },
+      "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.DataProtection/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.Internal": "2.2.0",
+          "Microsoft.AspNetCore.DataProtection.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "Microsoft.Win32.Registry": "4.5.0",
+          "System.Security.Cryptography.Xml": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.DataProtection.Abstractions/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Server.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Hosting.Server.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.WebUtilities": "2.2.0",
+          "Microsoft.Extensions.ObjectPool": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "Microsoft.Net.Http.Headers": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Extensions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "2.2.0",
+          "Microsoft.Net.Http.Headers": "2.2.0",
+          "System.Buffers": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Extensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Extensions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Metadata/6.0.9": {
         "type": "package",
         "compile": {
@@ -134,13 +365,21 @@
           }
         }
       },
-      "Microsoft.CSharp/4.7.0": {
+      "Microsoft.AspNetCore.WebUtilities/2.2.0": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http.Headers": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
         "compile": {
-          "ref/netcoreapp2.0/_._": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp2.0/_._": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.Extensions.Configuration/6.0.0": {
@@ -324,6 +563,25 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Microsoft.Extensions.Hosting.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -358,6 +616,19 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "Microsoft.Extensions.ObjectPool/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.ObjectPool.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.ObjectPool.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.Extensions.Options/6.0.0": {
@@ -396,6 +667,24 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Microsoft.Extensions.WebEncoders/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.JSInterop/6.0.9": {
         "type": "package",
         "compile": {
@@ -425,38 +714,64 @@
           }
         }
       },
-      "Newtonsoft.Json/12.0.3": {
+      "Microsoft.Net.Http.Headers/2.2.0": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.2.0",
+          "System.Buffers": "4.5.0"
+        },
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/netstandard2.0/Microsoft.Net.Http.Headers.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/netstandard2.0/Microsoft.Net.Http.Headers.dll": {
             "related": ".xml"
           }
         }
       },
-      "Smart.Blazor/14.2.18": {
+      "Microsoft.NETCore.Platforms/2.0.0": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.6",
-          "Microsoft.AspNetCore.Components.Web": "6.0.6",
-          "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "12.0.3"
-        },
         "compile": {
-          "lib/net6.0/Smart.Blazor.dll": {}
+          "lib/netstandard1.0/_._": {}
         },
         "runtime": {
-          "lib/net6.0/Smart.Blazor.dll": {}
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "Microsoft.Win32.Registry/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.AccessControl": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
         },
-        "build": {
-          "buildTransitive/Smart.Blazor.props": {}
+        "compile": {
+          "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {
+            "related": ".xml"
+          }
         },
-        "buildMultiTargeting": {
-          "buildMultiTargeting/Smart.Blazor.props": {}
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "System.Buffers/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
         }
       },
       "System.Diagnostics.DiagnosticSource/6.0.0": {
@@ -508,6 +823,117 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Security.AccessControl/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.AccessControl.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.AccessControl.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "System.Security.Cryptography.Cng/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "System.Security.Cryptography.Pkcs/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.Cng": "4.5.0"
+        },
+        "compile": {
+          "ref/netcoreapp2.1/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "System.Security.Cryptography.Xml/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.Pkcs": "4.5.0",
+          "System.Security.Permissions": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.Cryptography.Xml.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.Xml.dll": {}
+        }
+      },
+      "System.Security.Permissions/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.AccessControl": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.Permissions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Permissions.dll": {}
+        }
+      },
+      "System.Security.Principal.Windows/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.Principal.Windows.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.0/System.Security.Principal.Windows.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netcoreapp2.0/System.Security.Principal.Windows.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
       "System.Text.Encodings.Web/6.0.0": {
@@ -567,15 +993,72 @@
       }
     },
     "net6.0/browser-wasm": {
-      "BCrypt.Net-Next/4.0.3": {
+      "Blazored.SessionStorage/2.2.0": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
         "compile": {
-          "lib/net6.0/BCrypt.Net-Next.dll": {
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
+          "Microsoft.AspNetCore.DataProtection": "2.2.0",
+          "Microsoft.AspNetCore.Http": "2.2.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "Microsoft.Extensions.WebEncoders": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/BCrypt.Net-Next.dll": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Core/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Http": "2.2.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.dll": {
             "related": ".xml"
           }
         }
@@ -619,6 +1102,23 @@
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/6.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.3",
+          "Microsoft.AspNetCore.Components": "6.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.AspNetCore.Components.Forms/6.0.9": {
@@ -686,6 +1186,163 @@
           "build/Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets": {}
         }
       },
+      "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.DataProtection/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.Internal": "2.2.0",
+          "Microsoft.AspNetCore.DataProtection.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "Microsoft.Win32.Registry": "4.5.0",
+          "System.Security.Cryptography.Xml": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.DataProtection.Abstractions/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Server.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Hosting.Server.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.WebUtilities": "2.2.0",
+          "Microsoft.Extensions.ObjectPool": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "Microsoft.Net.Http.Headers": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Extensions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "2.2.0",
+          "Microsoft.Net.Http.Headers": "2.2.0",
+          "System.Buffers": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Extensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Extensions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Metadata/6.0.9": {
         "type": "package",
         "compile": {
@@ -699,13 +1356,21 @@
           }
         }
       },
-      "Microsoft.CSharp/4.7.0": {
+      "Microsoft.AspNetCore.WebUtilities/2.2.0": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http.Headers": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
         "compile": {
-          "ref/netcoreapp2.0/_._": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp2.0/_._": {}
+          "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.Extensions.Configuration/6.0.0": {
@@ -889,6 +1554,25 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Microsoft.Extensions.Hosting.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -923,6 +1607,19 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "Microsoft.Extensions.ObjectPool/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.ObjectPool.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.ObjectPool.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.Extensions.Options/6.0.0": {
@@ -961,6 +1658,24 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Microsoft.Extensions.WebEncoders/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.JSInterop/6.0.9": {
         "type": "package",
         "compile": {
@@ -990,38 +1705,54 @@
           }
         }
       },
-      "Newtonsoft.Json/12.0.3": {
+      "Microsoft.Net.Http.Headers/2.2.0": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.2.0",
+          "System.Buffers": "4.5.0"
+        },
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/netstandard2.0/Microsoft.Net.Http.Headers.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/netstandard2.0/Microsoft.Net.Http.Headers.dll": {
             "related": ".xml"
           }
         }
       },
-      "Smart.Blazor/14.2.18": {
+      "Microsoft.NETCore.Platforms/2.0.0": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components": "6.0.6",
-          "Microsoft.AspNetCore.Components.Web": "6.0.6",
-          "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "12.0.3"
-        },
         "compile": {
-          "lib/net6.0/Smart.Blazor.dll": {}
+          "lib/netstandard1.0/_._": {}
         },
         "runtime": {
-          "lib/net6.0/Smart.Blazor.dll": {}
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "Microsoft.Win32.Registry/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.AccessControl": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
         },
-        "build": {
-          "buildTransitive/Smart.Blazor.props": {}
+        "compile": {
+          "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {
+            "related": ".xml"
+          }
         },
-        "buildMultiTargeting": {
-          "buildMultiTargeting/Smart.Blazor.props": {}
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {}
+        }
+      },
+      "System.Buffers/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
         }
       },
       "System.Diagnostics.DiagnosticSource/6.0.0": {
@@ -1073,6 +1804,89 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Security.AccessControl/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.AccessControl.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.AccessControl.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Cng/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Pkcs/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.Cng": "4.5.0"
+        },
+        "compile": {
+          "ref/netcoreapp2.1/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Xml/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.Pkcs": "4.5.0",
+          "System.Security.Permissions": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.Cryptography.Xml.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.Xml.dll": {}
+        }
+      },
+      "System.Security.Permissions/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.AccessControl": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.Permissions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Permissions.dll": {}
+        }
+      },
+      "System.Security.Principal.Windows/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.Principal.Windows.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {}
         }
       },
       "System.Text.Encodings.Web/6.0.0": {
@@ -1127,35 +1941,57 @@
     }
   },
   "libraries": {
-    "BCrypt.Net-Next/4.0.3": {
-      "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+    "Blazored.SessionStorage/2.2.0": {
+      "sha512": "2iVrDbv30kuufV0CGjNkQgVReH/aSfDlyqnYTXyoFIFwtrSnMS+pqx5tLFAoigLXn/imSQHPZkVnOArLZYefXg==",
       "type": "package",
-      "path": "bcrypt.net-next/4.0.3",
+      "path": "blazored.sessionstorage/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "bcrypt.net-next.4.0.3.nupkg.sha512",
-        "bcrypt.net-next.nuspec",
-        "ico.png",
-        "lib/net20/BCrypt.Net-Next.dll",
-        "lib/net20/BCrypt.Net-Next.xml",
-        "lib/net35/BCrypt.Net-Next.dll",
-        "lib/net35/BCrypt.Net-Next.xml",
-        "lib/net462/BCrypt.Net-Next.dll",
-        "lib/net462/BCrypt.Net-Next.xml",
-        "lib/net472/BCrypt.Net-Next.dll",
-        "lib/net472/BCrypt.Net-Next.xml",
-        "lib/net48/BCrypt.Net-Next.dll",
-        "lib/net48/BCrypt.Net-Next.xml",
-        "lib/net5.0/BCrypt.Net-Next.dll",
-        "lib/net5.0/BCrypt.Net-Next.xml",
-        "lib/net6.0/BCrypt.Net-Next.dll",
-        "lib/net6.0/BCrypt.Net-Next.xml",
-        "lib/netstandard2.0/BCrypt.Net-Next.dll",
-        "lib/netstandard2.0/BCrypt.Net-Next.xml",
-        "lib/netstandard2.1/BCrypt.Net-Next.dll",
-        "lib/netstandard2.1/BCrypt.Net-Next.xml",
-        "readme.md"
+        "blazored.sessionstorage.2.2.0.nupkg.sha512",
+        "blazored.sessionstorage.nuspec",
+        "icon.png",
+        "lib/net5.0/Blazored.SessionStorage.dll",
+        "lib/netstandard2.1/Blazored.SessionStorage.dll"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication/2.2.0": {
+      "sha512": "b0R9X7L6zMqNsssKDvhYHuNi5x0s4DyHTeXybIAyGaitKiW1Q5aAGKdV2codHPiePv9yHfC9hAMyScXQ/xXhPw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.xml",
+        "microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
+      "sha512": "VloMLDJMf3n/9ic5lCBOa42IBYJgyB1JhzLsL68Zqg+2bEPWfGBj/xCJy/LrKTArN0coOcZp3wyVTZlx0y9pHQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Abstractions.xml",
+        "microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Core/2.2.0": {
+      "sha512": "XlVJzJ5wPOYW+Y0J6Q/LVTEyfS4ssLXmt60T0SPP+D8abVhBTl+cgw2gDHlyKYIkcJg7btMVh383NDkMVqD/fg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.core/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.xml",
+        "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.core.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authorization/6.0.9": {
@@ -1206,6 +2042,21 @@
         "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
         "microsoft.aspnetcore.components.analyzers.6.0.9.nupkg.sha512",
         "microsoft.aspnetcore.components.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Authorization/6.0.3": {
+      "sha512": "wxNNi70so9lntwJSro66kUD7BQwq7gWh1QP+HhS09mCf1M9gw96c2mv3SwTLvObKU7t4n9T/XnB+QAuZr59e7g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.authorization/6.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.xml",
+        "microsoft.aspnetcore.components.authorization.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Components.Forms/6.0.9": {
@@ -1377,6 +2228,123 @@
         "tools/x86/aspnetcorev2_inprocess.dll"
       ]
     },
+    "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
+      "sha512": "GXmMD8/vuTLPLvKzKEPz/4vapC5e0cwx1tUVd83ePRyWF9CCrn/pg4/1I+tGkQqFLPvi3nlI2QtPtC6MQN8Nww==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.cryptography.internal/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
+        "microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.DataProtection/2.2.0": {
+      "sha512": "G6dvu5Nd2vjpYbzazZ//qBFbSEf2wmBUbyAR7E4AwO3gWjhoJD5YxpThcGJb7oE3VUcW65SVMXT+cPCiiBg8Sg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.dataprotection/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.xml",
+        "microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.dataprotection.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.DataProtection.Abstractions/2.2.0": {
+      "sha512": "seANFXmp8mb5Y12m1ShiElJ3ZdOT3mBN3wA1GPhHJIvZ/BxOCPyqEOR+810OWsxEZwA5r5fDRNpG/CqiJmQnJg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.dataprotection.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.xml",
+        "microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.dataprotection.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
+      "sha512": "ubycklv+ZY7Kutdwuy1W4upWcZ6VFR8WUXU7l7B2+mvbDBBPAcfpi+E+Y5GFe+Q157YfA3C49D2GCjAZc7Mobw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.hosting.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Abstractions.xml",
+        "microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.hosting.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Hosting.Server.Abstractions/2.2.0": {
+      "sha512": "1PMijw8RMtuQF60SsD/JlKtVfvh4NORAhF4wjysdABhlhTrYmtgssqyncR0Stq5vqtjplZcj6kbT4LRTglt9IQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.hosting.server.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.xml",
+        "microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.hosting.server.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http/2.2.0": {
+      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
+        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+      "sha512": "Nxs7Z1q3f1STfLYKJSVXCs1iBl+Ya6E8o4Oy1bCxJ/rNI44E/0f6tbsrVqAWfB7jlnJfyaAtIalBVxPKUPQb4Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.xml",
+        "microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Extensions/2.2.0": {
+      "sha512": "2DgZ9rWrJtuR7RYiew01nGRzuQBDaGHGmK56Rk54vsLLsCdzuFUPqbDTJCS1qJQWTbmbIQ9wGIOjpxA1t0l7/w==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.extensions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Extensions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Extensions.xml",
+        "microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.extensions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/2.2.0": {
+      "sha512": "ziFz5zH8f33En4dX81LW84I6XrYXKf9jg6aM39cM+LffN9KJahViKZ61dGMSO2gd3e+qe5yBRwsesvyqlZaSMg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Metadata/6.0.9": {
       "sha512": "cQET2vOT72zW+kOd71KQE80qBSQJEnWs86HfJEZPzHgTfn/o5UyzHHRosP1EQX8iPQ9ESxmd+AJedggkSxN93Q==",
       "type": "package",
@@ -1396,73 +2364,17 @@
         "microsoft.aspnetcore.metadata.nuspec"
       ]
     },
-    "Microsoft.CSharp/4.7.0": {
-      "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+    "Microsoft.AspNetCore.WebUtilities/2.2.0": {
+      "sha512": "9ErxAAKaDzxXASB/b5uLEkLgUWv1QbeVxyJYEHQwMaxXOeFFVkQxiq8RyfVcifLU7NR0QY0p3acqx4ZpYfhHDg==",
       "type": "package",
-      "path": "microsoft.csharp/4.7.0",
+      "path": "microsoft.aspnetcore.webutilities/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/netcore50/Microsoft.CSharp.dll",
-        "lib/netcoreapp2.0/_._",
-        "lib/netstandard1.3/Microsoft.CSharp.dll",
-        "lib/netstandard2.0/Microsoft.CSharp.dll",
-        "lib/netstandard2.0/Microsoft.CSharp.xml",
-        "lib/portable-net45+win8+wp8+wpa81/_._",
-        "lib/uap10.0.16299/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "microsoft.csharp.4.7.0.nupkg.sha512",
-        "microsoft.csharp.nuspec",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/Microsoft.CSharp.dll",
-        "ref/netcore50/Microsoft.CSharp.xml",
-        "ref/netcore50/de/Microsoft.CSharp.xml",
-        "ref/netcore50/es/Microsoft.CSharp.xml",
-        "ref/netcore50/fr/Microsoft.CSharp.xml",
-        "ref/netcore50/it/Microsoft.CSharp.xml",
-        "ref/netcore50/ja/Microsoft.CSharp.xml",
-        "ref/netcore50/ko/Microsoft.CSharp.xml",
-        "ref/netcore50/ru/Microsoft.CSharp.xml",
-        "ref/netcore50/zh-hans/Microsoft.CSharp.xml",
-        "ref/netcore50/zh-hant/Microsoft.CSharp.xml",
-        "ref/netcoreapp2.0/_._",
-        "ref/netstandard1.0/Microsoft.CSharp.dll",
-        "ref/netstandard1.0/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/de/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/es/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/fr/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/it/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/ja/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/ko/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/ru/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/zh-hans/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/zh-hant/Microsoft.CSharp.xml",
-        "ref/netstandard2.0/Microsoft.CSharp.dll",
-        "ref/netstandard2.0/Microsoft.CSharp.xml",
-        "ref/portable-net45+win8+wp8+wpa81/_._",
-        "ref/uap10.0.16299/_._",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.WebUtilities.xml",
+        "microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.webutilities.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration/6.0.0": {
@@ -1681,6 +2593,19 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.Hosting.Abstractions/2.2.0": {
+      "sha512": "+k4AEn68HOJat5gj1TWa6X28WlirNQO9sPIIeQbia+91n03esEtMSSoekSTpMjUzjqtJWQN3McVx0GvSPFHF/Q==",
+      "type": "package",
+      "path": "microsoft.extensions.hosting.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.xml",
+        "microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.extensions.hosting.abstractions.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Logging/6.0.0": {
       "sha512": "eIbyj40QDg1NDz0HBW0S5f3wrLVnKWnDJ/JtZ+yJDFnDj90VoPuoPmFkeaXrtu+0cKm5GRAwoDf+dBWXK0TUdg==",
       "type": "package",
@@ -1754,6 +2679,19 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.ObjectPool/2.2.0": {
+      "sha512": "gA8H7uQOnM5gb+L0uTNjViHYr+hRDqCdfugheGo/MxQnuHzmhhzCBTIPm19qL1z1Xe0NEMabfcOBGv9QghlZ8g==",
+      "type": "package",
+      "path": "microsoft.extensions.objectpool/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.ObjectPool.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.ObjectPool.xml",
+        "microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
+        "microsoft.extensions.objectpool.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Options/6.0.0": {
       "sha512": "dzXN0+V1AyjOe2xcJ86Qbo233KHuLEY0njf/P2Kw8SfJU+d45HNS2ctJdnEnrWbM9Ye2eFgaC5Mj9otRMU6IsQ==",
       "type": "package",
@@ -1800,6 +2738,19 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.WebEncoders/2.2.0": {
+      "sha512": "V8XcqYcpcdBAxUhLeyYcuKmxu4CtNQA9IphTnARpQGhkop4A93v2XgM3AtaVVJo3H2cDWxWM6aeO8HxkifREqw==",
+      "type": "package",
+      "path": "microsoft.extensions.webencoders/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.xml",
+        "microsoft.extensions.webencoders.2.2.0.nupkg.sha512",
+        "microsoft.extensions.webencoders.nuspec"
+      ]
+    },
     "Microsoft.JSInterop/6.0.9": {
       "sha512": "6SRDR3QEhnT3WuNittrXn0yKM2a2J7E22GAdSuKzC8tPcAjA25tHJeyFcRIJFZBmsIE0tuJzXopLrvG4sTacAg==",
       "type": "package",
@@ -1830,1086 +2781,103 @@
         "microsoft.jsinterop.webassembly.nuspec"
       ]
     },
-    "Newtonsoft.Json/12.0.3": {
-      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+    "Microsoft.Net.Http.Headers/2.2.0": {
+      "sha512": "iZNkjYqlo8sIOI0bQfpsSoMTmB/kyvmV2h225ihyZT33aTp48ZpF6qYnXxzSXmHt8DpBAwBTX+1s1UFLbYfZKg==",
       "type": "package",
-      "path": "newtonsoft.json/12.0.3",
+      "path": "microsoft.net.http.headers/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE.md",
-        "lib/net20/Newtonsoft.Json.dll",
-        "lib/net20/Newtonsoft.Json.xml",
-        "lib/net35/Newtonsoft.Json.dll",
-        "lib/net35/Newtonsoft.Json.xml",
-        "lib/net40/Newtonsoft.Json.dll",
-        "lib/net40/Newtonsoft.Json.xml",
-        "lib/net45/Newtonsoft.Json.dll",
-        "lib/net45/Newtonsoft.Json.xml",
-        "lib/netstandard1.0/Newtonsoft.Json.dll",
-        "lib/netstandard1.0/Newtonsoft.Json.xml",
-        "lib/netstandard1.3/Newtonsoft.Json.dll",
-        "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/netstandard2.0/Newtonsoft.Json.dll",
-        "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.12.0.3.nupkg.sha512",
-        "newtonsoft.json.nuspec",
-        "packageIcon.png"
+        "lib/netstandard2.0/Microsoft.Net.Http.Headers.dll",
+        "lib/netstandard2.0/Microsoft.Net.Http.Headers.xml",
+        "microsoft.net.http.headers.2.2.0.nupkg.sha512",
+        "microsoft.net.http.headers.nuspec"
       ]
     },
-    "Smart.Blazor/14.2.18": {
-      "sha512": "6uuI8jUFQWrotW4tbK3vd41rgjkTxZhhPtXd4D1BmBI4PPgh2LJ/5KWFmGNUD99tYqwOu7s5dKns5LWnUOILdg==",
+    "Microsoft.NETCore.Platforms/2.0.0": {
+      "sha512": "VdLJOCXhZaEMY7Hm2GKiULmn7IEPFE4XC5LPSfBVCUIA8YLZVh846gtfBJalsPQF2PlzdD7ecX7DZEulJ402ZQ==",
       "type": "package",
-      "path": "smart.blazor/14.2.18",
+      "path": "microsoft.netcore.platforms/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE.txt",
-        "build/Microsoft.AspNetCore.StaticWebAssets.props",
-        "build/Smart.Blazor.props",
-        "buildMultiTargeting/Smart.Blazor.props",
-        "buildTransitive/Smart.Blazor.props",
-        "icon.png",
-        "lib/net6.0/Smart.Blazor.dll",
-        "lib/netstandard2.1/Smart.Blazor.dll",
-        "smart.blazor.14.2.18.nupkg.sha512",
-        "smart.blazor.nuspec",
-        "staticwebassets/css/bootstrap/_bootstrap_vars.scss",
-        "staticwebassets/css/bootstrap/_bootstrap_vars_dark.scss",
-        "staticwebassets/css/bootstrap/_bootstrap_vars_light.scss",
-        "staticwebassets/css/bootstrap/_mixins.scss",
-        "staticwebassets/css/bootstrap/_styles.scss",
-        "staticwebassets/css/bootstrap/_vars.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.blue.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.blue.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.cyan.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.cyan.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.green.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.green.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.indigo.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.indigo.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.orange.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.orange.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.pink.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.pink.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.purple.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.purple.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.red.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.red.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.teal.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.teal.scss",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.turquoise.css",
-        "staticwebassets/css/bootstrap/dark/smart.bootstrap.turquoise.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.blue.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.blue.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.cyan.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.cyan.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.green.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.green.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.indigo.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.indigo.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.orange.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.orange.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.pink.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.pink.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.purple.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.purple.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.red.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.red.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.teal.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.teal.scss",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.turquoise.css",
-        "staticwebassets/css/bootstrap/light/smart.bootstrap.turquoise.scss",
-        "staticwebassets/css/bootstrap/smart.bootstrap.css",
-        "staticwebassets/css/bootstrap/smart.bootstrap.scss",
-        "staticwebassets/css/components/smart.accordion.css",
-        "staticwebassets/css/components/smart.array.css",
-        "staticwebassets/css/components/smart.barcode.css",
-        "staticwebassets/css/components/smart.base.css",
-        "staticwebassets/css/components/smart.breadcrumb.css",
-        "staticwebassets/css/components/smart.button.css",
-        "staticwebassets/css/components/smart.buttongroup.css",
-        "staticwebassets/css/components/smart.calendar.css",
-        "staticwebassets/css/components/smart.card.css",
-        "staticwebassets/css/components/smart.cardview.css",
-        "staticwebassets/css/components/smart.carousel.css",
-        "staticwebassets/css/components/smart.chart.css",
-        "staticwebassets/css/components/smart.checkbox.css",
-        "staticwebassets/css/components/smart.checkinput.css",
-        "staticwebassets/css/components/smart.chip.css",
-        "staticwebassets/css/components/smart.colorinput.css",
-        "staticwebassets/css/components/smart.colorpanel.css",
-        "staticwebassets/css/components/smart.colorpicker.css",
-        "staticwebassets/css/components/smart.columnpanel.css",
-        "staticwebassets/css/components/smart.combobox.css",
-        "staticwebassets/css/components/smart.common.css",
-        "staticwebassets/css/components/smart.countryinput.css",
-        "staticwebassets/css/components/smart.dateformatpanel.css",
-        "staticwebassets/css/components/smart.dateinput.css",
-        "staticwebassets/css/components/smart.daterangeinput.css",
-        "staticwebassets/css/components/smart.datetimeformatpanel.css",
-        "staticwebassets/css/components/smart.datetimepicker.css",
-        "staticwebassets/css/components/smart.dockinglayout.css",
-        "staticwebassets/css/components/smart.dropdownbutton.css",
-        "staticwebassets/css/components/smart.dropdownlist.css",
-        "staticwebassets/css/components/smart.editor.css",
-        "staticwebassets/css/components/smart.fileupload.css",
-        "staticwebassets/css/components/smart.filterbuilder.css",
-        "staticwebassets/css/components/smart.filterpanel.css",
-        "staticwebassets/css/components/smart.form.css",
-        "staticwebassets/css/components/smart.ganttchart.css",
-        "staticwebassets/css/components/smart.gauge.css",
-        "staticwebassets/css/components/smart.grid.css",
-        "staticwebassets/css/components/smart.gridlayout.css",
-        "staticwebassets/css/components/smart.gridpanel.css",
-        "staticwebassets/css/components/smart.input.css",
-        "staticwebassets/css/components/smart.kanban.css",
-        "staticwebassets/css/components/smart.layout.css",
-        "staticwebassets/css/components/smart.led.css",
-        "staticwebassets/css/components/smart.listbox.css",
-        "staticwebassets/css/components/smart.listmenu.css",
-        "staticwebassets/css/components/smart.maskedtextbox.css",
-        "staticwebassets/css/components/smart.menu.css",
-        "staticwebassets/css/components/smart.multicolumnfilterpanel.css",
-        "staticwebassets/css/components/smart.multicomboinput.css",
-        "staticwebassets/css/components/smart.multiinput.css",
-        "staticwebassets/css/components/smart.multilinetextbox.css",
-        "staticwebassets/css/components/smart.multisplitbutton.css",
-        "staticwebassets/css/components/smart.numberformatpanel.css",
-        "staticwebassets/css/components/smart.numberinput.css",
-        "staticwebassets/css/components/smart.numerictextbox.css",
-        "staticwebassets/css/components/smart.pager.css",
-        "staticwebassets/css/components/smart.passwordinput.css",
-        "staticwebassets/css/components/smart.passwordtextbox.css",
-        "staticwebassets/css/components/smart.path.css",
-        "staticwebassets/css/components/smart.phoneinput.css",
-        "staticwebassets/css/components/smart.pivottable.css",
-        "staticwebassets/css/components/smart.powerbutton.css",
-        "staticwebassets/css/components/smart.progressbar.css",
-        "staticwebassets/css/components/smart.qrcode.css",
-        "staticwebassets/css/components/smart.querybuilder.css",
-        "staticwebassets/css/components/smart.radiobutton.css",
-        "staticwebassets/css/components/smart.rating.css",
-        "staticwebassets/css/components/smart.repeatbutton.css",
-        "staticwebassets/css/components/smart.scheduler.css",
-        "staticwebassets/css/components/smart.scrollbar.css",
-        "staticwebassets/css/components/smart.slider.css",
-        "staticwebassets/css/components/smart.sortable.css",
-        "staticwebassets/css/components/smart.sortpanel.css",
-        "staticwebassets/css/components/smart.splitter.css",
-        "staticwebassets/css/components/smart.switchbutton.css",
-        "staticwebassets/css/components/smart.table.css",
-        "staticwebassets/css/components/smart.tabs.css",
-        "staticwebassets/css/components/smart.tank.css",
-        "staticwebassets/css/components/smart.textarea.css",
-        "staticwebassets/css/components/smart.textbox.css",
-        "staticwebassets/css/components/smart.timeinput.css",
-        "staticwebassets/css/components/smart.timepicker.css",
-        "staticwebassets/css/components/smart.toast.css",
-        "staticwebassets/css/components/smart.togglebutton.css",
-        "staticwebassets/css/components/smart.tooltip.css",
-        "staticwebassets/css/components/smart.tree.css",
-        "staticwebassets/css/components/smart.validationpanel.css",
-        "staticwebassets/css/components/smart.window.css",
-        "staticwebassets/css/default/scss/_functions.scss",
-        "staticwebassets/css/default/scss/grid/_checkbox.scss",
-        "staticwebassets/css/default/scss/grid/_slider.scss",
-        "staticwebassets/css/default/scss/misc/_shadow_dom.scss",
-        "staticwebassets/css/default/scss/rtl/_accordion.scss",
-        "staticwebassets/css/default/scss/rtl/_alert.scss",
-        "staticwebassets/css/default/scss/rtl/_badge.scss",
-        "staticwebassets/css/default/scss/rtl/_breadcrumb.scss",
-        "staticwebassets/css/default/scss/rtl/_button.scss",
-        "staticwebassets/css/default/scss/rtl/_buttongroup.scss",
-        "staticwebassets/css/default/scss/rtl/_calendar.scss",
-        "staticwebassets/css/default/scss/rtl/_card.scss",
-        "staticwebassets/css/default/scss/rtl/_cardview.scss",
-        "staticwebassets/css/default/scss/rtl/_carousel.scss",
-        "staticwebassets/css/default/scss/rtl/_chart.scss",
-        "staticwebassets/css/default/scss/rtl/_checkbox.scss",
-        "staticwebassets/css/default/scss/rtl/_chip.scss",
-        "staticwebassets/css/default/scss/rtl/_colorpanel.scss",
-        "staticwebassets/css/default/scss/rtl/_datetimepicker.scss",
-        "staticwebassets/css/default/scss/rtl/_dropdown.scss",
-        "staticwebassets/css/default/scss/rtl/_editor.scss",
-        "staticwebassets/css/default/scss/rtl/_fileupload.scss",
-        "staticwebassets/css/default/scss/rtl/_filterpanel.scss",
-        "staticwebassets/css/default/scss/rtl/_ganttchart.scss",
-        "staticwebassets/css/default/scss/rtl/_gauge.scss",
-        "staticwebassets/css/default/scss/rtl/_grid.scss",
-        "staticwebassets/css/default/scss/rtl/_gridpanel.scss",
-        "staticwebassets/css/default/scss/rtl/_kanban.scss",
-        "staticwebassets/css/default/scss/rtl/_led.scss",
-        "staticwebassets/css/default/scss/rtl/_listbox.scss",
-        "staticwebassets/css/default/scss/rtl/_listmenu.scss",
-        "staticwebassets/css/default/scss/rtl/_maskedtextbox.scss",
-        "staticwebassets/css/default/scss/rtl/_menu.scss",
-        "staticwebassets/css/default/scss/rtl/_multilinetextbox.scss",
-        "staticwebassets/css/default/scss/rtl/_multisplitbutton.scss",
-        "staticwebassets/css/default/scss/rtl/_numerictextbox.scss",
-        "staticwebassets/css/default/scss/rtl/_pager.scss",
-        "staticwebassets/css/default/scss/rtl/_passwordtextbox.scss",
-        "staticwebassets/css/default/scss/rtl/_path.scss",
-        "staticwebassets/css/default/scss/rtl/_pivottable.scss",
-        "staticwebassets/css/default/scss/rtl/_powerbutton.scss",
-        "staticwebassets/css/default/scss/rtl/_progressbar.scss",
-        "staticwebassets/css/default/scss/rtl/_querybuilder.scss",
-        "staticwebassets/css/default/scss/rtl/_radiobutton.scss",
-        "staticwebassets/css/default/scss/rtl/_rating.scss",
-        "staticwebassets/css/default/scss/rtl/_scrollviewer.scss",
-        "staticwebassets/css/default/scss/rtl/_slider.scss",
-        "staticwebassets/css/default/scss/rtl/_sortable.scss",
-        "staticwebassets/css/default/scss/rtl/_splitter.scss",
-        "staticwebassets/css/default/scss/rtl/_switchbutton.scss",
-        "staticwebassets/css/default/scss/rtl/_table.scss",
-        "staticwebassets/css/default/scss/rtl/_table_outline_level.scss",
-        "staticwebassets/css/default/scss/rtl/_tabs.scss",
-        "staticwebassets/css/default/scss/rtl/_tank.scss",
-        "staticwebassets/css/default/scss/rtl/_timepicker.scss",
-        "staticwebassets/css/default/scss/rtl/_toast.scss",
-        "staticwebassets/css/default/scss/rtl/_toggle.scss",
-        "staticwebassets/css/default/scss/rtl/_tooltip.scss",
-        "staticwebassets/css/default/scss/rtl/_tree.scss",
-        "staticwebassets/css/default/scss/rtl/_window.scss",
-        "staticwebassets/css/default/scss/scheduler/_color_input.scss",
-        "staticwebassets/css/default/scss/scheduler/_drag.scss",
-        "staticwebassets/css/default/scss/scheduler/_loading_placeholder.scss",
-        "staticwebassets/css/default/scss/scheduler/_notification.scss",
-        "staticwebassets/css/default/scss/scheduler/_properties.scss",
-        "staticwebassets/css/default/scss/scheduler/_rtl.scss",
-        "staticwebassets/css/default/scss/scheduler/_tooltip.scss",
-        "staticwebassets/css/default/scss/scheduler/_window.scss",
-        "staticwebassets/css/default/scss/smart.accordion.scss",
-        "staticwebassets/css/default/scss/smart.alert.scss",
-        "staticwebassets/css/default/scss/smart.array.scss",
-        "staticwebassets/css/default/scss/smart.badge.scss",
-        "staticwebassets/css/default/scss/smart.barcode.scss",
-        "staticwebassets/css/default/scss/smart.breadcrumb.scss",
-        "staticwebassets/css/default/scss/smart.button.scss",
-        "staticwebassets/css/default/scss/smart.buttongroup.scss",
-        "staticwebassets/css/default/scss/smart.calendar.scss",
-        "staticwebassets/css/default/scss/smart.card.scss",
-        "staticwebassets/css/default/scss/smart.cardview.scss",
-        "staticwebassets/css/default/scss/smart.carousel.scss",
-        "staticwebassets/css/default/scss/smart.chart.scss",
-        "staticwebassets/css/default/scss/smart.checkbox.scss",
-        "staticwebassets/css/default/scss/smart.chip.scss",
-        "staticwebassets/css/default/scss/smart.colorpanel.scss",
-        "staticwebassets/css/default/scss/smart.colorpicker.scss",
-        "staticwebassets/css/default/scss/smart.combobox.scss",
-        "staticwebassets/css/default/scss/smart.currencyformatpanel.scss",
-        "staticwebassets/css/default/scss/smart.dateformatpanel.scss",
-        "staticwebassets/css/default/scss/smart.datetimepicker.scss",
-        "staticwebassets/css/default/scss/smart.dockinglayout.scss",
-        "staticwebassets/css/default/scss/smart.dropdown.scss",
-        "staticwebassets/css/default/scss/smart.dropdownbutton.scss",
-        "staticwebassets/css/default/scss/smart.dropdownlist.scss",
-        "staticwebassets/css/default/scss/smart.editor.scss",
-        "staticwebassets/css/default/scss/smart.editors.scss",
-        "staticwebassets/css/default/scss/smart.fileupload.scss",
-        "staticwebassets/css/default/scss/smart.filterbuilder.scss",
-        "staticwebassets/css/default/scss/smart.filterpanel.scss",
-        "staticwebassets/css/default/scss/smart.gantt.scss",
-        "staticwebassets/css/default/scss/smart.ganttchart.scss",
-        "staticwebassets/css/default/scss/smart.gauge.scss",
-        "staticwebassets/css/default/scss/smart.grid.scss",
-        "staticwebassets/css/default/scss/smart.gridpanel.scss",
-        "staticwebassets/css/default/scss/smart.inputgroup.scss",
-        "staticwebassets/css/default/scss/smart.kanban.scss",
-        "staticwebassets/css/default/scss/smart.layout.scss",
-        "staticwebassets/css/default/scss/smart.layouts.scss",
-        "staticwebassets/css/default/scss/smart.led.scss",
-        "staticwebassets/css/default/scss/smart.link-button.scss",
-        "staticwebassets/css/default/scss/smart.listbox.scss",
-        "staticwebassets/css/default/scss/smart.listmenu.scss",
-        "staticwebassets/css/default/scss/smart.loader.scss",
-        "staticwebassets/css/default/scss/smart.maskedtextbox.scss",
-        "staticwebassets/css/default/scss/smart.menu.scss",
-        "staticwebassets/css/default/scss/smart.misc.scss",
-        "staticwebassets/css/default/scss/smart.multilinetextbox.scss",
-        "staticwebassets/css/default/scss/smart.multisplitbutton.scss",
-        "staticwebassets/css/default/scss/smart.numberformatpanel.scss",
-        "staticwebassets/css/default/scss/smart.numerictextbox.scss",
-        "staticwebassets/css/default/scss/smart.pager.scss",
-        "staticwebassets/css/default/scss/smart.passwordtextbox.scss",
-        "staticwebassets/css/default/scss/smart.path.scss",
-        "staticwebassets/css/default/scss/smart.pivottable.scss",
-        "staticwebassets/css/default/scss/smart.powerbutton.scss",
-        "staticwebassets/css/default/scss/smart.progressbar.scss",
-        "staticwebassets/css/default/scss/smart.qrcode.scss",
-        "staticwebassets/css/default/scss/smart.querybuilder.scss",
-        "staticwebassets/css/default/scss/smart.radiobutton.scss",
-        "staticwebassets/css/default/scss/smart.rating.scss",
-        "staticwebassets/css/default/scss/smart.scheduler.scss",
-        "staticwebassets/css/default/scss/smart.scrollbar.scss",
-        "staticwebassets/css/default/scss/smart.scrollviewer.scss",
-        "staticwebassets/css/default/scss/smart.slider.scss",
-        "staticwebassets/css/default/scss/smart.sortable.scss",
-        "staticwebassets/css/default/scss/smart.splitter.scss",
-        "staticwebassets/css/default/scss/smart.switchbutton.scss",
-        "staticwebassets/css/default/scss/smart.table.scss",
-        "staticwebassets/css/default/scss/smart.tabs.scss",
-        "staticwebassets/css/default/scss/smart.tank.scss",
-        "staticwebassets/css/default/scss/smart.textbox.scss",
-        "staticwebassets/css/default/scss/smart.timepicker.scss",
-        "staticwebassets/css/default/scss/smart.toast.scss",
-        "staticwebassets/css/default/scss/smart.toggle.scss",
-        "staticwebassets/css/default/scss/smart.tooltip.scss",
-        "staticwebassets/css/default/scss/smart.tree.scss",
-        "staticwebassets/css/default/scss/smart.validationpanel.scss",
-        "staticwebassets/css/default/scss/smart.validator.scss",
-        "staticwebassets/css/default/scss/smart.window.scss",
-        "staticwebassets/css/default/scss/splitter/_shadow_dom.scss",
-        "staticwebassets/css/default/scss/table/_colors.scss",
-        "staticwebassets/css/default/scss/table/_colors_hover.scss",
-        "staticwebassets/css/default/scss/table/_outline_level.scss",
-        "staticwebassets/css/default/scss/table/_responsive.scss",
-        "staticwebassets/css/default/scss/textbox/_check-input.scss",
-        "staticwebassets/css/default/scss/textbox/_color-input.scss",
-        "staticwebassets/css/default/scss/textbox/_date-input.scss",
-        "staticwebassets/css/default/scss/textbox/_input.scss",
-        "staticwebassets/css/default/scss/textbox/_multi-combo-input.scss",
-        "staticwebassets/css/default/scss/textbox/_multi-input.scss",
-        "staticwebassets/css/default/scss/textbox/_number-input.scss",
-        "staticwebassets/css/default/scss/textbox/_outlined.scss",
-        "staticwebassets/css/default/scss/textbox/_password-input.scss",
-        "staticwebassets/css/default/scss/textbox/_phone-input.scss",
-        "staticwebassets/css/default/scss/textbox/_text-area.scss",
-        "staticwebassets/css/default/scss/textbox/_text-box.scss",
-        "staticwebassets/css/default/scss/textbox/_underlined.scss",
-        "staticwebassets/css/default/smart.accordion.css",
-        "staticwebassets/css/default/smart.alert.css",
-        "staticwebassets/css/default/smart.array.css",
-        "staticwebassets/css/default/smart.badge.css",
-        "staticwebassets/css/default/smart.barcode.css",
-        "staticwebassets/css/default/smart.breadcrumb.css",
-        "staticwebassets/css/default/smart.button.css",
-        "staticwebassets/css/default/smart.buttongroup.css",
-        "staticwebassets/css/default/smart.calendar.css",
-        "staticwebassets/css/default/smart.card.css",
-        "staticwebassets/css/default/smart.cardview.css",
-        "staticwebassets/css/default/smart.carousel.css",
-        "staticwebassets/css/default/smart.chart.css",
-        "staticwebassets/css/default/smart.checkbox.css",
-        "staticwebassets/css/default/smart.chip.css",
-        "staticwebassets/css/default/smart.colorpanel.css",
-        "staticwebassets/css/default/smart.colorpicker.css",
-        "staticwebassets/css/default/smart.combobox.css",
-        "staticwebassets/css/default/smart.common.css",
-        "staticwebassets/css/default/smart.currencyformatpanel.css",
-        "staticwebassets/css/default/smart.dateformatpanel.css",
-        "staticwebassets/css/default/smart.datetimepicker.css",
-        "staticwebassets/css/default/smart.dockinglayout.css",
-        "staticwebassets/css/default/smart.dropdown.css",
-        "staticwebassets/css/default/smart.dropdownbutton.css",
-        "staticwebassets/css/default/smart.dropdownlist.css",
-        "staticwebassets/css/default/smart.editor.css",
-        "staticwebassets/css/default/smart.editors.css",
-        "staticwebassets/css/default/smart.fileupload.css",
-        "staticwebassets/css/default/smart.filterbuilder.css",
-        "staticwebassets/css/default/smart.filterpanel.css",
-        "staticwebassets/css/default/smart.gantt.css",
-        "staticwebassets/css/default/smart.ganttchart.css",
-        "staticwebassets/css/default/smart.gauge.css",
-        "staticwebassets/css/default/smart.grid.css",
-        "staticwebassets/css/default/smart.gridpanel.css",
-        "staticwebassets/css/default/smart.inputgroup.css",
-        "staticwebassets/css/default/smart.kanban.css",
-        "staticwebassets/css/default/smart.layout.css",
-        "staticwebassets/css/default/smart.layouts.css",
-        "staticwebassets/css/default/smart.led.css",
-        "staticwebassets/css/default/smart.link-button.css",
-        "staticwebassets/css/default/smart.listbox.css",
-        "staticwebassets/css/default/smart.listmenu.css",
-        "staticwebassets/css/default/smart.loader.css",
-        "staticwebassets/css/default/smart.maskedtextbox.css",
-        "staticwebassets/css/default/smart.menu.css",
-        "staticwebassets/css/default/smart.misc.css",
-        "staticwebassets/css/default/smart.multilinetextbox.css",
-        "staticwebassets/css/default/smart.multisplitbutton.css",
-        "staticwebassets/css/default/smart.numberformatpanel.css",
-        "staticwebassets/css/default/smart.numerictextbox.css",
-        "staticwebassets/css/default/smart.pager.css",
-        "staticwebassets/css/default/smart.passwordtextbox.css",
-        "staticwebassets/css/default/smart.path.css",
-        "staticwebassets/css/default/smart.pivottable.css",
-        "staticwebassets/css/default/smart.powerbutton.css",
-        "staticwebassets/css/default/smart.progressbar.css",
-        "staticwebassets/css/default/smart.qrcode.css",
-        "staticwebassets/css/default/smart.querybuilder.css",
-        "staticwebassets/css/default/smart.radiobutton.css",
-        "staticwebassets/css/default/smart.rating.css",
-        "staticwebassets/css/default/smart.scheduler.css",
-        "staticwebassets/css/default/smart.scrollbar.css",
-        "staticwebassets/css/default/smart.scrollviewer.css",
-        "staticwebassets/css/default/smart.slider.css",
-        "staticwebassets/css/default/smart.sortable.css",
-        "staticwebassets/css/default/smart.splitter.css",
-        "staticwebassets/css/default/smart.switchbutton.css",
-        "staticwebassets/css/default/smart.table.css",
-        "staticwebassets/css/default/smart.tabs.css",
-        "staticwebassets/css/default/smart.tank.css",
-        "staticwebassets/css/default/smart.textbox.css",
-        "staticwebassets/css/default/smart.timepicker.css",
-        "staticwebassets/css/default/smart.toast.css",
-        "staticwebassets/css/default/smart.toggle.css",
-        "staticwebassets/css/default/smart.tooltip.css",
-        "staticwebassets/css/default/smart.tree.css",
-        "staticwebassets/css/default/smart.validationpanel.css",
-        "staticwebassets/css/default/smart.validator.css",
-        "staticwebassets/css/default/smart.variables.css",
-        "staticwebassets/css/default/smart.window.css",
-        "staticwebassets/css/font/smart-icons.eot",
-        "staticwebassets/css/font/smart-icons.svg",
-        "staticwebassets/css/font/smart-icons.ttf",
-        "staticwebassets/css/font/smart-icons.woff",
-        "staticwebassets/css/font/smart-icons.woff2",
-        "staticwebassets/css/images/dropable_zone_image.svg",
-        "staticwebassets/css/images/error.png",
-        "staticwebassets/css/images/flags.png",
-        "staticwebassets/css/images/icons-sprite.svg",
-        "staticwebassets/css/images/icons-stack.svg",
-        "staticwebassets/css/images/info.png",
-        "staticwebassets/css/images/load.gif",
-        "staticwebassets/css/images/magnifier.png",
-        "staticwebassets/css/images/mail.png",
-        "staticwebassets/css/images/radial.svg",
-        "staticwebassets/css/images/success.png",
-        "staticwebassets/css/images/time.png",
-        "staticwebassets/css/images/warning.png",
-        "staticwebassets/css/smart.bootstrap.css",
-        "staticwebassets/css/smart.cyan.css",
-        "staticwebassets/css/smart.dark-cyan.css",
-        "staticwebassets/css/smart.dark-green.css",
-        "staticwebassets/css/smart.dark-indigo.css",
-        "staticwebassets/css/smart.dark-orange.css",
-        "staticwebassets/css/smart.dark-pink.css",
-        "staticwebassets/css/smart.dark-purple.css",
-        "staticwebassets/css/smart.dark-red.css",
-        "staticwebassets/css/smart.dark-teal.css",
-        "staticwebassets/css/smart.dark-turquoise.css",
-        "staticwebassets/css/smart.default-dev.css",
-        "staticwebassets/css/smart.default.css",
-        "staticwebassets/css/smart.green.css",
-        "staticwebassets/css/smart.indigo.css",
-        "staticwebassets/css/smart.nimble.css",
-        "staticwebassets/css/smart.orange.css",
-        "staticwebassets/css/smart.pink.css",
-        "staticwebassets/css/smart.purple.css",
-        "staticwebassets/css/smart.red.css",
-        "staticwebassets/css/smart.teal.css",
-        "staticwebassets/css/smart.turquoise.css",
-        "staticwebassets/css/smart.ui.default.css",
-        "staticwebassets/favicon.ico",
-        "staticwebassets/js/assets/beverages.json",
-        "staticwebassets/js/assets/customers.xml",
-        "staticwebassets/js/assets/data.js",
-        "staticwebassets/js/assets/data.xlsx",
-        "staticwebassets/js/assets/employees.csv",
-        "staticwebassets/js/assets/formula-parser.min.js",
-        "staticwebassets/js/assets/homeprices.tsv",
-        "staticwebassets/js/assets/html2canvas.min.js",
-        "staticwebassets/js/assets/icalendar.ics",
-        "staticwebassets/js/assets/jquery-3.3.1.min.js",
-        "staticwebassets/js/assets/jquery-jvectormap-2.0.5.css",
-        "staticwebassets/js/assets/jquery-jvectormap-2.0.5.min.js",
-        "staticwebassets/js/assets/jquery-jvectormap-world-mill.js",
-        "staticwebassets/js/assets/jszip.min.js",
-        "staticwebassets/js/assets/pdfmake.min.js",
-        "staticwebassets/js/assets/rrule.min.js",
-        "staticwebassets/js/assets/vfs_fonts.js",
-        "staticwebassets/js/assets/webcomponents-lite.js",
-        "staticwebassets/js/assets/webfont.js",
-        "staticwebassets/js/modules/smart.accordion.js",
-        "staticwebassets/js/modules/smart.accordion.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.array.js",
-        "staticwebassets/js/modules/smart.array.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.barcode.js",
-        "staticwebassets/js/modules/smart.blazor.js",
-        "staticwebassets/js/modules/smart.breadcrumb.js",
-        "staticwebassets/js/modules/smart.breadcrumb.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.button.js",
-        "staticwebassets/js/modules/smart.button.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.buttongroup.js",
-        "staticwebassets/js/modules/smart.buttongroup.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.calendar.js",
-        "staticwebassets/js/modules/smart.calendar.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.card.js",
-        "staticwebassets/js/modules/smart.card.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.cardview.js",
-        "staticwebassets/js/modules/smart.cardview.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.carousel.js",
-        "staticwebassets/js/modules/smart.carousel.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.cdk.js",
-        "staticwebassets/js/modules/smart.chart.js",
-        "staticwebassets/js/modules/smart.chart.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.checkbox.js",
-        "staticwebassets/js/modules/smart.checkbox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.checkinput.js",
-        "staticwebassets/js/modules/smart.checkinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.chip.js",
-        "staticwebassets/js/modules/smart.chip.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.colorinput.js",
-        "staticwebassets/js/modules/smart.colorinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.colorpanel.js",
-        "staticwebassets/js/modules/smart.colorpanel.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.colorpicker.js",
-        "staticwebassets/js/modules/smart.colorpicker.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.combobox.js",
-        "staticwebassets/js/modules/smart.combobox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.common.js",
-        "staticwebassets/js/modules/smart.common.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.countryinput.js",
-        "staticwebassets/js/modules/smart.dateinput.js",
-        "staticwebassets/js/modules/smart.dateinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.daterangeinput.js",
-        "staticwebassets/js/modules/smart.daterangeinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.datetimepicker.js",
-        "staticwebassets/js/modules/smart.datetimepicker.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.dockinglayout.js",
-        "staticwebassets/js/modules/smart.dockinglayout.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.dropdownbutton.js",
-        "staticwebassets/js/modules/smart.dropdownbutton.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.dropdownlist.js",
-        "staticwebassets/js/modules/smart.dropdownlist.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.editor.js",
-        "staticwebassets/js/modules/smart.editor.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.element.js",
-        "staticwebassets/js/modules/smart.element.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.fileupload.js",
-        "staticwebassets/js/modules/smart.fileupload.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.form.js",
-        "staticwebassets/js/modules/smart.form.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.formulaparser.js",
-        "staticwebassets/js/modules/smart.formulaparser.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.gantt.js",
-        "staticwebassets/js/modules/smart.ganttchart.js",
-        "staticwebassets/js/modules/smart.ganttchart.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.gauge.js",
-        "staticwebassets/js/modules/smart.gauge.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.grid.js",
-        "staticwebassets/js/modules/smart.grid.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.gridpanel.js",
-        "staticwebassets/js/modules/smart.gridpanel.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.input.js",
-        "staticwebassets/js/modules/smart.input.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.kanban.js",
-        "staticwebassets/js/modules/smart.kanban.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.layout.js",
-        "staticwebassets/js/modules/smart.layout.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.led.js",
-        "staticwebassets/js/modules/smart.led.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.listbox.js",
-        "staticwebassets/js/modules/smart.listbox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.listmenu.js",
-        "staticwebassets/js/modules/smart.listmenu.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.map.js",
-        "staticwebassets/js/modules/smart.map.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.maskedtextbox.js",
-        "staticwebassets/js/modules/smart.maskedtextbox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.menu.js",
-        "staticwebassets/js/modules/smart.menu.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.multicomboinput.js",
-        "staticwebassets/js/modules/smart.multicomboinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.multiinput.js",
-        "staticwebassets/js/modules/smart.multiinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.multilinetextbox.js",
-        "staticwebassets/js/modules/smart.multilinetextbox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.multisplitbutton.js",
-        "staticwebassets/js/modules/smart.multisplitbutton.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.numberinput.js",
-        "staticwebassets/js/modules/smart.numberinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.numerictextbox.js",
-        "staticwebassets/js/modules/smart.numerictextbox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.pager.js",
-        "staticwebassets/js/modules/smart.pager.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.passwordinput.js",
-        "staticwebassets/js/modules/smart.passwordinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.passwordtextbox.js",
-        "staticwebassets/js/modules/smart.passwordtextbox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.path.js",
-        "staticwebassets/js/modules/smart.path.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.phoneinput.js",
-        "staticwebassets/js/modules/smart.pivottable.js",
-        "staticwebassets/js/modules/smart.pivottable.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.progressbar.js",
-        "staticwebassets/js/modules/smart.progressbar.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.qrcode.js",
-        "staticwebassets/js/modules/smart.querybuilder.js",
-        "staticwebassets/js/modules/smart.querybuilder.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.radiobutton.js",
-        "staticwebassets/js/modules/smart.radiobutton.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.rating.js",
-        "staticwebassets/js/modules/smart.rating.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.router.js",
-        "staticwebassets/js/modules/smart.router.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.scheduler.js",
-        "staticwebassets/js/modules/smart.scheduler.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.scrollbar.js",
-        "staticwebassets/js/modules/smart.scrollbar.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.slider.js",
-        "staticwebassets/js/modules/smart.slider.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.sortable.js",
-        "staticwebassets/js/modules/smart.sortable.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.splitter.js",
-        "staticwebassets/js/modules/smart.splitter.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.switchbutton.js",
-        "staticwebassets/js/modules/smart.switchbutton.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.table.js",
-        "staticwebassets/js/modules/smart.table.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.tabs.js",
-        "staticwebassets/js/modules/smart.tabs.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.tank.js",
-        "staticwebassets/js/modules/smart.tank.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.textarea.js",
-        "staticwebassets/js/modules/smart.textarea.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.textbox.js",
-        "staticwebassets/js/modules/smart.textbox.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.timeinput.js",
-        "staticwebassets/js/modules/smart.timeinput.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.timepicker.js",
-        "staticwebassets/js/modules/smart.timepicker.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.toast.js",
-        "staticwebassets/js/modules/smart.toast.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.tooltip.js",
-        "staticwebassets/js/modules/smart.tooltip.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.tree.js",
-        "staticwebassets/js/modules/smart.tree.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.validator.js",
-        "staticwebassets/js/modules/smart.validator.js.LICENSE.txt",
-        "staticwebassets/js/modules/smart.window.js",
-        "staticwebassets/js/modules/smart.window.js.LICENSE.txt",
-        "staticwebassets/js/rrule.min.js",
-        "staticwebassets/js/smart.accordion.js",
-        "staticwebassets/js/smart.ajax.js",
-        "staticwebassets/js/smart.array.js",
-        "staticwebassets/js/smart.barcode.js",
-        "staticwebassets/js/smart.blazor.js",
-        "staticwebassets/js/smart.bootstrap.js",
-        "staticwebassets/js/smart.breadcrumb.js",
-        "staticwebassets/js/smart.button.js",
-        "staticwebassets/js/smart.buttongroup.js",
-        "staticwebassets/js/smart.calendar.js",
-        "staticwebassets/js/smart.card.js",
-        "staticwebassets/js/smart.cardview.js",
-        "staticwebassets/js/smart.carousel.js",
-        "staticwebassets/js/smart.chart.annotations.js",
-        "staticwebassets/js/smart.chart.api.js",
-        "staticwebassets/js/smart.chart.core.js",
-        "staticwebassets/js/smart.chart.js",
-        "staticwebassets/js/smart.chart.rangeselector.js",
-        "staticwebassets/js/smart.chart.waterfall.js",
-        "staticwebassets/js/smart.checkbox.js",
-        "staticwebassets/js/smart.checkinput.js",
-        "staticwebassets/js/smart.chip.js",
-        "staticwebassets/js/smart.colorinput.js",
-        "staticwebassets/js/smart.colorpanel.js",
-        "staticwebassets/js/smart.colorpicker.js",
-        "staticwebassets/js/smart.combobox.js",
-        "staticwebassets/js/smart.complex.js",
-        "staticwebassets/js/smart.core.js",
-        "staticwebassets/js/smart.countryinput.js",
-        "staticwebassets/js/smart.customizationdialog.js",
-        "staticwebassets/js/smart.data.js",
-        "staticwebassets/js/smart.date.js",
-        "staticwebassets/js/smart.dateformatpanel.js",
-        "staticwebassets/js/smart.dateinput.js",
-        "staticwebassets/js/smart.daterangeinput.js",
-        "staticwebassets/js/smart.datetimepicker.js",
-        "staticwebassets/js/smart.dockinglayout.js",
-        "staticwebassets/js/smart.draw.js",
-        "staticwebassets/js/smart.dropdownbutton.js",
-        "staticwebassets/js/smart.dropdownlist.js",
-        "staticwebassets/js/smart.editor.js",
-        "staticwebassets/js/smart.element-polyfills.js",
-        "staticwebassets/js/smart.element.js",
-        "staticwebassets/js/smart.elements.js",
-        "staticwebassets/js/smart.export.js",
-        "staticwebassets/js/smart.fileupload.js",
-        "staticwebassets/js/smart.filter.js",
-        "staticwebassets/js/smart.filterbuilder.js",
-        "staticwebassets/js/smart.filterpanel.js",
-        "staticwebassets/js/smart.form.js",
-        "staticwebassets/js/smart.format.js",
-        "staticwebassets/js/smart.formulaparser.js",
-        "staticwebassets/js/smart.gantt.js",
-        "staticwebassets/js/smart.ganttchart.js",
-        "staticwebassets/js/smart.gauge.js",
-        "staticwebassets/js/smart.grid.cell.js",
-        "staticwebassets/js/smart.grid.chart.js",
-        "staticwebassets/js/smart.grid.column.js",
-        "staticwebassets/js/smart.grid.core.js",
-        "staticwebassets/js/smart.grid.dialog.js",
-        "staticwebassets/js/smart.grid.edit.js",
-        "staticwebassets/js/smart.grid.export.js",
-        "staticwebassets/js/smart.grid.filter.js",
-        "staticwebassets/js/smart.grid.group.js",
-        "staticwebassets/js/smart.grid.js",
-        "staticwebassets/js/smart.grid.menu.js",
-        "staticwebassets/js/smart.grid.pager.js",
-        "staticwebassets/js/smart.grid.reorder.js",
-        "staticwebassets/js/smart.grid.resize.js",
-        "staticwebassets/js/smart.grid.row.js",
-        "staticwebassets/js/smart.grid.select.js",
-        "staticwebassets/js/smart.grid.sort.js",
-        "staticwebassets/js/smart.grid.toolbar.js",
-        "staticwebassets/js/smart.grid.tree.js",
-        "staticwebassets/js/smart.grid.view.js",
-        "staticwebassets/js/smart.gridpanel.js",
-        "staticwebassets/js/smart.input.js",
-        "staticwebassets/js/smart.kanban.js",
-        "staticwebassets/js/smart.layout.js",
-        "staticwebassets/js/smart.led.js",
-        "staticwebassets/js/smart.listbox.js",
-        "staticwebassets/js/smart.listmenu.js",
-        "staticwebassets/js/smart.map.js",
-        "staticwebassets/js/smart.maskedtextbox.js",
-        "staticwebassets/js/smart.math.js",
-        "staticwebassets/js/smart.menu.js",
-        "staticwebassets/js/smart.multicomboinput.js",
-        "staticwebassets/js/smart.multiinput.js",
-        "staticwebassets/js/smart.multilinetextbox.js",
-        "staticwebassets/js/smart.multisplitbutton.js",
-        "staticwebassets/js/smart.numberformatpanel.js",
-        "staticwebassets/js/smart.numberinput.js",
-        "staticwebassets/js/smart.numeric.js",
-        "staticwebassets/js/smart.numerictextbox.js",
-        "staticwebassets/js/smart.pager.js",
-        "staticwebassets/js/smart.passwordinput.js",
-        "staticwebassets/js/smart.passwordtextbox.js",
-        "staticwebassets/js/smart.path.js",
-        "staticwebassets/js/smart.phoneinput.js",
-        "staticwebassets/js/smart.pivottable.js",
-        "staticwebassets/js/smart.powerbutton.js",
-        "staticwebassets/js/smart.progressbar.js",
-        "staticwebassets/js/smart.qrcode.js",
-        "staticwebassets/js/smart.radiobutton.js",
-        "staticwebassets/js/smart.rating.js",
-        "staticwebassets/js/smart.router.js",
-        "staticwebassets/js/smart.scheduler.js",
-        "staticwebassets/js/smart.scrollbar.js",
-        "staticwebassets/js/smart.slider.js",
-        "staticwebassets/js/smart.sort.js",
-        "staticwebassets/js/smart.sortable.js",
-        "staticwebassets/js/smart.splitter.js",
-        "staticwebassets/js/smart.switchbutton.js",
-        "staticwebassets/js/smart.table.js",
-        "staticwebassets/js/smart.tabs.js",
-        "staticwebassets/js/smart.tank.js",
-        "staticwebassets/js/smart.textarea.js",
-        "staticwebassets/js/smart.textbox.js",
-        "staticwebassets/js/smart.tickintervalhandler.js",
-        "staticwebassets/js/smart.timeinput.js",
-        "staticwebassets/js/smart.timepicker.js",
-        "staticwebassets/js/smart.toast.js",
-        "staticwebassets/js/smart.tooltip.js",
-        "staticwebassets/js/smart.tree.js",
-        "staticwebassets/js/smart.validationpanel.js",
-        "staticwebassets/js/smart.validator.js",
-        "staticwebassets/js/smart.window.js",
-        "staticwebassets/js/styles/bootstrap/_bootstrap_vars.scss",
-        "staticwebassets/js/styles/bootstrap/_mixins.scss",
-        "staticwebassets/js/styles/bootstrap/_vars.scss",
-        "staticwebassets/js/styles/bootstrap/smart.bootstrap.css",
-        "staticwebassets/js/styles/bootstrap/smart.bootstrap.css.map",
-        "staticwebassets/js/styles/bootstrap/smart.bootstrap.scss",
-        "staticwebassets/js/styles/components/smart.accordion.css",
-        "staticwebassets/js/styles/components/smart.array.css",
-        "staticwebassets/js/styles/components/smart.base.css",
-        "staticwebassets/js/styles/components/smart.breadcrumb.css",
-        "staticwebassets/js/styles/components/smart.button.css",
-        "staticwebassets/js/styles/components/smart.buttongroup.css",
-        "staticwebassets/js/styles/components/smart.calendar.css",
-        "staticwebassets/js/styles/components/smart.card.css",
-        "staticwebassets/js/styles/components/smart.cardview.css",
-        "staticwebassets/js/styles/components/smart.carousel.css",
-        "staticwebassets/js/styles/components/smart.chart.css",
-        "staticwebassets/js/styles/components/smart.checkbox.css",
-        "staticwebassets/js/styles/components/smart.checkinput.css",
-        "staticwebassets/js/styles/components/smart.chip.css",
-        "staticwebassets/js/styles/components/smart.colorinput.css",
-        "staticwebassets/js/styles/components/smart.colorpanel.css",
-        "staticwebassets/js/styles/components/smart.colorpicker.css",
-        "staticwebassets/js/styles/components/smart.columnpanel.css",
-        "staticwebassets/js/styles/components/smart.combobox.css",
-        "staticwebassets/js/styles/components/smart.common.css",
-        "staticwebassets/js/styles/components/smart.dateformatpanel.css",
-        "staticwebassets/js/styles/components/smart.dateinput.css",
-        "staticwebassets/js/styles/components/smart.daterangeinput.css",
-        "staticwebassets/js/styles/components/smart.datetimeformatpanel.css",
-        "staticwebassets/js/styles/components/smart.datetimepicker.css",
-        "staticwebassets/js/styles/components/smart.dockinglayout.css",
-        "staticwebassets/js/styles/components/smart.dropdownbutton.css",
-        "staticwebassets/js/styles/components/smart.dropdownlist.css",
-        "staticwebassets/js/styles/components/smart.fileupload.css",
-        "staticwebassets/js/styles/components/smart.filterbuilder.css",
-        "staticwebassets/js/styles/components/smart.filterpanel.css",
-        "staticwebassets/js/styles/components/smart.form.css",
-        "staticwebassets/js/styles/components/smart.ganttchart.css",
-        "staticwebassets/js/styles/components/smart.gauge.css",
-        "staticwebassets/js/styles/components/smart.grid.css",
-        "staticwebassets/js/styles/components/smart.gridlayout.css",
-        "staticwebassets/js/styles/components/smart.gridpanel.css",
-        "staticwebassets/js/styles/components/smart.input.css",
-        "staticwebassets/js/styles/components/smart.kanban.css",
-        "staticwebassets/js/styles/components/smart.layout.css",
-        "staticwebassets/js/styles/components/smart.led.css",
-        "staticwebassets/js/styles/components/smart.listbox.css",
-        "staticwebassets/js/styles/components/smart.listmenu.css",
-        "staticwebassets/js/styles/components/smart.maskedtextbox.css",
-        "staticwebassets/js/styles/components/smart.menu.css",
-        "staticwebassets/js/styles/components/smart.multicolumnfilterpanel.css",
-        "staticwebassets/js/styles/components/smart.multicomboinput.css",
-        "staticwebassets/js/styles/components/smart.multiinput.css",
-        "staticwebassets/js/styles/components/smart.multilinetextbox.css",
-        "staticwebassets/js/styles/components/smart.multisplitbutton.css",
-        "staticwebassets/js/styles/components/smart.numberformatpanel.css",
-        "staticwebassets/js/styles/components/smart.numberinput.css",
-        "staticwebassets/js/styles/components/smart.numerictextbox.css",
-        "staticwebassets/js/styles/components/smart.pager.css",
-        "staticwebassets/js/styles/components/smart.passwordinput.css",
-        "staticwebassets/js/styles/components/smart.passwordtextbox.css",
-        "staticwebassets/js/styles/components/smart.path.css",
-        "staticwebassets/js/styles/components/smart.pivottable.css",
-        "staticwebassets/js/styles/components/smart.powerbutton.css",
-        "staticwebassets/js/styles/components/smart.progressbar.css",
-        "staticwebassets/js/styles/components/smart.querybuilder.css",
-        "staticwebassets/js/styles/components/smart.radiobutton.css",
-        "staticwebassets/js/styles/components/smart.rating.css",
-        "staticwebassets/js/styles/components/smart.repeatbutton.css",
-        "staticwebassets/js/styles/components/smart.scheduler.css",
-        "staticwebassets/js/styles/components/smart.scrollbar.css",
-        "staticwebassets/js/styles/components/smart.slider.css",
-        "staticwebassets/js/styles/components/smart.sortable.css",
-        "staticwebassets/js/styles/components/smart.sortpanel.css",
-        "staticwebassets/js/styles/components/smart.splitter.css",
-        "staticwebassets/js/styles/components/smart.switchbutton.css",
-        "staticwebassets/js/styles/components/smart.table.css",
-        "staticwebassets/js/styles/components/smart.tabs.css",
-        "staticwebassets/js/styles/components/smart.tank.css",
-        "staticwebassets/js/styles/components/smart.textarea.css",
-        "staticwebassets/js/styles/components/smart.textbox.css",
-        "staticwebassets/js/styles/components/smart.timeinput.css",
-        "staticwebassets/js/styles/components/smart.timepicker.css",
-        "staticwebassets/js/styles/components/smart.toast.css",
-        "staticwebassets/js/styles/components/smart.togglebutton.css",
-        "staticwebassets/js/styles/components/smart.tooltip.css",
-        "staticwebassets/js/styles/components/smart.tree.css",
-        "staticwebassets/js/styles/components/smart.validationpanel.css",
-        "staticwebassets/js/styles/components/smart.window.css",
-        "staticwebassets/js/styles/default/smart.accordion.css",
-        "staticwebassets/js/styles/default/smart.alert.css",
-        "staticwebassets/js/styles/default/smart.array.css",
-        "staticwebassets/js/styles/default/smart.badge.css",
-        "staticwebassets/js/styles/default/smart.breadcrumb.css",
-        "staticwebassets/js/styles/default/smart.button.css",
-        "staticwebassets/js/styles/default/smart.buttongroup.css",
-        "staticwebassets/js/styles/default/smart.calendar.css",
-        "staticwebassets/js/styles/default/smart.card.css",
-        "staticwebassets/js/styles/default/smart.cardview.css",
-        "staticwebassets/js/styles/default/smart.carousel.css",
-        "staticwebassets/js/styles/default/smart.chart.css",
-        "staticwebassets/js/styles/default/smart.checkbox.css",
-        "staticwebassets/js/styles/default/smart.chip.css",
-        "staticwebassets/js/styles/default/smart.colorpanel.css",
-        "staticwebassets/js/styles/default/smart.colorpicker.css",
-        "staticwebassets/js/styles/default/smart.combobox.css",
-        "staticwebassets/js/styles/default/smart.common.css",
-        "staticwebassets/js/styles/default/smart.currencyformatpanel.css",
-        "staticwebassets/js/styles/default/smart.dateformatpanel.css",
-        "staticwebassets/js/styles/default/smart.datetimepicker.css",
-        "staticwebassets/js/styles/default/smart.dockinglayout.css",
-        "staticwebassets/js/styles/default/smart.dropdown.css",
-        "staticwebassets/js/styles/default/smart.dropdownbutton.css",
-        "staticwebassets/js/styles/default/smart.dropdownlist.css",
-        "staticwebassets/js/styles/default/smart.editors.css",
-        "staticwebassets/js/styles/default/smart.fileupload.css",
-        "staticwebassets/js/styles/default/smart.filterbuilder.css",
-        "staticwebassets/js/styles/default/smart.filterpanel.css",
-        "staticwebassets/js/styles/default/smart.ganttchart.css",
-        "staticwebassets/js/styles/default/smart.gauge.css",
-        "staticwebassets/js/styles/default/smart.grid.css",
-        "staticwebassets/js/styles/default/smart.gridpanel.css",
-        "staticwebassets/js/styles/default/smart.inputgroup.css",
-        "staticwebassets/js/styles/default/smart.kanban.css",
-        "staticwebassets/js/styles/default/smart.layout.css",
-        "staticwebassets/js/styles/default/smart.layouts.css",
-        "staticwebassets/js/styles/default/smart.led.css",
-        "staticwebassets/js/styles/default/smart.listbox.css",
-        "staticwebassets/js/styles/default/smart.listmenu.css",
-        "staticwebassets/js/styles/default/smart.loader.css",
-        "staticwebassets/js/styles/default/smart.maskedtextbox.css",
-        "staticwebassets/js/styles/default/smart.menu.css",
-        "staticwebassets/js/styles/default/smart.misc.css",
-        "staticwebassets/js/styles/default/smart.multilinetextbox.css",
-        "staticwebassets/js/styles/default/smart.multisplitbutton.css",
-        "staticwebassets/js/styles/default/smart.numberformatpanel.css",
-        "staticwebassets/js/styles/default/smart.numerictextbox.css",
-        "staticwebassets/js/styles/default/smart.pager.css",
-        "staticwebassets/js/styles/default/smart.passwordtextbox.css",
-        "staticwebassets/js/styles/default/smart.path.css",
-        "staticwebassets/js/styles/default/smart.pivottable.css",
-        "staticwebassets/js/styles/default/smart.powerbutton.css",
-        "staticwebassets/js/styles/default/smart.progressbar.css",
-        "staticwebassets/js/styles/default/smart.querybuilder.css",
-        "staticwebassets/js/styles/default/smart.radiobutton.css",
-        "staticwebassets/js/styles/default/smart.rating.css",
-        "staticwebassets/js/styles/default/smart.scheduler.css",
-        "staticwebassets/js/styles/default/smart.scrollbar.css",
-        "staticwebassets/js/styles/default/smart.scrollviewer.css",
-        "staticwebassets/js/styles/default/smart.slider.css",
-        "staticwebassets/js/styles/default/smart.sortable.css",
-        "staticwebassets/js/styles/default/smart.splitter.css",
-        "staticwebassets/js/styles/default/smart.switchbutton.css",
-        "staticwebassets/js/styles/default/smart.table.css",
-        "staticwebassets/js/styles/default/smart.tabs.css",
-        "staticwebassets/js/styles/default/smart.tank.css",
-        "staticwebassets/js/styles/default/smart.textbox.css",
-        "staticwebassets/js/styles/default/smart.timepicker.css",
-        "staticwebassets/js/styles/default/smart.toast.css",
-        "staticwebassets/js/styles/default/smart.toggle.css",
-        "staticwebassets/js/styles/default/smart.tooltip.css",
-        "staticwebassets/js/styles/default/smart.tree.css",
-        "staticwebassets/js/styles/default/smart.validationpanel.css",
-        "staticwebassets/js/styles/default/smart.validator.css",
-        "staticwebassets/js/styles/default/smart.variables.css",
-        "staticwebassets/js/styles/default/smart.window.css",
-        "staticwebassets/js/styles/font/smart-icons.eot",
-        "staticwebassets/js/styles/font/smart-icons.svg",
-        "staticwebassets/js/styles/font/smart-icons.ttf",
-        "staticwebassets/js/styles/font/smart-icons.woff",
-        "staticwebassets/js/styles/font/smart-icons.woff2",
-        "staticwebassets/js/styles/images/dropable_zone_image.svg",
-        "staticwebassets/js/styles/images/error.png",
-        "staticwebassets/js/styles/images/icons-sprite.svg",
-        "staticwebassets/js/styles/images/icons-stack.svg",
-        "staticwebassets/js/styles/images/info.png",
-        "staticwebassets/js/styles/images/magnifier.png",
-        "staticwebassets/js/styles/images/mail.png",
-        "staticwebassets/js/styles/images/radial.svg",
-        "staticwebassets/js/styles/images/success.png",
-        "staticwebassets/js/styles/images/time.png",
-        "staticwebassets/js/styles/images/warning.png",
-        "staticwebassets/js/styles/smart.bootstrap.css",
-        "staticwebassets/js/styles/smart.dark-green.css",
-        "staticwebassets/js/styles/smart.dark-orange.css",
-        "staticwebassets/js/styles/smart.dark-pink.css",
-        "staticwebassets/js/styles/smart.dark-purple.css",
-        "staticwebassets/js/styles/smart.dark-red.css",
-        "staticwebassets/js/styles/smart.dark-turquoise.css",
-        "staticwebassets/js/styles/smart.default-dev.css",
-        "staticwebassets/js/styles/smart.default.css",
-        "staticwebassets/js/styles/smart.green.css",
-        "staticwebassets/js/styles/smart.nimble.css",
-        "staticwebassets/js/styles/smart.orange.css",
-        "staticwebassets/js/styles/smart.pink.css",
-        "staticwebassets/js/styles/smart.purple.css",
-        "staticwebassets/js/styles/smart.red.css",
-        "staticwebassets/js/styles/smart.turquoise.css",
-        "staticwebassets/js/styles/smart.ui.default.css",
-        "staticwebassets/js/typescript/bootstrap.button.d.ts",
-        "staticwebassets/js/typescript/bootstrap.checkbox.d.ts",
-        "staticwebassets/js/typescript/bootstrap.circular.d.ts",
-        "staticwebassets/js/typescript/bootstrap.dropdown.d.ts",
-        "staticwebassets/js/typescript/bootstrap.fileinput.d.ts",
-        "staticwebassets/js/typescript/bootstrap.input.d.ts",
-        "staticwebassets/js/typescript/bootstrap.inputgroup.d.ts",
-        "staticwebassets/js/typescript/bootstrap.modal.d.ts",
-        "staticwebassets/js/typescript/bootstrap.progressbar.d.ts",
-        "staticwebassets/js/typescript/bootstrap.radiobutton.d.ts",
-        "staticwebassets/js/typescript/bootstrap.range.d.ts",
-        "staticwebassets/js/typescript/bootstrap.splitbutton.d.ts",
-        "staticwebassets/js/typescript/bootstrap.switchbutton.d.ts",
-        "staticwebassets/js/typescript/bootstrap.tabs.d.ts",
-        "staticwebassets/js/typescript/bootstrap.textarea.d.ts",
-        "staticwebassets/js/typescript/bootstrap.togglebutton.d.ts",
-        "staticwebassets/js/typescript/smart.accordion.d.ts",
-        "staticwebassets/js/typescript/smart.array.d.ts",
-        "staticwebassets/js/typescript/smart.breadcrumb.d.ts",
-        "staticwebassets/js/typescript/smart.button.d.ts",
-        "staticwebassets/js/typescript/smart.buttongroup.d.ts",
-        "staticwebassets/js/typescript/smart.calendar.d.ts",
-        "staticwebassets/js/typescript/smart.card.d.ts",
-        "staticwebassets/js/typescript/smart.cardview.d.ts",
-        "staticwebassets/js/typescript/smart.carousel.d.ts",
-        "staticwebassets/js/typescript/smart.chart.d.ts",
-        "staticwebassets/js/typescript/smart.checkbox.d.ts",
-        "staticwebassets/js/typescript/smart.checkinput.d.ts",
-        "staticwebassets/js/typescript/smart.chip.d.ts",
-        "staticwebassets/js/typescript/smart.colorinput.d.ts",
-        "staticwebassets/js/typescript/smart.colorpanel.d.ts",
-        "staticwebassets/js/typescript/smart.colorpicker.d.ts",
-        "staticwebassets/js/typescript/smart.columnpanel.d.ts",
-        "staticwebassets/js/typescript/smart.combobox.d.ts",
-        "staticwebassets/js/typescript/smart.customizationdialog.d.ts",
-        "staticwebassets/js/typescript/smart.dataadapter.d.ts",
-        "staticwebassets/js/typescript/smart.dateinput.d.ts",
-        "staticwebassets/js/typescript/smart.daterangeinput.d.ts",
-        "staticwebassets/js/typescript/smart.datetimepicker.d.ts",
-        "staticwebassets/js/typescript/smart.dockinglayout.d.ts",
-        "staticwebassets/js/typescript/smart.dropdownbutton.d.ts",
-        "staticwebassets/js/typescript/smart.dropdownlist.d.ts",
-        "staticwebassets/js/typescript/smart.element.d.ts",
-        "staticwebassets/js/typescript/smart.elements.d.ts",
-        "staticwebassets/js/typescript/smart.fileupload.d.ts",
-        "staticwebassets/js/typescript/smart.filterbuilder.d.ts",
-        "staticwebassets/js/typescript/smart.filterpanel.d.ts",
-        "staticwebassets/js/typescript/smart.form.d.ts",
-        "staticwebassets/js/typescript/smart.ganttchart.d.ts",
-        "staticwebassets/js/typescript/smart.gauge.d.ts",
-        "staticwebassets/js/typescript/smart.grid.d.ts",
-        "staticwebassets/js/typescript/smart.grouppanel.d.ts",
-        "staticwebassets/js/typescript/smart.input.d.ts",
-        "staticwebassets/js/typescript/smart.kanban.d.ts",
-        "staticwebassets/js/typescript/smart.layout.d.ts",
-        "staticwebassets/js/typescript/smart.led.d.ts",
-        "staticwebassets/js/typescript/smart.listbox.d.ts",
-        "staticwebassets/js/typescript/smart.listmenu.d.ts",
-        "staticwebassets/js/typescript/smart.map.d.ts",
-        "staticwebassets/js/typescript/smart.maskedtextbox.d.ts",
-        "staticwebassets/js/typescript/smart.menu.d.ts",
-        "staticwebassets/js/typescript/smart.multicolumnfilterpanel.d.ts",
-        "staticwebassets/js/typescript/smart.multicomboinput.d.ts",
-        "staticwebassets/js/typescript/smart.multiinput.d.ts",
-        "staticwebassets/js/typescript/smart.multilinetextbox.d.ts",
-        "staticwebassets/js/typescript/smart.multisplitbutton.d.ts",
-        "staticwebassets/js/typescript/smart.numberinput.d.ts",
-        "staticwebassets/js/typescript/smart.numerictextbox.d.ts",
-        "staticwebassets/js/typescript/smart.pager.d.ts",
-        "staticwebassets/js/typescript/smart.passwordtextbox.d.ts",
-        "staticwebassets/js/typescript/smart.path.d.ts",
-        "staticwebassets/js/typescript/smart.pivottable.d.ts",
-        "staticwebassets/js/typescript/smart.progressbar.d.ts",
-        "staticwebassets/js/typescript/smart.querybuilder.d.ts",
-        "staticwebassets/js/typescript/smart.radiobutton.d.ts",
-        "staticwebassets/js/typescript/smart.rating.d.ts",
-        "staticwebassets/js/typescript/smart.scheduler.d.ts",
-        "staticwebassets/js/typescript/smart.scrollbar.d.ts",
-        "staticwebassets/js/typescript/smart.slider.d.ts",
-        "staticwebassets/js/typescript/smart.sortable.d.ts",
-        "staticwebassets/js/typescript/smart.sortpanel.d.ts",
-        "staticwebassets/js/typescript/smart.splitter.d.ts",
-        "staticwebassets/js/typescript/smart.switchbutton.d.ts",
-        "staticwebassets/js/typescript/smart.table.d.ts",
-        "staticwebassets/js/typescript/smart.tabs.d.ts",
-        "staticwebassets/js/typescript/smart.tank.d.ts",
-        "staticwebassets/js/typescript/smart.textarea.d.ts",
-        "staticwebassets/js/typescript/smart.textbox.d.ts",
-        "staticwebassets/js/typescript/smart.timeinput.d.ts",
-        "staticwebassets/js/typescript/smart.timepicker.d.ts",
-        "staticwebassets/js/typescript/smart.toast.d.ts",
-        "staticwebassets/js/typescript/smart.tooltip.d.ts",
-        "staticwebassets/js/typescript/smart.tree.d.ts",
-        "staticwebassets/js/typescript/smart.validator.d.ts",
-        "staticwebassets/js/typescript/smart.window.d.ts"
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard1.0/_._",
+        "microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+        "microsoft.netcore.platforms.nuspec",
+        "runtime.json",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.Win32.Registry/4.5.0": {
+      "sha512": "+FWlwd//+Tt56316p00hVePBCouXyEzT86Jb3+AuRotTND0IYn0OO3obs1gnQEs/txEnt+rF2JBGLItTG+Be6A==",
+      "type": "package",
+      "path": "microsoft.win32.registry/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net46/Microsoft.Win32.Registry.dll",
+        "lib/net461/Microsoft.Win32.Registry.dll",
+        "lib/netstandard1.3/Microsoft.Win32.Registry.dll",
+        "lib/netstandard2.0/Microsoft.Win32.Registry.dll",
+        "microsoft.win32.registry.4.5.0.nupkg.sha512",
+        "microsoft.win32.registry.nuspec",
+        "ref/net46/Microsoft.Win32.Registry.dll",
+        "ref/net461/Microsoft.Win32.Registry.dll",
+        "ref/net461/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/Microsoft.Win32.Registry.dll",
+        "ref/netstandard1.3/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/de/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/es/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/fr/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/it/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/ja/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/ko/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/ru/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/zh-hans/Microsoft.Win32.Registry.xml",
+        "ref/netstandard1.3/zh-hant/Microsoft.Win32.Registry.xml",
+        "ref/netstandard2.0/Microsoft.Win32.Registry.dll",
+        "ref/netstandard2.0/Microsoft.Win32.Registry.xml",
+        "runtimes/unix/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
+        "runtimes/win/lib/net46/Microsoft.Win32.Registry.dll",
+        "runtimes/win/lib/net461/Microsoft.Win32.Registry.dll",
+        "runtimes/win/lib/netstandard1.3/Microsoft.Win32.Registry.dll",
+        "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Buffers/4.5.0": {
+      "sha512": "pL2ChpaRRWI/p4LXyy4RgeWlYF2sgfj/pnVMvBqwNFr5cXg7CXNnWZWxrOONLg8VGdFB8oB+EG2Qw4MLgTOe+A==",
+      "type": "package",
+      "path": "system.buffers/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.1/System.Buffers.dll",
+        "lib/netstandard1.1/System.Buffers.xml",
+        "lib/netstandard2.0/System.Buffers.dll",
+        "lib/netstandard2.0/System.Buffers.xml",
+        "lib/uap10.0.16299/_._",
+        "ref/net45/System.Buffers.dll",
+        "ref/net45/System.Buffers.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.1/System.Buffers.dll",
+        "ref/netstandard1.1/System.Buffers.xml",
+        "ref/netstandard2.0/System.Buffers.dll",
+        "ref/netstandard2.0/System.Buffers.xml",
+        "ref/uap10.0.16299/_._",
+        "system.buffers.4.5.0.nupkg.sha512",
+        "system.buffers.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Diagnostics.DiagnosticSource/6.0.0": {
@@ -2985,6 +2953,229 @@
         "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Security.AccessControl/4.5.0": {
+      "sha512": "vW8Eoq0TMyz5vAG/6ce483x/CP83fgm4SJe5P8Tb1tZaobcvPrbMEL7rhH1DRdrYbbb6F0vq3OlzmK0Pkwks5A==",
+      "type": "package",
+      "path": "system.security.accesscontrol/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net46/System.Security.AccessControl.dll",
+        "lib/net461/System.Security.AccessControl.dll",
+        "lib/netstandard1.3/System.Security.AccessControl.dll",
+        "lib/netstandard2.0/System.Security.AccessControl.dll",
+        "lib/uap10.0.16299/_._",
+        "ref/net46/System.Security.AccessControl.dll",
+        "ref/net461/System.Security.AccessControl.dll",
+        "ref/net461/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/System.Security.AccessControl.dll",
+        "ref/netstandard1.3/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/de/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/es/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/fr/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/it/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/ja/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/ko/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/ru/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/zh-hans/System.Security.AccessControl.xml",
+        "ref/netstandard1.3/zh-hant/System.Security.AccessControl.xml",
+        "ref/netstandard2.0/System.Security.AccessControl.dll",
+        "ref/netstandard2.0/System.Security.AccessControl.xml",
+        "ref/uap10.0.16299/_._",
+        "runtimes/win/lib/net46/System.Security.AccessControl.dll",
+        "runtimes/win/lib/net461/System.Security.AccessControl.dll",
+        "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll",
+        "runtimes/win/lib/netstandard1.3/System.Security.AccessControl.dll",
+        "runtimes/win/lib/uap10.0.16299/_._",
+        "system.security.accesscontrol.4.5.0.nupkg.sha512",
+        "system.security.accesscontrol.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Security.Cryptography.Cng/4.5.0": {
+      "sha512": "WG3r7EyjUe9CMPFSs6bty5doUqT+q9pbI80hlNzo2SkPkZ4VTuZkGWjpp77JB8+uaL4DFPRdBsAY+DX3dBK92A==",
+      "type": "package",
+      "path": "system.security.cryptography.cng/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Security.Cryptography.Cng.dll",
+        "lib/net461/System.Security.Cryptography.Cng.dll",
+        "lib/net462/System.Security.Cryptography.Cng.dll",
+        "lib/net47/System.Security.Cryptography.Cng.dll",
+        "lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll",
+        "lib/netstandard1.3/System.Security.Cryptography.Cng.dll",
+        "lib/netstandard1.4/System.Security.Cryptography.Cng.dll",
+        "lib/netstandard1.6/System.Security.Cryptography.Cng.dll",
+        "lib/netstandard2.0/System.Security.Cryptography.Cng.dll",
+        "lib/uap10.0.16299/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Security.Cryptography.Cng.dll",
+        "ref/net461/System.Security.Cryptography.Cng.dll",
+        "ref/net461/System.Security.Cryptography.Cng.xml",
+        "ref/net462/System.Security.Cryptography.Cng.dll",
+        "ref/net462/System.Security.Cryptography.Cng.xml",
+        "ref/net47/System.Security.Cryptography.Cng.dll",
+        "ref/net47/System.Security.Cryptography.Cng.xml",
+        "ref/netcoreapp2.0/System.Security.Cryptography.Cng.dll",
+        "ref/netcoreapp2.0/System.Security.Cryptography.Cng.xml",
+        "ref/netcoreapp2.1/System.Security.Cryptography.Cng.dll",
+        "ref/netcoreapp2.1/System.Security.Cryptography.Cng.xml",
+        "ref/netstandard1.3/System.Security.Cryptography.Cng.dll",
+        "ref/netstandard1.4/System.Security.Cryptography.Cng.dll",
+        "ref/netstandard1.6/System.Security.Cryptography.Cng.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.Cng.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.Cng.xml",
+        "ref/uap10.0.16299/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/win/lib/net46/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/net461/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/net462/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/net47/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/netcoreapp2.0/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/netstandard1.4/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/netstandard1.6/System.Security.Cryptography.Cng.dll",
+        "runtimes/win/lib/uap10.0.16299/_._",
+        "system.security.cryptography.cng.4.5.0.nupkg.sha512",
+        "system.security.cryptography.cng.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Security.Cryptography.Pkcs/4.5.0": {
+      "sha512": "TGQX51gxpY3K3I6LJlE2LAftVlIMqJf0cBGhz68Y89jjk3LJCB6SrwiD+YN1fkqemBvWGs+GjyMJukl6d6goyQ==",
+      "type": "package",
+      "path": "system.security.cryptography.pkcs/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net46/System.Security.Cryptography.Pkcs.dll",
+        "lib/net461/System.Security.Cryptography.Pkcs.dll",
+        "lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll",
+        "lib/netstandard1.3/System.Security.Cryptography.Pkcs.dll",
+        "lib/netstandard2.0/System.Security.Cryptography.Pkcs.dll",
+        "ref/net46/System.Security.Cryptography.Pkcs.dll",
+        "ref/net461/System.Security.Cryptography.Pkcs.dll",
+        "ref/net461/System.Security.Cryptography.Pkcs.xml",
+        "ref/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll",
+        "ref/netcoreapp2.1/System.Security.Cryptography.Pkcs.xml",
+        "ref/netstandard1.3/System.Security.Cryptography.Pkcs.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.Pkcs.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.Pkcs.xml",
+        "runtimes/win/lib/net46/System.Security.Cryptography.Pkcs.dll",
+        "runtimes/win/lib/net461/System.Security.Cryptography.Pkcs.dll",
+        "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll",
+        "runtimes/win/lib/netstandard1.3/System.Security.Cryptography.Pkcs.dll",
+        "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.Pkcs.dll",
+        "system.security.cryptography.pkcs.4.5.0.nupkg.sha512",
+        "system.security.cryptography.pkcs.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Security.Cryptography.Xml/4.5.0": {
+      "sha512": "i2Jn6rGXR63J0zIklImGRkDIJL4b1NfPSEbIVHBlqoIb12lfXIigCbDRpDmIEzwSo/v1U5y/rYJdzZYSyCWxvg==",
+      "type": "package",
+      "path": "system.security.cryptography.xml/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Security.Cryptography.Xml.dll",
+        "lib/netstandard2.0/System.Security.Cryptography.Xml.dll",
+        "ref/net461/System.Security.Cryptography.Xml.dll",
+        "ref/net461/System.Security.Cryptography.Xml.xml",
+        "ref/netstandard2.0/System.Security.Cryptography.Xml.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.Xml.xml",
+        "system.security.cryptography.xml.4.5.0.nupkg.sha512",
+        "system.security.cryptography.xml.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Security.Permissions/4.5.0": {
+      "sha512": "9gdyuARhUR7H+p5CjyUB/zPk7/Xut3wUSP8NJQB6iZr8L3XUXTMdoLeVAg9N4rqF8oIpE7MpdqHdDHQ7XgJe0g==",
+      "type": "package",
+      "path": "system.security.permissions/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Security.Permissions.dll",
+        "lib/netstandard2.0/System.Security.Permissions.dll",
+        "ref/net461/System.Security.Permissions.dll",
+        "ref/net461/System.Security.Permissions.xml",
+        "ref/netstandard2.0/System.Security.Permissions.dll",
+        "ref/netstandard2.0/System.Security.Permissions.xml",
+        "system.security.permissions.4.5.0.nupkg.sha512",
+        "system.security.permissions.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Security.Principal.Windows/4.5.0": {
+      "sha512": "U77HfRXlZlOeIXd//Yoj6Jnk8AXlbeisf1oq1os+hxOGVnuG+lGSfGqTwTZBoORFF6j/0q7HXIl8cqwQ9aUGqQ==",
+      "type": "package",
+      "path": "system.security.principal.windows/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net46/System.Security.Principal.Windows.dll",
+        "lib/net461/System.Security.Principal.Windows.dll",
+        "lib/netstandard1.3/System.Security.Principal.Windows.dll",
+        "lib/netstandard2.0/System.Security.Principal.Windows.dll",
+        "lib/uap10.0.16299/_._",
+        "ref/net46/System.Security.Principal.Windows.dll",
+        "ref/net461/System.Security.Principal.Windows.dll",
+        "ref/net461/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/System.Security.Principal.Windows.dll",
+        "ref/netstandard1.3/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/de/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/es/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/fr/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/it/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/ja/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/ko/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/ru/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/zh-hans/System.Security.Principal.Windows.xml",
+        "ref/netstandard1.3/zh-hant/System.Security.Principal.Windows.xml",
+        "ref/netstandard2.0/System.Security.Principal.Windows.dll",
+        "ref/netstandard2.0/System.Security.Principal.Windows.xml",
+        "ref/uap10.0.16299/_._",
+        "runtimes/unix/lib/netcoreapp2.0/System.Security.Principal.Windows.dll",
+        "runtimes/win/lib/net46/System.Security.Principal.Windows.dll",
+        "runtimes/win/lib/net461/System.Security.Principal.Windows.dll",
+        "runtimes/win/lib/netcoreapp2.0/System.Security.Principal.Windows.dll",
+        "runtimes/win/lib/netstandard1.3/System.Security.Principal.Windows.dll",
+        "runtimes/win/lib/uap10.0.16299/_._",
+        "system.security.principal.windows.4.5.0.nupkg.sha512",
+        "system.security.principal.windows.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Text.Encodings.Web/6.0.0": {
@@ -3076,31 +3267,33 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "BCrypt.Net-Next >= 4.0.3",
+      "Blazored.SessionStorage >= 2.2.0",
       "GradeSystem.v1.Shared >= 1.0.0",
+      "Microsoft.AspNetCore.Authentication >= 2.2.0",
+      "Microsoft.AspNetCore.Authentication.Core >= 2.2.0",
+      "Microsoft.AspNetCore.Components.Authorization >= 6.0.3",
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.9",
-      "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.9",
-      "Smart.Blazor >= 14.2.18"
+      "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.9"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HARDPC\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\marci\\.nuget\\packages\\": {},
+    "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\HARDPC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Client\\obj\\",
+      "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
+      "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\HARDPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3115,8 +3308,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+            "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+              "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
             }
           }
         }
@@ -3131,9 +3324,21 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "BCrypt.Net-Next": {
+          "Blazored.SessionStorage": {
             "target": "Package",
-            "version": "[4.0.3, )"
+            "version": "[2.2.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Core": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
+          "Microsoft.AspNetCore.Components.Authorization": {
+            "target": "Package",
+            "version": "[6.0.3, )"
           },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",
@@ -3143,10 +3348,6 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.0.9, )"
-          },
-          "Smart.Blazor": {
-            "target": "Package",
-            "version": "[14.2.18, )"
           }
         },
         "imports": [

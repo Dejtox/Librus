@@ -6,10 +6,16 @@ global using GradeSystem.v1.Client.Services.SubjectService;
 global using GradeSystem.v1.Client.Services.EnrollmentService;
 global using GradeSystem.v1.Client.Services.AttendanceService;
 global using GradeSystem.v1.Client.Services.GradeService;
+global using GradeSystem.v1.Client.Services.UserService;
+global using Microsoft.AspNetCore.Components.Authorization;
+
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using GradeSystem.v1.Client.Services.Nowy_folder;
+using Blazored.SessionStorage;
+using System.Reflection;
+using GradeSystem.v1.Client.Auth;
+
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -24,5 +30,13 @@ builder.Services.AddScoped<ISubjectService, SubjectService>();
 builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 builder.Services.AddScoped<IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<IGradeService, GradeService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddBlazoredSessionStorage();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+builder.Services.AddAuthenticationCore();
+builder.Services.AddAuthorizationCore();
+
+
+
 
 await builder.Build().RunAsync();

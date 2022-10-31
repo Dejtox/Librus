@@ -9,11 +9,9 @@ public class Student
         public string Pesel { get; set; } = string.Empty;
 
         public string Address { get; set; } = string.Empty;
-
-        public string Login {get; set; } = string.Empty;
-        public string Password {get; set; } = string.Empty;
-        public string StudentRole {get; set; } = string.Empty;
+        public int UserID { get; set; }
 
         public Parent? Parent {get; set; }
         public Class? Class {get; set; }
-    }
+        public User? User { get; set; }
+}

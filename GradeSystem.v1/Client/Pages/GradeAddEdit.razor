@@ -30,7 +30,7 @@ else
     <div>
         <label for="grade">Subject</label>
         <InputSelect @bind-Value="grade.SubjectID" class="form-select">
-
+            <option value=0>--- Select ---</option>
             @foreach (var subject in GradeService.Subjects)
             {
                 <option value="@subject.SubjectID">@subject.SubjectName-@subject.Teacher.FirstName @subject.Teacher.LastName</option>

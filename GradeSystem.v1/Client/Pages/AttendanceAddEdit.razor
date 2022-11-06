@@ -18,7 +18,7 @@ else
     <div>
         <label for="Attendance">Student</label>
         <InputSelect @bind-Value="attendance.StudentID" class="form-select">
-
+            <option value=0>--- Select ---</option>
             @foreach (var student in AttendanceService.Students)
             {
                 <option value="@student.StudentID">@student.FirstName @student.LastName</option>
@@ -29,6 +29,7 @@ else
     <div>
         <label for="description">Description</label>
         <InputSelect @bind-Value="attendance.Description" class="form-select">
+            <option value=0>--- Select ---</option>
             <option value="Present">Present</option>
             <option value="Absent">Absent</option>
             <option value="Late"> Late</option>
@@ -39,7 +40,7 @@ else
     <div>
         <label for="Attendance">Enrollment</label>
         <InputSelect @bind-Value="attendance.EnrollmentID" class="form-select">
-
+            <option value=0>--- Select ---</option>
             @foreach (var enrollment in AttendanceService.Enrollments)
             {
                 <option value="@enrollment.EnrollmentID">@enrollment.Class.ClassName @enrollment.Subject.SubjectName @enrollment.Date </option>

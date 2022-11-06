@@ -22,7 +22,7 @@ else
     <div>
         <label for="classname">Teacher</label>
         <InputSelect @bind-Value="subject.TeacherID" class="form-select">
-
+            <option value=0>--- Select ---</option>
             @foreach (var teacher in SubjectService.Teachers)
             {
                 <option value="@teacher.TeacherID">@teacher.FirstName @teacher.LastName</option>

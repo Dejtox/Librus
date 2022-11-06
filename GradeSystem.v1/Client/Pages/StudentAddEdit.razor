@@ -51,7 +51,7 @@ else
     <div>
         <label for="parentname">Parent</label>
         <InputSelect @bind-Value="student.ParentID" class="form-select">
-
+            <option value=0>--- Select ---</option>
             @foreach (var parent in StudentService.Parents)
             {
                 <option value="@parent.ParentID">@parent.FirstName @parent.LastName</option>

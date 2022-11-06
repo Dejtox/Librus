@@ -24,7 +24,7 @@ else
     <div>
         <label for="enrollment">Class</label>
         <InputSelect @bind-Value="enrollment.ClassID" class="form-select">
-
+            <option value=0>--- Select ---</option>
             @foreach (var classs in EnrollmentService.Classes)
             {
                 <option value="@classs.ClassID">@classs.ClassName</option>
@@ -35,7 +35,7 @@ else
     <div>
         <label for="enrollment">Subject</label>
         <InputSelect @bind-Value="enrollment.SubjectID" class="form-select">
-
+            <option value=0>--- Select ---</option>
             @foreach (var subject in EnrollmentService.Subjects)
             {
                 <option value="@subject.SubjectID">@subject.SubjectName-@subject.Teacher.FirstName @subject.Teacher.LastName</option>

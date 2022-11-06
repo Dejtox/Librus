@@ -61,6 +61,7 @@ else
 
     Enrollment enrollment = new Enrollment();
     string btnText = string.Empty;
+    double timeStamp = 45;
     protected override async Task OnInitializedAsync()
     {
         btnText = ID == null ? "Save New Enrollment" : "Update Enrollment";
@@ -79,10 +80,15 @@ else
         {
             enrollment = await EnrollmentService.GetEnrollmentByID((int)ID);
         }
-        
+
     }
     async Task HandleSubmit()
     {
+        enrollment.EndDate = enrollment.Date.AddMinutes(timeStamp);
+        if (enrollment.Replacement==false)
+        {
+            enrollment.Substitute_SubjectID = -1;
+        }
         if (ID == null)
         {
             await EnrollmentService.CreateEnrollment(enrollment);

@@ -31,7 +31,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Enrollment>> GetEnrollment(int id)
         {
-            var enrollment = await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).FirstOrDefaultAsync(e => e.EnrollmentID == id);
+            var enrollment = await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).Include(t => t.Subject.Teacher).FirstOrDefaultAsync(e => e.EnrollmentID == id);
 
             if (enrollment == null)
             {

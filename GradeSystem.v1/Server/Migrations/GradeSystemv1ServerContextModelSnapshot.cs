@@ -17,10 +17,10 @@ namespace GradeSystem.v1.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc.2.22472.11")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Attendance", b =>
                 {
@@ -28,7 +28,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttendanceID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttendanceID"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -55,7 +55,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassID"), 1L, 1);
 
                     b.Property<string>("ClassName")
                         .IsRequired()
@@ -77,7 +77,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"), 1L, 1);
 
                     b.Property<int>("ClassID")
                         .HasColumnType("int");
@@ -89,7 +89,20 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Link_To_Materials")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Replacement")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SubjectID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Substitute_SubjectID")
                         .HasColumnType("int");
 
                     b.HasKey("EnrollmentID");
@@ -107,7 +120,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeID"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -140,7 +153,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ParentID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ParentID"), 1L, 1);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -174,7 +187,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -218,7 +231,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjectID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjectID"), 1L, 1);
 
                     b.Property<string>("SubjectName")
                         .IsRequired()
@@ -240,7 +253,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherID"), 1L, 1);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -274,7 +287,7 @@ namespace GradeSystem.v1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"), 1L, 1);
 
                     b.Property<string>("Login")
                         .IsRequired()

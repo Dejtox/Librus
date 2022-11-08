@@ -3478,3 +3478,5 @@ D:\projects\librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v
 D:\projects\librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\refint\GradeSystem.v1.Client.dll
 D:\projects\librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.pdb
 D:\projects\librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\ref\GradeSystem.v1.Client.dll
+D:\projects\librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\scopedcss\Pages\StudentGrades.razor.rz.scp.css
+D:\projects\librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\scopedcss\Pages\Grades.razor.rz.scp.css

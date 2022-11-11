@@ -1,11 +1,15 @@
 ﻿@page "/"
+@using System.Security.Claims
 @inject IJSRuntime js
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
 
 <PageTitle>Index</PageTitle>
 
 <AuthorizeView>
     <Authorized>
         <h1>Hello @context.User.Identity.Name!</h1>
+        <h1>Hello @ID</h1>
     </Authorized>
     <NotAuthorized>
         <h1>Hello Guest!</h1>
@@ -20,11 +24,31 @@ Welcome to your new app.
 {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
+    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
 
     private async Task DispayGreetingAlert()
     {
         var authState = await authenticationState;
         var message = $"Hello {authState.User.Identity.Name}";
         await js.InvokeVoidAsync("alert", message);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await GetClaimsGetID();
+        await base.OnParametersSetAsync();
+    }
+
+    int ID;
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+        };
     }
 }

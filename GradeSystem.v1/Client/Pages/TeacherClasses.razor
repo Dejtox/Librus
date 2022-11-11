@@ -1,0 +1,98 @@
+﻿@page "/teacherclasses"
+@using GradeSystem.v1.Client.Auth
+@using System.Net.Http.Headers
+@inject IClassService ClassService
+@inject IGradeService GradeService
+@inject IStudentService StudentService
+@inject ITeacherService TeacherService
+@inject IUserService UserService
+@inject ISubjectService SubjectService
+@inject IJSRuntime js
+@inject NavigationManager NavigationMenager
+@attribute [Authorize(Roles = "Teacher")]
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager navMenager
+
+@inject HttpClient httpClient
+
+<PageTitle> Classes </PageTitle>
+
+<h1>Your Classes</h1>
+
+
+
+@foreach (var classs in ClassService.Classes)
+{
+    @foreach (var subject in SubjectService.Subjects)
+    {
+        Console.WriteLine(subject.TeacherID);
+        Console.WriteLine(ID);
+        @if (subject.TeacherID == ID)
+        {
+            <h1>@subject.SubjectName</h1>
+            <div class="container">
+                <h2>Class: @classs.ClassName</h2>
+                <div runat="server" class="students">
+                    @foreach (var student in StudentService.Students)
+                    {
+                        @if (student.ClassID == classs.ClassID)
+                        {
+                            <h3 @onclick="(()=>ShowStudent(student.StudentID))">@student.FirstName</h3>
+                        }
+
+                    }
+                </div>
+            </div>
+        }
+    }
+}
+<button type="button" class="btn btn-primary" @onclick="CreateClass">Create New</button>
+
+@code {
+    int ID;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ClassService.GetClasses();
+        await GradeService.GetGrades();
+        await StudentService.GetStudents();
+        await SubjectService.GetSubjects();
+        await GetClaimsGetID();
+    }
+    void ShowClass(int id)
+    {
+        NavigationMenager.NavigateTo($"classs/{id}");
+    }
+    void CreateClass()
+    {
+        NavigationMenager.NavigateTo("/classs");
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task DispayGreetingAlert()
+    {
+        var authState = await authenticationState;
+        var message = $"Your Classes {authState.User.Identity.Name}";
+        await js.InvokeVoidAsync("alert", message);
+    }
+
+    void ShowStudent(int id)
+    {
+        NavigationMenager.NavigateTo($"studentcard/{id}");
+    }
+
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+        };
+    }
+}

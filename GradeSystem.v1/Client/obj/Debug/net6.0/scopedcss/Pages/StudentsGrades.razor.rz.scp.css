@@ -1,0 +1,41 @@
+.all[b-bf87gw08az]{
+    align-items:flex-start;
+    margin:0px;
+    flex-direction:row;
+}
+
+.comms[b-bf87gw08az] {
+    display: none;
+}
+
+.gradeInfo[b-bf87gw08az] {
+
+    display: inline-block;
+    border: solid 3px green;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 5px;
+    background-color: #CFFFCF;
+}
+
+    .gradeInfo:hover[b-bf87gw08az]{
+        box-shadow: -2px 3px 8px -1px rgba(66, 68, 90, 1);
+    }
+
+    .gradeInfo:hover .comms[b-bf87gw08az]{
+        display: block;
+    }
+
+.container[b-bf87gw08az] {
+    background-color: #FFFFFF;
+    margin: 5%;
+    margin-left: 0px;
+    width: 90%;
+    box-shadow: -9px 7px 29px -1px rgba(66, 68, 90, 1);
+    border-radius:1rem;
+}
+
+h7[b-bf87gw08az], h3[b-bf87gw08az]{
+    font-weight:bold;
+    font-size:smaller;
+}

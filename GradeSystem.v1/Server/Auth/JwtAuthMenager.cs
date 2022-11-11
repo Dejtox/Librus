@@ -37,14 +37,17 @@ namespace GradeSystem.v1.Server.Auth
             var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
             var claimsIdentity = new ClaimsIdentity();
             string name=string.Empty;
+            int ID;
             if (userAcc.UserRole=="Teacher")
             {
                 Teacher Teacher=await _context.Teacher.FirstOrDefaultAsync(t => t.UserID == userAcc.UserID);
                 name = Teacher.FirstName + " " + Teacher.LastName;
+                ID = Teacher.TeacherID;
                 claimsIdentity = new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, name),
-                    new Claim(ClaimTypes.Role, userAcc.UserRole)
+                    new Claim(ClaimTypes.Role, userAcc.UserRole),
+                    new Claim(ClaimTypes.Email, ID.ToString())
 
                 });
             }
@@ -52,10 +55,12 @@ namespace GradeSystem.v1.Server.Auth
             {
                 Student Student = await _context.Student.FirstOrDefaultAsync(t => t.UserID == userAcc.UserID);
                 name = Student.FirstName + " " + Student.LastName;
+                ID = Student.StudentID;
                 claimsIdentity = new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, name),
-                    new Claim(ClaimTypes.Role, userAcc.UserRole)
+                    new Claim(ClaimTypes.Role, userAcc.UserRole),
+                    new Claim(ClaimTypes.Email, ID.ToString())
 
                 });
             }
@@ -64,10 +69,12 @@ namespace GradeSystem.v1.Server.Auth
 
                 Parent Parent = await _context.Parent.FirstOrDefaultAsync(t => t.UserID == userAcc.UserID);
                 name = Parent.FirstName + " " + Parent.LastName;
+                ID = Parent.ParentID;
                 claimsIdentity = new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, name),
-                    new Claim(ClaimTypes.Role, userAcc.UserRole)
+                    new Claim(ClaimTypes.Role, userAcc.UserRole),
+                    new Claim(ClaimTypes.Email, ID.ToString())
 
                 });
             }
@@ -86,6 +93,7 @@ namespace GradeSystem.v1.Server.Auth
             var token = jwtSecurityTokenHandler.WriteToken(securitytoken);
             var userSession = new UserSession
             {
+                UserID = ID,
                 UserName = name,
                 Role = userAcc.UserRole,
                 Token = token,

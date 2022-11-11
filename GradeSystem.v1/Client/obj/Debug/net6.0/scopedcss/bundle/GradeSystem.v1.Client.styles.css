@@ -1,18 +1,49 @@
 /* /Pages/Grades.razor.rz.scp.css */
 body[b-7epf0voo6x] {
 }
-/* /Pages/StudentGrades.razor.rz.scp.css */
-.all[b-lavw9lm5pe]{
+/* /Pages/StudentCard.razor.rz.scp.css */
+body[b-18mt65t4ww] {
+}
+
+img[b-18mt65t4ww] {
+    height: 100px;
+    width: 100px;
+}
+
+.container[b-18mt65t4ww], .info[b-18mt65t4ww] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5%;
+    white-space: nowrap;
+}
+
+.container[b-18mt65t4ww] {
+    box-shadow: -9px 7px 29px -1px rgba(66, 68, 90, 1);
+}
+
+.name[b-18mt65t4ww]{
+    display:flex;
+    flex-direction:row;
+}
+
+h1[b-18mt65t4ww]{
+    padding:5%;
+}
+/* /Pages/StudentsGrades.razor.rz.scp.css */
+.all[b-bf87gw08az]{
     align-items:flex-start;
     margin:0px;
     flex-direction:row;
 }
 
-.comms[b-lavw9lm5pe] {
+.comms[b-bf87gw08az] {
     display: none;
 }
 
-.gradeInfo[b-lavw9lm5pe] {
+.gradeInfo[b-bf87gw08az] {
 
     display: inline-block;
     border: solid 3px green;
@@ -22,15 +53,15 @@ body[b-7epf0voo6x] {
     background-color: #CFFFCF;
 }
 
-    .gradeInfo:hover[b-lavw9lm5pe]{
+    .gradeInfo:hover[b-bf87gw08az]{
         box-shadow: -2px 3px 8px -1px rgba(66, 68, 90, 1);
     }
 
-    .gradeInfo:hover .comms[b-lavw9lm5pe]{
+    .gradeInfo:hover .comms[b-bf87gw08az]{
         display: block;
     }
 
-.container[b-lavw9lm5pe] {
+.container[b-bf87gw08az] {
     background-color: #FFFFFF;
     margin: 5%;
     margin-left: 0px;
@@ -39,9 +70,85 @@ body[b-7epf0voo6x] {
     border-radius:1rem;
 }
 
-h7[b-lavw9lm5pe], h3[b-lavw9lm5pe]{
+h7[b-bf87gw08az], h3[b-bf87gw08az]{
     font-weight:bold;
     font-size:smaller;
+}
+/* /Pages/TeacherClasses.razor.rz.scp.css */
+.all[b-n340c82kpz] {
+    align-items: flex-start;
+    margin: 0px;
+    flex-direction: row;
+}
+
+.comms[b-n340c82kpz] {
+    display: none;
+}
+
+.gradeInfo[b-n340c82kpz] {
+    display: inline-block;
+    border: solid 3px green;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 5px;
+    background-color: #CFFFCF;
+}
+
+h2[b-n340c82kpz] {
+    display:flex;
+    padding: 8%;
+    flex-direction:column;
+    background-color: #FFFFFF;
+    margin: 0%;
+    margin-left: 0px;
+    width:fit-content;
+    border-radius: 1rem;
+}
+
+    .container:hover .students[b-n340c82kpz] {
+        display: block;
+        display: flex;
+        padding: 8%;
+        flex-direction: column;
+        background-color: #FFFFFF;
+        margin: 0%;
+        margin-left: 0px;
+        width: fit-content;
+        border-radius: 1rem;
+        border-top-left-radius: 0px;
+
+    }
+
+.container:hover h2[b-n340c82kpz] {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.container[b-n340c82kpz] {
+    display: flex;
+    padding: 1%;
+    flex-direction: column;
+    margin: 0%;
+    margin-left: 0px;
+    width: min-content;
+    white-space: nowrap;
+}
+
+h3[b-n340c82kpz] {
+    position: relative;
+    width: 10rem;
+}
+h7[b-n340c82kpz], h3[b-n340c82kpz] {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.students[b-n340c82kpz]{
+    display:none;
+}
+
+.studentsVisible[b-n340c82kpz]{
+    display:block;
 }
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-08mlx414po] {
@@ -52,7 +159,7 @@ h7[b-lavw9lm5pe], h3[b-lavw9lm5pe]{
 
 main[b-08mlx414po] {
     flex: 1;
-    background-image: linear-gradient(165deg, #5FFF82, #FFFFFF 40% 100%);
+    
     min-height:100%;
 }
 

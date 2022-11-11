@@ -90,6 +90,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/projects/librus/Dziennik/GradeSystem.v1/Client/Pages/Test.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/projects/librus/Dziennik/GradeSystem.v1/Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -102,9 +106,17 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-7epf0voo6x
 
-[D:/projects/librus/Dziennik/GradeSystem.v1/Client/Pages/StudentGrades.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudEdyYWRlcy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-lavw9lm5pe
+[D:/projects/librus/Dziennik/GradeSystem.v1/Client/Pages/StudentCard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudENhcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-18mt65t4ww
+
+[D:/projects/librus/Dziennik/GradeSystem.v1/Client/Pages/StudentsGrades.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNHcmFkZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-bf87gw08az
+
+[D:/projects/librus/Dziennik/GradeSystem.v1/Client/Pages/TeacherClasses.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlckNsYXNzZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-n340c82kpz
 
 [D:/projects/librus/Dziennik/GradeSystem.v1/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

@@ -1,0 +1,56 @@
+﻿@page "/extraClasses"
+@inject IExtraClassesService ExtraClassesService
+@inject NavigationManager NavigationMenager
+
+<PageTitle> Extra Classes </PageTitle>
+<h3>Extra Classes</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Extra Class Name</th>
+            <th>Extra Class Description</th>
+            <th>Teacher Name</th>
+            <th>Teacher Lastname</th>
+            <th>Date</th>
+            <!--<th>Current Cappasity</th>-->
+            <th>Max Cappasity</th>
+            <th>Class Room</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var extraClasses in ExtraClassesService.ExtraClasses)
+        {
+            <tr>
+                <td>@extraClasses.ExtraClassesName</td>
+                <td>@extraClasses.ExtraClassesDescription</td>
+                <td>@extraClasses.Teacher.FirstName</td>
+                <td>@extraClasses.Teacher.LastName</td>
+                <td>@extraClasses.ExtraClassesDate</td>
+                <!--<td>currentcapasity</td>-->
+                <td>@extraClasses.MaxCapasity</td>
+                <td>@extraClasses.ClassRoom</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClasses.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateExtraClasses">Create New</button>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ExtraClassesService.GetExtraClasses();
+    }
+    void ShowExtraClasses(int id)
+    {
+        NavigationMenager.NavigateTo($"extraclass/{id}");
+    }
+    void CreateExtraClasses()
+    {
+        NavigationMenager.NavigateTo("/extraclass");
+    }
+}

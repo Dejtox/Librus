@@ -22,14 +22,9 @@
 
 
 @foreach (var classs in ClassService.Classes)
-{
-    @foreach (var subject in SubjectService.Subjects)
-    {
-        Console.WriteLine(subject.TeacherID);
-        Console.WriteLine(ID);
-        @if (subject.TeacherID == ID)
+
+        @if (classs.TeacherID == ID)
         {
-            <h1>@subject.SubjectName</h1>
             <div class="container">
                 <h2>Class: @classs.ClassName</h2>
                 <div runat="server" class="students">

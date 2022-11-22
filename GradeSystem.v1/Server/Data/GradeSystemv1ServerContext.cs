@@ -3,7 +3,7 @@ namespace GradeSystem.v1.Server.Data
 {
     public class GradeSystemv1ServerContext : DbContext
     {
-        public GradeSystemv1ServerContext (DbContextOptions<GradeSystemv1ServerContext> options)
+        public GradeSystemv1ServerContext(DbContextOptions<GradeSystemv1ServerContext> options)
             : base(options)
         {
         }
@@ -25,5 +25,7 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<Enrollment> Enrollment { get; set; }
 
         public DbSet<User> User { get; set; }
+        public DbSet<ExtraClasses> ExtraClasses { get; set; }
+        public DbSet<ExtraClassesList> ExtraClassesList { get; set; }
     }
 }

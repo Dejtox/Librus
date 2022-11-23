@@ -19,19 +19,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var extraClasses in ExtraClassesService.ExtraClasses)
+        @foreach (var extraClass in ExtraClassesService.ExtraClasses)
         {
             <tr>
-                <td>@extraClasses.ExtraClassesName</td>
-                <td>@extraClasses.ExtraClassesDescription</td>
-                <td>@extraClasses.Teacher.FirstName</td>
-                <td>@extraClasses.Teacher.LastName</td>
-                <td>@extraClasses.ExtraClassesDate</td>
+                <td>@extraClass.ExtraClassesName</td>
+                <td>@extraClass.ExtraClassesDescription</td>
+                <td>@extraClass.Teacher.FirstName</td>
+                <td>@extraClass.Teacher.LastName</td>
+                <td>@extraClass.ExtraClassesDate</td>
                 <!--<td>currentcapasity</td>-->
-                <td>@extraClasses.MaxCapasity</td>
-                <td>@extraClasses.ClassRoom</td>
+                <td>@extraClass.MaxCapasity</td>
+                <td>@extraClass.ClassRoom</td>
                 <td>
-                    <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClasses.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
+                    <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
                 </td>
             </tr>
         }

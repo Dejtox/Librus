@@ -892,10 +892,6 @@ J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\EU+uY+Vc.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Yy5YWXmf.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\h5YShMo4.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\chqsxpU+.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\FYm8wKNv.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Hj5NYduX.gz
-J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\DWHD7DlE.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\tmvRD5RX.gz
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\blazor.boot.json
 J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\staticwebassets.build.json
@@ -1828,3 +1824,7 @@ C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Client\obj\De
 C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\refint\GradeSystem.v1.Client.dll
 C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.pdb
 C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\ref\GradeSystem.v1.Client.dll
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\chqsxpU+.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\FYm8wKNv.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\Hj5NYduX.gz
+J:\ProjektLibrus\Librus\Dziennik\GradeSystem.v1\Client\obj\Debug\net6.0\build-gz\DWHD7DlE.gz

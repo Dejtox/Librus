@@ -1,6 +1,12 @@
 ﻿@page "/extraClasses"
 @inject IExtraClassesService ExtraClassesService
+@inject IExtraClassesListService ExtraClassesListService
+@inject IStudentService StudentService
+@inject IUserService UserService
 @inject NavigationManager NavigationMenager
+
+@inject IJSRuntime js
+@attribute [Authorize(Roles ="Teacher, Parent, Student")]
 
 <PageTitle> Extra Classes </PageTitle>
 <h3>Extra Classes</h3>
@@ -13,9 +19,11 @@
             <th>Teacher Name</th>
             <th>Teacher Lastname</th>
             <th>Date</th>
-            <!--<th>Current Cappasity</th>-->
+            <th>Current Cappasity</th>
             <th>Max Cappasity</th>
             <th>Class Room</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -27,11 +35,14 @@
                 <td>@extraClass.Teacher.FirstName</td>
                 <td>@extraClass.Teacher.LastName</td>
                 <td>@extraClass.ExtraClassesDate</td>
-                <!--<td>currentcapasity</td>-->
+                <td>@extraClass.CurrentCapasity</td>
                 <td>@extraClass.MaxCapasity</td>
                 <td>@extraClass.ClassRoom</td>
                 <td>
                     <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
+                </td>
+                <td>
+                    <button class="btn btn-secondary" @onclick="(()=>SignTooExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-check"></i></button>
                 </td>
             </tr>
         }
@@ -41,16 +52,95 @@
 
 
 @code {
+    int ID;
+    string Roles;
+    int ParentID;
+    int cuerentcapasity = 0;
+    Student student = new Student();
+
+    ExtraClassesList extraClassesList = new ExtraClassesList();
+
     protected override async Task OnInitializedAsync()
     {
         await ExtraClassesService.GetExtraClasses();
+        await StudentService.GetStudents();
+        await ExtraClassesListService.GetExtraClassesList();
+        await GetClaimsGetID();
     }
     void ShowExtraClasses(int id)
     {
         NavigationMenager.NavigateTo($"extraclass/{id}");
     }
+    async Task SignTooExtraClasses(int id)
+    {
+        extraClassesList.ExtraClassesID = id;
+        if(Roles=="Parent")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+
+        }
+        else
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+        }
+        extraClassesList.StudentID = student.StudentID;
+        extraClassesList.DateTime = DateTime.Now;
+        extraClassesList.Student = student;
+        extraClassesList.ExtraClasses = await ExtraClassesService.GetExtraClassesByID(id);
+        await ExtraClassesListService.GetExtraClassesList();
+        await ExtraClassesListService.CreateExtraClassesList(extraClassesList);
+        await ExtraClassesService.GetExtraClasses();
+        await ExtraClassesListService.GetExtraClassesList();
+        foreach (var ec in ExtraClassesService.ExtraClasses)
+        {
+            cuerentcapasity = 0;
+            foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+            {
+                if(ecl.ExtraClassesID==ec.ExtraClassesID)
+                {
+                    cuerentcapasity++;
+                }
+            }
+            ec.CurrentCapasity = cuerentcapasity;
+            await ExtraClassesService.UpdateExtraClasses(ec);
+        }
+
+        await ExtraClassesService.GetExtraClasses();
+        NavigationMenager.NavigateTo($"extraclasses");
+    }
     void CreateExtraClasses()
     {
         NavigationMenager.NavigateTo("/extraclass");
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
     }
 }

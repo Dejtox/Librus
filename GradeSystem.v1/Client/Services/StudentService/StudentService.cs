@@ -69,6 +69,11 @@ namespace GradeSystem.v1.Client.Services.StudentService
         {
             _navigationManager.NavigateTo("Students");
         }
+
+        public Task<Student> GetStudentByParentId(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
     

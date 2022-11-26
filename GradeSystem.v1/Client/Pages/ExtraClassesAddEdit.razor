@@ -1,6 +1,7 @@
 ﻿@page "/extraclass"
 @page "/extraclass/{id:int}"
 @inject IExtraClassesService ExtraClassesService
+@attribute [Authorize(Roles = "Teacher, Parent, Student")]
 
 @if (ID == null)
 {
@@ -67,7 +68,8 @@ else
     protected override async Task OnInitializedAsync()
     {
         btnText = ID == null ? "Save New Extra Class" : "Update Extra Class";
-        await ExtraClassesService.GetExtraClasses();
+        await ExtraClassesService.GetTeachers();
+
     }
 
     protected override async Task OnParametersSetAsync()
@@ -85,6 +87,7 @@ else
     {
         if (ID == null)
         {
+            extraClasses.CurrentCapasity = 0;
             await ExtraClassesService.CreateExtraClasses(extraClasses);
         }
         else

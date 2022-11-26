@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cQ+DAZjgPn7M+9XSDQ936jk/NSaKW7v8WoLA9fS5BBI=",
+  "Hash": "b/a5qHiM+qIQIQ0D19Ku7sUVqrnv1505+M32oeMrktU=",
   "Source": "GradeSystem.v1.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -187,23 +187,6 @@
       "OriginalItemSpec": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\bin\\Debug\\net6.0\\GradeSystem.v1.Shared.pdb"
     },
     {
-      "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt.dat",
-      "SourceId": "GradeSystem.v1.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt.dat",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "BlazorWebAssemblyResource",
-      "AssetTraitValue": "native",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\marci\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.10\\runtimes\\browser-wasm\\native\\icudt.dat"
-    },
-    {
       "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt_CJK.dat",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Computed",
@@ -253,6 +236,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\marci\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.10\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
+    },
+    {
+      "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt.dat",
+      "SourceId": "GradeSystem.v1.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt.dat",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "native",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\marci\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.10\\runtimes\\browser-wasm\\native\\icudt.dat"
     },
     {
       "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authentication.Abstractions.dll",
@@ -7701,6 +7701,23 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "GradeSystem.v1.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
+    },
+    {
       "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Discovered",
@@ -7801,23 +7818,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
-    },
-    {
-      "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "GradeSystem.v1.Client",
-      "SourceType": "Discovered",
-      "ContentRoot": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\ICON-LICENSE",

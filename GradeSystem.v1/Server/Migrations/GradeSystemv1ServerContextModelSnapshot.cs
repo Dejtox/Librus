@@ -126,6 +126,9 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CurrentCapasity")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ExtraClassesDate")
                         .HasColumnType("datetime2");
 

@@ -2,6 +2,7 @@
 {
     public int ExtraClassesID { get; set; }
     public int TeacherID { get; set; }
+    public int CurrentCapasity { get; set; } = 0;
     public int MaxCapasity { get; set; }
     public string ExtraClassesName { get; set; } = string.Empty;
     public string ExtraClassesDescription { get; set; } = string.Empty;

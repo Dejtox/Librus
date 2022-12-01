@@ -55,7 +55,7 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesService
         public async Task UpdateExtraClasses(ExtraClasses extraClasses)
         {
             await _http.PutAsJsonAsync($"api/ExtraClasses/{extraClasses.ExtraClassesID}", extraClasses);
-            _navigationManager.NavigateTo("Teachers");
+            _navigationManager.NavigateTo("extraClasses");
         }
     }
 }

@@ -41,9 +41,18 @@
                 <td>
                     <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
                 </td>
+                @if (YourExtraClasses.Contains(extraClass.ExtraClassesID))
+                {
+                    <td>
+                        <button class="btn btn-danger" @onclick="(()=>Resign(extraClass.ExtraClassesID))"><i class="oi oi-x "></i></button>
+                    </td>
+                }        
+                else
+                {
                 <td>
                     <button class="btn btn-secondary" @onclick="(()=>SignTooExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-check"></i></button>
                 </td>
+                }
             </tr>
         }
     </tbody>
@@ -56,6 +65,7 @@
     string Roles;
     int ParentID;
     int cuerentcapasity = 0;
+    List<int> YourExtraClasses = new List<int>();
     Student student = new Student();
 
     ExtraClassesList extraClassesList = new ExtraClassesList();
@@ -66,15 +76,32 @@
         await StudentService.GetStudents();
         await ExtraClassesListService.GetExtraClassesList();
         await GetClaimsGetID();
+        await GetYourClasses();
+        await GetCapacity();
     }
-    void ShowExtraClasses(int id)
+    async Task GetCapacity()
     {
-        NavigationMenager.NavigateTo($"extraclass/{id}");
+        foreach (var ec in ExtraClassesService.ExtraClasses)
+        {
+            cuerentcapasity = 0;
+            foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+            {
+                if (ecl.ExtraClassesID == ec.ExtraClassesID)
+                {
+                    cuerentcapasity++;
+
+                }
+            }
+            ec.CurrentCapasity = cuerentcapasity;
+            await ExtraClassesService.UpdateExtraClasses(ec);
+        }
+
+        await ExtraClassesService.GetExtraClasses();
+
     }
-    async Task SignTooExtraClasses(int id)
+    async Task GetYourClasses()
     {
-        extraClassesList.ExtraClassesID = id;
-        if(Roles=="Parent")
+        if (Roles == "Parent")
         {
             foreach (var studentpom in StudentService.Students)
             {
@@ -94,7 +121,43 @@
                     student = studentpom;
                 }
             }
+
         }
+        foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+        {
+            if (ecl.StudentID == student.StudentID)
+            {
+                YourExtraClasses.Add(ecl.ExtraClassesID);
+
+            }
+
+        }
+
+    }
+    async Task Resign(int id)
+    {
+        foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+        {
+            if (ecl.StudentID == student.StudentID && ecl.ExtraClassesID == id)
+            {
+
+                await ExtraClassesListService.DeleteExtraClassesList(ecl.ExtraClassesListID);
+
+            }
+        }
+        await ExtraClassesService.GetExtraClasses();
+        await GetCapacity();
+        NavigationMenager.NavigateTo($"/extraclasses");
+
+    }
+    void ShowExtraClasses(int id)
+    {
+        NavigationMenager.NavigateTo($"/extraclass/{id}");
+    }
+    async Task SignTooExtraClasses(int id)
+    {
+        extraClassesList.ExtraClassesID = id;
+        
         extraClassesList.StudentID = student.StudentID;
         extraClassesList.DateTime = DateTime.Now;
         extraClassesList.Student = student;
@@ -103,22 +166,11 @@
         await ExtraClassesListService.CreateExtraClassesList(extraClassesList);
         await ExtraClassesService.GetExtraClasses();
         await ExtraClassesListService.GetExtraClassesList();
-        foreach (var ec in ExtraClassesService.ExtraClasses)
-        {
-            cuerentcapasity = 0;
-            foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
-            {
-                if(ecl.ExtraClassesID==ec.ExtraClassesID)
-                {
-                    cuerentcapasity++;
-                }
-            }
-            ec.CurrentCapasity = cuerentcapasity;
-            await ExtraClassesService.UpdateExtraClasses(ec);
-        }
+        await GetCapacity();
 
-        await ExtraClassesService.GetExtraClasses();
-        NavigationMenager.NavigateTo($"extraclasses");
+            NavigationMenager.NavigateTo($"/extraclasses");
+
+
     }
     void CreateExtraClasses()
     {
@@ -144,3 +196,4 @@
         };
     }
 }
+

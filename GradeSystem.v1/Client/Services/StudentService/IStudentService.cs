@@ -8,6 +8,7 @@ namespace GradeSystem.v1.Client.Services.StudentService
         IList<Parent> Parents { get; set; }
         IList<Class> Classes { get; set; }
         Task<Student> GetStudentById(int id);
+        Task<Student> GetStudentByParentId(int id);
         Task GetStudents();
         Task GetParents();
         Task GetClasses();

@@ -218,18 +218,28 @@
       "mscorlib.dll": "sha256-SboUbkX8s5RVQGtnN5Q67MBZW0I\/P3aeEMENJq8gv8M=",
       "netstandard.dll": "sha256-lZ8L5iiSghlvyt2ie2YdBYAtJbVa4mvpvBX3W9ihjLc=",
       "System.Private.CoreLib.dll": "sha256-jECkJy2Sjpl59QEL3nO3p8nwKGXvnJpXaKQF\/+MTw04=",
+<<<<<<< HEAD
       "GradeSystem.v1.Shared.dll": "sha256-GUbkDtgfK3qOnqIk2QS7IDjKdnfhaWOhShUk1aO+yfg=",
       "GradeSystem.v1.Client.dll": "sha256-kjZrviJNn92ponPzabZ0CoL\/byUIg1xt7gj9JjvWr9Y="
+=======
+      "GradeSystem.v1.Shared.dll": "sha256-579wS7qOw4eUHyBwkzm4VDzgmIr\/sHqJ6\/DaEMQ35f0=",
+      "GradeSystem.v1.Client.dll": "sha256-mmWpxVv6jznyOsEyIOjQ\/787AisMuMhAf2ti3zqzEXA="
+>>>>>>> Front
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
+<<<<<<< HEAD
       "GradeSystem.v1.Shared.pdb": "sha256-\/3nDp+y6TzaVDSMh9z336GuDtzjbQZK\/kVcUzOlxFYY=",
       "GradeSystem.v1.Client.pdb": "sha256-38MR04tOYFMZxGVZxCnccQ95DJHjCdqDtZXfXSl+S8U="
+=======
+      "GradeSystem.v1.Shared.pdb": "sha256-hOXPd2LOdozDmKVd70hO8daHH0sQGUUox4RvrYYrc4M=",
+      "GradeSystem.v1.Client.pdb": "sha256-eR8YL3HyJzyj+ZWK5ns+cQVsgjlgTAOkNfakcWAOgeo="
+>>>>>>> Front
     },
     "runtime": {
-      "dotnet.6.0.10.t4254qefq4.js": "sha256-KtM3Wrooexmrt5NmqvZfWoDPtNIe6wZqLopR6ToqUPg=",
+      "dotnet.6.0.10.e59w8cpphd.js": "sha256-KtM3Wrooexmrt5NmqvZfWoDPtNIe6wZqLopR6ToqUPg=",
       "dotnet.timezones.blat": "sha256-MAD3ryDxIcf60DIJlI9AVB+F2QC4oWJU0p02C7K2LpU=",
       "dotnet.wasm": "sha256-rbp\/Kz57XpMKaVoap0YLS3sN1D7cPKdTFCpoCR2YrFg=",
       "icudt.dat": "sha256-Zuq0dWAsBm6\/2lSOsz7+H9PvFaRn61KIXHMMwXDfvyE=",

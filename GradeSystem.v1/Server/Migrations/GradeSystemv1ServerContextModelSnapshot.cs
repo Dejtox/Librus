@@ -114,6 +114,71 @@ namespace GradeSystem.v1.Server.Migrations
                     b.ToTable("Enrollment");
                 });
 
+            modelBuilder.Entity("ExtraClasses", b =>
+                {
+                    b.Property<int>("ExtraClassesID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExtraClassesID"), 1L, 1);
+
+                    b.Property<string>("ClassRoom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CurrentCapasity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExtraClassesDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ExtraClassesDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExtraClassesName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaxCapasity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ExtraClassesID");
+
+                    b.HasIndex("TeacherID");
+
+                    b.ToTable("ExtraClasses");
+                });
+
+            modelBuilder.Entity("ExtraClassesList", b =>
+                {
+                    b.Property<int>("ExtraClassesListID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExtraClassesListID"), 1L, 1);
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ExtraClassesID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ExtraClassesListID");
+
+                    b.HasIndex("ExtraClassesID");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("ExtraClassesList");
+                });
+
             modelBuilder.Entity("Grade", b =>
                 {
                     b.Property<int>("GradeID")
@@ -353,6 +418,36 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("Class");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("ExtraClasses", b =>
+                {
+                    b.HasOne("Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("ExtraClassesList", b =>
+                {
+                    b.HasOne("ExtraClasses", "ExtraClasses")
+                        .WithMany()
+                        .HasForeignKey("ExtraClassesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ExtraClasses");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Grade", b =>

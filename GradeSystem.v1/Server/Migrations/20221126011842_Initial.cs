@@ -91,6 +91,31 @@ namespace GradeSystem.v1.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ExtraClasses",
+                columns: table => new
+                {
+                    ExtraClassesID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeacherID = table.Column<int>(type: "int", nullable: false),
+                    CurrentCapasity = table.Column<int>(type: "int", nullable: false),
+                    MaxCapasity = table.Column<int>(type: "int", nullable: false),
+                    ExtraClassesName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExtraClassesDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExtraClassesDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClassRoom = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExtraClasses", x => x.ExtraClassesID);
+                    table.ForeignKey(
+                        name: "FK_ExtraClasses_Teacher_TeacherID",
+                        column: x => x.TeacherID,
+                        principalTable: "Teacher",
+                        principalColumn: "TeacherID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Subject",
                 columns: table => new
                 {
@@ -180,6 +205,33 @@ namespace GradeSystem.v1.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ExtraClassesList",
+                columns: table => new
+                {
+                    ExtraClassesListID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExtraClassesID = table.Column<int>(type: "int", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExtraClassesList", x => x.ExtraClassesListID);
+                    table.ForeignKey(
+                        name: "FK_ExtraClassesList_ExtraClasses_ExtraClassesID",
+                        column: x => x.ExtraClassesID,
+                        principalTable: "ExtraClasses",
+                        principalColumn: "ExtraClassesID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ExtraClassesList_Student_StudentID",
+                        column: x => x.StudentID,
+                        principalTable: "Student",
+                        principalColumn: "StudentID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Grade",
                 columns: table => new
                 {
@@ -199,7 +251,7 @@ namespace GradeSystem.v1.Server.Migrations
                         column: x => x.StudentID,
                         principalTable: "Student",
                         principalColumn: "StudentID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Grade_Subject_SubjectID",
                         column: x => x.SubjectID,
@@ -261,6 +313,21 @@ namespace GradeSystem.v1.Server.Migrations
                 column: "SubjectID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ExtraClasses_TeacherID",
+                table: "ExtraClasses",
+                column: "TeacherID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExtraClassesList_ExtraClassesID",
+                table: "ExtraClassesList",
+                column: "ExtraClassesID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExtraClassesList_StudentID",
+                table: "ExtraClassesList",
+                column: "StudentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Grade_StudentID",
                 table: "Grade",
                 column: "StudentID");
@@ -307,10 +374,16 @@ namespace GradeSystem.v1.Server.Migrations
                 name: "Attendance");
 
             migrationBuilder.DropTable(
+                name: "ExtraClassesList");
+
+            migrationBuilder.DropTable(
                 name: "Grade");
 
             migrationBuilder.DropTable(
                 name: "Enrollment");
+
+            migrationBuilder.DropTable(
+                name: "ExtraClasses");
 
             migrationBuilder.DropTable(
                 name: "Student");

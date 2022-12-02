@@ -1,0 +1,88 @@
+﻿@page "/studentcard/{id:int}"
+@inject IStudentService StudentService
+@inject IParentService ParentService
+@inject IUserService UserService
+@inject NavigationManager NavigationMenager
+
+<PageTitle>Edit @student.FirstName @student.LastName</PageTitle>
+<h3>Edit @student.FirstName @student.LastName</h3>
+
+<div class="container">
+    <img />
+    <div class="name">
+        <h1>@student.FirstName</h1>
+        <h1>@student.LastName</h1>
+    </div>
+    <div class="info">
+        <h2>@student.Address</h2>
+        @foreach (var parent in ParentService.Parents)
+        {
+            if(student.ParentID==parent.ParentID)
+            {
+                <h2>Parent: @parent.FirstName</h2>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    Student student = new Student();
+    User user = new User();
+
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Parent" : "Update Parent";
+        await StudentService.GetStudents();
+        await ParentService.GetParents();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await StudentService.GetParents();
+            await StudentService.GetClasses();
+        }
+        else
+        {
+            student = await StudentService.GetStudentById((int)ID);
+            user = await UserService.GetUserByID(student.UserID);
+        }
+    }
+    async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            user.UserRole = "Student";
+            await UserService.CreateUser(user);
+            await UserService.GetUsers();
+            student.UserID = UserService.Users[UserService.Users.Count - 1].UserID;
+            await StudentService.CreateStudent(student);
+        }
+        else
+        {
+            user.UserRole = "Student";
+            await StudentService.UpdateStudent(student);
+            await UserService.UpdateUser(user);
+        }
+    }
+    async Task DelateParent()
+    {
+        await UserService.DeleteUser(student.UserID);
+        await StudentService.DeleteStudent(student.ParentID);
+    }
+
+    void ShowParent(int id)
+    {
+        NavigationMenager.NavigateTo($"parent/{id}");
+    }
+    void CreateParent()
+    {
+        NavigationMenager.NavigateTo("/parent");
+    }
+}
+

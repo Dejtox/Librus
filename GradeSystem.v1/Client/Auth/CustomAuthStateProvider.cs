@@ -23,7 +23,9 @@ namespace GradeSystem.v1.Client.Auth
                 var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, userSession.UserName),
-                    new Claim(ClaimTypes.Role, userSession.Role)
+                    new Claim(ClaimTypes.Role, userSession.Role),
+                    new Claim(ClaimTypes.Email, userSession.UserID.ToString())
+
 
                 },"JwtAuth"));
                 return await Task.FromResult(new AuthenticationState(claimsPrincipal));
@@ -41,7 +43,8 @@ namespace GradeSystem.v1.Client.Auth
                 claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, userSession.UserName),
-                    new Claim(ClaimTypes.Role, userSession.Role)
+                    new Claim(ClaimTypes.Role, userSession.Role),
+                    new Claim(ClaimTypes.Email, userSession.UserID.ToString())
                 }));
                 userSession.ExpiryTimeStamp = DateTime.Now.AddSeconds(userSession.ExpiresIn);
                 await _sessionStorageService.SaveItemEncryptedAsync("UserSession",userSession);

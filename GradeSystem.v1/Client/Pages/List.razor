@@ -1,0 +1,48 @@
+﻿@page "/list/{id:int}"
+@inject IExtraClassesListService ExtraClassesListService
+@inject IStudentService StudentService
+@attribute [Authorize(Roles = "Teacher, Parent, Student")]
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Sign Up Time</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+       {
+           if(ecl.ExtraClassesID==ID)
+           {
+                foreach (var student in StudentService.Students)
+                {
+                    if (student.StudentID == ecl.StudentID)
+                    {
+                        <tr>
+                            <td>@student.FirstName</td>
+                            <td>@student.LastName</td>
+                            <td>@ecl.DateTime</td>
+                        </tr>
+                    }
+
+                }
+           }
+            
+        }
+        
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await StudentService.GetStudents();
+        await ExtraClassesListService.GetExtraClassesList();
+    }
+    }

@@ -53,6 +53,9 @@
                     <button class="btn btn-secondary" @onclick="(()=>SignTooExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-check"></i></button>
                 </td>
                 }
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>MakeList(extraClass.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
+                </td>
             </tr>
         }
     </tbody>
@@ -114,13 +117,17 @@
         }
         else
         {
-            foreach (var studentpom in StudentService.Students)
+            if (Roles == "Student")
             {
-                if (studentpom.StudentID == ID)
+                foreach (var studentpom in StudentService.Students)
                 {
-                    student = studentpom;
+                    if (studentpom.StudentID == ID)
+                    {
+                        student = studentpom;
+                    }
                 }
             }
+            
 
         }
         foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
@@ -153,6 +160,10 @@
     void ShowExtraClasses(int id)
     {
         NavigationMenager.NavigateTo($"/extraclass/{id}");
+    }
+    void MakeList(int id)
+    {
+        NavigationMenager.NavigateTo($"/list/{id}");
     }
     async Task SignTooExtraClasses(int id)
     {

@@ -1,0 +1,203 @@
+﻿@page "/exxtraClass"
+@inject IExtraClassesService ExtraClassesService
+@inject IExtraClassesListService ExtraClassesListService
+@inject IStudentService StudentService
+@inject IUserService UserService
+@inject NavigationManager NavigationMenager
+
+@inject IJSRuntime js
+@attribute [Authorize(Roles ="Teacher, Parent, Student")]
+
+<PageTitle> Extra Classes </PageTitle>
+<h3>Exxxtra Classes</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Extra Class Name</th>
+            <th>Extra Class Description</th>
+            <th>Teacher Name</th>
+            <th>Teacher Lastname</th>
+            <th>Date</th>
+            <th>Current Cappasity</th>
+            <th>Max Cappasity</th>
+            <th>Class Room</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var extraClass in ExtraClassesService.ExtraClasses)
+        {
+            <tr>
+                <td>@extraClass.ExtraClassesName</td>
+                <td>@extraClass.ExtraClassesDescription</td>
+                <td>@extraClass.Teacher.FirstName</td>
+                <td>@extraClass.Teacher.LastName</td>
+                <td>@extraClass.ExtraClassesDate</td>
+                <td>@extraClass.CurrentCapasity</td>
+                <td>@extraClass.MaxCapasity</td>
+                <td>@extraClass.ClassRoom</td>
+                <AuthorizeView Roles="Teacher">
+                    <td>
+                        <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-pencil">Edit</i></button>
+                    </td>
+                </AuthorizeView>
+                <AuthorizeView Roles="Student, Parent">
+                    @if (YourExtraClasses.Contains(extraClass.ExtraClassesID))
+                    {
+                        <td>
+                            <button class="btn btn-danger" @onclick="(()=>Resign(extraClass.ExtraClassesID))"><i class="oi oi-x "></i></button>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <button class="btn btn-secondary" @onclick="(()=>SignTooExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-check"></i></button>
+                        </td>
+                    }
+                </AuthorizeView>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateExtraClasses">Create New</button>
+
+
+@code {
+    int ID;
+    string Roles;
+    int ParentID;
+    int cuerentcapasity = 0;
+    List<int> YourExtraClasses = new List<int>();
+    Student student = new Student();
+
+    ExtraClassesList extraClassesList = new ExtraClassesList();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ExtraClassesService.GetExtraClasses();
+        await StudentService.GetStudents();
+        await ExtraClassesListService.GetExtraClassesList();
+        await GetClaimsGetID();
+        await GetYourClasses();
+        await GetCapacity();
+    }
+    async Task GetCapacity()
+    {
+        foreach (var ec in ExtraClassesService.ExtraClasses)
+        {
+            cuerentcapasity = 0;
+            foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+            {
+                if (ecl.ExtraClassesID == ec.ExtraClassesID)
+                {
+                    cuerentcapasity++;
+
+                }
+            }
+            ec.CurrentCapasity = cuerentcapasity;
+            await ExtraClassesService.UpdateExtraClasses(ec);
+        }
+
+        await ExtraClassesService.GetExtraClasses();
+
+    }
+    async Task GetYourClasses()
+    {
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+
+        }
+        else
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+
+        }
+        foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+        {
+            if (ecl.StudentID == student.StudentID)
+            {
+                YourExtraClasses.Add(ecl.ExtraClassesID);
+
+            }
+
+        }
+
+    }
+    async Task Resign(int id)
+    {
+        foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+        {
+            if (ecl.StudentID == student.StudentID && ecl.ExtraClassesID == id)
+            {
+
+                await ExtraClassesListService.DeleteExtraClassesList(ecl.ExtraClassesListID);
+
+            }
+        }
+        await ExtraClassesService.GetExtraClasses();
+        await GetCapacity();
+        NavigationMenager.NavigateTo($"/extraclasses");
+
+    }
+    void ShowExtraClasses(int id)
+    {
+        NavigationMenager.NavigateTo($"/extraclass/{id}");
+    }
+    async Task SignTooExtraClasses(int id)
+    {
+        extraClassesList.ExtraClassesID = id;
+        
+        extraClassesList.StudentID = student.StudentID;
+        extraClassesList.DateTime = DateTime.Now;
+        extraClassesList.Student = student;
+        extraClassesList.ExtraClasses = await ExtraClassesService.GetExtraClassesByID(id);
+        await ExtraClassesListService.GetExtraClassesList();
+        await ExtraClassesListService.CreateExtraClassesList(extraClassesList);
+        await ExtraClassesService.GetExtraClasses();
+        await ExtraClassesListService.GetExtraClassesList();
+        await GetCapacity();
+
+            NavigationMenager.NavigateTo($"/extraclasses");
+
+
+    }
+    void CreateExtraClasses()
+    {
+        NavigationMenager.NavigateTo("/extraclass");
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+    }
+}

@@ -13,6 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.9" PrivateAssets="all" />
+    <PackageReference Include="Radzen.Blazor" Version="4.4.1" />
+    <PackageReference Include="Syncfusion.Blazor.Schedule" Version="20.3.0.59" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,96 @@
+﻿@page "/gradesadd"
+@using GradeSystem.v1.Client.Auth
+@using System.Net.Http.Headers
+@inject IClassService ClassService
+@inject IGradeService GradeService
+@inject IStudentService StudentService
+@inject ITeacherService TeacherService
+@inject IUserService UserService
+@inject ISubjectService SubjectService
+@inject IJSRuntime js
+@inject NavigationManager NavigationMenager
+@attribute [Authorize(Roles = "Teacher")]
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager navMenager
+
+@inject HttpClient httpClient
+
+<PageTitle> Classes </PageTitle>
+
+<h1>Click at students to see or add grades</h1>
+
+@foreach (var classs in ClassService.Classes)
+{
+    @if(ID == classs.TeacherID)
+    {
+        @if (classs.TeacherID == ID)
+        {
+            <div class="students d-inline-flex">
+                @foreach (var student in StudentService.Students)
+                {
+                    @if (student.ClassID == classs.ClassID)
+                    {
+                        <p class="h2 border border-secondary d-inline-flex rounded p-1 m-1" @onclick="(()=>ShowStudent(student.StudentID))">@student.FirstName</p>
+                    }
+
+                }
+            </div>
+        }
+    }
+}
+
+@code {
+    int ID;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ClassService.GetClasses();
+        await GradeService.GetGrades();
+        await StudentService.GetStudents();
+        await SubjectService.GetSubjects();
+        await TeacherService.GetTeachers();
+        await GetClaimsGetID();
+    }
+    void ShowClass(int id)
+    {
+        NavigationMenager.NavigateTo($"classs/{id}");
+    }
+    void CreateClass()
+    {
+        NavigationMenager.NavigateTo("/classs");
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task DispayGreetingAlert()
+    {
+        var authState = await authenticationState;
+        var message = $"Your Classes {authState.User.Identity.Name}";
+        await js.InvokeVoidAsync("alert", message);
+    }
+
+    void ShowStudent(int id)
+    {
+        NavigationMenager.NavigateTo($"gradesst/{id}");
+    }
+
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+        };
+    }
+
+    private bool Hide { get; set; } = true;
+    private void Show()
+    {
+        Hide = !Hide;
+    }
+}

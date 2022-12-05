@@ -2,6 +2,10 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+div[b-fb9r1d6ewe]{
+    white-space:nowrap;
+}
+
 .navbar[b-fb9r1d6ewe] {
     align-items: flex-start;
     margin-bottom:1rem;
@@ -33,9 +37,12 @@
 }
 
 .nav-item[b-fb9r1d6ewe] {
+    display: flex;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    white-space: nowrap;
 }
+
     .nav-item:first-of-type[b-fb9r1d6ewe] {
         padding-left: 0px;
     }

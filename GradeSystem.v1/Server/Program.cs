@@ -13,16 +13,25 @@ using System.Text;
 using GradeSystem.v1.Server.Auth;
 using GradeSystem.v1.Client.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
+using Syncfusion.Blazor;
+using Radzen;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSyncfusionBlazor();
 builder.Services.AddDbContext<GradeSystemv1ServerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GradeSystemv1ServerContext") ?? throw new InvalidOperationException("Connection string 'GradeSystemv1ServerContext' not found.")));
 builder.Services.AddApiAuthorization();
+builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<TooltipService>();
+builder.Services.AddScoped<ContextMenuService>();
 builder.Services.AddAuthentication(o =>
     {
         o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

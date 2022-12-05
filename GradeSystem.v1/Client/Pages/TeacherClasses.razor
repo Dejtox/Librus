@@ -21,26 +21,24 @@
 
 
 @foreach (var classs in ClassService.Classes)
-
-        @if (classs.TeacherID == ID)
-        {
-            <div class="container">
-                <h2>Class: @classs.ClassName</h2>
-                <div runat="server" class="students">
-                    @foreach (var student in StudentService.Students)
+{
+    @if (classs.TeacherID == ID)
+    {
+        <div class="fluid-container">
+            <p class="h1">Class: @classs.ClassName</p>
+            <div runat="server" class="students">
+                @foreach (var student in StudentService.Students)
+                {
+                    @if (student.ClassID == classs.ClassID)
                     {
-                        @if (student.ClassID == classs.ClassID)
-                        {
-                            <h3 @onclick="(()=>ShowStudent(student.StudentID))">@student.FirstName</h3>
-                        }
-
+                        <p class="h2 border border-secondary d-inline-flex rounded p-1 m-1" @onclick="(()=>ShowStudent(student.StudentID))">@student.FirstName</p>
                     }
-                </div>
+
+                }
             </div>
-        }
+        </div>
     }
 }
-<button type="button" class="btn btn-primary" @onclick="CreateClass">Create New</button>
 
 @code {
     int ID;

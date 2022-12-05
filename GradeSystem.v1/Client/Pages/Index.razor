@@ -9,7 +9,6 @@
 <AuthorizeView>
     <Authorized>
         <h1>Hello @context.User.Identity.Name!</h1>
-        <h1>Hello @ID</h1>
     </Authorized>
     <NotAuthorized>
         <h1>Hello Guest!</h1>
@@ -17,9 +16,8 @@
 </AuthorizeView>
 
 
-Welcome to your new app.
+Welcome to GradeSystem.v1. New and better version of e-journal
 
-<SurveyPrompt Title="How is Blazor working for you?" />
 @code 
 {
     [CascadingParameter]

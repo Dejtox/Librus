@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
   },
   "projects": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "projectName": "GradeSystem.v1.Shared",
-        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Shared\\obj\\",
+        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"

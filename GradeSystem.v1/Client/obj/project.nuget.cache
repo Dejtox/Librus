@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mWq8IvQVD6PLeeORDTF/DvQ+nt/JDaPA30fUqfYiTNFGOEZWM+fNbWkpwbPfWDNyDrDuZILiwxoRx+DXGHRirw==",
+  "dgSpecHash": "RVLXxlt47SjSkbbBdCO0UgRxRhw03Nf8ncJt8d2M+yrsJtCgtYpiX61nf/OYS1YQPeX9paJiC4809lBmZicR/Q==",
   "success": true,
-  "projectFilePath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+  "projectFilePath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marci\\.nuget\\packages\\blazored.sessionstorage\\2.2.0\\blazored.sessionstorage.2.2.0.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7gmO7yg+UfcVBp9MLgg4V1gvaJWBX/ZVpc2vyXMM6rQDgU43eUbNg1I2QwPSbql6foKlnqATUMKpZREkz06euw==",
+  "dgSpecHash": "DsAD+ij552Yq8a2r6FRZmhGYCX1xXFgRok7mpv8OIJYtdREyftSY9cKweQmieG9wAO+w05hhWIQwiLKcr3dlbw==",
   "success": true,
-  "projectFilePath": "J:\\ProjektLibrus\\Librus\\Dziennik\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+  "projectFilePath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marci\\.nuget\\packages\\blazored.sessionstorage\\2.2.0\\blazored.sessionstorage.2.2.0.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

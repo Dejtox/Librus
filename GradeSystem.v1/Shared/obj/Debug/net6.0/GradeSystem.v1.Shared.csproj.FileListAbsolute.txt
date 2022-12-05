@@ -22,3 +22,15 @@ C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Shared\obj\De
 C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\refint\GradeSystem.v1.Shared.dll
 C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.pdb
 C:\Users\patry\Desktop\ProjekDziennikinocnik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\ref\GradeSystem.v1.Shared.dll
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\bin\Debug\net6.0\GradeSystem.v1.Shared.deps.json
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\bin\Debug\net6.0\GradeSystem.v1.Shared.dll
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\bin\Debug\net6.0\GradeSystem.v1.Shared.pdb
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.csproj.AssemblyReference.cache
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.GeneratedMSBuildEditorConfig.editorconfig
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.AssemblyInfoInputs.cache
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.AssemblyInfo.cs
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.csproj.CoreCompileInputs.cache
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.dll
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\refint\GradeSystem.v1.Shared.dll
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\GradeSystem.v1.Shared.pdb
+J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Shared\obj\Debug\net6.0\ref\GradeSystem.v1.Shared.dll

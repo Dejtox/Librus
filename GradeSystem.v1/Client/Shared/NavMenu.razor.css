@@ -2,6 +2,10 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+div{
+    white-space:nowrap;
+}
+
 .navbar {
     align-items: flex-start;
     margin-bottom:1rem;
@@ -33,9 +37,12 @@
 }
 
 .nav-item {
+    display: flex;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    white-space: nowrap;
 }
+
     .nav-item:first-of-type {
         padding-left: 0px;
     }
@@ -71,6 +78,7 @@
     }
 }
 
+
 @media (max-width: 1365px) {
     .container {
         display: flex;
@@ -96,3 +104,34 @@
         padding-bottom: 1rem;
     }
 }
+
+@media (max-width: 400px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap:wrap;
+        align-items: flex-start;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+
+    .nav-item:first-of-type {
+        padding-top: 0rem;
+    }
+
+    .nav-item:last-of-type {
+        padding-bottom: 0rem;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+

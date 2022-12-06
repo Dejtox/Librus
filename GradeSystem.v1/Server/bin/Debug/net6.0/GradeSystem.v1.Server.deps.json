@@ -27,6 +27,17 @@
           "GradeSystem.v1.Server.dll": {}
         }
       },
+      "Blazored.LocalStorage/4.3.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "6.0.10"
+        },
+        "runtime": {
+          "lib/net6.0/Blazored.LocalStorage.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Blazored.SessionStorage/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Components.Web": "6.0.10"
@@ -2665,6 +2676,7 @@
       },
       "GradeSystem.v1.Client/1.0.0": {
         "dependencies": {
+          "Blazored.LocalStorage": "4.3.0",
           "Blazored.SessionStorage": "2.2.0",
           "GradeSystem.v1.Shared": "1.0.0",
           "Microsoft.AspNetCore.Authentication": "2.2.0",
@@ -2688,6 +2700,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Blazored.LocalStorage/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CfHp9SWN45cM/TM8uw4pELQBfCRtMssCMSOjsEXVWibeYBn36TLpzw+J1vsC2Su2BEQ3Et19A5+GqK1S3kHbTQ==",
+      "path": "blazored.localstorage/4.3.0",
+      "hashPath": "blazored.localstorage.4.3.0.nupkg.sha512"
     },
     "Blazored.SessionStorage/2.2.0": {
       "type": "package",

@@ -11,61 +11,57 @@
 <PageTitle> Extra Classes </PageTitle>
 <h3>Extra Classes</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Extra Class Name</th>
-            <th>Extra Class Description</th>
-            <th>Teacher Name</th>
-            <th>Teacher Lastname</th>
-            <th>Date</th>
-            <th>Current Cappasity</th>
-            <th>Max Cappasity</th>
-            <th>Class Room</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var extraClass in ExtraClassesService.ExtraClasses)
-        {
-            <tr>
-                <td>@extraClass.ExtraClassesName</td>
-                <td>@extraClass.ExtraClassesDescription</td>
-                <td>@extraClass.Teacher.FirstName</td>
-                <td>@extraClass.Teacher.LastName</td>
-                <td>@extraClass.ExtraClassesDate</td>
-                <td>@extraClass.CurrentCapasity</td>
-                <td>@extraClass.MaxCapasity</td>
-                <td>@extraClass.ClassRoom</td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
-                </td>
-                @if (YourExtraClasses.Contains(extraClass.ExtraClassesID))
-                {
+@foreach (var extraClass in ExtraClassesService.ExtraClasses)
+{
+    random();
+    randomNum();
+    Console.WriteLine(color);
+    <div style="background-image:@color;" class="container p-1 col-sm-5 col-11 m-1 d-inline-flex border border-primary rounded red">
+        <div class="w-100 row justify-content-between">
+            <div class="col-sm-6 col-6">
+                <p class="h1">@extraClass.ExtraClassesName</p>
+                <p class="h6">@extraClass.Teacher.FirstName @extraClass.Teacher.LastName</p>
+            </div>
+            <div class="col-sm-6 col-6">
+                <p class="h2 d-flex flex-row-reverse">@extraClass.CurrentCapasity / @extraClass.MaxCapasity</p>
+                <p class="h7 d-flex flex-row-reverse">@extraClass.ExtraClassesDate</p>
+            </div>
+            <div col-12 col-sm-12>
+                <p class="h5">@extraClass.ExtraClassesDescription</p>
+            </div>
+                <AuthorizeView Roles="Teacher">
                     <td>
-                        <button class="btn btn-danger" @onclick="(()=>Resign(extraClass.ExtraClassesID))"><i class="oi oi-x "></i></button>
+                        <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-pencil">Edit</i></button>
+                    <button class="btn btn-primary" @onclick="(()=>MakeList(extraClass.ExtraClassesID))"><i class="oi oi-pencil">List</i></button>
                     </td>
-                }        
-                else
-                {
-                <td>
-                    <button class="btn btn-secondary" @onclick="(()=>SignTooExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-check"></i></button>
-                </td>
-                }
-                <td>
-                    <button class="btn btn-primary" @onclick="(()=>MakeList(extraClass.ExtraClassesID))"><i class="oi oi-pencil"></i></button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<button type="button" class="btn btn-primary" @onclick="CreateExtraClasses">Create New</button>
+                </AuthorizeView>
+                <AuthorizeView Roles="Student, Parent">
+                    @if (YourExtraClasses.Contains(extraClass.ExtraClassesID))
+                    {
+                        <td>
+                            <button class="btn btn-danger" @onclick="(()=>Resign(extraClass.ExtraClassesID))"><i class="oi oi-x ">Unsign</i></button>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <button class="btn btn-secondary" @onclick="(()=>SignTooExtraClasses(extraClass.ExtraClassesID))"><i class="oi oi-check">Sign</i></button>
+                        </td>
+                    }
+                </AuthorizeView>
+        </div>
+    </div>
+}
+
+<button type="button" class="btn btn-primary d-block" @onclick="CreateExtraClasses">Create New</button>
+
 
 
 @code {
     int ID;
     string Roles;
+    string color;
+    int randomNumber = 1;
     int ParentID;
     int cuerentcapasity = 0;
     List<int> YourExtraClasses = new List<int>();
@@ -102,6 +98,37 @@
         await ExtraClassesService.GetExtraClasses();
 
     }
+
+    public void randomNum()
+    {
+        randomNumber++;
+
+        if(randomNumber == 4){
+            randomNumber = 1;
+        }
+    }
+
+    public void random()
+    {
+
+        if (randomNumber == 1)
+        {
+            color = "linear-gradient(to top, #56ab2f, #a8e063)";
+        }
+        else if (randomNumber == 2)
+        {
+            color = "linear-gradient(to bottom, #56ccf2, #2f80ed)";
+        }
+        else if (randomNumber == 3)
+        {
+            color = "linear-gradient(to top, #fffc00, #ffffff);";
+        }
+        else if (randomNumber == 4)
+        {
+            color = "linear-gradient(to top, rgba(101, 101, 233, 0.5), rgba(102, 9, 148,0.5));";
+        }
+    }
+
     async Task GetYourClasses()
     {
         if (Roles == "Parent")

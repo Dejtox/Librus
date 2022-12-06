@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "dEPs07PETfZYGwIo2DhIXKROPUTytRJmnoAvPXoNmpmIxJIgMYYFlesYcGUa95eiAf8y0urVe8JXzIWUFJy4rg==",
+  "dgSpecHash": "mpeZKfSAnGI9lW9X1Win3wg7SVFCF0WtFh7OlBGyK1Yu0LLUK7DUyhT7aAQilpfnd4zkpnFstC2jEhb/Q+bA7A==",
   "success": true,
-  "projectFilePath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\projects\\librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Bartek\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.11\\microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\Bartek\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.11\\microsoft.windowsdesktop.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\Bartek\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.11\\microsoft.netcore.app.ref.6.0.11.nupkg.sha512"
+  ],
   "logs": []
 }

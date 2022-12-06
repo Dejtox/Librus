@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
+    "D:\\projects\\librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
   },
   "projects": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+    "D:\\projects\\librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectUniqueName": "D:\\projects\\librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "projectName": "GradeSystem.v1.Shared",
-        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-        "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+        "projectPath": "D:\\projects\\librus\\Dziennik\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\librus\\Dziennik\\GradeSystem.v1\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,12 +55,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

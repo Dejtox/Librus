@@ -13,6 +13,7 @@ using System.Text;
 using GradeSystem.v1.Server.Auth;
 using GradeSystem.v1.Client.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,8 @@ builder.Services.AddAuthentication(o =>
         };
     });
 builder.Services.AddEndpointsApiExplorer();
+
+
 
 builder.Services.AddSwaggerGen();
 var app = builder.Build();

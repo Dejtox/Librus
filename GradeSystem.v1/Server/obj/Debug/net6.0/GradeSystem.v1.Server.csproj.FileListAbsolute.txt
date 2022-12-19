@@ -1191,3 +1191,5 @@ D:\projects\librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Blazored.Loca
 J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\Blazored.LocalStorage.dll
 J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\Radzen.Blazor.dll
 J:\ProjektLibrus\Librus\Dziennik\Librus\GradeSystem.v1\Server\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll
+D:\projects\librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\Radzen.Blazor.dll
+D:\projects\librus\Dziennik\GradeSystem.v1\Server\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll

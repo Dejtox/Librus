@@ -1,1 +1,45 @@
-﻿
+﻿@page "/scheduler"
+@inject DialogService DialogService
+@inject IEnrollmentService EnrollmentService
+@inject NavigationManager NavigationMenager
+@using Radzen
+
+
+
+<RadzenScheduler SelectedIndex="1" Data="@data" TItem="DataItem" Style="" StartProperty="Start" EndProperty="End" TextProperty="Text">
+    <RadzenDayView />
+    <RadzenWeekView />
+    <RadzenMonthView />
+</RadzenScheduler>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await EnrollmentService.GetEnrollments();
+    }
+
+    class DataItem
+    {
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+        public string Text { get; set; }
+    }
+
+    DataItem[] data = new DataItem[]
+    {
+      new DataItem
+      {
+        Start = DateTime.Today,
+        End = DateTime.Today.AddDays(1),
+        Text = "Event"
+      }
+    };
+
+    void ShowEnrollment(int id)
+    {
+        NavigationMenager.NavigateTo($"enrollment/{id}");
+    }
+    void CreateEnrollment()
+    {
+        NavigationMenager.NavigateTo("/enrollment");
+    }
+}

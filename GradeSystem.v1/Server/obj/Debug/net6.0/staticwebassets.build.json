@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rUASCvnj84R0y//FmOJDhVYLcakEBwXgvmxZiKopcrc=",
+  "Hash": "DiIbtHxDhQ/9dGEiTyPuRjnJ+f1o0bjIqdTNFR2HssM=",
   "Source": "GradeSystem.v1.Server",
   "BasePath": "_content/GradeSystem.v1.Server",
   "Mode": "Default",
@@ -27601,6 +27601,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net6.0\\scopedcss\\bundle\\GradeSystem.v1.Client.styles.css"
+    },
+    {
+      "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Assets\\main.css",
+      "SourceId": "GradeSystem.v1.Client",
+      "SourceType": "Project",
+      "ContentRoot": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "Assets/main.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\main.css"
     },
     {
       "Identity": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\app.css",

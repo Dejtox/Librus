@@ -10,6 +10,7 @@ global using GradeSystem.v1.Client.Services.UserService;
 global using GradeSystem.v1.Client.Services.ExtraClassesService;
 global using GradeSystem.v1.Client.Services.ExtraClassesListService;
 global using Microsoft.AspNetCore.Components.Authorization;
+global using GradeSystem.v1.Client.Services.EventService;
 
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Components.Web;
@@ -36,11 +37,13 @@ builder.Services.AddScoped<IGradeService, GradeService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IExtraClassesService, ExtraClassesService>();
 builder.Services.AddScoped<IExtraClassesListService, ExtraClassesListService>();
+builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddAuthenticationCore();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddSyncfusionBlazor();
+builder.Services.AddAuthentication();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzgxOTMzQDMyMzAyZTMzMmUzMFR3bzhDc3YxcVUvSE5zMUQvRFgva0xibmR2WjdjYlU2UkNFZXlGeHpRWUE9");
 
 

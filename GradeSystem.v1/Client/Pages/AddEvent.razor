@@ -1,0 +1,86 @@
+﻿@inject IEventService EventService
+
+<!-- Add Event -->
+            <div class="ms-depth-16 card">
+                <EditForm model="model" OnValidSubmit="AddEventToSelectedDay">
+                <div class="calendar-toolbar">
+                    <button class="toolbar-button" type="submit"><i class="ms-Icon ms-Icon--AddEvent"></i></button>
+                </div>
+
+                <div class="card-content">
+                    <h3 class="ms-fontSize-24 ms-fontWeight-regular">@SelectedDay.Date.ToString("D")</h3>
+            <input type="text" @bind-value="model.Title" class="fluent-input" placeholder="Event Title">
+                    <input type="time" @bind-value="model.StartDate" class="fluent-input" placeholder="Event Title">
+                    <input type="time" @bind-value="model.EndDate" class="fluent-input" placeholder="Event Title">
+                    <input type="text" @bind-value="model.Description" class="fluent-input" placeholder="Event Description">
+                    <label for="enrollment">Class</label>
+                        <InputSelect @bind-Value="model.ClassID" class="form-select">
+                            <option value=0>--- Select ---</option>
+                            @foreach (var classs in EventService.Classes)
+                            {
+                                <option value="@classs.ClassID">@classs.ClassName</option>
+
+                            }
+                        </InputSelect>
+                </div>
+                </EditForm>
+            </div>
+
+@code 
+{
+    [Parameter]
+    public CalendarDay SelectedDay { get; set; }
+
+    private CalendarEvent model = new CalendarEvent();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await EventService.GetClasses();
+    }
+    private async Task AddEventToSelectedDay()
+    {
+        // Convert the time to the a new date within the selected day 
+        model.StartDate = new DateTime(SelectedDay.Date.Year,
+                                        SelectedDay.Date.Month,
+                                        SelectedDay.Date.Day,
+                                        model.StartDate.Hour,
+                                        model.StartDate.Minute,
+                                        0);
+
+        model.EndDate = new DateTime(SelectedDay.Date.Year,
+                                        SelectedDay.Date.Month,
+                                        SelectedDay.Date.Day,
+                                        model.EndDate.Hour,
+                                        model.EndDate.Minute,
+                                        0);
+
+        if(SelectedDay.Events == null)
+            SelectedDay.Events = new List<CalendarEvent>();
+
+        model.Color = RandomColorHelper.GetRandomColorClass();
+        await EventService.CreateCalendarEvent(model);
+        SelectedDay.Events.Add(model); 
+        OnEventAdded.Invoke();
+
+        // TODO: Push the event to the API
+
+        Console.WriteLine($"Total Events in Day {SelectedDay.Events.Count} | {model.Title} | {model.StartDate} | {model.EndDate}");
+
+        model = new CalendarEvent(); 
+    }
+
+    public static event Action OnEventAdded = () => {  };
+
+    public class RandomColorHelper
+    {
+        private static Random random = new Random();
+
+        private static string[] colorClasses = new[] { "magenta", "yellow", "yellow-green", "pink-red", "red-orange" };
+
+        public static string GetRandomColorClass()
+        {
+            return colorClasses[random.Next(0, colorClasses.Length)];
+        }
+    }
+
+}

@@ -85,10 +85,7 @@ else
     async Task HandleSubmit()
     {
         enrollment.EndDate = enrollment.Date.AddMinutes(timeStamp);
-        if (enrollment.Replacement==false)
-        {
-            enrollment.Substitute_SubjectID = -1;
-        }
+
         if (ID == null)
         {
             await EnrollmentService.CreateEnrollment(enrollment);

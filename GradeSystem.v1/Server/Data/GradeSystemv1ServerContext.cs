@@ -27,5 +27,7 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<User> User { get; set; }
         public DbSet<ExtraClasses> ExtraClasses { get; set; }
         public DbSet<ExtraClassesList> ExtraClassesList { get; set; }
+        public DbSet<CalendarEvent> CalendarEvent { get; set; }
+        
     }
 }

@@ -49,6 +49,42 @@ namespace GradeSystem.v1.Server.Migrations
                     b.ToTable("Attendance");
                 });
 
+            modelBuilder.Entity("CalendarEvent", b =>
+                {
+                    b.Property<int>("CalendarEventID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CalendarEventID"), 1L, 1);
+
+                    b.Property<int>("ClassID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CalendarEventID");
+
+                    b.HasIndex("ClassID");
+
+                    b.ToTable("CalendarEvent");
+                });
+
             modelBuilder.Entity("Class", b =>
                 {
                     b.Property<int>("ClassID")
@@ -92,17 +128,7 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Link_To_Materials")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Replacement")
-                        .HasColumnType("bit");
-
                     b.Property<int>("SubjectID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Substitute_SubjectID")
                         .HasColumnType("int");
 
                     b.HasKey("EnrollmentID");
@@ -388,6 +414,17 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("Enrollment");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("CalendarEvent", b =>
+                {
+                    b.HasOne("Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
                 });
 
             modelBuilder.Entity("Class", b =>

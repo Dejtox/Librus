@@ -31,7 +31,7 @@
     List<DataItem> data = new List<DataItem>();
 
     class DataItem 
-    { 
+    {
         public int Id { get; set; }
         public string Subject { get; set; }
         public DateTime StartTime { get; set; }
@@ -46,23 +46,24 @@
             if (enrolment.ClassID == student.ClassID)
             {
                 data.Add(new DataItem { Id = pom, StartTime = enrolment.Date, EndTime = enrolment.Date.AddMinutes(45), Subject = enrolment.Subject.Teacher.LastName +" "+ enrolment.Subject.Teacher.FirstName +" "+ enrolment.Subject.SubjectName });
-            pom++;
+                pom++;
             }
         }
     }
 
-    
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
 
     void ShowEnrollment(int id)
     {
-        NavigationMenager.NavigateTo($"enrollment/{id}");
+        NavigationMenager.NavigateTo($"/enrollment/{id}");
     }
+
     void CreateEnrollment()
     {
         NavigationMenager.NavigateTo("/enrollment");
     }
+
     private async Task GetClaimsGetID()
     {
         var user = (await authenticationState).User;

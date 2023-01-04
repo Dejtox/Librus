@@ -22,12 +22,28 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/AddEvent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkRXZlbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/AttendanceAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZUFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/Attendances.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/Calendar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsZW5kYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/CalendarNew.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsZW5kYXJOZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/Calendarview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsZW5kYXJ2aWV3LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/ClassAddEdit.razor]
@@ -44,6 +60,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/Entrollments.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW50cm9sbG1lbnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/EventList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXZlbnRMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/ExtraClass.razor]
@@ -86,6 +106,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/ShowEvent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvd0V2ZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -121,10 +145,6 @@ build_metadata.AdditionalFiles.CssScope =
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
-
-[J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/Calendar.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsZW5kYXIucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-9u0dynwnfl
 
 [J:/ProjektLibrus/Librus/Dziennik/Librus/GradeSystem.v1/Client/Pages/Grades.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzLnJhem9y

@@ -1,0 +1,54 @@
+﻿@page "/plan"
+@using GradeSystem.v1.Client.Pages
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-9">
+        <DayPlan>
+            <LessonBlock Context="block">
+                    <div class="day shadow-effect">
+                    <h3 class="ms-fontSize-24 ms-fontWeight-regular">@block.Name</h3>
+                        @if (block.Lesson != null)
+                        {
+                            var firstEvent = block.Lesson;
+                            <div class="day-event ">
+                                @if (firstEvent.Subject.SubjectName.Length > 25)
+                                {
+                                    @firstEvent.Subject.SubjectName.Substring(0, 25)
+
+                                    <text>...</text>
+                                }
+                                else
+                                {
+                                @firstEvent.Subject.SubjectName
+                                }
+                            </div>
+                        }
+                    </div>
+
+            </LessonBlock>
+        </DayPlan>
+    </div>
+
+
+    <!-- Day Menu -->
+    <div class="col-sm-12 col-md-12 col-lg-3">
+        <EnrollmentAddEdit></EnrollmentAddEdit>
+
+        <EventList SelectedDay="@selectedDay" />
+    </div>
+</div>
+
+
+@code {
+    private CalendarDay selectedDay = new CalendarDay
+        {
+            Date = DateTime.Now
+        };
+
+    protected override void OnInitialized()
+    {
+        AddEvent.OnEventAdded += () =>
+        {
+            StateHasChanged();
+        };
+    }
+}

@@ -1,0 +1,149 @@
+﻿@using GradeSystem.v1.Client.Data
+@inject IEnrollmentService EntrollmentService
+@inject IStudentService StudentService
+
+<!-- Calendar -->
+<div class="calendar">
+    <table class="calendar-table">
+        <thead>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int r = 0; r < 4; r++)
+            {
+                <tr>
+                    @foreach (var item in blocks.Skip(r * 10).Take(10))
+                    {
+                        <td>@LessonBlock(item)</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code
+{
+
+    [Parameter]
+    public RenderFragment<BlockPlan> LessonBlock { get; set; }
+    private List<BlockPlan> blocks = new List<BlockPlan>();
+    Student student = new Student();
+
+    int ID;
+    string Roles;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await EntrollmentService.GetEnrollments();
+        await StudentService.GetStudents();
+        await GetClaimsGetID();
+        await UpdatePlan();
+
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+
+        }
+        else
+        {
+            if (Roles == "Student")
+            {
+                foreach (var studentpom in StudentService.Students)
+                {
+                    if (studentpom.StudentID == ID)
+                    {
+                        student = studentpom;
+                    }
+                }
+            }
+
+
+        }
+    }
+    async Task UpdatePlan()
+    {
+        var eventsall = EntrollmentService.Enrollments;
+        var events = eventsall.Where(e => e.ClassID == student.ClassID);
+        Console.WriteLine(events.Count());
+        DateTime b = new DateTime(2000, 11, 20, 7, 50, 0);
+        for (int i = 0; i <= 4; i++)
+        {
+
+            for (DateTime a = b; a <= new DateTime(2000, 11, 20, 17, 0, 0); a = a.AddMinutes(5))
+            {
+                var eventsInDay = events.Where(e => e.Date.Minute == a.Minute && e.EndDate.Minute == a.AddMinutes(45).Minute && e.Date.Hour == a.Hour && e.EndDate.Hour == a.AddMinutes(45).Hour && (int)e.Date.DayOfWeek == i);
+                if (eventsInDay.Any())
+                {
+                    foreach(var item in eventsInDay)
+                    {
+                        blocks.Add(new BlockPlan
+                            {
+                                Name = item.Subject.SubjectName,
+                                IsEmpty = false,
+                                Starthour = item.Date,
+                                Endhour = item.EndDate,
+                                Lesson = item
+                            });
+                    }
+                    a = a.AddMinutes(45);
+                }
+                else
+                {
+                    a = a.AddMinutes(30);
+                    eventsInDay = events.Where(e => ((e.Date.Hour * 60) + e.Date.Minute) <= (a.Hour * 60 + a.Minute) && ((e.EndDate.Hour * 60) + e.EndDate.Minute) >= (a.AddMinutes(45).Hour * 60 + a.AddMinutes(45).Minute) && (int)e.Date.DayOfWeek == i);
+                    if (!eventsInDay.Any())
+                    {
+                        blocks.Add(new BlockPlan
+                                {
+                                    Name = "Empty",
+                                    IsEmpty = true
+                                });
+                        a = a.AddMinutes(15);
+                    }
+
+
+                }
+            }
+        }
+    
+    }
+}

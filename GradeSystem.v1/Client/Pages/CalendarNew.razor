@@ -96,7 +96,7 @@
 
         // Calculate the number of empty days
         var firstDayDate = new DateTime(year, month, 1);
-        int weekDayNumber = (int)firstDayDate.DayOfWeek+1;
+        int weekDayNumber = (int)firstDayDate.DayOfWeek+6;
         int numberOfEmptyDays = 0;
         if (weekDayNumber == 7) // Sunday
         {

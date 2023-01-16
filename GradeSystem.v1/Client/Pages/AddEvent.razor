@@ -8,11 +8,11 @@
                 </div>
 
                 <div class="card-content">
-                    <h3 class="ms-fontSize-24 ms-fontWeight-regular">@SelectedDay.Date.ToString("D")</h3>
-            <input type="text" @bind-value="model.Title" class="fluent-input" placeholder="Event Title">
-                    <input type="time" @bind-value="model.StartDate" class="fluent-input" placeholder="Event Title">
-                    <input type="time" @bind-value="model.EndDate" class="fluent-input" placeholder="Event Title">
-                    <input type="text" @bind-value="model.Description" class="fluent-input" placeholder="Event Description">
+                    <h3 class="ms-fontSize-18 ms-fontWeight-600">@SelectedDay.Date.ToString("D")</h3>
+            <input type="text" @bind-value="model.Title" class="add-event-input" placeholder="Event Title">
+                    <input type="time" @bind-value="model.StartDate" class="add-event-input" placeholder="Event Title">
+            <input type="time" @bind-value="model.EndDate" class="add-event-input" placeholder="Event Title">
+            <input type="text" @bind-value="model.Description" class="add-event-input" placeholder="Event Description">
                     <label for="enrollment">Class</label>
                         <InputSelect @bind-Value="model.ClassID" class="form-select">
                             <option value=0>--- Select ---</option>

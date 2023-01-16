@@ -28,6 +28,7 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<ExtraClasses> ExtraClasses { get; set; }
         public DbSet<ExtraClassesList> ExtraClassesList { get; set; }
         public DbSet<CalendarEvent> CalendarEvent { get; set; }
+        public DbSet<LessonsHours> LessonsHours { get; set; }
         
     }
 }

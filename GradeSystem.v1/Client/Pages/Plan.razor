@@ -1,11 +1,15 @@
 ﻿@page "/plan"
 @using GradeSystem.v1.Client.Pages
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-9">
-        <DayPlan>
-            <LessonBlock Context="block">
+@inject ILessonsHoursService LessonsHoursService
+
+@if (LessonsHoursService.LessonsHours.Count!= 0)
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-9">
+            <DayPlan>
+                <LessonBlock Context="block">
                     <div class="day shadow-effect">
-                    <h3 class="ms-fontSize-24 ms-fontWeight-regular">@block.Name</h3>
+                        <h3 class="ms-fontSize-24 ms-fontWeight-regular">@block.Name</h3>
                         @if (block.Lesson != null)
                         {
                             var firstEvent = block.Lesson;
@@ -18,27 +22,74 @@
                                 }
                                 else
                                 {
-                                @firstEvent.Subject.SubjectName
+                                    @firstEvent.Subject.SubjectName
                                 }
                             </div>
                         }
                     </div>
 
-            </LessonBlock>
-        </DayPlan>
+                </LessonBlock>
+            </DayPlan>
+        </div>
+        <!-- Day Menu -->
+        <div class="col-sm-12 col-md-12 col-lg-3">
+            <EnrollmentAddEdit></EnrollmentAddEdit>
+        </div>
     </div>
 
-
-    <!-- Day Menu -->
-    <div class="col-sm-12 col-md-12 col-lg-3">
-        <EnrollmentAddEdit></EnrollmentAddEdit>
-
-        <EventList SelectedDay="@selectedDay" />
+}
+else 
+{
+    <div>
+        <input type="number" name="liczbaInputow" @bind-value=liczbaInputow />
     </div>
-</div>
+    @if (liczbaInputow != null)
+    {
+        for(int z=0;z<liczbaInputow;z++)
+        {
+            plans.Add(new LessonsHours());
+        }
+        <EditForm Model="plans" OnSubmit="HandleSubmit">
+
+            @for(int i=0;i<liczbaInputow;i++)
+            {
+                <div>
+                    <label for="Enrollment-time">Start</label>
+                    <input type="datetime-local" id="meeting-time"
+               name="enrollment-time" @bind-value="plans[i].Start">
+
+                </div>
+                <div>
+                    <label for="Enrollment-time">End</label>
+                    <input type="datetime-local" id="meeting-time"
+               name="enrollment-time" @bind-value="plans[i].End">
+
+                </div>
+
+                
+            }
+            <br />
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </EditForm>
+
+    }
+
+    
+        
+
+    
+    
+}
+
 
 
 @code {
+    int? liczbaInputow=null;
+    IList<LessonsHours> plans= new List<LessonsHours>();
+    protected override async Task OnInitializedAsync()
+    {
+        await LessonsHoursService.GetLessonsHours();
+    }
     private CalendarDay selectedDay = new CalendarDay
         {
             Date = DateTime.Now
@@ -50,5 +101,13 @@
         {
             StateHasChanged();
         };
+    }
+    async Task HandleSubmit()
+    {
+        foreach(var plan in plans)
+        {
+           await LessonsHoursService.CreateLessonsHours(plan);
+        }
+
     }
 }

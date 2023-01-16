@@ -10,6 +10,8 @@ public class Student
 
         public string Address { get; set; } = string.Empty;
         public int UserID { get; set; }
+        public int StudentGroup { get; set; }
+        public string Additional_Language { get; set; } = string.Empty;
 
         public Parent? Parent {get; set; }
         public Class? Class {get; set; }

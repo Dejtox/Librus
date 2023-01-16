@@ -1,29 +1,25 @@
 ﻿@using GradeSystem.v1.Client.Data
 @inject IEnrollmentService EntrollmentService
 @inject IStudentService StudentService
+@inject ILessonsHoursService LessonsHoursService
 
 <!-- Calendar -->
 <div class="calendar">
     <table class="calendar-table">
         <thead>
             <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
+                <td>Mon</td>
+                <td>Tue</td>
+                <td>Wed</td>
+                <td>Thu</td>
+                <td>Fri</td>
             </tr>
         </thead>
         <tbody>
-            @for (int r = 0; r < 4; r++)
+            @for (int r = 0; r < 7; r++)
             {
                 <tr>
-                    @foreach (var item in blocks.Skip(r * 10).Take(10))
+                    @foreach (var item in blocks.Skip(r * 5).Take(5))
                     {
                         <td>@LessonBlock(item)</td>
                     }
@@ -44,9 +40,9 @@
     int ID;
     string Roles;
 
-
     protected override async Task OnInitializedAsync()
     {
+        await LessonsHoursService.GetLessonsHours();
         await EntrollmentService.GetEnrollments();
         await StudentService.GetStudents();
         await GetClaimsGetID();
@@ -99,51 +95,85 @@
 
         }
     }
+
+        
+    
+
     async Task UpdatePlan()
     {
         var eventsall = EntrollmentService.Enrollments;
         var events = eventsall.Where(e => e.ClassID == student.ClassID);
         Console.WriteLine(events.Count());
-        DateTime b = new DateTime(2000, 11, 20, 7, 50, 0);
-        for (int i = 0; i <= 4; i++)
+        foreach (var lesson in LessonsHoursService.LessonsHours)
         {
-
-            for (DateTime a = b; a <= new DateTime(2000, 11, 20, 17, 0, 0); a = a.AddMinutes(5))
+            for (int i = 0; i <= 4; i++)
             {
-                var eventsInDay = events.Where(e => e.Date.Minute == a.Minute && e.EndDate.Minute == a.AddMinutes(45).Minute && e.Date.Hour == a.Hour && e.EndDate.Hour == a.AddMinutes(45).Hour && (int)e.Date.DayOfWeek == i);
+
+
+                var eventsInDay = events.Where(e => e.Date.Minute == lesson.Start.Minute && e.EndDate.Minute == lesson.End.Minute && e.Date.Hour == lesson.Start.Hour && e.EndDate.Hour == lesson.End.Hour && (int)e.Date.DayOfWeek-1 == i);
                 if (eventsInDay.Any())
                 {
-                    foreach(var item in eventsInDay)
+                    
+                    foreach (var item in eventsInDay)
                     {
-                        blocks.Add(new BlockPlan
+                        if(item.Subject.SubjectName.StartsWith("J"))
+                        {
+                            if (item.Subject.SubjectName.Contains((student.StudentGroup).ToString()))
                             {
-                                Name = item.Subject.SubjectName,
-                                IsEmpty = false,
-                                Starthour = item.Date,
-                                Endhour = item.EndDate,
-                                Lesson = item
-                            });
+                                blocks.Add(new BlockPlan
+                                    {
+                                        Name = "J. Angielski",
+                                        IsEmpty = false,
+                                        Starthour = item.Date,
+                                        Endhour = item.EndDate,
+                                        Lesson = item
+                                    });
+                            }
+                            else if (item.Subject.SubjectName.Contains(student.Additional_Language))
+                            {
+                                blocks.Add(new BlockPlan
+                                    {
+                                        Name = item.Subject.SubjectName,
+                                        IsEmpty = false,
+                                        Starthour = item.Date,
+                                        Endhour = item.EndDate,
+                                        Lesson = item
+                                    });
+                            }
+                        }
+                        else
+                        {
+                            blocks.Add(new BlockPlan
+                                {
+                                    Name = item.Subject.SubjectName,
+                                    IsEmpty = false,
+                                    Starthour = item.Date,
+                                    Endhour = item.EndDate,
+                                    Lesson = item
+                                });
+                        }
+                       
                     }
-                    a = a.AddMinutes(45);
                 }
                 else
                 {
-                    a = a.AddMinutes(30);
-                    eventsInDay = events.Where(e => ((e.Date.Hour * 60) + e.Date.Minute) <= (a.Hour * 60 + a.Minute) && ((e.EndDate.Hour * 60) + e.EndDate.Minute) >= (a.AddMinutes(45).Hour * 60 + a.AddMinutes(45).Minute) && (int)e.Date.DayOfWeek == i);
-                    if (!eventsInDay.Any())
-                    {
+
+
                         blocks.Add(new BlockPlan
-                                {
-                                    Name = "Empty",
-                                    IsEmpty = true
-                                });
-                        a = a.AddMinutes(15);
-                    }
+                            {
+                                Name = "Empty",
+                                IsEmpty = true,
+                                Starthour = lesson.Start,
+                                Endhour = lesson.End,
+                            });
+                    
 
 
                 }
+
             }
         }
+        
     
     }
 }

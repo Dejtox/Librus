@@ -1,0 +1,32 @@
+﻿<div class="ms-depth-16 card">
+    <div class="card-content">
+        @if (SelectedBlock.AdditionalAct == null)
+        {
+        <h3 class="ms-fontSize-22 ms-fontWeight-regular">No Additional Activites in this Day</h3>
+        }
+        else
+        {
+
+                <div class="event shadow-effect">
+                    <p class="ms-fontSize-11 ms-fontWeight-regular">@SelectedBlock.Name</p>
+                </div>
+
+        }
+    </div>
+</div>
+
+
+@code
+{
+    [Parameter]
+    public BlockPlan SelectedBlock { get; set; }
+
+    protected override void OnInitialized()
+    {
+        AddEvent.OnEventAdded += () =>
+        {
+            StateHasChanged();
+        };
+    }
+    
+}

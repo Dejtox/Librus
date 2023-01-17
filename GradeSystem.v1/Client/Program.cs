@@ -36,7 +36,7 @@ builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 builder.Services.AddScoped<IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<IGradeService, GradeService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ILessonsHoursService, LessonsHoursService>();
+builder.Services.AddScoped<IExtraClassesService, ExtraClassesService>();
 builder.Services.AddScoped<IExtraClassesListService, ExtraClassesListService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ILessonsHoursService, LessonsHoursService>();

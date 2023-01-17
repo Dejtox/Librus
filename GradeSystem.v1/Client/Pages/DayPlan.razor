@@ -8,6 +8,7 @@
     <table class="calendar-table">
         <thead>
             <tr>
+                <td></td>
                 <td>Mon</td>
                 <td>Tue</td>
                 <td>Wed</td>
@@ -16,15 +17,27 @@
             </tr>
         </thead>
         <tbody>
-            @for (int r = 0; r < 7; r++)
+            
+            @for (int r = 0; r<LessonsHoursService.LessonsHours.Count; r++)
             {
+                string hoursstr = LessonsHoursService.LessonsHours[r].Start.Hour + ":" + LessonsHoursService.LessonsHours[r].Start.Minute + "-" + LessonsHoursService.LessonsHours[r].End.Hour + ":" + LessonsHoursService.LessonsHours[r].End.Minute;
+                
+                
+                
                 <tr>
+                    <td>@LessonsHoursService.LessonsHours[r].LessonNo <br />@hoursstr</td>
                     @foreach (var item in blocks.Skip(r * 5).Take(5))
                     {
                         <td>@LessonBlock(item)</td>
                     }
                 </tr>
             }
+
+            
+               
+                
+                
+            
         </tbody>
     </table>
 </div>
@@ -96,14 +109,15 @@
         }
     }
 
-        
-    
+
+
 
     async Task UpdatePlan()
     {
         var eventsall = EntrollmentService.Enrollments;
         var events = eventsall.Where(e => e.ClassID == student.ClassID);
         Console.WriteLine(events.Count());
+        string data = string.Empty;
         foreach (var lesson in LessonsHoursService.LessonsHours)
         {
             for (int i = 0; i <= 4; i++)

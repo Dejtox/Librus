@@ -20,13 +20,13 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesService
         public async Task CreateExtraClasses(ExtraClasses extraClasses)
         {
             await _http.PostAsJsonAsync("api/ExtraClasses", extraClasses);
-            _navigationManager.NavigateTo("ExtraClasses");
+            _navigationManager.NavigateTo("additional");
         }
 
         public async Task DeleteExtraClasses(int id)
         {
             await _http.DeleteAsync($"api/ExtraClasses/{id}");
-            _navigationManager.NavigateTo("ExtraClasses");
+            _navigationManager.NavigateTo("additional");
         }
 
         public async Task GetExtraClasses()
@@ -55,7 +55,7 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesService
         public async Task UpdateExtraClasses(ExtraClasses extraClasses)
         {
             await _http.PutAsJsonAsync($"api/ExtraClasses/{extraClasses.ExtraClassesID}", extraClasses);
-            _navigationManager.NavigateTo("extraClasses");
+            _navigationManager.NavigateTo("additional");
         }
     }
 }

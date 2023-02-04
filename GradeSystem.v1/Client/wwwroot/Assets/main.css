@@ -55,13 +55,12 @@
         border-radius: 10px;
         border: 1px solid #081A36;
         font-weight: bold;
-        color: black;
-        text-shadow: -0.8px 0 white, 0 0.8px white, 0.8px 0 white, 0 -0.8px white;
+        color: white;
     }
 
     .calendar-table .day {
-        height: 125px;
-        min-width: 135px;
+        height: 135px;
+        width: 190px;
         margin: 2px;
         border-radius: 8px;
         border: solid #0c254d;
@@ -91,44 +90,55 @@
 .day .day-event {
     font-size: 10px;
     padding: 5px;
+
 }
 
-
-@media (max-width: 900px) {
+@media (max-width: 768px ) {
     .calendar-table .day {
-        width: 100%;
-        height: 50px;
+
+        max-width:95px;
+        max-height: 90px;
         min-width: auto;
     }
 
-    .day .day-event {
-        display: none;
+}
+
+@media (max-width: 1025px ) {
+    .calendar-table .day {
+        max-width: 90px;
+        max-height: 80px;
+        min-width: auto;
+    }
+
+    .card{
+        
     }
 }
 
+
 /* Colors */
 .red-orange {
-    background: #d00000;
+    background: #d00000 !important;
     color: white;
 }
 
 .magenta {
-    background: #ffba08;
-    color: white;
+    background: #ffba08 !important;
+    color: black;
 }
 
 .pink-red {
-    background-color: #3f88c5;
+    background-color: #3f88c5 !important;
     color: white;
 }
 
 .yellow {
-    background: #032b43;
+    background: #032b43 !important;
     color: white;
 }
 
 .yellow-green {
-    background: #407e02;
+    background: #407e02 !important;
     color: white;
 }
 
@@ -196,17 +206,93 @@
     padding-top: 58px;
 }
 
-.col-lg-1 {
+/*Plan*/
 
-}
-
-.col-lg-2{
-
-}
-
-.col-sm-12{
+.plan {
+    padding: 10px;
     
 }
+
+/* granat #0c244c */
+.plan-table {
+    width: 100%;
+    background-color: white;
+    text-align: center;
+}
+
+.plan-table thead {
+    background-color: #0c254d; /*pasek gdzie są dni tygodnia ma byc niebieski   #9cbcfb*/
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #081A36;
+    font-weight: bold;
+    color: white;
+    
+}
+
+.plan-table .day {
+    height: 125px;
+    min-width: 135px;
+    margin: 10px 0px;
+    background-color: white;
+    padding: 20px 0px;
+    /*cursor: pointer;*/
+    border-width: 1px;    
+}
+
+.plan-table td {
+    width: 60px;
+    padding: 0px;
+    border: 1px solid black;
+}
+
+.plan-event {
+   
+    font-size: 15px;
+    padding:2px;
+}
+
+
+.add-new-plan {
+    background: #0c244c;
+    color: white;
+    padding: 13px;
+    margin: 9px;
+}
+
+.add-new-additional {
+    background: #0c244c;
+    color: white;
+    padding: 13px;
+    margin: 9px;
+}
+
+.form-select {
+    border-radius: 0.25rem;    
+}
+
+.form-control{
+    margin-bottom: 0.5rem ;
+}
+
+.add-date-and-time {
+    border-radius: 0.25rem;
+}
+
+.btn-primary {
+    background-color: #f4b522 !important;
+    color: #0c244c !important;
+    border-color: white !important;
+    border: 1px;
+}
+
+.btn-danger {
+    background-color: #BD1818 !important;
+    color: white !important;
+    border-color: white !important;
+    border: 1px;
+}
+
 
 .card-content {
     padding: 15px;
@@ -223,8 +309,20 @@
     margin: 10px;
 }
 
-.row {
- 
+.card-content {
+    border: 2px solid #0c244c;
+    
+}
+
+.card-additional {
+    color: #10244c;
+    font-size: 24px;
+}
+
+.capacity-additional {
+    position: absolute;
+    top: 16px;
+    right: 20px;
 }
 
 
@@ -246,6 +344,14 @@ a, .btn-link {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
+}
+
+.btn-secondary {
+    background-color: #f4b522 !important;
+    color: #0c244c !important;
+    border-color: #0c244c !important;
+    border: solid 2px !important;
+    width: 70px;
 }
 
 .content {

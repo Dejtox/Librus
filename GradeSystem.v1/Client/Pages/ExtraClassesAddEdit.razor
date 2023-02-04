@@ -5,8 +5,8 @@
 
 @if (ID == null)
 {
-    <PageTitle>Add new Extra Class</PageTitle>
-    <h3>Add new Extra Class</h3>
+    <PageTitle>Add new Additional Activity</PageTitle>
+    <h3>Add new Additional Activity</h3>
 }
 else
 {
@@ -17,11 +17,11 @@ else
 
 <EditForm Model="extraClasses" OnSubmit="HandleSubmit">
     <div>
-        <label for="firstname">Extra Class Name</label>
+        <label for="firstname">Additional Activity Name</label>
         <InputText id="firstname" @bind-Value="extraClasses.ExtraClassesName" class="form-control"></InputText>
     </div>
     <div>
-        <label for="lasttname">Extra Class Description</label>
+        <label for="lasttname">Additional Activity Description</label>
         <InputText id="lastname" @bind-Value="extraClasses.ExtraClassesDescription" class="form-control"></InputText>
     </div>
     <div>
@@ -36,7 +36,7 @@ else
         </InputSelect>      
     </div>
     <div>
-        <label for="Enrollment-time">Extra Class Date</label>
+        <label for="Enrollment-time">Additional Activity Date</label>
         <input type="datetime-local" id="meeting-time"
                name="enrollment-time" @bind-value="extraClasses.ExtraClassesDate">
 
@@ -52,7 +52,7 @@ else
 
     <br />
     <button type="submit" class="btn btn-primary">@btnText</button>
-    <button type="button" class="btn btn-danger" @onclick="DelateTeacher">Delete Teacher</button>
+    <button type="button" class="btn btn-danger" @onclick="DelateTeacher">Delete Activity</button>
 
 </EditForm>
 
@@ -67,7 +67,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        btnText = ID == null ? "Save New Extra Class" : "Update Extra Class";
+        btnText = ID == null ? "Save New Activity" : "Delete Acivity";
         await ExtraClassesService.GetTeachers();
 
     }

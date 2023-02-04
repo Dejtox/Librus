@@ -4,11 +4,11 @@
 @inject ILessonsHoursService LessonsHoursService
 
 <!-- Calendar -->
-<div class="calendar">
-    <table class="calendar-table">
+<div class="plan">
+    <table class="plan-table">
         <thead>
             <tr>
-                <td></td>
+                <td>Time</td>
                 <td>Mon</td>
                 <td>Tue</td>
                 <td>Wed</td>
@@ -18,26 +18,26 @@
         </thead>
         <tbody>
             
-            @for (int r = 0; r<LessonsHoursService.LessonsHours.Count; r++)
+            @for (int r = 0; r < LessonsHoursService.LessonsHours.Count; r++)
             {
-                string hoursstr = LessonsHoursService.LessonsHours[r].Start.Hour + ":" + LessonsHoursService.LessonsHours[r].Start.Minute + "-" + LessonsHoursService.LessonsHours[r].End.Hour + ":" + LessonsHoursService.LessonsHours[r].End.Minute;
-                
-                
-                
+                string hoursstr = LessonsHoursService.LessonsHours[r].Start.Hour + ":" + (LessonsHoursService.LessonsHours[r].Start.Minute == 0 ? "00" : LessonsHoursService.LessonsHours[r].Start.Minute) + "-" + LessonsHoursService.LessonsHours[r].End.Hour + ":" + (LessonsHoursService.LessonsHours[r].End.Minute == 0 ? "00" : LessonsHoursService.LessonsHours[r].End.Minute);
+
+
                 <tr>
-                    <td>@LessonsHoursService.LessonsHours[r].LessonNo <br />@hoursstr</td>
+                    <td class="day-event">@LessonsHoursService.LessonsHours[r].LessonNo <br />@hoursstr</td>
                     @foreach (var item in blocks.Skip(r * 5).Take(5))
                     {
                         <td>@LessonBlock(item)</td>
                     }
                 </tr>
+                
             }
 
-            
-               
-                
-                
-            
+
+
+
+
+
         </tbody>
     </table>
 </div>
@@ -175,7 +175,7 @@
 
                         blocks.Add(new BlockPlan
                             {
-                                Name = "Empty",
+                                Name = " ",
                                 IsEmpty = true,
                                 Starthour = lesson.Start,
                                 Endhour = lesson.End,

@@ -1,4 +1,11 @@
-﻿<div class="ms-depth-16 card">
+﻿@inject IExtraClassesService ExtraClassesService
+@inject IExtraClassesListService ExtraClassesListService
+@inject IStudentService StudentService
+@inject IUserService UserService
+@inject NavigationManager NavigationMenager
+@attribute [Authorize(Roles = "Teacher, Parent, Student")]
+
+<div class="ms-depth-16 card">
     <div class="card-content">
         @if (SelectedBlock.AdditionalAct == null)
         {
@@ -8,8 +15,33 @@
         {
 
                 <div class="event shadow-effect">
-                    <p class="ms-fontSize-11 ms-fontWeight-regular">@SelectedBlock.Name</p>
-                </div>
+
+                <p class="ms-fontSize-22 ms-fontWeight-600">@SelectedBlock.AdditionalAct.Teacher.FirstName @SelectedBlock.AdditionalAct.Teacher.LastName</p>
+                <p class="card-additional">@SelectedBlock.Name</p>
+                <p class="card-additional capacity-additional">@SelectedBlock.AdditionalAct.CurrentCapasity / @SelectedBlock.AdditionalAct.MaxCapasity</p>
+                <AuthorizeView Roles="Teacher">
+                    <td>
+                        <button class="btn btn-primary" @onclick="(()=>ShowExtraClasses(SelectedBlock.AdditionalAct.ExtraClassesID))"><i class="oi oi-pencil">Edit</i></button>
+                        <button class="btn btn-primary" @onclick="(()=>MakeList(SelectedBlock.AdditionalAct.ExtraClassesID))"><i class="oi oi-pencil">List</i></button>
+                    </td>
+                </AuthorizeView>
+                <AuthorizeView Roles="Student, Parent">
+                    @if (YourExtraClasses.Contains(SelectedBlock.AdditionalAct.ExtraClassesID))
+                    {
+                        <td>
+                            <button class="btn btn-danger" @onclick="(()=>Resign(SelectedBlock.AdditionalAct.ExtraClassesID))">Unsign</button>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <button class="btn btn-secondary" @onclick="(()=>SignTooExtraClasses(SelectedBlock.AdditionalAct.ExtraClassesID))">Sign</button>
+                        </td>
+                    }
+                </AuthorizeView>
+            </div>
+
+
 
         }
     </div>
@@ -21,12 +53,149 @@
     [Parameter]
     public BlockPlan SelectedBlock { get; set; }
 
-    protected override void OnInitialized()
+
+    int ID;
+    string Roles;
+    string color;
+    int randomNumber = 1;
+    int ParentID;
+    int cuerentcapasity = 0;
+    List<int> YourExtraClasses = new List<int>();
+    Student student = new Student();
+
+    ExtraClassesList extraClassesList = new ExtraClassesList();
+
+    protected override async Task OnInitializedAsync()
     {
-        AddEvent.OnEventAdded += () =>
+        await ExtraClassesService.GetExtraClasses();
+        await StudentService.GetStudents();
+        await ExtraClassesListService.GetExtraClassesList();
+        await GetClaimsGetID();
+        await GetYourClasses();
+        await GetCapacityAd();
+    }
+    async Task GetCapacityAd()
+    {
+        foreach (var ec in ExtraClassesService.ExtraClasses)
         {
-            StateHasChanged();
+            cuerentcapasity = 0;
+            foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+            {
+                if (ecl.ExtraClassesID == ec.ExtraClassesID)
+                {
+                    cuerentcapasity++;
+
+                }
+            }
+            ec.CurrentCapasity = cuerentcapasity;
+            await ExtraClassesService.UpdateExtraClasses(ec);
+        }
+
+        await ExtraClassesService.GetExtraClasses();
+
+    }
+
+    async Task GetYourClasses()
+    {
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+
+        }
+        else
+        {
+            if (Roles == "Student")
+            {
+                foreach (var studentpom in StudentService.Students)
+                {
+                    if (studentpom.StudentID == ID)
+                    {
+                        student = studentpom;
+                    }
+                }
+            }
+
+
+        }
+        foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+        {
+            if (ecl.StudentID == student.StudentID)
+            {
+                YourExtraClasses.Add(ecl.ExtraClassesID);
+
+            }
+
+        }
+
+    }
+    async Task Resign(int id)
+    {
+        foreach (var ecl in ExtraClassesListService.ExtraClassesLists)
+        {
+            if (ecl.StudentID == student.StudentID && ecl.ExtraClassesID == id)
+            {
+
+                await ExtraClassesListService.DeleteExtraClassesList(ecl.ExtraClassesListID);
+
+            }
+        }
+        await ExtraClassesService.GetExtraClasses();
+        await GetCapacityAd();
+        NavigationMenager.NavigateTo($"/additional");
+
+    }
+    void MakeList(int id)
+    {
+       NavigationMenager.NavigateTo($"/list/{id}");
+    }
+    async Task SignTooExtraClasses(int id)
+    {
+        extraClassesList.ExtraClassesID = id;
+
+        extraClassesList.StudentID = student.StudentID;
+        extraClassesList.DateTime = DateTime.Now;
+        extraClassesList.Student = student;
+        extraClassesList.ExtraClasses = await ExtraClassesService.GetExtraClassesByID(id);
+        await ExtraClassesListService.GetExtraClassesList();
+        await ExtraClassesListService.CreateExtraClassesList(extraClassesList);
+        await ExtraClassesService.GetExtraClasses();
+        await ExtraClassesListService.GetExtraClassesList();
+        await GetCapacityAd();
+
+        NavigationMenager.NavigateTo($"/additional");
+
+
+    }
+
+    void ShowExtraClasses(int id)
+    {
+        NavigationMenager.NavigateTo($"/extraclass/{id}");
+    }
+   
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
         };
     }
-    
+
 }

@@ -4,8 +4,8 @@
 
 @if (ID == null)
 {
-    <PageTitle>Add new Enrollment</PageTitle>
-    <h3>Add new Enrollment</h3>
+   
+    <h3>Add new Lesson</h3>
 }
 else
 {
@@ -13,12 +13,13 @@ else
     <h3>Edit @enrollment.Date</h3>
 }
 
-
 <EditForm Model="enrollment" OnSubmit="HandleSubmit">
+    
     <div>
-        <label for="Enrollment-time">Enrolment Date</label>
+        
+        <label for="Enrollment-time">Lesson Date</label>
         <input type="datetime-local" id="meeting-time"
-               name="enrollment-time" @bind-value="enrollment.Date">
+               name="enrollment-time" class="add-date-and-time" @bind-value="enrollment.Date">
         
     </div>
     <div>
@@ -44,13 +45,14 @@ else
         </InputSelect>
     </div>
     <div>
-        <label for="classroom">Class Room</label>
+        <label for="classroom">Classroom</label>
         <InputText id="classroom" @bind-Value="enrollment.ClassRoom" class="form-control"></InputText>
     </div>
 
+
     <br />
     <button type="submit" class="btn btn-primary">@btnText</button>
-    <button type="button" class="btn btn-danger" @onclick="DelateEnrollment">Delete Enrollment</button>
+    <button type="button" class="btn btn-danger" @onclick="DelateEnrollment">Delete Lesson</button>
 
 </EditForm>
 
@@ -64,7 +66,7 @@ else
     double timeStamp = 45;
     protected override async Task OnInitializedAsync()
     {
-        btnText = ID == null ? "Save New Enrollment" : "Update Enrollment";
+        btnText = ID == null ? "Save New Lesson" : "Update Lesson";
         await EnrollmentService.GetClasses();
         await EnrollmentService.GetSubjects();
     }

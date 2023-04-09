@@ -49,6 +49,41 @@ namespace GradeSystem.v1.Server.Migrations
                     b.ToTable("Attendance");
                 });
 
+            modelBuilder.Entity("Book", b =>
+                {
+                    b.Property<int>("BookID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookID"), 1L, 1);
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsBoocked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsBorowed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QRCode")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BookID");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Book");
+                });
+
             modelBuilder.Entity("CalendarEvent", b =>
                 {
                     b.Property<int>("CalendarEventID")
@@ -441,6 +476,17 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired();
 
                     b.Navigation("Enrollment");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Book", b =>
+                {
+                    b.HasOne("Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Student");
                 });

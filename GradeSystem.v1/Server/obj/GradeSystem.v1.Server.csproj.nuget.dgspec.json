@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {}
+    "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {}
   },
   "projects": {
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+    "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
         "projectName": "GradeSystem.v1.Client",
-        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-        "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\obj\\",
+        "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-                "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+              "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
               }
             }
           }
@@ -129,20 +130,20 @@
         }
       }
     },
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {
+    "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+        "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
         "projectName": "GradeSystem.v1.Server",
-        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
-        "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Server\\obj\\",
+        "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+        "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -151,17 +152,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
-                "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
+              "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+                "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
               },
-              "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-                "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+              "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
               }
             }
           }
@@ -252,20 +254,20 @@
         }
       }
     },
-    "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+    "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "projectName": "GradeSystem.v1.Shared",
-        "projectPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-        "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "J:\\ProjektLibrus\\Librus\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -274,6 +276,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

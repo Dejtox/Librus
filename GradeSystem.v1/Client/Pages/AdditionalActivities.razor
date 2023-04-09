@@ -1,0 +1,216 @@
+﻿@using GradeSystem.v1.Client.Data
+@inject IEnrollmentService EntrollmentService
+@inject IStudentService StudentService
+@inject ILessonsHoursService LessonsHoursService
+@inject IExtraClassesService ExtraClassesService
+
+<!-- Calendar -->
+<div class="plan">
+    <table class="plan-table">
+        <thead>
+            <tr>
+                <td>Time</td>
+                <td>Mon</td>
+                <td>Tue</td>
+                <td>Wed</td>
+                <td>Thu</td>
+                <td>Fri</td>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @for (int r = 0; r<LessonsHoursService.LessonsHours.Count; r++)
+            {
+                string hoursstr = LessonsHoursService.LessonsHours[r].Start.Hour + ":" + (LessonsHoursService.LessonsHours[r].Start.Minute == 0 ? "00" : LessonsHoursService.LessonsHours[r].Start.Minute) + "-" + LessonsHoursService.LessonsHours[r].End.Hour + ":" + (LessonsHoursService.LessonsHours[r].End.Minute == 0 ? "00" : LessonsHoursService.LessonsHours[r].End.Minute);
+
+
+
+                <tr>
+                    <td>@LessonsHoursService.LessonsHours[r].LessonNo <br />@hoursstr</td>
+                    @foreach (var item in blocks.Skip(r * 5).Take(5))
+                    {
+                        <td>@LessonBlock(item)</td>
+                    }
+                </tr>
+            }
+
+            
+               
+                
+                
+            
+        </tbody>
+    </table>
+</div>
+
+@code
+{
+
+    [Parameter]
+    public RenderFragment<BlockPlan> LessonBlock { get; set; }
+    private List<BlockPlan> blocks = new List<BlockPlan>();
+    Student student = new Student();
+
+    int ID;
+    string Roles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LessonsHoursService.GetLessonsHours();
+        await EntrollmentService.GetEnrollments();
+        await StudentService.GetStudents();
+        await ExtraClassesService.GetExtraClasses();
+        await GetClaimsGetID();
+        await UpdatePlan();
+
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+
+        }
+        else
+        {
+            if (Roles == "Student")
+            {
+                foreach (var studentpom in StudentService.Students)
+                {
+                    if (studentpom.StudentID == ID)
+                    {
+                        student = studentpom;
+                    }
+                }
+            }
+
+
+        }
+    }
+
+
+
+
+    async Task UpdatePlan()
+    {
+        var eventsall = EntrollmentService.Enrollments;
+        var events = eventsall.Where(e => e.ClassID == student.ClassID);
+
+        var extraclasses = ExtraClassesService.ExtraClasses;
+
+
+        string data = string.Empty;
+        foreach (var lesson in LessonsHoursService.LessonsHours)
+        {
+            for (int i = 0; i <= 4; i++)
+            {
+
+
+                var eventsInDay = events.Where(e => e.Date.Minute == lesson.Start.Minute && e.EndDate.Minute == lesson.End.Minute && e.Date.Hour == lesson.Start.Hour && e.EndDate.Hour == lesson.End.Hour && (int)e.Date.DayOfWeek-1 == i);
+                if (eventsInDay.Any())
+                {
+
+                    foreach (var item in eventsInDay)
+                    {
+                        if(item.Subject.SubjectName.StartsWith("J"))
+                        {
+                            if (item.Subject.SubjectName.Contains((student.StudentGroup).ToString()))
+                            {
+                                blocks.Add(new BlockPlan
+                                    {
+                                        Name = "J. Angielski",
+                                        IsEmpty = false,
+                                        Starthour = item.Date,
+                                        Endhour = item.EndDate,
+                                        Lesson = item
+                                    });
+                            }
+                            else if (item.Subject.SubjectName.Contains(student.Additional_Language))
+                            {
+                                blocks.Add(new BlockPlan
+                                    {
+                                        Name = item.Subject.SubjectName,
+                                        IsEmpty = false,
+                                        Starthour = item.Date,
+                                        Endhour = item.EndDate,
+                                        Lesson = item
+                                    });
+                            }
+                        }
+                        else
+                        {
+                            blocks.Add(new BlockPlan
+                                {
+                                    Name = item.Subject.SubjectName,
+                                    IsEmpty = false,
+                                    Starthour = item.Date,
+                                    Endhour = item.EndDate,
+                                    Lesson = item
+                                });
+                        }
+
+                    }
+                }
+                else
+                {
+                    var extraCInDay = extraclasses.Where(e => e.ExtraClassesDate.Minute == lesson.Start.Minute && e.ExtraClassesDate.AddMinutes(45).Minute == lesson.End.Minute && e.ExtraClassesDate.Hour == lesson.Start.Hour && e.ExtraClassesDate.AddMinutes(45).Hour == lesson.End.Hour && (int)e.ExtraClassesDate.DayOfWeek - 1 == i);
+                    if (extraCInDay.Any())
+                    {
+                        foreach (var item in extraCInDay)
+                        {
+                        blocks.Add(new BlockPlan
+                            {
+                                Name = item.ExtraClassesName,
+                                IsEmpty = false,
+                                Starthour = item.ExtraClassesDate,
+                                Endhour = item.ExtraClassesDate.AddMinutes(45),
+                                AdditionalAct = item
+                            });
+                        }
+                    }
+                    else
+                    {
+                        blocks.Add(new BlockPlan
+                            {
+                                Name = " ",
+                                IsEmpty = true,
+                                Starthour = lesson.Start,
+                                Endhour = lesson.End,
+                            });
+                    }
+
+                    
+                    
+
+
+                }
+
+            }
+        }
+        
+    
+    }
+}

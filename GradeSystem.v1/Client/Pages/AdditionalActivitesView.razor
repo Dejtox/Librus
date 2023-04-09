@@ -1,0 +1,77 @@
+﻿@page "/additional"
+@using GradeSystem.v1.Client.Data
+@inject ILessonsHoursService LessonsHoursService
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-9">
+                <AdditionalActivities>
+                    <LessonBlock Context="block">
+                <div class="day shadow-effect" @onclick="() => selectedDay = block">
+                            <h3 class="ms-fontSize-24 ms-fontWeight-regular">@block.Name</h3>
+                        @if (block.Lesson != null)
+                        {
+                            var firstEvent = block.Lesson;
+                                    <div class="plan-event ">
+                                @if (firstEvent.Subject.SubjectName.Length > 25)
+                                {
+                                    @firstEvent.Subject.SubjectName.Substring(0, 25)
+
+                                    <text>...</text>
+                                }
+                                  else
+                                {   @firstEvent.Subject.Teacher.FirstName
+                                    <text>&nbsp</text>
+                                    @firstEvent.Subject.Teacher.LastName
+                                    <br/>
+                                    @firstEvent.ClassRoom
+                                }
+                                    </div>
+                        }
+                        else if(block.AdditionalAct!=null)
+                        {
+                        var firstEvent = block.AdditionalAct;
+                        <div class="plan-event ">
+                                @firstEvent.Teacher.FirstName
+                                @firstEvent.Teacher.LastName
+                                <br />
+                                @firstEvent.ClassRoom
+                        </div>
+                    }
+                    </div>
+
+                    </LessonBlock>
+                </AdditionalActivities>
+            </div>
+            <!-- Day Menu -->
+            <div class="col-sm-12 col-md-12 col-lg-3">
+                <div class=" add-new-additional">
+                <ExtraClassesAddEdit></ExtraClassesAddEdit>
+        </div>
+                <SigninAddA SelectedBlock="@selectedDay"></SigninAddA>
+                
+            </div>
+        </div>
+
+@code 
+{
+    int? liczbaInputow = null;
+    IList<LessonsHours> plans = new List<LessonsHours>();
+    protected override async Task OnInitializedAsync()
+    {
+        await LessonsHoursService.GetLessonsHours();
+    }
+    private BlockPlan selectedDay = new BlockPlan
+        {
+            Starthour = DateTime.Now
+        };
+
+
+    async Task HandleSubmit()
+    {
+        foreach (var plan in plans)
+        {
+            await LessonsHoursService.CreateLessonsHours(plan);
+        }
+
+    }
+}

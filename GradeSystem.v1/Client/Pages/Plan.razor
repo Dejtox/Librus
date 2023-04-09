@@ -8,12 +8,12 @@
         <div class="col-sm-12 col-md-12 col-lg-9">
             <DayPlan>
                 <LessonBlock Context="block">
-                    <div class="day shadow-effect">
-                        <h3 class="ms-fontSize-24 ms-fontWeight-regular">@block.Name</h3>
+                    <div class="day shadow-effect @GenerateColor(block.Name)">
+                        <h3 class="ms-fontSize-19 ms-fontWeight-regular ">@block.Name</h3>
                         @if (block.Lesson != null)
                         {
                             var firstEvent = block.Lesson;
-                            <div class="day-event ">
+                            <div class=" plan-event @GenerateColor(block.Name) ">
                                 @if (firstEvent.Subject.SubjectName.Length > 25)
                                 {
                                     @firstEvent.Subject.SubjectName.Substring(0, 25)
@@ -21,8 +21,11 @@
                                     <text>...</text>
                                 }
                                 else
-                                {
-                                    @firstEvent.Subject.SubjectName
+                                {   @firstEvent.Subject.Teacher.FirstName
+                                    <text>&nbsp</text>
+                                    @firstEvent.Subject.Teacher.LastName
+                                    <br/>
+                                    @firstEvent.ClassRoom
                                 }
                             </div>
                         }
@@ -33,10 +36,11 @@
         </div>
         <!-- Day Menu -->
         <div class="col-sm-12 col-md-12 col-lg-3">
+            <div class="add-new-plan">
             <EnrollmentAddEdit></EnrollmentAddEdit>
+            </div>
         </div>
     </div>
-
 }
 else 
 {
@@ -71,14 +75,7 @@ else
             <br />
                 <button type="submit" class="btn btn-primary">Submit</button>
         </EditForm>
-
-    }
-
-    
-        
-
-    
-    
+    }  
 }
 
 
@@ -110,4 +107,10 @@ else
         }
 
     }
+
+     public string GenerateColor(string lessonname) 
+    {
+        return lessonname== "Matematyka"? "magenta" : lessonname== "polski" ? "classB" : "";
+    }
+
 }

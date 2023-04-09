@@ -11,23 +11,32 @@
                     @if(!day.IsEmpty)
                     {
                         <div class="day shadow-effect @currentDayClass @selectedDayClass" @onclick="() => selectedDay = day">
-                            <h3 class="ms-fontSize-24 ms-fontWeight-regular">@day.DayNumber</h3>
+                            <h3 class="ms-fontSize-16 ms-fontWeight-regular">@day.DayNumber</h3>
                             @if(day.Events != null && day.Events.Count != 0)
+                        {
+                            @if (day.Events.Count <= 3)
                             {
-                                var firstEvent = day.Events.FirstOrDefault();
-                                <div class="day-event @firstEvent.Color">
-                                    @if(firstEvent.Title.Length > 25)
-                                    {
-                                    @firstEvent.Title.Substring(0, 25)
-
-                                    <text>...</text>
-                                    }
-                                    else
-                                    {
-                                    @firstEvent.Title
-                                    }
-                                </div>
+                                @foreach (var ev in day.Events)
+                                {
+                                    <div class="day-event @ev.Color">
+                                        @ev.Title
+                                    </div>
+                                }
                             }
+                            else
+                            {
+                                @foreach (var ev in day.Events.Take(3))
+                                {
+                                    <div class="day-event @ev.Color">
+                                        @ev.Title
+                                    </div>
+                                }
+
+                                <h3 class="ms-fontSize-12 ms-fontWeight-400">@(day.Events.Count-3) more...</h3>
+                            }
+
+      
+                        }
                         </div>
                     }
                 </DayTemplate>
@@ -36,10 +45,16 @@
 
 
          <!-- Day Menu -->
-        <div class="col-sm-12 col-md-12 col-lg-3">
-            <AddEvent SelectedDay="@selectedDay" />
+        
 
-            <EventList SelectedDay="@selectedDay" />
+         <div class="col-sm-12 col-md-12 col-lg-3">
+            
+             <div class="event-input-style">
+                <AddEvent SelectedDay="@selectedDay" />
+
+                <EventList SelectedDay="@selectedDay" />
+            </div>
+
         </div>
  </div>
 
@@ -57,4 +72,5 @@
             StateHasChanged();
         };
     }
+
 }

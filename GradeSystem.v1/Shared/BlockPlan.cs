@@ -6,4 +6,5 @@
     public bool IsEmpty { get; set; }
 
     public Enrollment? Lesson { get; set; }
+    public ExtraClasses? AdditionalAct { get; set; }
 }

@@ -2,6 +2,7 @@
     padding: 20px;
 }
 
+/* Co to ma byc */
 .microsoft-login-button {
     display: block;
     margin: auto;
@@ -41,95 +42,114 @@
     padding: 10px;
 }
 
+/* granat #0c244c */
 .calendar-table {
     width: 100%;
-    background-color: #f3f2f1;
+    background-color: white;
     text-align: center;
 }
 
     .calendar-table thead {
-        background-color: white;
+        background-color: #0c254d; /*pasek gdzie są dni tygodnia ma byc niebieski   #9cbcfb*/
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #081A36;
+        font-weight: bold;
+        color: white;
     }
 
     .calendar-table .day {
-        width: 125px;
-        height: 100px;
-        min-width: 125px;
+        height: 135px;
+        width: 190px;
         margin: 2px;
-        border-radius: 5px;
+        border-radius: 8px;
+        border: solid #0c254d;
+        border-width: 2px;
         background-color: white;
         padding: 5px;
         cursor: pointer;
+        
     }
 
     .calendar-table td {
-        padding: 3px;
+        padding: 0px;
     }
 
 
 .current-day {
-    border: 2px solid #0078d4;
-    color: #0078d4;
+    border: 2px solid #fcb615 !important; /* ramka dzisiejsza*/
+    background-color: #fff8e8 !important;
 }
 
 .selected-day {
-    border: 2px solid #004578;
-    color: #004578;
-    background: #c7e0f4 !important;
+    border: 2px solid #0c244c !important; /*ramka wybanego*/
+    color: #0c244c; /*liczba*/
+    background: white !important; /*tło wybranego*/
 }
 
 .day .day-event {
     font-size: 10px;
     padding: 5px;
+
 }
 
-
-@media (max-width: 900px) {
+@media (max-width: 768px ) {
     .calendar-table .day {
-        width: 100%;
-        height: 50px;
+
+        max-width:95px;
+        max-height: 90px;
         min-width: auto;
     }
 
-    .day .day-event {
-        display: none;
+}
+
+@media (max-width: 1025px ) {
+    .calendar-table .day {
+        max-width: 90px;
+        max-height: 80px;
+        min-width: auto;
+    }
+
+    .card{
+        
     }
 }
 
+
 /* Colors */
 .red-orange {
-    background: #da3b01;
+    background: #d00000 !important;
     color: white;
 }
 
 .magenta {
-    background: #881798;
-    color: white;
+    background: #ffba08 !important;
+    color: black;
 }
 
 .pink-red {
-    background-color: #750b1c;
+    background-color: #3f88c5 !important;
     color: white;
 }
 
 .yellow {
-    background: #fce100;
-    color: black;
+    background: #032b43 !important;
+    color: white;
 }
 
 .yellow-green {
-    background: #8cbd18;
-    color: black;
+    background: #407e02 !important;
+    color: white;
 }
 
 /* calendar day section */
 .calendar-toolbar {
-    background: #0078d4;
+    background: #f4b522;
     color: white;
 }
 
 .toolbar-button {
-    background: #0078d4;
+    background: #0c244c;
     margin: 0px;
     padding: 5px 10px;
     text-align: center;
@@ -150,22 +170,133 @@
         outline: none;
     }
 
+
 /* Input Style */
 .fluent-input {
     display: block;
+    inline-size: inherit;
     width: 100%;
-    padding: 3 7px;
-    margin: 10px 0;
-    border: 1px solid #3b3a39;
+    height: 35px;
+    margin: 12px 0px;
+    border: 2px solid #f4ad1c;
+    border-radius: 4px;
+    background: white;
+    text-align: center;
+    font-weight: 600;
+    .fluent-input:focus
+
+{
+    outline: none;
+    border: 2px solid #10264e;
 }
 
-    .fluent-input:focus {
-        outline: none;
-        border: 2px dashed #0078d4;
-    }
+}
+
+
+.add-event-input {
+    display: block;
+    inline-size: inherit;
+    width: 100%;
+    margin: 12px 0px;
+    border: 1px solid #0c244c;
+    background: white;
+    font-weight: 600;
+}
+.event-input-style{
+    padding-top: 58px;
+}
+
+/*Plan*/
+
+.plan {
+    padding: 10px;
+    
+}
+
+/* granat #0c244c */
+.plan-table {
+    width: 100%;
+    background-color: white;
+    text-align: center;
+}
+
+.plan-table thead {
+    background-color: #0c254d; /*pasek gdzie są dni tygodnia ma byc niebieski   #9cbcfb*/
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #081A36;
+    font-weight: bold;
+    color: white;
+    
+}
+
+.plan-table .day {
+    height: 125px;
+    min-width: 135px;
+    margin: 10px 0px;
+    background-color: white;
+    padding: 20px 0px;
+    /*cursor: pointer;*/
+    border-width: 1px;    
+}
+
+.plan-table td {
+    width: 60px;
+    padding: 0px;
+    border: 1px solid black;
+}
+
+.plan-event {
+   
+    font-size: 15px;
+    padding:2px;
+}
+
+
+.add-new-plan {
+    background: #0c244c;
+    color: white;
+    padding: 13px;
+    margin: 9px;
+}
+
+.add-new-additional {
+    background: #0c244c;
+    color: white;
+    padding: 13px;
+    margin: 9px;
+}
+
+.form-select {
+    border-radius: 0.25rem;    
+}
+
+.form-control{
+    margin-bottom: 0.5rem ;
+}
+
+.add-date-and-time {
+    border-radius: 0.25rem;
+}
+
+.btn-primary {
+    background-color: #f4b522 !important;
+    color: #0c244c !important;
+    border-color: white !important;
+    border: 1px;
+}
+
+.btn-danger {
+    background-color: #BD1818 !important;
+    color: white !important;
+    border-color: white !important;
+    border: 1px;
+}
+
 
 .card-content {
-    padding: 10px;
+    padding: 15px;
+    font-weight:600;
 }
 
 .event {
@@ -177,3 +308,93 @@
 .card {
     margin: 10px;
 }
+
+.card-content {
+    border: 2px solid #0c244c;
+    
+}
+
+.card-additional {
+    color: #10244c;
+    font-size: 24px;
+}
+
+.capacity-additional {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+}
+
+
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1:focus {
+    outline: none;
+}
+
+a, .btn-link {
+    color: #0071c1;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.btn-secondary {
+    background-color: #f4b522 !important;
+    color: #0c244c !important;
+    border-color: #0c244c !important;
+    border: solid 2px !important;
+    width: 70px;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred."
+    }

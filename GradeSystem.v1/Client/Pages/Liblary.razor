@@ -1,0 +1,36 @@
+﻿@page "/liblary/{id:int}"
+@inject IBookService BookService
+<h3>Liblary</h3>
+
+
+
+<table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>IsBorowed</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        foreach(var Book in BookService.Book)
+        {
+        <tr>
+            <td>Book.Title</td>
+            <td>Book.Author</td>
+            if(Book IsBorowed || Book IsBoocked)
+            {
+            <td>"x"</td>
+            }
+            else
+            {
+            <td>"v"</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+@code {
+
+}

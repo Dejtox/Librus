@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "/merblGlk5MsL+YtWnTkQWuj4VP91LMzMivZ4i68Jm4K5lTZgv1+IoYil5jV6qMm+5utWSpMLFfm2ZEojJIfxw==",
   "success": true,
   "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-=======
-  "dgSpecHash": "+a7HHocEpO9E+80VzRxmkSNIs9dVu+q9UQirI2pqrvUlQUmvXsVSct7W303yBLXZNj4nyjTwC4iwmgvxJ630fg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\HARDPC\\Documents\\Mój Pan\\gitkraken\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
->>>>>>> Koć
   "expectedPackageFiles": [],
   "logs": []
 }

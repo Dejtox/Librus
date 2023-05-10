@@ -946,3 +946,15 @@ C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\De
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.genruntimeconfig.cache
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\ref\GradeSystem.v1.Server.dll
 >>>>>>> Koć
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.csproj.AssemblyReference.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.AssemblyInfoInputs.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.AssemblyInfo.cs
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.csproj.CoreCompileInputs.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.RazorAssemblyInfo.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.RazorAssemblyInfo.cs
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.dll
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\refint\GradeSystem.v1.Server.dll
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net6.0\GradeSystem.v1.Server.pdb

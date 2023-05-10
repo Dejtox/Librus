@@ -2995,3 +2995,12 @@ C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\De
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.pdb
 C:\Users\HARDPC\Documents\Mój Pan\gitkraken\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\ref\GradeSystem.v1.Client.dll
 >>>>>>> Koć
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.csproj.AssemblyReference.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.AssemblyInfoInputs.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.AssemblyInfo.cs
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.csproj.CoreCompileInputs.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.dll
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\refint\GradeSystem.v1.Client.dll
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.pdb

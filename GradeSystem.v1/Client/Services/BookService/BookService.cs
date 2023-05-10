@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using GradeSystem.v1.Client.Pages;
+using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
@@ -20,7 +21,7 @@ namespace GradeSystem.v1.Client.Services.BookService
         public async Task<Book> GetBookByQR(int QR)
         {
             var result = await _http.GetFromJsonAsync<Book>($"api/Book/{QR}");
-            if(result != null)
+            if (result != null)
             {
                 return result;
             }
@@ -32,9 +33,13 @@ namespace GradeSystem.v1.Client.Services.BookService
             throw new NotImplementedException();
         }
 
-        public Task GetBooks()
+        public async Task GetBooks()
         {
-            throw new NotImplementedException();
+            var result = await _http.GetFromJsonAsync<List<Book>>("api/Book");
+            if (result != null)
+            {
+                Books = result;
+            }
         }
 
         public async Task CreateBook(Book book)
@@ -45,14 +50,14 @@ namespace GradeSystem.v1.Client.Services.BookService
 
         public async Task UpdateBook(Book book)
         {
-            var result = await _http.PutAsJsonAsync($"api/Book/{book.QRCode}",book);
-            
+            var result = await _http.PutAsJsonAsync($"api/Book/{book.QRCode}", book);
+
         }
 
         public async Task DeleteBook(int id)
         {
-            var result = await _http.DeleteAsync($"api/Book/{id}");         
-            
+            var result = await _http.DeleteAsync($"api/Book/{id}");
+
         }
 
 

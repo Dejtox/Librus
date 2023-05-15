@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DIfi03szcRiIQoWIRUVVA9MKgbCWhEBQEhzLyIrhqKGEKORfF/cHEWc2HXIK4u5usXfY2+MJwuaVFSeziuB9mA==",
+  "dgSpecHash": "wJdF9imxcVsMasPtVrup3tIg7LD1z/DM9tvWchBuhtYFgGdHYTRYfleTaE6rdz5yZ7i/8CF6M8JCY6dl1y1yMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+  "projectFilePath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

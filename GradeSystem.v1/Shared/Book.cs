@@ -7,7 +7,7 @@
     public bool IsBoocked { get; set; }
     public int QRCode { get; set; }
 
-    public int StudentId { get; set; }
+    public int? StudentId { get; set; }
     public Student? Student { get; set; }
 }
 

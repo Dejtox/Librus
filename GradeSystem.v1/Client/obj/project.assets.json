@@ -6086,23 +6086,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\patry\\.nuget\\packages\\": {},
+    "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "projectUniqueName": "E:\\Projekty\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\obj\\",
+      "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "packagesPath": "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\",
+      "outputPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MarcinCzarnecki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6118,8 +6118,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+            "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+              "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
             }
           }
         }
@@ -6198,7 +6198,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[6.0.10, 6.0.10]"
+            "version": "[6.0.16, 6.0.16]"
           }
         ],
         "frameworkReferences": {
@@ -6206,7 +6206,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
@@ -6214,13 +6214,5 @@
         "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

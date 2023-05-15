@@ -10,6 +10,7 @@ global using GradeSystem.v1.Client.Services.UserService;
 global using GradeSystem.v1.Client.Services.ExtraClassesService;
 global using GradeSystem.v1.Client.Services.ExtraClassesListService;
 global using GradeSystem.v1.Client.Services.LessonsHoursService;
+global using GradeSystem.v1.Client.Services.BookService;
 global using Microsoft.AspNetCore.Components.Authorization;
 global using GradeSystem.v1.Client.Services.EventService;
 
@@ -40,6 +41,7 @@ builder.Services.AddScoped<IExtraClassesService, ExtraClassesService>();
 builder.Services.AddScoped<IExtraClassesListService, ExtraClassesListService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ILessonsHoursService, LessonsHoursService>();
+builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddAuthenticationCore();

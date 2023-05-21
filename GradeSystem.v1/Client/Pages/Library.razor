@@ -1,0 +1,281 @@
+﻿@page "/Library"
+@inject IBookService BookService
+@inject IStudentService StudentService 
+@inject NavigationManager NavigationManager
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Text.RegularExpressions;
+<h3>Library</h3>
+
+<input @bind-value="foo" @onkeydown="FillTable" />
+@btnText
+<button @onclick="AddBook">add</button>
+<input type="checkbox" @bind-value="isawailable" @onclick="UpdateList">
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>IsBorowed</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var Book in BookAmount)
+        {
+                string imgurl = "/Img/" + @Book.Title + @Book.Author + ".jpg";
+            
+            <tr>
+                <td><img src=@imgurl></td>
+                <td>@Book.Title</td>
+                <td>@Book.Author</td>
+                <td>@Book.Amount</td>
+                <td><button class="btn btn-primary" @onclick="(()=>BookTheBook(Book))">Reservate</button></td>
+                
+                @*
+            {
+            <td><i class="oi oi-ban"></i></td>
+            }
+            else
+            {
+            <td><i class="oi oi-check"></i></td>
+            <td><button class="btn btn-primary" @onclick="(()=>EditBook(Book.QRCode))">"Update"</button></td>
+            }*@
+            </tr>
+        }
+    </tbody>
+</table>
+@ID
+@code {
+    string foo;
+    string bar;
+    bool isawailable = false;
+    IList<BookView> BookAmount = new List<BookView>();
+    async Task FillTable(KeyboardEventArgs args)
+    {
+        String x = args.ToString();
+        if (args.Key == "Backspace")
+        {
+            if (btnText != null && btnText.Length > 0)
+            {
+                btnText = btnText.Remove(btnText.Length - 1, 1);
+            }
+        }
+        if (x.Length > 1)
+        {
+
+        }
+        else
+        {
+            btnText = btnText + args.Key;
+        }
+        await UpdateList();
+    }
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        await GetClaimsGetID();
+        await BookService.GetBooks();
+        await UpdateList();
+
+    }
+    int ID;
+    Student student;
+    string Roles;
+    IList<Book> BookList = new List<Book>();
+    void EditBook(int QR)
+    {
+        NavigationManager.NavigateTo($"Book/{QR}");
+    }
+    void AddBook()
+    {
+        NavigationManager.NavigateTo($"Book");
+    }
+    async Task UpdateList()
+    {
+        await BookService.GetBooks();
+        BookList.Clear();
+        Regex rg = new Regex(btnText);
+
+        if (btnText.Length == 0)
+        {
+
+            if (isawailable != true)
+            {
+                BookList = BookService.Books;
+            }
+            else
+            {
+                foreach (var Book in BookService.Books)
+                {
+                    if (Book.IsBoocked || Book.IsBorowed)
+                    {
+                        continue;
+                    }
+                    else
+                        BookList.Add(Book);
+                }
+
+            }
+        }
+        else
+        {
+            foreach (var Book in BookService.Books)
+            {
+                if (isawailable == true)
+                {
+                    if (Book.IsBoocked || Book.IsBorowed)
+                    {
+                        continue;
+                    }
+                }
+
+                MatchCollection machedTitle = rg.Matches(Book.Title);
+                MatchCollection machedAuthor = rg.Matches(Book.Author);
+
+                if (machedTitle.Count > 0)
+                {
+                    BookList.Add(Book);
+                }
+                else if (machedAuthor.Count > 0)
+                {
+                    BookList.Add(Book);
+                }
+            }
+        }
+        await Count();
+    }
+    async Task Count()
+    {
+        BookAmount.Clear();
+        await BookService.GetBooks();
+        foreach (var Book in BookList)
+        {
+            BookView bw = new BookView
+                {
+                    Title = Book.Title,
+                    Author = Book.Author,
+                    Amount = 1,
+                    Ids = new List<int>()
+                };
+            if (BookAmount.Count == 0)
+            {
+                if (Book.IsBoocked || Book.IsBorowed)
+                {
+                    bw.Amount = 0;
+                    BookAmount.Add(bw);
+                }
+                else
+                {
+                    bw.Ids.Add(Book.BookID);
+                    BookAmount.Add(bw);
+                }
+            }
+            else
+            {
+                bool temp = true;
+                foreach (var duble in BookAmount)
+                {
+                    if (bw.Author == duble.Author && bw.Title == duble.Title)
+                    {
+                        if (!Book.IsBoocked || !Book.IsBorowed)
+                        {
+                            duble.Amount++;
+                            duble.Ids.Add(Book.BookID);
+                            temp = false;
+                            break;
+                        }
+                    }
+                }
+                if (temp)
+                {
+                    if (Book.IsBoocked || Book.IsBorowed)
+                    {
+                        bw.Amount = 0;
+                        BookAmount.Add(bw);
+                    }
+                    else
+                    {
+                        bw.Ids.Add(Book.BookID);
+                        BookAmount.Add(bw);
+                    }
+                }
+            }
+        }
+    }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+
+        }
+        else
+        {
+            if (Roles == "Student")
+            {
+                foreach (var studentpom in StudentService.Students)
+                {
+                    if (studentpom.StudentID == ID)
+                    {
+                        student = studentpom;
+                    }
+                }
+            }
+
+
+        }
+    }
+    async Task BookTheBook(BookView bookView)
+    {
+        int positon = 0;
+        int id = bookView.Ids[positon];
+        await BookService.GetBooks();
+        foreach (var book in BookService.Books)
+        {
+            if (book.BookID == id)
+            {
+                if (book.IsBoocked == false)
+                {
+                    book.IsBoocked = true;
+                    book.StudentId = ID;
+                    await BookService.UpdateBook(book);
+                    break;
+                }
+                positon++;
+                if (positon > bookView.Ids.Count)
+                {
+
+                    break;
+                }
+            }
+        }
+        await UpdateList();
+    }
+}
+

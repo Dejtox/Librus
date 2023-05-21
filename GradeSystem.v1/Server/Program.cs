@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using GradeSystem.v1.Server.Data;
 using GradeSystem.v1.Server.Controllers;
-
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Identity;
 using GradeSystem.v1.Client.Services.UserService;

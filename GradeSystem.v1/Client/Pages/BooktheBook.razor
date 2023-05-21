@@ -1,0 +1,29 @@
+﻿@page "/Borrow/{QR:int}"
+@inject IBookService BookService
+@inject NavigationManager NavigationManager
+<h3>BooktheBook</h3>
+
+@code {
+    [Parameter]
+    public int? QR { get; set; }
+
+    Book book = new Book();
+
+    protected override async Task OnInitializedAsync()
+    {
+        book = await BookService.GetBookByQR((int)QR);
+        if (book.IsBorowed == false)
+        {
+            book.IsBorowed = true;
+
+        }
+        else
+        {
+            book.IsBorowed = false;
+        }
+        await BookService.UpdateBook(book);
+        NavigationManager.NavigateTo("/Library");
+    }
+
+
+}

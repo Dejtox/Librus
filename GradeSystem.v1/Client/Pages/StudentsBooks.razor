@@ -1,0 +1,92 @@
+﻿@page "/BooksOfStudent/{id:int}"
+@inject IBookService BookService
+@inject NavigationManager NavigationManager
+<h3>StudentsBooks</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>IsBorowed</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Book in BookList)
+        {
+            <tr>
+                <td>@Book.Title</td>
+                <td>@Book.Author</td>
+                @if (Book.IsBoocked)
+                {
+                    <td>Book is Boocked</td>
+                    <td><button class="btn btn-primary" @onclick="(()=>ResigneBook(Book))">Cancel your reservation</button></td>
+                }
+                @if (Book.IsBorowed)
+                {
+                    <td>Book is Borowed</td>
+                }
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await GetClaimsGetID();
+        await BookService.GetBooks();
+        await UpdateList();
+
+    }
+    int ID;
+    string Roles;
+    IList<Book> BookList = new List<Book>();
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+    }
+    async Task UpdateList()
+    {
+        await BookService.GetBooks();
+        BookList.Clear();
+        foreach (var Book in BookService.Books)
+        {
+            if (Book.StudentId == ID)
+            {
+                BookList.Add(Book);
+            }
+        }
+    }
+    async Task ResigneBook(Book studentsbook)
+    {
+        await BookService.GetBooks();
+        foreach (var book in BookService.Books)
+        {
+            if (studentsbook.BookID == book.BookID)
+            {
+                book.IsBoocked = false;
+                book.StudentId = null;
+                await BookService.UpdateBook(book);
+            }
+        }
+        await UpdateList();
+    }
+
+}

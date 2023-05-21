@@ -6,9 +6,9 @@
     public bool IsBorowed { get; set; }
     public bool IsBoocked { get; set; }
     public int QRCode { get; set; }
-
-    public int StudentId { get; set; }
-    public Student Student { get; set; }
+    public string Img {get; set;} = string.Empty;
+    public int? StudentId { get; set; }
+    public Student? Student { get; set; }
 }
 
 

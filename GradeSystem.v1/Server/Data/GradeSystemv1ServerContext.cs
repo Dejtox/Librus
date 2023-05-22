@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GradeSystem.v1.Shared;
+using Microsoft.EntityFrameworkCore;
 namespace GradeSystem.v1.Server.Data
 {
     public class GradeSystemv1ServerContext : DbContext
@@ -8,8 +9,9 @@ namespace GradeSystem.v1.Server.Data
             : base(options)
         {
         }
+        public DbSet<UploadResult> Uploads => Set<UploadResult>();
 
-        
+
         public DbSet<Student> Student { get; set; } = default!;
 
         public DbSet<Parent> Parent { get; set; }

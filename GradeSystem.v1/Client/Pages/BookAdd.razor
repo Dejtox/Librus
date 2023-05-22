@@ -1,5 +1,7 @@
 ﻿@page "/Book"
 @page "/Book/{QR:int}"
+@using System.Net.Http.Headers;
+
 @inject IBookService BookService
 @inject NavigationManager NavigationManager
 
@@ -34,6 +36,10 @@ else
     <button type="button" class="btn btn-danger" @onclick="DelateBook">Delete Book</button>
 
 </EditForm>
+
+<h1>Upload Files!</h1>
+
+<InputFile onsubmit="@OnInputFileChange" />
 
 @code {
     [Parameter]
@@ -79,5 +85,13 @@ else
         await BookService.DeleteBook(book.QRCode);
         NavigationManager.NavigateTo("/Library");
     }
+    private readonly IWebHostEnvironment _webhost;
 
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var path = Path.Combine(_webhost.WebRootPath, "Img", name);
+
+        await using FileStream fs = new(path, FileMode.Create);
+        await file.CopyToAsync(fs);
+    }
 }

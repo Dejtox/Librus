@@ -36,16 +36,15 @@ else
     <button type="button" class="btn btn-danger" @onclick="DelateBook">Delete Book</button>
 
 </EditForm>
-
-<h1>Upload Files!</h1>
-
-<InputFile onsubmit="@OnInputFileChange" />
+<label for="Number of Books">Title</label>
+<input type="number" @bind-value="amount"/>
 
 @code {
     [Parameter]
     public int? QR { get; set; }
 
     Book book = new Book();
+    int amount = 1;
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
     {
@@ -66,12 +65,19 @@ else
     }
     async Task HandleSubmit()
     {
+        if(amount<=0)
+        {
+            amount = 1;
+        }
         if (QR == null)
         {
             book.IsBoocked = false;
             book.IsBoocked = false;
-            await BookService.CreateBook(book);
-
+            while (amount != 0)
+            {
+                await BookService.CreateBook(book);
+                amount--;
+            }
         }
         else
         {
@@ -85,13 +91,6 @@ else
         await BookService.DeleteBook(book.QRCode);
         NavigationManager.NavigateTo("/Library");
     }
-    private readonly IWebHostEnvironment _webhost;
 
-    private async Task OnInputFileChange(InputFileChangeEventArgs e)
-    {
-        var path = Path.Combine(_webhost.WebRootPath, "Img", name);
-
-        await using FileStream fs = new(path, FileMode.Create);
-        await file.CopyToAsync(fs);
-    }
+    
 }

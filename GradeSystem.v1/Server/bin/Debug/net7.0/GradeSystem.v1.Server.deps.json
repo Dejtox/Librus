@@ -21,7 +21,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.5",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.6",
           "Swashbuckle.AspNetCore": "6.5.0",
-          "System.IdentityModel.Tokens.Jwt": "6.30.1"
+          "System.IdentityModel.Tokens.Jwt": "6.30.1",
+          "Tewr.Blazor.FileReader": "3.3.1.21360"
         },
         "runtime": {
           "GradeSystem.v1.Server.dll": {}
@@ -2973,6 +2974,18 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "Tewr.Blazor.FileReader/3.3.1.21360": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.5",
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Tewr.Blazor.FileReader.dll": {
+            "assemblyVersion": "3.3.1.21360",
+            "fileVersion": "3.3.1.21360"
+          }
+        }
+      },
       "GradeSystem.v1.Client/1.0.0": {
         "dependencies": {
           "Blazored.LocalStorage": "4.3.0",
@@ -4790,6 +4803,13 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "Tewr.Blazor.FileReader/3.3.1.21360": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wBHvDqKBtuYIogCtQEAX2nqqqFDc+ZmjhCppMC+6yccDC9kjlMKjot2N8Bw/yKEbJNbgW2ilAkicK2n126xfyw==",
+      "path": "tewr.blazor.filereader/3.3.1.21360",
+      "hashPath": "tewr.blazor.filereader.3.3.1.21360.nupkg.sha512"
     },
     "GradeSystem.v1.Client/1.0.0": {
       "type": "project",

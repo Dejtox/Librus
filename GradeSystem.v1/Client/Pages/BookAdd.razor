@@ -1,7 +1,9 @@
 ﻿@page "/Book"
 @page "/Book/{QR:int}"
+@using Microsoft.AspNetCore.Http;
 @inject IBookService BookService
 @inject NavigationManager NavigationManager
+
 
 <h3>BookAddEdit</h3>
 
@@ -24,23 +26,25 @@ else
     <div>
         <label for="Author">Author</label>
         <InputText id="Author" @bind-Value="book.Author" class="form-control"></InputText>
-
     </div>
-        <label for="Img">Img</label>
-        <InputFile id="img"> </InputFile>
-
+    
+   
+    
     <br />
     <button type="submit" class="btn btn-primary">@btnText</button>
     <button type="button" class="btn btn-danger" @onclick="DelateBook">Delete Book</button>
 
 </EditForm>
-
+<label for="Img">Img</label>
+<InputFile multiple />
+@message
 @code {
     [Parameter]
     public int? QR { get; set; }
 
     Book book = new Book();
     string btnText = string.Empty;
+    string message = string.Empty;
     protected override async Task OnInitializedAsync()
     {
         btnText = QR == null ? "Save New Book" : "Update Book";
@@ -71,7 +75,9 @@ else
         {
             await BookService.UpdateBook(book);
         }
+
         NavigationManager.NavigateTo("/Library");
+
     }
     async Task DelateBook()
     {
@@ -80,4 +86,12 @@ else
         NavigationManager.NavigateTo("/Library");
     }
 
+    
+    private void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var selectedFiles = e.GetMultipleFiles();
+        message = $"{selectedFiles.Count} file(s) selected";
+        this.StateHasChanged();
+        
+    }
 }

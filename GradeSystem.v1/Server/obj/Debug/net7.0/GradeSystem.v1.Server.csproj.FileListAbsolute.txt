@@ -656,3 +656,4 @@ C:\Users\Lenovo\Dziennik v2\1\GradeSystem.v1\Server\obj\Debug\net7.0\refint\Grad
 C:\Users\Lenovo\Dziennik v2\1\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.pdb
 C:\Users\Lenovo\Dziennik v2\1\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.genruntimeconfig.cache
 C:\Users\Lenovo\Dziennik v2\1\GradeSystem.v1\Server\obj\Debug\net7.0\ref\GradeSystem.v1.Server.dll
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\bin\Debug\net7.0\Tewr.Blazor.FileReader.dll

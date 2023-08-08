@@ -4,29 +4,36 @@
 
 <PageTitle> Classes </PageTitle>
 
-<h3>Classes</h3>
-
-<table class="table">
+<table class="Classes-table">
     <thead>
+        
         <tr>
-            <th>Class Name</th>
-            <th>Teacher First Name</th>
-            <th>Teacher Last Name</th>
+            <th>Class</th>
+            <th>Teacher </th>            
+            <th> </th>
         </tr>
     </thead>
     <tbody>
+        
         @foreach (var classs in ClassService.Classes)
         {
-            <tr>
+            <tr class=" classes_row">
                 <td>@classs.ClassName</td>
-                <td>@classs.Teacher.FirstName</td>
-                <td>@classs.Teacher.LastName</td>
+                <td>@classs.Teacher.FirstName @classs.Teacher.LastName</td>               
                 <td>
-                    <button class="btn btn-primary" @onclick="(()=>ShowClass(classs.ClassID))"><i class="oi oi-pencil"></i></button>
+                    <button class="btnshowclass" @onclick="(()=>ShowClass(classs.ClassID))"><i class="oi oi-pencil">Show Class</i></button>
                 </td>
             </tr>
+            
         }
+        <tr class="blank_row">
+            <td colspan="3"></td>
+        </tr>
     </tbody>
+    <tfoot>
+
+    </tfoot>
+
 </table>
 <button type="button" class="btn btn-primary" @onclick="CreateClass">Create New</button>
 

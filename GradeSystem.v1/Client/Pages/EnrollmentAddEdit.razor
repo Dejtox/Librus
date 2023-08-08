@@ -64,6 +64,8 @@ else
     Enrollment enrollment = new Enrollment();
     string btnText = string.Empty;
     double timeStamp = 45;
+    DateTime StartDate;
+    DateTime EndDate;
     protected override async Task OnInitializedAsync()
     {
         btnText = ID == null ? "Save New Lesson" : "Update Lesson";

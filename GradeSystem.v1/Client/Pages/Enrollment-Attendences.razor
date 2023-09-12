@@ -1,0 +1,39 @@
+﻿@page "/Enrollment_Attendences"
+@inject IAttendanceService AttendanceService
+@inject IEnrollmentService EnrollmentService
+@inject ITeacherService TeacherService
+<h3>Enrollment_Attendences</h3>
+
+<table>
+    <thead>
+        <tr>
+            <td> </td>
+            <td> </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<tabke>
+    <thead>
+        <tr>
+            <td> </td>
+            <td>Student</td>
+            <td> Lesson</td>
+        </tr>
+    </thead>
+</tabke>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await AttendanceService.GetAttendances();
+        await EnrollmentService.GetEnrollments();
+        await TeacherService.GetTeachers();
+    }
+}

@@ -4,22 +4,43 @@
 @inject IStudentService StudentService
 @inject IAttendanceService AttendanceService
 @inject IEnrollmentService EnrollmentService
-
-<PageTitle> Attendances </PageTitle>
+<table class="pagetable">
+    <thead>
+        <tr>
+            <th class="firstrow1">
+<h1>Attendances</h1>
+<table class="TimeSelectionTable">
+    <thead>
+        <tr>
+            <td> </td>
+            <td> </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><label for="Enrollment-time">Since</label></td>
+        <td>
 <div>
 
-    <label for="Enrollment-time">Since</label>
+    
     <input type="datetime-local" id="meeting-time"
            name="enrollment-time" class="add-date-and-time" @bind-value="StartDate">
 
 </div>
+        </td>
+        </tr>  
+        <tr>
+            <td<label for="Enrollment-time">To</label></td>
 <div>
 
-    <label for="Enrollment-time">To</label>
+    <td>
     <input type="datetime-local" id="meeting-time"
            name="enrollment-time" class="add-date-and-time" @bind-value="EndDate">
-
+            </td>
 </div>
+        </tr>
+    </tbody>
+</table>
 <AuthorizeView Roles="Parent">
     <h3>Chose your child</h3>
     
@@ -37,14 +58,24 @@
 }
     </InputSelect>
  </AuthorizeView>
-
-<table class="Classes-table">
+            </th>
+            <th rowspan="2" class="secondrow1">
+<table class="Attendances-table">
     <thead>
+        <tr>
+            <th rowspan="2">Day</th>
+                <th colspan="@countdown">Lesson</th>
+
+        </tr>
     <tr>
-    <th>Day</th>
         @for (int i = countdown; i > 0; i--)
         {
-        <th>Lesson</th>
+                if (countdown <= countup)
+                {
+                    countup = 0;
+                }
+                countup++;
+                <th>@countup</th>
 
         }
     </tr>
@@ -53,7 +84,7 @@
         @for (DateTime ForDate = StartDate; 0>=DateTime.Compare(ForDate, EndDate); ForDate=ForDate.AddDays(1))
         {
             int i = countdown;
-            <tr class =" classes_row">
+            <tr>
                 <td>@ForDate.Day/@ForDate.Month/@ForDate.Year @ForDate.DayOfWeek</td>
                 @foreach(var testatendence in AttendanceService.Attendances)
                 {
@@ -139,36 +170,54 @@
         }
     </tbody>
 </table>
-<div class="square"></div>
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Student First Name</th>
-            <th>Student Last Name</th>
-            <th>Description</th>
-            <th>Subject Name</th>
-            <th>Date</th>
+            </th>
         </tr>
-    </thead>
-    <tbody>
-        @foreach (var attendance in AttendanceService.Attendances)
-        { 
-            <tr>
-                <td>@attendance.Student.FirstName</td>
-                <td>@attendance.Student.LastName</td>
-                <td>@attendance.Description</td>
-                <td>@attendance.Enrollment.Subject.SubjectName</td>
-                <td>@attendance.Enrollment.Date</td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(()=>ShowAttendance(attendance.AttendanceID))"><i class="oi oi-pencil"></i></button>
-                </td>
-            </tr>
-        }
-    </tbody>
+        <tr>
+            <th class="firstrow2">
+        <table class="Legend">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="greensquare"></div>
+                    </th>
+                    <th>
+                        Present
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="redsquare"></div>
+                    </th>
+                    <th>
+                        Absent
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="yellowsquare"></div>
+                    </th>
+                    <th>
+                        Late
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="bluesquare"></div>
+                    </th>
+                    <th>
+                        Excused
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+            </th>
+        </tr>
+</thead>
+<tbody>
+</tbody>
 </table>
-<button type="button" class="btn btn-primary" @onclick="CreateAttendance">Create New</button>
+
 @code {
     protected override async Task OnInitializedAsync()
     {
@@ -188,6 +237,7 @@
     int? Id = null;
     int? studentsid = null;
     int countdown = 10;
+    int countup = 0;
     int howmany = 0;
     string Roles;
     DateTime StartDate = DateTime.Now.AddDays(-6);

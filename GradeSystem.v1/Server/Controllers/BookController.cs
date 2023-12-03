@@ -16,7 +16,7 @@ namespace GradeSystem.v1.Server.Controllers
         public async Task<ActionResult<IEnumerable<Book>>> GetBook()
         {
             return await _context.Book.Include(u => u.Student).ToListAsync();
-            
+
         }
 
         [HttpGet("{QRCode}")]
@@ -66,6 +66,7 @@ namespace GradeSystem.v1.Server.Controllers
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             book.Student = null;
+            book.StudentId = null;
             _context.Book.Add(book);
             await _context.SaveChangesAsync();
 

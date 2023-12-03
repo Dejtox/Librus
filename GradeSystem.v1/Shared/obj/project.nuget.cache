@@ -1,14 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "nvYyG4GC/aiLO9CjNnvpDacitObJkCt3vY+0UZnjVT5W4MlhSm/6NUo5rt5IxT6Gew1lbCHt4eFgaK2t4ILB5g==",
+  "dgSpecHash": "+BBv/bPiMvlLdnRvqBjBIF3DwMa3yj4V0iLlOA5NyKCntSMZkyq/DMHHebleZJZYyNZecUPCD/CzcjweevfuSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-=======
-  "dgSpecHash": "wJdF9imxcVsMasPtVrup3tIg7LD1z/DM9tvWchBuhtYFgGdHYTRYfleTaE6rdz5yZ7i/8CF6M8JCY6dl1y1yMg==",
-  "success": true,
-  "projectFilePath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
->>>>>>> Branchor
+  "projectFilePath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Wystąpił problem podczas czytania pliku pamięci podręcznej C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

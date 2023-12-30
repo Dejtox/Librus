@@ -1,9 +1,7 @@
 ﻿@page "/Library"
 @inject IBookService BookService
-<<<<<<< HEAD
 @inject IStudentService StudentService 
-=======
->>>>>>> Branchor
+
 @inject NavigationManager NavigationManager
 @using System;
 @using System.Collections.Generic;
@@ -11,6 +9,7 @@
 @using System.Text;
 @using System.Text.RegularExpressions;
 <h3>Library</h3>
+
 
 <input @bind-value="foo" @onkeydown="FillTable" />
 @btnText
@@ -29,35 +28,21 @@
 
         @foreach (var Book in BookAmount)
         {
-<<<<<<< HEAD
-                string imgurl = "/Img/" + @Book.Title + @Book.Author + ".jpg";
-            
+                string imgurl = "/Img/" + @Book.Title + @Book.Author + ".jpg";           
             <tr>
                 <td><img src=@imgurl></td>
-=======
+
+            </tr>
             <tr>
->>>>>>> Branchor
                 <td>@Book.Title</td>
                 <td>@Book.Author</td>
                 <td>@Book.Amount</td>
                 <td><button class="btn btn-primary" @onclick="(()=>BookTheBook(Book))">Reservate</button></td>
-<<<<<<< HEAD
-                
-=======
->>>>>>> Branchor
-                @*
-            {
-            <td><i class="oi oi-ban"></i></td>
-            }
-            else
-            {
-            <td><i class="oi oi-check"></i></td>
-            <td><button class="btn btn-primary" @onclick="(()=>EditBook(Book.QRCode))">"Update"</button></td>
-            }*@
-            </tr>
+            </tr>      
         }
     </tbody>
 </table>
+
 @ID
 @code {
     string foo;
@@ -93,10 +78,7 @@
 
     }
     int ID;
-<<<<<<< HEAD
     Student student;
-=======
->>>>>>> Branchor
     string Roles;
     IList<Book> BookList = new List<Book>();
     void EditBook(int QR)
@@ -236,7 +218,6 @@
                 Roles = claim.Value;
             }
         };
-<<<<<<< HEAD
 
         if (Roles == "Parent")
         {
@@ -264,8 +245,6 @@
 
 
         }
-=======
->>>>>>> Branchor
     }
     async Task BookTheBook(BookView bookView)
     {
@@ -294,4 +273,3 @@
         await UpdateList();
     }
 }
-

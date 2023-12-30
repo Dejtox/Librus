@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\gradesystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
       "projectName": "GradeSystem.v1.Shared",
-      "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\gradesystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
       "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+      "outputPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\gradesystem.v1\\Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -69,13 +69,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Wystąpił problem podczas czytania pliku pamięci podręcznej C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

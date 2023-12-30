@@ -1001,3 +1001,6 @@ E:\Projekty\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.
 E:\Projekty\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\refint\GradeSystem.v1.Client.dll
 E:\Projekty\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.pdb
 E:\Projekty\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\ref\GradeSystem.v1.Client.dll
+C:\Users\pepci\Source\Repos\Dejtox\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.dll
+C:\Users\pepci\Source\Repos\Dejtox\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\refint\GradeSystem.v1.Client.dll
+C:\Users\pepci\Source\Repos\Dejtox\Librus\GradeSystem.v1\Client\obj\Debug\net6.0\GradeSystem.v1.Client.pdb

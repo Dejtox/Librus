@@ -33,6 +33,9 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<ExtraClassesList> ExtraClassesList { get; set; }
         public DbSet<CalendarEvent> CalendarEvent { get; set; }
         public DbSet<LessonsHours> LessonsHours { get; set; }
-        
+        public DbSet<Substitute> Substitute { get; set; }
+        public DbSet<SchoolTrip> SchoolTrip { get; set; }
+        public DbSet<SchoolTripTeachers> SchoolTripTeachers { get; set; }
+        public DbSet<SchoolTripClasses> SchoolTripClasses { get; set; }    
     }
 }

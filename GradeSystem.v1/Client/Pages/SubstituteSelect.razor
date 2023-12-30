@@ -1,0 +1,42 @@
+﻿@page "/substitute_select"
+@inject ISubstituteService SubstituteService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Lesson select</PageTitle>
+<h3>Select a lesson to create substitute.</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Enrollment Date</th>
+            <th>Class Name</th>
+            <th>Subject Name</th>
+            <th>Class Room</th>
+            <th>Create Substitute</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enrollment in SubstituteService.Enrollments)
+        {
+            <tr>
+                <td>@enrollment.Date</td>
+                <td>@enrollment.Class.ClassName</td>
+                <td>@enrollment.Subject.SubjectName</td>
+                <td>@enrollment.ClassRoom</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>CreateSubstitute(enrollment.EnrollmentID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await SubstituteService.GetEnrollments();
+    }
+    void CreateSubstitute(int id)
+    {
+        NavigationManager.NavigateTo($"substitute_add/{id}");
+    }
+}

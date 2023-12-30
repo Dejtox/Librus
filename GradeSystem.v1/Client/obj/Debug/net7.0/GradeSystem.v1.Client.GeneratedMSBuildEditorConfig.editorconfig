@@ -1,4 +1,8 @@
 is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
 build_property.TargetFramework = net7.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -6,7 +10,7 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = false
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
-build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = browser
 build_property.RootNamespace = GradeSystem.v1.Client
 build_property.RootNamespace = GradeSystem.v1.Client
 build_property.ProjectDir = C:\Users\pepci\Source\Repos\Dejtox\Librus\GradeSystem.v1\Client\
@@ -142,6 +146,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxhbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SchoolTripAddEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sVHJpcEFkZEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SchoolTrips.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sVHJpcHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/ShowEvent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvd0V2ZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -168,6 +180,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Subjects.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SubstituteAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZUFkZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SubstituteEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZUVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Substitutes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SubstituteSelect.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZVNlbGVjdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/TeacherAddEdit.razor]

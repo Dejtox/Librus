@@ -1,0 +1,105 @@
+﻿@page "/school_trip"
+@page "/school_trip/{id:int}"
+@inject ISchoolTripService SchoolTripService
+
+@if(ID==null)
+{
+    <PageTitle>Create new School Trip</PageTitle>
+    <h3>Create new School Trip</h3>
+}
+else
+{
+    <PageTitle>Edit @schoolTrip.Name</PageTitle>
+    <h3>Edit @schoolTrip.Name</h3>
+}
+<EditForm Model="schoolTrip" OnSubmit="HandleSubmit">
+    <div>
+        <label for="trip-start-date">Start date</label>
+        <input type="datetime-local" name="trip-start-date" class="add-date-and-time" @bind-value="schoolTrip.StartDate"/>
+    </div>
+    <div>
+        <label for="trip-end-date">End date</label>
+        <input type="datetime-local" name="trip-end-date" class="add-date-and-time" @bind-value="schoolTrip.EndDate" />
+    </div>
+    <div>
+        <label for="trip-name">Trip name</label>
+        <InputText id="trip-name" class="form-control" @bind-Value="schoolTrip.Name"></InputText>
+    </div>
+    <div>
+        <label for="trip-desc">Trip description</label>
+        <InputText id="trip-desc" class="form-control" @bind-Value="schoolTrip.Description"></InputText>
+    </div>
+    <div>@*to może sie zmieni*@
+        <label for="trip-class">Class</label>
+        <select multiple>
+            @foreach (var classs in SchoolTripService.Classes)
+            {
+                <option value="@classs" @onclick="(()=>classes.Add(classs))">@classs.ClassName</option>
+            }
+        </select>
+    </div> 
+    <div>
+        <label for="trip-teacher">Teacher</label>
+        <select multiple>
+            @foreach(var teacher in SchoolTripService.Teachers)
+            {
+                <option value="@teacher" @onclick="(()=>teachers.Add(teacher))">@teacher.LastName</option>
+            }
+        </select>
+    </div> 
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+    <button type="button" class="btn btn-danger" @onclick="DeleteSchoolTrip">Delete Trip</button>
+    
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    SchoolTrip schoolTrip = new SchoolTrip();
+    SchoolTripCombined schoolTripCombined = new SchoolTripCombined();
+    List<Teacher> teachers { get; set; } = new List<Teacher>();
+    List<Class> classes { get; set; } = new List<Class>();
+    string btnText = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Trip" : "Update Trip";
+        await SchoolTripService.GetClasses();
+        await SchoolTripService.GetTeachers();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await SchoolTripService.GetClasses();
+            await SchoolTripService.GetTeachers();
+        }
+        else
+        {
+            schoolTrip = await SchoolTripService.GetSchoolTripByID((int)ID);
+        }
+    }
+
+    async void HandleSubmit()
+    {
+        schoolTripCombined.Teachers = teachers;
+        schoolTripCombined.Classes=classes;
+        schoolTripCombined.SchoolTrip = schoolTrip;
+
+        if (ID == null)
+        {
+            await SchoolTripService.CreateSchoolTrip(schoolTripCombined);
+        }
+        else
+        {
+            await SchoolTripService.UpdateSchoolTrip(schoolTripCombined);
+        }
+    }
+
+    async Task DeleteSchoolTrip()
+    {
+        await SchoolTripService.DeleteSchoolTripByID(schoolTrip.SchoolTripID);
+    }
+}

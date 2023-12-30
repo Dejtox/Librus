@@ -1,0 +1,65 @@
+﻿@page "/substitute_add/{id:int}"
+@inject ISubstituteService SubstituteService
+
+<PageTitle>Add Substitute</PageTitle>
+<h3>Add Substitute</h3>
+@*tablica bo chce spojnosc zachowac*@
+@*Wybor przedmiotu jednak bo nauczyciel jest przypisany do przedmiotu*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Enrollment Date</th>
+            <th>Class Name</th>
+            <th>Class Room</th>
+            <th>Subject Name</th>
+            <th>Add substitute</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@enrollment.Date</td>
+            <td>@enrollment.Class.ClassName</td>
+            <td>@enrollment.ClassRoom</td>
+            <td>@enrollment.Subject.SubjectName @enrollment.Subject.Teacher.FirstName - @enrollment.Subject.Teacher.LastName</td>
+            <td>
+                <InputSelect @bind-Value="substitute.SubjectID">
+                    <option value="0">SELECT</option>
+                    @foreach(var subject in SubstituteService.AvailableSubjects)
+                    {
+                        <option value="@subject.SubjectID">@subject.SubjectName @subject.Teacher.FirstName - @subject.Teacher.LastName</option>
+                    }
+                </InputSelect>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" type="submit" @onclick="HandleSubmit">Create new</button>
+@code {
+    [Parameter]
+    public int ID { get; set; }
+    Enrollment enrollment = new Enrollment();
+    Substitute substitute = new Substitute();
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        enrollment = await SubstituteService.GetEnrollmentById((int)ID);
+        await SubstituteService.GetAvailableSubjects(enrollment.Date,enrollment.EndDate);
+
+    }
+    async Task HandleSubmit()
+    {
+        substitute.StartDate = enrollment.Date;
+        substitute.EndDate = enrollment.EndDate;
+        substitute.ClassID = enrollment.ClassID;
+        substitute.ClassRoom = enrollment.ClassRoom;
+        substitute.Status = "active";
+        await SubstituteService.CreateSubstitute(substitute);
+        //ew w transakcje to zamienic
+        await SubstituteService.DeleteEnrollment(enrollment.EnrollmentID);
+    }
+    void SetSubject(int id)
+    {
+        substitute.SubjectID = id;
+    }
+}

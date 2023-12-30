@@ -6,11 +6,9 @@
     public bool IsBorowed { get; set; }
     public bool IsBoocked { get; set; }
     public int QRCode { get; set; }
-<<<<<<< HEAD
-    public string Img {get; set;} = string.Empty;
-=======
 
->>>>>>> Branchor
+    public string Img {get; set;} = string.Empty;
+
     public int? StudentId { get; set; }
     public Student? Student { get; set; }
 }

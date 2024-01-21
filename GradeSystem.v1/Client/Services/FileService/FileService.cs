@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Syncfusion.Blazor.Notifications.Internal;
+using System.Text.Json;
 
 namespace GradeSystem.v1.Client.Services.FileService
 {
@@ -8,6 +9,20 @@ namespace GradeSystem.v1.Client.Services.FileService
         private readonly HttpClient _client;
         private readonly JsonSerializerOptions _options;
 
+        public async Task<Stream> Getimage(string Filename)
+        {
+            var response = await _client.GetAsync($"api/upload/{Filename}");
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("File Not Find");
+            }
+            else
+            {     
+                var file =  response.Content.ReadAsStream();
+                return file;
+            }
+
+        }
         public FileService(HttpClient client)
         {
             _client = client;

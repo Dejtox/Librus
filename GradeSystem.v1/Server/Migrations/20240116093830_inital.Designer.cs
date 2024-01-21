@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GradeSystem.v1.Server.Migrations
 {
     [DbContext(typeof(GradeSystemv1ServerContext))]
-    [Migration("20230518134119_initial")]
-    partial class initial
+    [Migration("20240116093830_inital")]
+    partial class inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,13 +60,11 @@ namespace GradeSystem.v1.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookID"));
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("BookTypeID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Img")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("BorowingDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsBoocked")
                         .HasColumnType("bit");
@@ -77,18 +75,57 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<int>("QRCode")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("StudentId")
                         .HasColumnType("int");
+
+                    b.HasKey("BookID");
+
+                    b.HasIndex("BookTypeID");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Book");
+                });
+
+            modelBuilder.Entity("BookType", b =>
+                {
+                    b.Property<int>("BookTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookTypeID"));
+
+                    b.Property<int>("AmountOfBooks")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cover")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Edition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BookID");
+                    b.HasKey("BookTypeID");
 
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Book");
+                    b.ToTable("BookType");
                 });
 
             modelBuilder.Entity("CalendarEvent", b =>
@@ -489,9 +526,15 @@ namespace GradeSystem.v1.Server.Migrations
 
             modelBuilder.Entity("Book", b =>
                 {
+                    b.HasOne("BookType", "BookType")
+                        .WithMany("Books")
+                        .HasForeignKey("BookTypeID");
+
                     b.HasOne("Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
+
+                    b.Navigation("BookType");
 
                     b.Navigation("Student");
                 });
@@ -644,6 +687,11 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BookType", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

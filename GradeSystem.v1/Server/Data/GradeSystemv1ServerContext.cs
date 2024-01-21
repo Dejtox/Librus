@@ -28,6 +28,8 @@ namespace GradeSystem.v1.Server.Data
 
         public DbSet<Book> Book { get; set; }
 
+        public DbSet<BookType> BookType { get; set; }
+
         public DbSet<User> User { get; set; }
         public DbSet<ExtraClasses> ExtraClasses { get; set; }
         public DbSet<ExtraClassesList> ExtraClassesList { get; set; }

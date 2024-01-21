@@ -14,6 +14,8 @@ global using Microsoft.AspNetCore.Components.Authorization;
 global using GradeSystem.v1.Client.Services.EventService;
 global using GradeSystem.v1.Client.Services.BookService;
 global using GradeSystem.v1.Client.Services.FileService;
+global using GradeSystem.v1.Client.Services.BookServiceSupport;
+global using GradeSystem.v1.Client.Services.BookTypeService;
 
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Components.Web;
@@ -22,7 +24,6 @@ using Blazored.SessionStorage;
 using System.Reflection;
 using GradeSystem.v1.Client.Auth;
 using Syncfusion.Blazor;
-
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -43,7 +44,9 @@ builder.Services.AddScoped<IExtraClassesListService, ExtraClassesListService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ILessonsHoursService, LessonsHoursService>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IBookTypeService, BookTypeService>();
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IBookServiceSupport, BookServiceSupport>();
 builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddAuthenticationCore();

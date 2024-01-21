@@ -1,0 +1,68 @@
+﻿@inject IBookTypeService BookTypeService
+@inject IBookServiceSupport BookServiceSupport
+@inject IBookService BookService
+@inject IFileService FileService
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Http;
+@using System.Net.Http.Headers;
+
+@{
+    var showClass = IsVisible ? "d-block" : "d-none";
+}
+<div class="toast-container p-3 @showClass" data-bs-autohide="true" data-bs-delay="5000">
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+                <strong class="me-auto">Are you surre you whant to delete book. </strong>
+
+        </div>
+            <div class="toast-body">
+            <button type="button" class="btn-close" aria-label="Close" @onclick="delete">Delete</button>
+            <button type="button" class="btn-close" aria-label="Close" @onclick="Close">Cancel</button>
+            </div>
+
+    </div>
+</div>
+@code {
+    [Parameter]
+    public bool IsVisible { get; set; }
+
+    public bool AllDataIn = true;
+
+    [Parameter]
+    public EventCallback<bool> IsVisibleChanged { get; set; }
+
+    Book book;
+    BookType booktype = new BookType();
+    int Amount = 0;
+    string message = string.Empty;
+    public string ImgUrl { get; set; }
+    public EventCallback<string> OnChange { get; set; }
+
+    public async void ShowBookedit(Book bookvar)
+    {
+        book = bookvar;
+        book.BookType = await BookTypeService.GetBookTypeByID((int)book.BookTypeID);
+        Console.WriteLine(book.BookType);
+        IsVisible = true;
+        StateHasChanged();
+    }
+
+    private void Close()
+    {
+        IsVisible = false;
+        AllDataIn = true;
+        StateHasChanged();
+    }
+    async Task delete()
+    {
+        booktype = book.BookType;
+        booktype.AmountOfBooks = booktype.AmountOfBooks - 1;
+        (booktype.BookIds).Remove(book.BookID);
+        (booktype.Books).Remove(book);
+        await BookTypeService.UpdateBookType(booktype);
+        await BookService.DeleteBook(book.BookID);
+        IsVisible = false;
+        AllDataIn = true;
+        StateHasChanged();
+    }
+}

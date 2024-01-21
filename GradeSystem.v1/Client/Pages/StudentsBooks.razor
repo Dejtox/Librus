@@ -1,5 +1,5 @@
 ﻿@page "/BooksOfStudent"
-@inject IBookService BookService
+@inject BookService BookService
 @inject NavigationManager NavigationManager
 <h3>StudentsBooks</h3>
 <table>
@@ -15,8 +15,8 @@
         @foreach (var Book in BookList)
         {
             <tr>
-                <td>@Book.Title</td>
-                <td>@Book.Author</td>
+                <td>@Book.BookType.Title</td>
+                <td>@Book.BookType.Author</td>
                 @if (Book.IsBoocked)
                 {
                     <td>Book is Boocked</td>

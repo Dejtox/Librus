@@ -17,10 +17,6 @@
       "PackagePath": "staticwebassets\\Assets\\main.css"
     },
     {
-      "Id": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\dubk.jpg",
-      "PackagePath": "staticwebassets\\Img\\dubk.jpg"
-    },
-    {
       "Id": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },

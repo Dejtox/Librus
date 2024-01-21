@@ -1,0 +1,127 @@
+﻿@inject IBookTypeService BookTypeService
+@inject IBookServiceSupport BookServiceSupport
+@inject IBookService BookService
+@inject NavigationManager NavigationManager
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Text.RegularExpressions;
+@{
+    var showClass = IsVisible ? "d-block" : "d-none";
+}
+<div class="toast-container p-3 @showClass" data-bs-autohide="true" data-bs-delay="5000">
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            @if (AllDataIn)
+            {
+                <strong class="me-auto">Do You Whant To Save New BookType </strong>
+            }
+            else
+            {
+                <strong class="me-auto">You Can't Save This BookType</strong>
+            }
+        </div>
+        <button type="button" class="btn-close" aria-label="Close" @onclick="Delete">Delete</button>
+        @if (AllDataIn)
+        {
+            <div class="toast-body">
+                Title <input @oninput="FillTitle" value=@Titletxt /> <br>
+                Author  <input @oninput="FillAuthor" value=@Authortxt /> <br>
+                Editon  <input @oninput="FillEditon" value=@Editontxt />  <br>
+                <button type="button" class="btn-close" aria-label="Close" @onclick="Save">Save</button>
+                <button type="button" class="btn-close" aria-label="Close" @onclick="Close">Cancel</button>
+            </div>
+        }
+        else
+        {
+            <div class="toast-body">
+                Title,Author and Edtion must be filed.<br>
+                <button type="button" class="btn-close" aria-label="Close" @onclick="Close">Cancel</button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool IsVisible { get; set; }
+
+    public bool AllDataIn = true;
+
+    [Parameter]
+    public EventCallback<bool> IsVisibleChanged { get; set; }
+
+
+    BookType booktype = new BookType();
+    string Authortxt ;
+    string Titletxt;
+    string Editontxt;
+
+    async Task FillTitle(ChangeEventArgs args)
+    {
+        Titletxt = args.Value.ToString();    
+    }
+
+    async Task FillEditon(ChangeEventArgs args)
+    {
+
+        Editontxt = args.Value.ToString();
+
+
+    }
+
+    async Task FillAuthor(ChangeEventArgs args)
+    {
+        Authortxt = args.Value.ToString();
+    }
+
+
+    public void ShowBookTypeedit(BookType booktypeSBTE)
+    {
+        if (booktypeSBTE != null)
+        {
+            booktype = booktypeSBTE;
+            Authortxt = booktype.Author;
+            Editontxt = booktype.Edition;
+            Titletxt = booktype.Title;
+        }
+        else
+        {
+            AllDataIn = false;
+        }
+        IsVisible = true;
+        StateHasChanged();
+    }
+
+    private void Close()
+    {
+        IsVisible = false;
+        AllDataIn = true;
+        StateHasChanged();
+    }
+
+    async Task Save()
+    {
+        booktype.Title = Titletxt;
+        booktype.Edition = Editontxt;
+        booktype.Author = Authortxt;
+        await BookTypeService.UpdateBookType(booktype);
+        IsVisible = false;
+        AllDataIn = true;
+        StateHasChanged();
+        NavigationManager.NavigateTo("/test");
+    }
+    async Task Delete()
+    {
+        foreach(var booktypeid in booktype.BookIds)
+        {
+           await BookService.DeleteBook(booktypeid);
+        }
+        await BookTypeService.DeleteBookType(booktype.BookTypeID);
+        IsVisible = false;
+        AllDataIn = true;
+        StateHasChanged();
+        NavigationManager.NavigateTo("/test");
+    }
+}

@@ -1,0 +1,294 @@
+﻿@page "/LibraryViev"
+@inject IBookService BookService
+@inject IStudentService StudentService
+@inject IBookServiceSupport BookServiceSupport
+@inject NavigationManager NavigationManager
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Text.RegularExpressions;
+<div>
+    <input @oninput="FillTable" />
+</div>
+<br>
+<button @onclick="GoToBookType">Add New Book Type</button>
+<br>
+<div>
+    <input type="checkbox" @bind-value="isawailable" @onclick="DoUpdateList">
+    <table class="Attendances-table">
+        <thead>
+            <tr>
+                <th>Button</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Editon</th>
+                <th>Amount</th>
+                <th>Image</th>
+                <th>Add Boks</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var segment in segments)
+            {
+                string imgurl1 = @segment.bookType.Title + @segment.bookType.Author + segment.bookType.Edition + ".jpg";
+                <tr>
+                <td>
+                    
+                    <div class="card-header" id="@($"segmentHeading{segment.Id}")">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" @onclick="() => ToggleCollapse(segment.Id)" aria-expanded="@segment.IsCollapsed.ToString().ToLower()" aria-controls="@($"segmentCollapse{segment.Id}")">
+                                Segment @segment.Id
+                            </button>
+                        </h2>
+                        </div>
+                        
+                       
+                </td>
+
+                
+                    <td>@segment.bookType.Title</td>
+                    <td>@segment.bookType.Author</td>
+                    <td>@segment.bookType.Edition</td>
+                    <td>@segment.bookType.AmountOfBooks</td>
+                    <td><img src="api/Upload/@imgurl1" alt="Image" /></td>
+                    <th>Edit <button @onclick="(()=>AddBook(segment.bookType))">Add New Books</button> </th>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                    <div id="@($"segmentCollapse{segment.Id}")" class="@GetCollapseClass(segment.Id)" aria-labelledby="@($"segmentHeading{segment.Id}")">
+                        <div>
+
+                            <table class="Attendances-table">
+                                <thead>
+                                    <tr>
+                                        <th>Id Code</th>
+                                        <th>Status</th>
+                                        <th>Student</th>
+                                        <th>Change Status To Availabe</th>
+                                        <th>Lend Book</th>
+                                        <th>Borrowing/Boocking Date</th>
+                                        <th>End Date</th>
+                                        <th>Student</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var book in segment.bookType.Books)
+                                    {
+                                        <tr>
+                                            <th>@book.QRCode</th>
+                                            @if (book.IsBoocked)
+                                            {
+                                                <th>Boocked</th>
+                                            }
+                                            else if (book.IsBorowed)
+                                            {
+                                                <th>Borowed</th>
+                                            }
+                                            else
+                                            {
+                                                <th>Available</th>
+                                            }
+
+                                            @if (book.IsBoocked || book.IsBorowed)
+                                            {
+                                           
+                                                    <th>@book.Student.FirstName @book.Student.LastName</th>
+                                            }
+                                            else
+                                            {
+                                                    <th>Available</th>
+                                                    
+                                            }
+
+                                                @if (book.IsBoocked || book.IsBorowed)
+                                                {
+                                                    <th> <button @onclick="(()=>ReturnToAvailable(book))">ReturntoAvailable</button> </th>
+                                                }
+                                                else
+                                                {
+                                                    <th>Available</th>
+                                                }
+
+                                            @if (book.IsBoocked || book.IsBorowed)
+                                            {
+                                                <th>Not Available</th>
+                                            }
+                                            else
+                                            {
+                                                <th><button @onclick="(()=>GoToBookBorowing((int)book.BookID))">Lend Book</button></th> /*zamien potem na id */
+                                            }
+
+                                            @if (book.IsBoocked)
+                                            {
+                                                <th>@book.ReservationDate</th>
+                                            }
+                                            else if (book.IsBorowed)
+                                            {
+                                                <th>@book.BorowingDate</th>
+                                            }
+                                            else
+                                            {
+                                                <th>Available</th>
+                                            }
+                                            @if (book.IsBoocked || book.IsBorowed)
+                                            {
+                                                <th>@book.ReturnDate</th>
+                                            }
+                                            else
+                                            {
+                                                <th>Available</th>
+                                            }
+                                            @if (book.IsBoocked || book.IsBorowed)
+                                            {
+                                                <th>@book.Student.FirstName @book.Student.LastName</th>
+                                            }
+                                            else
+                                            {
+                                                <th>Available</th>
+                                            }
+
+                                            <th>Delete <button @onclick="(()=>EditBook(book))">Delete</button> </th>
+
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<BookAddEditPopup @ref="popupref"></BookAddEditPopup>
+<AddBookPopup @ref="popuprefadd"></AddBookPopup>
+@code {
+
+    void GoToBookType()
+    {
+        NavigationManager.NavigateTo($"AddEditBook");
+    }
+
+    void GoToBookBorowing(int QR)
+    {
+        Console.WriteLine(QR);
+        NavigationManager.NavigateTo($"/Borrow/{QR}");
+    }
+
+    IList<BookView> BookAmount = new List<BookView>();
+    private BookAddEditPopup popupref;
+    private AddBookPopup popuprefadd;
+    async Task FillTable(ChangeEventArgs args)
+    {
+        btnText = args.Value.ToString();
+
+        await DoUpdateList();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await StudentService.GetStudents();
+        await BookService.GetBooks();
+        await DoUpdateList();
+    }
+
+    string bar;
+    bool isawailable = false;
+    bool yourbooks = false;
+    string btnText = string.Empty;
+    int ID;
+    Student student;
+    BookType booktype;
+    BookType booktype2;
+    string Roles;
+    private List<Segmentt> segments = new List<Segmentt>();
+    private class Segmentt
+    {
+        public int Id { get; set; }
+        public bool IsCollapsed { get; set; }
+        public BookType bookType {get; set; }
+    } 
+
+    async Task DoUpdateList()
+    {
+        await BookServiceSupport.UpdateList(isawailable, btnText);
+        await CreateSegments();
+    }
+
+    async Task CreateSegments()
+    {
+        int i = 0;
+
+        foreach (var booktype in BookServiceSupport.BookList)
+        {
+            for(int z=0; z<booktype.Books.Count;z++)
+            {
+                if(booktype.Books[z].StudentId!=null)
+                {
+                    booktype.Books[z].Student = await StudentService.GetStudentById((int)booktype.Books[z].StudentId);
+                }
+            }
+            segments.Add(new Segmentt{Id = i,bookType = booktype, IsCollapsed = true});
+
+            i++;
+        }
+        i = 0;
+    }
+
+    private void ToggleCollapse(int segmentId)
+    {
+        var segment = segments.FirstOrDefault(s => s.Id == segmentId);
+        if (segment != null)
+        {
+            segment.IsCollapsed = !segment.IsCollapsed;
+        }
+    }
+
+    private string GetCollapseClass(int segmentId)
+    {
+        var segment = segments.FirstOrDefault(s => s.Id == segmentId);
+        return segment != null && segment.IsCollapsed ? "collapse" : "collapse show";
+    }
+
+    async Task EditBook(Book book)
+    {
+        showedit(book);
+    }
+
+    private void showedit(Book book)
+    {
+        popupref.ShowBookedit(book);
+    }
+
+    async Task AddBook(BookType booktype)
+    {
+        showeAdd(booktype);
+    }
+
+    private void showeAdd(BookType booktype)
+    {
+        popuprefadd.ShowBookAdd(booktype);
+    }
+
+    async Task ReturnToAvailable(Book book)
+    {
+        book.ReturnDate = null;
+        book.ReservationDate = null;
+        book.BorowingDate = null;
+        book.Student = null;
+        book.StudentId = null;
+        book.IsBorowed = false;
+        book.IsBoocked = false;
+        await BookService.UpdateBook(book);
+    }
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fN/0C0Ibd7QINh4NcM9nSKc6mTAC2HJd/u174mIFAS4=",
+  "Hash": "T5TIhgvGbW4JNDMM/mQnMTDhJ3V2OluSUhg0E4ZwrO4=",
   "Source": "GradeSystem.v1.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -28439,23 +28439,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\icon-192.png"
-    },
-    {
-      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\dubk.jpg",
-      "SourceId": "GradeSystem.v1.Client",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "Img/dubk.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Img\\dubk.jpg"
     },
     {
       "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",

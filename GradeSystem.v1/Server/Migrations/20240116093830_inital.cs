@@ -6,11 +6,29 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GradeSystem.v1.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "BookType",
+                columns: table => new
+                {
+                    BookTypeID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Edition = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cover = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AmountOfBooks = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookType", x => x.BookTypeID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "LessonsHours",
                 columns: table => new
@@ -250,17 +268,23 @@ namespace GradeSystem.v1.Server.Migrations
                 {
                     BookID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsBorowed = table.Column<bool>(type: "bit", nullable: false),
                     IsBoocked = table.Column<bool>(type: "bit", nullable: false),
                     QRCode = table.Column<int>(type: "int", nullable: false),
-                    Img = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentId = table.Column<int>(type: "int", nullable: true)
+                    StudentId = table.Column<int>(type: "int", nullable: true),
+                    BorowingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    BookTypeID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Book", x => x.BookID);
+                    table.ForeignKey(
+                        name: "FK_Book_BookType_BookTypeID",
+                        column: x => x.BookTypeID,
+                        principalTable: "BookType",
+                        principalColumn: "BookTypeID");
                     table.ForeignKey(
                         name: "FK_Book_Student_StudentId",
                         column: x => x.StudentId,
@@ -360,6 +384,11 @@ namespace GradeSystem.v1.Server.Migrations
                 name: "IX_Attendance_StudentID",
                 table: "Attendance",
                 column: "StudentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Book_BookTypeID",
+                table: "Book",
+                column: "BookTypeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Book_StudentId",
@@ -465,6 +494,9 @@ namespace GradeSystem.v1.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "Enrollment");
+
+            migrationBuilder.DropTable(
+                name: "BookType");
 
             migrationBuilder.DropTable(
                 name: "ExtraClasses");

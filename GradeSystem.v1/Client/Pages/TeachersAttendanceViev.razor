@@ -1,0 +1,88 @@
+﻿@page "/TeachersAttendanceViev"
+@inject NavigationManager NavigationMenager
+@inject IStudentService StudentService
+@inject IAttendanceService AttendanceService
+@inject IEnrollmentService EnrollmentService
+@inject ITeacherService TeacherService
+<h3>Enrollment_Attendences</h3>
+<table class="TimeSelectionTable">
+    <thead>
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Teacher @teacher.FirstName @teacher.LastName
+            </td>
+            <td<label for="Enrollment-time">To</label></td>
+            <div>
+
+            <td>
+                <input type="datetime-local" id="meeting-time"
+                       name="enrollment-time" class="add-date-and-time" @bind-value="SelectedDate">
+            </td>
+            </div>
+            <td>
+                <div>
+
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await AttendanceService.GetAttendances();
+        await StudentService.GetStudents();
+        await EnrollmentService.GetEnrollments();
+        await TeacherService.GetTeachers();
+        await GetClaimsGetID();
+
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState
+    {
+        get; set;
+    }
+    int ID;
+    int? Id = null;
+    Teacher teacher = null;
+    DateTime SelectedDate = DateTime.Now;
+    string Roles;
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Parent")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    Id = teacherpom.TeacherID;
+                    teacher = teacherpom;
+                }
+            }
+
+        }
+    }
+}

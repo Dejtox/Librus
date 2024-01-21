@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/AceptPopupSite.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNlcHRQb3B1cFNpdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/AddBookPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQm9va1BvcHVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/AddEvent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkRXZlbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,8 +52,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va0FkZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/BookAddEditPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va0FkZEVkaXRQb3B1cC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/BooktheBook.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va3RoZUJvb2sucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/BookTypeAddEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va1R5cGVBZGRFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Calendar.razor]
@@ -66,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Classes.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Componenttest.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50dGVzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/DayPlan.razor]
@@ -108,6 +128,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/LiblaryLilarainsViev.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlibGFyeUxpbGFyYWluc1ZpZXYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Library.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlicmFyeS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -118,6 +142,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Nowatestowastronefileuppload.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm93YXRlc3Rvd2FzdHJvbmVmaWxldXBwbG9hZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/OurScheduler.razor]
@@ -134,6 +162,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Plan.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxhbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/PopupEditBookType.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9wdXBFZGl0Qm9va1R5cGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/ShowEvent.razor]
@@ -170,6 +202,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Teachers.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/TeachersAttendanceViev.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnNBdHRlbmRhbmNlVmlldi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Test.razor]

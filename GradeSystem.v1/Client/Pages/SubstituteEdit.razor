@@ -1,0 +1,51 @@
+﻿@page "/substitute_edit/{id:int}"
+@inject ISubstituteService SubstituteService
+
+<PageTitle>Edit substitute</PageTitle>
+<h3>Edit substitute</h3>
+
+<EditForm Model="substitute" OnSubmit="HandleSubmit">
+    <div>
+        <label for="start-date">Start Date</label>
+        <InputDate id="start-date" @bind-Value="substitute.StartDate" class="add-date-and-time"></InputDate>
+    </div>
+    <div>
+        <label for="class-room">Class room</label>
+        <InputText id="class-room" @bind-Value="substitute.ClassRoom" class="form-control"></InputText>
+    </div>
+    <div>
+        <InputSelect @bind-Value="substitute.SubjectID">
+            <option value="0">SELECT</option>
+            @foreach (var subject in SubstituteService.AvailableSubjects)
+            {
+                <option value="@subject.SubjectID">@subject.SubjectName @subject.Teacher.FirstName - @subject.Teacher.LastName</option>
+            }
+        </InputSelect>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit substitute</button>
+</EditForm>
+
+<button type="button" class="btn btn-danger" @onclick="DeleteSubstitute">Delete Substitute</button>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    Substitute substitute = new Substitute();
+    double timeStamp = 45;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        substitute = await SubstituteService.GetSubstituteById((int)ID);
+        await SubstituteService.GetAvailableSubjects(substitute.StartDate,substitute.EndDate);
+    }
+
+    async Task HandleSubmit()
+    {
+        substitute.Status = "active";
+        await SubstituteService.UpdateSubstitute(substitute);
+    }
+    async Task DeleteSubstitute()
+    {
+        await SubstituteService.DeleteSubstitute(substitute.SubstituteID);
+    }
+}

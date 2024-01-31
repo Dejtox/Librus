@@ -1,4 +1,4 @@
-﻿using GradeSystem.v1.Server.Data;
+using GradeSystem.v1.Server.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GradeSystem.v1.Server.Controllers
@@ -66,6 +66,7 @@ namespace GradeSystem.v1.Server.Controllers
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             book.Student = null;
+            book.StudentId = null;
             _context.Book.Add(book);
             await _context.SaveChangesAsync();
 

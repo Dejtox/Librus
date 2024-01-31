@@ -370,6 +370,79 @@ namespace GradeSystem.v1.Server.Migrations
                     b.ToTable("Parent");
                 });
 
+            modelBuilder.Entity("SchoolTrip", b =>
+                {
+                    b.Property<int>("SchoolTripID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SchoolTripID"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("SchoolTripID");
+
+                    b.ToTable("SchoolTrip");
+                });
+
+            modelBuilder.Entity("SchoolTripClasses", b =>
+                {
+                    b.Property<int>("SchoolTripClassesID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SchoolTripClassesID"));
+
+                    b.Property<int>("ClassID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SchoolTripID")
+                        .HasColumnType("int");
+
+                    b.HasKey("SchoolTripClassesID");
+
+                    b.HasIndex("ClassID");
+
+                    b.HasIndex("SchoolTripID");
+
+                    b.ToTable("SchoolTripClasses");
+                });
+
+            modelBuilder.Entity("SchoolTripTeachers", b =>
+                {
+                    b.Property<int>("SchoolTripTeachersID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SchoolTripTeachersID"));
+
+                    b.Property<int>("SchoolTripID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherID")
+                        .HasColumnType("int");
+
+                    b.HasKey("SchoolTripTeachersID");
+
+                    b.HasIndex("SchoolTripID");
+
+                    b.HasIndex("TeacherID");
+
+                    b.ToTable("SchoolTripTeachers");
+                });
+
             modelBuilder.Entity("Student", b =>
                 {
                     b.Property<int>("StudentID")
@@ -441,6 +514,43 @@ namespace GradeSystem.v1.Server.Migrations
                     b.HasIndex("TeacherID");
 
                     b.ToTable("Subject");
+                });
+
+            modelBuilder.Entity("Substitute", b =>
+                {
+                    b.Property<int>("SubstituteID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubstituteID"));
+
+                    b.Property<int>("ClassID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClassRoom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SubjectID")
+                        .HasColumnType("int");
+
+                    b.HasKey("SubstituteID");
+
+                    b.HasIndex("ClassID");
+
+                    b.HasIndex("SubjectID");
+
+                    b.ToTable("Substitute");
                 });
 
             modelBuilder.Entity("Teacher", b =>
@@ -637,6 +747,44 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("SchoolTripClasses", b =>
+                {
+                    b.HasOne("Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolTrip", "SchoolTrip")
+                        .WithMany("SchoolTripClasses")
+                        .HasForeignKey("SchoolTripID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("SchoolTrip");
+                });
+
+            modelBuilder.Entity("SchoolTripTeachers", b =>
+                {
+                    b.HasOne("SchoolTrip", "SchoolTrip")
+                        .WithMany("SchoolTripTeachers")
+                        .HasForeignKey("SchoolTripID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SchoolTrip");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("Student", b =>
                 {
                     b.HasOne("Class", "Class")
@@ -675,6 +823,25 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("Substitute", b =>
+                {
+                    b.HasOne("Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Teacher", b =>
                 {
                     b.HasOne("User", "User")
@@ -686,9 +853,17 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("User");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("BookType", b =>
                 {
                     b.Navigation("Books");
+=======
+            modelBuilder.Entity("SchoolTrip", b =>
+                {
+                    b.Navigation("SchoolTripClasses");
+
+                    b.Navigation("SchoolTripTeachers");
+>>>>>>> origin/Ponaprawie
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,50 @@
+﻿@page "/substitutes"
+@inject ISubstituteService SubstituteService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Substitutes</PageTitle>
+<h3>Substitutes</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Substitute Date</th>
+            <th>Class Name</th>
+            <th>Subject Name</th>
+            <th>Class Room</th>
+            <th>Status</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var substitute in SubstituteService.Substitutes)
+        {
+            <tr>
+                <td>@substitute.StartDate</td>
+                <td>@substitute.Class.ClassName</td>
+                <td>@substitute.Subject.SubjectName</td>
+                <td>@substitute.ClassRoom</td>
+                <td>@substitute.Status</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>EditSubstitute(substitute.SubstituteID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-primary" @onclick="CreateSubstitute">Create New</button>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await SubstituteService.GetSubstitutes();
+    }
+
+    void EditSubstitute(int id)
+    {
+        NavigationManager.NavigateTo($"substitute_edit/{id}");
+    }
+
+    void CreateSubstitute()
+    {
+        NavigationManager.NavigateTo("/substitute_select");
+    }
+}

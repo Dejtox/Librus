@@ -21,11 +21,11 @@ else
 <EditForm Model="book" OnSubmit="HandleSubmit">
     <div>
         <label for="Title">Title</label>
-        <InputText id="Title" @bind-Value="book.Title" class="form-control"></InputText>
+        <InputText id="Title" @bind-Value="book.BookType.Title" class="form-control"></InputText>
     </div>
     <div>
         <label for="Author">Author</label>
-        <InputText id="Author" @bind-Value="book.Author" class="form-control"></InputText>
+        <InputText id="Author" @bind-Value="book.BookType.Author" class="form-control"></InputText>
     </div>
 
 

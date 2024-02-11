@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
   },
   "projects": {
@@ -13,29 +12,12 @@
         "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "packagesPath": "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\",
         "outputPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\obj\\",
-=======
-    "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-        "projectName": "GradeSystem.v1.Shared",
-        "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-        "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\obj\\",
->>>>>>> origin/Ponaprawie
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-<<<<<<< HEAD
           "C:\\Users\\MarcinCzarnecki\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> origin/Ponaprawie
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -77,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "zak6yZuK5jssiO9QJsg7+67nO0W78U+QxLTuiUmaKmUxGEJvIaUXPphnjqeUy2HlFQiBbMsDpefsCwrwSYOIiw==",
   "success": true,
   "projectFilePath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-=======
-  "dgSpecHash": "+BBv/bPiMvlLdnRvqBjBIF3DwMa3yj4V0iLlOA5NyKCntSMZkyq/DMHHebleZJZYyNZecUPCD/CzcjweevfuSA==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
->>>>>>> origin/Ponaprawie
   "expectedPackageFiles": [],
   "logs": []
 }

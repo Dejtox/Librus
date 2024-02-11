@@ -1,8 +1,4 @@
 is_global = true
-build_property.EnableAotAnalyzer = 
-build_property.EnableSingleFileAnalyzer = 
-build_property.EnableTrimAnalyzer = false
-build_property.IncludeAllContentForSelfExtract = 
 build_property.TargetFramework = net7.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -13,247 +9,249 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = GradeSystem.v1.Client
 build_property.RootNamespace = GradeSystem.v1.Client
-build_property.ProjectDir = C:\Users\pepci\Source\Repos\Dejtox\Librus\GradeSystem.v1\Client\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = E:\Projekty\Librus\GradeSystem.v1\Client\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\pepci\Source\Repos\Dejtox\Librus\GradeSystem.v1\Client
+build_property.MSBuildProjectDirectory = E:\Projekty\Librus\GradeSystem.v1\Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/App.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/AddEvent.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/AddEvent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkRXZlbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/AdditionalActivitesView.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/AdditionalActivitesView.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaXRpb25hbEFjdGl2aXRlc1ZpZXcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/AdditionalActivities.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/AdditionalActivities.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaXRpb25hbEFjdGl2aXRpZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/AttendanceAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/AttendanceAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZUFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Attendances.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Attendances.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/BookAdd.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/BookAdd.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va0FkZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/BookAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/BookAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va0FkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/BooktheBook.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/BooktheBook.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va3RoZUJvb2sucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Calendar.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Calendar.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsZW5kYXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/CalendarNew.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/CalendarNew.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsZW5kYXJOZXcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Calendarview.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Calendarview.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsZW5kYXJ2aWV3LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/ClassAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/ClassAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3NBZGRFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Classes.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Classes.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/DayPlan.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/DayPlan.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF5UGxhbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Enrollment-Attendences.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Enrollment-Attendences.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudC1BdHRlbmRlbmNlcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/EnrollmentAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/EnrollmentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Entrollments.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Entrollments.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW50cm9sbG1lbnRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/EventList.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/EventList.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXZlbnRMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/ExtraClass.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/ExtraClass.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXh0cmFDbGFzcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/ExtraClassesAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/ExtraClassesAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXh0cmFDbGFzc2VzQWRkRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/GradeAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/GradeAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVBZGRFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Gradesst.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Gradesst.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Index.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Library.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Library.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlicmFyeS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/List.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/List.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Login.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/OurScheduler.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/OurScheduler.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3VyU2NoZWR1bGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/ParentAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/ParentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50QWRkRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Parents.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Parents.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFyZW50cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Plan.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Plan.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxhbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SchoolTripAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/SchoolTripAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sVHJpcEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SchoolTrips.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/SchoolTrips.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sVHJpcHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/ShowEvent.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/ShowEvent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvd0V2ZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SigninAddA.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/SigninAddA.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbmluQWRkQS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Students.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Students.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/StudentsBooks.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/StudentsBooks.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNCb29rcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SubjectAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/SubjectAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Subjects.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Subjects.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SubstituteAdd.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/SubstituteAdd.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZUFkZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SubstituteEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/SubstituteEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZUVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Substitutes.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Substitutes.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/SubstituteSelect.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/SubstituteSelect.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3Vic3RpdHV0ZVNlbGVjdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/TeacherAddEdit.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/TeacherAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlckFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Teachers.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Teachers.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Test.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Test.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Test1.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Test1.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdDEucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Shared/SurveyPrompt.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Test2.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Projekty/Librus/GradeSystem.v1/Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/_Imports.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Grades.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Grades.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-7epf0voo6x
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/GradesAdd.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/GradesAdd.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzQWRkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-jkhp3dm5lg
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/Gradess.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/Gradess.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-lx02btego8
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/StudentCard.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/StudentCard.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudENhcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-18mt65t4ww
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/StudentCardForParent.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/StudentCardForParent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudENhcmRGb3JQYXJlbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-kw3v15n7pm
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/StudentsGrades.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/StudentsGrades.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudHNHcmFkZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-bf87gw08az
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Pages/TeacherClasses.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Pages/TeacherClasses.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlckNsYXNzZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-n340c82kpz
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Shared/MainLayout.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-08mlx414po
 
-[C:/Users/pepci/Source/Repos/Dejtox/Librus/GradeSystem.v1/Client/Shared/NavMenu.razor]
+[E:/Projekty/Librus/GradeSystem.v1/Client/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-fb9r1d6ewe

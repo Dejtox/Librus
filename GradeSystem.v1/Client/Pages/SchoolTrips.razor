@@ -1,0 +1,53 @@
+﻿@page "/school_trips"
+@inject NavigationManager NavigationManager
+@inject ISchoolTripService SchoolTripService
+
+<PageTitle>School Trips</PageTitle>
+<h3>School trips</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Trip Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Classes</th>
+            <th>Teachers</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var trip in SchoolTripService.SchoolTrips)
+        {
+            <tr>
+                <td>@trip.Name</td>
+                <td>@trip.Description</td>
+                <td>@trip.StartDate</td>
+                <td>@trip.EndDate</td>
+                <td>@string.Join(",",trip.SchoolTripClasses.Select(c=>c.Class?.ClassName))</td>
+                <td>@string.Join(",",trip.SchoolTripTeachers.Select(t=>t.Teacher?.LastName))</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=>ShowSchoolTrip(trip.SchoolTripID))">
+                        <i class="oi oi-pencil"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateSchoolTrip">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await SchoolTripService.GetSchoolTrips();
+    }
+    void CreateSchoolTrip()
+    {
+        NavigationManager.NavigateTo("/school_trip");
+    }
+    void ShowSchoolTrip(int id)
+    {
+        NavigationManager.NavigateTo($"/school_trip/{id}");
+    }
+}

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "E:\\Projekty\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {}
   },
   "projects": {
@@ -12,12 +13,29 @@
         "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
         "packagesPath": "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\",
         "outputPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Client\\obj\\",
+=======
+    "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "projectName": "GradeSystem.v1.Client",
+        "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\obj\\",
+>>>>>>> origin/Ponaprawie
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\MarcinCzarnecki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/Ponaprawie
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +44,19 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+<<<<<<< HEAD
               "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
                 "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+=======
+              "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+>>>>>>> origin/Ponaprawie
               }
             }
           }
@@ -86,6 +108,24 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
+            "Microsoft.NET.ILLink.Analyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.100-1.23211.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.100-1.23211.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "autoReferenced": true
+            },
             "Radzen.Blazor": {
               "target": "Package",
               "version": "[4.11.0, )"
@@ -117,7 +157,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[7.0.5, 7.0.5]"
+              "version": "[7.0.14, 7.0.14]"
             }
           ],
           "frameworkReferences": {
@@ -125,7 +165,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -134,6 +174,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "E:\\Projekty\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -142,12 +183,26 @@
         "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
         "packagesPath": "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\",
         "outputPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Server\\obj\\",
+=======
+    "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+        "projectName": "GradeSystem.v1.Server",
+        "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+        "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Server\\obj\\",
+>>>>>>> origin/Ponaprawie
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\MarcinCzarnecki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/Ponaprawie
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -156,18 +211,25 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+<<<<<<< HEAD
               "E:\\Projekty\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
                 "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
               },
               "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
                 "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+=======
+              "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+                "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj"
+              },
+              "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+>>>>>>> origin/Ponaprawie
               }
             }
           }
@@ -258,10 +320,11 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
+<<<<<<< HEAD
     "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -270,12 +333,26 @@
         "projectPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "packagesPath": "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\",
         "outputPath": "E:\\Projekty\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+=======
+    "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectName": "GradeSystem.v1.Shared",
+        "projectPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+>>>>>>> origin/Ponaprawie
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\MarcinCzarnecki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/Ponaprawie
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -284,7 +361,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -318,7 +394,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

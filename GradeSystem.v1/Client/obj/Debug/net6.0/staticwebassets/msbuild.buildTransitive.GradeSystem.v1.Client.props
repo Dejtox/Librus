@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\GradeSystem.v1.Client.props" />
+</Project>

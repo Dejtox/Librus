@@ -1,0 +1,350 @@
+﻿@page "/TeachersLessonMenu/{id:int}"
+@inject IEnrollmentService EnrollmentService 
+@inject ITeacherService TeacherService
+@inject IStudentService StudentService
+@inject IGradeService GradeService
+@inject IAttendanceService AttendanceService
+<h3>TeachersLessonMenu</h3>
+@if (SwitchATGR == "GR")
+{
+    <button type="button class="btn-close" aria-label="Lesson" @onclick="SwitchViev">Attendence</button>
+}
+else
+{
+    <button type="button class="btn-close" aria-label="Lesson" @onclick="SwitchViev">Grades</button>
+    <button type="button class="btn-close" aria-label="Lesson" @onclick="GiveGradesToAll">Give Grades To All</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>GradeWeight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input @oninput="FillDescription" /> </th>
+                <th><input @oninput="FillGradeWeight" /> </th>
+            </tr>
+        </tbody>
+        <button type="button class="btn-close" aria-label="Lesson" @onclick="AddGrade">Grades</button>
+    </table>
+}
+@if (SwitchATGR == "GR")
+{
+    <tabe>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Edit Grades</th>
+                <th>Add Grades</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in segments)
+            {
+                <tr>
+                    <th>@student.student1.FirstName @student.student1.LastName</th>
+                    <th>
+                        @foreach(var grade in student.Grades)
+                        {
+                            <button>@grade.GradeNumber</button>
+                        }
+                    </th>
+                    <th>
+                        @if (givegradestoall == false)
+                        {
+                            <input @onchange="(args=>GetTempStudent(args ,student.student1))" />
+                        }
+                         else
+                         {
+                            <input @onchange="(args=>SetStudentTempGrade(args ,student.student1))" />
+                         }
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </tabe>
+}
+else
+{
+    <button type="button class="btn-close" aria-label="Lesson" @onclick="SwitchViev">Coppy attendence from last lesson</button>
+    <tabe>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Attendence</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in segments)
+            {
+                <tr>
+                    <th>@student.student1.FirstName @student.student1.LastName</th>
+                    @if(student.attendance == null) 
+                    {
+                        <th><button></button></th>
+                    }else
+                    {
+                        <th>
+                            <div class="col-sm-12 col-lg-2">
+                                <select name="" id="" class="fluent-input" @onchange="(args=>SelectAttendenceState(args ,student.student1))">
+                                    <option value="1">Present</option>
+                                    <option value="2">Absent</option>
+                                    <option value="3">Late</option>
+                                    <option value="4">Excused</option>
+            </select>
+        </div>
+        </th>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </tabe>
+}
+
+
+@code {
+    [Parameter]
+    public int? id { get; set; }
+    string Roles;
+    string SwitchATGR = "AT";
+    string description = string.Empty;
+    string weight = string.Empty;
+    bool givegradestoall = false;
+    int ID;
+    int studentidforgrade;
+    int? Id = null;
+    Teacher teacher = null;
+    Enrollment enrollment;
+    Student tempstudent;
+    Grade gradetoadd;
+    IList<Student> students = new List<Student>();
+    IList<Segment> segments = new List<Segment>();
+    Attendance? attendance = new Attendance();
+    public class Segment
+    {
+        public Student student1 { get; set; }
+        public IList<Grade> Grades { get; set; } = new List<Grade>();
+        public Attendance? attendance { get; set; }
+        public int? tempgradenumber;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await TeacherService.GetTeachers();
+        if (id != null)
+        {
+            enrollment = await EnrollmentService.GetEnrollmentByID((int)id);
+        }
+        await AttendanceService.GetAttendances(); 
+        await StudentService.GetStudents();
+        await getstudentList();        
+    }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    async Task FillDescription(ChangeEventArgs args)
+    {
+        description = args.Value.ToString();
+    }
+
+    async Task FillGradeWeight(ChangeEventArgs args)
+    {
+        weight = args.Value.ToString();
+    }
+
+    async Task SetGradeValue(ChangeEventArgs args)
+    {
+        weight = args.Value.ToString(); //studentidforgrade to tu powinno byc che tylko cyfry
+    }
+
+    async Task SetStudentTempGrade(ChangeEventArgs args, Student student)
+    {
+
+        foreach (var seg in segments)
+        {
+            if(seg.student1.StudentID == student.StudentID)
+            {
+                seg.tempgradenumber = 1;//weight = args.Value.ToString(); //to tu powinno byc che tylko cyfry
+            }
+        }
+    }
+
+    async Task GetTempStudent(ChangeEventArgs args ,Student student)
+    {
+        weight = args.Value.ToString(); //studentidforgrade to tu powinno byc che tylko cyfry
+        tempstudent = student;
+    }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    Id = teacherpom.TeacherID;
+                    teacher = teacherpom;
+                }
+            }
+
+        }
+    }
+
+    async Task getstudentList()
+    {
+        foreach(var ListStudent in StudentService.Students)
+        {
+            if(ListStudent.ClassID == enrollment.ClassID)
+            {
+                students.Add(ListStudent);
+            }
+        }
+        foreach (var ListStudent in students)
+        {
+            int i = 0;
+            segments.Add(new Segment { student1 = ListStudent, tempgradenumber = 0});
+            foreach (var grade in GradeService.Grades)
+            {
+                if(grade.StudentID == ListStudent.StudentID)
+                {
+                    if(grade.SubjectID == enrollment.SubjectID)
+                    {
+                        segments[i].Grades.Add(grade);
+                    }
+                }
+            }
+            foreach (var attendance in AttendanceService.Attendances)
+            {
+                if(attendance.EnrollmentID == enrollment.EnrollmentID)
+                {
+                    if (attendance.Student.StudentID == ListStudent.StudentID)
+                    {
+                        segments[i].attendance = attendance;
+                    }
+                }
+            }
+            i++;
+        }
+    }
+    async Task SwitchViev()
+    {
+        if (SwitchATGR=="AT")
+        {
+            SwitchATGR = "GR";
+        }
+        else
+        {
+            SwitchATGR = "AT";
+        }
+    }
+
+    async Task CoppyAttendence()
+    {
+        @foreach (var student in students)
+        {
+            //Jak wpadne jak dodaj kopiowanie obecnosci
+        }
+    }
+
+    async Task AddGrade()
+    {
+        if (givegradestoall == true)
+        {
+            foreach (var seg in segments)
+            {
+                if(seg.tempgradenumber != 0)
+                {
+                    gradetoadd.Student = seg.student1;
+                    gradetoadd.StudentID = seg.student1.StudentID;
+                    gradetoadd.Subject = enrollment.Subject;
+                    gradetoadd.Description = description;
+                    gradetoadd.GradeWeight = 1;//musisz naprawic event args
+                    gradetoadd.GradeNumber = (int)seg.tempgradenumber;//musisz naprawic event args
+                    await GradeService.CreateGrade(gradetoadd);
+                    foreach (var seg2 in segments)
+                    {
+                        if (seg2.student1.StudentID == tempstudent.StudentID)
+                        {
+                            seg2.Grades.Add(gradetoadd); //Powinienes tu dodac lastgradeadd check id jakby nauczyciel chcial zmienic grade na inny jezeli nie chcesz refresu co dodana ocene
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            gradetoadd.Student = tempstudent;
+            gradetoadd.StudentID = tempstudent.StudentID;
+            gradetoadd.Subject = enrollment.Subject;
+            gradetoadd.Description = description;
+            gradetoadd.GradeWeight = 1;//musisz naprawic event args
+            gradetoadd.GradeNumber = 1;//musisz naprawic event args
+            await GradeService.CreateGrade(gradetoadd);
+            foreach (var seg in segments)
+            {
+                if (seg.student1.StudentID == tempstudent.StudentID)
+                {
+                    seg.Grades.Add(gradetoadd); //Powinienes tu dodac lastgradeadd check id jakby nauczyciel chcial zmienic grade na inny jezeli nie chcesz refresu co dodana ocene
+                }
+            }
+        }
+    }
+
+    async Task ChangeState(Student student)  //na razie do niczego nie uwzywane jak sie nie przuyda usun
+    {
+        foreach(var studen1 in segments)
+        {
+            if (studen1.student1.StudentID == student.StudentID)
+            {
+                break;
+            }
+        }
+    }
+
+    async Task SelectAttendenceState(ChangeEventArgs e,Student student)
+    {
+        attendance = null;
+        foreach (var studen2 in segments)
+            if(student.StudentID == studen2.student1.StudentID)
+            {
+                attendance.Description = e.Value.ToString();
+                attendance.Student = studen2.student1;
+                attendance.StudentID = studen2.student1.StudentID;
+                attendance.Enrollment = enrollment;
+                attendance.EnrollmentID = enrollment.EnrollmentID;
+                await AttendanceService.CreateAttendance(attendance);
+                studen2.attendance = attendance;
+
+                break;
+            }
+
+    }
+
+    async Task GiveGradesToAll()
+    {
+        if (givegradestoall == true)
+        {
+            givegradestoall = false;
+        }
+        else
+        {
+            givegradestoall = true;
+        }
+    }
+}

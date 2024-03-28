@@ -1,4 +1,4 @@
-﻿using GradeSystem.v1.Server.Data;
+using GradeSystem.v1.Server.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GradeSystem.v1.Server.Controllers
@@ -15,14 +15,14 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBook()
         {
-            return await _context.Book.Include(u => u.Student).ToListAsync();
-
+            return await _context.Book.Include(u => u.Student).Include(bt => bt.BookType).ToListAsync();
+            
         }
 
         [HttpGet("{QRCode}")]
         public async Task<ActionResult<Book>> GetBook(int QRCode)
         {
-            var Book = await _context.Book.Include(u => u.Student).FirstOrDefaultAsync(b => b.QRCode == QRCode);
+            var Book = await _context.Book.Include(u => u.Student).Include(bt => bt.BookType).FirstOrDefaultAsync(b => b.QRCode == QRCode);
 
             if (Book == null)
             {

@@ -17,11 +17,15 @@
       "PackagePath": "staticwebassets\\Assets\\main.css"
     },
     {
+<<<<<<< HEAD
       "Id": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\dubk.jpg",
       "PackagePath": "staticwebassets\\Img\\dubk.jpg"
     },
     {
       "Id": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+=======
+      "Id": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+>>>>>>> origin/Naprawa
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {

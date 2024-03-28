@@ -6,7 +6,6 @@
         IList<Subject> Subjects { get; set; }
         IList<Class> Classes { get; set; }
 
-
         Task GetClasses();
         Task GetSubjects();
         Task GetEnrollments();

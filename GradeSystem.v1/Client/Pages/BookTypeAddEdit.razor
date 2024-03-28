@@ -1,0 +1,102 @@
+﻿@page "/AddEditBook"
+@inject IBookService BookService
+@inject IBookServiceSupport BookServiceSupport
+@inject IBookTypeService BookTypeService
+@inject IFileService FileService 
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Text.RegularExpressions;
+
+@*dodaj przenoszenie do home dla nieupowaznionych osob/**@
+    <div>
+    <div>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <input @oninput="FillTitle" />
+                @Titletxt
+                <th>Author</th>
+                <input @oninput="FillAuthor" />
+                @Authortxt
+                <th>Editon</th>
+                <input @oninput="FillEditon" />
+            @Editontxt
+                <th>Amount</th>
+                <th>Image</th>
+                <th>Edit <button @onclick="(()=>AddNewBookType(Authortxt,Titletxt,Editontxt))">Add New BookType</button> </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booktype in BookServiceSupport.LiblarianBookList)
+            {
+                string imgurl1 = @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg";
+                <tr>               
+                <td>@booktype.Title</td>
+                <td>@booktype.Author</td>
+                <td>@booktype.Edition</td>
+                <td>@booktype.AmountOfBooks</td>
+                    <td><img src="api/Upload/@imgurl1" alt="Image" /></td>
+                <td>
+                    <button @onclick="(()=>EditBookType(booktype))">EditBookType</button>
+                </td>
+                </tr>
+            }
+
+        </tbody>
+    </div>
+    <AceptPopupSite @ref="popupref"></AceptPopupSite>
+    <PopupEditBookType @ref="popuprefedit"></PopupEditBookType>
+</div>
+
+@code {
+    private AceptPopupSite popupref;
+    private PopupEditBookType popuprefedit;
+    private void show(string title, string author,string editon)
+    {
+        popupref.ShowBookType(title, author, editon);
+    }
+    private void showedit(BookType bookType)
+    {
+        popuprefedit.ShowBookTypeedit(bookType);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await BookService.GetBooks();
+        await BookServiceSupport.BooktypeAddEditUpdateList(Titletxt, Authortxt, Editontxt);
+
+    }
+
+    string Authortxt = string.Empty;
+    string Titletxt = string.Empty;
+    string Editontxt = string.Empty;
+
+    async Task FillTitle(ChangeEventArgs args)
+    {
+            Titletxt = args.Value.ToString();      
+        await BookServiceSupport.BooktypeAddEditUpdateList(Titletxt, Authortxt, Editontxt);
+    }
+
+    async Task FillEditon(ChangeEventArgs args)
+    {
+        Editontxt = args.Value.ToString();
+        await BookServiceSupport.BooktypeAddEditUpdateList(Titletxt, Authortxt, Editontxt);
+    }
+
+    async Task FillAuthor(ChangeEventArgs args)
+    {
+        Authortxt = args.Value.ToString();
+        await BookServiceSupport.BooktypeAddEditUpdateList(Titletxt, Authortxt, Editontxt);
+    }
+    async Task AddNewBookType(string Author, string Title,string Edition)
+    {
+        show(Title, Author, Edition);
+    }
+    async Task EditBookType(BookType bookType)
+    {
+        showedit(bookType);
+    }
+
+}

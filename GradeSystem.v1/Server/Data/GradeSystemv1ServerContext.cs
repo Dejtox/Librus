@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using Microsoft.EntityFrameworkCore;
+=======
+using Microsoft.EntityFrameworkCore;
+>>>>>>> origin/Naprawa
 namespace GradeSystem.v1.Server.Data
 {
     public class GradeSystemv1ServerContext : DbContext
@@ -28,6 +32,11 @@ namespace GradeSystem.v1.Server.Data
 
         public DbSet<Book> Book { get; set; }
 
+<<<<<<< HEAD
+=======
+        public DbSet<BookType> BookType { get; set; }
+
+>>>>>>> origin/Naprawa
         public DbSet<User> User { get; set; }
         public DbSet<ExtraClasses> ExtraClasses { get; set; }
         public DbSet<ExtraClassesList> ExtraClassesList { get; set; }

@@ -1,0 +1,106 @@
+﻿@inject IBookTypeService BookTypeService
+@inject IBookServiceSupport BookServiceSupport
+@inject IBookService BookService
+@inject IFileService FileService
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Http;
+@using System.Net.Http.Headers;
+
+@{
+    var showClass = IsVisible ? "d-block" : "d-none";
+}
+<div class="toast-container p-3 @showClass" data-bs-autohide="true" data-bs-delay="5000">
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">How many books would you like to add </strong>
+        </div>
+
+        
+            <div class="toast-body">
+            Amount <input type="number" min="0" value="0" @oninput=amoutchange></input> @Amount<br>
+            <button type="button" class="btn-close" aria-label="Close" @onclick="Save">Save</button>
+                <button type="button" class="btn-close" aria-label="Close" @onclick="Close">Cancel</button>
+            </div>
+        
+    </div>
+</div>
+@code {
+    [Parameter]
+    public bool IsVisible { get; set; }
+
+    public bool AllDataIn = true;
+
+    [Parameter]
+    public EventCallback<bool> IsVisibleChanged { get; set; }
+
+    Book book = new Book();
+    int Amount = 0;
+    string message = string.Empty;
+    public string ImgUrl { get; set; }
+    public EventCallback<string> OnChange { get; set; }
+    BookType booktype ;
+
+    public async void ShowBookAdd(BookType booktypevar)
+    {
+        booktype = booktypevar;
+        IsVisible = true;
+        StateHasChanged();
+    }
+
+    private void Close()
+    {
+        IsVisible = false;
+        AllDataIn = true;
+        Amount = 0;
+        StateHasChanged();
+    }
+    async Task amoutchange(ChangeEventArgs args)
+    {
+        string temp = args.Value.ToString();
+        try
+        {
+            Amount = Int32.Parse(temp);
+        }
+        catch (FormatException e)
+        {
+            Console.WriteLine(e.Message);
+            Amount = 0;
+        }
+        if (Amount < 0)
+        {
+            Amount = 0;
+        }
+    }
+    async Task Save()
+    {
+        book.IsBorowed = false;
+        book.IsBoocked = false;
+        book.StudentId = null;
+        book.ReturnDate = null;
+        book.ReservationDate = null;
+        book.BorowingDate = null;
+        book.QRCode = 1; //tu bedzie generacja QR
+        book.Student = null;
+        book.BookType = booktype;
+        book.BookTypeID = booktype.BookTypeID;
+        for (int tem = 0; tem < Amount; tem++)
+        {
+            Book booktemp = new Book();
+            int idtemp = 0;
+            await BookService.CreateBook(book);
+            await BookService.GetLastBookAdded();
+            booktemp = BookService.LastBookAdded;
+            idtemp = booktemp.BookID;
+            (booktype.BookIds).Add(idtemp);
+            (booktype.Books).Add(booktemp);
+            booktype.AmountOfBooks = booktype.AmountOfBooks + 1;
+            await BookTypeService.UpdateBookType(booktype);
+            booktemp.QRCode = booktemp.BookID; //te 2 linnie wywalimy jak bedzie tworzenie qrkodow
+            await BookService.UpdateBook(booktemp); // 2
+        }
+        Amount = 0;
+        IsVisible = false;
+        AllDataIn = true;
+        StateHasChanged();
+    }
+}

@@ -1,33 +1,93 @@
-﻿@page "/Borrow/{QR:int}"
+@page "/Borrow/{QR:int}"
 
 @inject IBookService BookService
 
 @inject IBookService BookService 
 
 @inject NavigationManager NavigationManager
+@inject IStudentService StudentService
+@using Microsoft.AspNetCore.Components;
+@using System.Text.RegularExpressions;
 <h3>BooktheBook</h3>
+<div>
+    Name
+    <input @oninput="FillTable" />  @*To jest tekst do wybirania uczniow jak bedzie duzo przy css zrobic tak by bylo przy wybieraniu studenta z listy*@
+</div>
+<div>
+<EditForm Model="book" OnSubmit="HandleSubmit">
+        
+    <div>
+        
+        <label for="ReturnDate">ReturnDate</label>
+        <input type="datetime-local" id="meeting-time"
+               name="enrollment-time" class="add-date-and-time" @bind-value="book.ReturnDate">
+        
+    </div>
+    <div>
+            <label for="Student">Student</label>
+        <InputSelect @bind-Value="book.StudentId" class="form-select">
+            <option value=0>--- Select ---</option>
+                @foreach (var student in studentList)
+            {
+                    <option value="@student.StudentID">@student.FirstName @student.LastName</option>
 
+            }
+        </InputSelect>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+</div>
 @code {
+    async Task FillTable(ChangeEventArgs args)
+    {
+        btnText = args.Value.ToString();
+
+        await updateList(btnText);
+    }
     [Parameter]
     public int? QR { get; set; }
-
+    string btnText = string.Empty;
     Book book = new Book();
+    IList<Student> studentList = new List<Student>();
 
+    //funkcja służy do rezerwacji specyficzniej ksiażki jeżeli wejdziesz do niej z id
+    // Wydaje mi się ze całośc kodu tutaj jest przestarzała ponieważ istnieje juz funkcja do rezerwacji ksiazek aczkolwiek proces rezerwacji trzeba przegadac z marcinem 
     protected override async Task OnInitializedAsync()
     {
+        await StudentService.GetStudents();
+        await updateList(btnText);
         book = await BookService.GetBookByQR((int)QR);
-        if (book.IsBorowed == false)
-        {
-            book.IsBorowed = true;
 
+    }
+
+    async Task updateList(string text)
+    {
+        if (text.Length != 0)
+        {
+            Regex rg = new Regex(text);
+            foreach (var student in StudentService.Students)
+            {
+
+                MatchCollection matchedFirstneme = rg.Matches(student.FirstName);
+                MatchCollection machedLastname = rg.Matches(student.LastName);
+                if (matchedFirstneme.Count > 0 || machedLastname.Count > 0)
+                {
+                    studentList.Add(student);
+                }
+            }
         }
         else
         {
-            book.IsBorowed = false;
+            studentList = StudentService.Students;
         }
-        await BookService.UpdateBook(book);
-        NavigationManager.NavigateTo("/Library");
     }
 
-
+    async Task HandleSubmit()
+    {
+        book.BorowingDate = DateTime.Now;
+        book.Student = await StudentService.GetStudentById((int)book.StudentId);
+        book.IsBorowed = true;
+        await BookService.UpdateBook(book);
+        NavigationManager.NavigateTo($"LibraryViev");
+    }
 }

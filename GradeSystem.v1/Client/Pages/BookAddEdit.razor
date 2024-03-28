@@ -1,7 +1,14 @@
+<<<<<<<< HEAD:GradeSystem.v1/Client/Pages/BookAdd.razor
+﻿@page "/Book"
+@page "/Books/{QR:int}"
+@*Było Book*@
+@using Microsoft.AspNetCore.Http;
+========
 ﻿<h3>BookAddEdit</h3>
 @page "/BookEdit"
 @*Było Book*@
 @page "/Book/{QR:int}"
+>>>>>>>> origin/Naprawa:GradeSystem.v1/Client/Pages/BookAddEdit.razor
 @inject IBookService BookService
 @inject NavigationManager NavigationManager
 
@@ -21,11 +28,11 @@ else
 <EditForm Model="book" OnSubmit="HandleSubmit">
     <div>
         <label for="Title">Title</label>
-        <InputText id="Title" @bind-Value="book.Title" class="form-control"></InputText>
+        <InputText id="Title" @bind-Value="book.BookType.Title" class="form-control"></InputText>
     </div>
     <div>
         <label for="Author">Author</label>
-        <InputText id="Author" @bind-Value="book.Author" class="form-control"></InputText>
+        <InputText id="Author" @bind-Value="book.BookType.Author" class="form-control"></InputText>
     </div>
 
 

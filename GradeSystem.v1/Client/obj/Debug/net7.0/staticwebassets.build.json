@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "7t6pCFi0z3sI7PM0zLDw71vGGpAf5qCGhE+klH8GuQw=",
+=======
+  "Hash": "T5TIhgvGbW4JNDMM/mQnMTDhJ3V2OluSUhg0E4ZwrO4=",
+>>>>>>> origin/Naprawa
   "Source": "GradeSystem.v1.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -31766,6 +31770,7 @@
       "OriginalItemSpec": "wwwroot\\icon-192.png"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\dubk.jpg",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Discovered",
@@ -31786,6 +31791,9 @@
     },
     {
       "Identity": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",
+=======
+      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",
+>>>>>>> origin/Naprawa
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\pepci\\Source\\Repos\\Dejtox\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",

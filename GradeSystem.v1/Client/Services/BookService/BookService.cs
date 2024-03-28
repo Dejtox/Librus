@@ -13,6 +13,8 @@ namespace GradeSystem.v1.Client.Services.BookService
             _navigationManager = navigationManager;
         }
         public IList<Book> Books { get; set; } = new List<Book>();
+
+        public Book LastBookAdded { get; set; }
         public IList<Student> Students { get; set; } = new List<Student>();
 
         private readonly HttpClient _http;
@@ -21,8 +23,17 @@ namespace GradeSystem.v1.Client.Services.BookService
         public async Task<Book> GetBookByQR(int QR)
         {
             var result = await _http.GetFromJsonAsync<Book>($"api/Book/{QR}");
+            var TypeService = new BookTypeService.BookTypeService(_http, _navigationManager);
+
+
             if (result != null)
             {
+                BookType bookType = new BookType();
+                int i  =(int) result.BookTypeID;
+                if(i!=null)
+                {
+                    result.BookType = await TypeService.GetBookTypeByID(i);
+                }    
                 return result;
             }
             throw new Exception("Book Not Find");
@@ -35,9 +46,19 @@ namespace GradeSystem.v1.Client.Services.BookService
 
         public async Task GetBooks()
         {
+            var TypeService = new BookTypeService.BookTypeService(_http, _navigationManager);
             var result = await _http.GetFromJsonAsync<List<Book>>("api/Book");
             if (result != null)
             {
+                for(int j=0; j<result.Count ; j++)
+                {
+
+                    int i;
+                    i = (int)result[j].BookTypeID;
+                    result[j].BookType = await TypeService.GetBookTypeByID(i);
+
+                }
+
                 Books = result;
             }
         }
@@ -45,7 +66,6 @@ namespace GradeSystem.v1.Client.Services.BookService
         public async Task CreateBook(Book book)
         {
             var result = await _http.PostAsJsonAsync("api/Book", book);
-
         }
 
         public async Task UpdateBook(Book book)
@@ -58,6 +78,13 @@ namespace GradeSystem.v1.Client.Services.BookService
         {
             var result = await _http.DeleteAsync($"api/Book/{id}");
 
+        }
+
+        public async Task GetLastBookAdded()
+        {
+            await GetBooks();
+            int temp = Books.Count - 1;
+            LastBookAdded = Books[temp];
         }
 
 

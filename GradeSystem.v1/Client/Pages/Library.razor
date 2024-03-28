@@ -1,7 +1,7 @@
-﻿@page "/Library"
+@page "/Library"
 @inject IBookService BookService
 @inject IStudentService StudentService 
-
+@inject IBookServiceSupport BookServiceSupport
 @inject NavigationManager NavigationManager
 @using System;
 @using System.Collections.Generic;
@@ -9,78 +9,112 @@
 @using System.Text;
 @using System.Text.RegularExpressions;
 <h3>Library</h3>
-
-
-<input @bind-value="foo" @onkeydown="FillTable" />
-@btnText
-<button @onclick="AddBook">add</button>
-<input type="checkbox" @bind-value="isawailable" @onclick="UpdateList">
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>IsBorowed</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var Book in BookAmount)
-        {
-                string imgurl = "/Img/" + @Book.Title + @Book.Author + ".jpg";           
+<div>
+    @if (yourbooks == true){<div><button @onclick="BorrowBooks">Borrow Books</button></div>}
+    else{<button disabled>Borrow Books</button>}
+    @if (yourbooks == false){<div><button @onclick="YourBooks">Your Books</button></div>}
+    else{<button disabled>Your Books</button>}
+</div>
+<div>
+    <input @oninput="FillTable" /> 
+    @btnText
+</div>
+<div>
+    <input type="checkbox" @bind-value="isawailable" @onclick="DoUpdateList">
+    <table>
+        <thead>
             <tr>
-                <td><img src=@imgurl></td>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Editon</th>
+                <th>Amount</th>
+                <th>Borow</th>
+                <th>Image</th>
 
             </tr>
-            <tr>
-                <td>@Book.Title</td>
-                <td>@Book.Author</td>
-                <td>@Book.Amount</td>
-                <td><button class="btn btn-primary" @onclick="(()=>BookTheBook(Book))">Reservate</button></td>
-            </tr>      
-        }
-    </tbody>
-</table>
-
-@ID
-@code {
-    string foo;
-    string bar;
-    bool isawailable = false;
-    IList<BookView> BookAmount = new List<BookView>();
-    async Task FillTable(KeyboardEventArgs args)
-    {
-        String x = args.ToString();
-        if (args.Key == "Backspace")
-        {
-            if (btnText != null && btnText.Length > 0)
+        </thead>
+        <tbody>
+            @foreach (var booktype in BookServiceSupport.BookList)
             {
-                btnText = btnText.Remove(btnText.Length - 1, 1);
-            }
-        }
-        if (x.Length > 1)
-        {
+                string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg"; 
+                <tr>
+                    
+                    <td>@booktype.Title</td>
+                    <td>@booktype.Author</td>
+                    <td>@booktype.Edition</td>
+                    <td>@booktype.AmountOfBooks</td>
+                    @if (booktype.AmountOfBooks > 0)
+                    {
+                        bool pom = false;
+                        foreach (var book in booktype.Books)
+                            {
+                            
+                            
+                                    if (book.StudentId == ID)
+                                    {
+                                        pom = true;
+                                        break;
+                                    }
+                                
+                            }
+                        <td>
+                            @if(!pom)
+                            {
+                                <button @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>
+                            }else
+                            {
+                                <button disabled>Reservetion limit reached</button>
+                            }
+                        </td>
+                
+                    }
+                    else
+                    {
+                        <td>Out of stock</td>
+                    }
+                     <td><img src=@imgurl></td>
 
-        }
-        else
-        {
-            btnText = btnText + args.Key;
-        }
-        await UpdateList();
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+
+@code {
+
+    IList<BookView> BookAmount = new List<BookView>();
+
+    // FillTable wykrywa przycisk które są naciskane na klawiaturze by automatycznie updatowac wyświetlana liste.
+    async Task FillTable(ChangeEventArgs args)
+    {
+
+        
+            btnText = args.Value.ToString();
+        
+        await BookServiceSupport.UpdateList(isawailable, btnText);
     }
-    string btnText = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
+        await StudentService.GetStudents();
         await GetClaimsGetID();
         await BookService.GetBooks();
-        await UpdateList();
-
+        await BookServiceSupport.UpdateList(isawailable, btnText);
     }
+  
+    string bar;
+    bool isawailable = false;
+    bool yourbooks = false;
+    string btnText = string.Empty;
     int ID;
     Student student;
+    BookType booktype;
+    BookType booktype2;
     string Roles;
-    IList<Book> BookList = new List<Book>();
     void EditBook(int QR)
     {
         NavigationManager.NavigateTo($"Book/{QR}");
@@ -89,118 +123,12 @@
     {
         NavigationManager.NavigateTo($"Book");
     }
-    async Task UpdateList()
+
+    async Task DoUpdateList()
     {
-        await BookService.GetBooks();
-        BookList.Clear();
-        Regex rg = new Regex(btnText);
-
-        if (btnText.Length == 0)
-        {
-
-            if (isawailable != true)
-            {
-                BookList = BookService.Books;
-            }
-            else
-            {
-                foreach (var Book in BookService.Books)
-                {
-                    if (Book.IsBoocked || Book.IsBorowed)
-                    {
-                        continue;
-                    }
-                    else
-                        BookList.Add(Book);
-                }
-
-            }
-        }
-        else
-        {
-            foreach (var Book in BookService.Books)
-            {
-                if (isawailable == true)
-                {
-                    if (Book.IsBoocked || Book.IsBorowed)
-                    {
-                        continue;
-                    }
-                }
-
-                MatchCollection machedTitle = rg.Matches(Book.Title);
-                MatchCollection machedAuthor = rg.Matches(Book.Author);
-
-                if (machedTitle.Count > 0)
-                {
-                    BookList.Add(Book);
-                }
-                else if (machedAuthor.Count > 0)
-                {
-                    BookList.Add(Book);
-                }
-            }
-        }
-        await Count();
+        await BookServiceSupport.UpdateList(isawailable, btnText);
     }
-    async Task Count()
-    {
-        BookAmount.Clear();
-        await BookService.GetBooks();
-        foreach (var Book in BookList)
-        {
-            BookView bw = new BookView
-                {
-                    Title = Book.Title,
-                    Author = Book.Author,
-                    Amount = 1,
-                    Ids = new List<int>()
-                };
-            if (BookAmount.Count == 0)
-            {
-                if (Book.IsBoocked || Book.IsBorowed)
-                {
-                    bw.Amount = 0;
-                    BookAmount.Add(bw);
-                }
-                else
-                {
-                    bw.Ids.Add(Book.BookID);
-                    BookAmount.Add(bw);
-                }
-            }
-            else
-            {
-                bool temp = true;
-                foreach (var duble in BookAmount)
-                {
-                    if (bw.Author == duble.Author && bw.Title == duble.Title)
-                    {
-                        if (!Book.IsBoocked || !Book.IsBorowed)
-                        {
-                            duble.Amount++;
-                            duble.Ids.Add(Book.BookID);
-                            temp = false;
-                            break;
-                        }
-                    }
-                }
-                if (temp)
-                {
-                    if (Book.IsBoocked || Book.IsBorowed)
-                    {
-                        bw.Amount = 0;
-                        BookAmount.Add(bw);
-                    }
-                    else
-                    {
-                        bw.Ids.Add(Book.BookID);
-                        BookAmount.Add(bw);
-                    }
-                }
-            }
-        }
-    }
+
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
 
@@ -246,30 +174,28 @@
 
         }
     }
-    async Task BookTheBook(BookView bookView)
-    {
-        int positon = 0;
-        int id = bookView.Ids[positon];
-        await BookService.GetBooks();
-        foreach (var book in BookService.Books)
-        {
-            if (book.BookID == id)
-            {
-                if (book.IsBoocked == false)
-                {
-                    book.IsBoocked = true;
-                    book.StudentId = ID;
-                    await BookService.UpdateBook(book);
-                    break;
-                }
-                positon++;
-                if (positon > bookView.Ids.Count)
-                {
 
-                    break;
-                }
-            }
-        }
-        await UpdateList();
+    async Task BorrowBooks()
+    {
+        yourbooks = false;
+        await BookServiceSupport.UpdateList(isawailable, btnText);
     }
+
+    async Task YourBooks()
+    {
+        yourbooks = true;
+        await BookServiceSupport.UpdateList(isawailable, btnText);
+    }
+
+    async Task Reserve(Book book)
+    {
+        book.StudentId = ID;
+        book.IsBoocked = true;
+        await BookService.UpdateBook(book);
+        await BookServiceSupport.UpdateList(isawailable, btnText);
+    }
+    //                    <td><button class="btn btn-primary" @onclick="(()=>BookTheBook(Book))">Reservate</button></td>
 }
+
+
+

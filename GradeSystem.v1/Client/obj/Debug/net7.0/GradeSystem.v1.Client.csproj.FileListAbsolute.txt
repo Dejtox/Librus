@@ -1999,10 +1999,6 @@ C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\Rn18mZ0A.gz
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\+fEJfjen.gz
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\TSglDjQS.gz
-C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\+sNOjQSc.gz
-C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\1AKEZVIQ.gz
-C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\pJ9trbEx.gz
-C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\o3UP+FXd.gz
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\OD5KXTKI.gz
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\blazor.boot.json
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets\msbuild.GradeSystem.v1.Client.Microsoft.AspNetCore.StaticWebAssets.props
@@ -2028,3 +2024,7 @@ C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\refint\GradeSystem.v1.Client.dll
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\GradeSystem.v1.Client.pdb
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\ref\GradeSystem.v1.Client.dll
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\+sNOjQSc.gz
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\1AKEZVIQ.gz
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\pJ9trbEx.gz
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\build-gz\o3UP+FXd.gz

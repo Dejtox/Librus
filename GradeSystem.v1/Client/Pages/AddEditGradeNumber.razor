@@ -1,0 +1,153 @@
+﻿@page "/gradetypessaddedit"
+@inject IGradeNumberService GradeNumberService
+
+@*<button @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>*@
+@if (openbuton == false)
+{
+    <buttom @onclick=SwitchBoolState>Addgrade</buttom>
+}
+else
+{
+    <input @oninput="GradeNumberName" />
+    <InputNumber @bind-Value=tempgradenumber min="0" />
+    if (floatempty)
+    {
+        <cd>GradeValue must be filled before saving</cd>
+    }
+    if (stringempty)
+    {
+        <cd>GradeName must be filled before saving</cd>
+    }
+    <buttom @onclick=SaveGrade>Save</buttom>
+    <buttom @onclick=SwitchBoolState>Close</buttom>
+}
+<table>
+    <thead>
+        <tr>
+            <th>Gradename</th>
+            <th>GradeNumber</th>
+            <th>Button</th>
+        </tr>
+    </thead>
+    <thead>
+        @foreach (var grade in GradeNumberService.GradeNumbers)
+        {
+            <tr>
+                <th>@grade.GradeName</th>
+                <th>@grade.gradenumber</th>
+                <button @onclick="(()=>EditGradeNumber(grade))">Edit</button>
+            </tr>
+        }
+    </thead>
+</table>
+
+@code {
+    bool openbuton = false;
+    bool floatempty = false;
+    bool stringempty = false;
+    float? tempgradenumber;
+    string? btnText = string.Empty;
+    GradeNumber? TempgradeNumber = null;
+    GradeNumber TextgradeNumber = new GradeNumber();
+    protected override async Task OnInitializedAsync()
+    {
+        await GradeNumberService.GetGradeNumbers();
+    }
+
+    async Task GradeNumberName(ChangeEventArgs args)
+    {
+        btnText = args.Value.ToString();
+
+        // await BookServiceSupport.UpdateList(isawailable, btnText);
+    }
+
+    async Task SwitchBoolState()
+    {
+        if (openbuton == false)
+        {
+            openbuton = true;
+        }
+        else
+        {
+            openbuton = false;
+            btnText = null;
+            TempgradeNumber = null;
+            tempgradenumber = null;
+            floatempty = false;
+            stringempty = false;
+        }
+    }
+
+    async Task EditGradeNumber(GradeNumber gradeNumber)
+    {
+        openbuton = true;
+        TempgradeNumber = gradeNumber;
+        btnText = gradeNumber.GradeName;
+        tempgradenumber = gradeNumber.gradenumber;
+    }
+
+    async Task SaveGrade()
+    {
+        if (TempgradeNumber!=null)
+        {
+
+            if (tempgradenumber!=null)
+            {
+                TextgradeNumber.gradenumber = tempgradenumber.Value;
+
+            }
+            else
+            {
+                floatempty = true;
+            }
+
+            if (btnText!=null)
+            {
+                TextgradeNumber.GradeName = btnText;
+            }
+            else
+            {
+                stringempty = true;
+            }
+
+            if (stringempty != true && floatempty != true)
+            {
+                TextgradeNumber.GradeNumberID = TempgradeNumber.GradeNumberID;
+                await GradeNumberService.PutGradeNumber(TextgradeNumber.GradeNumberID, TextgradeNumber);
+                await GradeNumberService.GetGradeNumbers();
+                await SwitchBoolState();
+            }
+
+        }
+        else
+        {
+            if (tempgradenumber.HasValue)
+            {
+               TextgradeNumber.gradenumber = tempgradenumber.Value;
+
+            }
+            else
+            {
+                floatempty = true;
+            }
+
+            if (btnText != null)
+            {
+                TextgradeNumber.GradeName = btnText;
+            }
+            else
+            {
+                stringempty = true;
+            }
+
+            if (stringempty != true && floatempty != true)
+            {
+                await GradeNumberService.PostGradeNumber(TextgradeNumber);
+                await GradeNumberService.GetGradeNumbers();
+                await SwitchBoolState();
+            }
+        }
+    }
+
+
+}

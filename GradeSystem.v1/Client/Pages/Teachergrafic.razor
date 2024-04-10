@@ -8,7 +8,7 @@
 <div>
     <div>
         <div class="col-sm-12 col-lg-2">
-            <select name="" id="" class="fluent-input" @onchange="SelectYear">
+            <select @onchange="SelectYear">
                 @for (int i = 2022; i < 2024; i++)
                 {
                     <option>@i</option>
@@ -16,7 +16,7 @@
             </select>
         </div>
         <div class="col-sm-12 col-lg-2">
-            <select name="" id="" class="fluent-input" @onchange="SelectMonth">
+            <select  @onchange="SelectMonth">
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -38,7 +38,7 @@
 <div>
     @if (SelectedDate.Day - 4 > 0)
     {
-        <button type="button" class="btn-close" aria-label="Close" @onclick="Lower">h</button>
+        <button  @onclick="Lower">h</button>
     }
     else
     {
@@ -60,7 +60,7 @@
     {<button>@SelectedDate.AddDays(3).Day </button>}
     @if(SelectedDate.Day + 4 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
     {
-        <button type="button" class="btn-close" aria-label="Close" @onclick="Higher">l</button>
+        <button  @onclick="Higher">l</button>
     }
     else
     {
@@ -71,7 +71,7 @@
         {
             if (dalyevent.DT.Day == SelectedDate.Day)
             {
-                <button type="button class="btn-close" aria-label="Lesson" @onclick="(()=>MoveTo(dalyevent.enr.EnrollmentID))">@dalyevent.description @dalyevent.DT.Hour </button>
+                <button  @onclick="(()=>MoveTo(dalyevent.enr.EnrollmentID))">@dalyevent.description @dalyevent.DT.Hour </button>
             }
         }
     </div>

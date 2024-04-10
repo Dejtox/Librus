@@ -36,9 +36,9 @@
         <tbody>
             @foreach (var booktype in BookServiceSupport.BookList)
             {
-                string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg"; 
-                <tr>
-                    
+                string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg";
+                <tr type="liblarybookbox">
+                    <td type="liblarybookbox"><img src=@imgurl></td>
                     <td>@booktype.Title</td>
                     <td>@booktype.Author</td>
                     <td>@booktype.Edition</td>
@@ -72,7 +72,7 @@
                     {
                         <td>Out of stock</td>
                     }
-                     <td><img src=@imgurl></td>
+                     
 
 
                 </tr>

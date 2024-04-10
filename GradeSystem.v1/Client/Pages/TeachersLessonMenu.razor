@@ -1,34 +1,38 @@
 ﻿@page "/TeachersLessonMenu/{id:int}"
-@inject IEnrollmentService EnrollmentService 
+@inject IEnrollmentService EnrollmentService  
 @inject ITeacherService TeacherService
 @inject IStudentService StudentService
 @inject IGradeService GradeService
 @inject IAttendanceService AttendanceService
+@inject IGradeNumberService GradeNumberService
 <h3>TeachersLessonMenu</h3>
+<div>
 @if (SwitchATGR == "GR")
 {
-    <button type="button class="btn-close" aria-label="Lesson" @onclick="SwitchViev">Attendence</button>
-}
-else
-{
-    <button type="button class="btn-close" aria-label="Lesson" @onclick="SwitchViev">Grades</button>
-    <button type="button class="btn-close" aria-label="Lesson" @onclick="GiveGradesToAll">Give Grades To All</button>
+    <button @onclick="SwitchViev">Attendence</button>
+    <button @onclick="GiveGradesToAll">Give Grades To All</button>
     <table>
         <thead>
             <tr>
                 <th>Description</th>
                 <th>GradeWeight</th>
+
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th><input @oninput="FillDescription" /> </th>
-                <th><input @oninput="FillGradeWeight" /> </th>
+                <th><InputNumber @bind-Value=gradeweight min="0" /></th>
             </tr>
         </tbody>
-        <button type="button class="btn-close" aria-label="Lesson" @onclick="AddGrade">Grades</button>
+        <button @onclick="AddGrade">SaveGrades</button>
     </table>
 }
+else
+{
+    <button  @onclick="SwitchViev">Grades</button>
+}
+</div>
 @if (SwitchATGR == "GR")
 {
     <tabe>
@@ -42,32 +46,50 @@ else
         <tbody>
             @foreach (var student in segments)
             {
+                int v = 0;
                 <tr>
                     <th>@student.student1.FirstName @student.student1.LastName</th>
                     <th>
                         @foreach(var grade in student.Grades)
                         {
-                            <button>@grade.GradeNumber</button>
+                            <button>@grade.gradenumber.GradeName</button> // tu powinno byc chyba edytuj ocene ?
                         }
                     </th>
                     <th>
                         @if (givegradestoall == false)
                         {
-                            <input @onchange="(args=>GetTempStudent(args ,student.student1))" />
+                            <div class="col-sm-12 col-lg-2">
+                                <select @onchange="(args=>Setgrade(args,student.student1))">
+                                    <option value="0">--- No Grade ---</option>
+                                    @foreach (var gradevalue in GradeNumberService.GradeNumbers)
+                                    {
+                                        <option value="@gradevalue.GradeNumberID">@gradevalue.GradeName</option>
+                                    }
+                                </select>
+                            </div>
                         }
                          else
                          {
-                            <input @onchange="(args=>SetStudentTempGrade(args ,student.student1))" />
+                            <div class="col-sm-12 col-lg-2">
+                                <select @onchange="(args=>Setgrade(args,student.student1))">
+                                    <option value="0">--- No Grade ---</option>
+                                    @foreach (var gradevalue in GradeNumberService.GradeNumbers)
+                                    {
+                                        <option value="@gradevalue.GradeNumberID">@gradevalue.GradeName</option>
+                                    }
+                                </select>
+                            </div>
                          }
                     </th>
                 </tr>
+                v = v + 1;
             }
         </tbody>
     </tabe>
 }
 else
 {
-    <button type="button class="btn-close" aria-label="Lesson" @onclick="SwitchViev">Coppy attendence from last lesson</button>
+    <button @onclick="Coppyatendenceformlastlesson">Coppy attendence from last lesson</button>
     <tabe>
         <thead>
             <tr>
@@ -113,25 +135,29 @@ else
     string weight = string.Empty;
     bool givegradestoall = false;
     int ID;
+    int gradeweight = 1;
     int studentidforgrade;
     int? Id = null;
     Teacher teacher = null;
-    Enrollment enrollment;
-    Student tempstudent;
-    Grade gradetoadd;
+    Enrollment enrollment = new Enrollment();
+    Student tempstudent =new Student();
+    Grade gradetoadd = new Grade() ;
     IList<Student> students = new List<Student>();
     IList<Segment> segments = new List<Segment>();
     Attendance? attendance = new Attendance();
+    GradeNumber? gradeNumberforfunction = new GradeNumber();
+    int? gradeidforfunction = null;
     public class Segment
     {
         public Student student1 { get; set; }
         public IList<Grade> Grades { get; set; } = new List<Grade>();
         public Attendance? attendance { get; set; }
-        public int? tempgradenumber;
+        public GradeNumber? tempgradenumber;
     }
 
     protected override async Task OnInitializedAsync()
     {
+        await GradeNumberService.GetGradeNumbers();
         await TeacherService.GetTeachers();
         if (id != null)
         {
@@ -140,6 +166,7 @@ else
         await AttendanceService.GetAttendances(); 
         await StudentService.GetStudents();
         await getstudentList();        
+        
     }
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
@@ -149,27 +176,12 @@ else
         description = args.Value.ToString();
     }
 
-    async Task FillGradeWeight(ChangeEventArgs args)
-    {
-        weight = args.Value.ToString();
-    }
 
     async Task SetGradeValue(ChangeEventArgs args)
     {
         weight = args.Value.ToString(); //studentidforgrade to tu powinno byc che tylko cyfry
     }
 
-    async Task SetStudentTempGrade(ChangeEventArgs args, Student student)
-    {
-
-        foreach (var seg in segments)
-        {
-            if(seg.student1.StudentID == student.StudentID)
-            {
-                seg.tempgradenumber = 1;//weight = args.Value.ToString(); //to tu powinno byc che tylko cyfry
-            }
-        }
-    }
 
     async Task GetTempStudent(ChangeEventArgs args ,Student student)
     {
@@ -218,7 +230,7 @@ else
         foreach (var ListStudent in students)
         {
             int i = 0;
-            segments.Add(new Segment { student1 = ListStudent, tempgradenumber = 0});
+            segments.Add(new Segment { student1 = ListStudent, tempgradenumber = null});
             foreach (var grade in GradeService.Grades)
             {
                 if(grade.StudentID == ListStudent.StudentID)
@@ -264,46 +276,30 @@ else
 
     async Task AddGrade()
     {
-        if (givegradestoall == true)
+        foreach (var seg in segments)
         {
-            foreach (var seg in segments)
+            if(seg.tempgradenumber!=null)
             {
-                if(seg.tempgradenumber != 0)
+               //gradetoadd.Student = seg.student1; 
+                gradetoadd.StudentID = seg.student1.StudentID; Console.WriteLine(enrollment.Subject.SubjectID);
+                gradetoadd.Subject = enrollment.Subject; 
+                gradetoadd.Subject.SubjectID = enrollment.Subject.SubjectID;
+                gradetoadd.Description = description; 
+                gradetoadd.GradeWeight = gradeweight; 
+              //  gradetoadd.gradenumber = seg.tempgradenumber;
+                gradetoadd.gradenumberid = seg.tempgradenumber.GradeNumberID;
+                await GradeService.CreateGrade(gradetoadd);
+                foreach (var seg2 in segments)
                 {
-                    gradetoadd.Student = seg.student1;
-                    gradetoadd.StudentID = seg.student1.StudentID;
-                    gradetoadd.Subject = enrollment.Subject;
-                    gradetoadd.Description = description;
-                    gradetoadd.GradeWeight = 1;//musisz naprawic event args
-                    gradetoadd.GradeNumber = (int)seg.tempgradenumber;//musisz naprawic event args
-                    await GradeService.CreateGrade(gradetoadd);
-                    foreach (var seg2 in segments)
+                    if (seg2.student1.StudentID == tempstudent.StudentID)
                     {
-                        if (seg2.student1.StudentID == tempstudent.StudentID)
-                        {
-                            seg2.Grades.Add(gradetoadd); //Powinienes tu dodac lastgradeadd check id jakby nauczyciel chcial zmienic grade na inny jezeli nie chcesz refresu co dodana ocene
-                        }
+                        seg2.Grades.Add(gradetoadd); //Powinienes tu dodac lastgradeadd check id jakby nauczyciel chcial zmienic grade na inny jezeli nie chcesz refresu co dodana ocene
                     }
                 }
             }
         }
-        else
-        {
-            gradetoadd.Student = tempstudent;
-            gradetoadd.StudentID = tempstudent.StudentID;
-            gradetoadd.Subject = enrollment.Subject;
-            gradetoadd.Description = description;
-            gradetoadd.GradeWeight = 1;//musisz naprawic event args
-            gradetoadd.GradeNumber = 1;//musisz naprawic event args
-            await GradeService.CreateGrade(gradetoadd);
-            foreach (var seg in segments)
-            {
-                if (seg.student1.StudentID == tempstudent.StudentID)
-                {
-                    seg.Grades.Add(gradetoadd); //Powinienes tu dodac lastgradeadd check id jakby nauczyciel chcial zmienic grade na inny jezeli nie chcesz refresu co dodana ocene
-                }
-            }
-        }
+
+
     }
 
     async Task ChangeState(Student student)  //na razie do niczego nie uwzywane jak sie nie przuyda usun
@@ -346,5 +342,34 @@ else
         {
             givegradestoall = true;
         }
+    }
+
+    async Task Setgrade(ChangeEventArgs e,Student setgradestudent)
+    {
+        gradeidforfunction = Convert.ToInt32(e.Value.ToString());
+        if (gradeidforfunction == 0)
+        {
+            gradeidforfunction = null;
+        }
+        foreach (var segstudent in segments)
+        {
+            if (setgradestudent.StudentID==segstudent.student1.StudentID)
+            {
+                if (gradeidforfunction != null)
+                {
+                    gradeNumberforfunction = await GradeNumberService.GetGradeNumberById(gradeidforfunction.Value); ;
+                    segstudent.tempgradenumber = gradeNumberforfunction;
+                }
+                else
+                {
+                    segstudent.tempgradenumber = null;
+                }
+            }
+        }
+    }
+
+    async Task Coppyatendenceformlastlesson()
+    {
+        
     }
 }

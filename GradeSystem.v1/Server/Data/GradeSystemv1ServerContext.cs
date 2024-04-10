@@ -24,6 +24,8 @@ namespace GradeSystem.v1.Server.Data
 
         public DbSet<Grade> Grade { get; set; }
 
+        public DbSet<GradeNumber> GradeNumber { get; set; }
+
         public DbSet<Enrollment> Enrollment { get; set; }
 
         public DbSet<Book> Book { get; set; }

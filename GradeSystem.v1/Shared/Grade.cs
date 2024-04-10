@@ -4,8 +4,11 @@
         public int GradeID {get; set; }
         public int StudentID { get; set; }       
         public int SubjectID {get; set; }
-        public int GradeNumber {get; set; }
-        public int GradeWeight {get; set; }
+
+        public GradeNumber? gradenumber {get; set; }
+
+        public int gradenumberid { get; set; }
+         public int GradeWeight {get; set; }
         public string Description { get; set; } = string.Empty;
 
 

@@ -26,7 +26,6 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BookType>> GetBookTypeById(int id)
         {
-            await Console.Out.WriteLineAsync( "tu5");
             var BookType = await _context.BookType.Include(b => b.Books).FirstOrDefaultAsync(b => b.BookTypeID == id);
             if (BookType == null)
             {
@@ -99,7 +98,6 @@ namespace GradeSystem.v1.Server.Controllers
         {
             return _context.BookType.Any(e => e.BookTypeID == id);
         }
-
 
     }
 

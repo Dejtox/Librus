@@ -81,14 +81,15 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Grade>> PostGrade(Grade grade)
         {
-
             grade.Student = null;
             grade.Subject = null;
+            grade.gradenumber = null;
             _context.Grade.Add(grade);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetGrade", new { id = grade.GradeID }, grade);
         }
+
 
         // DELETE: api/Grades/5
         [HttpDelete("{id}")]

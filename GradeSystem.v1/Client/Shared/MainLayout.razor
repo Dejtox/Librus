@@ -2,29 +2,46 @@
 @inject AuthenticationStateProvider authStateProvicder
 @inject NavigationManager navMenager
 
+
 <div class="page">
-    <div class="navbar col-xs-1">
-        <NavMenu />
-    </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <div>
+            <div class="sidebar-left">
+        <Sidebar />
+        </div>
+
+            <div class="main-content">
+            <div>
+        <div class="top-roww px-4">
+
+            
+                        <div class="icon-container">
+                            <i class="fas fa-envelope"></i>
+                        </div>
             <AuthorizeView>
                 <Authorized>
+                                
                     <a @onclick="Logout" href="javascript:void(0)">Logout</a>
                 </Authorized>
                 <NotAuthorized>
-                    <a href="/login">Login</a>
+                    <a href="/login">Login</a>                             
                 </NotAuthorized>
             </AuthorizeView>
-        </div>
 
+
+        </div>
+            
         <article class="content px-4">
             @Body
         </article>
+        </div>
+        </div>
+        </div>
     </main>
+    
 </div>
+
 
 @code
 {

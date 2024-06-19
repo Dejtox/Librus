@@ -2,16 +2,17 @@
 @page "/student/{id:int}"
 @inject IStudentService StudentService
 @inject IUserService UserService
+@inject IClassService ClassService
 
-@if(ID==null)
+@if (ID == null)
 {
-    <PageTitle>Add new student</PageTitle>
-    <h3>Add new student</h3>
+        <PageTitle>Add new student</PageTitle>
+        <h3>Add new student</h3>
 }
 else
 {
-    <PageTitle>Edit @student.FirstName @student.LastName</PageTitle>
-    <h3>Edit @student.FirstName @student.LastName</h3>
+        <PageTitle>Edit @student.FirstName @student.LastName</PageTitle>
+        <h3>Edit @student.FirstName @student.LastName</h3>
 }
 <EditForm Model="student" OnSubmit="HandleSubmit">
     <div>
@@ -19,7 +20,7 @@ else
         <InputText id="firstname" @bind-Value="student.FirstName" class="form-control"></InputText>
     </div>
     <div>
-        <label for="lasttname">Last Name</label>
+        <label for="lastname">Last Name</label>
         <InputText id="lastname" @bind-Value="student.LastName" class="form-control"></InputText>
     </div>
     <div>
@@ -39,14 +40,31 @@ else
         <InputText id="password" @bind-Value="user.PasswordHash" class="form-control"></InputText>
     </div>
     <div>
-        <label for="classname">Class</label>
+        <label for="classname">MainClass</label>
         <InputSelect @bind-Value="student.ClassID" class="form-select">
 
-            @foreach (var classs in StudentService.Classes)
+            @foreach (var classs in ClassService.Classes)
             {
-                <option value="@classs.ClassID">@classs.ClassName</option>
+                if (classs.VirtualClass != true)
+                {
+                    <option value="@classs.ClassID">@classs.ClassName</option>
+                }
             }
         </InputSelect>
+    </div>
+
+    <div>
+        <label for="classes">VirtualClasses</label>
+        <select id="classes" multiple @onchange="HandleClassSelection" class="form-select">
+            @foreach (var classs in ClassService.Classes)
+            {
+                if(classs.VirtualClass == true)
+                {
+                    <option value="@classs.ClassID" selected="@student.ClassIdList.Contains(classs.ClassID)">@classs.ClassName</option>
+                }
+
+            }
+        </select>
     </div>
     <div>
         <label for="parentname">Parent</label>
@@ -54,14 +72,13 @@ else
             <option value=0>--- Select ---</option>
             @foreach (var parent in StudentService.Parents)
             {
-                <option value="@parent.ParentID">@parent.FirstName @parent.LastName</option>
-
+                    <option value="@parent.ParentID">@parent.FirstName @parent.LastName</option>
             }
         </InputSelect>
     </div>
     <br />
     <button type="submit" class="btn btn-primary">@btnText</button>
-    <button type="button" class="btn btn-danger" @onclick="DelateParent">Delete Parent</button>
+    <button type="button" class="btn btn-danger" @onclick="DeleteParent">Delete Parent</button>
 </EditForm>
 
 @code {
@@ -70,29 +87,41 @@ else
 
     Student student = new Student();
     User user = new User();
+    List<int> selectedClassIds = new List<int>();
 
     string btnText = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
-        btnText = ID == null ? "Save New Parent" : "Update Parent";
-        await StudentService.GetStudents();
+        btnText = ID == null ? "Save New Student" : "Update Student";
+        await ClassService.GetClasses();
+        if (ID != null)
+        {
+            student = await StudentService.GetStudentById((int)ID);
+            user = await UserService.GetUserByID(student.UserID);
+            selectedClassIds = student.ClassIdList.ToList();
+        }
+        else
+        {
+            await StudentService.GetParents();
+        }
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        if (ID == null)
-        {
-            await StudentService.GetParents();
-            await StudentService.GetClasses();
-        }
-        else
+        if (ID != null)
         {
             student = await StudentService.GetStudentById((int)ID);
             user = await UserService.GetUserByID(student.UserID);
+            selectedClassIds = student.ClassIdList.ToList();
         }
     }
+
     async Task HandleSubmit()
     {
+        student.ClassIdList = selectedClassIds;
+        student.StringClassIdList = string.Join(";", selectedClassIds);
+
         if (ID == null)
         {
             user.UserRole = "Student";
@@ -103,14 +132,28 @@ else
         }
         else
         {
-            user.UserRole = "Student";
             await StudentService.UpdateStudent(student);
             await UserService.UpdateUser(user);
         }
     }
-    async Task DelateParent()
+
+    async Task DeleteParent()
     {
         await UserService.DeleteUser(student.UserID);
-        await StudentService.DeleteStudent(student.ParentID);
+        await StudentService.DeleteStudent(student.StudentID);
+    }
+
+    void HandleClassSelection(ChangeEventArgs e)
+    {
+        selectedClassIds.Clear();
+        var selectedOptions = e.Value as IEnumerable<string>;
+        if (selectedOptions != null)
+        {
+            foreach (var option in selectedOptions)
+            {
+                var classId = int.Parse(option);
+                selectedClassIds.Add(classId);
+            }
+        }
     }
 }

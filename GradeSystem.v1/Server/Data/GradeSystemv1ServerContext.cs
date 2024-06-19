@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
 namespace GradeSystem.v1.Server.Data
 {
     public class GradeSystemv1ServerContext : DbContext
@@ -40,6 +42,8 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<Substitute> Substitute { get; set; }
         public DbSet<SchoolTrip> SchoolTrip { get; set; }
         public DbSet<SchoolTripTeachers> SchoolTripTeachers { get; set; }
-        public DbSet<SchoolTripClasses> SchoolTripClasses { get; set; }    
+        public DbSet<SchoolTripClasses> SchoolTripClasses { get; set; }
+
+        
     }
 }

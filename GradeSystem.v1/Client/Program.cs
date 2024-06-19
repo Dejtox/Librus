@@ -29,6 +29,7 @@ using GradeSystem.v1.Client.Auth;
 using Syncfusion.Blazor;
 using GradeSystem.v1.Client.Services.SchoolTripService;
 using GradeSystem.v1.Client.Services.GradeNumberService;
+using Radzen;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -61,7 +62,8 @@ builder.Services.AddAuthenticationCore();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddAuthentication();
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzgxOTMzQDMyMzAyZTMzMmUzMFR3bzhDc3YxcVUvSE5zMUQvRFgva0xibmR2WjdjYlU2UkNFZXlGeHpRWUE9");
+
+
 
 
 

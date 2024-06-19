@@ -1,6 +1,7 @@
 ﻿@page "/attendance"
 @page "/attendance/{id:int}"
 @inject IAttendanceService AttendanceService
+@inject IEnrollmentService EnrollmentService
 
 @if (ID == null)
 {
@@ -86,6 +87,9 @@ else
     {
         if (ID == null)
         {
+            Enrollment enrolmenttemp = new Enrollment();
+            enrolmenttemp = await EnrollmentService.GetEnrollmentByID(attendance.EnrollmentID);
+            attendance.CreatoinDate = enrolmenttemp.Date;
             await AttendanceService.CreateAttendance(attendance);
         }
         else

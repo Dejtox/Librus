@@ -25,14 +25,15 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudent()
         {
-            return await _context.Student.Include(c=>c.Class).Include(p=>p.Parent).Include(u => u.User).ToListAsync();
+            return await _context.Student.Include(p=>p.Parent).Include(u => u.User).ToListAsync();
         }
+        
 
         // GET: api/Students/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
         {
-            var student = await _context.Student.Include(c => c.Class).Include(p => p.Parent).Include(u=>u.User).FirstOrDefaultAsync(s=>s.StudentID==id);
+            var student = await _context.Student.Include(p => p.Parent).Include(u=>u.User).FirstOrDefaultAsync(s=>s.StudentID==id);
 
             if (student == null)
             {
@@ -78,7 +79,6 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
-            student.Class = null;
             student.Parent = null;
             student.User = null;
             _context.Student.Add(student);
@@ -107,5 +107,7 @@ namespace GradeSystem.v1.Server.Controllers
         {
             return _context.Student.Any(e => e.StudentID == id);
         }
+
+
     }
 }

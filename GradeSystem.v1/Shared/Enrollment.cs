@@ -8,6 +8,7 @@
         public DateTime EndDate { get; set; }
         public string ClassRoom { get; set; } = string.Empty;
         public Subject? Subject { get; set; }
-        public Class? Class { get; set; }
+        public Class? Class { get; set; }       
+
         
     }

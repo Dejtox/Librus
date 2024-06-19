@@ -6,5 +6,6 @@
         public string ClassName { get; set; } = string.Empty;
 
         public Teacher?Teacher { get; set; }
+        public bool VirtualClass { get; set; }
 
     }

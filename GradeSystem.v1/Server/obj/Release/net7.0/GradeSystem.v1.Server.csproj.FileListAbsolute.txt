@@ -1,0 +1,9 @@
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.csproj.AssemblyReference.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.AssemblyInfoInputs.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.AssemblyInfo.cs
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.csproj.CoreCompileInputs.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.RazorAssemblyInfo.cache
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.RazorAssemblyInfo.cs
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Release\net7.0\GradeSystem.v1.Server.sourcelink.json

@@ -1,0 +1,22 @@
+﻿@page "/TestDragableWindow2"
+@using Microsoft.AspNetCore.Components.Web
+
+<h3>Blazor Draggable Popup Example</h3>
+
+<button @onclick="ShowPopup">Show Popup</button>
+
+<TestDragableWindow IsVisible="@isPopupVisible" IsVisibleChanged="@OnPopupVisibilityChanged" />
+
+@code {
+    private bool isPopupVisible = false;
+
+    private void ShowPopup()
+    {
+        isPopupVisible = true;
+    }
+
+    private void OnPopupVisibilityChanged(bool isVisible)
+    {
+        isPopupVisible = isVisible;
+    }
+}

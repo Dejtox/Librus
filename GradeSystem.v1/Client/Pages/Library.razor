@@ -9,6 +9,7 @@
 @using System.Text;
 @using System.Text.RegularExpressions;
 <h3>Library</h3>
+
 <div>
     @if (yourbooks == true){<div><button @onclick="BorrowBooks">Borrow Books</button></div>}
     else{<button disabled>Borrow Books</button>}
@@ -19,70 +20,55 @@
     <input @oninput="FillTable" /> 
     @btnText
 </div>
-<div>
-    <input type="checkbox" @bind-value="isawailable" @onclick="DoUpdateList">
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Editon</th>
-                <th>Amount</th>
-                <th>Borow</th>
-                <th>Image</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var booktype in BookServiceSupport.BookList)
+<body>
+    <div class="booklist">
+@foreach (var booktype in BookServiceSupport.BookList)
+{
+    string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg";
+            <div class="book-item">
+        <h3 type="liblarybookbox"><img src=@imgurl></h3>
+                <h3>@booktype.Title</h3>
+                <h3>@booktype.Author</h3>
+                <h3>@booktype.Edition</h3>
+                <h3>@booktype.AmountOfBooks</h3>
+        @if (booktype.AmountOfBooks > 0)
+        {
+            bool pom = false;
+            foreach (var book in booktype.Books)
             {
-                string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg";
-                <tr type="liblarybookbox">
-                    <td type="liblarybookbox"><img src=@imgurl></td>
-                    <td>@booktype.Title</td>
-                    <td>@booktype.Author</td>
-                    <td>@booktype.Edition</td>
-                    <td>@booktype.AmountOfBooks</td>
-                    @if (booktype.AmountOfBooks > 0)
-                    {
-                        bool pom = false;
-                        foreach (var book in booktype.Books)
-                            {
-                            
-                            
-                                    if (book.StudentId == ID)
-                                    {
-                                        pom = true;
-                                        break;
-                                    }
-                                
-                            }
-                        <td>
-                            @if(!pom)
-                            {
-                                <button @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>
-                            }else
-                            {
-                                <button disabled>Reservetion limit reached</button>
-                            }
-                        </td>
-                
-                    }
-                    else
-                    {
-                        <td>Out of stock</td>
-                    }
-                     
 
 
-                </tr>
+                if (book.StudentId == ID)
+                {
+                    pom = true;
+                    break;
+                }
+
             }
+            <h3>
+                @if (!pom)
+                {
+                    <button class="libraryreservatebutton" @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>
+                }
+                else
+                {
+                    <button disabled class="libraryreservatebutton">Reservetion limit reached</button>
+                }
+            </h3>
+           
 
+        }
+        else
+        {
+            <a>Out of stock</a>
+        }
 
-        </tbody>
-    </table>
-</div>
+            </div>
 
+   
+}
+    </div>
+</body>
 
 @code {
 

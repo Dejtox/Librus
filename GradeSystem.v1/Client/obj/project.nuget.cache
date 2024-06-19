@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w+5yaan4yBObFBxqQLSwq4wbpr+DbE6QsfubGi+rrB9teipzC3IAeM3dkkMRG74N/AYGbgFsLzbieSYbPyrVdQ==",
+  "dgSpecHash": "snmzwxoPDgQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
   "expectedPackageFiles": [
@@ -51,6 +51,9 @@
     "C:\\Users\\patry\\.nuget\\packages\\microsoft.jsinterop\\7.0.5\\microsoft.jsinterop.7.0.5.nupkg.sha512",
     "C:\\Users\\patry\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.5\\microsoft.jsinterop.webassembly.7.0.5.nupkg.sha512",
     "C:\\Users\\patry\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
+    "C:\\Users\\patry\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23401.1\\microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
+    "C:\\Users\\patry\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23401.1\\microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
+    "C:\\Users\\patry\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.5\\microsoft.net.sdk.webassembly.pack.8.0.5.nupkg.sha512",
     "C:\\Users\\patry\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\patry\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\patry\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
@@ -83,7 +86,7 @@
     "C:\\Users\\patry\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512",
     "C:\\Users\\patry\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\patry\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\patry\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.5\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.5.nupkg.sha512"
+    "C:\\Users\\patry\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.19\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.19.nupkg.sha512"
   ],
   "logs": []
 }

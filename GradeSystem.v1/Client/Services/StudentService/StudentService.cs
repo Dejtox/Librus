@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using GradeSystem.v1.Client.Pages;
+using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
 namespace GradeSystem.v1.Client.Services.StudentService
@@ -49,15 +50,34 @@ namespace GradeSystem.v1.Client.Services.StudentService
         {
             var result = await _http.GetFromJsonAsync<Student>($"api/Students/{id}");
             if (result != null)
+            {
+                if (result.StringClassIdList.Length > 0)
+                {
+                    result.ClassIdList = stringtoint(result.StringClassIdList);                
+                }
                 return result;
+            }
+                
             throw new Exception("Student no find");
         }
 
         public async Task GetStudents()
         {
             var result = await _http.GetFromJsonAsync<List<Student>>("api/Students");
-                if (result != null)
+                if (result != null) 
+                {
                     Students = result;
+                    foreach (var student in Students)
+                    {
+                    if(student.StringClassIdList.Length>0)
+                    {
+                        student.ClassIdList = stringtoint(student.StringClassIdList);
+                    }
+                    }
+                    
+                }
+                
+                    
          }
 
         public async Task UpdateStudent(Student student)
@@ -73,6 +93,17 @@ namespace GradeSystem.v1.Client.Services.StudentService
         public Task<Student> GetStudentByParentId(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public static List<int> stringtoint(string str)
+        {
+            string[] tempstr = str.Split(';');
+            List<int> result = new List<int>();
+            foreach (string s in tempstr)
+            {
+                result.Add(Convert.ToInt32(s));
+            }
+            return result;
         }
     }
 }

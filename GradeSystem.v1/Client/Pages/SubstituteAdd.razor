@@ -1,5 +1,7 @@
 ﻿@page "/substitute_add/{id:int}"
 @inject ISubstituteService SubstituteService
+@inject ILogRegisterService LogRegisterService
+@inject UserLogService userState
 
 <PageTitle>Add Substitute</PageTitle>
 <h3>Add Substitute</h3>
@@ -22,9 +24,9 @@
             <td>@enrollment.ClassRoom</td>
             <td>@enrollment.Subject.SubjectName @enrollment.Subject.Teacher.FirstName - @enrollment.Subject.Teacher.LastName</td>
             <td>
-                <InputSelect @bind-Value="substitute.SubjectID">
+                <InputSelect @bind-Value="enrollment.SubjectID">
                     <option value="0">SELECT</option>
-                    @foreach(var subject in SubstituteService.AvailableSubjects)
+                    @foreach (var subject in SubstituteService.AvailableSubjects)
                     {
                         <option value="@subject.SubjectID">@subject.SubjectName @subject.Teacher.FirstName - @subject.Teacher.LastName</option>
                     }
@@ -38,28 +40,24 @@
     [Parameter]
     public int ID { get; set; }
     Enrollment enrollment = new Enrollment();
-    Substitute substitute = new Substitute();
-
 
     protected override async Task OnParametersSetAsync()
     {
         enrollment = await SubstituteService.GetEnrollmentById((int)ID);
-        await SubstituteService.GetAvailableSubjects(enrollment.Date,enrollment.EndDate);
+        await SubstituteService.GetAvailableSubjects(enrollment.Date, enrollment.EndDate);
 
     }
     async Task HandleSubmit()
     {
-        substitute.StartDate = enrollment.Date;
-        substitute.EndDate = enrollment.EndDate;
-        substitute.ClassID = enrollment.ClassID;
-        substitute.ClassRoom = enrollment.ClassRoom;
-        substitute.Status = "active";
-        await SubstituteService.CreateSubstitute(substitute);
-        //ew w transakcje to zamienic
-        await SubstituteService.DeleteEnrollment(enrollment.EnrollmentID);
-    }
-    void SetSubject(int id)
-    {
-        substitute.SubjectID = id;
+        LogRegister log = new LogRegister
+            {
+                UserId = userState.Id,
+                FirstName = userState.FirstName,
+                LastName = userState.LastName,
+                Date = DateTime.Now,
+                Log = $"User {userState.FirstName} {userState.LastName} created a substitute at {DateTime.Now}."
+            };
+        await LogRegisterService.CreateLog(log);
+        await SubstituteService.CreateSubstitute(enrollment);
     }
 }

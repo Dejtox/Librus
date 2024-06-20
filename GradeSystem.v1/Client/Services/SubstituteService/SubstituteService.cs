@@ -15,16 +15,16 @@ namespace GradeSystem.v1.Client.Services.SubstituteService
             _http = http;
             _navigationManager = navigationManager;
         }
-        public IList<Substitute> Substitutes { get; set; }=new List<Substitute>();
+        public IList<Enrollment> Substitutes { get; set; }=new List<Enrollment>();
         public IList<Enrollment> Enrollments { get; set; }=new List<Enrollment>();
         public IList<Subject> AvailableSubjects { get; set; } =new List<Subject>();
         
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
 
-        public async Task CreateSubstitute(Substitute substitute)
+        public async Task CreateSubstitute(Enrollment enrollment)
         {
-            await _http.PostAsJsonAsync("api/Substitute", substitute);
+            await _http.PutAsJsonAsync($"api/Substitute/{enrollment.EnrollmentID}", enrollment);
             _navigationManager.NavigateTo("substitutes");
         }
 
@@ -42,7 +42,7 @@ namespace GradeSystem.v1.Client.Services.SubstituteService
 
         public async Task GetSubstitutes()
         {
-            var result = await _http.GetFromJsonAsync<List<Substitute>>("api/Substitute");
+            var result = await _http.GetFromJsonAsync<List<Enrollment>>("api/Substitute");
             if (result != null)
                 Substitutes = result;
         }
@@ -70,18 +70,24 @@ namespace GradeSystem.v1.Client.Services.SubstituteService
             _navigationManager.NavigateTo("substitutes");
         }
 
-        public async Task<Substitute> GetSubstituteById(int id)
+        public async Task<Enrollment> GetSubstituteById(int id)
         {
-            var substitute = await _http.GetFromJsonAsync<Substitute>($"api/Substitute/{id}");
+            var substitute = await _http.GetFromJsonAsync<Enrollment>($"api/Substitute/{id}");
             if (substitute != null)
                 return substitute;
             throw new Exception("Not found");
         }
 
-        public async Task UpdateSubstitute(Substitute substitute)
+        public async Task CreateLeave(Teacher teacher)
         {
-            await _http.PutAsJsonAsync($"api/Substitute/{substitute.SubstituteID}", substitute);
-            _navigationManager.NavigateTo("substitutes");
+            await _http.PutAsJsonAsync($"api/Substitute/leave_add/{teacher.TeacherID}", teacher);
+            _navigationManager.NavigateTo("leave");
+        }
+
+        public async Task DeleteLeave(int id,Teacher teacher)
+        {
+            await _http.PutAsJsonAsync($"api/Substitute/leave/{id}", teacher);
+            _navigationManager.NavigateTo("leave");
         }
     }
 }

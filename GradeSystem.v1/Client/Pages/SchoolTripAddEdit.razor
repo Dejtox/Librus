@@ -1,35 +1,27 @@
 ﻿@page "/school_trip"
 @page "/school_trip/{id:int}"
 @inject ISchoolTripService SchoolTripService
+@inject DialogService DialogService
 
-@if(ID==null)
-{
-    <PageTitle>Create new School Trip</PageTitle>
-    <h3>Create new School Trip</h3>
-}
-else
-{
-    <PageTitle>Edit @schoolTrip.Name</PageTitle>
-    <h3>Edit @schoolTrip.Name</h3>
-}
 <EditForm Model="schoolTrip" OnSubmit="HandleSubmit">
-    <div>
+    <div class="form-group">
         <label for="trip-start-date">Start date</label>
-        <input type="datetime-local" name="trip-start-date" class="add-date-and-time" @bind-value="schoolTrip.StartDate"/>
+        <input type="datetime-local" name="trip-start-date" class="form-control" @bind-value="schoolTrip.StartDate"/>
     </div>
-    <div>
+    <div class="form-group">
         <label for="trip-end-date">End date</label>
         <input type="datetime-local" name="trip-end-date" class="add-date-and-time" @bind-value="schoolTrip.EndDate" />
     </div>
-    <div>
+    <div class="form-group">
         <label for="trip-name">Trip name</label>
-        <InputText id="trip-name" class="form-control" @bind-Value="schoolTrip.Name"></InputText>
+            <InputText id="trip-name" class="form-control" @bind-Value="schoolTrip.Name">Trip name</InputText>
     </div>
-    <div>
+    <div class="form-group">
         <label for="trip-desc">Trip description</label>
         <InputText id="trip-desc" class="form-control" @bind-Value="schoolTrip.Description"></InputText>
     </div>
-    <div>@*to może sie zmieni*@
+    <div class="form-group">
+        @*to może sie zmieni*@
         <label for="trip-class">Class</label>
         <select multiple>
             @foreach (var classs in SchoolTripService.Classes)
@@ -38,7 +30,7 @@ else
             }
         </select>
     </div> 
-    <div>
+    <div class="form-group">
         <label for="trip-teacher">Teacher</label>
         <select multiple>
             @foreach(var teacher in SchoolTripService.Teachers)
@@ -48,10 +40,12 @@ else
         </select>
     </div> 
     <br />
-    <button type="submit" class="btn btn-primary">@btnText</button>
-    <button type="button" class="btn btn-danger" @onclick="DeleteSchoolTrip">Delete Trip</button>
-    
+    <div class="button-container">
+        <button type="submit" class="rounded-empty-button">@btnText</button>
+        <button type="button" class="rounded-filled-button" @onclick="DeleteSchoolTrip">Delete Trip</button>
+    </div>
 </EditForm>
+<RadzenButton Icon="close" Style="position: absolute; right: 0; top: 0;" Click="@CloseDialog" />
 
 @code {
     [Parameter]
@@ -97,7 +91,10 @@ else
             await SchoolTripService.UpdateSchoolTrip(schoolTripCombined);
         }
     }
-
+    void CloseDialog()
+    {
+        DialogService.Close();
+    }
     async Task DeleteSchoolTrip()
     {
         await SchoolTripService.DeleteSchoolTripByID(schoolTrip.SchoolTripID);

@@ -20,14 +20,16 @@ namespace GradeSystem.v1.Client.Auth
                 var userSession = await _sessionStorageService.ReadEncryptedAsync<UserSession>("UserSession");
                 if (userSession == null)
                     return await Task.FromResult(new AuthenticationState(_anonymus));
-                var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
+                var claims = new List<Claim>();
+                foreach (var role in userSession.Roles)
                 {
-                    new Claim(ClaimTypes.Name, userSession.UserName),
-                    new Claim(ClaimTypes.Role, userSession.Role),
-                    new Claim(ClaimTypes.Email, userSession.UserID.ToString())
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+                claims.Add(new Claim(ClaimTypes.Name, userSession.UserName));
+                claims.Add(new Claim(ClaimTypes.Email, userSession.UserID.ToString()));
+                claims.Add(new Claim(ClaimTypes.Gender, userSession.ID.ToString()));
+                var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, "JwtAuth"));
 
-
-                },"JwtAuth"));
                 return await Task.FromResult(new AuthenticationState(claimsPrincipal));
             }
             catch
@@ -40,14 +42,17 @@ namespace GradeSystem.v1.Client.Auth
             ClaimsPrincipal claimsPrincipal;
             if (userSession != null)
             {
-                claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
+                var claims = new List<Claim>();
+                foreach (var role in userSession.Roles)
                 {
-                    new Claim(ClaimTypes.Name, userSession.UserName),
-                    new Claim(ClaimTypes.Role, userSession.Role),
-                    new Claim(ClaimTypes.Email, userSession.UserID.ToString())
-                }));
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+                claims.Add(new Claim(ClaimTypes.Name, userSession.UserName));
+                claims.Add(new Claim(ClaimTypes.Email, userSession.UserID.ToString()));
+                claims.Add(new Claim(ClaimTypes.Gender, userSession.ID.ToString()));
+                claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims));
                 userSession.ExpiryTimeStamp = DateTime.Now.AddSeconds(userSession.ExpiresIn);
-                await _sessionStorageService.SaveItemEncryptedAsync("UserSession",userSession);
+                await _sessionStorageService.SaveItemEncryptedAsync("UserSession", userSession);
 
             }
             else
@@ -56,7 +61,7 @@ namespace GradeSystem.v1.Client.Auth
                 await _sessionStorageService.RemoveItemAsync("UserSession");
             }
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
-            
+
         }
         public async Task<string> GetToken()
         {

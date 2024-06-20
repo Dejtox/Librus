@@ -1,0 +1,71 @@
+﻿@page "/add_leave/{id:int}"
+@inject ITeacherService TeacherService
+@inject ISubstituteService SubstituteService
+@inject ILogRegisterService LogRegisterService
+@inject UserLogService userState
+
+
+<h3>LeaveAddEdit</h3>
+
+<EditForm Model="teacher" OnSubmit="HandleSubmit">
+    <div>
+        <label>First Name</label>
+        <p>@teacher.FirstName</p>
+    </div>
+    <div>
+        <label>Last Name</label>
+        <p>@teacher.LastName</p>
+    </div>
+    <div>
+        <label for="leave-start-date">Leave Start Date</label>
+        <input type="datetime-local" id="leave-start-date"
+               name="leave-start-date" class="add-date-and-time" @bind-value="teacher.StartDate"/>
+    </div>
+    <div>
+        <label for="leave-end-date">Leave End Date</label>
+        <input type="datetime-local" id="leave-end-date"
+            name="leave-end-date" class="add-date-and-time" @bind-value="teacher.EndDate" />
+    </div>
+    <div>
+        <label for="teacher">Select Teacher</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Create new leave/leave sick</button>
+</EditForm>
+<td>
+    <button type="submit" class="btn btn-primary" @onclick="(()=>DeleteLeave(teacher.TeacherID))"><i class="oi oi-pencil"></i></button>
+</td>
+@code {
+    [Parameter]
+    public int ID { get; set; }
+    Teacher teacher=new Teacher();
+    protected override async Task OnInitializedAsync()
+    {
+        teacher = await TeacherService.GetTeacherByID(ID);
+    }
+    async Task HandleSubmit()
+    {
+        LogRegister log = new LogRegister
+        {
+            UserId = userState.Id,
+            FirstName = userState.FirstName,
+            LastName = userState.LastName,
+            Date = DateTime.Now,
+            Log = $"User {userState.FirstName} {userState.LastName} created a leave at {DateTime.Now}."
+        };
+        await LogRegisterService.CreateLog(log);
+        await SubstituteService.CreateLeave(teacher);
+    }
+    async void DeleteLeave(int id)
+    {
+        LogRegister log = new LogRegister
+        {
+            UserId = userState.Id,
+            FirstName = userState.FirstName,
+            LastName = userState.LastName,
+            Date = DateTime.Now,
+            Log = $"User {userState.FirstName} {userState.LastName} deleted a leave at {DateTime.Now}."
+        };
+        await LogRegisterService.CreateLog(log);
+        await SubstituteService.DeleteLeave(id,teacher);
+    }
+}

@@ -2,6 +2,150 @@
     padding: 20px;
 }
 
+/*Moje*/
+.table-header {
+    background-color: #0C244C;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+/*table table-striped overflow-hidden to do tablicy jeszcze*/
+.table-addons {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius:15px;
+}
+/*przy headerze i buttonie. jesli nie ma to tylko margin-bottom*/
+.div-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.white-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+}
+
+.delete-button {
+    color: white;
+    background-color: #DC3545;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+/*Formularz*/
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: #ab4b4b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: auto;
+    width: auto;
+}
+/* Ogólne ustawienia dla pól formularza */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Etykiety pól formularza */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Pola formularza (input, textarea, select) */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: calc(100% - 16px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Stylizacja przycisków */
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/*.button-container button {
+padding: 10px 20px;
+font-size: 16px;
+border: 2px solid transparent;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s, border-color 0.3s;
+}
+
+.button-container button.save-btn {
+background-color: #ffffff;
+color: #000000;
+border-color: #ffc107;
+}
+
+.button-container button.save-btn:hover {
+background-color: #ffc107;
+color: #ffffff;
+}
+
+.button-container button.delete-btn {
+background-color: #ffc107;
+color: #000000;
+}
+
+.button-container button.delete-btn:hover {
+background-color: #ffb000;
+color: #ffffff;
+}*/
+.rounded-empty-button {
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid;
+    box-shadow: 0 0 0 3px #ffc107;
+    padding: 10px 15px 10px 15px;
+}
+.rounded-filled-button {
+    color: black;
+    background-color: #ffc107;
+    border-radius: 10px;
+    border: 2px solid;
+    box-shadow: 0 0 0 3px #ffc107;
+    padding: 10px 15px 10px 15px;
+}
+/* Ikony kalendarza w inputach dat */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+    cursor: pointer;
+}
+.create-button {
+    color: white;
+    background-color: #FFA500;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+.create-button:hover{
+    background-color:red;
+}
+
+
 /* Co to ma byc */
 .microsoft-login-button {
     display: block;

@@ -2,7 +2,7 @@
 {
     public interface ISubstituteService
     {
-        IList<Substitute> Substitutes { get; set; }
+        IList<Enrollment> Substitutes { get; set; }
         IList<Enrollment> Enrollments { get; set; }
         IList<Subject> AvailableSubjects { get; set; }
 
@@ -11,11 +11,12 @@
 
         Task DeleteSubstitute(int id);
         Task DeleteEnrollment(int id);
+        Task DeleteLeave(int id,Teacher teacher);
 
         Task GetAvailableSubjects(DateTime startDate,DateTime endDate);
-        Task CreateSubstitute(Substitute substitute);
-        Task UpdateSubstitute(Substitute substitute);
+        Task CreateSubstitute(Enrollment enrollment);
+        Task CreateLeave(Teacher teacher);
         Task<Enrollment> GetEnrollmentById (int id);
-        Task<Substitute> GetSubstituteById(int id);
+        Task<Enrollment> GetSubstituteById(int id);
     }
 }

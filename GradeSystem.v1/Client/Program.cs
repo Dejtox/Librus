@@ -19,8 +19,8 @@ global using GradeSystem.v1.Client.Services.SchoolTripService;
 global using GradeSystem.v1.Client.Services.SubstituteService;
 global using GradeSystem.v1.Client.Services.BookServiceSupport;
 global using GradeSystem.v1.Client.Services.BookTypeService;
-global using GradeSystem.v1.Client.Services.SchoolTripService;
-global using GradeSystem.v1.Client.Services.SubstituteService;
+global using GradeSystem.v1.Client.Services.UserLogService;
+global using GradeSystem.v1.Client.Services.LogRegisterService;
 
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Components.Web;
@@ -29,7 +29,9 @@ using Blazored.SessionStorage;
 using System.Reflection;
 using GradeSystem.v1.Client.Auth;
 using Syncfusion.Blazor;
-using GradeSystem.v1.Client.Services.SchoolTripService;
+using Radzen;
+
+
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -57,12 +59,15 @@ builder.Services.AddScoped<IBookTypeService, BookTypeService>();
 builder.Services.AddScoped<ISchoolTripService, SchoolTripService>();
 builder.Services.AddScoped<ISubstituteService, SubstituteService>();
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<ILogRegisterService, LogRegisterService>();
+builder.Services.AddScoped<UserLogService>();
 builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddAuthenticationCore();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddAuthentication();
+builder.Services.AddScoped<DialogService>();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzgxOTMzQDMyMzAyZTMzMmUzMFR3bzhDc3YxcVUvSE5zMUQvRFgva0xibmR2WjdjYlU2UkNFZXlGeHpRWUE9");
 
 

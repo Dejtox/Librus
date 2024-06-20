@@ -16,7 +16,7 @@ namespace GradeSystem.v1.Client.Services.UserService
         {
             _http = http;
         }
-        public async Task CreateUser(User user)
+        public async Task CreateUser(UserDto user)
         {
             await _http.PostAsJsonAsync("api/Users", user);
             //_navigationManager.NavigateTo("Teachers");

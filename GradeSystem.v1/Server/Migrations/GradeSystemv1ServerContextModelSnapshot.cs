@@ -57,13 +57,11 @@ namespace GradeSystem.v1.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookID"));
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("BookTypeID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Img")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("BorowingDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsBoocked")
                         .HasColumnType("bit");
@@ -74,18 +72,57 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<int>("QRCode")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("StudentId")
                         .HasColumnType("int");
+
+                    b.HasKey("BookID");
+
+                    b.HasIndex("BookTypeID");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Book");
+                });
+
+            modelBuilder.Entity("BookType", b =>
+                {
+                    b.Property<int>("BookTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookTypeID"));
+
+                    b.Property<int>("AmountOfBooks")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cover")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Edition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BookID");
+                    b.HasKey("BookTypeID");
 
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Book");
+                    b.ToTable("BookType");
                 });
 
             modelBuilder.Entity("CalendarEvent", b =>
@@ -166,6 +203,13 @@ namespace GradeSystem.v1.Server.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("SchoolTripID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SubjectID")
                         .HasColumnType("int");
@@ -333,6 +377,28 @@ namespace GradeSystem.v1.Server.Migrations
                     b.ToTable("Parent");
                 });
 
+            modelBuilder.Entity("Roles", b =>
+                {
+                    b.Property<int>("RolesID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolesID"));
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("RolesID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("SchoolTrip", b =>
                 {
                     b.Property<int>("SchoolTripID")
@@ -479,43 +545,6 @@ namespace GradeSystem.v1.Server.Migrations
                     b.ToTable("Subject");
                 });
 
-            modelBuilder.Entity("Substitute", b =>
-                {
-                    b.Property<int>("SubstituteID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubstituteID"));
-
-                    b.Property<int>("ClassID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClassRoom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SubjectID")
-                        .HasColumnType("int");
-
-                    b.HasKey("SubstituteID");
-
-                    b.HasIndex("ClassID");
-
-                    b.HasIndex("SubjectID");
-
-                    b.ToTable("Substitute");
-                });
-
             modelBuilder.Entity("Teacher", b =>
                 {
                     b.Property<int>("TeacherID")
@@ -528,6 +557,9 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -538,6 +570,12 @@ namespace GradeSystem.v1.Server.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserID")
@@ -563,10 +601,6 @@ namespace GradeSystem.v1.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserRole")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -596,9 +630,15 @@ namespace GradeSystem.v1.Server.Migrations
 
             modelBuilder.Entity("Book", b =>
                 {
+                    b.HasOne("BookType", "BookType")
+                        .WithMany("Books")
+                        .HasForeignKey("BookTypeID");
+
                     b.HasOne("Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
+
+                    b.Navigation("BookType");
 
                     b.Navigation("Student");
                 });
@@ -704,6 +744,17 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Roles", b =>
+                {
+                    b.HasOne("User", "User")
+                        .WithMany("Roles")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SchoolTripClasses", b =>
                 {
                     b.HasOne("Class", "Class")
@@ -780,25 +831,6 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("Substitute", b =>
-                {
-                    b.HasOne("Class", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Class");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("Teacher", b =>
                 {
                     b.HasOne("User", "User")
@@ -810,11 +842,21 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BookType", b =>
+                {
+                    b.Navigation("Books");
+                });
+
             modelBuilder.Entity("SchoolTrip", b =>
                 {
                     b.Navigation("SchoolTripClasses");
 
                     b.Navigation("SchoolTripTeachers");
+                });
+
+            modelBuilder.Entity("User", b =>
+                {
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

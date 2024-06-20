@@ -158,16 +158,16 @@
                 }
             }
         }
-        foreach (var evn in SubstituteService.Substitutes)
-        {
-            if (evn.StartDate.Month == SelectedDate.Month & evn.StartDate.Year == SelectedDate.Year)
-            {                           
-                if(evn.Subject.TeacherID == Id)
-                {
-                    TempEvents.Add(new Event { DT = evn.StartDate, description = evn.Subject.SubjectName + " Substitute" });
-                }
-            }
-        }
+        // foreach (var evn in SubstituteService.Substitutes)
+        // {
+        //     if (evn.StartDate.Month == SelectedDate.Month & evn.StartDate.Year == SelectedDate.Year)
+        //     {                           
+        //         if(evn.Subject.TeacherID == Id)
+        //         {
+        //             TempEvents.Add(new Event { DT = evn.StartDate, description = evn.Subject.SubjectName + " Substitute" });
+        //         }
+        //     }
+        // }
         foreach (var evn in TempEvents)
         {
             if (Events.Count != 0)

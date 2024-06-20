@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GradeSystem.v1.Server.Data;
+using System.Transactions;
+using Microsoft.AspNetCore.SignalR;
+
+
 
 namespace GradeSystem.v1.Server.Controllers
 {
@@ -24,7 +28,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollment()
         {
-            return await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).Include(t=>t.Subject.Teacher).ToListAsync();
+            return await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).Include(t => t.Subject.Teacher).Where(e => e.Status == "active").ToListAsync();
         }
 
         // GET: api/Enrollments/5
@@ -74,6 +78,7 @@ namespace GradeSystem.v1.Server.Controllers
 
         // POST: api/Enrollments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //Zmianson
         [HttpPost]
         public async Task<ActionResult<Enrollment>> PostEnrollment(Enrollment enrollment)
         {
@@ -81,7 +86,6 @@ namespace GradeSystem.v1.Server.Controllers
             enrollment.Subject = null;
             _context.Enrollment.Add(enrollment);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetEnrollment", new { id = enrollment.EnrollmentID }, enrollment);
         }
 
@@ -97,7 +101,6 @@ namespace GradeSystem.v1.Server.Controllers
 
             _context.Enrollment.Remove(enrollment);
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 

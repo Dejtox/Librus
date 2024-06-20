@@ -2,6 +2,7 @@
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
+
 namespace GradeSystem.v1.Client.Services.EnrollmentService
 {
     public class EnrollmentService : IEnrollmentService
@@ -20,6 +21,7 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
 
         public async Task CreateEnrollment(Enrollment enrollment)
         {
+
             await _http.PostAsJsonAsync("api/Enrollments", enrollment);
             _navigationManager.NavigateTo("enrollments");
         }

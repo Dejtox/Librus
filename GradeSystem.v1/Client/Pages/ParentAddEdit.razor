@@ -76,16 +76,16 @@ else
     {
         if (ID==null)
         {
-            user.UserRole = "Parent";
-            await UserService.CreateUser(user);
+            //user.UserRole = "Parent";
+            //await UserService.CreateUser(user);
             await UserService.GetUsers();
             parent.UserID = UserService.Users[UserService.Users.Count - 1].UserID;
             await ParentService.CreateParent(parent);
         }
         else
         {
-            user.UserRole = "Parent";
-            await UserService.CreateUser(user);
+            //user.UserRole = "Parent";
+            //await UserService.CreateUser(user);
             await UserService.GetUsers();
             parent.UserID = UserService.Users[UserService.Users.Count - 1].UserID;
             await ParentService.UpdateParent(parent);

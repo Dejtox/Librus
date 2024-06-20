@@ -15,6 +15,6 @@
         Task<User> GetUserByLogin(string login);
         Task UpdateUser(User user);
         Task DeleteUser(int id);
-        Task CreateUser(User user);
+        Task CreateUser(UserDto user);
     }
 }

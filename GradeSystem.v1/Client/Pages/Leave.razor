@@ -1,0 +1,67 @@
+﻿@page "/leave"
+@inject ITeacherService TeacherService
+@inject NavigationManager navigationManager
+@inject ISubstituteService SubstituteService
+@inject ILogRegisterService LogRegisterService
+@inject UserLogService userState
+
+
+<PageTitle>Leaves</PageTitle>
+<h3>Leaves</h3>
+<div>
+    <InputSelect @bind-Value="ID">
+        <option value="0">SELECT</option>
+        @foreach(var teacher in TeacherService.AvailableTeachers)
+        {
+            <option value="@teacher.TeacherID">@teacher.FirstName @teacher.LastName</option>
+        }
+    </InputSelect>
+    <button type="submit" class="btn btn-primary" @onclick="(()=>HandleSubmit(ID))">Create new leave/leave sick</button>
+</div>
+<table class="table">
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Start of the leave</th>
+        <th>End of the leave</th>
+        <th>Edit</th>
+    </thead>
+    <tbody>
+        @foreach(var teacher in TeacherService.UnavailableTeachers)
+        {
+            <tr>
+                <td>@teacher.FirstName</td>
+                <td>@teacher.LastName</td>
+                <td>@teacher.PhoneNumber</td>
+                <td>@teacher.Email</td>
+                <td>@teacher.StartDate</td>
+                <td>@teacher.EndDate</td>
+                <td>
+                    <button type="submit" class="btn btn-primary" @onclick="(()=>HandleSubmit(teacher.TeacherID))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    int ID;
+    protected override async Task OnInitializedAsync()
+    {
+        await TeacherService.GetAvailableTeachers();
+        await TeacherService.GetUnavailableTeachers();
+    }
+    void EditTeacherLeave(int id)
+    {
+
+
+    }
+    void HandleSubmit(int id)
+    {
+        navigationManager.NavigateTo($"add_leave/{id}");
+    }
+
+}

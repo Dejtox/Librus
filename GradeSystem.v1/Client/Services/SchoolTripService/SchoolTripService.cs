@@ -20,6 +20,7 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
 
         public async Task CreateSchoolTrip(SchoolTripCombined schoolTripCombined)
         {
+            //bylo bez kotlin
             await _http.PostAsJsonAsync("api/SchoolTrip", schoolTripCombined);
             _navigationManager.NavigateTo("school_trips");
         }
@@ -61,8 +62,9 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
 
         public async Task UpdateSchoolTrip(SchoolTripCombined schoolTripCombined)
         {
-            await _http.PutAsJsonAsync($"api/SchoolTrip/{schoolTripCombined.SchoolTrip.SchoolTripID}", schoolTripCombined);
+            await _http.PostAsJsonAsync($"api/SchoolTrip/{schoolTripCombined.SchoolTrip.SchoolTripID}", schoolTripCombined);
             _navigationManager.NavigateTo("school_trips");
         }
+
     }
 }

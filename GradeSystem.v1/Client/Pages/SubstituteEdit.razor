@@ -1,5 +1,7 @@
 ﻿@page "/substitute_edit/{id:int}"
 @inject ISubstituteService SubstituteService
+@inject ILogRegisterService LogRegisterService
+@inject UserLogService userState
 
 <PageTitle>Edit substitute</PageTitle>
 <h3>Edit substitute</h3>
@@ -7,7 +9,7 @@
 <EditForm Model="substitute" OnSubmit="HandleSubmit">
     <div>
         <label for="start-date">Start Date</label>
-        <InputDate id="start-date" @bind-Value="substitute.StartDate" class="add-date-and-time"></InputDate>
+        <InputDate id="start-date" @bind-Value="substitute.Date" class="add-date-and-time"></InputDate>
     </div>
     <div>
         <label for="class-room">Class room</label>
@@ -30,22 +32,42 @@
 @code {
     [Parameter]
     public int? ID { get; set; }
-    Substitute substitute = new Substitute();
+    Enrollment substitute = new Enrollment();
     double timeStamp = 45;
 
     protected override async Task OnParametersSetAsync()
     {
         substitute = await SubstituteService.GetSubstituteById((int)ID);
-        await SubstituteService.GetAvailableSubjects(substitute.StartDate,substitute.EndDate);
+        await SubstituteService.GetAvailableSubjects(substitute.Date, substitute.EndDate);
     }
 
     async Task HandleSubmit()
     {
         substitute.Status = "active";
-        await SubstituteService.UpdateSubstitute(substitute);
+        LogRegister log = new LogRegister
+            {
+                UserId = userState.Id,
+                FirstName = userState.FirstName,
+                LastName = userState.LastName,
+                Date = DateTime.Now,
+                Log = $"User {userState.FirstName} {userState.LastName} updated a substitute at {DateTime.Now}."
+            };
+        await LogRegisterService.CreateLog(log);
+
+        await SubstituteService.CreateSubstitute(substitute);
     }
     async Task DeleteSubstitute()
     {
-        await SubstituteService.DeleteSubstitute(substitute.SubstituteID);
+        LogRegister log = new LogRegister
+            {
+                UserId = userState.Id,
+                FirstName = userState.FirstName,
+                LastName = userState.LastName,
+                Date = DateTime.Now,
+                Log = $"User {userState.FirstName} {userState.LastName} deleted a substitute at {DateTime.Now}."
+            };
+        await LogRegisterService.CreateLog(log);
+
+        await SubstituteService.DeleteSubstitute(substitute.EnrollmentID);
     }
 }

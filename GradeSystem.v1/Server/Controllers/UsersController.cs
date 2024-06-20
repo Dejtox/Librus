@@ -75,12 +75,15 @@ namespace GradeSystem.v1.Server.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User User)
+        public async Task<ActionResult<User>> PostUser(UserDto User)
         {
-            _context.User.Add(User);
+            User user = User.User;
+            var roles = User.Roles.Select(r => new Roles { Role = r, User = user }).ToList();
+            user.Roles = roles;
+            _context.User.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = User.UserID }, User);
+            return CreatedAtAction("GetUser", new { id = user.UserID }, User);
         }
 
         // DELETE: api/Users/5

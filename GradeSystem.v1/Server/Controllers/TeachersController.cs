@@ -32,7 +32,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Teacher>> GetTeacher(int id)
         {
-            var teacher = await _context.Teacher.Include(u => u.User).FirstOrDefaultAsync(t=>t.TeacherID==id);
+            var teacher = await _context.Teacher.Include(u => u.User).FirstOrDefaultAsync(t => t.TeacherID == id);
 
             if (teacher == null)
             {
@@ -79,6 +79,8 @@ namespace GradeSystem.v1.Server.Controllers
         public async Task<ActionResult<Teacher>> PostTeacher(Teacher teacher)
         {
             teacher.User = null;
+            teacher.StartDate = null;
+            teacher.EndDate = null;
             _context.Teacher.Add(teacher);
             await _context.SaveChangesAsync();
 
@@ -105,5 +107,32 @@ namespace GradeSystem.v1.Server.Controllers
         {
             return _context.Teacher.Any(e => e.TeacherID == id);
         }
+
+        [HttpGet("available_teachers")]
+        public async Task<ActionResult<IEnumerable<Teacher>>> GetAvailableTeachers()
+        {
+            return await _context.Teacher.Include(u => u.User).Where(s => s.Status == "available").ToListAsync();
+        }
+
+        [HttpGet("unavailable_teachers")]
+        public async Task<ActionResult<IEnumerable<Teacher>>> GetUnavailableTeachers()
+        {
+            return await _context.Teacher.Include(u => u.User).Where(s => s.Status == "unavailable").ToListAsync();
+        }
+        [HttpPut("update_teacher_status")]
+        public async Task<IActionResult> UpdateTeacherStatus()
+        {
+            DateTime dateTime = DateTime.Now;
+            var teachers = await _context.Teacher.Where(t => t.Status == "unavailable" && t.EndDate < dateTime).ToListAsync();
+            foreach (var teacher in teachers)
+            {
+                teacher.StartDate = null;
+                teacher.EndDate = null;
+                teacher.Status = "available";
+            }
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 }

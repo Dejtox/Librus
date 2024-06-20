@@ -56,15 +56,15 @@
     {
         if (ID == null)
         {
-            user.UserRole = "Student";
-            await UserService.CreateUser(user);
+            //user.UserRole = "Student";
+            //await UserService.CreateUser(user);
             await UserService.GetUsers();
             student.UserID = UserService.Users[UserService.Users.Count - 1].UserID;
             await StudentService.CreateStudent(student);
         }
         else
         {
-            user.UserRole = "Student";
+            //user.UserRole = "Student";
             await StudentService.UpdateStudent(student);
             await UserService.UpdateUser(user);
         }

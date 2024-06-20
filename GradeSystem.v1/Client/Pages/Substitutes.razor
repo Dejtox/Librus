@@ -16,16 +16,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var substitute in SubstituteService.Substitutes)
+        @foreach (var substitute in SubstituteService.Substitutes)
         {
             <tr>
-                <td>@substitute.StartDate</td>
+                <td>@substitute.Date</td>
                 <td>@substitute.Class.ClassName</td>
                 <td>@substitute.Subject.SubjectName</td>
                 <td>@substitute.ClassRoom</td>
                 <td>@substitute.Status</td>
                 <td>
-                    <button class="btn btn-primary" @onclick="(()=>EditSubstitute(substitute.SubstituteID))"><i class="oi oi-pencil"></i></button>
+                    <button class="btn btn-primary" @onclick="(()=>EditSubstitute(substitute.EnrollmentID))"><i class="oi oi-pencil"></i></button>
                 </td>
             </tr>
         }

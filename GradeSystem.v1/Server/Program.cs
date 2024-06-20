@@ -21,6 +21,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<GradeSystemv1ServerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GradeSystemv1ServerContext") ?? throw new InvalidOperationException("Connection string 'GradeSystemv1ServerContext' not found.")));
+builder.Services.AddDbContext<GradeSystemv1LogRegisterContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GradeSystemv1LogRegisterContext") ?? throw new InvalidOperationException("Connection string 'GradeSystemv1LogRegisterContext' not found.")));
 builder.Services.AddApiAuthorization();
 builder.Services.AddAuthentication(o =>
     {

@@ -1,10 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\GradeSystem.v1",
-    "\\GradeSystem.v1\\Server",
-    "\\GradeSystem.v1\\Server\\Controllers"
+    ""
   ],
-  "SelectedNode": "\\GradeSystem.v1\\Server\\Controllers\\BookController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,53 +1,79 @@
 ﻿@page "/school_trips"
 @inject NavigationManager NavigationManager
 @inject ISchoolTripService SchoolTripService
+@inject IJSRuntime JSRuntime
+@inject DialogService DialogService
 
 <PageTitle>School Trips</PageTitle>
-<h3>School trips</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Trip Name</th>
-            <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Classes</th>
-            <th>Teachers</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var trip in SchoolTripService.SchoolTrips)
-        {
+<div class="white-container">
+    <div class="div-header">
+        <h3 >Your school trips</h3>
+        <button type="button" class="create-button" @onclick="CreateSchoolTrip">Create New</button>
+    </div>
+    <table class="table table-striped overflow-hidden table-addons">
+        <thead>
             <tr>
-                <td>@trip.Name</td>
-                <td>@trip.Description</td>
-                <td>@trip.StartDate</td>
-                <td>@trip.EndDate</td>
-                <td>@string.Join(",",trip.SchoolTripClasses.Select(c=>c.Class?.ClassName))</td>
-                <td>@string.Join(",",trip.SchoolTripTeachers.Select(t=>t.Teacher?.LastName))</td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(()=>ShowSchoolTrip(trip.SchoolTripID))">
-                        <i class="oi oi-pencil"></i>
-                    </button>
-                </td>
+                <th class="table-header">Trip Name</th>
+                <th class="table-header">Description</th>
+                <th class="table-header">Start Date</th>
+                <th class="table-header">End Date</th>
+                <th class="table-header">Classes</th>
+                <th class="table-header">Teachers</th>
+                <th class="table-header">Edit</th>
             </tr>
-        }
-    </tbody>
-</table>
-<button type="button" class="btn btn-primary" @onclick="CreateSchoolTrip">Create New</button>
+        </thead>
+        <tbody>
+            @foreach(var trip in SchoolTripService.SchoolTrips)
+            {
+                <tr>
+                    <td>@trip.Name</td>
+                    <td>@trip.Description</td>
+                    <td>@trip.StartDate</td>
+                    <td>@trip.EndDate</td>
+                    <td>@string.Join(",",trip.SchoolTripClasses.Select(c=>c.Class?.ClassName))</td>
+                    <td>@string.Join(",",trip.SchoolTripTeachers.Select(t=>t.Teacher?.LastName))</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(()=>ShowSchoolTrip(trip.SchoolTripID))">
+                            <i class="oi oi-pencil"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 
 @code {
+    //@attribute [Authorize(Roles = "Admin, Teacher")]
     protected override async Task OnInitializedAsync()
     {
         await SchoolTripService.GetSchoolTrips();
     }
-    void CreateSchoolTrip()
+    async Task CreateSchoolTrip()
     {
-        NavigationManager.NavigateTo("/school_trip");
+        await DialogService.OpenAsync<SchoolTripAddEdit>("Add new school trip",
+        new Dictionary<string, object>() { { "ID", null } },
+        new DialogOptions() { Resizable = true, Draggable = true, ShowClose = false, Style = "max-width: 800px;margin: 0 auto;padding: 20px;border-radius: 20px;background-color: #f9f9f9;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);height: auto;" });
     }
-    void ShowSchoolTrip(int id)
+
+    async Task ShowInlineDialog()
     {
-        NavigationManager.NavigateTo($"/school_trip/{id}");
+        var result = await DialogService.OpenAsync("Simple Dialog", ds =>
+    @<div>
+        <p class="mb-4">Confirm Order ID <b>123</b>?</p>
+        <RadzenButton Text="Ok" Click="() => ds.Close(true)" />
+    </div>
+    ,
+            new DialogOptions() { Draggable = true }
+        );
+    }
+    async Task ShowSchoolTrip(int? id)
+    {
+        await DialogService.OpenAsync<SchoolTripAddEdit>("Edit school trip",
+        new Dictionary<string, object>() { { "ID", id } },
+        new DialogOptions() { Resizable = true, Draggable = true, ShowClose=false,Style = "max-width: 800px;margin: 0 auto;padding: 20px;border-radius: 20px;background-color: #f9f9f9;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);height: auto;" });
     }
 }
+

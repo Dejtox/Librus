@@ -1,4 +1,4 @@
-﻿@page "/grade"
+﻿@*@page "/grade"
 @page "/grade/{id:int}"
 @inject IGradeService GradeService
 
@@ -15,7 +15,7 @@ else
 
 
 <EditForm Model="grade" OnSubmit="HandleSubmit">
-    
+
     <div>
         <label for="grade">Student</label>
         <InputSelect @bind-Value="grade.StudentID" class="form-select">
@@ -105,3 +105,4 @@ else
     }
 
 }
+*@

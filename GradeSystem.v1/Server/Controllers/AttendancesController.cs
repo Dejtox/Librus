@@ -27,11 +27,21 @@ namespace GradeSystem.v1.Server.Controllers
             return await _context.Attendance.Include(e => e.Enrollment).Include(s => s.Student).Include(sb => sb.Enrollment.Subject).ToListAsync();
         }
 
+        [HttpGet("student/{studentId}")]
+        public async Task<ActionResult<IEnumerable<Attendance>>> GetAttendanceByStudentIt(int studentId)
+        {
+            var attendance = await _context.Attendance.Include(e => e.Enrollment).Include(s => s.Student).Where(i => i.StudentID == studentId).ToListAsync();
+            if (attendance == null)
+            {
+                return NotFound();
+            }
+            return attendance;
+        }
         // GET: api/Attendances/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Attendance>> GetAttendance(int id)
         {
-            var attendance = await _context.Attendance.Include(e => e.Enrollment).Include(s => s.Student).FirstOrDefaultAsync(i=>i.AttendanceID == id);
+            var attendance = await _context.Attendance.Include(e => e.Enrollment).Include(s => s.Student).FirstOrDefaultAsync(i => i.AttendanceID == id);
 
             if (attendance == null)
             {

@@ -24,13 +24,15 @@ namespace GradeSystem.v1.Client.Services.GradeService
         public async Task CreateGrade(Grade grade)
         {
             await _http.PostAsJsonAsync("api/Grades", grade);
-            _navigationManager.NavigateTo("grades");
         }
-
+        public async Task PostGradeNumber(GradeNumber gradenumber)
+        {
+            await _http.PostAsJsonAsync("api/Gradenumber", gradenumber);
+        }
         public async Task DeleteGrade(int id)
         {
             await _http.DeleteAsync($"api/Grades/{id}");
-            _navigationManager.NavigateTo("grades");
+
         }
 
         public async Task<Grade> GetGradeByID(int id)
@@ -82,7 +84,6 @@ namespace GradeSystem.v1.Client.Services.GradeService
         public async Task UpdateGrade(Grade grade)
         {
             await _http.PutAsJsonAsync($"api/Grades/{grade.GradeID}", grade);
-            _navigationManager.NavigateTo("grades");
         }
     }
 }

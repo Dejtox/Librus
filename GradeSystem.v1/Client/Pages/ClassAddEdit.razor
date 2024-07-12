@@ -20,6 +20,10 @@ else
         <InputText id="firstname" @bind-Value="classs.ClassName" class="form-control"></InputText>
     </div>
     <div>
+        <label for="VirtualClass">Virtual Class</label>
+        <input type="checkbox" @bind="classs.VirtualClass" />
+    </div>
+    <div>
         <label for="classname">Teacher</label>
         <InputSelect @bind-Value="classs.TeacherID" class="form-select">
             <option value=0>--- Select ---</option>
@@ -28,7 +32,7 @@ else
                 <option value="@teacher.TeacherID">@teacher.FirstName @teacher.LastName</option>
 
             }
-        </InputSelect>      
+        </InputSelect>
     </div>
 
     <br />

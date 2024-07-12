@@ -1,6 +1,6 @@
 @page "/Library"
 @inject IBookService BookService
-@inject IStudentService StudentService 
+@inject IStudentService StudentService
 @inject IBookServiceSupport BookServiceSupport
 @inject NavigationManager NavigationManager
 @using System;
@@ -9,80 +9,78 @@
 @using System.Text;
 @using System.Text.RegularExpressions;
 <h3>Library</h3>
+
 <div>
-    @if (yourbooks == true){<div><button @onclick="BorrowBooks">Borrow Books</button></div>}
-    else{<button disabled>Borrow Books</button>}
-    @if (yourbooks == false){<div><button @onclick="YourBooks">Your Books</button></div>}
-    else{<button disabled>Your Books</button>}
+    @if (yourbooks == true)
+    {
+        <div><button @onclick="BorrowBooks">Borrow Books</button></div>
+    }
+    else
+    {
+        <button disabled>Borrow Books</button>
+    }
+    @if (yourbooks == false)
+    {
+        <div><button @onclick="YourBooks">Your Books</button></div>
+    }
+    else
+    {
+        <button disabled>Your Books</button>
+    }
 </div>
 <div>
-    <input @oninput="FillTable" /> 
+    <input @oninput="FillTable" />
     @btnText
 </div>
-<div>
-    <input type="checkbox" @bind-value="isawailable" @onclick="DoUpdateList">
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Editon</th>
-                <th>Amount</th>
-                <th>Borow</th>
-                <th>Image</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var booktype in BookServiceSupport.BookList)
-            {
-                string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg"; 
-                <tr>
-                    
-                    <td>@booktype.Title</td>
-                    <td>@booktype.Author</td>
-                    <td>@booktype.Edition</td>
-                    <td>@booktype.AmountOfBooks</td>
-                    @if (booktype.AmountOfBooks > 0)
+<body>
+    <div class="booklist">
+        @foreach (var booktype in BookServiceSupport.BookList)
+        {
+            string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg";
+            <div class="book-item">
+                <h3 type="liblarybookbox"><img src=@imgurl></h3>
+                <h3>@booktype.Title</h3>
+                <h3>@booktype.Author</h3>
+                <h3>@booktype.Edition</h3>
+                <h3>@booktype.AmountOfBooks</h3>
+                @if (booktype.AmountOfBooks > 0)
+                {
+                    bool pom = false;
+                    foreach (var book in booktype.Books)
                     {
-                        bool pom = false;
-                        foreach (var book in booktype.Books)
-                            {
-                            
-                            
-                                    if (book.StudentId == ID)
-                                    {
-                                        pom = true;
-                                        break;
-                                    }
-                                
-                            }
-                        <td>
-                            @if(!pom)
-                            {
-                                <button @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>
-                            }else
-                            {
-                                <button disabled>Reservetion limit reached</button>
-                            }
-                        </td>
-                
+
+
+                        if (book.StudentId == ID)
+                        {
+                            pom = true;
+                            break;
+                        }
+
                     }
-                    else
-                    {
-                        <td>Out of stock</td>
-                    }
-                     <td><img src=@imgurl></td>
+                    <h3>
+                        @if (!pom)
+                        {
+                            <button class="libraryreservatebutton" @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>
+                        }
+                        else
+                        {
+                            <button disabled class="libraryreservatebutton">Reservetion limit reached</button>
+                        }
+                    </h3>
 
 
-                </tr>
-            }
+                }
+                else
+                {
+                    <a>Out of stock</a>
+                }
+
+            </div>
 
 
-        </tbody>
-    </table>
-</div>
-
+        }
+    </div>
+</body>
 
 @code {
 
@@ -92,9 +90,9 @@
     async Task FillTable(ChangeEventArgs args)
     {
 
-        
-            btnText = args.Value.ToString();
-        
+
+        btnText = args.Value.ToString();
+
         await BookServiceSupport.UpdateList(isawailable, btnText);
     }
 
@@ -105,7 +103,7 @@
         await BookService.GetBooks();
         await BookServiceSupport.UpdateList(isawailable, btnText);
     }
-  
+
     string bar;
     bool isawailable = false;
     bool yourbooks = false;

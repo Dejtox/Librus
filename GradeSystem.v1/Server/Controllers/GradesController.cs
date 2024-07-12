@@ -12,12 +12,12 @@ namespace GradeSystem.v1.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class GradesController : ControllerBase
     {
-        
+
         private readonly GradeSystemv1ServerContext _context;
-        
+
         public GradesController(GradeSystemv1ServerContext context)
         {
             _context = context;
@@ -25,10 +25,10 @@ namespace GradeSystem.v1.Server.Controllers
 
         // GET: api/Grades
         [HttpGet]
-        
+
         public async Task<ActionResult<IEnumerable<Grade>>> GetGrade()
         {
-            return await _context.Grade.Include(s=>s.Student).Include(s=>s.Subject).Include(t=>t.Subject.Teacher).ToListAsync();
+            return await _context.Grade.Include(s => s.Student).Include(s => s.Subject).Include(t => t.Subject.Teacher).ToListAsync();
         }
 
         // GET: api/Grades/5
@@ -81,14 +81,15 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Grade>> PostGrade(Grade grade)
         {
-
             grade.Student = null;
             grade.Subject = null;
+            grade.gradenumber = null;
             _context.Grade.Add(grade);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetGrade", new { id = grade.GradeID }, grade);
         }
+
 
         // DELETE: api/Grades/5
         [HttpDelete("{id}")]

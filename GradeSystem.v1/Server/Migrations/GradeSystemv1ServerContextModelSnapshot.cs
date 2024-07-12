@@ -30,6 +30,9 @@ namespace GradeSystem.v1.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttendanceID"));
 
+                    b.Property<DateTime>("CreatoinDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -176,6 +179,9 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<int>("TeacherID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("VirtualClass")
+                        .HasColumnType("bit");
+
                     b.HasKey("ClassID");
 
                     b.HasIndex("TeacherID");
@@ -300,9 +306,6 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GradeNumber")
-                        .HasColumnType("int");
-
                     b.Property<int>("GradeWeight")
                         .HasColumnType("int");
 
@@ -312,13 +315,41 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<int>("SubjectID")
                         .HasColumnType("int");
 
+                    b.Property<int>("gradenumberid")
+                        .HasColumnType("int");
+
                     b.HasKey("GradeID");
 
                     b.HasIndex("StudentID");
 
                     b.HasIndex("SubjectID");
 
+                    b.HasIndex("gradenumberid");
+
                     b.ToTable("Grade");
+                });
+
+            modelBuilder.Entity("GradeNumber", b =>
+                {
+                    b.Property<int>("GradeNumberID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeNumberID"));
+
+                    b.Property<string>("GradeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("coulor")
+                        .HasColumnType("int");
+
+                    b.Property<float>("gradenumber")
+                        .HasColumnType("real");
+
+                    b.HasKey("GradeNumberID");
+
+                    b.ToTable("GradeNumber");
                 });
 
             modelBuilder.Entity("LessonsHours", b =>
@@ -728,9 +759,17 @@ namespace GradeSystem.v1.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GradeNumber", "gradenumber")
+                        .WithMany()
+                        .HasForeignKey("gradenumberid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Student");
 
                     b.Navigation("Subject");
+
+                    b.Navigation("gradenumber");
                 });
 
             modelBuilder.Entity("Parent", b =>

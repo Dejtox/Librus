@@ -41,6 +41,7 @@
     public int ID { get; set; }
     Enrollment enrollment = new Enrollment();
 
+
     protected override async Task OnParametersSetAsync()
     {
         enrollment = await SubstituteService.GetEnrollmentById((int)ID);

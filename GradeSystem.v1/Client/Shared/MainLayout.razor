@@ -1,108 +1,54 @@
 ﻿@inherits LayoutComponentBase
 @inject AuthenticationStateProvider authStateProvicder
 @inject NavigationManager navMenager
-@inject ILogRegisterService LogRegisterService
-@inject UserLogService userState
-@inject ITeacherService TeacherService
+
 
 <div class="page">
-    <div class="navbar col-xs-1">
-        <NavMenu />
-    </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <div>
+            <div class="sidebar-left">
+        <Sidebar />
+        </div>
+
+            <div class="main-content">
+            <div>
+        <div class="top-roww px-4">
+
+            
+                        <div class="icon-container">
+                            <i class="fas fa-envelope"></i>
+                        </div>
             <AuthorizeView>
                 <Authorized>
+                                
                     <a @onclick="Logout" href="javascript:void(0)">Logout</a>
                 </Authorized>
                 <NotAuthorized>
-                    <a href="/login">Login</a>
+                    <a href="/login">Login</a>                             
                 </NotAuthorized>
             </AuthorizeView>
-        </div>
 
+
+        </div>
+            
         <article class="content px-4">
             @Body
         </article>
+        </div>
+        </div>
+        </div>
     </main>
+    
 </div>
-<RadzenDialog />
 
 
 @code
 {
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationState { get; set; }
-    int userID;
-    string Roles;
     private async Task Logout()
     {
         var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvicder;
         await customAuthStateProvider.UpdateAuthenticationState(null);
         navMenager.NavigateTo("/", true);
-    }
-    private async Task GetClaimsGetID()
-    {
-        var user = (await authenticationState).User;
-        foreach (var claim in user.Claims)
-        {
-            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
-            {
-                Roles = claim.Value;
-            }
-            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/gender")
-            {
-                userID = Int32.Parse(claim.Value);
-            }
-        };
-        if (Roles == "Parent")
-        {
-            foreach (var parent in LogRegisterService.Parents)
-            {
-                if (parent.ParentID == userID)
-                {
-                    userState.FirstName = parent.FirstName;
-                    userState.LastName = parent.LastName;
-                    userState.Id = userID;
-                }
-            }
-        }
-        else if (Roles == "Student")
-        {
-            foreach (var student in LogRegisterService.Students)
-            {
-                if (student.StudentID == userID)
-                {
-                    userState.FirstName = student.FirstName;
-                    userState.LastName = student.LastName;
-                    userState.Id = userID;
-                }
-            }
-        }
-        else if (Roles == "Teacher")
-        {
-            foreach (var teacher in LogRegisterService.Teachers)
-            {
-                if (teacher.UserID == userID)
-                {
-                    userState.LastName = teacher.LastName;
-                    userState.FirstName = teacher.FirstName;
-                    userState.Id = userID;
-                }
-            }
-        }
-    }
-    protected override async Task OnInitializedAsync()
-    {
-        if (userState.FirstName == null)
-        {
-            await LogRegisterService.GetStudents();
-            await LogRegisterService.GetParents();
-            await LogRegisterService.GetTeachers();
-            await GetClaimsGetID();
-        }
-        TeacherService.UpdateTeacherStatus();
     }
 }

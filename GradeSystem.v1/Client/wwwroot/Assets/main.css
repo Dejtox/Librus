@@ -1,7 +1,9 @@
 ﻿header {
     padding: 20px;
 }
-
+/*:root {
+    --rz-primary: #80bdff;
+}*/
 /*Moje*/
 .table-header {
     background-color: #0C244C;
@@ -77,8 +79,30 @@
 .button-container {
     margin-top: 20px;
     display: flex;
+    justify-content:space-between;
     gap: 10px;
 }
+
+.rz-multiselect-item.rz-state-highlight {
+    background-color: #e0e0e0 !important; 
+    color: #333333 !important; 
+}
+
+
+.rz-chkbox .rz-chkbox-box {
+    background-color: white !important; 
+    border-color: #333333 !important; 
+}
+
+.rz-chkbox-box.rz-state-active {
+    background-color: #333333 !important; 
+    border-color: #333333 !important; 
+}
+
+/*.rz-dropdown.modified.valid.rz-state-empty.rz-clear {
+    border: 1px solid red !important;
+}*/
+
 
 /*.button-container button {
 padding: 10px 20px;
@@ -123,6 +147,15 @@ color: #ffffff;
     border-radius: 10px;
     border: 2px solid;
     box-shadow: 0 0 0 3px #ffc107;
+    padding: 10px 15px 10px 15px;
+}
+
+.close-button{
+    color:black;
+    background-color:#ff2c2c;
+    border-radius: 10px;
+    border: 2px solid;
+    box-shadow: 0 0 0 3px #ff2c2c;
     padding: 10px 15px 10px 15px;
 }
 /* Ikony kalendarza w inputach dat */

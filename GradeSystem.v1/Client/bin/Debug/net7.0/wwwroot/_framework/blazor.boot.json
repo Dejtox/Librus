@@ -1,11 +1,7 @@
 {
   "entryAssembly": "GradeSystem.v1.Client",
   "resources": {
-<<<<<<< HEAD
-    "hash": "sha256-QqzI6BS6jsDNnrShNmUHEvErw3lcThu704VbIdbyC/s=",
-=======
-    "hash": "sha256-F7TmiBZHuyjbsLDNPXMt2GJeYxk9Fh9zkbavl0IMzCQ=",
->>>>>>> 3becbb7b186e5b7be68f7f22e96ed3aae46d76c0
+    "hash": "sha256-fZJKX5KYpcp+wOxoX3cUVlQqHjb4oPLqyvtZVy0VSyc=",
     "runtime": {
       "dotnet.7.0.19.ae4t7r2r50.js": "sha256-J9IVsSLjfEIyn/0XKSDWXHMve5eK11v9Aj06G7zPUYo=",
       "dotnet.timezones.blat": "sha256-kK6U8Vo/Xb8zgDH6JtdgAGSA6NUASHhvZoB+hINV0ms=",
@@ -249,21 +245,12 @@
       "mscorlib.dll": "sha256-lo3zWxda3c3QawbfHvOghgqCpdHXBTdqPT0UJceBT2A=",
       "netstandard.dll": "sha256-BvougKnccTedjRXZ+Ll94v1qqBt4cr0MqBVYFpGvYLA=",
       "System.Private.CoreLib.dll": "sha256-i0lh8QB6xhbEgqLyhh/0TaUFxAB3Iz2y0VH8m68TIdY=",
-<<<<<<< HEAD
-      "GradeSystem.v1.Shared.dll": "sha256-RDpHl4VvPi1+p+9+nOVmsfcpD0/s9qmjVHUYBpHi8NA=",
-      "GradeSystem.v1.Client.dll": "sha256-s6HWa+1sNwpWUxqMIhKEvYLoQ6ULRCwE8I1mx9HH8UE="
+      "GradeSystem.v1.Shared.dll": "sha256-V7U7sZy/PWxQyXi+cMmAWy8ulSpD5BssmB+7lfpe4Cc=",
+      "GradeSystem.v1.Client.dll": "sha256-fw6OhbfdxBqCTaVQ30Is38ERReKKY3wFIT4GOsmUNUE="
     },
     "pdb": {
-      "GradeSystem.v1.Shared.pdb": "sha256-4xbJEwhxRAx31hwDgP2b357b3upGmgC+i/cxkk65xBE=",
-      "GradeSystem.v1.Client.pdb": "sha256-GhWX6dogvNKMAnaO2T4R8nKoBQWTg7F5f2SIkdlrhqw="
-=======
-      "GradeSystem.v1.Shared.dll": "sha256-EKUX1MZsa3JEzpHDDzKjHbulwvd9ddzTHEXZ2lNT5j8=",
-      "GradeSystem.v1.Client.dll": "sha256-OTKl3AVDBbN6yBClq7ZgIKtFQmIIAMNFrh9gz6/TGHY="
-    },
-    "pdb": {
-      "GradeSystem.v1.Shared.pdb": "sha256-8B1kMxhwX5e0qIQfoQpXZG/AEhWvakv1G0cZu71LiNM=",
-      "GradeSystem.v1.Client.pdb": "sha256-r5O3LpVxmB/01aIBaDSiyWuRnFQAG/C3NBRbzmg8eqA="
->>>>>>> 3becbb7b186e5b7be68f7f22e96ed3aae46d76c0
+      "GradeSystem.v1.Shared.pdb": "sha256-VTeHamjU0RvLbc6RFyDTNKNdY53F73P0Ec3Kf7WbJp4=",
+      "GradeSystem.v1.Client.pdb": "sha256-ZFsJl4D6PoSmhxBnlUWj5hnPGXSihT7DLQoa7l/IniE="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

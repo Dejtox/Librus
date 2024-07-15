@@ -5,142 +5,211 @@
     </div>
 
 </nav>
-<nav class="container">
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+<nav class="sidebar-container">
+    <div class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="" Match="NavLinkMatch.All">
             <span class="oi oi-home" aria-hidden="true"></span> Home
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="students">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="students">
             <span class="oi oi-people" aria-hidden="true"></span> Students
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="LibraryViev">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="LibraryViev">
             <span class="oi oi-people" aria-hidden="true"></span> Librarian Library
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="Library">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="Library">
             <span class="oi oi-people" aria-hidden="true"></span> Student Library
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="parents">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="parents">
             <span class="oi oi-people" aria-hidden="true"></span> Parents
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="teachers">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="teachers">
             <span class="oi oi-people" aria-hidden="true"></span> Teachers
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="classes">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="classes">
             <span class="oi oi-people" aria-hidden="true"></span> Classes
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="subjects">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="subjects">
             <span class="oi oi-people" aria-hidden="true"></span> Subjects
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="enrollments">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="enrollments">
             <span class="oi oi-people" aria-hidden="true"></span> Enrollments
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="calendar">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="calendar">
             <span class="oi oi-people" aria-hidden="true"></span> Calendar
         </NavLink>
     </div>
     <AuthorizeView Roles="Teacher">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="teacherclasses">
+        <div class="sidebar-buttoncontainer">
+            <div class="header-element">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <NavLink class="main-menutextcomponet" href="teacherclasses">
                 <span class="oi oi-people" aria-hidden="true"></span> Your Classes
             </NavLink>
         </div>
     </AuthorizeView>
     <AuthorizeView Roles="Teacher">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="gradesadd">
+        <div class="sidebar-buttoncontainer">
+            <div class="header-element">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <NavLink class="main-menutextcomponet" href="gradesadd">
                 <span class="oi oi-people" aria-hidden="true"></span> Add Grades
             </NavLink>
         </div>
     </AuthorizeView>
     <AuthorizeView Roles="Student">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="gradess">
+        <div class="sidebar-buttoncontainer">
+            <div class="header-element">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <NavLink class="main-menutextcomponet" href="gradess">
                 <span class="oi oi-people" aria-hidden="true"></span> Your Grades
             </NavLink>
         </div>
     </AuthorizeView>
     <AuthorizeView Roles="Student, Teacher, Parent">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="additional">
+        <div class="sidebar-buttoncontainer">
+            <div class="header-element">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <NavLink class="main-menutextcomponet" href="additional">
                 <span class="oi oi-people" aria-hidden="true"></span> Additional Activities
             </NavLink>
         </div>
     </AuthorizeView>
     <AuthorizeView Roles="Student, Teacher, Parent">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="plan">
+        <div class="sidebar-buttoncontainer">
+            <NavLink class="main-menutextcomponet" href="plan">
                 <span class="oi oi-people" aria-hidden="true"></span> Plan
             </NavLink>
         </div>
     </AuthorizeView>
     <AuthorizeView Roles="Parent">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="studentcardparent">
+        <div class="sidebar-buttoncontainer">
+            <div class="header-element">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <NavLink class="main-menutextcomponet" href="studentcardparent">
                 <span class="oi oi-people" aria-hidden="true"></span> Your kids
             </NavLink>
         </div>
     </AuthorizeView>
     <AuthorizeView Roles="Parent, Teacher, Student">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="calendar">
+        <div class="sidebar-buttoncontainer">
+            <div class="header-element">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <NavLink class="main-menutextcomponet" href="calendar">
                 <span class="oi oi-people" aria-hidden="true"></span> Calendar
             </NavLink>
         </div>
     </AuthorizeView>
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="scheduler">
+    <div class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="scheduler">
             <span class="oi oi-people" aria-hidden="true"></span> Scheduler
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="attendances">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="attendances">
             <span class="oi oi-people" aria-hidden="true"></span> Attendances
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="grades">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="grades">
             <span class="oi oi-people" aria-hidden="true"></span> Grades
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="school_trips">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="school_trips">
             <span class="oi oi-people" aria-hidden="true"></span> School Trips
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="substitutes">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="substitutes">
             <span class="oi oi-people" aria-hidden="true"></span> Substitutes
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="">
+    <div hidden="@hide" class="sidebar-buttoncontainer">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="">
             <span class="oi oi-people" aria-hidden="true"></span> Grades
         </NavLink>
     </div>
-    <div hidden="@hide" class="nav-item px-3">
-        <NavLink class="nav-link" href="TeachersAttendanceViev">
+    <div hidden="@hide" class="">
+        <div class="header-element">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <NavLink class="main-menutextcomponet" href="TeachersAttendanceViev">
             <span class="oi oi-people" aria-hidden="true"></span> AttnedenceClassViev
         </NavLink>
     </div>
-    <div class="nav-item px-3">
+    <div class="sidebar-buttoncontainer">
         <button @onclick="@Show">Przycisk admina :)</button>
     </div>
 </nav>

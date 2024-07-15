@@ -11,8 +11,8 @@
 }
 /*table table-striped overflow-hidden to do tablicy jeszcze*/
 .table-addons {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    border-radius:15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 /*przy headerze i buttonie. jesli nie ma to tylko margin-bottom*/
 .div-header {
@@ -55,23 +55,23 @@
     margin-bottom: 15px;
 }
 
-/* Etykiety pól formularza */
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+    /* Etykiety pól formularza */
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
 
-/* Pola formularza (input, textarea, select) */
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: calc(100% - 16px);
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
+    /* Pola formularza (input, textarea, select) */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: calc(100% - 16px);
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
 
 /* Stylizacja przycisków */
 .button-container {
@@ -117,6 +117,7 @@ color: #ffffff;
     box-shadow: 0 0 0 3px #ffc107;
     padding: 10px 15px 10px 15px;
 }
+
 .rounded-filled-button {
     color: black;
     background-color: #ffc107;
@@ -132,6 +133,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: 2;
     cursor: pointer;
 }
+
 .create-button {
     color: white;
     background-color: #FFA500;
@@ -141,9 +143,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border: none;
     cursor: pointer;
 }
-.create-button:hover{
-    background-color:red;
-}
+
+    .create-button:hover {
+        background-color: red;
+    }
 
 
 /* Co to ma byc */
@@ -363,7 +366,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         background-color: #0c254d; /*pasek gdzie są dni tygodnia ma byc niebieski   #9cbcfb*/
         height: 40px;
         border-radius: 10px !important;
-        
         border: 1px solid #081A36;
         font-weight: bold;
         color: white;
@@ -546,6 +548,7 @@ a, .btn-link {
     border-spacing: 0;
     width: 30%;
 }
+
     .Classes-table thead tr {
         background-color: #fde1a2;
         border: 1px solid #fab209;
@@ -556,7 +559,6 @@ a, .btn-link {
 .classes_row:nth-child(even) {
     background-color: #fdf5e0;
     border-radius: 10px;
-
     border: 1px solid #fde1a2;
     margin-left: auto;
     margin-right: auto;
@@ -565,7 +567,6 @@ a, .btn-link {
 .classes_row:nth-child(odd) {
     background-color: #ffedc7;
     border-radius: 10px;
-
     border: 1px solid #fde1a2;
     margin-left: auto;
     margin-right: auto;
@@ -609,10 +610,12 @@ a, .btn-link {
         background-color: #e7e7e7;
         border: 1px solid #fab209;
     }
+
     .Attendances-table thead th {
         background-color: #e7e7e7;
         border: 1px solid #fcfcfc;
     }
+
     .Attendances-table tbody tr {
         background-color: #e7e7e7;
         border: 1px solid #fcfcfc;
@@ -623,18 +626,21 @@ a, .btn-link {
         border: 1px solid #fcfcfc;
     }
 
-    .blank_row {
-        height: 20px !important;
-        background-color: #fde1a2;
-    }
+.blank_row {
+    height: 20px !important;
+    background-color: #fde1a2;
+}
+
 .btnshowclass {
     background-color: #e6e6e4;
     cursor: pointer;
     opacity: 0.8;
 }
-.btnshowclass:hover {
+
+    .btnshowclass:hover {
         opacity: 1
     }
+
 .bluesquare {
     height: 20px;
     width: 20px;
@@ -661,6 +667,7 @@ a, .btn-link {
         opacity: 0;
         transition: opacity 0.3s;
     }
+
         .bluesquare .tooltiptextb::after {
             content: "";
             position: absolute;
@@ -676,6 +683,7 @@ a, .btn-link {
         visibility: visible;
         opacity: 1;
     }
+
 .greensquare {
     height: 20px;
     width: 20px;
@@ -719,6 +727,7 @@ a, .btn-link {
         visibility: visible;
         opacity: 1;
     }
+
 .redsquare {
     height: 20px;
     width: 20px;
@@ -762,6 +771,7 @@ a, .btn-link {
         visibility: visible;
         opacity: 1;
     }
+
 .yellowsquare {
     height: 20px;
     width: 20px;
@@ -805,6 +815,7 @@ a, .btn-link {
         visibility: visible;
         opacity: 1;
     }
+
 .emptysquare {
     height: 20px;
     width: 20px;

@@ -1774,7 +1774,6 @@ C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\StudentsGrades.razor.rz.scp.css
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\TeacherClasses.razor.rz.scp.css
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\bundle\GradeSystem.v1.Client.styles.css
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\projectbundle\GradeSystem.v1.Client.bundle.scp.css
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\ge0ww996jj.gz

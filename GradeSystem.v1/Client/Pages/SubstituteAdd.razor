@@ -26,9 +26,12 @@
             <td>
                 <InputSelect @bind-Value="enrollment.SubjectID">
                     <option value="0">SELECT</option>
-                    @foreach (var subject in SubstituteService.AvailableSubjects)
+                    @if (SubstituteService.AvailableSubjects.Count!=0)
                     {
-                        <option value="@subject.SubjectID">@subject.SubjectName @subject.Teacher.FirstName - @subject.Teacher.LastName</option>
+                        @foreach (var subject in SubstituteService.AvailableSubjects)
+                        {
+                            <option value="@subject.SubjectID">@subject.SubjectName @subject.Teacher.FirstName - @subject.Teacher.LastName</option>
+                        }
                     }
                 </InputSelect>
             </td>
@@ -42,7 +45,7 @@
     Enrollment enrollment = new Enrollment();
 
 
-    protected override async Task OnParametersSetAsync()
+    protected override async Task OnInitializedAsync()
     {
         enrollment = await SubstituteService.GetEnrollmentById((int)ID);
         await SubstituteService.GetAvailableSubjects(enrollment.Date, enrollment.EndDate);

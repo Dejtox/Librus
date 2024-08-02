@@ -206,6 +206,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbmluQWRkQS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/StdMainPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RkTWFpblBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/StdParLastAttenderncesmainpage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RkUGFyTGFzdEF0dGVuZGVybmNlc21haW5wYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

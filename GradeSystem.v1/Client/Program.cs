@@ -21,6 +21,7 @@ global using GradeSystem.v1.Client.Services.BookServiceSupport;
 global using GradeSystem.v1.Client.Services.BookTypeService;
 global using GradeSystem.v1.Client.Services.UserLogService;
 global using GradeSystem.v1.Client.Services.LogRegisterService;
+global using Radzen;
 
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Components.Web;
@@ -29,7 +30,7 @@ using Blazored.SessionStorage;
 using System.Reflection;
 using GradeSystem.v1.Client.Auth;
 using Syncfusion.Blazor;
-using Radzen;
+
 
 
 

@@ -71,7 +71,7 @@
         {
             if (dalyevent.DT.Day == SelectedDate.Day)
             {
-                <button type="button class="btn-close" aria-label="Lesson" @onclick="(()=>MoveTo(dalyevent.enr.EnrollmentID))">@dalyevent.description @dalyevent.DT.Hour </button>
+                <button type="button aria-label="Lesson" @onclick="(()=>MoveTo(dalyevent.enr.EnrollmentID))">@dalyevent.description @dalyevent.DT.Hour </button>
             }
         }
     </div>
@@ -212,7 +212,6 @@
         SelectedDate = new DateTime(SelectedDate.Year, month, 4);
         Console.WriteLine(SelectedDate.Month);
         await NewDate();
-
     }
     async Task MoveTo(int id)
     {

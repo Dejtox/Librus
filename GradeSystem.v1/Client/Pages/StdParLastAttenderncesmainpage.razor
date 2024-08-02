@@ -1,0 +1,227 @@
+﻿@*
+@page "/stdlasrarrendences"
+@inject IStudentService StudentService
+@inject IAttendanceService AttendanceService
+@inject IEnrollmentService EnrollmentService
+<div>
+    <div>
+        <div class="col-sm-12 col-lg-2">
+            <select name="" id="" class="fluent-input" @onchange="SelectYear">
+                @for (int i = 2022; i < 2024; i++)
+                {
+                    <option>@i</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-12 col-lg-2">
+            <select name="" id="" class="fluent-input" @onchange="SelectMonth">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">Sepetemper</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div>
+
+
+    </div>
+</div>
+<div>
+    @if (SelectedDate.Day - 4 > 0)
+    {
+        <button type="button" class="btn-close" aria-label="Close" @onclick="Lower">h</button>
+    }
+    else
+    {
+        <button disabled></button>
+    }
+
+    @if (SelectedDate.Day - 3 >= 0)
+    {
+        <button>@(SelectedDate.Day - 3)</button>
+    }
+    @if (SelectedDate.Day - 2 >= 0)
+    {
+        <button>@(SelectedDate.Day - 2)</button>
+    }
+    @if (SelectedDate.Day - 1 >= 0)
+    {
+        <button>@(SelectedDate.Day - 1)</button>
+    }
+    <button>@SelectedDate.Day </button>
+    @if (SelectedDate.Day + 1 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+    {
+        <button>@SelectedDate.AddDays(1).Day </button>
+    }
+    @if (SelectedDate.Day + 2 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+    {
+        <button>@SelectedDate.AddDays(2).Day </button>
+    }
+    @if (SelectedDate.Day + 3 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+    {
+        <button>@SelectedDate.AddDays(3).Day </button>
+    }
+    @if (SelectedDate.Day + 4 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+    {
+        <button type="button" class="btn-close" aria-label="Close" @onclick="Higher">l</button>
+    }
+    else
+    {
+        <button disabled></button>
+    }
+    <div>
+        @foreach (var dalyevent in Events)
+        {
+            if (dalyevent.DT.Day == SelectedDate.Day)
+            {
+                
+            }
+        }
+            </div>
+</div>
+@code {
+    int ID;
+    Student student;
+    DateTime SelectedDate;
+    int? Id = null;
+    Teacher teacher = null;
+    string Roles;
+    List<Event> Events = new List<Event>();
+    List<Event> TempEvents = new List<Event>();
+
+    private class Event
+    {
+        public DateTime DT { get; set; }
+        public string description { get; set; }
+        public Attendance atd { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await EnrollmentService.GetEnrollments();
+        await StudentService.GetStudents();
+        await AttendanceService.GetAttendances();
+        await GetClaimsGetID();
+        SelectedDate = DateTime.Now;
+        await NewDate();
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Student")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+        }
+    }
+    private void Lower()
+    {
+        SelectedDate = SelectedDate.AddDays(-1);
+        StateHasChanged();
+    }
+    private void Higher()
+    {
+        SelectedDate = SelectedDate.AddDays(1);
+        StateHasChanged();
+    }
+    async Task NewDate()
+    {
+        int i = 0;
+        Events.Clear();
+        TempEvents.Clear();
+        foreach (var evn in AttendanceService.Attendances)
+        {
+            if (evn.StudentID == Id)
+            {
+                foreach (var enr in EnrollmentService.Enrollments)
+                {
+                    if (enr.EnrollmentID == evn.EnrollmentID)
+                    {
+                        evn.Enrollment = enr;
+                        if (enr.Date.Month == SelectedDate.Month & enr.Date.Year == SelectedDate.Year)  //sprawdz tu jak chesz zmienic warunki
+                        {
+                            TempEvents.Add(new Event { DT = evn.Enrollment.Date, description = evn.Enrollment.Subject.SubjectName, atd = evn });
+                        }
+                    }
+                }
+            }
+        }
+        foreach (var evn in TempEvents)
+        {
+            if (Events.Count != 0)
+            {
+                foreach (var evnt in Events)
+                {
+                    if (DateTime.Compare(evn.DT, evnt.DT) < 0)
+                    {
+                        Events.Insert(i, evn);
+                        i = 0;
+                        break;
+                    }
+                    else
+                    {
+                        i++;
+                        if (Events.Count <= i)
+                        {
+                            Events.Add(evn);
+                            i = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Events.Add(evn);
+            }
+        }
+        StateHasChanged();
+    }
+    async Task SelectYear(ChangeEventArgs e)
+    {
+        int i = Convert.ToInt32(e.Value.ToString());
+        SelectedDate.Year.Equals(i);
+        Console.WriteLine(i);
+        await NewDate();
+    }
+    async Task SelectMonth(ChangeEventArgs e)
+    {
+        int month = Convert.ToInt32(e.Value.ToString());
+        SelectedDate = new DateTime(SelectedDate.Year, month, 4);
+        Console.WriteLine(SelectedDate.Month);
+        await NewDate();
+
+    }
+    
+
+
+}
+*@

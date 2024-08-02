@@ -32,11 +32,11 @@ else
     </div>
     <div>
         <label for="login">Login</label>
-        <InputText id="login" @bind-Value="user.Login" class="form-control"></InputText>
+        <InputText id="login" @bind-Value="userpom.Login" class="form-control"></InputText>
     </div>
     <div>
         <label for="password">Password</label>
-        <InputText id="password" @bind-Value="user.PasswordHash" class="form-control"></InputText>
+        <InputText id="password" @bind-Value="userpom.PasswordHash" class="form-control"></InputText>
     </div>
     <div>
         <label for="classname">Class</label>
@@ -70,6 +70,11 @@ else
 
     Student student = new Student();
     User user = new User();
+    User userpom = new User();
+    Parent parent = new Parent();
+   UserDto userr = new UserDto();
+
+    List<string> rolesp = new List<string>();
 
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
@@ -84,6 +89,7 @@ else
         {
             await StudentService.GetParents();
             await StudentService.GetClasses();
+            rolesp.Add("Student");
         }
         else
         {
@@ -97,6 +103,9 @@ else
         {
             //user.UserRole = "Student";
             //await UserService.CreateUser(user);
+            userr.User = userpom;
+            userr.Roles = rolesp;
+            await UserService.CreateUser(userr);
             await UserService.GetUsers();
             student.UserID = UserService.Users[UserService.Users.Count - 1].UserID;
             await StudentService.CreateStudent(student);

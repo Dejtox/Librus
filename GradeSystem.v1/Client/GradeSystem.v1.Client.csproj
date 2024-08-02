@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -33,8 +33,10 @@
     <ProjectReference Include="..\Shared\GradeSystem.v1.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Img\" />
+  <ItemGroup>
+
+    <Folder Include="wwwroot\Img\" />
+
   </ItemGroup>
 
 </Project>

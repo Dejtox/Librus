@@ -26,7 +26,7 @@ namespace GradeSystem.v1.Server.Controllers
         public async Task<ActionResult<UserSession>> LoginAsync([FromBody] LoginRequest loginRequest)
         {
             var jwtAuthMenager = new JwtAuthMenager(_context);
-            var userSession = await jwtAuthMenager.GenerateJwtTokenAsync(loginRequest.UserName, loginRequest.Password);
+            var userSession = await jwtAuthMenager.GenerateJwtTokenAsync(loginRequest.UserName, loginRequest.Password, loginRequest.RememberMe);
             if (userSession == null)
                 return Unauthorized();
             else

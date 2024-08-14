@@ -302,6 +302,9 @@ namespace GradeSystem.v1.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeID"));
 
+                    b.Property<DateTime>("DateOfGrading")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

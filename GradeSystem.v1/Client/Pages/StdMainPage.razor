@@ -1,4 +1,4 @@
-﻿@page "/stdmiainpage"
+﻿@page "/stdmainpage"
 @inject IEnrollmentService EnrollmentService
 @inject IStudentService StudentService
 @inject ILessonsHoursService LessonsHoursService
@@ -13,7 +13,9 @@
             <div class="insideinsidebox"></div>
         </div>
         <div class="insidebox">
-            <div class="insideinsidebox"></div>
+            <div class="insideinsidebox">
+                <StdParLastAttenderncesmainpage @ref="popupref"></StdParLastAttenderncesmainpage>
+            </div>
         </div>
     </div>
     <div class="sidebox">        
@@ -196,6 +198,8 @@
     </div>
 </div>
 @code {
+    private StdParLastAttenderncesmainpage popupref;
+
     IList<Enrollment> StudentsEnrolmentsMon = new List<Enrollment>();
     IList<Enrollment> StudentsEnrolmentsTue = new List<Enrollment>();
     IList<Enrollment> StudentsEnrolmentsWen = new List<Enrollment>();

@@ -1,0 +1,435 @@
+﻿@page "/trmainpage"
+@inject IEnrollmentService EnrollmentService
+@inject ITeacherService TeacherService
+@inject ILessonsHoursService LessonsHoursService
+@inject ISubjectService SubjectService
+@*/{id:int} *@
+
+
+<div class="mainbox">
+    <div class="sidebox">
+        <div class="insidebox">
+            <div class="insideinsidebox">
+                <TeacherMainPageDay @ref="siteref"></TeacherMainPageDay>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="insidebox">
+            <div class="insideinsidebox"></div>
+        </div>
+        <div class="insidebox">
+            <div class="insideinsidebox"></div>
+        </div>
+    </div>
+
+    <div class="sidebox">
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @*
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Monday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (var segment in SortedlessonsHours)
+                    {
+                        bool i = true;
+                        <tr class="tablerow">
+                            @foreach (var stdevent in StudentsEnrolmentsMon)
+                            {
+                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                {
+                                    <td class="tablecell">
+                                        <div class="tablecellnumber">@segment.LessonNo</div>
+                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                        <div class="tablecellnumber"></div>
+                                    </td>
+                                    i = false;
+                                }
+                            }
+                            @if (i == true)
+                            {
+                                <td class="tablecell">
+                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                    <div class="tablecellcontent"></div>
+                                    <div class="tablecellnumber"></div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Tuesday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (var segment in SortedlessonsHours)
+                    {
+                        bool i = true;
+                        <tr class="tablerow">
+                            @foreach (var stdevent in StudentsEnrolmentsTue)
+                            {
+                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                {
+                                    <td class="tablecell">
+                                        <div class="tablecellnumber">@segment.LessonNo</div>
+                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                        <div class="tablecellnumber"></div>
+                                    </td>
+                                    i = false;
+                                }
+                            }
+                            @if (i == true)
+                            {
+                                <td class="tablecell">
+                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                    <div class="tablecellcontent"></div>
+                                    <div class="tablecellnumber"></div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Wednesday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (var segment in SortedlessonsHours)
+                    {
+                        bool i = true;
+                        <tr class="tablerow">
+                            @foreach (var stdevent in StudentsEnrolmentsWen)
+                            {
+                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                {
+                                    <td class="tablecell">
+                                        <div class="tablecellnumber">@segment.LessonNo</div>
+                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                        <div class="tablecellnumber"></div>
+                                    </td>
+                                    i = false;
+                                }
+                            }
+                            @if (i == true)
+                            {
+                                <td class="tablecell">
+                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                    <div class="tablecellcontent"></div>
+                                    <div class="tablecellnumber"></div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Thursday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (var segment in SortedlessonsHours)
+                    {
+                        bool i = true;
+                        <tr class="tablerow">
+                            @foreach (var stdevent in StudentsEnrolmentsThu)
+                            {
+                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                {
+                                    <td class="tablecell">
+                                        <div class="tablecellnumber">@segment.LessonNo</div>
+                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                        <div class="tablecellnumber"></div>
+
+                                    </td>
+                                    i = false;
+                                }
+                            }
+                            @if (i == true)
+                            {
+                                <td class="tablecell">
+                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                    <div class="tablecellcontent"></div>
+                                    <div class="tablecellnumber"></div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Friday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (var segment in SortedlessonsHours)
+                    {
+                        bool i = true;
+                        <tr class="tablerow">
+                            @foreach (var stdevent in StudentsEnrolmentsFri)
+                            {
+                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                {
+                                    <td class="tablecell">
+                                        <div class="tablecellnumber">@segment.LessonNo</div>
+                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                        <div class="tablecellnumber"></div>
+                                    </td>
+                                    i = false;
+                                }
+                            }
+                            @if (i == true)
+                            {
+                                <td class="tablecell">
+                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                    <div class="tablecellcontent"></div>
+                                    <div class="tablecellnumber"></div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        *@
+    </div>
+    
+</div>
+
+
+
+
+@code {
+
+    private TeacherMainPageDay siteref;
+
+    IList<Enrollment> StudentsEnrolmentsMon = new List<Enrollment>();
+    IList<Enrollment> StudentsEnrolmentsTue = new List<Enrollment>();
+    IList<Enrollment> StudentsEnrolmentsWen = new List<Enrollment>();
+    IList<Enrollment> StudentsEnrolmentsThu = new List<Enrollment>();
+    IList<Enrollment> StudentsEnrolmentsFri = new List<Enrollment>();
+    IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
+    DateTime Today = DateTime.Now;
+    DateTime UpToDateMonday;
+    int ID;
+    Teacher teacher;
+    string Roles;
+    public class GrafLesson
+    {
+        public LessonsHours SortedlessonsHour { get; set; }
+        public bool NoEvent { get; set; }
+
+        public GrafLesson(LessonsHours sortedlessonsHour, bool noEvent)
+        {
+            SortedlessonsHour = sortedlessonsHour;
+            NoEvent = noEvent;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await SubjectService.GetSubjects();
+        await TeacherService.GetTeachers();
+        await GetClaimsGetID();
+        await EnrollmentService.GetEnrollments();
+        await Finduptodatemonday();
+        await LessonsHoursService.GetLessonsHours();
+        await SortLessonHours();
+    }
+
+    async Task Finduptodatemonday()
+    {
+
+        if (Today.DayOfWeek == DayOfWeek.Saturday || Today.DayOfWeek == DayOfWeek.Sunday)
+        {
+            if (Today.DayOfWeek == DayOfWeek.Saturday)
+            {
+                UpToDateMonday = Today.AddDays(2);
+            }
+            else
+            {
+                UpToDateMonday = Today.AddDays(1);
+            }
+        }
+        else
+        {
+            int difrence = Today.DayOfWeek - DayOfWeek.Monday;
+            if (difrence != 0)
+            {
+                UpToDateMonday = Today.AddDays(-difrence);
+            }
+            else
+            {
+                UpToDateMonday = Today;
+            }
+        }
+        await Filllistofactivetiescurrentweek();
+    }
+
+
+    async Task Filllistofactivetiescurrentweek()
+    {
+        @*
+        DateTime temp;
+        foreach (var enrolment in EnrollmentService.Enrollments)
+        {
+            if (enrolment.ClassID == student.ClassID)
+            {
+                temp = UpToDateMonday;
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    StudentsEnrolmentsMon.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(1);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    StudentsEnrolmentsTue.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(2);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    StudentsEnrolmentsWen.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(3);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    StudentsEnrolmentsThu.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(4);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    StudentsEnrolmentsFri.Add(enrolment);
+                }
+            }
+        }
+
+        foreach (var enrol in StudentsEnrolmentsMon)
+        {
+            foreach (var sub in SubjectService.Subjects)
+            {
+                if (enrol.SubjectID == sub.SubjectID)
+                {
+                    enrol.Subject = sub;
+                }
+            }
+        }
+        foreach (var enrol in StudentsEnrolmentsTue)
+        {
+            foreach (var sub in SubjectService.Subjects)
+            {
+                if (enrol.SubjectID == sub.SubjectID)
+                {
+                    enrol.Subject = sub;
+                }
+            }
+        }
+        foreach (var enrol in StudentsEnrolmentsWen)
+        {
+            foreach (var sub in SubjectService.Subjects)
+            {
+                if (enrol.SubjectID == sub.SubjectID)
+                {
+                    enrol.Subject = sub;
+                    Console.WriteLine("bylemtu");
+                }
+            }
+        }
+        foreach (var enrol in StudentsEnrolmentsThu)
+        {
+            foreach (var sub in SubjectService.Subjects)
+            {
+                if (enrol.SubjectID == sub.SubjectID)
+                {
+                    enrol.Subject = sub;
+                }
+            }
+        }
+        foreach (var enrol in StudentsEnrolmentsFri)
+        {
+            foreach (var sub in SubjectService.Subjects)
+            {
+                if (enrol.SubjectID == sub.SubjectID)
+                {
+                    enrol.Subject = sub;
+                }
+            }
+        }
+        *@
+    }
+
+    async Task SortLessonHours()
+    {
+        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
+        {
+            foreach (var segment in LessonsHoursService.LessonsHours)
+            {
+                if (segment.LessonNo == i + 1)
+                {
+                    SortedlessonsHours.Add(segment);
+                }
+            }
+        }
+    }
+
+    async Task Setemptylessonhour()
+    {
+
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+        }
+    }
+
+}

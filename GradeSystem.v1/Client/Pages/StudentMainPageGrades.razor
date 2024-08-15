@@ -1,0 +1,206 @@
+﻿@page "/studentmainpagegrades"
+@using System.Globalization;
+@inject IStudentService StudentService
+@inject IGradeNumberService GradeNumberService
+@inject IGradeService GradeService
+@inject ISubjectService SubjectService
+
+<div class="RGtable">
+
+    <div class="RGtableheader">
+        <div class="RGtitle">Recent Grades</div>
+    </div>
+
+    <div class="RGdisplay">
+
+        <div class="RGsubdisplay">
+
+        @foreach (var Grade in LastSixGrades)
+        {
+        <div class="RGtablerow"> 
+
+            <div class="RGdata">
+
+                <div class="RGLeft">
+                    <div class="RGdatetime">
+
+                        <div>@Grade.DateOfGrading.ToString("ddd", CultureInfo.InvariantCulture)</div>
+                                <div>, &nbsp;</div>
+                        <div>@Grade.DateOfGrading.Day</div>
+                        <div>.</div>
+             
+                        @if(Grade.DateOfGrading.Month>=10)
+                        {
+                                <div>@Grade.DateOfGrading.Month</div>
+                        }
+                        else
+                        {
+                                <div>0</div>
+                                <div>@Grade.DateOfGrading.Month</div>
+                        }
+                    
+                    </div>
+                </div>
+
+          
+
+
+                <div class="RGRight">
+                    <div class="RGsubject">@Grade.Subject.SubjectName</div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="RGgrade">@Grade.gradenumber.GradeName</div>
+           
+    </div>
+    }
+
+    </div>
+
+    </div>
+
+</div>
+
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GradeNumberService.GetGradeNumbers();
+        await GradeService.GetGrades();
+        await StudentService.GetStudents();
+        await SubjectService.GetSubjects();
+        await GetClaimsGetID();
+        await AddGradesToRecentGrades();
+    }
+
+    List<Grade> LastSixGrades = new List<Grade>();
+
+    List<Grade> RecentStudentGrades = new List<Grade>();
+
+    async Task AddGradesToRecentGrades()
+    {
+
+        DateTime Today = DateTime.Now;
+
+        foreach(var grade in GradeService.Grades)
+        {
+            if(grade.StudentID == student.StudentID)
+            {
+                if(grade.DateOfGrading <= Today && grade.DateOfGrading >= Today.AddDays(-365))
+                {
+                    RecentStudentGrades.Add(grade);
+                }
+
+            }
+        }
+        foreach (var grade in RecentStudentGrades)
+        {
+            foreach (var gradenumber in GradeNumberService.GradeNumbers)
+            {
+                if(gradenumber.GradeNumberID == grade.gradenumberid)
+                {
+                    grade.gradenumber = gradenumber;
+                }
+            }
+        }
+        foreach (var grade in RecentStudentGrades)
+        {
+            foreach (var subject in SubjectService.Subjects)
+            {
+                if (subject.SubjectID == grade.SubjectID)
+                {
+                    grade.Subject = subject;
+                }
+            }
+        }
+        AddLastSixGrades();
+    }
+
+
+
+
+    async Task AddLastSixGrades()
+    {
+
+        Grade ClosestGrade;
+        DateTime DateTimeToday = DateTime.Today;
+
+        for(int i = 1; i<=6; i++)
+        {
+            ClosestGrade = RecentStudentGrades[0];
+
+            TimeSpan TimeDifferenceA;
+            TimeSpan TimeDifferenceB;
+
+
+            foreach (var grade in RecentStudentGrades)
+            {
+
+                TimeDifferenceA = DateTimeToday - grade.DateOfGrading;
+                TimeDifferenceB = DateTimeToday - ClosestGrade.DateOfGrading;
+
+                if (TimeDifferenceA < TimeDifferenceB)
+                {
+                    ClosestGrade = grade; 
+                }
+
+            }
+            LastSixGrades.Add(ClosestGrade);
+            RecentStudentGrades.Remove(ClosestGrade);
+        }
+    }
+
+ 
+
+
+    int ID;
+    string Roles;
+    Student student;
+
+
+    [CascadingParameter]
+
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Student")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+

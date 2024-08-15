@@ -1,4 +1,6 @@
 
+using System.Data;
+
 public class Grade
 {
     public int GradeID { get; set; }
@@ -14,5 +16,7 @@ public class Grade
 
     public Student? Student { get; set; }
     public Subject? Subject { get; set; }
+
+    public DateTime DateOfGrading { get; set; }
 
 }

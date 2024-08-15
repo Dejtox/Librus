@@ -1,0 +1,156 @@
+﻿@page "/teachermainpageday"
+@inject ITeacherService TeacherService
+@inject ISubjectService SubjectService
+@inject IEnrollmentService EnrollmentService
+@inject IClassService ClassService
+@inject ILessonsHoursService LessonsHoursService
+
+
+<div class="TEtable">
+
+    <div class="TEtableheader">
+        <div class="TEtitle">Your day</div>
+    </div>
+
+    <div class="TEdisplay">
+        
+        <div class="DateToday">@DateTime.Now.DayOfWeek, @DateTime.Now.Day.@DateTime.Now.Month </div>
+
+        <div class="TEsubdisplay">
+
+            @foreach (var incominglessons in EnrollmentsToday)
+                    {
+
+                        <div class="TEtablerow">
+
+                            <div class="TEdata">
+                                <div class="TEsubject">@incominglessons.Subject</div>
+
+                                <div class="TEclass">(@incominglessons.MyClass)</div>
+                            </div>
+                        </div>
+
+                    }
+                
+
+                
+            
+        </div>
+
+    </div>
+</div>
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await TeacherService.GetTeachers();
+        await SubjectService.GetSubjects();
+        await EnrollmentService.GetEnrollments();
+        await ClassService.GetClasses();
+        await LessonsHoursService.GetLessonsHours();
+        Today = DateTime.Now;
+        await GetClaimsGetID();
+        await SortEnrollments();
+    }
+
+
+
+    int ID;
+    Teacher teacher;
+    Class classes;
+    string Roles;
+    DateTime Today;
+
+    List<IncomingLesson> EnrollmentsToday = new List<IncomingLesson>();
+
+
+    async Task SortEnrollments()
+    {
+        foreach (var lessonhour in LessonsHoursService.LessonsHours)
+        {
+
+            IncomingLesson inc = new IncomingLesson(0, "", "");
+
+            EnrollmentsToday.Add(inc);
+
+            foreach (var enrollment in EnrollmentService.Enrollments)
+            {
+
+
+                if (Today.Day == enrollment.Date.Day && Today.Month == enrollment.Date.Month && Today.Year == enrollment.Date.Year && enrollment.Class.TeacherID == ID)
+                {
+
+                    if (enrollment.Date.Hour == lessonhour.Start.Hour && enrollment.Date.Minute == lessonhour.Start.Minute)
+                    {
+
+                        IncomingLesson inc1 = new IncomingLesson(enrollment.EnrollmentID, enrollment.Subject.SubjectName, enrollment.Class.ClassName);
+
+                        EnrollmentsToday[lessonhour.LessonNo - 1] = inc1;
+
+                        break;
+                    }
+
+                }
+                
+            }
+   
+
+        }
+
+
+    }
+
+    public class IncomingLesson
+    {
+        public int ID;
+        public string Subject;
+        public string MyClass; 
+
+        public IncomingLesson(int iD, string subject, string myclass)
+        {
+            ID = iD;
+            Subject = subject;
+            MyClass = myclass;
+        }
+    }
+
+    IncomingLesson incominglesson = new IncomingLesson(0," "," ");
+
+
+
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+        }
+    }
+
+
+
+}

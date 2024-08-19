@@ -2,10 +2,14 @@
   "entryAssembly": "GradeSystem.v1.Client",
   "resources": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "hash": "sha256-9WiHJns6Vz9Joe1sOv0feV47bqT3aGXNQEn8CSheQr0=",
 =======
     "hash": "sha256-6PBU4UAUph2L8mKZgW1iriZUcIk6l8ahoklKv+3BC74=",
 >>>>>>> domerge-iotrek
+=======
+    "hash": "sha256-HNGPxuKLU7MfJKC1xsdTWEwlOA147gaQYgn8amLzJdY=",
+>>>>>>> domerge
     "runtime": {
       "dotnet.7.0.20.18gzuyf60m.js": "sha256-eaJTmow4t8eE7FZMZR5Ja41JMOefGCbIYDTdpclGsac=",
       "dotnet.timezones.blat": "sha256-gbATD5HDsHYtW8vdPYh9iSBY4O5CjvMeCSF5xXWF1xo=",
@@ -425,6 +429,7 @@
       "mscorlib.dll": "sha256-lo3zWxda3c3QawbfHvOghgqCpdHXBTdqPT0UJceBT2A=",
       "netstandard.dll": "sha256-BvougKnccTedjRXZ+Ll94v1qqBt4cr0MqBVYFpGvYLA=",
       "System.Private.CoreLib.dll": "sha256-i0lh8QB6xhbEgqLyhh/0TaUFxAB3Iz2y0VH8m68TIdY=",
+<<<<<<< HEAD
       "GradeSystem.v1.Shared.dll": "sha256-1fPZKXJ9w/RDKiEueMIY/OEpJBMCQu5/nUjk3rfhhuo=",
       "GradeSystem.v1.Client.dll": "sha256-qcii1P5btWBi6Nea+GHqVXmKsXz9C225BHZvLhAuofg="
     },
@@ -432,6 +437,14 @@
       "GradeSystem.v1.Shared.pdb": "sha256-LC6j/iasIpXjfywfZ6IhIazx0OoVA4GHVNNwcASBxF8=",
       "GradeSystem.v1.Client.pdb": "sha256-xj47kwy3lMbv7W4PgMHITGLHhSPM/hXp6Ch+wZoHDBM="
 >>>>>>> domerge-iotrek
+=======
+      "GradeSystem.v1.Shared.dll": "sha256-UaGFH6Vp9s4HKOD5jFM66Cv8zIpOBiZTT50EGOV1lWw=",
+      "GradeSystem.v1.Client.dll": "sha256-oMU1zK99sZMNhiLPx5HW9okZeqrrMEr/ga4kjijTQNg="
+    },
+    "pdb": {
+      "GradeSystem.v1.Shared.pdb": "sha256-RTwcOuzKIecINLgo2O/HdkL8Cu2zZpShMz+9MRWJ7iw=",
+      "GradeSystem.v1.Client.pdb": "sha256-xfl2UXayIOnbETaewiOoG0LJCvuQP5AAQSLakfKOUmQ="
+>>>>>>> domerge
     },
     "runtimeAssets": {
       "dotnet.wasm": {

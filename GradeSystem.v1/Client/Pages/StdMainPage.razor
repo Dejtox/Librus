@@ -1,4 +1,4 @@
-﻿@page "/stdmainpage"
+@page "/stdmainpage"
 @inject IEnrollmentService EnrollmentService
 @inject IStudentService StudentService
 @inject ILessonsHoursService LessonsHoursService
@@ -17,7 +17,9 @@
             </div>
         </div>
         <div class="insidebox">
-            <div class="insideinsidebox"></div>
+            <div class="insideinsidebox">
+                <StdParLastAttenderncesmainpage @ref="popupref"></StdParLastAttenderncesmainpage>
+            </div>
         </div>
     </div>
     <div class="sidebox">        
@@ -204,6 +206,8 @@
 
 
 @code {
+    private StdParLastAttenderncesmainpage popupref;
+
 
     private StudentMainPageGrades siteref;
     private StudentMainPageExams siteref1;
@@ -373,7 +377,7 @@
             }
         }
     }
-
+    //kom
     async Task Setemptylessonhour()
     {
         

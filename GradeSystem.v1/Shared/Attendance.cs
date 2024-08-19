@@ -7,6 +7,5 @@
     public string Description { get; set; } = string.Empty;
     public Student? Student { get; set; }
     public Enrollment? Enrollment { get; set; }
-    public DateTime CreatoinDate { get; set; }
-    
+    public DateTime CreatoinDate { get; set; }    
     }

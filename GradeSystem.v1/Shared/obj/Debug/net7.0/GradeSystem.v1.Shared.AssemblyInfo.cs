@@ -15,10 +15,14 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30771f0d8b263e50ae09fa4678aea667fb030c78")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f2302f5e7e546a703f4fa5c229300218ba11ae9")]
 >>>>>>> domerge-iotrek
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4a742edc43e000b4ab766f08036605036bc8919")]
+>>>>>>> domerge
 [assembly: System.Reflection.AssemblyProductAttribute("GradeSystem.v1.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GradeSystem.v1.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

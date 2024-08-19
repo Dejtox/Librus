@@ -18,5 +18,4 @@ public class Grade
     public Subject? Subject { get; set; }
 
     public DateTime DateOfGrading { get; set; }
-
 }

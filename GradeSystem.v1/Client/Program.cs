@@ -70,7 +70,6 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddAuthentication();
 builder.Services.AddScoped<DialogService>();
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzgxOTMzQDMyMzAyZTMzMmUzMFR3bzhDc3YxcVUvSE5zMUQvRFgva0xibmR2WjdjYlU2UkNFZXlGeHpRWUE9");
 
 
 

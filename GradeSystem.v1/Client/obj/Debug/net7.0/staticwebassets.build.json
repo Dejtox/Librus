@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "yBJa0W+dGqv+0qTAnIPBnUDfN9cB+5cqgsHA/n2FoqM=",
+=======
+  "Hash": "V32tFpW+mJLCIv8MLU20zBwyWPVh3RwyuV5/t2horS4=",
+>>>>>>> domerge-iotrek
   "Source": "GradeSystem.v1.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -31747,7 +31751,49 @@
       "OriginalItemSpec": "wwwroot\\Img\\dubk.jpg"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",
+=======
+      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\logo.png",
+      "SourceId": "GradeSystem.v1.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "Img/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Img\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\student_debil.jpg",
+      "SourceId": "GradeSystem.v1.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "Img/student_debil.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Img\\student_debil.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",
+>>>>>>> domerge-iotrek
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",

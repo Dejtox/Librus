@@ -34,9 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\newLogin.razor" />
+  </ItemGroup>
 
-    <Folder Include="wwwroot\Img\" />
-
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\newLogin.razor" />
   </ItemGroup>
 
 </Project>

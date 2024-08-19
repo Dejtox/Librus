@@ -166,7 +166,15 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/Nowatestowastronefileuppload.razor]
+=======
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/NewLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmV3TG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/Nowatestowastronefileuppload.razor]
+>>>>>>> domerge-iotrek
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm93YXRlc3Rvd2FzdHJvbmVmaWxldXBwbG9hZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
@@ -290,11 +298,19 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdDEucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/TrMainPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJNYWluUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Shared/Sidebar.razor]
+=======
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Shared/EmptyLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEVtcHR5TGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Shared/Sidebar.razor]
+>>>>>>> domerge-iotrek
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNpZGViYXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 

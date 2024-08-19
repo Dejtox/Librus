@@ -19,6 +19,7 @@ namespace GradeSystem.v1.Server.Auth
     {
         public const string JWT_SECURITY_KEY = "huyibyVUYB21313iB7h7H98m87h87HGIUnnuy8b78b8B7N7n78";
         private const int JWT_TOKEN_VALIDITY_MINS = 30;
+        private const int JWT_TOKEN_VALIDITY_MINS_RE = 43200;//30dni
 
         private readonly GradeSystemv1ServerContext _context;
         public JwtAuthMenager(GradeSystemv1ServerContext context)
@@ -26,15 +27,18 @@ namespace GradeSystem.v1.Server.Auth
             _context = context;
         }
 
-        public async Task<UserSession?> GenerateJwtTokenAsync(string login, string password)
+        public async Task<UserSession?> GenerateJwtTokenAsync(string login, string password, bool rememberMe)
         {
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
                 return null;
 
             var userAcc = _context.User.Include(r=>r.Roles).FirstOrDefault(x => x.Login == login);
+            if (userAcc == null) return null;
             if (userAcc.PasswordHash != password)
                 return null;
-            var tokenexptime = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
+            var tokenexptime=DateTime.Now;
+            if (rememberMe) tokenexptime = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS_RE);
+            else tokenexptime = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
             var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
             var claimsIdentity = new ClaimsIdentity();
             string name = string.Empty;

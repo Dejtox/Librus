@@ -1,15 +1,3 @@
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.deps.json
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.dll
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.pdb
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.AssemblyInfoInputs.cache
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.AssemblyInfo.cs
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.csproj.CoreCompileInputs.cache
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.sourcelink.json
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.dll
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\refint\GradeSystem.v1.Shared.dll
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.pdb
-C:\Users\pepci\OneDrive\Dokumenty\Projects\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\ref\GradeSystem.v1.Shared.dll
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.deps.json
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.dll
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.pdb
@@ -22,30 +10,3 @@ C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\refint\GradeSystem.v1.Shared.dll
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.pdb
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\ref\GradeSystem.v1.Shared.dll
-<<<<<<< HEAD
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.deps.json
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.dll
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.pdb
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.AssemblyInfoInputs.cache
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.AssemblyInfo.cs
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.csproj.CoreCompileInputs.cache
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.sourcelink.json
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.dll
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\refint\GradeSystem.v1.Shared.dll
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.pdb
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\obj\Debug\net7.0\ref\GradeSystem.v1.Shared.dll
-=======
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.deps.json
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.dll
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\bin\Debug\net7.0\GradeSystem.v1.Shared.pdb
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.AssemblyInfoInputs.cache
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.AssemblyInfo.cs
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.csproj.CoreCompileInputs.cache
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.sourcelink.json
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.dll
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\refint\GradeSystem.v1.Shared.dll
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\GradeSystem.v1.Shared.pdb
-C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Shared\obj\Debug\net7.0\ref\GradeSystem.v1.Shared.dll
->>>>>>> domerge-iotrek

@@ -13,11 +13,6 @@
                 <TeacherMainPageDay @ref="siteref"></TeacherMainPageDay>
             </div>
         </div>
-
-
-
-
-
         <div class="insidebox">
             <div class="insideinsidebox"></div>
         </div>
@@ -27,20 +22,6 @@
     </div>
 
     <div class="sidebox">
-
-
-
-
-
-
-
-
-
-
-
-
-
-        @*
         <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -51,7 +32,7 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in StudentsEnrolmentsMon)
+                            @foreach (var stdevent in TchEnrolmentsMon)
                             {
                                 if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
                                 {
@@ -86,7 +67,7 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in StudentsEnrolmentsTue)
+                            @foreach (var stdevent in TchEnrolmentsTue)
                             {
                                 if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
                                 {
@@ -121,7 +102,7 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in StudentsEnrolmentsWen)
+                                @foreach (var stdevent in TchEnrolmentsWen)
                             {
                                 if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
                                 {
@@ -156,7 +137,7 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in StudentsEnrolmentsThu)
+                            @foreach (var stdevent in TchEnrolmentsThu)
                             {
                                 if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
                                 {
@@ -192,7 +173,7 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in StudentsEnrolmentsFri)
+                            @foreach (var stdevent in TchEnrolmentsFri)
                             {
                                 if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
                                 {
@@ -216,8 +197,7 @@
                     }
                 </tbody>
             </table>
-        </div>
-        *@
+        </div>       
     </div>
     
 </div>
@@ -229,11 +209,11 @@
 
     private TeacherMainPageDay siteref;
 
-    IList<Enrollment> StudentsEnrolmentsMon = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsTue = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsWen = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsThu = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsFri = new List<Enrollment>();
+    IList<Enrollment> TchEnrolmentsMon = new List<Enrollment>();
+    IList<Enrollment> TchEnrolmentsTue = new List<Enrollment>();
+    IList<Enrollment> TchEnrolmentsWen = new List<Enrollment>();
+    IList<Enrollment> TchEnrolmentsThu = new List<Enrollment>();
+    IList<Enrollment> TchEnrolmentsFri = new List<Enrollment>();
     IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
     DateTime Today = DateTime.Now;
     DateTime UpToDateMonday;
@@ -295,92 +275,39 @@
 
     async Task Filllistofactivetiescurrentweek()
     {
-        @*
         DateTime temp;
         foreach (var enrolment in EnrollmentService.Enrollments)
         {
-            if (enrolment.ClassID == student.ClassID)
+            if (enrolment.Class.TeacherID == teacher.TeacherID)
             {
                 temp = UpToDateMonday;
                 if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
                 {
-                    StudentsEnrolmentsMon.Add(enrolment);
+                    TchEnrolmentsMon.Add(enrolment);
                 }
                 temp = UpToDateMonday.AddDays(1);
                 if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
                 {
-                    StudentsEnrolmentsTue.Add(enrolment);
+                    TchEnrolmentsTue.Add(enrolment);
                 }
                 temp = UpToDateMonday.AddDays(2);
                 if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
                 {
-                    StudentsEnrolmentsWen.Add(enrolment);
+                    TchEnrolmentsWen.Add(enrolment);
                 }
                 temp = UpToDateMonday.AddDays(3);
                 if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
                 {
-                    StudentsEnrolmentsThu.Add(enrolment);
+                    TchEnrolmentsThu.Add(enrolment);
                 }
                 temp = UpToDateMonday.AddDays(4);
                 if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
                 {
-                    StudentsEnrolmentsFri.Add(enrolment);
+                    TchEnrolmentsFri.Add(enrolment);
                 }
             }
         }
 
-        foreach (var enrol in StudentsEnrolmentsMon)
-        {
-            foreach (var sub in SubjectService.Subjects)
-            {
-                if (enrol.SubjectID == sub.SubjectID)
-                {
-                    enrol.Subject = sub;
-                }
-            }
-        }
-        foreach (var enrol in StudentsEnrolmentsTue)
-        {
-            foreach (var sub in SubjectService.Subjects)
-            {
-                if (enrol.SubjectID == sub.SubjectID)
-                {
-                    enrol.Subject = sub;
-                }
-            }
-        }
-        foreach (var enrol in StudentsEnrolmentsWen)
-        {
-            foreach (var sub in SubjectService.Subjects)
-            {
-                if (enrol.SubjectID == sub.SubjectID)
-                {
-                    enrol.Subject = sub;
-                    Console.WriteLine("bylemtu");
-                }
-            }
-        }
-        foreach (var enrol in StudentsEnrolmentsThu)
-        {
-            foreach (var sub in SubjectService.Subjects)
-            {
-                if (enrol.SubjectID == sub.SubjectID)
-                {
-                    enrol.Subject = sub;
-                }
-            }
-        }
-        foreach (var enrol in StudentsEnrolmentsFri)
-        {
-            foreach (var sub in SubjectService.Subjects)
-            {
-                if (enrol.SubjectID == sub.SubjectID)
-                {
-                    enrol.Subject = sub;
-                }
-            }
-        }
-        *@
     }
 
     async Task SortLessonHours()

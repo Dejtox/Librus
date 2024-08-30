@@ -47,10 +47,12 @@ else
                 <option value="@role" @onclick="(()=>roles.Add(role))">@role</option>
             })
         </select>
+
+        <button type="submit" class="btn btn-primary">@btnText</button>
+        <button type="button" class="btn btn-danger" @onclick="DelateTeacher">Delete Teacher</button>
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">@btnText</button>
-    <button type="button" class="btn btn-danger" @onclick="DelateTeacher">Delete Teacher</button>
+
 
 </EditForm>
 

@@ -377,6 +377,41 @@ namespace GradeSystem.v1.Server.Migrations
                     b.ToTable("LessonsHours");
                 });
 
+            modelBuilder.Entity("Note", b =>
+                {
+                    b.Property<int>("NoteID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoteID"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Position")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NoteID");
+
+                    b.ToTable("Note");
+                });
+
             modelBuilder.Entity("Parent", b =>
                 {
                     b.Property<int>("ParentID")

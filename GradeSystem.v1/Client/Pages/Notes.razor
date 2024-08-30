@@ -1,0 +1,49 @@
+﻿@page "/Notes"
+@inject INoteService NoteService
+@inject NavigationManager NavigationMenager
+
+
+<PageTitle> Notes </PageTitle>
+
+<h3>Notes</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>TeacherID</th>
+            <th>Color</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var note in NoteService.Notes)
+        {
+            <tr>
+                <td>@note.Title</td>
+                <td>@note.Content</td>
+                <td>@note.TeacherID</td>
+                <td>@note.Color</td>
+                <td>@note.Position</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateNote">Create New</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await NoteService.GetNotes();
+    }
+    void ShowNote(int id)
+    {
+        NavigationMenager.NavigateTo($"Notes/{id}");
+    }
+    void CreateNote()
+    {
+        NavigationMenager.NavigateTo("/trmainpage");
+    }
+}

@@ -1,0 +1,73 @@
+﻿@page "/teachermainpagenotes"
+@page "/teachermainpagenotes/{id:int}"
+@inject INoteService NoteService
+
+
+<div class="Nheader">
+    <div class="Ntitle">Notes</div>
+</div>
+
+<div class="NotesMainPage">
+
+
+<EditForm Model="note" OnSubmit="HandleSubmit">
+    <div>
+        <label for="notename">Note Name</label>
+        <InputText @bind-Value="note.Title" class="form-control"></InputText>
+    </div>
+
+    <div>
+        <label for="notecontent">Note Content</label>
+        <InputText @bind-Value="note.Content" class="form-control"></InputText>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+   
+</EditForm>
+
+</div>
+
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    Note note = new Note();
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Note" : "Update Note";
+        await NoteService.GetTeachers();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await NoteService.GetTeachers();
+        }
+        else
+        {
+            note = await NoteService.GetNoteByID((int)ID);
+        }
+    }
+    async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            await NoteService.CreateNote(note);
+        }
+        else
+        {
+            await NoteService.UpdateNote(note);
+        }
+    }
+    async Task DeleteNote()
+    {
+
+        await NoteService.DeleteNote(note.NoteID);
+
+    }
+
+}

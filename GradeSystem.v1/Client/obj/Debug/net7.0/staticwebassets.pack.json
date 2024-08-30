@@ -21,19 +21,15 @@
       "PackagePath": "staticwebassets\\Img\\dubk.jpg"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-=======
-      "Id": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\logo.png",
+      "Id": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\logo.png",
       "PackagePath": "staticwebassets\\Img\\logo.png"
     },
     {
-      "Id": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\student_debil.jpg",
+      "Id": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\student_debil.jpg",
       "PackagePath": "staticwebassets\\Img\\student_debil.jpg"
     },
     {
-      "Id": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
->>>>>>> domerge-iotrek
+      "Id": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {

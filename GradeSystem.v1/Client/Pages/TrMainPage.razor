@@ -8,21 +8,21 @@
 
 <div class="mainbox">
     <div class="sidebox">
-        <div class="insidebox">
+        <div class="insidebox1">
             <div class="insideinsidebox">
                 <TeacherMainPageDay @ref="siteref"></TeacherMainPageDay>
             </div>
         </div>
 
-
-
-
-
-        <div class="insidebox">
-            <div class="insideinsidebox"></div>
+        <div class="insidebox2">
+            <div class="insideinsidebox">
+                <TeacherMainPageCL @ref="siteref1"></TeacherMainPageCL>
+            </div>
         </div>
-        <div class="insidebox">
-            <div class="insideinsidebox"></div>
+        <div class="insidebox3">
+            <div class="insideinsidebox">
+                <TeacherMainPageNotes @ref="siteref2"></TeacherMainPageNotes>
+            </div>
         </div>
     </div>
 
@@ -228,6 +228,10 @@
 @code {
 
     private TeacherMainPageDay siteref;
+    private TeacherMainPageCL siteref1;
+    private TeacherMainPageNotes siteref2;
+
+
 
     IList<Enrollment> StudentsEnrolmentsMon = new List<Enrollment>();
     IList<Enrollment> StudentsEnrolmentsTue = new List<Enrollment>();

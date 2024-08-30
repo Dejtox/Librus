@@ -1,0 +1,64 @@
+﻿@page "/teachermainpagecl"
+@inject NavigationManager NavigationManager
+
+
+<div class="CLtable">
+
+    <div class="CLtableheader">
+        <div class="CLtitle">Current Lesson</div>
+    </div>
+
+    <div class="CLdisplay">
+
+       <div class="CLlesson">
+           <div>Lesson : 2</div>
+       </div>
+       <div class="CLdata">
+           <div>Maths (Grade 6)</div>
+       </div>
+
+       <div class="CLsubdisplay">
+
+            <div class="CLtablerow">
+                <button class="CLbutton" style="background-color: rgb(91,208,145)" @onclick="@(()=>NavigationManager.NavigateTo("/attendances"))">
+                    <div class="gg-check-r"></div>
+                    Attendance
+                </button>
+                <button class="CLbutton" style="background-color: rgb(248,148,56)" @onclick="@(()=>NavigationManager.NavigateTo("/grades"))">
+                    <div class="gg-check-o"></div>
+                    Grades
+                </button>
+
+            </div>
+
+
+            <div class="CLtablerow">    
+                <button class="CLbutton" style="background-color: rgb(91,103,208)" @onclick="@(()=>NavigationManager.NavigateTo("/materials"))">
+                    <div class="gg-box"></div>
+                    Materials
+                </button>
+                <button class="CLbutton" style="background-color: rgb(4,98,118)" @onclick="@(()=>NavigationManager.NavigateTo("/subjects"))">
+                    <div class="gg-add"></div>
+                    Subject
+                </button>
+
+            </div>
+
+            <div class="CLtablerow">
+                <button class="CLbutton" style="background-color: rgb(255,210,63)" @onclick="@(()=>NavigationManager.NavigateTo("/tests"))">
+                    <div class="gg-pen"></div>
+                    Tests
+                </button>
+                <button class="CLbutton" style="background-color: rgb(230,95,95)" @onclick="@(()=>NavigationManager.NavigateTo("/notes"))">
+                    <div class="gg-pacman"></div>
+                    Note
+                </button>
+            </div>
+            
+       </div>
+
+    </div>
+</div>
+@code {
+
+}

@@ -952,14 +952,15 @@ a, .btn-link {
 }
 
 .sidebar-left {
-    top: 0;
-    left: 0;
-    width: 250px;
+    width: 20%;
     height: 100vh;
     background-color: var(--primarymainmenu);
-    padding: 1rem;
     position: fixed;
     flex-direction: column;
+}
+
+.sidebar-container{
+    height: 80vh;
 }
 
 .sidebar-buttoncontainer {
@@ -975,9 +976,9 @@ a, .btn-link {
     color: var(--mainpagetext);    
 }
 
-.mainlayout-border {
+.mainlayout-border {    
     border-radius: 25px;
-    margin: 10px;
+    margin-right: 1.6%;
     background-color: var(--backgroundmainmenu);
     height: 90vh;
     align-items: center;
@@ -987,7 +988,7 @@ a, .btn-link {
 
 .websidebody {
     height: 97%;
-    width: 97%;
+    width: 100%;
 }
 
 .header-element {
@@ -999,9 +1000,9 @@ a, .btn-link {
     justify-content: right;
     display: flex;
     align-items:center;
-    padding: 10px;
     margin: 0px 10px 0px 0px;
     gap:5px;
+    height: 8vh;
 }
 
 .top-roww {
@@ -1020,18 +1021,18 @@ a, .btn-link {
 }
 
 .main-content {
-    margin-left: 250px;
-    flex: 1;
+    margin-left: 20%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: calc(100% - 250px);
+    width: 80%;
     background-color: var(--primarymainmenu);
     height: 100vh;
 }
 
 
 .logo-container {
+
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -1088,6 +1089,7 @@ a, .btn-link {
     height: 50%;
     flex-direction: row;
     justify-content: center;
+    margin-top: 2.5vh;
 }
 
 .insidebox {
@@ -1096,12 +1098,32 @@ a, .btn-link {
     align-items: center;
 }
 
+.insidebox1 {
+    height: 100%;
+    width: 33%;
+    align-items: center;
+}
+
+.insidebox2 {
+    height: 100%;
+    width: 21%;
+    align-items: center;
+}
+
+.insidebox3 {
+    height: 100%;
+    width: 37%;
+    align-items: center;
+}
+
+
 .insideinsidebox {
-    height: 97%;
+    height: 100%;
     width: 97%;
     align-items: center;
     border: 2px solid;
     border-radius: 10px;
+    border-color: rgb(185,185,185);
     overflow:hidden;
 }
 
@@ -1257,6 +1279,75 @@ a, .btn-link {
     border-block-color: black;
 }
 
+
+
+
+
+
+
+
+
+
+.EXtable {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.EXtableheader {
+    width: 100%;
+    height: 12.5%;
+    border-bottom: 1px solid;
+    align-items: center;
+    background-color: #1a2130;
+    color: #ffffff;
+    display: flex;
+
+}
+
+.EXtitle {
+    font-weight: bold;
+    margin: 2%;
+}
+
+.EXdisplay {
+    width: 100%;
+    height: 87.5%;
+}
+
+.EXsubdisplay{
+
+}
+
+.EXdate{
+
+}
+
+.EXexam{
+
+}
+
+.EXlesson{
+
+}
+
+.EXsubject{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .RGtable {
     height: 100%;
     width: 100%;
@@ -1277,6 +1368,7 @@ a, .btn-link {
 
 .RGtitle {
     font-weight: bold;
+    margin: 2%;
 }
 
 .RGtablerow {
@@ -1316,7 +1408,7 @@ a, .btn-link {
 
 .RGdisplay {
     width: 100%;
-    height: 100%;
+    height: 87.5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1339,4 +1431,765 @@ a, .btn-link {
 .RGRight {
     margin-left: auto;
     margin-right: 5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.TEtable {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.TEtableheader {
+    width: 100%;
+    height: 12.5%;
+    border-bottom: 1px solid;
+    align-items: center;
+    background-color: #1a2130;
+    color: #ffffff;
+    display: flex;
+    font-weight: bold;
+    justify-content: left;
+}
+
+.TEtitle {
+    margin-left: 5%;
+}
+
+
+.TEdisplay {
+    width: 100%;
+    height: 87.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(250,250,250);
+}
+
+.DateToday {
+    margin-left: 5%;
+    width: 100%;
+    height: 12.5%;
+    align-items: center;
+    justify-content: left;
+    color: #1a2130;
+    display: flex;
+}
+
+.TEsubdisplay {
+    height: 90%;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+
+.TEtablerow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1%;
+    margin-top: 0.5%;
+    margin-right: 1%;
+    margin-bottom: 0.5%;
+    flex: 1;
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: rgb(255,255,255);
+}
+
+.TEdata {
+    flex-direction: row;
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+.CLtable {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.CLtableheader {
+    width: 100%;
+    height: 12.5%;
+    border-bottom: 1px solid;
+    align-items: center;
+    justify-content: left;
+    background-color: var(--primarymainmenu);
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+}
+
+.CLtitle {
+    font-weight: bold;
+    margin-left: 5%;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.CLdisplay {
+    width: 100%;
+    height: 87.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(250,250,250);
+}
+
+.CLlesson {
+    font-weight: bold;
+    height: 8%;
+}
+.CLdata {
+    font-weight: bold;
+    height: 8%;
+}
+
+.CLsubdisplay {
+    height: 84%;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+
+.CLtablerow {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    flex: 1;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.CLbutton {
+    width: 30%;
+    height: 0;
+    padding-bottom: 30%;
+    margin: 1%;
+    border-radius: 10px;
+    border-color: rgb(185, 185, 185);
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.CLbutton:after {
+    content: "";
+    padding-bottom: 50%;
+}
+
+
+
+
+
+
+
+
+
+.Nheader {
+    width: 100%;
+    height: 12.5%;
+    border-bottom: 1px solid;
+    align-items: center;
+    justify-content: left;
+    background-color: var(--primarymainmenu);
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+}
+
+.Ntitle {
+    font-weight: bold;
+    margin-left: 5%;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.NotesMainPage {
+    height: 87.5%;
+    width: 100%;
+    padding: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+    Ikony 
+*/
+
+.gg-check-r {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs, 1));
+    border-radius: 4px;
+}
+
+    .gg-check-r::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        left: 3px;
+        top: -1px;
+        width: 6px;
+        height: 10px;
+        border-width: 0 2px 2px 0;
+        border-style: solid;
+        transform-origin: bottom left;
+        transform: rotate(45deg);
+    }
+
+
+.gg-check-o {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 100px;
+}
+
+    .gg-check-o::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        left: 3px;
+        top: -1px;
+        width: 6px;
+        height: 10px;
+        border-color: currentColor;
+        border-width: 0 2px 2px 0;
+        border-style: solid;
+        transform-origin: bottom left;
+        transform: rotate(45deg);
+    }
+
+
+.gg-add {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs, 1));
+    border-radius: 22px;
+}
+
+    .gg-add::after,
+    .gg-add::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 10px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 5px;
+        top: 8px;
+        left: 4px;
+    }
+
+    .gg-add::after {
+        width: 2px;
+        height: 10px;
+        top: 4px;
+        left: 8px;
+    }
+
+
+.gg-box {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 3px;
+}
+
+    .gg-box::after,
+    .gg-box::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 3px;
+        height: 2px;
+        background: currentColor;
+    }
+
+    .gg-box::before {
+        left: 6px;
+        width: 6px;
+        top: 8px;
+    }
+
+    .gg-box::after {
+        width: 22px;
+        left: -2px;
+        top: 4px;
+    }
+
+
+
+.gg-pen {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: rotate(-45deg) scale(var(--ggs, 1));
+    width: 14px;
+    height: 4px;
+    border-right: 2px solid transparent;
+    box-shadow: 0 0 0 2px, inset -2px 0 0;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    margin-bottom: 6px;
+}
+
+    .gg-pen::after,
+    .gg-pen::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+    }
+
+    .gg-pen::before {
+        background: currentColor;
+        border-left: 0;
+        right: -6px;
+        width: 3px;
+        height: 4px;
+        border-radius: 1px;
+        top: 0;
+    }
+
+    .gg-pen::after {
+        width: 8px;
+        height: 7px;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-right: 7px solid;
+        left: -11px;
+        top: -2px;
+    }
+
+
+
+.gg-pacman {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: rotate(45deg) scale(var(--ggs, 1));
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+    margin-left: 7px;
+}
+
+    .gg-pacman::after,
+    .gg-pacman::before {
+        content: "";
+        display: block;
+        position: absolute;
+        box-sizing: border-box;
+    }
+
+    .gg-pacman::before {
+        background: currentColor;
+        top: 5px;
+        border-radius: 3px;
+        width: 2px;
+        height: 2px;
+        left: -5px;
+    }
+
+    .gg-pacman::after {
+        width: 18px;
+        height: 18px;
+        border: 2px solid;
+        border-radius: 100px;
+        border-right-color: transparent;
+        left: -10px;
+        transform: rotate(-45deg);
+    }
+
+.gg-chevron-down {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    margin-left: 30px;
+}
+
+    .gg-chevron-down::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        transform: rotate(45deg);
+        left: 4px;
+        top: 2px;
+    }
+
+.gg-chevron-left {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+}
+
+    .gg-chevron-left::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid;
+        border-left: 2px solid;
+        transform: rotate(45deg);
+        left: 6px;
+        top: 4px;
+    }
+
+.gg-chevron-right {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+}
+
+    .gg-chevron-right::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        transform: rotate(-45deg);
+        right: 6px;
+        top: 4px;
+    }
+
+
+
+
+
+/*
+    Your Day
+*/
+
+
+
+.sidebox1 {
+    display: flex;
+    width: 100%;
+    height: 65%;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2.5vh;
+}
+
+
+.sidebox2 {
+    display: flex;
+    width: 100%;
+    height: 35%;
+    flex-direction: row;
+    justify-content: left;
+    margin-top: 2.5vh;
+}
+
+
+.subsidebox1 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    border: solid;
+    border-radius: 10px;
+    margin: 1%;
+    flex-direction: column;
+}
+
+.subsidebox1date {
+    height: 10%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    background-color: var(--primarymainmenu);
+    justify-content: space-between;
+}
+
+
+.subsidemonthyear {
+    display:flex;
+    flex-direction: row;
+}
+
+.changemodes {
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+    border: solid 2px;
+    border-radius: 10px;
+    color: white;
+    align-content: center;
+    justify-content: center;
+    background-color: var(--primarymainmenu);
+    display: flex;
+}
+
+.alltables {
+    display: flex;
+    width: 100%;
+    height: 90%;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.checkboxes {
+    display: flex;
+}
+
+
+/* Customize the label (the container) */
+.container123 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+}
+
+    /* Hide the browser's default checkbox */
+    .container123 input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+.checkmark1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: solid;
+    border-width: 1px;
+    border-color: #8E8E8E;
+    border-radius: 5px;
+}
+
+.checkmark2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: solid;
+    border-width: 1px;
+    border-color: #8E8E8E;
+    border-radius: 5px;
+}
+
+.checkmark3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: solid;
+    border-width: 1px;
+    border-color: #8E8E8E;
+    border-radius: 5px;
+}
+
+.container123:hover input ~ .checkmark1 {
+    background-color: #ccc;
+}
+
+.container123:hover input ~ .checkmark2 {
+    background-color: #ccc;
+}
+
+.container123:hover input ~ .checkmark3 {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container123 input:checked ~ .checkmark1 {
+    background-color: #F94144;
+}
+
+.container123 input:checked ~ .checkmark2 {
+    background-color: #5BD091;
+}
+
+.container123 input:checked ~ .checkmark3 {
+    background-color: #FFD23F;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark1:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark2:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* Show the checkmark when checked */
+.container123 input:checked ~ .checkmark1:after {
+    display: block;
+}
+
+.container123 input:checked ~ .checkmark2:after {
+    display: block;
+}
+
+.container123 input:checked ~ .checkmark3:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container123 .checkmark1:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.container123 .checkmark2:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.container123 .checkmark3:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }

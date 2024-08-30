@@ -5,6 +5,7 @@ global using GradeSystem.v1.Client.Services.ClassService;
 global using GradeSystem.v1.Client.Services.SubjectService;
 global using GradeSystem.v1.Client.Services.EnrollmentService;
 global using GradeSystem.v1.Client.Services.AttendanceService;
+global using GradeSystem.v1.Client.Services.NoteService;
 global using GradeSystem.v1.Client.Services.GradeService;
 global using GradeSystem.v1.Client.Services.GradeNumberService;
 global using GradeSystem.v1.Client.Services.UserService;
@@ -21,6 +22,7 @@ global using GradeSystem.v1.Client.Services.BookServiceSupport;
 global using GradeSystem.v1.Client.Services.BookTypeService;
 global using GradeSystem.v1.Client.Services.UserLogService;
 global using GradeSystem.v1.Client.Services.LogRegisterService;
+
 global using Radzen;
 
 using GradeSystem.v1.Client;
@@ -55,6 +57,7 @@ builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ILessonsHoursService, LessonsHoursService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<ISchoolTripService, SchoolTripService>();
+builder.Services.AddScoped<INoteService, NoteService>();
 builder.Services.AddScoped<ISubstituteService, SubstituteService>();
 builder.Services.AddScoped<IBookTypeService, BookTypeService>();
 builder.Services.AddScoped<IBookServiceSupport, BookServiceSupport>();

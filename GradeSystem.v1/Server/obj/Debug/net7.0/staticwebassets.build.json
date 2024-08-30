@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "Hash": "5dd0GHl5CXtDqsSOZbzvLgvsFWMVijAqNdkwMzS5oZs=",
-=======
-  "Hash": "FecQHsxUELutuDPvBaE1yH+K3O4CdJo64BbeyHqHDlE=",
->>>>>>> domerge-iotrek
+  "Hash": "cAU/GXu+H1Mw+ilZHDgZ7Rjcl+kVgqotPnszNhQ7Cf8=",
   "Source": "GradeSystem.v1.Server",
   "BasePath": "_content/GradeSystem.v1.Server",
   "Mode": "Default",
@@ -31801,13 +31797,10 @@
       "OriginalItemSpec": "wwwroot\\Img\\dubk.jpg"
     },
     {
-<<<<<<< HEAD
-      "Identity": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",
-=======
-      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\logo.png",
+      "Identity": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\logo.png",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "Img/logo.png",
       "AssetKind": "All",
@@ -31823,10 +31816,10 @@
       "OriginalItemSpec": "wwwroot\\Img\\logo.png"
     },
     {
-      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\student_debil.jpg",
+      "Identity": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\Img\\student_debil.jpg",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "Img/student_debil.jpg",
       "AssetKind": "All",
@@ -31842,8 +31835,7 @@
       "OriginalItemSpec": "wwwroot\\Img\\student_debil.jpg"
     },
     {
-      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",
->>>>>>> domerge-iotrek
+      "Identity": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\index.html",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",

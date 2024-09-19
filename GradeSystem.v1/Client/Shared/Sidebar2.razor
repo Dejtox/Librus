@@ -1,0 +1,158 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@inject NavigationManager Navigation
+
+<nav class="nav flex-column">
+    <div class="logo-container">
+        <img src="https://www.szkolamiedzynarodowa.pl/wp-content/uploads/2019/12/The-International-School-logo.png" alt="Logo" class="logo">
+    </div>
+
+</nav>
+
+<nav class="sidebar-container">
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-home-alt"></div>
+                </div>
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+    </div>
+    
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="YourScheduleWeek" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-file-document"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Class schedule
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="Tests" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-pen"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Tests
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="gradesviewstudent" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-check-o"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Grades
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="attendance" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-user"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Attendance
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="studentlibrary" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-ereader"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Library
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="stdmainpage" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-box"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Materials
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="YourScheduleMonth" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-calendar"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Calendar
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="messages" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-comment"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Messages
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="addstuff" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-add"></div>
+                </div>      
+                <span class="oi oi-people" aria-hidden="true"></span> Add
+            </NavLink>
+        </div>
+    </div>
+
+    <div class="sidebar-buttoncontainer logoutbutton">
+        <NavLink class="main-menutextcomponet" href="home" Match="NavLinkMatch.All" style="color: black;">
+                <span class="gg-log-out" style="color: black;"></span>
+        </NavLink>
+    </div>
+
+</nav>
+
+<style>
+    .nav-link {
+        color: #333;
+    }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+</style>
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private bool hide { get; set; } = true;
+
+    private bool IsActive(string page)
+    {
+        // Sprawdza, czy aktualna ścieżka odpowiada stronie
+        var uri = Navigation.Uri;
+        return uri.Contains(page, StringComparison.OrdinalIgnoreCase);
+    }
+}

@@ -9,8 +9,43 @@
 
 <div class="NotesMainPage">
 
+    <div class="notetitles"></div>
 
+    <div class="allnotes">
+        @for(int i=1; i<10; i++)
+            {
+            <button class="singlenote">
+                @if (note.NoteID == null)
+                {
+
+                }
+            </button>
+            }
+            
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*
 <EditForm Model="note" OnSubmit="HandleSubmit">
+
+   
     <div>
         <label for="notename">Note Name</label>
         <InputText @bind-Value="note.Title" class="form-control"></InputText>
@@ -23,10 +58,10 @@
 
     <br />
     <button type="submit" class="btn btn-primary">@btnText</button>
-   
+     
 </EditForm>
+    *@
 
-</div>
 
 
 @code {

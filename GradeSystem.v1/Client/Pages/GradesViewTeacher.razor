@@ -1,0 +1,137 @@
+﻿@page "/gradesviewteacher"
+@using System.Security.Claims
+@inject IStudentService StudentService
+@inject IGradeService GradeService
+@inject ISubjectService SubjectService
+@inject IUserService UserService
+@inject ITeacherService TeacherService
+@inject IJSRuntime js
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationMenager
+
+<div class="Ttableborder">
+    <div class="Tstudentinfo">
+
+       <div class="Tstudentname">Grade (class)</div>
+       @if(teacher.TeacherID != null)
+        {
+            <div class="Tstudentclass">Subject (subject)</div>
+        }
+        
+
+    </div>
+    <div class="Tgradestable">
+        <div class="Tgradeheader">
+            <button class="Taddgrade"><div class="gg-add"></div></button>
+            <div class="Tnumber">No.</div>
+            <div class="Tname">Name</div>
+            <div class="Tterm">
+                <div class="Ttop">Term 1</div>
+                <div class="Tbot">
+                    <div class="headergrade">Grades</div>
+                    <div class="gst">Av.</div>
+                    <div class="gst">I</div>
+                </div>
+            </div>
+            <div class="Tterm">
+                <div class="Ttop">Term 2</div>
+                <div class="Tbot">
+                    <div class="headergrade">Grades</div>
+                    <div class="gst">Av.</div>
+                    <div class="gst">II</div>
+                </div>
+            </div>
+            <div class="Teoy">
+                <div class="Ttop">EOY</div> 
+                <div class="Tbot">av.</div>
+            </div>
+
+        </div>
+        <div class="Tgradesdisplay">
+           @for(int i = 1; i<21; i++)
+           {
+                <div class="Tgraderow">
+                    <button class="Taddgrade Taddgrade--d"><div class="gg-add"></div></button>
+                    <div class="Tnumber Tnumber--d">1</div>
+                    <div class="Tname">Name</div>
+                    <div class="Tgrade">
+                        <div class="Tgradevalue">2</div>
+                        <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
+                        <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
+                    </div>
+                    <div class="Tgrade">
+                        <div class="Tgradevalue">3</div>
+                        <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
+                        <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
+                    </div>
+                    <div class="Tfinalgrade">2.5</div>
+                </div>
+           }
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    string color = "";
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+
+    Teacher teacher = new Teacher();
+    User user = new User();
+
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Parent" : "Update Parent";
+        await StudentService.GetStudents();
+        await GradeService.GetGrades();
+        await TeacherService.GetTeachers();
+        await SubjectService.GetSubjects();
+        await GetClaimsGetID();
+        teacher = await TeacherService.GetTeacherByID((int)IDU);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await TeacherService.GetTeachers();
+        }
+        else
+        {
+            teacher = await TeacherService.GetTeacherByID((int)ID);
+            user = await UserService.GetUserByID(teacher.UserID);
+        }
+
+        await GetClaimsGetID();
+        await base.OnParametersSetAsync();
+    }
+
+    int IDU;
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                IDU = Int32.Parse(claim.Value);
+            }
+        };
+    }
+
+    void ShowGrade(int id)
+    {
+        NavigationMenager.NavigateTo($"grade/{id}");
+    }
+    void CreateGrade()
+    {
+        NavigationMenager.NavigateTo("/grade");
+    }
+}

@@ -1,4 +1,5 @@
-﻿@*@page "/grade"
+﻿@*
+@page "/grade"
 @page "/grade/{id:int}"
 @inject IGradeService GradeService
 
@@ -41,7 +42,7 @@ else
 
     <div>
         <label for="gradenumber">Grade Number</label>
-        <InputNumber id="gradenumber" @bind-Value="grade.GradeNumber" class="form-control"></InputNumber>
+        <InputNumber id="gradenumber" @bind-Value="grade.gradenumber" class="form-control"></InputNumber>
     </div>
     <div>
         <label for="gradeweight">Grade Weight</label>

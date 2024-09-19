@@ -2,20 +2,36 @@
 @inject AuthenticationStateProvider authStateProvicder
 @inject NavigationManager navMenager
 
-
 <div class="mainpage">
 
     <main>
         <div>
             <div class="sidebar-left">
-                <Sidebar />
+                <Sidebar2 />
             </div>
 
             <div class="main-content">
                 <div>
                     <div class="header-menu">
-                        <div class="header-element">
-                            <i class="fas fa-envelope"></i>
+                        <div class="userwelcome">
+                            <div class="welcomedate">@Today.DayOfWeek , @Today.ToString("dd.MM.yyyy") </div>
+                            <AuthorizeView>
+                                <Authorized>
+                                    <div class="hellouser">Hi, @context.User.Identity.Name!</div>
+                                </Authorized>
+                                <NotAuthorized>
+                                    <div class="hellouser">Hi, Guest!</div>
+                                </NotAuthorized>
+                            </AuthorizeView>
+                        </div>
+                        <div class="header-element-top">
+                            <i class="gg-search"></i>
+                        </div>
+                        <div class="header-element-top">
+                            <i class="gg-bell"></i>
+                        </div>
+                        <div class="header-element-top">
+                            <i class="gg-mail"></i>
                         </div>
                         <div class="header-element">
                             <AuthorizeView>
@@ -23,7 +39,7 @@
                                     <a @onclick="Logout" href="javascript:void(0)">Logout</a>
                                 </Authorized>
                                 <NotAuthorized>
-                                    <a href="/login">Login</a>
+                                    <button @onclick="GoToRandomLoginPage">Login</button>
                                 </NotAuthorized>
                             </AuthorizeView>
                         </div>
@@ -50,4 +66,29 @@
         await customAuthStateProvider.UpdateAuthenticationState(null);
         navMenager.NavigateTo("/", true);
     }
+
+
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+    private async void GoToRandomLoginPage()
+    {
+        var random = new Random();
+        int pageToOpen = random.Next(1, 3);  
+
+        if (pageToOpen == 1)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/login1");
+        }
+
+    }
+
+    DateTime Today = DateTime.Now;
+    DateTime UpToDateMonday;
+    
 }
+
+

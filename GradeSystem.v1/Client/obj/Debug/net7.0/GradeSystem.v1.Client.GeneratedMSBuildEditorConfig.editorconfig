@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaXRpb25hbEFjdGl2aXRpZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/AddStuff.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkU3R1ZmYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/AttendanceAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXR0ZW5kYW5jZUFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -138,6 +142,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/GradesViewTeacher.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzVmlld1RlYWNoZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -164,6 +172,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/Login1.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4xLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/NewLogin.razor]
@@ -226,6 +238,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/StudentLibrary.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudExpYnJhcnkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/StudentMainPageExams.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudE1haW5QYWdlRXhhbXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -274,6 +290,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlcmdyYWZpYy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/TeacherLibrary.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlckxpYnJhcnkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/TeacherMainPageCL.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlck1haW5QYWdlQ0wucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -310,8 +330,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJNYWluUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/YourSchedule.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcWW91clNjaGVkdWxlLnJhem9y
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/YourScheduleMonth.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcWW91clNjaGVkdWxlTW9udGgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/YourScheduleWeek.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcWW91clNjaGVkdWxlV2Vlay5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Shared/EmptyLayout.razor]
@@ -320,6 +344,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Shared/Sidebar.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNpZGViYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Shared/Sidebar2.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNpZGViYXIyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Shared/SurveyPrompt.razor]
@@ -338,9 +366,9 @@ build_metadata.AdditionalFiles.CssScope = b-7epf0voo6x
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzQWRkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-jkhp3dm5lg
 
-[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/Gradess.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzcy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-lx02btego8
+[C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/GradesViewStudent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhZGVzVmlld1N0dWRlbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-o41pu48imo
 
 [C:/Users/fnowa/Desktop/Librus/Librus/GradeSystem.v1/Client/Pages/StudentCard.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudENhcmQucmF6b3I=

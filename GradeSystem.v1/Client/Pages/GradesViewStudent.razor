@@ -1,0 +1,201 @@
+﻿
+@page "/gradesviewstudent"
+@using System.Security.Claims
+@inject IStudentService StudentService
+@inject IParentService ParentService
+@inject IGradeService GradeService
+@inject ISubjectService SubjectService
+@inject IUserService UserService
+@inject ITeacherService TeacherService
+@inject IJSRuntime js
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationMenager
+
+<div class="tableborder">
+    <div class="studentinfo">
+
+       <div class="studentname">Student (@student.FirstName @student.LastName)</div>
+       @if(student.Class != null)
+        {
+            <div class="studentclass">Grade (@student.Class.ClassName)</div>
+        }
+        
+
+    </div>
+    <div class="gradestable">
+        <div class="gradeheader">
+            <div class="gradesubject">Subject</div>
+            <div class="term" >
+                <div class="top">Term 1</div>
+                <div class="bot">
+                    <div class="headergrade">Grades</div>
+                    <div class="gst">Av.</div>
+                    <div class="gst">II</div>
+                </div>
+            </div>
+            <div class="term">
+                <div class="top">Term 2</div>
+                <div class="bot">
+                    <div class="headergrade">Grades</div>
+                    <div class="gst">Av.</div>
+                    <div class="gst">II</div>    
+                </div>
+            </div>
+            <div class="eoy">
+                <div class="top">EOY</div> 
+                <div class="bot">
+                    <div class="gstost">Av.</div>   
+                    <div class="gstost">III</div>   
+                </div>
+            </div>
+
+        </div>
+        <div class="gradesdisplay">
+           @foreach (var subject in SubjectService.Subjects)
+           {
+                <div class="graderow">
+                    <div class="subjectgrade">@subject.SubjectName</div>
+                    <div class="grade">
+                        @foreach (var grade in GradeService.Grades)
+                        {
+                            if(subject.SubjectID == grade.SubjectID)
+                            {
+                                if(IDU == grade.StudentID)
+                                {
+                                    if (grade.GradeWeight == 1)
+                                    {
+                                        color = "blue";
+                                    }
+                                    else if (grade.GradeWeight == 2)
+                                    {
+                                        color = "green";
+                                    }
+                                    else if (grade.GradeWeight >= 3)
+                                    {
+                                        color = "yellow";
+                                    }
+                                    <p style="background-color:@color;" class="d-inline-flex m-1 p-1">@grade.gradenumber</p>
+                                }
+                            }
+                        }
+                    </div
+                    <div class="grade">
+                        @foreach (var grade in GradeService.Grades)
+                        {
+                            if (subject.SubjectID == grade.SubjectID)
+                            {
+                                if (IDU == grade.StudentID)
+                                {
+                                    if (grade.GradeWeight == 1)
+                                    {
+                                        color = "blue";
+                                    }
+                                    else if (grade.GradeWeight == 2)
+                                    {
+                                        color = "green";
+                                    }
+                                    else if (grade.GradeWeight >= 3)
+                                    {
+                                        color = "yellow";
+                                    }
+                                    <p style="background-color:@color;" class="d-inline-flex m-1 p-1">@grade.gradenumber</p>
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="finalgrade">
+                        @foreach (var grade in GradeService.Grades)
+                        {
+                            if (subject.SubjectID == grade.SubjectID)
+                            {
+                                if (IDU == grade.StudentID)
+                                {
+                                    if (grade.GradeWeight == 1)
+                                    {
+                                        color = "blue";
+                                    }
+                                    else if (grade.GradeWeight == 2)
+                                    {
+                                        color = "green";
+                                    }
+                                    else if (grade.GradeWeight >= 3)
+                                    {
+                                        color = "yellow";
+                                    }
+                                    <p style="background-color:@color;" class="d-inline-flex m-1 p-1">@grade.gradenumber</p>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+           }
+        </div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+
+    string color = "";
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+
+    Student student = new Student();
+    User user = new User();
+
+    string btnText = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ID == null ? "Save New Parent" : "Update Parent";
+        await StudentService.GetStudents();
+        await ParentService.GetParents();
+        await GradeService.GetGrades();
+        await TeacherService.GetTeachers();
+        await SubjectService.GetSubjects();
+        await GetClaimsGetID();
+        student = await StudentService.GetStudentById((int)IDU);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID == null)
+        {
+            await StudentService.GetParents();
+            await StudentService.GetClasses();
+        }
+        else
+        {
+            student = await StudentService.GetStudentById((int)ID);
+            user = await UserService.GetUserByID(student.UserID);
+        }
+
+        await GetClaimsGetID();
+        await base.OnParametersSetAsync();
+    }
+
+    int IDU;
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                IDU = Int32.Parse(claim.Value);
+            }
+        };
+    }
+
+    void ShowGrade(int id)
+    {
+        NavigationMenager.NavigateTo($"grade/{id}");
+    }
+    void CreateGrade()
+    {
+        NavigationMenager.NavigateTo("/grade");
+    }
+}
+
+

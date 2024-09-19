@@ -7,26 +7,31 @@
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navMenager
 
+<div class="mainlogin">
+    <div class="loginbox">
+        <div class="logintext"> Log in to your account  </div>
 
-<div class="row">
-    <div class="col-lg-4 offset-lg-4 pt-4 pb-4 border">
-        <div class="mb-3 text-center">
-            <h3>LOGIN</h3>
+        <div class="usernameinput">
+            <input @bind="loginRequest.UserName" class="form-control" placeholder="Username" />
         </div>
-        <div class="mb-3">
-            <label>User Name</label>
-            <input @bind="loginRequest.UserName" class="form-control" placeholder="User Name" />
-        </div>
-        <div class="mb-3">
-            <label>Password</label>
+        <div class="passwordinput">
             <input @bind="loginRequest.Password" type="password" class="form-control" placeholder="Password" />
         </div>
-        <div class="mb-3 d-grid gap-2">
-            <button @onclick="Authenticate" class="btn btn-primary">Login</button>
+        <div class="extraloginopt">
+            <div class="rememberme">
+                <label class="container123 logincontainer">
+                    Remember me
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark checkmark--login"></span>
+                </label>
+            </div>
+            <div class="forgotmypass">Forgot my password</div>
+        </div>
+        <div class="loginbutton">
+            <button @onclick="Authenticate" class="btn btn-primary">Log in</button>
         </div>
     </div>
 </div>
-
 @code {
     private LoginRequest loginRequest = new LoginRequest();
     private async Task Authenticate()

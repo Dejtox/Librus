@@ -6,23 +6,25 @@
 @*/{id:int} *@
 <div class="mainbox">
     <div class="sidebox">
-        <div class="insidebox1">
+        <div class="Sinsidebox1">
             <div class="insideinsidebox">
                 <StudentMainPageExams @ref="siteref1"></StudentMainPageExams>
             </div>
         </div>
-        <div class="insidebox2">
+        <div class="Sinsidebox2">
             <div class="insideinsidebox">
                 <StudentMainPageGrades @ref="siteref"></StudentMainPageGrades>
             </div>
         </div>
-        <div class="insidebox1">
+        <div class="Sinsidebox3">
             <div class="insideinsidebox">
                 <StdParLastAttenderncesmainpage @ref="popupref"></StdParLastAttenderncesmainpage>
             </div>
         </div>
     </div>
-    <div class="sidebox">        
+    <div class="sidebox sideboxschedule">
+        <div class="scheduleheader">Schedule for the week</div>
+        <div class="studentschedule">
             <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -198,7 +200,8 @@
                     }
                 </tbody>
             </table>
-            </div>        
+          </div>
+        </div>
     </div>
 </div>
 

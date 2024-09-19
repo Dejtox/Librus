@@ -1,0 +1,57 @@
+﻿@page "/login1"
+@using GradeSystem.v1.Client.Auth
+@using GradeSystem.v1.Shared
+@using System.Net
+@inject HttpClient httpClient
+@inject IJSRuntime js
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navMenager
+
+<div class="mainlogin1">
+    <div class="loginbox1">
+        <div class="logintext"> Log in to your account  </div>
+
+        <div class="usernameinput">
+            <input @bind="loginRequest.UserName" class="form-control" placeholder="Username" />
+        </div>
+        <div class="passwordinput">
+            <input @bind="loginRequest.Password" type="password" class="form-control" placeholder="Password" />
+        </div>
+        <div class="extraloginopt">
+            <div class="rememberme">
+                <label class="container123 logincontainer">
+                    Remember me
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark checkmark--login"></span>
+                </label>
+            </div>
+            <div class="forgotmypass">Forgot my password</div>
+        </div>
+        <div class="loginbutton">
+            <button @onclick="Authenticate" class="btn btn-primary">Log in</button>
+        </div>
+    </div>
+    <div class="loginimage">
+        <img src="https://img.freepik.com/premium-photo/student-raising-hand-ask-question_13339-286511.jpg" class="studentimage">
+    </div>
+</div>
+@code {
+    private LoginRequest loginRequest = new LoginRequest();
+    private async Task Authenticate()
+    {
+        var loginResponse = await httpClient.PostAsJsonAsync<LoginRequest>("/api/Account/Login", loginRequest);
+        if (loginResponse.IsSuccessStatusCode)
+        {
+            var userSession = await loginResponse.Content.ReadFromJsonAsync<UserSession>();
+            var customAuthStateprovider = (CustomAuthenticationStateProvider)authStateProvider;
+            await customAuthStateprovider.UpdateAuthenticationState(userSession);
+            navMenager.NavigateTo("/", true);
+        }
+        else if (loginResponse.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            await js.InvokeVoidAsync("alert", "Invalid Login or Password");
+            return;
+        }
+
+    }
+}

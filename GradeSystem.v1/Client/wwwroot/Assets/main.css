@@ -959,21 +959,79 @@ a, .btn-link {
     flex-direction: column;
 }
 
-.sidebar-container{
-    height: 80vh;
+.nav{
+    width:100%;
+    display: flex;
+    align-content: center;
+}
+
+.nav-test {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+    gap: 5px
+}
+
+    .nav-test:hover {
+        color: #FFD23F;
+        text-decoration: none;
+    }
+
+    .nav-test.active {
+        color: #FFD23F;
+        border-left: solid 4px;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        gap: 5px
+    }
+
+
+.sidebar-container {
+    margin-top: 2%;
+    height: 100vh;
+    display: flex;
+    font-size: smaller;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
 }
 
 .sidebar-buttoncontainer {
     display: flex;
     color: var(--mainpagetext);
-    gap 10px;
     align-items: center;
+    margin: 1%;
+}
+
+.sidebar-buttoncontainer:hover{
+}
+
+.logoutbutton {
+    margin: 5%;
+    border: solid 1px;
+    border-radius: 10px;
+    background-color: #FFD23F;
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.logoutbutton:hover{
+   
 }
 
 .main-menutextcomponet {
     display: flex;
     gap: 5px;
     color: var(--mainpagetext);    
+}
+
+.main-menutextcomponet:hover {
+    color: #FFD23F;
+    text-decoration: none;
 }
 
 .mainlayout-border {    
@@ -988,12 +1046,34 @@ a, .btn-link {
 
 .websidebody {
     height: 97%;
-    width: 100%;
+    width: 97%;
+
+}
+
+.hellouser{
+    color: white;
+}
+
+.userwelcome {
+    position: absolute;
+    left: 20%;
+}
+
+.welcomedate {
+    color: white;
+    font-size: small;
 }
 
 .header-element {
+    display: flex;
+}
+
+.header-element-top {
     color: var(--mainpagetext);
     display: flex;
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 8px;
 }
 
 .header-menu {
@@ -1030,16 +1110,36 @@ a, .btn-link {
     height: 100vh;
 }
 
+.addbuttons {
+    height: 70%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.subwebsitebody {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
 
 .logo-container {
-
     text-align: center;
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .logo {
-    max-width: 100%;
-    height: auto;
+    width: 50%;
+    height: 50%;
 }
 
 .background {
@@ -1100,22 +1200,39 @@ a, .btn-link {
 
 .insidebox1 {
     height: 100%;
-    width: 33%;
+    width: 40%;
     align-items: center;
 }
 
 .insidebox2 {
     height: 100%;
-    width: 21%;
+    width: 20%;
     align-items: center;
 }
 
 .insidebox3 {
     height: 100%;
-    width: 37%;
+    width: 40%;
     align-items: center;
 }
 
+.Sinsidebox1 {
+    height: 100%;
+    width: 35%;
+    align-items: center;
+}
+
+.Sinsidebox2 {
+    height: 100%;
+    width: 30%;
+    align-items: center;
+}
+
+.Sinsidebox3 {
+    height: 100%;
+    width: 35%;
+    align-items: center;
+}
 
 .insideinsidebox {
     height: 100%;
@@ -1135,18 +1252,21 @@ a, .btn-link {
     height: 100%;
     border: 1px solid;
     border-radius: 10px;
-    border-color: var(--basicoutline);
+    border-color: #D9D9D9;
     flex-direction: column;
     align-items: center;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .grafictablehead {
     background-color: var(--primarymainmenu);
     color: var(--textinsideprimarymenucolor);
     align-items: center;
-    padding-right: 50%;
-    padding-left: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 18%;
+    font-weight: bold;
 }
 
 .grafictableheadinside {
@@ -1158,7 +1278,7 @@ a, .btn-link {
 
 .graficktableboddymain {
     width: 100%;
-    height: 100%;
+    height:92%;
     text-align: center;
     align-items: center;
     display: flex;
@@ -1209,6 +1329,24 @@ a, .btn-link {
     margin: 1%;
 }
 
+.scheduleheader{
+    height: 7%;
+    font-weight: bold;
+    margin-left: 1%;
+    font-size: large;
+}
+
+.studentschedule {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.sideboxschedule {
+    flex-direction: column;
+    height: 70%;
+}
 .dateselectmenu {
     width: 100%;
     height: 12.5%;
@@ -1285,6 +1423,9 @@ a, .btn-link {
 
 
 
+/*
+    Exams
+*/
 
 
 
@@ -1293,6 +1434,7 @@ a, .btn-link {
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #FAFAFA;
 }
 
 .EXtableheader {
@@ -1303,12 +1445,13 @@ a, .btn-link {
     background-color: #1a2130;
     color: #ffffff;
     display: flex;
+    justify-content: center;
 
 }
 
 .EXtitle {
     font-weight: bold;
-    margin: 2%;
+    margin-right: 7%;
 }
 
 .EXdisplay {
@@ -1316,43 +1459,49 @@ a, .btn-link {
     height: 87.5%;
 }
 
-.EXsubdisplay{
-
+.EXday{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .EXdate{
+    
+}
+
+.EXexam {
+    width: 96%;
+    border: solid 1px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    padding: 3px;
 
 }
 
-.EXexam{
-
+.EXlesson {
+    margin-left: 2%;
 }
 
-.EXlesson{
-
-}
-
-.EXsubject{
-
+.EXsubject {
+    margin-left: 40%;
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
+/*
+   Recent Grades
+*/
 .RGtable {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #FAFAFA;
 }
 
 .RGtableheader {
@@ -1364,11 +1513,12 @@ a, .btn-link {
     background-color: var(--primarymainmenu);
     color: #ffffff;
     display: flex;
+    justify-content: center;
 }
 
 .RGtitle {
     font-weight: bold;
-    margin: 2%;
+    margin-right: 6%;
 }
 
 .RGtablerow {
@@ -1387,9 +1537,10 @@ a, .btn-link {
     width: 75%;
     border-radius: 10px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
     margin-right: 5%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .RGdatetime {
@@ -1403,6 +1554,9 @@ a, .btn-link {
     border-radius: 10px;
     text-align: center;
     margin-left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -1444,6 +1598,9 @@ a, .btn-link {
 
 
 
+/*
+    Teacher Enrollment
+*/
 
 
 
@@ -1529,6 +1686,9 @@ a, .btn-link {
 
 
 
+/*
+    Current Lesson
+*/
 
 
 
@@ -1574,10 +1734,12 @@ a, .btn-link {
 .CLlesson {
     font-weight: bold;
     height: 8%;
+
 }
 .CLdata {
     font-weight: bold;
     height: 8%;
+
 }
 
 .CLsubdisplay {
@@ -1605,25 +1767,24 @@ a, .btn-link {
 
 }
 
+.CLbuttonname{
+    margin-top: 20%;
+}
+
 .CLbutton {
-    width: 30%;
-    height: 0;
-    padding-bottom: 30%;
+    width: 60px;
+    height: 60px;
     margin: 1%;
     border-radius: 10px;
     border-color: rgb(185, 185, 185);
     color: white;
+    font-size: x-small;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.CLbutton:after {
-    content: "";
-    padding-bottom: 50%;
-}
 
 
 
@@ -1631,6 +1792,9 @@ a, .btn-link {
 
 
 
+/*
+    Notes
+*/
 
 
 .Nheader {
@@ -1661,11 +1825,24 @@ a, .btn-link {
     padding: 1rem;
 }
 
+.notetitles{
 
+}
 
-
-
-
+.allnotes {
+    height: 98%;
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.singlenote{
+    height: 30%;
+    width: 30%;
+    border: solid 1px;
+    border-radius: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+}
 
 
 
@@ -1711,6 +1888,7 @@ a, .btn-link {
     height: 22px;
     border: 2px solid;
     border-radius: 100px;
+    margin-left: -4px;
 }
 
     .gg-check-o::after {
@@ -1729,6 +1907,264 @@ a, .btn-link {
         transform: rotate(45deg);
     }
 
+.gg-user {
+    display: block;
+    transform: scale(var(--ggs, 1));
+    box-sizing: border-box;
+    width: 12px;
+    height: 18px;
+    margin-right: 7px;
+}
+
+    .gg-user::after,
+    .gg-user::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        border: 2px solid;
+    }
+
+    .gg-user::before {
+        width: 8px;
+        height: 8px;
+        border-radius: 30px;
+        top: 0;
+        left: 2px;
+    }
+
+    .gg-user::after {
+        width: 12px;
+        height: 9px;
+        border-bottom: 0;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        top: 9px;
+    }
+
+.gg-bell,
+.gg-bell::before {
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+}
+
+.gg-bell {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    border: 2px solid;
+    border-bottom: 0;
+    width: 13px;
+    height: 14px;
+}
+
+    .gg-bell::after,
+    .gg-bell::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+    }
+
+    .gg-bell::before {
+        background: currentColor;
+        width: 4px;
+        height: 4px;
+        top: -4px;
+        left: 3px;
+    }
+
+    .gg-bell::after {
+        border-radius: 3px;
+        width: 16px;
+        height: 10px;
+        border: 6px solid transparent;
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 0 0 4px, 0 -2px 0 0;
+        top: 14px;
+        left: -3px;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+    }
+.gg-mail,
+.gg-mail::after {
+    display: block;
+    box-sizing: border-box;
+    height: 14px;
+    border: 2px solid;
+}
+
+.gg-mail {
+    overflow: hidden;
+    transform: scale(var(--ggs, 1));
+    position: relative;
+    width: 18px; 
+    border-radius: 2px;
+    color: white;
+}
+
+    .gg-mail::after {
+        content: "";
+        position: absolute;
+        border-radius: 3px;
+        width: 14px;
+        transform: rotate(-45deg);
+        bottom: 3px;
+        left: 0;
+    }
+.gg-search {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 16px;
+    height: 16px;
+    border: 2px solid;
+    border-radius: 100%;
+    margin-left: -4px;
+    margin-top: -4px;
+}
+
+    .gg-search::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 3px;
+        width: 2px;
+        height: 8px;
+        background: currentColor;
+        transform: rotate(-45deg);
+        top: 10px;
+        left: 12px;
+    }
+
+.gg-file-document {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 14px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-right: 0;
+    border-top: 0;
+    box-shadow: 0 0 0 2px;
+    border-radius: 1px;
+    border-top-right-radius: 4px;
+    overflow: hidden;
+    margin-right: 3px;
+}
+
+    .gg-file-document::after,
+    .gg-file-document::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+    }
+
+    .gg-file-document::before {
+        background: currentColor;
+        box-shadow: 0 4px 0, -6px -4px 0;
+        left: 0;
+        width: 10px;
+        height: 2px;
+        top: 8px;
+    }
+
+    .gg-file-document::after {
+        width: 6px;
+        height: 6px;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        right: -1px;
+        top: -1px;
+    }
+
+
+.gg-home-alt {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 18px;
+    height: 14px;
+    border: 2px solid;
+    border-top: 0;
+    border-radius: 2px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-bottom: -2px;
+}
+
+    .gg-home-alt::after,
+    .gg-home-alt::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+    }
+
+    .gg-home-alt::before {
+        border-top: 2px solid;
+        border-left: 2px solid;
+        border-top-left-radius: 4px;
+        transform: rotate(45deg);
+        top: -5px;
+        border-radius: 3px;
+        width: 14px;
+        height: 14px;
+        left: 0;
+    }
+
+    .gg-home-alt::after {
+        width: 6px;
+        height: 10px;
+        background: currentColor;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
+        left: 4px;
+        bottom: -2px;
+    }
+
+
+
+.gg-ereader {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 24px;
+    height: 18px;
+    border: 2px solid;
+    border-radius: 3px;
+    margin-left: -3px;
+    margin-right: -2px;
+}
+
+    .gg-ereader::after,
+    .gg-ereader::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 3px;
+        width: 2px;
+        height: 18px;
+        right: 9px;
+        top: -2px;
+        background: currentColor;
+    }
+
+    .gg-ereader::after {
+        width: 5px;
+        height: 2px;
+        box-shadow: 0 4px 0, 0 8px 0;
+        top: 2px;
+        right: 2px;
+    }
 
 .gg-add {
     box-sizing: border-box;
@@ -1772,6 +2208,7 @@ a, .btn-link {
     height: 20px;
     border: 2px solid;
     border-radius: 3px;
+    margin-left: -3px;
 }
 
     .gg-box::after,
@@ -1810,7 +2247,7 @@ a, .btn-link {
     box-shadow: 0 0 0 2px, inset -2px 0 0;
     border-top-right-radius: 1px;
     border-bottom-right-radius: 1px;
-    margin-bottom: 6px;
+    margin-right: 3px;
 }
 
     .gg-pen::after,
@@ -1842,6 +2279,47 @@ a, .btn-link {
     }
 
 
+.gg-trash {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 10px;
+    height: 12px;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 2px, inset -2px 0 0, inset 2px 0 0;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    margin-top: 4px;
+}
+
+    .gg-trash::after,
+    .gg-trash::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+    }
+
+    .gg-trash::after {
+        background: currentColor;
+        border-radius: 3px;
+        width: 16px;
+        height: 2px;
+        top: -4px;
+        left: -5px;
+    }
+
+    .gg-trash::before {
+        width: 10px;
+        height: 4px;
+        border: 2px solid;
+        border-bottom: transparent;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        top: -7px;
+        left: -2px;
+    }
 
 .gg-pacman {
     box-sizing: border-box;
@@ -1882,6 +2360,95 @@ a, .btn-link {
         transform: rotate(-45deg);
     }
 
+.gg-calendar,
+.gg-calendar::before {
+    display: block;
+    box-sizing: border-box;
+}
+
+.gg-calendar {
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 18px;
+    height: 18px;
+    border: 2px solid;
+    border-top: 4px solid;
+    border-radius: 3px;
+}
+
+    .gg-calendar::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        border-radius: 3px;
+        left: 2px;
+        background: currentColor;
+        height: 2px;
+        top: 2px;
+    }
+
+.gg-comment {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 20px;
+    height: 16px;
+    border: 2px solid;
+    border-bottom: 0;
+    box-shadow: -6px 8px 0 -6px, 6px 8px 0 -6px;
+}
+
+    .gg-comment::after,
+    .gg-comment::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 8px;
+    }
+
+    .gg-comment::before {
+        border: 2px solid;
+        border-top-color: transparent;
+        border-bottom-left-radius: 20px;
+        right: 4px;
+        bottom: -6px;
+        height: 6px;
+    }
+
+    .gg-comment::after {
+        height: 2px;
+        background: currentColor;
+        box-shadow: 0 4px 0 0;
+        left: 4px;
+        top: 4px;
+    }
+
+.gg-block {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 100%;
+}
+
+    .gg-block::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 14px;
+        height: 3px;
+        background: currentColor;
+        border-radius: 5px;
+        transform: rotate(-45deg);
+        top: 8px;
+        left: 2px;
+    }
 .gg-chevron-down {
     box-sizing: border-box;
     position: relative;
@@ -1959,11 +2526,77 @@ a, .btn-link {
     }
 
 
+.gg-log-out {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 6px;
+    height: 16px;
+    border: 2px solid;
+    transform: scale(var(--ggs, 1));
+    border-right: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    margin-left: -10px;
+}
 
+    .gg-log-out::after,
+    .gg-log-out::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+    }
+
+    .gg-log-out::after {
+        border-top: 2px solid;
+        border-left: 2px solid;
+        transform: rotate(-45deg);
+        width: 8px;
+        height: 8px;
+        left: 4px;
+        bottom: 2px;
+    }
+
+    .gg-log-out::before {
+        border-radius: 3px;
+        width: 10px;
+        height: 2px;
+        background: currentColor;
+        left: 5px;
+        bottom: 5px;
+    }
+
+
+
+.gg-more-vertical-r {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 20px;
+    height: 24px;
+    border: 2px solid;
+    border-radius: 3px;
+}
+
+.gg-more-vertical-r::before {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    display: block;
+    width: 4px;
+    height: 4px;
+    background-color: currentColor;
+    border-radius: 20px;
+    top: 8px;
+    left: 6px;
+    box-shadow: 0 -5px 0, 0 5px 0;
+}
 
 
 /*
-    Your Day
+    Your Schedule
 */
 
 
@@ -1993,10 +2626,13 @@ a, .btn-link {
     width: 100%;
     height: 100%;
     justify-content: center;
-    border: solid;
+    border: 2px solid;
+    border-color: #A8C2CD;
     border-radius: 10px;
     margin: 1%;
     flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 }
 
 .subsidebox1date {
@@ -2013,11 +2649,10 @@ a, .btn-link {
 .subsidemonthyear {
     display:flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .changemodes {
-    margin-bottom: 0.5%;
-    margin-top: 0.5%;
     border: solid 2px;
     border-radius: 10px;
     color: white;
@@ -2037,10 +2672,10 @@ a, .btn-link {
 
 .checkboxes {
     display: flex;
+    margin-top: 2%;
 }
 
 
-/* Customize the label (the container) */
 .container123 {
     display: block;
     position: relative;
@@ -2053,7 +2688,6 @@ a, .btn-link {
     user-select: none;
 }
 
-    /* Hide the browser's default checkbox */
     .container123 input {
         position: absolute;
         opacity: 0;
@@ -2062,7 +2696,7 @@ a, .btn-link {
         width: 0;
     }
 
-.checkmark1 {
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -2071,125 +2705,776 @@ a, .btn-link {
     background-color: #eee;
     border: solid;
     border-width: 1px;
-    border-color: #8E8E8E;
+    border-color: aliceblue;
     border-radius: 5px;
 }
 
-.checkmark2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border: solid;
-    border-width: 1px;
-    border-color: #8E8E8E;
-    border-radius: 5px;
-}
-
-.checkmark3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border: solid;
-    border-width: 1px;
-    border-color: #8E8E8E;
-    border-radius: 5px;
-}
-
-.container123:hover input ~ .checkmark1 {
+.container123:hover input ~ .checkmark {
     background-color: #ccc;
 }
 
-.container123:hover input ~ .checkmark2 {
-    background-color: #ccc;
-}
-
-.container123:hover input ~ .checkmark3 {
-    background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container123 input:checked ~ .checkmark1 {
+.container123 input:checked ~ .checkmark--1 {
     background-color: #F94144;
 }
 
-.container123 input:checked ~ .checkmark2 {
+.container123 input:checked ~ .checkmark--2 {
     background-color: #5BD091;
 }
 
-.container123 input:checked ~ .checkmark3 {
+.container123 input:checked ~ .checkmark--3 {
     background-color: #FFD23F;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark1:after {
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark2:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark3:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-/* Show the checkmark when checked */
-.container123 input:checked ~ .checkmark1:after {
+.container123 input:checked ~ .checkmark:after {
     display: block;
 }
 
-.container123 input:checked ~ .checkmark2:after {
-    display: block;
-}
-
-.container123 input:checked ~ .checkmark3:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.container123 .checkmark1:after {
+.container123 .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
     height: 10px;
     border: solid white;
-    border-width: 0 3px 3px 0;
+    border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
-.container123 .checkmark2:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+
+
+
+
+
+
+/* 
+    Calendar 
+*/
+
+
+
+
+.Msidebox1 {
+    display: flex;
+    width: 100%;
+    height: 90%;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.container123 .checkmark3:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+
+.Msidebox2 {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    flex-direction: row;
+    justify-content: left;
+    margin-top: 3.5vh;
 }
+
+
+.Msubsidebox1 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border: solid;
+    border-radius: 10px;
+    margin: 1%;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.Msubsidebox1date {
+    height: 10%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    background-color: var(--primarymainmenu);
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.Msubsidemonthyear {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Mchangemodes {
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+    border: solid 2px;
+    border-radius: 10px;
+    color: white;
+    align-content: center;
+    justify-content: center;
+    background-color: var(--primarymainmenu);
+    display: flex;
+}
+
+.Mdays {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%
+}
+
+.Mday {
+    margin-top: 2%;
+    border: solid;
+    border-left: 1px;
+    border-right: 1px;
+    height: 90%;
+    width: 14%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.Mdayhead {
+    display: flex;
+    justify-content: center;
+    height: 7%;
+    background-color: var(--primarymainmenu);
+    color: white;
+}
+
+.Msingle{
+    height: 19%;
+    border: solid;
+    border-top: 2px;
+    width: 100%;
+
+}
+
+
+/*
+    GradesS
+*/
+
+.tableborder {
+    display: flex;
+    width: 95%;
+    height: 95%;
+    border: solid;
+    border-radius: 10px;
+    margin: 1%;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    border-color: #A8C2CD;
+}
+
+.gradestable {
+    height: 70%;
+    width: 90%;
+    border: solid 2px;
+    border-radius: 25px;
+    margin-top: 2vh;
+    overflow: hidden;
+    border-color: #DBDBDB;
+}
+
+.gradesubject {
+    height: 100%;
+    width: 27%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.term {
+    height: 100%;
+    width: 35.5%;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-color: white;
+}
+
+.eoy {
+    height: 100%;
+    width: 10%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.gst {
+    width: 15%;
+    border-left: solid 1px white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.gstost {
+    width: 50%;
+    border-left: solid 1px white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.headergrade {
+    width: 70%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.gradeheader {
+    height: 13%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px;
+    background-color: #DBDBDB;
+    border-color: #DBDBDB;
+}
+
+.gradesdisplay {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.studentinfo {
+    height: 7%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    background-color: var(--primarymainmenu);
+    justify-content: left;
+    align-items: center;
+    border-bottom: solid 2px;
+    border-color: #A8C2CD;
+}
+
+.studentname{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.studentclass {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid 1px;
+    border-color: white;
+}
+
+.bot {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.grade {
+    width: 35.5%;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-color: #DBDBDB;
+}
+
+.graderow {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px;
+    border-color: #DBDBDB;
+}
+
+.subjectgrade {
+    width: 27%;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    border-right: solid 1px #DBDBDB;
+}
+
+.finalgrade {
+    width: 10%;
+
+}
+
+
+
+/*
+    GradesT
+*/
+
+
+
+.Ttableborder {
+    display: flex;
+    width: 95%;
+    height: 95%;
+    border: solid;
+    border-radius: 10px;
+    margin: 1%;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    border-color: #A8C2CD;
+}
+
+.Tgradestable {
+    height: 90%;
+    width: 90%;
+    border: solid 2px;
+    border-radius: 10px;
+    margin-top: 1vh;
+    overflow: auto;
+    border-color: #DBDBDB;
+}
+
+.Tname {
+    height: 100%;
+    width: 20%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: solid 1px;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    border-color: #DBDBDB;
+}
+
+.Tterm {
+    height: 100%;
+    width: 31%;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-color: white;
+}
+
+.Teoy {
+    height: 100%;
+    width: 10%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.Tnumber {
+    height: 100%;
+    width: 8%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #DBDBDB;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-color: white;
+}
+
+.Tnumber--d {
+    background-color: white;
+    border-bottom: solid 1px;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-color: #DBDBDB;
+}
+
+.Taddgrade {
+    height: 100%;
+    width: 5%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #DBDBDB;
+    border-color: #DBDBDB;
+    border-right: solid 1px white;
+    border-bottom: solid 1px #DBDBDB;
+}
+
+.Taddgrade--d {
+    background-color: white;
+    border-color: #DBDBDB;
+    border-right: solid 1px white;
+    border-left: solid 1px white;
+    border-bottom: solid 1px #DBDBDB;
+    border-top: solid 1px white;
+}
+
+.Tgradeheader {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px;
+    background-color: #DBDBDB;
+    border-color: #DBDBDB;
+}
+
+.Tgradesdisplay {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Tstudentinfo {
+    height: 7%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    background-color: var(--primarymainmenu);
+    justify-content: left;
+    align-items: center;
+    border-bottom: solid 2px;
+    border-color: #A8C2CD;
+}
+
+.Tstudentname {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.Tstudentclass {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.Ttop {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid 1px;
+    border-color: white;
+}
+
+.Tbot {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.Tgrade {
+    width: 31%;
+    display: flex;
+    flex-direction: row;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-bottom: solid 1px;
+    border-color: #DBDBDB;
+}
+
+.Tgradevalue{
+    width: 70%;
+}
+
+.Tgraderow {
+    display: flex;
+    flex-direction: row;
+}
+
+.Tsubjectgrade {
+    width: 20%;
+    border-bottom: solid 1px;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    border-color: #DBDBDB;
+}
+
+.Tfinalgrade {
+    width: 10%;
+    border-bottom: solid 1px;
+    border-color: #DBDBDB;
+}
+
+
+
+
+/*
+    Login page
+*/
+
+
+.mainlogin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loginbox {
+    border: solid 1px;
+    border-color: #8E8E8E;
+    border-radius: 10px;
+    width: clamp(30%, 35%, 60%);
+    height: clamp(20%, 50%, 70%);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #F9F9F9;
+}
+
+.logintext{
+    height: 20%;
+    width: 98%;
+    font-size: larger;
+    font-weight: bold;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}
+
+.usernameinput {
+    height: 20%;
+    width: 90%;
+    justify-content: center;
+    display: flex;
+}
+
+.passwordinput {
+    height: 20%;
+    width: 90%;
+}
+
+.extraloginopt {
+    height: 20%;
+    width: 90%;
+    font-size: smaller;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -2vh;
+}
+
+.rememberme{
+    margin-right:10%;
+}
+
+.logincontainer {
+    margin: 1px;
+    cursor: pointer;
+    font-size: small;
+}
+
+.checkmark--login {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border: solid;
+    border-width: 1px;
+    border-color: #8E8E8E;
+    border-radius: 5px;
+}
+
+.logincontainer input:checked ~ .checkmark--login {
+    background-color: lime;
+}
+
+.forgotmypass {
+    font-size: small;
+    margin-left: 10%;
+    font-weight: bold;
+    text-decoration: underline
+}
+
+.loginbutton {
+    height: 20%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.mainlogin1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginbox1 {
+    width: clamp(30%, 35%, 60%);
+    height: clamp(20%, 50%, 70%);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginimage {
+    width: clamp(20%, 60%, 65%);
+    height: clamp(20%, 50%, 70%);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.studentimage {
+    height: 175%;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+/*
+    Libary
+*/
+
+.booksdisplay {
+    width: 100%;
+    height: 97%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bookrow {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.singlebook {
+    width: 18%;
+    height: 97%;
+    border: solid 1px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: 0.5%;
+    align-items: center;
+}
+
+.bookcover {
+    height: 65%;
+    width: 90%;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+.bookimg{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+
+}
+
+.bookbuttons {
+    width: 100%;
+    height: 12%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.bookreserve {
+    width: 50%;
+    height: 90%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 10px;
+    font-size: x-small;
+}
+
+.bookavailability {
+    width: 50%;
+    height: 90%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 10px;
+    font-size: x-small;
+}
+
+.booktitle {
+    width: 100%;
+    height: 6%;
+    font-size: 63%;
+    font-weight: bold;
+    margin-left: 2%;
+
+}
+
+.bookauthor {
+    margin-left: 5%;
+    width: 100%;
+    height: 6%;
+    font-size: 60%;
+}
+
+
+
+.bookbuttonst {
+    height: 24%;
+    flex-direction: column;
+}
+
+.bookbuttonsrow {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.bookcovert{
+    height: 55%;
+}
+
+.bookbook {
+    width: 50%;
+    height: 90%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 10px;
+    font-size: x-small;
+}
+
+.bookedit {
+    width: 50%;
+    height: 90%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 10px;
+    font-size: x-small;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+

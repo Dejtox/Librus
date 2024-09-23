@@ -1,5 +1,4 @@
-﻿using GradeSystem.v1.Client.Pages;
-using GradeSystem.v1.Server.Data;
+﻿using GradeSystem.v1.Server.Data;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

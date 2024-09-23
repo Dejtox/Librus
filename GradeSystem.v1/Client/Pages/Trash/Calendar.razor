@@ -1,0 +1,134 @@
+﻿@page "/calendar1"
+@using GradeSystem.v1.Client.Data
+@inject IEnrollmentService EnrollmentService
+@inject NavigationManager NavigationMenager
+
+<p class="h1">Choose month to see happening events</p>
+
+<select @onchange="LoadCalendar">
+	@foreach(string monthName in monthNames){
+		<option>@monthName</option>
+	}
+</select>
+
+<table>
+	<thead>
+		<tr>
+			@for(var dayIndex = 0; dayIndex < days.Count(); dayIndex++)
+			{
+				<th class="wNames">
+					@days[dayIndex]
+				</th>
+			}
+		</tr>
+	</thead>
+	<tbody>
+		@for (var weekIndex = 0; weekIndex < weeks.Count(); weekIndex++)
+	    {
+		   <tr>
+			   @for (var dayIndex = 0; dayIndex < weeks[weekIndex].Dates.Count(); dayIndex++)
+			    {
+					var wIndex = weekIndex;
+					var dindex = dayIndex;
+
+					<td class="dName">
+						@weeks[weekIndex].Dates[dayIndex].DateValue
+						<br /><br />
+
+						@foreach (var enrollment in EnrollmentService.Enrollments)
+						{
+							@if (enrollment.Date.Date == Convert.ToDateTime(weeks[weekIndex].Dates[dayIndex].DateValue).Date)
+							{
+								<div class="enrollment">
+									@enrollment.Subject.SubjectName<br>
+									@enrollment.Class.ClassName<br>
+									@enrollment.ClassRoom<br>
+								</div>
+							}
+						}
+
+						<label>@weeks[weekIndex].Dates[dayIndex].Note</label>
+						<br /><br />
+					</td>
+				}
+		   </tr>
+	    }
+	</tbody>
+</table>
+
+@code {
+
+	protected override async Task OnInitializedAsync()
+	{
+		await EnrollmentService.GetEnrollments();
+	}
+
+	List<string> monthNames = new List<string>();
+	List<string> days = new List<string>();
+	List<WeekClass> weeks = new List<WeekClass>();
+	DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+	DateTime endDate = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).AddMonths(1).AddDays(-1);
+
+	protected override void OnInitialized()
+	{
+		monthNames = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthGenitiveNames.ToList();
+
+	}
+
+	private void LoadCalendar(ChangeEventArgs e)
+	{
+		var month = e.Value.ToString();
+		int monthIndex = DateTime.ParseExact(month, "MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("pl-GB")).Month;
+		startDate = new DateTime(DateTime.Now.Year, monthIndex, 1);
+		endDate = (new DateTime(DateTime.Now.Year, monthIndex, 1)).AddMonths(1).AddDays(-1);
+
+		GenerateCalendarHead();
+		GenerateCalendarBody();
+	}
+	private void GenerateCalendarHead()
+	{
+		var day1 = new List<string>();
+		for (var dt = startDate; dt <= endDate; dt = dt.AddDays(1))
+		{
+			day1.Add(dt.ToString("dddd"));
+		}
+		days = day1.Distinct().ToList();
+	}
+	private void GenerateCalendarBody()
+	{
+		weeks = new List<WeekClass>();
+
+		int flag = 0;
+		WeekClass week = new WeekClass();
+		List<DayEvent> dates = new List<DayEvent>();
+		var totalDays = (int)(endDate - startDate).TotalDays;
+		int coundtdays = 0;
+
+		for (var dt = startDate; dt <= endDate; dt = dt.AddDays(1))
+		{
+			flag++;
+			dates.Add(new DayEvent() {
+				DateValue = dt.ToString("dd-MMM-yyyy"),
+				DayName = dt.ToString("dddd")
+			});
+
+			if (flag == 7)
+			{
+				week = new WeekClass();
+				week.Dates = dates;
+				weeks.Add(week);
+
+				dates = new List<DayEvent>();
+				flag = 0;
+			}
+			if (coundtdays == totalDays)
+			{
+				week = new WeekClass();
+				week.Dates = dates;
+				weeks.Add(week);
+				break;
+			}
+			coundtdays++;
+		}
+	}
+}

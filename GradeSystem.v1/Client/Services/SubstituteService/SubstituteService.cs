@@ -4,7 +4,6 @@ using System.Drawing.Printing;
 using System.Net.Http.Json;
 using System.Globalization;
 using System;
-using GradeSystem.v1.Client.Pages;
 
 namespace GradeSystem.v1.Client.Services.SubstituteService
 {

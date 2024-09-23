@@ -15,10 +15,14 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bcbcec42a547e92166fff13347984a738d4d448e")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e108831fb7c73e3ccfbfe130b48b14139d85464")]
 >>>>>>> origin/Ponaprawie
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec1a4b8e250624ce9dac5585105639e6fecaa89c")]
+>>>>>>> origin/FrontEnd
 [assembly: System.Reflection.AssemblyProductAttribute("GradeSystem.v1.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GradeSystem.v1.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

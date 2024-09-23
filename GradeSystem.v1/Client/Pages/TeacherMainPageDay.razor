@@ -14,7 +14,7 @@
 
     <div class="TEdisplay">
         
-        <div class="DateToday">@DateTime.Now.DayOfWeek, @DateTime.Now.Day.@DateTime.Now.Month </div>
+        <div class="DateToday">@Today.DayOfWeek, @Today.ToString("dd.MM") </div>
 
         <div class="TEsubdisplay">
 
@@ -31,10 +31,7 @@
                         </div>
 
                     }
-                
 
-                
-            
         </div>
 
     </div>
@@ -61,7 +58,7 @@
     Teacher teacher;
     Class classes;
     string Roles;
-    DateTime Today;
+    DateTime Today = DateTime.Now;
 
     List<IncomingLesson> EnrollmentsToday = new List<IncomingLesson>();
 

@@ -1,8 +1,10 @@
-﻿@page "/yourschedule"
+﻿@page "/yourscheduleweek"
 @inject IEnrollmentService EnrollmentService
 @inject IStudentService StudentService
 @inject ILessonsHoursService LessonsHoursService
 @inject ISubjectService SubjectService
+@inject NavigationManager NavigationManager
+
 
 <div class="mainbox">
 <div class="sidebox1">
@@ -11,18 +13,22 @@
                 
                 <div class="subsidemonthyear">
                     <div class="gg-chevron-left"></div>
-                    August 2024
+                    <div>@Today.ToString("MMMM") @Today.Year</div>
                     <div class="gg-chevron-right"></div>
                 </div>
                 
-                <button class="changemodes">Week<div class="gg-chevron-down"></div></button>
+                <select class="Mchangemodes" @onchange="NavigateToPage">
+                    <option selected>Week<div class="gg-chevron-down"></div></option>
+                    <option value="/yourschedulemonth">Month<div class="gg-chevron-down"></div></option>
+                </select>
     </div>
     <div class="alltables">
         <div class="tablebox">
         <table class="grafictable">
-            <thead class="grafictablehead">
-            <th class="grafictableheadinside">Monday</th>
-            </thead>
+            <div class="grafictablehead">
+                <div class="grafictableheadinside">Monday</div>
+                <div class="grafictableheadinside">26</div>
+            </div>
             <tbody class="graficktableboddymain">
                 @foreach (var segment in SortedlessonsHours)
                 {
@@ -55,9 +61,10 @@
     </div>
     <div class="tablebox">
         <table class="grafictable">
-            <thead class="grafictablehead">
-            <th class="grafictableheadinside">Tuesday</th>
-            </thead>
+            <div class="grafictablehead">
+                <div class="grafictableheadinside">Tuesday</div>
+                <div class="grafictableheadinside">27</div>
+            </div>
             <tbody class="graficktableboddymain">
                 @foreach (var segment in SortedlessonsHours)
                 {
@@ -90,9 +97,10 @@
     </div>
     <div class="tablebox">
         <table class="grafictable">
-            <thead class="grafictablehead">
-            <th class="grafictableheadinside">Wednesday</th>
-            </thead>
+            <div class="grafictablehead">
+                <div class="grafictableheadinside">Wednesday</div>
+                <div class="grafictableheadinside">28</div>
+            </div>
             <tbody class="graficktableboddymain">
                 @foreach (var segment in SortedlessonsHours)
                 {
@@ -125,9 +133,10 @@
     </div>
     <div class="tablebox">
         <table class="grafictable">
-            <thead class="grafictablehead">
-            <th class="grafictableheadinside">Thursday</th>
-            </thead>
+            <div class="grafictablehead">
+                <div class="grafictableheadinside">Thursday</div>
+                <div class="grafictableheadinside">29</div>
+            </div>
             <tbody class="graficktableboddymain">
                 @foreach (var segment in SortedlessonsHours)
                 {
@@ -161,9 +170,10 @@
     </div>
     <div class="tablebox">
         <table class="grafictable">
-            <thead class="grafictablehead">
-            <th class="grafictableheadinside">Friday</th>
-            </thead>
+            <div class="grafictablehead">
+                <div class="grafictableheadinside">Friday</div>
+                <div class="grafictableheadinside">30</div>
+            </div>
             <tbody class="graficktableboddymain">
                 @foreach (var segment in SortedlessonsHours)
                 {
@@ -203,19 +213,19 @@
             <label class="container123">
                 Exams
                 <input type="checkbox" checked="checked">
-                <span class="checkmark1"></span>
+                <span class="checkmark checkmark--1"></span>
             </label>
 
             <label class="container123">
                 Events
                 <input type="checkbox">
-                <span class="checkmark2"></span>
+                <span class="checkmark checkmark--2"></span>
             </label>
 
             <label class="container123">
                 Substitutions
                 <input type="checkbox">
-                <span class="checkmark3"></span>
+                <span class="checkmark checkmark--3"></span>
             </label>
         </div>
     </div>
@@ -419,6 +429,18 @@
                     student = studentpom;
                 }
             }
+        }
+    }
+
+
+
+    private void NavigateToPage(ChangeEventArgs e)
+    {
+        var selectedValue = e.Value.ToString();
+
+        if (!string.IsNullOrEmpty(selectedValue))
+        {
+            NavigationManager.NavigateTo(selectedValue);
         }
     }
 }

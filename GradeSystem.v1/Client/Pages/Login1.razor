@@ -1,4 +1,4 @@
-﻿@page "/login"
+﻿@page "/login1"
 @using GradeSystem.v1.Client.Auth
 @using GradeSystem.v1.Shared
 @using System.Net
@@ -7,8 +7,8 @@
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navMenager
 
-<div class="mainlogin">
-    <div class="loginbox">
+<div class="mainlogin1">
+    <div class="loginbox1">
         <div class="logintext"> Log in to your account  </div>
 
         <div class="usernameinput">
@@ -31,6 +31,9 @@
             <button @onclick="Authenticate" class="btn btn-primary">Log in</button>
         </div>
     </div>
+    <div class="loginimage">
+        <img src="https://img.freepik.com/premium-photo/student-raising-hand-ask-question_13339-286511.jpg" class="studentimage">
+    </div>
 </div>
 @code {
     private LoginRequest loginRequest = new LoginRequest();
@@ -44,7 +47,7 @@
             await customAuthStateprovider.UpdateAuthenticationState(userSession);
             navMenager.NavigateTo("/", true);
         }
-        else if(loginResponse.StatusCode==HttpStatusCode.Unauthorized)
+        else if (loginResponse.StatusCode == HttpStatusCode.Unauthorized)
         {
             await js.InvokeVoidAsync("alert", "Invalid Login or Password");
             return;

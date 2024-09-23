@@ -1,0 +1,42 @@
+﻿@page "/teacherlibrary"
+
+
+<div class="booksdisplay">
+    @for (int i = 1; i < 3; i++)
+    {
+        <div class="bookrow">
+
+            @for (int j = 1; j < 6; j++)
+            {
+                <div class="singlebook">
+                    <div class="bookcover bookcovert">
+                        <img src="https://ksiegarnia-tuliszkow.pl/userdata/public/gfx/1781962/Chlopcy-z-Placu-Broni.jpg" class="bookimg">
+                    </div>
+                    <div class="bookbuttons bookbuttonst">
+                        <div class="bookbuttonsrow">
+                            <button class="bookreserve">Reserve</button>
+                            <button class="bookbook">Book</button>
+                        </div>
+                        <div class="bookbuttonsrow">
+                            <button class="bookavailability">Availibility</button>
+                            <button class="bookedit">
+                                <div class="gg-pen"></div>
+                                <div class="gg-trash"></div>
+                            </button>
+                        </div>
+                        
+                    </div>
+                    <div class="booktitle">Chłopcy z Placu Broni</div>
+                    <div class="bookauthor">Ferenc Molnar</div>
+                </div>
+            }
+
+        </div>
+
+    }
+
+</div>
+
+@code {
+
+}

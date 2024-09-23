@@ -754,7 +754,6 @@ C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\stat
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.pack.json
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\Grades.razor.rz.scp.css
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\GradesAdd.razor.rz.scp.css
-C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\Gradess.razor.rz.scp.css
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\StudentCard.razor.rz.scp.css
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\StudentCardForParent.razor.rz.scp.css
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\StudentsGrades.razor.rz.scp.css
@@ -1013,6 +1012,7 @@ C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\Grad
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\refint\GradeSystem.v1.Client.dll
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\GradeSystem.v1.Client.pdb
 C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\ref\GradeSystem.v1.Client.dll
+<<<<<<< HEAD
 =======
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Client\bin\Debug\net7.0\wwwroot\_framework\blazor.boot.json
 >>>>>>> origin/Ponaprawie
@@ -3077,3 +3077,6 @@ C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Client\ob
 C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Client\obj\Debug\net7.0\GradeSys.D772E680.Up2Date
 C:\Users\pepci\OneDrive\Dokumenty\Projects\mergedLibrus\GradeSystem.v1\Client\obj\Debug\net7.0\ref\GradeSystem.v1.Client.dll
 >>>>>>> origin/Ponaprawie
+=======
+C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\scopedcss\Pages\GradesViewStudent.razor.rz.scp.css
+>>>>>>> origin/FrontEnd

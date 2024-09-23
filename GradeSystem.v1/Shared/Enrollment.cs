@@ -12,4 +12,5 @@ public class Enrollment
     public Class? Class { get; set; }
     public int? SchoolTripID { get; set; }
     public string Status { get; set; } = "active";
+
 }

@@ -8,23 +8,39 @@
     "net7.0": []
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\patry\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\pepci\\.nuget\\packages\\": {},
+>>>>>>> origin/Ponaprawie
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
       "projectName": "GradeSystem.v1.Shared",
       "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
       "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\mergedLibrus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "projectName": "GradeSystem.v1.Shared",
+      "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\mergedLibrus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\mergedLibrus\\GradeSystem.v1\\Shared\\obj\\",
+>>>>>>> origin/Ponaprawie
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/Ponaprawie
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

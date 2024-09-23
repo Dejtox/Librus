@@ -292,14 +292,12 @@
     {
         int i = Convert.ToInt32(e.Value.ToString());
         SelectedDate.Year.Equals(i);
-        Console.WriteLine(i);
         await NewDate();
     }
     async Task SelectMonth(ChangeEventArgs e)
     {
         int month = Convert.ToInt32(e.Value.ToString());
         SelectedDate = new DateTime(SelectedDate.Year, month, 4);
-        Console.WriteLine(SelectedDate.Month);
         await NewDate();
     }
     

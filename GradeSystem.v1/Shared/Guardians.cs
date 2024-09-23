@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-public class SchoolTripTeachers
+public class Guardians
 {
-    public int SchoolTripTeachersID { get; set;}
+    public int GuardiansID { get; set;}
 
     public int TeacherID { get; set;}
     public int SchoolTripID { get; set;}

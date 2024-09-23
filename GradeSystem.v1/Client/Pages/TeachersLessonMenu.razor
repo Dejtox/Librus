@@ -53,7 +53,7 @@
                     <th>
                         @foreach (var grade in student.Grades)
                         {
-                            <button @onclick="(()=>EditGrade(grade))">@grade.gradenumber.GradeName</button>
+                            <button @onclick="(()=>EditGrade(grade))">@grade.Gradenumber.GradeName</button>
                         }
                     </th>
                     <th>
@@ -254,21 +254,11 @@ else
             segments.Add(new Segment { student1 = ListStudent, tempgradenumber = null });
             foreach (var grade in GradeService.Grades)
             {
-                Console.WriteLine(grade.StudentID + "Grade StudentID");
-                Console.WriteLine(ListStudent.StudentID + "Student id");
-                Console.WriteLine(i + "i");
                 if (grade.StudentID == ListStudent.StudentID)
                 {
                     if (grade.SubjectID == enrollment.SubjectID)
                     {
-                        foreach (var GradeNumberGroup in GradeNumberService.GradeNumbers)
-                        {
-                            if (grade.gradenumberid == GradeNumberGroup.GradeNumberID)
-                            {
-                                grade.gradenumber = GradeNumberGroup;
-                                segments[i].Grades.Add(grade);
-                            }
-                        }
+                         segments[i].Grades.Add(grade);
 
                     }
                 }
@@ -319,8 +309,8 @@ else
                 gradetoadd.SubjectID = enrollment.Subject.SubjectID;
                 gradetoadd.Description = description;
                 gradetoadd.GradeWeight = gradeweight;
-                gradetoadd.gradenumber = seg.tempgradenumber;
-                gradetoadd.gradenumberid = seg.tempgradenumber.GradeNumberID;
+                gradetoadd.Gradenumber = seg.tempgradenumber;
+                gradetoadd.GradeNumberID = seg.tempgradenumber.GradeNumberID;
                 await GradeService.CreateGrade(gradetoadd);
                 foreach (var seg2 in segments)
                 {

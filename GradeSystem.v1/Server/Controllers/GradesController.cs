@@ -28,14 +28,14 @@ namespace GradeSystem.v1.Server.Controllers
 
         public async Task<ActionResult<IEnumerable<Grade>>> GetGrade()
         {
-            return await _context.Grade.Include(s => s.Student).Include(s => s.Subject).Include(t => t.Subject.Teacher).ToListAsync();
+            return await _context.Grade.Include(s => s.Gradenumber).Include(s => s.Gradetype).Include(s => s.Student).Include(s => s.Subject).Include(t => t.Subject.Teacher).ToListAsync();
         }
 
         // GET: api/Grades/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Grade>> GetGrade(int id)
         {
-            var grade = await _context.Grade.Include(s => s.Student).Include(s => s.Subject).Include(t => t.Subject.Teacher).FirstOrDefaultAsync(g => g.GradeID == id);
+            var grade = await _context.Grade.Include(s => s.Gradenumber).Include(s => s.Gradetype).Include(s => s.Student).Include(s => s.Subject).Include(t => t.Subject.Teacher).FirstOrDefaultAsync(g => g.GradeID == id);
 
             if (grade == null)
             {
@@ -83,7 +83,7 @@ namespace GradeSystem.v1.Server.Controllers
         {
             grade.Student = null;
             grade.Subject = null;
-            grade.gradenumber = null;
+            grade.Gradenumber = null;
             _context.Grade.Add(grade);
             await _context.SaveChangesAsync();
 

@@ -1,50 +1,50 @@
-@page "/stdmainpage"
-@inject IEnrollmentService EnrollmentService
+﻿@page "/ParMainPage"
 @inject IStudentService StudentService
+@inject IParentService ParentService
+@inject IEnrollmentService EnrollmentService
 @inject ILessonsHoursService LessonsHoursService
-@inject ISubjectService SubjectService
-@*/{id:int} *@
+
 <div class="mainbox">
     <div class="sidebox">
-        <div class="insidebox1">
+        <div class="insidebox">
             <div class="insideinsidebox">
                 <StudentMainPageExams @ref="siteref1"></StudentMainPageExams>
             </div>
         </div>
-        <div class="insidebox2">
+        <div class="insidebox">
             <div class="insideinsidebox">
                 <StudentMainPageGrades @ref="siteref"></StudentMainPageGrades>
             </div>
         </div>
-        <div class="insidebox1">
+        <div class="insidebox">
             <div class="insideinsidebox">
                 <StdParLastAttenderncesmainpage @ref="popupref"></StdParLastAttenderncesmainpage>
             </div>
         </div>
     </div>
-    <div class="sidebox">        
-            <div class="tablebox">
+    <div class="sidebox">
+        <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
                 <th class="grafictableheadinside">Monday</th>
-                    </thead>
+                </thead>
                 <tbody class="graficktableboddymain">
                     @foreach (var segment in SortedlessonsHours)
                     {
                         bool i = true;
                         <tr class="tablerow">
-                        @foreach (var stdevent in StudentsEnrolmentsMon)
-                        {
-                            if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                            @foreach (var stdevent in StudentsEnrolmentsMon)
                             {
+                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                {
                                     <td class="tablecell">
                                         <div class="tablecellnumber">@segment.LessonNo</div>
                                         <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
                                         <div class="tablecellnumber"></div>
                                     </td>
                                     i = false;
+                                }
                             }
-                        }
                             @if (i == true)
                             {
                                 <td class="tablecell">
@@ -55,9 +55,9 @@
                             }
                         </tr>
                     }
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
         <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -92,7 +92,7 @@
                     }
                 </tbody>
             </table>
-            </div>
+        </div>
         <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -127,7 +127,7 @@
                     }
                 </tbody>
             </table>
-            </div>
+        </div>
         <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -163,7 +163,7 @@
                     }
                 </tbody>
             </table>
-            </div>
+        </div>
         <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -198,17 +198,14 @@
                     }
                 </tbody>
             </table>
-            </div>        
+        </div>
     </div>
 </div>
 
 
 
-
 @code {
     private StdParLastAttenderncesmainpage popupref;
-
-
     private StudentMainPageGrades siteref;
     private StudentMainPageExams siteref1;
 
@@ -220,30 +217,20 @@
     IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
     DateTime Today = DateTime.Now;
     DateTime UpToDateMonday;
-    int ID;
-    Student student;
+    int selectedchildID; // musimy tu jakos przekazac to selected child zeby wyswietlao sie tak jak wybrane przez rodzica dziecko na glownej stronie
     string Roles;
-    public class GrafLesson
-    {
-        public LessonsHours SortedlessonsHour { get; set; }
-        public bool NoEvent { get; set; }
-
-        public GrafLesson(LessonsHours sortedlessonsHour, bool noEvent)
-        {
-            SortedlessonsHour = sortedlessonsHour;
-            NoEvent = noEvent;
-        }
-    }
+    Parent parent;
+    int ID;
 
     protected override async Task OnInitializedAsync()
     {
-        await SubjectService.GetSubjects();
+        await LessonsHoursService.GetLessonsHours();
+        await EnrollmentService.GetEnrollments();
+        await ParentService.GetParents();
         await StudentService.GetStudents();
         await GetClaimsGetID();
-        await EnrollmentService.GetEnrollments();
         await Finduptodatemonday();
-        await LessonsHoursService.GetLessonsHours();
-        await SortLessonHours();
+
     }
 
     async Task Finduptodatemonday()
@@ -263,7 +250,7 @@
         else
         {
             int difrence = Today.DayOfWeek - DayOfWeek.Monday;
-            if (difrence !=0)
+            if (difrence != 0)
             {
                 UpToDateMonday = Today.AddDays(-difrence);
             }
@@ -278,9 +265,9 @@
     async Task Filllistofactivetiescurrentweek()
     {
         DateTime temp;
-        foreach(var enrolment in EnrollmentService.Enrollments)
+        foreach (var enrolment in EnrollmentService.Enrollments)
         {
-            if(enrolment.ClassID==student.ClassID)
+            if (enrolment.ClassID == selectedchildID)
             {
                 temp = UpToDateMonday;
                 if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
@@ -309,26 +296,20 @@
                 }
             }
         }
-
     }
 
     async Task SortLessonHours()
     {
-        for(int i =0; i<LessonsHoursService.LessonsHours.Count; i=i+1)
+        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
         {
             foreach (var segment in LessonsHoursService.LessonsHours)
             {
-                if(segment.LessonNo == i+1)
+                if (segment.LessonNo == i + 1)
                 {
                     SortedlessonsHours.Add(segment);
                 }
             }
         }
-    }
-    //kom
-    async Task Setemptylessonhour()
-    {
-        
     }
 
     [CascadingParameter]
@@ -349,16 +330,15 @@
             }
         };
 
-            if (Roles == "Student")
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in ParentService.Parents)
             {
-                foreach (var studentpom in StudentService.Students)
+                if (studentpom.ParentID == ID)
                 {
-                    if (studentpom.StudentID == ID)
-                    {
-                        student = studentpom;
-                    }
+                    parent = studentpom;
                 }
-            }      
+            }
+        }
     }
-
-}
+} 

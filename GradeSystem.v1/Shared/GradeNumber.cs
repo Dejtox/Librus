@@ -6,7 +6,6 @@
         public float gradenumber { get; set; }
         public string GradeName { get; set; } = string.Empty;
 
-        public int? coulor { get; set; }
 
 }
 

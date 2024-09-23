@@ -54,7 +54,7 @@
             </div>
 
 
-            <div class="RGgrade">@Grade.gradenumber.GradeName</div>
+                    <div class="RGgrade">@Grade.Gradenumber.GradeName</div>
            
     </div>
     }
@@ -97,26 +97,6 @@
                     RecentStudentGrades.Add(grade);
                 }
 
-            }
-        }
-        foreach (var grade in RecentStudentGrades)
-        {
-            foreach (var gradenumber in GradeNumberService.GradeNumbers)
-            {
-                if(gradenumber.GradeNumberID == grade.gradenumberid)
-                {
-                    grade.gradenumber = gradenumber;
-                }
-            }
-        }
-        foreach (var grade in RecentStudentGrades)
-        {
-            foreach (var subject in SubjectService.Subjects)
-            {
-                if (subject.SubjectID == grade.SubjectID)
-                {
-                    grade.Subject = subject;
-                }
             }
         }
         AddLastSixGrades();

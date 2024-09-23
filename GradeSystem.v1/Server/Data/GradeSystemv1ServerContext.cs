@@ -38,6 +38,7 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<SchoolTripClasses> SchoolTripClasses { get; set; }
 
         public DbSet<GradeNumber> GradeNumber { get; set; }
+        public DbSet<GradeType> GradeType { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Note> Note { get; set; }
     }

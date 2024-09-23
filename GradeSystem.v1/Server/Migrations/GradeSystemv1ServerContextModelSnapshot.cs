@@ -309,6 +309,9 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GradeTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("GradeWeight")
                         .HasColumnType("int");
 
@@ -322,6 +325,8 @@ namespace GradeSystem.v1.Server.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("GradeID");
+
+                    b.HasIndex("GradeTypeId");
 
                     b.HasIndex("StudentID");
 
@@ -344,15 +349,36 @@ namespace GradeSystem.v1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("coulor")
-                        .HasColumnType("int");
-
                     b.Property<float>("gradenumber")
                         .HasColumnType("real");
 
                     b.HasKey("GradeNumberID");
 
                     b.ToTable("GradeNumber");
+                });
+
+            modelBuilder.Entity("GradeType", b =>
+                {
+                    b.Property<int>("GradeTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeTypeId"));
+
+                    b.Property<string>("GradeTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("GradeWeight")
+                        .HasColumnType("real");
+
+                    b.Property<string>("color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GradeTypeId");
+
+                    b.ToTable("GradeType");
                 });
 
             modelBuilder.Entity("LessonsHours", b =>
@@ -431,6 +457,9 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LastSelectedChildId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -785,6 +814,12 @@ namespace GradeSystem.v1.Server.Migrations
 
             modelBuilder.Entity("Grade", b =>
                 {
+                    b.HasOne("GradeType", "gradetype")
+                        .WithMany()
+                        .HasForeignKey("GradeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentID")
@@ -808,6 +843,8 @@ namespace GradeSystem.v1.Server.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("gradenumber");
+
+                    b.Navigation("gradetype");
                 });
 
             modelBuilder.Entity("Parent", b =>

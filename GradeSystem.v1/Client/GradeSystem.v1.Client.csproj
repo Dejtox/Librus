@@ -41,4 +41,8 @@
     <_ContentIncludedByDefault Remove="Pages\newLogin.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\GradeTypeService\" />
+  </ItemGroup>
+
 </Project>

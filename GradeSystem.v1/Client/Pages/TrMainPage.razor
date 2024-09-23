@@ -35,17 +35,17 @@
                         <th class="grafictableheadinside">Monday</th>
                         </thead>
                         <tbody class="graficktableboddymain">
-                            @foreach (var stdevent in TchEnrolmentsMon)
+                        @foreach (var segment in SortedlessonsHours)
                             {
                                 bool i = true;
                                 <tr class="tablerow">
-                                    @foreach (var stdevent in StudentsEnrolmentsMon)
+                                @foreach (var Trevent in TchEnrolmentsMon)
                                     {
-                                        if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                    if (segment.Start.TimeOfDay >= Trevent.Date.TimeOfDay && segment.End.TimeOfDay <= Trevent.EndDate.TimeOfDay)
                                         {
                                             <td class="tablecell">
-                                                <div class="tablecellnumber">@segment.LessonNo</div>
-                                                <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                            <div class="tablecellnumber">@segment.LessonNo</div>
+                                            <div class="tablecellcontent">@Trevent.Subject.SubjectName</div>
                                                 <div class="tablecellnumber"></div>
                                             </td>
                                             i = false;
@@ -54,7 +54,7 @@
                                     @if (i == true)
                                     {
                                         <td class="tablecell">
-                                            <div class="tablecellnumber">@segment.LessonNo</div>
+                                        <div class="tablecellnumber">@segment.LessonNo</div>
                                             <div class="tablecellcontent"></div>
                                             <div class="tablecellnumber"></div>
                                         </td>
@@ -74,13 +74,13 @@
                             {
                                 bool i = true;
                                 <tr class="tablerow">
-                                    @foreach (var stdevent in StudentsEnrolmentsTue)
+                                @foreach (var Trevent in TchEnrolmentsTue)
                                     {
-                                        if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                    if (segment.Start.TimeOfDay >= Trevent.Date.TimeOfDay && segment.End.TimeOfDay <= Trevent.EndDate.TimeOfDay)
                                         {
                                             <td class="tablecell">
                                                 <div class="tablecellnumber">@segment.LessonNo</div>
-                                                <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                            <div class="tablecellcontent">@Trevent.Subject.SubjectName</div>
                                                 <div class="tablecellnumber"></div>
                                             </td>
                                             i = false;
@@ -96,7 +96,7 @@
                                     }
                                 </tr>
                             }
-                        </tr>
+                        
                     }
                 </tbody>
             </table>
@@ -111,17 +111,13 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in TchEnrolmentsTue)
-                            {
-                                bool i = true;
-                                <tr class="tablerow">
-                                    @foreach (var stdevent in StudentsEnrolmentsWen)
+                                @foreach (var Trevent in TchEnrolmentsWen)
                                     {
-                                        if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                    if (segment.Start.TimeOfDay >= Trevent.Date.TimeOfDay && segment.End.TimeOfDay <= Trevent.EndDate.TimeOfDay)
                                         {
                                             <td class="tablecell">
                                                 <div class="tablecellnumber">@segment.LessonNo</div>
-                                                <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                            <div class="tablecellcontent">@Trevent.Subject.SubjectName</div>
                                                 <div class="tablecellnumber"></div>
                                             </td>
                                             i = false;
@@ -139,61 +135,7 @@
                             }
                         </tbody>
                     </table>
-                </div>
-                <div class="tablebox">
-                    <table class="grafictable">
-                        <thead class="grafictablehead">
-                        <th class="grafictableheadinside">Thursday</th>
-                        </thead>
-                        <tbody class="graficktableboddymain">
-                            @foreach (var segment in SortedlessonsHours)
-                            {
-                                <td class="tablecell">
-                                    <div class="tablecellnumber">@segment.LessonNo</div>
-                                    <div class="tablecellcontent"></div>
-                                    <div class="tablecellnumber"></div>
-                                </td>
-                            }
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="tablebox">
-            <table class="grafictable">
-                <thead class="grafictablehead">
-                <th class="grafictableheadinside">Wednesday</th>
-                </thead>
-                <tbody class="graficktableboddymain">
-                    @foreach (var segment in SortedlessonsHours)
-                    {
-                        bool i = true;
-                        <tr class="tablerow">
-                                @foreach (var stdevent in TchEnrolmentsWen)
-                            {
-                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
-                                {
-                                    <td class="tablecell">
-                                        <div class="tablecellnumber">@segment.LessonNo</div>
-                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
-                                        <div class="tablecellnumber"></div>
-                                    </td>
-                                    i = false;
-                                }
-                            }
-                            @if (i == true)
-                            {
-                                <td class="tablecell">
-                                    <div class="tablecellnumber">@segment.LessonNo</div>
-                                    <div class="tablecellcontent"></div>
-                                    <div class="tablecellnumber"></div>
-                                </td>
-                            }
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                </div>       
         <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -204,13 +146,13 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in TchEnrolmentsThu)
+                                @foreach (var Trevent in TchEnrolmentsThu)
                             {
-                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                    if (segment.Start.TimeOfDay >= Trevent.Date.TimeOfDay && segment.End.TimeOfDay <= Trevent.EndDate.TimeOfDay)
                                 {
                                     <td class="tablecell">
                                         <div class="tablecellnumber">@segment.LessonNo</div>
-                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                            <div class="tablecellcontent">@Trevent.Subject.SubjectName</div>
                                         <div class="tablecellnumber"></div>
 
                                             </td>
@@ -230,42 +172,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tablebox">
-                    <table class="grafictable">
-                        <thead class="grafictablehead">
-                        <th class="grafictableheadinside">Friday</th>
-                        </thead>
-                        <tbody class="graficktableboddymain">
-                            @foreach (var segment in SortedlessonsHours)
-                            {
-                                bool i = true;
-                                <tr class="tablerow">
-                                    @foreach (var stdevent in StudentsEnrolmentsFri)
-                                    {
-                                        if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
-                                        {
-                                            <td class="tablecell">
-                                                <div class="tablecellnumber">@segment.LessonNo</div>
-                                                <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
-                                                <div class="tablecellnumber"></div>
-                                            </td>
-                                            i = false;
-                                        }
-                                    }
-                                    @if (i == true)
-                                    {
-                                        <td class="tablecell">
-                                            <div class="tablecellnumber">@segment.LessonNo</div>
-                                            <div class="tablecellcontent"></div>
-                                            <div class="tablecellnumber"></div>
-                                        </td>
-                                    }
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-        </div>
+          
         <div class="tablebox">
             <table class="grafictable">
                 <thead class="grafictablehead">
@@ -276,13 +183,13 @@
                     {
                         bool i = true;
                         <tr class="tablerow">
-                            @foreach (var stdevent in TchEnrolmentsFri)
+                                @foreach (var Trevent in TchEnrolmentsFri)
                             {
-                                if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                                    if (segment.Start.TimeOfDay >= Trevent.Date.TimeOfDay && segment.End.TimeOfDay <= Trevent.EndDate.TimeOfDay)
                                 {
                                     <td class="tablecell">
                                         <div class="tablecellnumber">@segment.LessonNo</div>
-                                        <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
+                                            <div class="tablecellcontent">@Trevent.Subject.SubjectName</div>
                                         <div class="tablecellnumber"></div>
                                     </td>
                                     i = false;
@@ -303,6 +210,7 @@
         </div>       
     </div>
     
+</div>
 </div>
 
 
@@ -374,46 +282,9 @@
                 UpToDateMonday = Today;
             }
         }
-        await Filllistofactivetiescurrentweek();
-    }
-
-
-    async Task Filllistofactivetiescurrentweek()
-    {
-        DateTime temp;
-        foreach (var enrolment in EnrollmentService.Enrollments)
-        {
-            if (enrolment.Class.TeacherID == teacher.TeacherID)
-            {
-                temp = UpToDateMonday;
-                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
-                {
-                    TchEnrolmentsMon.Add(enrolment);
-                }
-                temp = UpToDateMonday.AddDays(1);
-                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
-                {
-                    TchEnrolmentsTue.Add(enrolment);
-                }
-                temp = UpToDateMonday.AddDays(2);
-                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
-                {
-                    TchEnrolmentsWen.Add(enrolment);
-                }
-                temp = UpToDateMonday.AddDays(3);
-                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
-                {
-                    TchEnrolmentsThu.Add(enrolment);
-                }
-                temp = UpToDateMonday.AddDays(4);
-                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
-                {
-                    TchEnrolmentsFri.Add(enrolment);
-                }
-            }
-        }
 
     }
+
 
     async Task SortLessonHours()
     {

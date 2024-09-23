@@ -4,14 +4,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class SchoolTrip
 {
     public int SchoolTripID { get; set; }
-
-    //[Required(ErrorMessage = "Trip name is required.")]
-    //[StringLength(100, ErrorMessage = "Trip name cannot be longer than 100 characters.")]
     public string Name { get; set; }
-    public string Description { get; set; }
-    public DateTime StartDate { get; set; }= DateTime.Now;
-    public DateTime EndDate { get; set; } = DateTime.Now;
-    public List<SchoolTripTeachers>? SchoolTripTeachers { get; set; }
-    public List<SchoolTripClasses>? SchoolTripClasses { get; set; }
+    public string Purpose { get; set; }
+    public string Location { get; set; }
+    public string AdditionalInfo {  get; set; }
+    public string Transportation { get; set; }
+    public int TripLeaderID { get; set; }
+    public Teacher? TripLeader { get; set; }
+    public string AddedBy { get; set; }
+    public DateTime StartDate { get; set; } = DateTime.Now;
+    public DateTime EndDate { get; set; }= DateTime.Now;
+    public List<Guardians>? Guardians { get; set; }
+    public string NonSchoolGuardians { get; set; }
+    public List<SchoolTripClasses>? Classes { get; set; }
+    public List<SchoolTripStudents>? Students { get; set; }
+    public int Ppl => Students.Count();
+    public string Duration => $"{StartDate.ToString("dd.MM.yyyy")}-{EndDate.ToString("dd.MM.yyyy")}";
 }
 

@@ -1,0 +1,177 @@
+﻿@page "/school_trip1"
+@page "/school_trip1/{id:int}"
+@inject NavigationManager NavigationManager
+@inject ISchoolTripService SchoolTripService
+
+<PageTitle>@title</PageTitle>
+<div class="content-container">
+    <div class="content-header">
+        <h3 class="page-header">@title</h3>
+    </div>
+    <div class="search-container">
+        <div class="empty-row"></div>
+        <RadzenTemplateForm TItem="SchoolTrip" Data="schoolTrip" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+            <div hidden="@Show">
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Trip name" Style="font-weight:bold; width:150px;"/>
+                        <RadzenTextBox Name="TName" @bind-Value="schoolTrip.Name" Style="width:400px;" Placeholder="Trip name"/>
+                        <RadzenLengthValidator Popup="true" Style="display:block;" Component="TName" Min="3" Text="Trip name should be at least 3 characters"/>
+                        <RadzenLengthValidator Component="TName" Max="100" Text="Trip Name should be at most 100 characters" Popup="true" Style="display:block;" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Trip purpose" Style="font-weight:bold; width:150px;" />
+                        <RadzenTextBox Name="TPurpose" @bind-Value="schoolTrip.Purpose" Style="width:400px;" Placeholder="Trip purpose"/>
+                        <RadzenLengthValidator Popup="true" Style="display:block;" Component="TName" Min="3" Text="Trip name should be at least 3 characters"/>
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Location" Style="font-weight:bold; width:150px;" />
+                        <RadzenTextBox Name="TLocation" @bind-Value="schoolTrip.Location" Style="width:400px;" Placeholder="Location"/>
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Start Date" Style="font-weight:bold; width:150px;" />
+                        <RadzenDatePicker Name="StartDate" @bind-Value="schoolTrip.StartDate" Style="width:400px;" Placeholder="Select date" ShowTime="true"/>
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="End Date" Style="font-weight:bold; width:150px;" />
+                        <RadzenDatePicker Name="EndDate" @bind-Value="schoolTrip.EndDate" Style="width:400px;" Placeholder="Select date" ShowTime="true"/>
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Trip leader" Component="TripLeaderValue" Style="font-weight:bold; width:150px;" />
+                        <RadzenDropDown @bind-Value="@schoolTrip.TripLeaderID" Data=@SchoolTripService.Teachers Style="width:400px" Name="TripLeaderValue" ValueProperty="TeacherID" TextProperty="Name" Placeholder="Search..." />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Guardians" Component="DropDownMultipleChipsT" Style="font-weight:bold; width:150px;" />
+                        <RadzenDropDown @bind-Value=@guardianIDs Data=@SchoolTripService.Teachers TextProperty="Name" ValueProperty="TeacherID" Name="DropDownMultipleChipsT"
+                                        Multiple=true AllowClear=true Placeholder="Search..." Chips=true Style="width:400px;" SelectAllText="Select all guardians" />
+                        <RadzenLabel Text="Non-school guardians" Style="font-weight:bold; width:150px;" class="l-margin"/>
+                        <RadzenTextBox Name="TNonSchoolGuardians" @bind-Value="schoolTrip.NonSchoolGuardians" Style="width:400px;" Placeholder="Guardians" />
+                    </div>
+                </div>
+
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Transportation" Style="font-weight:bold; width:150px;" />
+                        <RadzenTextBox Name="TTransportation" @bind-Value="schoolTrip.Transportation" Style="width:400px;" Placeholder="Transportation"/>
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Additional Info" Style="font-weight:bold; width:150px;" />
+                        <RadzenTextBox Name="TAdditionalInfo" @bind-Value="schoolTrip.AdditionalInfo" Style="width:400px;" Placeholder="Information"/>
+                    </div>
+                </div>
+                <div class="button-container search-margin">
+                <button class="rounded-empty-button" type="button" onclick="@Toggle">Next</button>
+                <button class="rounded-filled-button" type="button" onclick="@Cancel">Cancel</button>
+                </div>
+            </div>
+            <div hidden="@(!Show)">
+                <div class="black-line">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Classes" Component="DropDownMultipleChipsC" Style="font-weight:bold; width:150px;" />
+                        <RadzenDropDown @bind-Value=@classIDs Data=@SchoolTripService.Classes TextProperty="ClassName" ValueProperty="ClassID" Name="DropDownMultipleChipsC"
+                                        Multiple=true AllowClear=true Placeholder="Search..." Chips=true Style="width:400px;" SelectAllText="Select all classes" />
+                    </div>
+                </div>
+
+                <div class="button-container search-margin">
+                    <button class="rounded-empty-button" type="button" onclick="@Students">Next</button>
+                </div>
+
+                <div hidden="@ShowStudents">
+                <div class="black-line" style="border-top:thin solid black;">
+                    <div class="d-inline-block search-margin l-margin">
+                        <RadzenLabel Text="Students" Component="DropDownMultipleChipsS" Style="font-weight:bold; width:150px;" />
+                        <RadzenDropDown @bind-Value=@studentIDs Data=@students TextProperty="Name" ValueProperty="StudentID" Name="DropDownMultipleChipsS"
+                                        Multiple=true AllowClear=true Placeholder="Search..." Chips=true Style="width:400px;" SelectAllText="Select all students" />
+                    </div>
+                </div>
+                <div class="button-container search-margin">
+                    <button class="rounded-empty-button" type="submit">Confirm</button>
+                    <button class="rounded-filled-button" type="button" onclick="@Toggle">Previous</button>
+                </div>
+                </div>
+            </div>
+        </RadzenTemplateForm>
+        <p hidden="@alert">sdsdfadsdasfdasf</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    private bool Show { get; set; } = false;
+    private bool ShowStudents { get; set; } = true;
+    private string title;
+    SchoolTrip schoolTrip = new SchoolTrip();
+    List<int> guardianIDs { get; set; } = new List<int>();
+    List<int> classIDs { get; set; } = new List<int>();
+    List<int> studentIDs { get; set; } = new List<int>();
+    List<Student> students;
+    private bool alert = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        title = ID == null ? "Add trip" : "Edit trip";
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID != null)
+        {
+            schoolTrip = await SchoolTripService.GetSchoolTripByID((int)ID);
+            guardianIDs = schoolTrip.Guardians.Select(t => t.TeacherID).ToList();
+            classIDs = schoolTrip.Classes.Select(c => c.ClassID).ToList();
+            studentIDs = schoolTrip.Students.Select(s => s.StudentID).ToList();
+        }
+    }
+    private void Toggle()
+    {
+        Show = !Show;
+    }
+    private async void HandleSubmit()
+    {
+        var guardians = guardianIDs.Select(g => new Guardians { TeacherID = g }).ToList();
+        var schoolTripClasses = classIDs.Select(c => new SchoolTripClasses { ClassID = c }).ToList();
+        var schoolTripStudents = studentIDs.Select(s => new SchoolTripStudents { StudentID = s }).ToList();
+        schoolTrip.AddedBy = "Jeremiasz";
+        schoolTrip.Guardians = guardians;
+        schoolTrip.Students = schoolTripStudents;
+        schoolTrip.Classes = schoolTripClasses;
+        await SchoolTripService.CreateSchoolTrip(schoolTrip);
+    }
+    private async Task Students()
+    {
+        if(classIDs.Count==0)
+        {
+            //Modal select at least one class
+        }
+        else
+        {
+            ShowStudents=false;
+            students=await SchoolTripService.GetStudents(classIDs);
+            //tripStudents = students.Select(ts => new TripStudent { StudentID = ts.StudentID, OnTrip = false, Name = $"{ts.FirstName} {ts.LastName} {ts.Class.ClassName}" }).ToList();
+        }
+    }
+    private void InvalidSubmit()
+    {
+        alert = false;
+    }
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/school_trips1");
+    }
+}
+

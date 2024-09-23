@@ -1,4 +1,4 @@
-﻿@page "/school_trip"
+﻿@* @page "/school_trip"
 @page "/school_trip/{id:int}"
 @inject NavigationManager NavigationManager
 @inject ISchoolTripService SchoolTripService
@@ -102,3 +102,4 @@
         await SchoolTripService.DeleteSchoolTripByID(schoolTrip.SchoolTripID);
     }
 }
+ *@

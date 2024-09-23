@@ -1,0 +1,113 @@
+﻿@page "/school_trips1"
+@inject NavigationManager navigationManager
+@inject ISchoolTripService SchoolTripService
+
+
+<PageTitle>School Trips</PageTitle>
+
+<div class="content-container">
+    <div>
+        <div class="content-header">
+            <h3 class="page-header">Trips</h3>
+        </div>
+        <div class="search-container">
+            <div class="empty-row"></div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" Style="margin-top:20px;margin-bottom:20px;">
+                    <RadzenLabel Text="Trip leader" Component="TripLeaderValue" Style="font-weight:bold;width:150px;"/>
+                    <RadzenDropDown @bind-Value=@teacherID Data=@SchoolTripService.Teachers Style="width: 100%; max-width: 400px; border-radius:15px;" Name="TripLeaderValue" ValueProperty="TeacherID" TextProperty="Name" Placeholder="Search..." Change="@(()=>SearchByTeacher(teacherID))" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+                    <RadzenLabel Text="Grade" Component="ClassValue" Style="font-weight:bold;width:150px;"/>
+                    <RadzenDropDown @bind-Value=@classID Data=@SchoolTripService.Classes Style="width: 100%; max-width: 400px; border-radius:15px;" Name="ClassValue" ValueProperty="ClassID" TextProperty="ClassName" Placeholder="Search..." />
+                </RadzenStack>
+            </div>
+            <div class="center search-margin">
+                <button class="trip-add-button">Show</button>
+            </div>
+        </div>
+        <div class="add-container center">
+            <button class="trip-add-button search-margin" @onclick="@AddTrip">Add trip</button>
+        </div>
+    </div>
+    <div class="table_container">
+        <table class=" table table-bordered">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Trip name</th>
+                    <th>Duration</th>
+                    <th>Ppl</th>
+                    <th>G.</th>
+                    <th>Trip leader</th>
+                    <th>Added by</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var trip in filteredSchoolTrips)
+                {
+                    <tr>
+                        <td>1</td>
+                        <td>@trip.Name</td>
+                        <td>@trip.Duration</td>
+                        <td>@trip.Ppl</td>
+                        <td>@string.Join(",", trip.Classes.Select(c => c.Class?.ClassName))</td>
+                        <td>@trip.TripLeader.Name</td>
+                        <td>@trip.AddedBy</td>
+                        <td class="options">
+                            <button type="button" class="icon-button" onclick="@(()=>Edit(trip.SchoolTripID))">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button type="button" class="icon-button" onclick="@(()=>Delete(trip.SchoolTripID))">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    int teacherID;
+    int classID;
+    public List<SchoolTrip> schoolTrips { get; set; } = new List<SchoolTrip>();
+    public List<SchoolTrip> filteredSchoolTrips { get; set; } = new List<SchoolTrip>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await SchoolTripService.GetTeachers();
+        await SchoolTripService.GetClasses();
+        schoolTrips=await SchoolTripService.GetSchoolTripss();
+        filteredSchoolTrips = schoolTrips;
+    }
+
+    private void AddTrip()
+    {
+        navigationManager.NavigateTo("/school_trip1");
+    }
+
+    private async void Delete(int id)
+    {
+        await SchoolTripService.DeleteSchoolTripByID(id);
+    }
+    private void Edit(int id)
+    {
+        navigationManager.NavigateTo($"/school_trip1/{id}");
+    }
+    private void SearchByTeacher(int? ID)
+    {
+        if(ID==null)
+        {
+            filteredSchoolTrips = schoolTrips;
+        }
+        else
+        {
+            filteredSchoolTrips = schoolTrips.Where(st => st.TripLeaderID == ID).ToList();
+        }
+    }
+}

@@ -10,9 +10,11 @@
         Task GetTeachers();
         Task GetSchoolTrips();
 
-        Task CreateSchoolTrip(SchoolTripCombined schoolTripCombined);
+        Task<List<SchoolTrip>> GetSchoolTripss();
+        Task CreateSchoolTrip(SchoolTrip schoolTrip);
         Task<SchoolTrip> GetSchoolTripByID(int id);
         Task DeleteSchoolTripByID(int id);
-        Task UpdateSchoolTrip(SchoolTripCombined schoolTripCombined);
+        Task UpdateSchoolTrip(SchoolTrip schoolTrip);
+        Task<List<Student>> GetStudents(List<int> classes);
     }
 }

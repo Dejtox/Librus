@@ -42,6 +42,11 @@ namespace GradeSystem.v1.Server.Controllers
             return student;
         }
 
+        [HttpGet("trip_students")]
+        public async Task<ActionResult<List<Student>>> GetTripStudents([FromQuery]List<int> classes)
+        {
+            return await _context.Student.Include(c=>c.Class).Where(cc=>classes.Contains(cc.ClassID)).ToListAsync();
+        }
         // PUT: api/Students/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

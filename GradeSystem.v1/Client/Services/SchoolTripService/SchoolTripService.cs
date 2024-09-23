@@ -18,11 +18,10 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
         public IList<Teacher> Teachers { get;set; } =new List<Teacher>();
         public IList<Class> Classes { get; set; } = new List<Class>();
 
-        public async Task CreateSchoolTrip(SchoolTripCombined schoolTripCombined)
+        public async Task CreateSchoolTrip(SchoolTrip schoolTrip)
         {
-            //bylo bez kotlin
-            await _http.PostAsJsonAsync("api/SchoolTrip", schoolTripCombined);
-            _navigationManager.NavigateTo("school_trips");
+            await _http.PostAsJsonAsync("api/SchoolTrip", schoolTrip);
+            _navigationManager.NavigateTo("school_trips1");
         }
 
         public async Task GetClasses()
@@ -57,14 +56,28 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
         public async Task DeleteSchoolTripByID(int id)
         {
             await _http.DeleteAsync($"api/SchoolTrip/{id}");
-            _navigationManager.NavigateTo("school_trips");
+            _navigationManager.NavigateTo("school_trips1");
         }
 
-        public async Task UpdateSchoolTrip(SchoolTripCombined schoolTripCombined)
+        public async Task UpdateSchoolTrip(SchoolTrip schoolTrip)
         {
-            await _http.PostAsJsonAsync($"api/SchoolTrip/{schoolTripCombined.SchoolTrip.SchoolTripID}", schoolTripCombined);
+            await _http.PostAsJsonAsync($"api/SchoolTrip/{schoolTrip.SchoolTripID}", schoolTrip);
             _navigationManager.NavigateTo("school_trips");
         }
 
+        public async Task<List<Student>> GetStudents(List<int> classes)
+        {
+            var query = string.Join("&", classes.Select(c => $"classes={c}"));
+            var url = $"api/Students/trip_students?{query}";
+            return await _http.GetFromJsonAsync<List<Student>>(url);
+        }
+
+        public async Task<List<SchoolTrip>> GetSchoolTripss()
+        {
+            var result = await _http.GetFromJsonAsync<List<SchoolTrip>>("api/SchoolTrip");
+            if (result != null)
+                return result;
+            throw new Exception("School trip not found");
+        }
     }
 }

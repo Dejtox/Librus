@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "xsnP4INWkVk=",
   "success": true,
   "projectFilePath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+=======
+  "dgSpecHash": "QTPPeI+0FYM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+>>>>>>> Patrykk
   "expectedPackageFiles": [],
   "logs": []
 }

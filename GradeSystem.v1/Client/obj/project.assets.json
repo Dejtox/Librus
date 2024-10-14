@@ -812,7 +812,11 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
+=======
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
+>>>>>>> Patrykk
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -2278,7 +2282,11 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
+=======
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
+>>>>>>> Patrykk
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -4060,10 +4068,17 @@
         "tools/net7.0/illink.runtimeconfig.json"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
       "sha512": "HI/nGJnpSn8370os+GuviOnCM1RsXB3PQSX6u9RjApncJ5jZZf2qdFRQZM9tUjdDJ/ADmrzBxlV/hKp3CWYMDA==",
       "type": "package",
       "path": "microsoft.net.sdk.webassembly.pack/8.0.7",
+=======
+    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
+      "sha512": "CABBOqZZEDgiVSjkwUr+pJEGEtQbrT+6dltzJnBDap7mOSvfn53+zwb112hRGB7ynm9ikAocGZTUp+GizbH7XQ==",
+      "type": "package",
+      "path": "microsoft.net.sdk.webassembly.pack/8.0.5",
+>>>>>>> Patrykk
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4091,7 +4106,11 @@
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
+<<<<<<< HEAD
         "microsoft.net.sdk.webassembly.pack.8.0.7.nupkg.sha512",
+=======
+        "microsoft.net.sdk.webassembly.pack.8.0.5.nupkg.sha512",
+>>>>>>> Patrykk
         "microsoft.net.sdk.webassembly.pack.nuspec",
         "tools/net472/Microsoft.Bcl.AsyncInterfaces.dll",
         "tools/net472/Microsoft.Build.dll",
@@ -6214,7 +6233,11 @@
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.5",
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23401.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23401.1",
+<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.7",
+=======
+      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.5",
+>>>>>>> Patrykk
       "Radzen.Blazor >= 4.11.0",
       "Radzen.Design >= 0.0.2",
       "Smart.Blazor >= 15.1.1",
@@ -6225,23 +6248,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\fnowa\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\patry\\.nuget\\packages\\": {},
+>>>>>>> Patrykk
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "projectName": "GradeSystem.v1.Client",
       "projectPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "projectName": "GradeSystem.v1.Client",
+      "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\obj\\",
+>>>>>>> Patrykk
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> Patrykk
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6257,8 +6296,13 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
               "projectPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+=======
+            "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+              "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+>>>>>>> Patrykk
             }
           }
         }
@@ -6330,7 +6374,11 @@
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
+<<<<<<< HEAD
             "version": "[8.0.7, )",
+=======
+            "version": "[8.0.5, )",
+>>>>>>> Patrykk
             "autoReferenced": true
           },
           "Radzen.Blazor": {
@@ -6376,7 +6424,11 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+<<<<<<< HEAD
             "version": "[7.0.20, 7.0.20]"
+=======
+            "version": "[7.0.19, 7.0.19]"
+>>>>>>> Patrykk
           }
         ],
         "frameworkReferences": {
@@ -6384,7 +6436,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+>>>>>>> Patrykk
       }
     },
     "runtimes": {

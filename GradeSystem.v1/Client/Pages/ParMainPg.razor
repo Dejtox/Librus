@@ -1,4 +1,4 @@
-﻿@*@page "/ParMainPage1"
+﻿@page "/ParMainPage1"
 @inject IStudentService StudentService
 @inject IParentService ParentService
 @inject IEnrollmentService EnrollmentService
@@ -8,12 +8,12 @@
     <div class="sidebox">
         <div class="insidebox">
             <div class="insideinsidebox">
-                <StudentMainPageExams @ref="siteref1"></StudentMainPageExams>
+                <StudentParMainPageExams @ref="siteref1"></StudentParMainPageExams>
             </div>
         </div>
         <div class="insidebox">
             <div class="insideinsidebox">
-                <StudentMainPageGrades @ref="siteref"></StudentMainPageGrades>
+                <StudentParMainPageGrades @ref="siteref"></StudentParMainPageGrades>
             </div>
         </div>
         <div class="insidebox">
@@ -206,8 +206,8 @@
 
 @code {
     private StdParLastAttenderncesmainpage popupref;
-    private StudentMainPageGrades siteref;
-    private StudentMainPageExams siteref1;
+    private StudentParMainPageGrades siteref;
+    private StudentParMainPageExams siteref1;
 
     IList<Enrollment> StudentsEnrolmentsMon = new List<Enrollment>();
     IList<Enrollment> StudentsEnrolmentsTue = new List<Enrollment>();
@@ -217,7 +217,7 @@
     IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
     DateTime Today = DateTime.Now;
     DateTime UpToDateMonday;
-    int selectedchildID; // musimy tu jakos przekazac to selected child zeby wyswietlao sie tak jak wybrane przez rodzica dziecko na glownej stronie
+    int selectedchildID; 
     string Roles;
     Parent parent;
     int ID;
@@ -337,8 +337,12 @@
                 if (studentpom.ParentID == ID)
                 {
                     parent = studentpom;
+                    if (parent.LastSelectedChildId.Value != null)
+                    {
+                        selectedchildID = parent.LastSelectedChildId.Value;
+                    }
                 }
             }
         }
     }
-} *@
+} 

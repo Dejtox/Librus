@@ -1,0 +1,146 @@
+﻿@page "/studentmainpageexams"
+    @inject IStudentService StudentService
+@inject ISubjectService SubjectService
+@inject IParentService ParentService
+@inject IEventService EventService
+
+<div class="EXtable">
+
+    <div class="EXtableheader">
+        <div class="EXtitle">Incoming Exams</div>
+        <div class="gg-more-vertical-r"></div>
+    </div>
+
+    <div class="EXdisplay">
+        @for (int i = 0;  i <= SortedIncomignExams.Count; i++)
+        {
+
+            <div class="EXday">
+                @if (i == 0)
+                {
+                    <div class="EXdate">@SortedIncomignExams[i].StartDate.ToString("dd-MM-yyyy")</div>
+                    <div class="EXexam">
+                        <div class="gg-check-r"></div>
+                        <div class="EXlesson">@SortedIncomignExams[i].StartDate.ToString("HH:mm")</div>
+                    <div class="EXsubject">Math</div>
+                    </div>
+                }
+                else
+              if (SortedIncomignExams[i].StartDate.Year == SortedIncomignExams[i - 1].StartDate.Year && SortedIncomignExams[i].StartDate.Month == SortedIncomignExams[i - 1].StartDate.Month && SortedIncomignExams[i].StartDate.Day == SortedIncomignExams[i - 1].StartDate.Day)
+                {
+                    <div class="EXexam">
+                        <div class="gg-check-r"></div>
+                        <div class="EXlesson">@SortedIncomignExams[i].StartDate.ToString("HH:mm")</div>
+                        <div class="EXsubject">Math</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="EXdate">@SortedIncomignExams[i].StartDate.ToString("dd-MM-yyyy")</div>
+                    <div class="EXexam">
+                        <div class="gg-check-r"></div>
+                        <div class="EXlesson">@SortedIncomignExams[i].StartDate.ToString("HH:mm")</div>
+                        <div class="EXsubject">Math</div>
+                    </div>
+                }
+            </div>
+            if(i >= 5)
+            {
+                break;
+            }
+        }
+        
+    </div>
+</div>
+
+
+@code {
+    int selectedchildID;
+    int ID;
+    string Roles;
+    DateTime dateTimeToday;
+    Student student;
+    Parent parent;
+    List<CalendarEvent> IncomignExams = new List<CalendarEvent>();
+    List<CalendarEvent> SortedIncomignExams = new List<CalendarEvent>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        dateTimeToday = DateTime.Now;
+        await EventService.GetCalendarEvents();
+        await ParentService.GetParents();
+        await StudentService.GetStudents();
+        await SubjectService.GetSubjects();
+        await GetClaimsGetID();
+        await FillIncomingExams();
+
+    }
+
+    async Task FillIncomingExams()
+    {
+        foreach(var evn in EventService.Events)
+        {
+            if(evn.Description == "Exam")
+            {
+                if (evn.StartDate > dateTimeToday)
+                {
+                    if(evn.ClassID == student.ClassID)
+                    {
+                        IncomignExams.Add(evn);
+                    }
+                }
+            }
+        }
+        SortedIncomignExams = IncomignExams.OrderBy(e => e.StartDate).ToList();
+
+    }
+   
+    
+
+    [CascadingParameter]
+
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Student")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+        }
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in ParentService.Parents)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    parent = studentpom;
+                    if (parent.LastSelectedChildId.Value != null)
+                    {
+                        selectedchildID = parent.LastSelectedChildId.Value;
+                        student = await StudentService.GetStudentById(selectedchildID);
+
+                    }
+                }
+            }
+        }
+    }
+}

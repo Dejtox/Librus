@@ -3,6 +3,7 @@
 @inject IStudentService StudentService
 @inject IAttendanceService AttendanceService
 @inject IEnrollmentService EnrollmentService
+@inject IParentService ParentService
 <div class="RGtable">
     <div class="RGtableheader">
         <div class="RGtitle">Attendece</div>
@@ -152,6 +153,7 @@
         <div class="RGtable">
             @foreach (var dalyevent in Events)
         {
+
             if (dalyevent.Enrollment.Date.Day == SelectedDate.Day)
             {
                 <div class="RGtablerow">
@@ -170,7 +172,9 @@
 </div>
 @code {
     int ID;
-    Student student;
+    int selectedchildID;
+    Student student ;
+    Parent parent;
     DateTime SelectedDate;
     int? Id = null;
     Teacher teacher = null;
@@ -184,6 +188,7 @@
         SelectedDate = DateTime.Now;
         await EnrollmentService.GetEnrollments();
         await StudentService.GetStudents();
+        await ParentService.GetParents();
         await AttendanceService.GetAttendances();  
         await GetClaimsGetID();
         await Filllastattendeces();
@@ -218,6 +223,22 @@
                 }
             }
         }
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in ParentService.Parents)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    parent = studentpom;
+                    if (parent.LastSelectedChildId.Value != null)
+                    {
+                        selectedchildID = parent.LastSelectedChildId.Value;
+                        student = await StudentService.GetStudentById(selectedchildID);
+
+                    }
+                }
+            }
+        }
     }
     private void Lower()
     {
@@ -234,11 +255,13 @@
     {
         foreach (var evn in AttendanceService.Attendances)
         {
-            if (evn.StudentID == Id)
+            if (evn.StudentID == student.StudentID)
             {
                 Atdlist.Add(evn);
             }
         }
+
+
         Addenrolmentstoatd();
     }
 
@@ -259,7 +282,9 @@
 
     async Task NewDate()
     {
+        Events.Clear();
         int i = 0;
+        Console.WriteLine(Atdlist.Count + "Atdlist");
         foreach (var evn in Atdlist)
         {
             if (evn.Enrollment.Date.Month == SelectedDate.Month & evn.Enrollment.Date.Year == SelectedDate.Year)
@@ -293,6 +318,7 @@
                 
             }
         }
+        Console.WriteLine(Events.Count + "events");
         StateHasChanged();
     }
 

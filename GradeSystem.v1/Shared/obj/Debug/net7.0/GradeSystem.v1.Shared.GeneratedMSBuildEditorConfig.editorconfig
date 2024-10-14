@@ -8,6 +8,10 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows,browser
 build_property.RootNamespace = GradeSystem.v1.Shared
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\Shared\
+=======
+build_property.ProjectDir = C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Shared\
+>>>>>>> Patrykk
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

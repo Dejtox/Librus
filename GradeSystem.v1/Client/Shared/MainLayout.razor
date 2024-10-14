@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject AuthenticationStateProvider authStateProvicder
 @inject NavigationManager navMenager
+@inject IParentService ParentService
 
 <div class="mainpage">
 
@@ -24,6 +25,35 @@
                                 </NotAuthorized>
                             </AuthorizeView>
                         </div>
+                        <div>
+                            <AuthorizeView Roles="Parent">
+                                @*Nie wiem jak zrobione bedzie logowanie ale mozliwe ze bedzie trzeba tam dodac clear listy parstudents zeby nie robily sie wejsia od kazdego rodzica*@
+                                @if(ParStudents.Count == 0)
+                                {
+                                     <div>No Children Added</div>
+                                }
+                                else 
+                                if (ParStudents.Count == 1)
+                                {                                    
+                                    <div>@student.Name</div>
+                                }
+                                else
+                                {
+                                    <select @onchange="ChangeStudent">
+                                        
+                                        <option value=@student.StudentID>@student.Name</option> 
+                                        @foreach (var varstudent in ParStudents)
+                                        {
+                                            if(varstudent != student)
+                                            {
+                                                <option value="@varstudent.StudentID">@varstudent.Name</option>
+                                            }
+                                            
+                                        }
+                                    </select>
+                                }
+                            </AuthorizeView>/>
+                        </div>
                         <div class="header-element-top">
                             <i class="gg-search"></i>
                         </div>
@@ -36,7 +66,7 @@
                         <div class="header-element">
                             <AuthorizeView>
                                 <Authorized>
-                                    <a @onclick="Logout" href="javascript:void(0)">Logout</a>
+                                    <a @onclick="Logout" href="javascript:void(0)">Logout</a>                                  
                                 </Authorized>
                                 <NotAuthorized>
                                     <button @onclick="GoToRandomLoginPage">Login</button>
@@ -60,8 +90,21 @@
 
 @code
 {
+    string Roles;
+    int ID;
+    Parent parent;
+    Student student;
+    List<Student> ParStudents = new List<Student>();
+    protected override async Task OnInitializedAsync()
+    {
+        await ParentService.GetParents();
+        await ParentService.GetStudents();
+        await GetClaimsGetID();
+    }
+
     private async Task Logout()
     {
+        ParStudents.Clear();
         var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvicder;
         await customAuthStateProvider.UpdateAuthenticationState(null);
         navMenager.NavigateTo("/", true);
@@ -88,7 +131,76 @@
 
     DateTime Today = DateTime.Now;
     DateTime UpToDateMonday;
-    
+
+    async Task Addchildren()
+    {
+        foreach(var child in ParentService.Students)
+        {
+            if(child.ParentID == parent.ParentID)
+            {
+                ParStudents.Add(child);
+            }
+        }
+        if (ParStudents.Count !=0)
+        {
+            if (parent.LastSelectedChildId == null)
+            {                
+                student = ParStudents.FirstOrDefault();
+                parent.LastSelectedChildId = student.StudentID;
+                await ParentService.UpdateParent(parent);
+                StateHasChanged();
+            }
+            else
+            {
+                foreach (var child in ParStudents)
+                {
+                    if (child.StudentID == parent.LastSelectedChildId)
+                    {
+                        student = child;
+                    }
+                }
+            }
+        }
+    }
+
+    async Task ChangeStudent(ChangeEventArgs e)
+    {
+        int selectedstudentId = Convert.ToInt32(e.Value.ToString());
+        parent.LastSelectedChildId = selectedstudentId;
+        await ParentService.UpdateParent(parent);
+        StateHasChanged();
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Parent")
+        {
+            foreach (var parentpom in ParentService.Parents)
+            {
+                if (parentpom.ParentID == ID)
+                {
+                    parent = parentpom;
+                    await Addchildren();
+                }
+            }
+        }
+    }
 }
 
 

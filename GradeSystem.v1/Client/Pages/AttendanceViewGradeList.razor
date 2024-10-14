@@ -1,0 +1,33 @@
+﻿@page "/attendanceviewgradelist"
+
+<div class="Atableborder">
+    <div class="Astudentinfo">
+        <div class="Astudentname">Grade (5)</div>
+    </div>
+    <div class="studentlisttable">
+        <div class="studentlisttableheader">
+            <div class="studentatnumberhead">No.</div>
+            <div class="studentatnamehead">Name</div>
+            <div></div>
+        </div>
+        <div class="studentlisttablelist">
+            @for(int i=1; i<20; i++)
+            {
+                <div class="studentatrow">
+                    <div class="studentatnumber">1</div>
+                    <div class="studentatname">John</div>
+                    <div class="showattendance">
+                        <button class="showattendancebutton">Show Attendance</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+@code {
+
+}

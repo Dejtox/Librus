@@ -1,0 +1,46 @@
+﻿@page "/attendanceviewteacherlist"
+@inject ITeacherService TeacherService
+
+<div class="Atableborder">
+    <div class="Astudentinfo">
+        <div class="Astudentname">Attendance</div>
+    </div>
+    <div class="teacherstable">
+        <div class="teacherstableheader">
+            <div class="ttheadergrade">Grade</div>
+            <div class="ttheadertitle">Homeroom teacher</div>
+            <div class="ttheaderblank"></div>
+
+
+        </div>
+        <div class="teacherstablelist">
+            @for(int i =1; i<5; i++)
+            {
+                <div class="teacheratrow">
+                    <div class="teachergradename">5</div>
+                    <div class="teachername">Agata Cygan</div>
+                    <div class="teacherviews">
+                        <button class="teacherview">Grade view</button>
+                        <button class="teacherview">Student view</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+
+
+    List<Teachers> Teachers = new List<Teachers>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await TeacherService.GetTeachers();
+
+    }
+
+
+}

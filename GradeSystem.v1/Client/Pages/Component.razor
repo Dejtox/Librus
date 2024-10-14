@@ -1,0 +1,35 @@
+﻿@page "/test2137"
+
+<div class="Atableborder">
+    <div class="Astudentinfo">
+        <div class="Astudentname">Student (Regina)</div>
+        <div class="Astudentname">Grade (5)</div>
+    </div>
+
+    <div class="subatbox">
+        <div class="studentattendancetable">
+            <div class="studentattendanceheader">
+                <div class="sadate">Date</div>
+                <div class="salessonnumber">Lesson Number</div>
+            </div>
+            <div>
+                @for(int i =1; i<20; i++)
+                {
+                    <div class="satablerow">
+                        <div class="satabledate">23.05.2024(Thu)</div>
+                        <div class="satableattendance">[][][][][][]</div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="buttonatbox">
+            <button class="addattendancebutton"> Add Attendance </button>
+            <button class="backbutton"> Back </button>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

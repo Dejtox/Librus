@@ -1,0 +1,44 @@
+﻿@page "/attendanceviewstudents"
+
+<div class="Atableborder">
+    <div class="Astudentinfo">
+        <div class="Astudentname">Grade (class)</div>
+        <div class="Astudentclass">Period (May 2024)</div>
+        <div class="Astudentclass">Days (16 - 21)</div>
+    </div>
+    <div class="Agradestable">
+        <div class="Agradeheader">
+            <div class="Anumber">No.</div>
+            <div class="Aname">Name</div>
+
+            <div class="Aday">Monday</div>
+
+            <div class="Aday">Tuesday</div>
+            <div class="Aday">Wednesday</div>
+            <div class="Aday">Thursday</div>
+            <div class="Aday">Friday</div>
+
+            <div class="Aday">Number of missed lessons</div>
+            <div class="Aday">Number of</div>
+        </div>
+        <div class="Tgradesdisplay">
+            @for (int i = 1; i < 21; i++)
+            {
+                <div class="Agraderow">
+                    <div class="Anumber Anumber--d">1</div>
+                    <div class="Aname">Name</div>
+                    @for(int j=1; j<8; j++)
+                    {
+                        <div class="Aday Asingle"></div>
+                    }
+                    
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+}

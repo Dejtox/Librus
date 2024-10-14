@@ -3,6 +3,8 @@ public class CalendarEvent
 {
     public int CalendarEventID { get; set; }
     public int ClassID { get; set; }
+
+    public int? SubjectID   { get; set; }
     public string Title { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }

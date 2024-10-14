@@ -4,6 +4,7 @@
 @inject IGradeNumberService GradeNumberService
 @inject IGradeService GradeService
 @inject ISubjectService SubjectService
+@inject IParentService ParentService
 
 <div class="RGtable">
 
@@ -73,6 +74,7 @@
     protected override async Task OnInitializedAsync()
     {
         await GradeNumberService.GetGradeNumbers();
+        await ParentService.GetParents();
         await GradeService.GetGrades();
         await StudentService.GetStudents();
         await SubjectService.GetSubjects();
@@ -137,12 +139,13 @@
         }
     }
 
- 
 
 
+    int selectedchildID;
     int ID;
     string Roles;
     Student student;
+    Parent parent;
 
 
     [CascadingParameter]
@@ -171,6 +174,22 @@
                 if (studentpom.StudentID == ID)
                 {
                     student = studentpom;
+                }
+            }
+        }
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in ParentService.Parents)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    parent = studentpom;
+                    if (parent.LastSelectedChildId.Value != null)
+                    {
+                        selectedchildID = parent.LastSelectedChildId.Value;
+                        student = await StudentService.GetStudentById(selectedchildID);
+
+                    }
                 }
             }
         }

@@ -63,7 +63,6 @@ namespace GradeSystem.v1.Client.Services.ParentService
         public async Task UpdateParent(Parent parent)
         {
             var result = await _http.PutAsJsonAsync($"api/Parents/{parent.ParentID}", parent);
-            await SetParents(result);
         }
     }
 }

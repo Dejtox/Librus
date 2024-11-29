@@ -20,5 +20,6 @@ namespace GradeSystem.v1.Client.Services.AttendanceService
         Task UpdateAttendance(Attendance attendance);
         Task DeleteAttendance(int id);
         Task CreateAttendance(Attendance attendance);
+        Task CreatManyAttendances(List<Attendance> attendances);
     }
 }

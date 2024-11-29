@@ -28,7 +28,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollment()
         {
-            return await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).Include(t => t.Subject.Teacher).Where(e => e.Status == "active").ToListAsync();
+            return await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).Include(t => t.Subject.Teacher).ToListAsync();
         }
 
         // GET: api/Enrollments/5
@@ -44,6 +44,11 @@ namespace GradeSystem.v1.Server.Controllers
 
             return enrollment;
         }
+        //[HttpGet("get_enrollments_by_teacherid")]
+        //public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollmentByTeacherID([FromQuery]int id, [FromQuery]DateTime startDate, [FromQuery]DateTime endDate)
+        //{
+
+        //}
 
         // PUT: api/Enrollments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -107,6 +112,12 @@ namespace GradeSystem.v1.Server.Controllers
         private bool EnrollmentExists(int id)
         {
             return _context.Enrollment.Any(e => e.EnrollmentID == id);
+        }
+
+        [HttpGet("get_enrollments_by_classid")]
+        public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollmentsByClassID([FromQuery]int classID)
+        {
+            return await _context.Enrollment.Include(s=>s.Subject).Where(cc=>cc.ClassID == classID).ToListAsync();
         }
     }
 }

@@ -11,4 +11,5 @@ public class Teacher //zmieni³bym nazwe na employee
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public string Name => $"{FirstName} {LastName}";
+
 }

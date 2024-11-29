@@ -87,12 +87,26 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Attendance>> PostAttendance(Attendance attendance)
         {
-            attendance.Student = null;
-            attendance.Enrollment = null;
+            //attendance.Student = null;
+            //attendance.Enrollment = null;
             _context.Attendance.Add(attendance);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAttendance", new { id = attendance.AttendanceID }, attendance);
+        }
+
+        [HttpPost("many_attendances")]
+        public async Task<ActionResult<List<Attendance>>> PostManyAttendances(List<Attendance> attendances)
+        {
+            foreach (var attendance in attendances)
+            {
+                attendance.Enrollment = null;
+                attendance.Student = null;
+            }
+            _context.Attendance.AddRange(attendances);
+            await _context.SaveChangesAsync();
+            //to jak do pobrania bd
+            return CreatedAtAction("GetAttendance", new { id = attendances.First().AttendanceID }, attendances.First());
         }
 
         // DELETE: api/Attendances/5

@@ -27,6 +27,12 @@ namespace GradeSystem.v1.Server.Controllers
             return await _context.Subject.Include(s=>s.Teacher).ToListAsync();
         }
 
+        [HttpGet("teacher_subjects")]
+        public async Task<ActionResult<IEnumerable<Subject>>> GetTeacherSubjects([FromQuery]int id)
+        {
+            return await _context.Subject.Where(s=>s.TeacherID==id).ToListAsync();
+        }
+
         // GET: api/Subjects/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Subject>> GetSubject(int id)

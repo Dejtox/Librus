@@ -9,15 +9,20 @@
   },
   "packageFolders": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "C:\\Users\\patry\\.nuget\\packages\\": {},
 =======
     "C:\\Users\\fnowa\\.nuget\\packages\\": {},
 >>>>>>> origin/Filipformerge
+=======
+    "C:\\Users\\pepci\\.nuget\\packages\\": {},
+>>>>>>> origin/elBranchorP
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
 <<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
       "projectName": "GradeSystem.v1.Shared",
@@ -31,16 +36,27 @@
       "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\obj\\",
 >>>>>>> origin/Filipformerge
+=======
+      "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "projectName": "GradeSystem.v1.Shared",
+      "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\obj\\",
+>>>>>>> origin/elBranchorP
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
 <<<<<<< HEAD
+<<<<<<< HEAD
         "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
 =======
         "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> origin/Filipformerge
+=======
+        "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/elBranchorP
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -66,8 +82,14 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
+<<<<<<< HEAD
         "auditMode": "direct"
       }
+=======
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
+>>>>>>> origin/elBranchorP
     },
     "frameworks": {
       "net7.0": {
@@ -89,10 +111,14 @@
           }
         },
 <<<<<<< HEAD
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
 =======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
 >>>>>>> origin/Filipformerge
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+>>>>>>> origin/elBranchorP
       }
     }
   }

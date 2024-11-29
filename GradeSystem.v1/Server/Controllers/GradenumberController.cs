@@ -75,8 +75,9 @@ namespace GradeSystem.v1.Server.Controllers
             _context.GradeNumber.Add(gradenumber);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGradeNumber", new { id = gradenumber.GradeNumberID }, gradenumber);
+            return CreatedAtAction("GetGradeNumberById", new { id = gradenumber.GradeNumberID }, gradenumber);
         }
+
 
         // DELETE: api/Classes/5
         [HttpDelete("{id}")]

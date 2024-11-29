@@ -1,0 +1,89 @@
+﻿@inject ISubstituteService SubstituteService
+@inject ITeacherService TeacherService
+@inject DialogService DialogService
+@inject ISubjectService SubjectService
+
+<div class="search-container ">
+    <div class="empty-row"></div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Teacher" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Subject?.Teacher?.Name" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Subject" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Subject?.SubjectName" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Date" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Date.ToString("dd.MM.yyy")" Style="font-weight:bold;font-size:17px;margin:0;"/>
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Grade" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Class?.ClassName" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Substitute teacher" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenDropDown @bind-Value="@teacherID" Data=@TeacherService.Teachers Style="width: 30%; border-radius:15px;" ValueProperty="TeacherID" TextProperty="Name" Placeholder="Search..." Change="@(()=>GetSubjects(teacherID))"/>
+        </RadzenStack>
+    </div>
+    <RadzenTemplateForm TItem="Enrollment" Data="subEnrollment" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Substitute subject" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value="@subEnrollment.SubjectID" Data=@subjects Style="width: 30%; border-radius:15px;" ValueProperty="SubjectID" TextProperty="SubjectName" Placeholder="Search..." />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+
+</div>
+
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    Enrollment enrollment = new Enrollment();
+    Enrollment subEnrollment = new Enrollment();
+    List<Subject> subjects = new List<Subject>();
+    public int teacherID;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        enrollment = await SubstituteService.GetEnrollment((int)ID);
+        await TeacherService.GetTeachers();
+        await SubstituteService.GetSubjects();
+        subEnrollment.Date = enrollment.Date;
+        subEnrollment.EndDate = enrollment.EndDate;
+        subEnrollment.ClassID = enrollment.ClassID;
+        subEnrollment.ClassRoom = enrollment.ClassRoom;
+    }
+
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async void HandleSubmit()
+    {
+        await SubstituteService.CreateSubstitute((int)ID, subEnrollment);
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+    private async Task GetSubjects(int id)
+    {
+        subjects = await SubjectService.GetTeacherSubjects(id);
+    }
+}

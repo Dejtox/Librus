@@ -1,0 +1,68 @@
+﻿@inject IStudentService StudentService
+@inject IEnrollmentService EnrollmentService
+@inject IAttendanceService AttendanceService
+@inject DialogService DialogService
+@inject NavigationManager navigationManager
+
+<div class="search-container">
+    <div class="empty-row"></div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@student.Name" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <RadzenTemplateForm Data="attendance" TItem="Attendance" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit"> 
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Enrollment" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown Data="enrollments" @bind-Value=@attendance.EnrollmentID ValueProperty="EnrollmentID" Placeholder="Search..." TextProperty="Subject.SubjectName"/>
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Type" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenRadioButtonList @bind-Value=@attendance.Description TValue="string">
+                    <Items>
+                        <RadzenRadioButtonListItem Text="Present" Value="@("Present")"/>
+                        <RadzenRadioButtonListItem Text="Absent" Value="@("Absent")" />
+                        <RadzenRadioButtonListItem Text="Late" Value="@("Late")" />
+                        <RadzenRadioButtonListItem Text="Excused" Value="@("Excused")" />
+                    </Items>
+                </RadzenRadioButtonList>
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    Attendance attendance = new Attendance();
+    Student student = new Student();
+    List<Enrollment> enrollments = new List<Enrollment>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        student = await StudentService.GetStudentById((int)ID);
+        enrollments = await EnrollmentService.GetEnrollmentsByClassID(1);
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async void HandleSubmit()
+    {
+        attendance.StudentID = student.StudentID;
+        attendance.CreatoinDate = DateTime.Now;
+        await AttendanceService.CreateAttendance(attendance);
+        navigationManager.NavigateTo("/addstuff");
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

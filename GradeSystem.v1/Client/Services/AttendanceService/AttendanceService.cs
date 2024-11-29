@@ -123,5 +123,9 @@ namespace GradeSystem.v1.Client.Services.AttendanceService
             await _http.PutAsJsonAsync($"api/Attendances/{attendance.AttendanceID}", attendance);
         }
 
+        public async Task CreatManyAttendances(List<Attendance> attendances)
+        {
+            await _http.PostAsJsonAsync("api/Attendances/many_attendances", attendances);
+        }
     }
 }

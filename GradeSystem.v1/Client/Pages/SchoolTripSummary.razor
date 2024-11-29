@@ -1,0 +1,134 @@
+﻿@page "/school_trip_summary/{id:int}"
+@inject ISchoolTripService SchoolTripService
+@inject NavigationManager navigationManager
+@inject DialogService DialogService
+
+<PageTitle>Trip summary</PageTitle>
+
+<div class="content-container">
+    <div class="content-header">
+        <p class="page-header">Trip summary</p>
+    </div>
+    <div class="search-container">
+        <div class="empty-row"></div>
+        <div hidden="@hidden">
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Trip name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.Name" Style="font-weight:bold;font-size:17px;margin:0;"/>
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Trip purpose" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.Purpose" Style="font-weight:bold;font-size:17px;margin:0;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Location" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.Location" Style="font-weight:bold;font-size:17px;margin:0;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                    <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Duration" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenLabel Text="Start" Style="font-weight:bold;width:5%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.StartDate.ToString()" Style="font-weight:bold;font-size:17px;margin:0;" />
+                    <RadzenLabel Text="End" Style="font-weight:bold;width:5%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.EndDate.ToString()" Style="font-weight:bold;font-size:17px;margin:0;" />
+                    </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Trip leader" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.TripLeader?.Name" Style="font-weight:bold;font-size:17px;margin:0;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Guardians" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.Name" Style="font-weight:bold;font-size:17px;margin:0;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Transportation" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.Transportation" Style="font-weight:bold;font-size:17px;margin:0;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Additional info" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.AdditionalInfo" Style="font-weight:bold;font-size:17px;margin:0;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Grades" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.Classess" Style="font-weight:bold;font-size:17px;margin:0;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Students" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenText Text="@schoolTrip.Ppl.ToString()" Style="font-weight:bold;font-size:17px;margin:0;" />
+                        <button type="button" class="rounded-empty-button " style="margin-right:5%; margin-left:auto;" @onclick="ShowStudents">Show full list</button>
+                </RadzenStack>
+            </div>
+            <div class="button-container search-margin">
+                <button class="rounded-filled-button" type="button" onclick="@Back">Back</button>
+            </div>
+        </div>
+        <div hidden="@(!hidden)">
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Students Participating in a trip" Style="font-weight:bold;font-size:17px;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <div class="search-margin l-margin">
+                    @try
+                    {
+                        foreach (var st in schoolTrip?.Students)
+                        {
+                            <p>@st?.Student?.Name</p>
+                        }
+                    }catch(NullReferenceException)
+                    {
+                        <p>No students</p>
+                    }
+                </div>
+            </div>
+            <div class="button-container search-margin">
+                <button class="rounded-filled-button" type="button" onclick="@ShowStudents">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int ID { get; set; }
+    SchoolTrip schoolTrip = new SchoolTrip();
+    bool hidden = false;
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID != null)
+        {
+            schoolTrip = await SchoolTripService.GetSchoolTripByID((int)ID);
+        }
+    }
+
+    private void Back()
+    {
+        navigationManager.NavigateTo("school_trips1");
+    }
+    private void ShowStudents()
+    {
+        hidden = !hidden;
+        // await DialogService.OpenAsync<TripStudentsPopup>("School trip students",
+        // new Dictionary<string, object>() { { "Students", schoolTrip.Students } },
+        // new DialogOptions() { Draggable = true, ShowClose = false,  });
+    }
+}

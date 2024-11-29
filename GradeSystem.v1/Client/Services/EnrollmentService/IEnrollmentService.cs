@@ -17,5 +17,6 @@
         Task UpdateEnrollment(Enrollment enrollment);
         Task DeleteEnrollment(int id);
         Task CreateEnrollment(Enrollment enrollment);
+        Task<List<Enrollment>> GetEnrollmentsByClassID(int classID);
     }
 }

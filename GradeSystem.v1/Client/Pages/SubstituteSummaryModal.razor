@@ -1,0 +1,49 @@
+﻿@inject IEnrollmentService EnrollmentService
+@inject DialogService DialogService
+@inject ITeacherService TeacherService
+@inject ISubstituteService SubstituteService
+
+<div>
+    <RadzenDataGrid TItem="Enrollment" Data="enrollments" PagerHorizontalAlign="Radzen.HorizontalAlign.Center" AllowAlternatingRows="false" Style="border-radius:15px;">
+        <Columns>
+            <RadzenDataGridColumn Property="Enrollment.Date" Title="Date" FormatString="{0:d}" TItem="Enrollment" />
+            <RadzenDataGridColumn Property="Enrollment.Class?.ClassName" Title="Grade" TItem="Enrollment" />
+            <RadzenDataGridColumn Title="Subject" TItem="Enrollment">
+                <Template Context="Enrollment">
+                    @if (Enrollment.SubEnrollmentID != null)
+                    {
+                        @Enrollment.Subject?.SubjectName @("(") @Enrollment.SubEnrollment?.Subject?.SubjectName @(")")
+                    }
+                    else
+                    {
+                        @Enrollment.Subject?.SubjectName
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Property="Enrollment.Subject?.Teacher.Name" Title="Absent Teacher" TItem="Enrollment" />
+            <RadzenDataGridColumn Title="Substitute teacher" TItem="Enrollment">
+                <Template Context="Enrollment">
+                    @if (Enrollment.SubEnrollmentID != null)
+                    {
+                        @Enrollment.SubEnrollment?.Subject?.Teacher?.Name @("elo")
+                    }
+                    else
+                    {
+                        @("-")
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    List<Enrollment> enrollments = new List<Enrollment>();
+    protected override async Task OnParametersSetAsync()
+    {
+        Teacher teacher = await TeacherService.GetTeacherByID((int)ID);
+        enrollments = await SubstituteService.GetEnrollments(teacher);
+    }
+}

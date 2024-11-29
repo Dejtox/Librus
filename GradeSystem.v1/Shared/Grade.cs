@@ -14,10 +14,9 @@ public class Grade
 
     public int GradeNumberID { get; set; }
     public int GradeTypeId { get; set; }
-    public int GradeWeight { get; set; }
     public string Description { get; set; } = string.Empty;
 
-
+    public int GradeWeight { get; set; }
     public Student? Student { get; set; }
     public Subject? Subject { get; set; }
 

@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var enrollment in SubstituteService.Enrollments)
+@*         @foreach (var enrollment in SubstituteService.Enrollments)
         {
             <tr>
                 <td>@enrollment.Date</td>
@@ -27,13 +27,13 @@
                     <button class="btn btn-primary" @onclick="(()=>CreateSubstitute(enrollment.EnrollmentID))"><i class="oi oi-pencil"></i></button>
                 </td>
             </tr>
-        }
+        } *@
     </tbody>
 </table>
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await SubstituteService.GetEnrollments();
+        //await SubstituteService.GetEnrollments();
     }
     void CreateSubstitute(int id)
     {

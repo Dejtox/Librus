@@ -18,7 +18,10 @@ public class SchoolTrip
     public string NonSchoolGuardians { get; set; }
     public List<SchoolTripClasses>? Classes { get; set; }
     public List<SchoolTripStudents>? Students { get; set; }
-    public int Ppl => Students.Count();
+    public int? Ppl => Students?.Count();
     public string Duration => $"{StartDate.ToString("dd.MM.yyyy")}-{EndDate.ToString("dd.MM.yyyy")}";
+    public string? Classess => Classes != null
+    ? string.Join(",", Classes.Select(c => c.Class?.ClassName))
+    : null;
 }
 

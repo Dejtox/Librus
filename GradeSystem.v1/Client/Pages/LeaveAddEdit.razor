@@ -1,4 +1,4 @@
-﻿@page "/add_leave/{id:int}"
+﻿@* @page "/add_leave/{id:int}"
 @inject ITeacherService TeacherService
 @inject ISubstituteService SubstituteService
 @inject ILogRegisterService LogRegisterService
@@ -69,3 +69,4 @@
         await SubstituteService.DeleteLeave(id,teacher);
     }
 }
+ *@

@@ -2,21 +2,15 @@
 {
     public interface ISubstituteService
     {
-        IList<Enrollment> Substitutes { get; set; }
-        IList<Enrollment> Enrollments { get; set; }
-        IList<Subject> AvailableSubjects { get; set; }
+        IList<Subject> Subjects { get; set; }
 
-        Task GetSubstitutes();
-        Task GetEnrollments();
-
-        Task DeleteSubstitute(int id);
-        Task DeleteEnrollment(int id);
-        Task DeleteLeave(int id,Teacher teacher);
-
-        Task GetAvailableSubjects(DateTime startDate,DateTime endDate);
-        Task CreateSubstitute(Enrollment enrollment);
-        Task CreateLeave(Teacher teacher);
-        Task<Enrollment> GetEnrollmentById (int id);
-        Task<Enrollment> GetSubstituteById(int id);
+        Task GetSubjects();
+        Task<List<Teacher>> GetTeachers();
+        Task<List<TeacherDTO>> GetAbsentTeachers();
+        Task DeleteTeacherSubstitute(int id);
+        Task CreateTeacherSubstitute(int id, Teacher teacher);
+        Task<List<Enrollment>> GetEnrollments(Teacher teacher);
+        Task<Enrollment> GetEnrollment(int id);
+        Task CreateSubstitute(int enrollmentID, Enrollment substitute);
     }
 }

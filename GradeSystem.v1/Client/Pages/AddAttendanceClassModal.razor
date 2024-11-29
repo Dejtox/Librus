@@ -1,0 +1,127 @@
+﻿@inject DialogService DialogService
+@inject IClassService ClassService
+@inject IAttendanceService AttendanceService 
+
+<div>
+    <RadzenDataGrid Data="attendances" TItem="Attendance" AllowAlternatingRows="false" Style="border-radius:15px;">
+        <Columns>
+            <RadzenDataGridColumn Title="No." TItem="Attendance">
+                <Template Context="attendance">
+                    @((attendances.IndexOf(attendance)+1))
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Title="Name" TItem="Attendance" Property="Attendance.Student.Name" />
+            <RadzenDataGridColumn TItem="Attendance" Title="ob">
+                <HeaderTemplate>
+                    <div style="display: flex; flex-direction: column;">
+                        <span>ob</span>
+                        <RadzenCheckBox TValue="bool" Value="@states["Present"]" TriState="false" Change="@((args)=>ToggleAll(args,"Present"))" />
+                    </div>
+                </HeaderTemplate>
+                <Template Context="attendance">
+                    <RadzenCheckBox TValue="bool" TriState="false" Value="@(attendance.Description == "Present")" Change="@((args)=>Toggle(attendance,args,"Present"))" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Attendance" Title="nb">
+                <HeaderTemplate>
+                    <div style="display:flex; flex-direction:column;">
+                        <span>nb</span>
+                        <RadzenCheckBox TValue="bool" Value="@states["Absent"]" TriState="false" Change="@((args)=>ToggleAll(args,"Absent"))" />
+                    </div>
+                </HeaderTemplate>
+                <Template Context="attendance">
+                    <RadzenCheckBox TValue="bool" TriState="false" Value="@(attendance.Description == "Absent")" Change="@((args)=>Toggle(attendance,args,"Absent"))" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Attendance" Title="sp">
+                <HeaderTemplate>
+                    <div style="display:flex; flex-direction:column;">
+                        <span>sp</span>
+                        <RadzenCheckBox TValue="bool" Value="@states["Late"]" TriState="false" Change="@((args)=>ToggleAll(args,"Late"))" />
+                    </div>
+                </HeaderTemplate>
+                <Template Context="attendance">
+                    <RadzenCheckBox TValue="bool" TriState="false" Value="@(attendance.Description == "Late")" Change="@((args)=>Toggle(attendance,args,"Late"))" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Attendance" Title="u">
+                <HeaderTemplate>
+                    <div style="display:flex; flex-direction:column;">
+                        <span>u</span>
+                        <RadzenCheckBox TValue="bool" Value="@states["Excused"]" TriState="false" Change="@((args)=>ToggleAll(args,"Excused"))" />
+                    </div>
+                </HeaderTemplate>
+                <Template Context="attendance">
+                    <RadzenCheckBox TValue="bool" TriState="false" Value="@(attendance.Description == "Excused")" Change="@((args)=>Toggle(attendance,args,"Excused"))" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Attendance" Title="np">
+                <HeaderTemplate>
+                    <div style="display:flex; flex-direction:column;">
+                        <span>np</span>
+                        <RadzenCheckBox TValue="bool" Value="@states["???"]" TriState="false" Change="@((args)=>ToggleAll(args,"???"))" />
+                    </div>
+                </HeaderTemplate>
+                <Template Context="attendance">
+                    <RadzenCheckBox TValue="bool" TriState="false" Value="@(attendance.Description == "???")" Change="@((args)=>Toggle(attendance,args,"???"))" />
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+    <div class="search-container">
+        <div class="options search-margin">
+            <button type="submit" @onclick="@HandleFakeSubmit" class="rounded-empty-button">Add attendances</button>
+            <button @onclick="@Close" class="rounded-filled-button">Close</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    List<Student> students = new List<Student>();
+    List<Attendance> attendances = new List<Attendance>();
+    Dictionary<string, bool> states = new Dictionary<string, bool>
+    {
+        {"Present",false},
+        {"Absent",false},
+        {"Late",false},
+        {"Excused",false},
+        {"???",false}
+    };
+    private void Toggle(Attendance attendance, bool args, string desc)
+    {
+        attendance.Description = desc;
+    }
+
+    private void ToggleAll(bool args,string desc)
+    {
+
+        states[desc] = args;
+        //na razie tak bo wg widoku moze ktos miec 2 stany na lekcji wiec idk czy to ma byc po przecinku czy jak(do obgadnia) 
+        foreach (var attendance in attendances)
+        {
+            attendance.Description = args ? desc : ""; 
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        //enrollment jeszcze wcześniej
+        students = await ClassService.GetClassStudents((int)ID);
+        List<Attendance> attendances2 = new List<Attendance>();
+        foreach(var student in students)
+        {
+            attendances2.Add(new Attendance() { Student = student, StudentID = student.StudentID, CreatoinDate = DateTime.Now, EnrollmentID = 9 });
+        }
+        attendances = attendances2.ToList();
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async Task HandleFakeSubmit()
+    {
+        await AttendanceService.CreatManyAttendances(attendances);
+    }
+}

@@ -1,0 +1,50 @@
+﻿@inject ITeacherService TeacherService
+@inject DialogService DialogService
+
+<div class="search-container">
+    <div class="empty-row"></div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@teacher.Name" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <RadzenTemplateForm Data="teacher" TItem="Teacher" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <div class="search-margin l-margin">
+                <RadzenLabel Text="Absent from" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDatePicker Name="StartDate" @bind-Value="teacher.StartDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="true" />
+                <RadzenLabel Text="to" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDatePicker Name="StartDate" @bind-Value="teacher.EndDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="false" />
+            </div>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Edit</button>
+            <button class="rounded-filled-button" type="button" onclick="@Cancel">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    Teacher teacher = new Teacher();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        teacher = await TeacherService.GetTeacherByID((int)ID);
+    }
+
+    private void Cancel()
+    {
+        DialogService.Close();
+    }
+    private async Task HandleSubmit()
+    {
+        await TeacherService.UpdateTeacher(teacher);
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

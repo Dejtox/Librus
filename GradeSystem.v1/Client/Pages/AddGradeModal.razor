@@ -1,0 +1,118 @@
+﻿@inject IGradeService GradeService
+@inject IStudentService StudentService
+@inject ISubjectService SubjectService
+@inject DialogService DialogService
+
+@inject IGradeNumberService GradeNumberService
+
+
+<div class="search-container">
+    <div class="empty-row"></div>
+    <RadzenTemplateForm Data="grade" TItem="Grade" Submit="HandleSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Name" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenText Text="@grade.Student?.Name" Style="font-weight:bold;font-size:17px;margin:0;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Trip name" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenText Text="@grade.Subject?.SubjectName" Style="font-weight:bold;font-size:17px;margin:0;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Type" Component="type" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDropDown @bind-Value="@grade.GradeTypeId" Data=@GradeNumberService.GradeTypes Style="width: 30%; border-radius:15px;" Name="type" ValueProperty="GradeTypeId" TextProperty="GradeTypeName" Placeholder="Search..." />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Grade" Component="graden" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDropDown @bind-Value="@grade.GradeNumberID" Data=@GradeNumberService.GradeNumbers Style="width: 30%; border-radius:15px;" Name="graden" ValueProperty="GradeNumberID" TextProperty="GradeName" Placeholder="Search..." />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Date" Component="Date" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDatePicker Name="Date" @bind-Value="grade.DateOfGrading" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="true" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Description" Component="Description" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenTextArea Name="Description" @bind-Value="grade.Description" Style="width: 70%; border-radius:15px;" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    [Parameter]
+    public int? SubjectID { get; set; }
+    // List<GradeType> gradeTypes = new List<GradeType>() { new GradeType() { GradeWeight = 1, GradeTypeName = "Homework", color = "green" }, new GradeType() { GradeWeight = 2, GradeTypeName = "Exam", color = "red" } };
+    // List<GradeNumber> gradeNumbers = new List<GradeNumber>()
+    // {
+    //     new GradeNumber(){gradenumber=1.0f,GradeName="1"},
+    //     new GradeNumber(){gradenumber=1.3f,GradeName="1+"},
+    //     new GradeNumber(){gradenumber=1.6f,GradeName="2-"},
+    //     new GradeNumber(){gradenumber=2.0f,GradeName="2"},
+    //     new GradeNumber(){gradenumber=2.3f,GradeName="2+"},
+    //     new GradeNumber(){gradenumber=2.6f,GradeName="3-"},
+    //     new GradeNumber(){gradenumber=3.0f,GradeName="3"},
+    //     new GradeNumber(){gradenumber=3.3f,GradeName="3+"},
+    //     new GradeNumber(){gradenumber=3.6f,GradeName="4-"},
+    //     new GradeNumber(){gradenumber=4.0f,GradeName="4"},
+    //     new GradeNumber(){gradenumber=4.3f,GradeName="4+"},
+    //     new GradeNumber(){gradenumber=4.6f,GradeName="5-"},
+    //     new GradeNumber(){gradenumber=5.0f,GradeName="5"},
+    //     new GradeNumber(){gradenumber=5.0f,GradeName="5+"},
+    //     new GradeNumber(){gradenumber=5.0f,GradeName="6-"},
+    //     new GradeNumber(){gradenumber=6.0f,GradeName="6"},
+    // };
+
+    Grade grade = new Grade();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Student student = await StudentService.GetStudentById((int)ID);
+        Subject subject = await SubjectService.GetSubjectByID((int)ID);
+        grade.Subject = subject;
+        grade.Student = student;
+        grade.SubjectID = subject.SubjectID;
+        grade.StudentID = student.StudentID;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await GradeNumberService.GetGradeNumbers();
+        await GradeNumberService.GetGradeTypes();
+    }
+    private async Task HandleSubmit()
+    {
+        grade.GradeWeight = 0;
+        await GradeService.CreateGrade(grade);
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+
+    private async void MockData()
+    {
+        // foreach(var gr in gradeNumbers)
+        // {
+        //     await GradeNumberService.PostGradeNumber(gr);
+        // }
+        // foreach(var gt in gradeTypes)
+        // {
+        //     await GradeNumberService.PostGradeType(gt);
+        // }
+    }
+}

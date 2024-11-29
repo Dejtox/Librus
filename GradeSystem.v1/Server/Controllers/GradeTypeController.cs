@@ -66,7 +66,7 @@ namespace GradeSystem.v1.Server.Controllers
             _context.GradeType.Add(gradetype);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGradeNumber", new { id = gradetype.GradeTypeId }, gradetype);
+            return CreatedAtAction("GetGradeTypeById", new { id = gradetype.GradeTypeId }, gradetype);
         }
 
         // DELETE: api/Classes/5

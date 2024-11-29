@@ -1,5 +1,5 @@
 ﻿@page "/studentmainpageexams"
-    @inject IStudentService StudentService
+@inject IStudentService StudentService
 @inject ISubjectService SubjectService
 @inject IParentService ParentService
 @inject IEventService EventService
@@ -12,6 +12,7 @@
     </div>
 
     <div class="EXdisplay">
+        @*
         @for (int i = 0;  i <= SortedIncomignExams.Count; i++)
         {
 
@@ -49,12 +50,14 @@
                 break;
             }
         }
+        *@
         
     </div>
 </div>
 
 
 @code {
+    @*
     int selectedchildID;
     int ID;
     string Roles;
@@ -143,4 +146,5 @@
             }
         }
     }
+    *@
 }

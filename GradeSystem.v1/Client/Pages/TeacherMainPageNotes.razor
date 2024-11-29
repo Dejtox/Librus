@@ -12,15 +12,16 @@
     <div class="notetitles"></div>
 
     <div class="allnotes">
-        @for(int i=1; i<10; i++)
-            {
-            <button class="singlenote">
-                @if (note.NoteID == null)
-                {
-
-                }
-            </button>
-            }
+        
+        @for (int i =1; i<4; i++)
+        {
+            <div class="noterow">
+                <button class="singlenote"></button>
+                <button class="singlenote"></button>
+                <button class="singlenote"></button>
+            </div>
+        }
+        
             
     </div>
 

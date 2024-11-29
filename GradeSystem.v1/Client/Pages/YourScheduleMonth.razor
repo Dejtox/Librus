@@ -24,65 +24,31 @@
 
             </div>
 
-
             <div class="Mdays">
-                <div class="Mday" style="margin-left: 2%">
-                    <div class="Mdayhead">Monday</div>
-                    @for(int i=1 ; i<6 ; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Tuesday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Wednesday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle">
-                            @for(int j = 1; j < 32; j++)
-                            {
-                                int k = j; 
-                            }
-                        </div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Thursday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Friday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Saturday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday" style="margin-right: 2%">
-                    <div class="Mdayhead">Sunday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
+                <div class="Mdayhead">Monday</div>
+                <div class="Mdayhead">Tuesday</div>
+                <div class="Mdayhead">Wednesday</div>
+                <div class="Mdayhead">Thursday</div>
+                <div class="Mdayhead">Friday</div>
+                <div class="Mdayhead">Saturday</div>
+                <div class="Mdayhead">Sunday</div>
             </div>
 
+            <div class="Month">
+                @for(int j = 1; j<7; j++)
+                {
+                    
+                    <div class="MonthRow">
+                        @for (int i = 1; i < 8; i++)
+                        {
+                            <div class="Msingle"></div>
+                        }
+                    </div>
+                    
+                }
+            </div>
 
+           
         </div>
     </div>
 

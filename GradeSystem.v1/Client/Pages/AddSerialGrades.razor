@@ -1,0 +1,48 @@
+﻿@page "/addserialgrades"
+
+<div class="asgmainbox">
+
+    <div class="asgheader">
+        <div>Add Serial Grades</div>
+    </div>
+
+    <div class="asgselect">
+        <div class="asgdate">
+            <div class="asgdatetitle">Date</div>
+            <button class="asgselectdate">Select <div class="gg-calendar"></div></button>
+        </div>
+        <div class="asgtype">
+            <div class="asgtypetitle">Type</div>
+            <button class="asgselecttype">Select<div class="gg-chevron-down"></div></button>
+        </div>
+    </div>
+    
+    <div class="asgtableforgrades">
+        <div class="hasgtfgheader">
+            <div class="hasgnumber">No.</div>
+            <div class="hasgname">Name</div>
+            <div class="hasggrades">Grades</div>
+            <div class="hasgfinalgrade">FG</div>
+        </div>
+        @for(int i =1; i<20; i++)
+        {
+            <div class="tableforgradesrow">
+                <div class="asgnumber">1</div>
+                <div class="asgname">Iga</div>
+                <div class="asggrades">1</div>
+                <div class="asgfinalgrade">1</div>
+            </div>
+        }
+        
+        <div class="asgbuttonbox">
+            <button class="asgconfirmbutton">Confirm</button>
+            <button class="asgcancelbutton">Cancel</button>
+        </div>
+         
+    </div>
+    
+</div>
+    
+@code {
+
+}

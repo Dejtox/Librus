@@ -42,6 +42,7 @@ else
         <label for="classname">Class</label>
         <InputSelect @bind-Value="student.ClassID" class="form-select">
 
+            <option value=0>--- Select ---</option>
             @foreach (var classs in StudentService.Classes)
             {
                 <option value="@classs.ClassID">@classs.ClassName</option>
@@ -60,9 +61,12 @@ else
         </InputSelect>
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">@btnText</button>
-    <button type="button" class="btn btn-danger" @onclick="DelateParent">Delete Parent</button>
+    <div class="AddStudentForm">
+        <button type="submit" class="btn btn-primary">Save New Student</button>
+        <button type="button" class="btn btn-danger" @onclick="DelateStudent">Delete Student</button>
+    </div>
 </EditForm>
+
 
 @code {
     [Parameter]
@@ -72,7 +76,7 @@ else
     User user = new User();
     User userpom = new User();
     Parent parent = new Parent();
-   UserDto userr = new UserDto();
+    UserDto userr = new UserDto();
 
     List<string> rolesp = new List<string>();
 
@@ -117,11 +121,12 @@ else
             await UserService.UpdateUser(user);
         }
     }
-    async Task DelateParent()
+    async Task DelateStudent()
     {
         await UserService.DeleteUser(student.UserID);
         await StudentService.DeleteStudent(student.ParentID);
     }
+
 }
 
             @*To co dodaje pod spodem to kod ktorego nie bylem pewny musze robic merge manualnie 

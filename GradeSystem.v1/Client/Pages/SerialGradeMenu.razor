@@ -1,0 +1,40 @@
+﻿@page "/    "
+
+
+<div class="Atableborder">
+    <div class="Astudentinfo">
+        <div class="Astudentname">Grades</div>
+    </div>
+
+    <div class="gradeselect">
+        <div class="gradesubtitle">Grade</div>
+        <button class="buttonselectgrade">select <div class="gg-chevron-down"></div></button>
+    </div>
+
+
+    <div class="teacherstable">
+        <div class="teacherstableheader">
+            <div class="ttheadergrade">Grade</div>
+            <div class="ttheadertitle">Subject</div>
+            <div class="ttheaderblank"></div>
+        </div>
+        <div class="teacherstablelist">
+            @for (int i = 1; i < 5; i++)
+            {
+                <div class="teacheratrow">
+                    <div class="teachergradename">5</div>
+                    <div class="teachername">Maths</div>
+                    <div class="teacherviews">
+                        <button class="teacherview">Grade</button>
+                        <button class="teacherview">Serial Grades</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+}

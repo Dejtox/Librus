@@ -6,6 +6,9 @@
 @inject IJSRuntime js
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navMenager
+@inject IStudentService StudentService
+@inject ITeacherService TeacherService
+@inject IParentService ParentService
 
 <div class="mainlogin">
     <div class="loginbox">
@@ -33,7 +36,14 @@
     </div>
 </div>
 @code {
+    int ID;
+    string Roles;
+    Student? student;
+    Teacher? teacher;
+    Parent? parent;
     private LoginRequest loginRequest = new LoginRequest();
+
+
     private async Task Authenticate()
     {
         var loginResponse = await httpClient.PostAsJsonAsync<LoginRequest>("/api/Account/Login", loginRequest);
@@ -42,7 +52,23 @@
             var userSession = await loginResponse.Content.ReadFromJsonAsync<UserSession>();
             var customAuthStateprovider = (CustomAuthenticationStateProvider)authStateProvider;
             await customAuthStateprovider.UpdateAuthenticationState(userSession);
-            navMenager.NavigateTo("/", true);
+            await StudentService.GetStudents();
+            await ParentService.GetParents();
+            await TeacherService.GetTeachers();
+            await GetClaimsGetID();
+            if(student!= null)
+            {
+                navMenager.NavigateTo("/stdmainpage", true);
+            }
+            else if(teacher!=null)
+            {
+                navMenager.NavigateTo("/trmainpage", true);
+            }
+            else if(parent!=null)
+            {
+                navMenager.NavigateTo("/ParMainPage", true);
+            }
+
         }
         else if(loginResponse.StatusCode==HttpStatusCode.Unauthorized)
         {
@@ -50,5 +76,62 @@
             return;
         }
 
+    }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Student")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                    break;
+                }
+                else
+                {
+                    student = null;
+                }
+            }
+        }
+        else if(Roles == "Parent")
+        {
+            foreach (var parcherpom in ParentService.Parents)
+            {
+                if (parcherpom.ParentID == ID)
+                {
+                    parent = parcherpom;
+                }
+            }
+
+        }
+        else if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+        }
+        
     }
 }

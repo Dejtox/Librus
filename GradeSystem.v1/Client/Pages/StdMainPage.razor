@@ -142,8 +142,10 @@
                         <tr class="tablerow">
                             @foreach (var stdevent in StudentsEnrolmentsThu)
                             {
+                                Console.WriteLine("bylem tu");
                                 if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
                                 {
+                                        Console.WriteLine("bylem tam");
                                     <td class="tablecell">
                                         <div class="tablecellnumber">@segment.LessonNo</div>
                                         <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
@@ -312,7 +314,6 @@
                 }
             }
         }
-
     }
 
     async Task SortLessonHours()

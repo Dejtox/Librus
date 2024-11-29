@@ -2,118 +2,184 @@
 
 @inject IStudentService StudentService
 @inject IEventService EventService
+@inject IEnrollmentService EnrollmentService
+@inject IEventService EventServic
 @inject NavigationManager NavigationManager
-
 
 
 <div class="mainbox">
     <div class="Msidebox1">
         <div class="Msubsidebox1">
-            <div class="Msubsidebox1date">
-                
-                <div class="Msubsidemonthyear">
-                    <div class="gg-chevron-left"></div>
-                    <div>@Today.ToString("MMMM") @Today.Year</div>
-                    <div class="gg-chevron-right"></div>
-                </div>
-                
-                <select class="Mchangemodes" @onchange="NavigateToPage">
-                    <option selected>Month<div class="gg-chevron-down"></div></option>
-                    <option value="/yourscheduleweek">Week<div class="gg-chevron-down"></div></option>
-                </select>
-
+            <div class="Msubsidemonthyear">
+                <div class="gg-chevron-left"></div>
+                @*<div>@Today.ToString("MMMM") @Today.Year</div>*@
+                <div class="gg-chevron-right"></div>
             </div>
 
-
-            <div class="Mdays">
-                <div class="Mday" style="margin-left: 2%">
-                    <div class="Mdayhead">Monday</div>
-                    @for(int i=1 ; i<6 ; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Tuesday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Wednesday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle">
-                            @for(int j = 1; j < 32; j++)
-                            {
-                                int k = j; 
-                            }
-                        </div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Thursday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Friday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday">
-                    <div class="Mdayhead">Saturday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-                <div class="Mday" style="margin-right: 2%">
-                    <div class="Mdayhead">Sunday</div>
-                    @for (int i = 1; i < 6; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
-                </div>
-            </div>
-
+            <select class="Mchangemodes" @onchange="NavigateToPage">
+                <option selected>Month<div class="gg-chevron-down"></div></option>
+                <option value="/yourscheduleweek">Week<div class="gg-chevron-down"></div></option>
+            </select>
 
         </div>
-    </div>
 
+        <div class="Mdays">
+            <div class="Mdayhead">Monday</div>
+            <div class="Mdayhead">Tuesday</div>
+            <div class="Mdayhead">Wednesday</div>
+            <div class="Mdayhead">Thursday</div>
+            <div class="Mdayhead">Friday</div>
+            <div class="Mdayhead">Saturday</div>
+            <div class="Mdayhead">Sunday</div>
+        </div>
 
-    <div class="Msidebox2">
-        <div class="checkboxes">
-            <label class="container123">
-                Exams
-                <input type="checkbox" checked="checked">
-                <span class="checkmark checkmark--1"></span>
-            </label>
+        <div class="Month">
+            @for (int j = 1; j < 7; j++)
+            {
 
-            <label class="container123">
-                Events
-                <input type="checkbox">
-                <span class="checkmark checkmark--2"></span>
-            </label>
+                <div class="MonthRow">
+                    @for (int i = 1; i < 8; i++)
+                    {
+                        <div class="Msingle"></div>
+                    }
+                </div>
 
-            <label class="container123">
-                Substitutions
-                <input type="checkbox">
-                <span class="checkmark checkmark--3"></span>
-            </label>
+            }
         </div>
     </div>
-
 </div>
 
 
-
 @code {
+    private class Dayevents
+    {
+        List<Enrollment> enrollments;
+    }
+
+    int ID;
+    Student student;
+    string Roles;
+    DateTime SelcetedMonth;
+    List<List<Enrollment>> MonSubstituteEnrlList;
+    List<List<Enrollment>> TueSubstituteEnrlList;
+    List<List<Enrollment>> WedSubstituteEnrlList;
+    List<List<Enrollment>> ThuSubstituteEnrlList;
+    List<List<Enrollment>> FriSubstituteEnrlList;
+    List<List<Enrollment>> SutSubstituteEnrlList;
+    List<List<Enrollment>> SunSubstituteEnrlList;
+    protected override async Task OnInitializedAsync()
+    {
+        SelcetedMonth = DateTime.Now;
+        SelcetedMonth = new DateTime(SelcetedMonth.Year, SelcetedMonth.Month, 1);
+        await GetClaimsGetID();
+        await EnrollmentService.GetEnrollments();        
+        await FillEnrListDates();
+
+    }
+
+    async Task FillEnrListDates()
+    {
+
+        if (MonSubstituteEnrlList != null && MonSubstituteEnrlList.Any())
+        {
+            MonSubstituteEnrlList.Clear();
+        }
+        if (TueSubstituteEnrlList != null && TueSubstituteEnrlList.Any())
+        {
+            TueSubstituteEnrlList.Clear();
+        }
+        if (WedSubstituteEnrlList != null && WedSubstituteEnrlList.Any())
+        {
+            WedSubstituteEnrlList.Clear();
+        }
+        if (ThuSubstituteEnrlList != null && ThuSubstituteEnrlList.Any())
+        {
+            ThuSubstituteEnrlList.Clear();
+        }
+        if (FriSubstituteEnrlList != null && FriSubstituteEnrlList.Any())
+        {
+            FriSubstituteEnrlList.Clear();
+        }
+        if (SutSubstituteEnrlList != null && SutSubstituteEnrlList.Any())
+        {
+            SutSubstituteEnrlList.Clear();
+        }
+        if (SunSubstituteEnrlList != null && SunSubstituteEnrlList.Any())
+        {
+            SunSubstituteEnrlList.Clear();
+        }
+        int daysinmonth = DateTime.DaysInMonth(SelcetedMonth.Year, SelcetedMonth.Month);
+        MonSubstituteEnrlList = new List<List<Enrollment>>(6);
+        TueSubstituteEnrlList = new List<List<Enrollment>>(6);
+        WedSubstituteEnrlList = new List<List<Enrollment>>(6);
+        ThuSubstituteEnrlList = new List<List<Enrollment>>(6);
+        FriSubstituteEnrlList = new List<List<Enrollment>>(6);
+        SutSubstituteEnrlList = new List<List<Enrollment>>(6);
+        SunSubstituteEnrlList = new List<List<Enrollment>>(6);
+        for(int i = 0; i<= 6; i++)
+        {
+            MonSubstituteEnrlList.Add(new List<Enrollment>());
+            TueSubstituteEnrlList.Add(new List<Enrollment>());
+            WedSubstituteEnrlList.Add(new List<Enrollment>());
+            ThuSubstituteEnrlList.Add(new List<Enrollment>());
+            FriSubstituteEnrlList.Add(new List<Enrollment>());
+            SutSubstituteEnrlList.Add(new List<Enrollment>());
+            SunSubstituteEnrlList.Add(new List<Enrollment>());
+        }
+        for (int i = 0; i <= daysinmonth; i++)
+        {
+            int mon = 0; int tue = 0; int wed = 0; int thu = 0; int fri = 0; int sat = 0; int sun = 0;
+            foreach (var enr in EnrollmentService.Enrollments)
+            {                
+                if(enr.SubEnrollmentID != null)
+                {
+                    if (enr.Date.Month == SelcetedMonth.Month)
+                    {                       
+                        if(enr.Date.Day == i+1)
+                        {
+                            if (enr.Date.DayOfWeek == DayOfWeek.Monday)
+                            {
+                                MonSubstituteEnrlList[mon].Add(enr);
+                                mon = mon + 1;
+                            }
+                            if (enr.Date.DayOfWeek == DayOfWeek.Tuesday)
+                            {
+                                MonSubstituteEnrlList[tue].Add(enr);
+                                tue = tue + 1;
+                            }
+                            if (enr.Date.DayOfWeek == DayOfWeek.Wednesday)
+                            {
+                                MonSubstituteEnrlList[wed].Add(enr);
+                                wed = wed + 1;
+                            }
+                            if (enr.Date.DayOfWeek == DayOfWeek.Thursday)
+                            {
+                                MonSubstituteEnrlList[thu].Add(enr);
+                                thu = thu + 1;
+                            }
+                            if (enr.Date.DayOfWeek == DayOfWeek.Friday)
+                            {
+                                MonSubstituteEnrlList[fri].Add(enr);
+                                fri = fri + 1;
+                            }
+                            if (enr.Date.DayOfWeek == DayOfWeek.Saturday)
+                            {
+                                MonSubstituteEnrlList[sat].Add(enr);
+                                sat = sat + 1;
+                            }
+                            if (enr.Date.DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                MonSubstituteEnrlList[sun].Add(enr);
+                                sun = sun + 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     private void NavigateToPage(ChangeEventArgs e)
     {
         var selectedValue = e.Value.ToString();
@@ -124,5 +190,35 @@
         }
     }
 
-    DateTime Today = DateTime.Now;
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Student")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+        }
+    }
+
 }

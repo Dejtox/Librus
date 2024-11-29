@@ -30,10 +30,12 @@
                 <div class="grafictableheadinside">26</div>
             </div>
             <tbody class="graficktableboddymain">
+                            @*
                 @foreach (var segment in SortedlessonsHours)
                 {
                     bool i = true;
                     <tr class="tablerow">
+                                    
                         @foreach (var stdevent in StudentsEnrolmentsMon)
                         {
                             if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
@@ -56,6 +58,7 @@
                         }
                     </tr>
                 }
+                                *@
             </tbody>
         </table>
     </div>
@@ -66,6 +69,7 @@
                 <div class="grafictableheadinside">27</div>
             </div>
             <tbody class="graficktableboddymain">
+                            @*
                 @foreach (var segment in SortedlessonsHours)
                 {
                     bool i = true;
@@ -92,6 +96,7 @@
                         }
                     </tr>
                 }
+                                *@
             </tbody>
         </table>
     </div>
@@ -102,6 +107,7 @@
                 <div class="grafictableheadinside">28</div>
             </div>
             <tbody class="graficktableboddymain">
+                            @*
                 @foreach (var segment in SortedlessonsHours)
                 {
                     bool i = true;
@@ -128,6 +134,7 @@
                         }
                     </tr>
                 }
+                                *@
             </tbody>
         </table>
     </div>
@@ -138,6 +145,7 @@
                 <div class="grafictableheadinside">29</div>
             </div>
             <tbody class="graficktableboddymain">
+                @*
                 @foreach (var segment in SortedlessonsHours)
                 {
                     bool i = true;
@@ -163,8 +171,10 @@
                                 <div class="tablecellnumber"></div>
                             </td>
                         }
+                                      
                     </tr>
                 }
+                        *@
             </tbody>
         </table>
     </div>
@@ -175,10 +185,12 @@
                 <div class="grafictableheadinside">30</div>
             </div>
             <tbody class="graficktableboddymain">
+                                            @*
                 @foreach (var segment in SortedlessonsHours)
                 {
                     bool i = true;
                     <tr class="tablerow">
+                        
                         @foreach (var stdevent in StudentsEnrolmentsFri)
                         {
                             if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
@@ -199,8 +211,10 @@
                                 <div class="tablecellnumber"></div>
                             </td>
                         }
+                               
                     </tr>
                 }
+                                *@
             </tbody>
         </table>
     </div>
@@ -231,28 +245,28 @@
     </div>
 </div>
 @code {
-    IList<Enrollment> StudentsEnrolmentsMon = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsTue = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsWen = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsThu = new List<Enrollment>();
-    IList<Enrollment> StudentsEnrolmentsFri = new List<Enrollment>();
+    class Evnforday {
+        Enrollment? substitutes;
+        SchoolTrip? schoolTrip;
+        CalendarEvent? upcomingexams;
+        public Evnforday(Enrollment enrollment, SchoolTrip schoolTrip1, CalendarEvent calendarEvent)
+        {
+            substitutes = enrollment;
+            schoolTrip = schoolTrip1;
+            upcomingexams =calendarEvent;
+        }
+    }
+    IList<Evnforday> StudentsEnrolmentsMon = new List<Evnforday>();
+    IList<Evnforday> StudentsEnrolmentsTue = new List<Evnforday>();
+    IList<Evnforday> StudentsEnrolmentsWen = new List<Evnforday>();
+    IList<Evnforday> StudentsEnrolmentsThu = new List<Evnforday>();
+    IList<Evnforday> StudentsEnrolmentsFri = new List<Evnforday>();
     IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
     DateTime Today = DateTime.Now;
     DateTime UpToDateMonday;
     int ID;
     Student student;
     string Roles;
-    public class GrafLesson
-    {
-        public LessonsHours SortedlessonsHour { get; set; }
-        public bool NoEvent { get; set; }
-
-        public GrafLesson(LessonsHours sortedlessonsHour, bool noEvent)
-        {
-            SortedlessonsHour = sortedlessonsHour;
-            NoEvent = noEvent;
-        }
-    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -296,6 +310,120 @@
 
     async Task Filllistofactivetiescurrentweek()
     {
+
+    }
+
+    async Task SortLessonHours()
+    {
+        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
+        {
+            foreach (var segment in LessonsHoursService.LessonsHours)
+            {
+                if (segment.LessonNo == i + 1)
+                {
+                    SortedlessonsHours.Add(segment);
+                }
+            }
+        }
+    }
+    //kom
+
+    async Task Setemptylessonhour()
+    {
+        DateTime temp;
+        Evnforday evnfordaytoadd;
+        foreach (var enrolment in EnrollmentService.Enrollments)
+        {
+            if (enrolment.ClassID == student.ClassID)
+            {
+                temp = UpToDateMonday;
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    SchoolTrip? schoolTrip = null;
+                    CalendarEvent? upcomingexams = null;
+                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    StudentsEnrolmentsMon.Add(evnfordaytoadd);
+                }
+                temp = UpToDateMonday.AddDays(1);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    SchoolTrip? schoolTrip = null;
+                    CalendarEvent? upcomingexams = null;
+                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    StudentsEnrolmentsTue.Add(evnfordaytoadd);
+                }
+                temp = UpToDateMonday.AddDays(2);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    SchoolTrip? schoolTrip = null;
+                    CalendarEvent? upcomingexams = null;
+                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    StudentsEnrolmentsWen.Add(evnfordaytoadd);
+                }
+                temp = UpToDateMonday.AddDays(3);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    SchoolTrip? schoolTrip = null;
+                    CalendarEvent? upcomingexams = null;
+                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    StudentsEnrolmentsThu.Add(evnfordaytoadd);
+                }
+                temp = UpToDateMonday.AddDays(4);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    SchoolTrip? schoolTrip = null;
+                    CalendarEvent? upcomingexams = null;
+                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    StudentsEnrolmentsFri.Add(evnfordaytoadd);
+                }
+            }
+        }
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Student")
+        {
+            foreach (var studentpom in StudentService.Students)
+            {
+                if (studentpom.StudentID == ID)
+                {
+                    student = studentpom;
+                }
+            }
+        }
+    }
+
+
+
+    private void NavigateToPage(ChangeEventArgs e)
+    {
+        var selectedValue = e.Value.ToString();
+
+        if (!string.IsNullOrEmpty(selectedValue))
+        {
+            NavigationManager.NavigateTo(selectedValue);
+        }
+    }
+}
+@*
+
         DateTime temp;
         foreach (var enrolment in EnrollmentService.Enrollments)
         {
@@ -381,66 +509,4 @@
             }
         }
 
-    }
-
-    async Task SortLessonHours()
-    {
-        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
-        {
-            foreach (var segment in LessonsHoursService.LessonsHours)
-            {
-                if (segment.LessonNo == i + 1)
-                {
-                    SortedlessonsHours.Add(segment);
-                }
-            }
-        }
-    }
-    //kom
-    async Task Setemptylessonhour()
-    {
-
-    }
-
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationState { get; set; }
-
-    private async Task GetClaimsGetID()
-    {
-        var user = (await authenticationState).User;
-        foreach (var claim in user.Claims)
-        {
-            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
-            {
-                ID = Int32.Parse(claim.Value);
-            }
-            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
-            {
-                Roles = claim.Value;
-            }
-        };
-
-        if (Roles == "Student")
-        {
-            foreach (var studentpom in StudentService.Students)
-            {
-                if (studentpom.StudentID == ID)
-                {
-                    student = studentpom;
-                }
-            }
-        }
-    }
-
-
-
-    private void NavigateToPage(ChangeEventArgs e)
-    {
-        var selectedValue = e.Value.ToString();
-
-        if (!string.IsNullOrEmpty(selectedValue))
-        {
-            NavigationManager.NavigateTo(selectedValue);
-        }
-    }
-}
+*@

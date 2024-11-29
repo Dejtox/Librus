@@ -1,10 +1,31 @@
 ﻿@page "/attendanceviewstudents"
+@inject IStudentService StudentService
+@inject ITeacherService TeacherService
+@inject IClassService ClassService
+@inject IEnrollmentService EnrollmentService
+@inject IAttendanceService AttendanceService
+@inject ILessonsHoursService LessonsHoursService
 
 <div class="Atableborder">
     <div class="Astudentinfo">
-        <div class="Astudentname">Grade (class)</div>
-        <div class="Astudentclass">Period (May 2024)</div>
-        <div class="Astudentclass">Days (16 - 21)</div>
+        <select  @onchange="ClassHasChaged"  class="Atableborder">
+            @foreach (var teacherclass in TeachersClasses)
+            {
+                <option value="@teacherclass.ClassID">@teacherclass.ClassName</option>
+            }
+        </select>
+        <select @onchange="Monthchaged" class="Astudentclass">
+            @foreach (var date in SchoolYearMonths)
+            {
+                <option value="@date">@date.ToString("MMM") @date.Year</option>
+            }
+        </select>
+        <select @onchange="Dayhaschaged" class="Astudentclass">
+            @foreach (var mon in Monofinterest)
+            {
+                <option value="@mon">@mon.Day @mon.ToString("MMM") - @mon.AddDays(4).Day @mon.AddDays(4).ToString("MMM")</option>
+            }
+        </select>
     </div>
     <div class="Agradestable">
         <div class="Agradeheader">
@@ -22,14 +43,25 @@
             <div class="Aday">Number of</div>
         </div>
         <div class="Tgradesdisplay">
-            @for (int i = 1; i < 21; i++)
+            @foreach (var student in Stdinselectedclass)
             {
                 <div class="Agraderow">
                     <div class="Anumber Anumber--d">1</div>
-                    <div class="Aname">Name</div>
-                    @for(int j=1; j<8; j++)
+                    <div class="Aname">@student.LastName @student.FirstName</div>
+                    @for(int j=0; j<7; j++)
                     {
-                        <div class="Aday Asingle"></div>
+                        if(j<5)
+                        {
+                            foreach(var lesshour in SortedlessonsHours)
+                            {
+                                foreach (var atd in AttendanceService.Attendances)
+                                {
+                                    //if(atd.Enrollment,.)
+                                }
+                            }
+
+                        }
+                        <div class="Aday Asingle"> </div>
                     }
                     
                 </div>
@@ -40,5 +72,201 @@
 
 
 @code {
+    int ID;
+    int selectedclassID;
+    string Roles;
+    int presentedselectedmon;
+    Teacher teacher;
+    Class selectedclass;
+    DateTime Schoolyearstartdate;
+    DateTime Now;
+    DateTime Selceted;
+    DateTime Mondayofselectedweek;
+    List<DateTime> SchoolYearMonths = new List<DateTime>();
+    List<Class> TeachersClasses = new List<Class>();
+    List<DateTime> Monofinterest = new List<DateTime>();
+    List<Student> Stdinselectedclass = new List<Student>();
+    IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Now = DateTime.Now;
+        Selceted = DateTime.Now;
+        Selceted = new DateTime(Selceted.Year, Selceted.Month, 1);
+        await Findmon();
+        await FillSchoolYearMonths();
+        await AttendanceService.GetAttendances();
+        await EnrollmentService.GetEnrollments();
+        await LessonsHoursService.GetLessonsHours();
+        await SortLessonHours();
+        await ClassService.GetClasses();
+        await TeacherService.GetTeachers();
+        await StudentService.GetStudents();
+        await GetClaimsGetID();
+        await FillClasses();
+        await FindStdforClass(); 
+    }
+
+    async Task Dayhaschaged(ChangeEventArgs args)
+    {
+        
+    }
+
+    async Task Monthchaged(ChangeEventArgs args)
+    {
+        if (DateTime.TryParse(args.Value?.ToString(), out DateTime selectedDate))
+        {
+            Selceted = selectedDate;
+        }
+        Console.WriteLine(Selceted);
+        await Findmon();
+    }
+
+    async Task Findmon()
+    {
+        Monofinterest.Clear();
+        DateTime Endtime;
+        Endtime = new DateTime(Selceted.Year, Selceted.Month, DateTime.DaysInMonth(Selceted.Year, Selceted.Month));
+        DayOfWeek selectedday = Selceted.DayOfWeek;
+        int daydif = (int)selectedday - (int)DayOfWeek.Monday;
+        if (selectedday == DayOfWeek.Saturday || selectedday == DayOfWeek.Sunday)
+        {
+            if (selectedday == DayOfWeek.Saturday)
+            {
+                Selceted = Selceted.AddDays(2);
+            }
+            if (selectedday == DayOfWeek.Sunday)
+            {
+                Selceted = Selceted.AddDays(1);
+            }
+        }
+        else if (daydif > 0)
+        {
+            Selceted = Selceted.AddDays(-daydif);
+        }
+        
+        selectedday = Endtime.DayOfWeek;
+        if (selectedday != DayOfWeek.Friday)
+        {
+            if (selectedday == DayOfWeek.Saturday || selectedday == DayOfWeek.Sunday)
+            {              
+                int daysBackToFriday = (int)selectedday - (int)DayOfWeek.Friday;
+                Endtime = Endtime.AddDays(-daysBackToFriday).Date;
+            }
+            else
+            {
+                int daysUntilNextFriday = ((int)DayOfWeek.Friday - (int)selectedday + 7) % 7;
+                Endtime = Endtime.AddDays(daysUntilNextFriday).Date;
+            }
+        }
+
+        for (int i = 0; Selceted.AddDays(i)< Endtime;i = i +7)
+        {
+            Monofinterest.Add(Selceted.AddDays(i));
+        }
+
+    }
+    async Task ClassHasChaged(ChangeEventArgs args)
+    {
+        selectedclassID = Int32.Parse(args.Value.ToString());
+        foreach (var classs in TeachersClasses)
+        {
+            if (classs.ClassID == selectedclassID)
+            {
+                selectedclass = classs;
+            }
+        }
+        await FindStdforClass();
+    }
+
+    async Task FillClasses()
+    {
+        foreach(var schoolclass in ClassService.Classes)
+        {
+            if(schoolclass.VirtualClass == false)
+            {
+                if(schoolclass.TeacherID == teacher.TeacherID)
+                {
+                    TeachersClasses.Add(schoolclass);
+                    selectedclass = schoolclass;
+                }
+            }
+        }
+    }
+
+    async Task FindStdforClass()
+    {
+        Stdinselectedclass.Clear();
+        foreach(var std in StudentService.Students)
+        {
+            if (std.ClassID == selectedclass.ClassID)
+            {
+                Stdinselectedclass.Add(std);
+            }
+        }
+        Stdinselectedclass = Stdinselectedclass.OrderBy(o => o.LastName).ToList();
+    }
+
+    async Task FillSchoolYearMonths()
+    {
+        if (Now.Month > 8)
+        {
+            Schoolyearstartdate = new DateTime(Now.Year, 9, 1);
+        }
+        else
+        {
+            Schoolyearstartdate = new DateTime(Now.Year - 1, 9, 1);
+        }
+        for( int i =0; i<10; i++)
+        {
+            SchoolYearMonths.Add(Schoolyearstartdate);
+            Schoolyearstartdate = Schoolyearstartdate.AddMonths(1);
+        }
+    }
+
+    async Task SortLessonHours()
+    {
+        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
+        {
+            foreach (var segment in LessonsHoursService.LessonsHours)
+            {
+                if (segment.LessonNo == i + 1)
+                {
+                    SortedlessonsHours.Add(segment);
+                }
+            }
+        }
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+        }
+    }
+
 
 }

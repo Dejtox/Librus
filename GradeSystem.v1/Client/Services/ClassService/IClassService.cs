@@ -13,5 +13,6 @@
         Task UpdateClass(Class classs);
         Task DeleteClass(int id);
         Task CreateClass(Class classs);
+        Task<List<Student>> GetClassStudents(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using GradeSystem.v1.Client.Pages;
+using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
@@ -81,6 +82,14 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
         {
             await _http.PutAsJsonAsync($"api/Enrollments/{enrollment.EnrollmentID}", enrollment);
             _navigationManager.NavigateTo("enrollments");
+        }
+
+        public async Task<List<Enrollment>> GetEnrollmentsByClassID(int classID)
+        {
+            var result= await _http.GetFromJsonAsync<List<Enrollment>>($"api/Enrollments/get_enrollments_by_classid?classID={classID}");
+            if (result != null)
+                return result;
+            throw new Exception("Enrollment no find");
         }
     }
 }

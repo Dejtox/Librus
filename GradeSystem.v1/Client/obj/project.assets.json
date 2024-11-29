@@ -800,6 +800,25 @@
           }
         }
       },
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Analyzers.props": {}
+        }
+      },
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Tasks.props": {}
+        }
+      },
+      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
+          "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/2.0.0": {
         "type": "package",
         "compile": {
@@ -2245,6 +2264,25 @@
           "lib/netstandard2.0/Microsoft.Net.Http.Headers.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Analyzers.props": {}
+        }
+      },
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.ILLink.Tasks.props": {}
+        }
+      },
+      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
+          "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets": {}
         }
       },
       "Microsoft.NETCore.Platforms/2.0.0": {
@@ -3973,6 +4011,95 @@
         "lib/netstandard2.0/Microsoft.Net.Http.Headers.xml",
         "microsoft.net.http.headers.2.2.0.nupkg.sha512",
         "microsoft.net.http.headers.nuspec"
+      ]
+    },
+    "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
+      "sha512": "0GvbEgDGcUQA9KuWcQU1WwYHXt1tBzNr1Nls/M57rM7NA/AndFwCaCEoJpJkmxRY7xLlPDBnmGp8h5+FNqUngg==",
+      "type": "package",
+      "path": "microsoft.net.illink.analyzers/7.0.100-1.23211.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
+        "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
+        "build/Microsoft.NET.ILLink.Analyzers.props",
+        "microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+        "microsoft.net.illink.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
+      "sha512": "tvG8XZYLjT0o3WicCyKBZysVWo1jC9HdCFmNRmddx3WbAz0UCsd0qKZqpiEo99VLA8Re+FzWK51OcRldQPbt2Q==",
+      "type": "package",
+      "path": "microsoft.net.illink.tasks/7.0.100-1.23211.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "Sdk/Sdk.props",
+        "build/6.0_suppressions.xml",
+        "build/Microsoft.NET.ILLink.Tasks.props",
+        "build/Microsoft.NET.ILLink.targets",
+        "microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
+        "microsoft.net.illink.tasks.nuspec",
+        "tools/net472/ILLink.Tasks.dll",
+        "tools/net472/Mono.Cecil.dll",
+        "tools/net472/System.Buffers.dll",
+        "tools/net472/System.Collections.Immutable.dll",
+        "tools/net472/System.Memory.dll",
+        "tools/net472/System.Numerics.Vectors.dll",
+        "tools/net472/System.Reflection.Metadata.dll",
+        "tools/net472/System.Runtime.CompilerServices.Unsafe.dll",
+        "tools/net7.0/ILLink.Tasks.deps.json",
+        "tools/net7.0/ILLink.Tasks.dll",
+        "tools/net7.0/Mono.Cecil.Pdb.dll",
+        "tools/net7.0/Mono.Cecil.dll",
+        "tools/net7.0/illink.deps.json",
+        "tools/net7.0/illink.dll",
+        "tools/net7.0/illink.runtimeconfig.json"
+      ]
+    },
+    "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.0": {
+      "sha512": "Ch6dilt/TAo3XryG/9LF8Zy4rAT+2HYnks8thWAeNzPNOJs4aSyC6E5yxuBiN49d2eES78h1mSR/KNyOfbptXQ==",
+      "type": "package",
+      "path": "microsoft.net.sdk.webassembly.pack/9.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "WasmAppHost/BrowserDebugHost.deps.json",
+        "WasmAppHost/BrowserDebugHost.dll",
+        "WasmAppHost/BrowserDebugHost.runtimeconfig.json",
+        "WasmAppHost/BrowserDebugHost.staticwebassets.endpoints.json",
+        "WasmAppHost/BrowserDebugProxy.dll",
+        "WasmAppHost/Microsoft.CodeAnalysis.CSharp.Scripting.dll",
+        "WasmAppHost/Microsoft.CodeAnalysis.CSharp.dll",
+        "WasmAppHost/Microsoft.CodeAnalysis.Scripting.dll",
+        "WasmAppHost/Microsoft.CodeAnalysis.dll",
+        "WasmAppHost/Microsoft.FileFormats.dll",
+        "WasmAppHost/Microsoft.NET.WebAssembly.Webcil.dll",
+        "WasmAppHost/Microsoft.SymbolStore.dll",
+        "WasmAppHost/Newtonsoft.Json.dll",
+        "WasmAppHost/WasmAppHost.deps.json",
+        "WasmAppHost/WasmAppHost.dll",
+        "WasmAppHost/WasmAppHost.runtimeconfig.json",
+        "WasmAppHost/WasmAppHost.staticwebassets.endpoints.json",
+        "build/Microsoft.NET.Sdk.WebAssembly.Browser.props",
+        "build/Microsoft.NET.Sdk.WebAssembly.Browser.targets",
+        "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
+        "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
+        "build/Wasm.web.config",
+        "build/browser.runtimeconfig.template.json",
+        "microsoft.net.sdk.webassembly.pack.9.0.0.nupkg.sha512",
+        "microsoft.net.sdk.webassembly.pack.nuspec",
+        "tools/net472/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
+        "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll",
+        "tools/net9.0/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
+        "tools/net9.0/Microsoft.NET.WebAssembly.Webcil.dll"
       ]
     },
     "Microsoft.NETCore.Platforms/2.0.0": {
@@ -6057,6 +6184,9 @@
       "Microsoft.AspNetCore.Components.Authorization >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.5",
+      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
+      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
+      "Microsoft.NET.Sdk.WebAssembly.Pack >= 9.0.0",
       "Radzen.Blazor >= 4.11.0",
       "Radzen.Design >= 0.0.2",
       "Smart.Blazor >= 15.1.1",
@@ -6067,23 +6197,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\": {},
+    "C:\\Users\\pepci\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projekty\\Librus-git\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "projectName": "GradeSystem.v1.Client",
-      "projectPath": "E:\\Projekty\\Librus-git\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\MarcinCzarnecki\\.nuget\\packages\\",
-      "outputPath": "E:\\Projekty\\Librus-git\\Librus\\GradeSystem.v1\\Client\\obj\\",
+      "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+      "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\MarcinCzarnecki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6099,8 +6229,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "E:\\Projekty\\Librus-git\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "E:\\Projekty\\Librus-git\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+            "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+              "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
             }
           }
         }
@@ -6109,7 +6239,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net7.0": {
@@ -6151,6 +6287,24 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.5, )"
+          },
+          "Microsoft.NET.ILLink.Analyzers": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[7.0.100-1.23211.1, )",
+            "autoReferenced": true
+          },
+          "Microsoft.NET.ILLink.Tasks": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[7.0.100-1.23211.1, )",
+            "autoReferenced": true
+          },
+          "Microsoft.NET.Sdk.WebAssembly.Pack": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[9.0.0, )",
+            "autoReferenced": true
           },
           "Radzen.Blazor": {
             "target": "Package",
@@ -6195,7 +6349,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[7.0.5, 7.0.5]"
+            "version": "[7.0.20, 7.0.20]"
           }
         ],
         "frameworkReferences": {
@@ -6203,7 +6357,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
@@ -6211,5 +6365,62 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Pakiet „Microsoft.AspNetCore.Components” 7.0.5 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-3fx3-85r4-8j3w",
+      "libraryId": "Microsoft.AspNetCore.Components",
+      "targetGraphs": [
+        "net7.0",
+        "net7.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Pakiet „Newtonsoft.Json” 12.0.3 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net7.0",
+        "net7.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1904",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Pakiet „System.Linq.Dynamic.Core” 1.2.22 ma znane krytyczna luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-w65q-jcmv-28gj",
+      "libraryId": "System.Linq.Dynamic.Core",
+      "targetGraphs": [
+        "net7.0",
+        "net7.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Pakiet „System.Security.Cryptography.Xml” 4.5.0 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-vh55-786g-wjwj",
+      "libraryId": "System.Security.Cryptography.Xml",
+      "targetGraphs": [
+        "net7.0",
+        "net7.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Pakiet „System.Text.Json” 7.0.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-hh2w-p6rv-4g7w",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net7.0",
+        "net7.0/browser-wasm"
+      ]
+    }
+  ]
 }

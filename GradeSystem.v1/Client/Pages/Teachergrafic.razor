@@ -147,7 +147,7 @@
         Events.Clear();
         TempEvents.Clear();
         await EnrollmentService.GetEnrollments();
-        await SubstituteService.GetSubstitutes();
+        //await SubstituteService.GetSubstitutes();
         foreach (var evn in EnrollmentService.Enrollments)
         {
             if(evn.Subject.TeacherID == Id)

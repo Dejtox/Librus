@@ -1,4 +1,4 @@
-﻿@page "/substitute_edit/{id:int}"
+﻿@* @page "/substitute_edit/{id:int}"
 @inject ISubstituteService SubstituteService
 @inject ILogRegisterService LogRegisterService
 @inject UserLogService userState
@@ -71,3 +71,4 @@
         await SubstituteService.DeleteSubstitute(substitute.EnrollmentID);
     }
 }
+ *@

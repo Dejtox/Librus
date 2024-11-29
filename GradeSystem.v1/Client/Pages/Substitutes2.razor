@@ -1,0 +1,99 @@
+﻿@page "/substitutes2/{id:int}"
+@inject NavigationManager navigationManager
+@inject ISubstituteService SubstituteService
+@inject ITeacherService TeacherService
+@inject DialogService DialogService
+<PageTitle>Teacher substitutes</PageTitle>
+
+<div class="content-container">
+    <div class="content-header">
+        <p class="page-header">Teacher substitutes</p>
+    </div>
+    <h3 style="margin-left:2%;margin-top:1.5%;">Teacher substituted: @teacher.Name</h3>
+    <h3 style="margin-left:2%;">Date: @teacher.StartDate?.ToString("dd.MM.yyyy") - @teacher.EndDate?.ToString("dd.MM.yyyy")</h3>
+    <div class="table_container">
+        <RadzenDataGrid TItem="Enrollment" Data="enrollments" PagerHorizontalAlign="Radzen.HorizontalAlign.Center" AllowAlternatingRows="false" Style="border-radius:15px;">
+        <Columns>
+            <RadzenDataGridColumn Property="Enrollment.Date" Title="Date" FormatString="{0:d}" TItem="Enrollment" />
+            <RadzenDataGridColumn Property="Enrollment.Class?.ClassName" Title="Grade" TItem="Enrollment" />
+            <RadzenDataGridColumn Title="Subject" TItem="Enrollment">
+                <Template Context="Enrollment">
+                    @if(Enrollment.SubEnrollmentID!=null)
+                    {
+                            @Enrollment.Subject?.SubjectName @("(") @Enrollment.SubEnrollment?.Subject?.SubjectName @(")")
+                    }
+                    else
+                    {
+                        @Enrollment.Subject?.SubjectName
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Property="Enrollment.Subject?.Teacher.Name" Title="Absent Teacher" TItem="Enrollment" />
+            <RadzenDataGridColumn Title="Substitute teacher" TItem="Enrollment">
+                <Template Context="Enrollment">
+                    @if(Enrollment.SubEnrollmentID!=null)
+                    {
+                       @Enrollment.SubEnrollment?.Subject?.Teacher?.Name @("elo")
+                    }
+                    else
+                    {
+                        @("-")
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Title="Options" TItem="Enrollment">
+                <Template Context="Enrollment">
+                    <div class="options" style="padding:3px;">
+                        @if(Enrollment.SubEnrollmentID==null)
+                        {
+                            <button type="button" class="rounded-filled-button" onclick="@(()=>Assign(Enrollment.EnrollmentID))">Assign</button>
+                            <button type="button" class="rounded-empty-button" disabled="true" onclick="@(()=>Edit((int)Enrollment.SubEnrollmentID))">Edit</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="rounded-filled-button" disabled="true">Assign</button>
+                                <button type="button" class="rounded-empty-button" onclick="@(()=>Edit((int)Enrollment.SubEnrollmentID))">Edit</button>
+                        }
+                    </div>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    List<Enrollment> enrollments { get; set; }
+    Teacher teacher = new Teacher();
+    protected override async Task OnInitializedAsync()
+    {
+        teacher = await TeacherService.GetTeacherByID((int)ID);
+        enrollments = await SubstituteService.GetEnrollments(teacher);
+    }
+    private async Task Assign(int id)
+    {
+        await DialogService.OpenAsync<AddSubstitutionModal>("Add substitution",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
+    private async Task Edit(int id)
+    {
+        await DialogService.OpenAsync<AddSubstitutionModal>("Edit substitution",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
+}

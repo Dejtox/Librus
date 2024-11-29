@@ -1,4 +1,5 @@
-﻿using GradeSystem.v1.Server.Data;
+﻿using GradeSystem.v1.Client.Pages;
+using GradeSystem.v1.Server.Data;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,23 +24,30 @@ namespace GradeSystem.v1.Server.Controllers
             return await _context.SchoolTrip.Include(c=>c.Classes).ThenInclude(cc=>cc.Class).Include(s=>s.Students).Include(t=>t.TripLeader).ToListAsync();
         }
 
-        //usuniecie wycieczki oraz nieaktwynych zastepstw
-        //Do obgadania tak czy siak dodany jest schooltripID jeszcze bedzie trzeba sprawdzic currrent date etc
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSchoolTrip(int id)
         {
-            var schoolTrip = await _context.SchoolTrip.FindAsync(id);
-            if (schoolTrip == null)
-                return NotFound();
-            _context.Remove(schoolTrip);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            var schoolTrip = await _context.SchoolTrip
+                    .Include(st => st.Classes)
+                    .Include(st => st.Students)
+                    .Include(st => st.Guardians)
+                    .FirstOrDefaultAsync(st => st.SchoolTripID == id);
+            if (schoolTrip != null)
+            {
+                _context.SchoolTripClasses.RemoveRange(schoolTrip.Classes);
+                _context.SchoolTripStudents.RemoveRange(schoolTrip.Students);
+                _context.Guardians.RemoveRange(schoolTrip.Guardians);
+                _context.SchoolTrip.Remove(schoolTrip);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            return NotFound();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<SchoolTrip>> GetSchoolTrip(int id)
         {
-            var schoolTrip = await _context.SchoolTrip.Include(g => g.Guardians).Include(c => c.Classes).Include(s => s.Students).FirstOrDefaultAsync(st => st.SchoolTripID == id);
+            var schoolTrip = await _context.SchoolTrip.Include(g => g.Guardians).Include(c => c.Classes).ThenInclude(cc=>cc.Class).Include(s => s.Students).ThenInclude(ss=>ss.Student).Include(tl=>tl.TripLeader).FirstOrDefaultAsync(st => st.SchoolTripID == id);
 
             if (schoolTrip == null)
             {
@@ -54,98 +62,58 @@ namespace GradeSystem.v1.Server.Controllers
         public async Task<ActionResult<SchoolTrip>> PostSchoolTrip(SchoolTrip schoolTrip)
         {
             _context.SchoolTrip.Add(schoolTrip);
-            //await _context.SaveChangesAsync();
-            //var (startDate, endDate) = (schoolTrip.StartDate, schoolTrip.EndDate);
-            //var teacherIds = schoolTripCombined.Teachers.Select(t => t.TeacherID).ToList();
-            //var classIds = schoolTripCombined.Classes.Select(c => c.ClassID).ToList();
-            //var inactiveSubstitutes = await _context.Enrollment
-            //    .Include(e => e.Subject)
-            //    .Include(e => e.Class)
-            //    .Where(e => (classIds.Contains(e.ClassID) || (classIds.Contains(e.ClassID) && teacherIds.Contains(e.Subject.TeacherID))) &&
-            //                (((e.Date >= startDate && e.Date <= endDate) || (e.EndDate >= startDate && e.EndDate <= endDate))))
-            //    .ToListAsync();
-            //var needActionSubstitutes = await _context.Enrollment
-            //    .Include(e => e.Subject)
-            //    .Include(e => e.Class)
-            //    .Where(e => (teacherIds.Contains(e.Subject.TeacherID) && !classIds.Contains(e.ClassID)) &&
-            //                (((e.Date >= startDate && e.Date <= endDate) || (e.EndDate >= startDate && e.EndDate <= endDate))))
-            //    .ToListAsync();
-
-            //foreach (var substitute in inactiveSubstitutes)
-            //{
-            //    substitute.Status = "inactive";
-            //    _context.Entry(substitute).State = EntityState.Modified;
-            //}
-            //foreach (var substitute in needActionSubstitutes)
-            //{
-            //    substitute.Status = "need action";
-            //    _context.Entry(substitute).State = EntityState.Modified;
-            //}
             await _context.SaveChangesAsync();
+            await AddSubstitution(schoolTrip.SchoolTripID);
             return CreatedAtAction("GetSchoolTrip", new { id = schoolTrip.SchoolTripID }, schoolTrip);
         }
-        //    [HttpPost("{id}")]
-        //    public async Task<IActionResult> PutSchoolTrip(int id, SchoolTripCombined schoolTripCombined)
-        //    {
-        //        var oldSchoolTrip = await _context.SchoolTrip.Include(c => c.SchoolTripClasses).Include(t => t.SchoolTripTeachers).FirstOrDefaultAsync(s => s.SchoolTripID == id);
-        //        if (oldSchoolTrip == null) { return NotFound(); }
-        //        var oldClassIds = oldSchoolTrip.SchoolTripClasses.Select(s => s.ClassID).ToList();
-        //        _context.SchoolTripTeachers.RemoveRange(oldSchoolTrip.SchoolTripTeachers);
-        //        _context.SchoolTripClasses.RemoveRange(oldSchoolTrip.SchoolTripClasses);
-        //        await _context.SaveChangesAsync();
-        //        var (oldStartDate, oldEndDate) = (oldSchoolTrip.StartDate, oldSchoolTrip.EndDate);
-
-        //        var oldInactiveSubstitutes = await _context.Enrollment
-        //            .Include(e => e.Subject)
-        //            .Include(e => e.Class)
-        //            .Where(s => (oldClassIds.Contains(s.ClassID)) && (s.Status != "active") &&
-        //                        ((s.Date >= oldStartDate && s.Date <= oldEndDate) || (s.EndDate >= oldStartDate && s.EndDate <= oldEndDate)))
-        //            .ToListAsync();
-        //        foreach (var s in oldInactiveSubstitutes)
-        //        {
-        //            s.Status = "active";
-        //            _context.Entry(s).State = EntityState.Modified;
-        //        }
-        //        await _context.SaveChangesAsync();
-        //        SchoolTrip schoolTrip = schoolTripCombined.SchoolTrip;
-        //        var schoolTripTeachers = schoolTripCombined.Teachers.Select(t => new SchoolTripTeachers { SchoolTrip = schoolTrip, TeacherID = t.TeacherID }).ToList();
-        //        var schoolTripClasses = schoolTripCombined.Classes.Select(c => new SchoolTripClasses { SchoolTrip = schoolTrip, ClassID = c.ClassID }).ToList();
-        //        oldSchoolTrip.Name = schoolTrip.Name;
-        //        oldSchoolTrip.StartDate = schoolTrip.StartDate;
-        //        oldSchoolTrip.EndDate = schoolTrip.EndDate;
-        //        oldSchoolTrip.Description = schoolTrip.Description;
-        //        oldSchoolTrip.SchoolTripTeachers = schoolTripTeachers;
-        //        oldSchoolTrip.SchoolTripClasses = schoolTripClasses;
-        //        await _context.SaveChangesAsync();
-        //        //post
-        //        var (startDate, endDate) = (schoolTrip.StartDate, schoolTrip.EndDate);
-        //        var teacherIds = schoolTripCombined.Teachers.Select(t => t.TeacherID).ToList();
-        //        var classIds = schoolTripCombined.Classes.Select(c => c.ClassID).ToList();
-        //        var inactiveSubstitutes = await _context.Enrollment
-        //            .Include(e => e.Subject)
-        //            .Include(e => e.Class)
-        //            .Where(e => (classIds.Contains(e.ClassID) || (classIds.Contains(e.ClassID) && teacherIds.Contains(e.Subject.TeacherID))) &&
-        //                        (((e.Date >= startDate && e.Date <= endDate) || (e.EndDate >= startDate && e.EndDate <= endDate))))
-        //            .ToListAsync();
-        //        var needActionSubstitutes = await _context.Enrollment
-        //            .Include(e => e.Subject)
-        //            .Include(e => e.Class)
-        //            .Where(e => (teacherIds.Contains(e.Subject.TeacherID) && !classIds.Contains(e.ClassID)) &&
-        //                        (((e.Date >= startDate && e.Date <= endDate) || (e.EndDate >= startDate && e.EndDate <= endDate))))
-        //            .ToListAsync();
-
-        //        foreach (var substitute in inactiveSubstitutes)
-        //        {
-        //            substitute.Status = "inactive";
-        //            _context.Entry(substitute).State = EntityState.Modified;
-        //        }
-        //        foreach (var substitute in needActionSubstitutes)
-        //        {
-        //            substitute.Status = "need action";
-        //            _context.Entry(substitute).State = EntityState.Modified;
-        //        }
-        //        await _context.SaveChangesAsync();
-        //        return NoContent();
-        //    }
+        private async Task AddSubstitution(int id)
+        {
+            var schoolTrip=await _context.SchoolTrip.Include(tl=>tl.TripLeader).Include(g=>g.Guardians).ThenInclude(t=>t.Teacher).FirstOrDefaultAsync(st=>st.SchoolTripID==id);
+            var teachers=schoolTrip.Guardians.Select(t=>t.Teacher).ToList();
+            teachers.Add(schoolTrip.TripLeader);
+            var startDate = schoolTrip.StartDate;
+            var endDate = schoolTrip.EndDate;
+            foreach (var teacher in teachers) 
+            {
+                teacher.StartDate=startDate;
+                teacher.EndDate=endDate;
+                _context.Entry(teacher).State=EntityState.Modified;
+            }
+            await _context.SaveChangesAsync();
+        }
+        private async Task DeleteSubsitution(int id)
+        {
+            var schoolTrip = await _context.SchoolTrip.Include(tl => tl.TripLeader).Include(g => g.Guardians).ThenInclude(t => t.Teacher).FirstOrDefaultAsync(st => st.SchoolTripID == id);
+            var teachers = schoolTrip.Guardians.Select(t => t.Teacher).ToList();
+            teachers.Add(schoolTrip.TripLeader);
+            foreach (var teacher in teachers)
+            {
+                teacher.StartDate = null;
+                teacher.EndDate = null;
+                _context.Entry(teacher).State = EntityState.Modified;
+            }
+            await _context.SaveChangesAsync();
+            foreach (var teacher in teachers)
+            {
+                _context.Entry(teacher).State = EntityState.Detached;
+            }
+        }
+        [HttpPost("{id}")]
+        public async Task<IActionResult> PutSchoolTrip(int id, SchoolTrip schoolTrip)
+        {
+            await DeleteSubsitution(id);
+            var oldSchoolTrip=await _context.SchoolTrip.Include(c=>c.Classes).Include(s=>s.Students).Include(g=>g.Guardians).FirstOrDefaultAsync(t => t.SchoolTripID == id);
+            _context.SchoolTripClasses.RemoveRange(oldSchoolTrip.Classes);
+            _context.SchoolTripStudents.RemoveRange(oldSchoolTrip.Students);
+            _context.Guardians.RemoveRange(oldSchoolTrip.Guardians);
+            _context.Entry(oldSchoolTrip).State = EntityState.Detached;
+            _context.SchoolTripClasses.AddRange(schoolTrip.Classes);
+            _context.SchoolTripStudents.AddRange(schoolTrip.Students);
+            _context.Guardians.AddRange(schoolTrip.Guardians);
+            _context.Entry(schoolTrip).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            await AddSubstitution(id);
+            return NoContent();
+        }
     }
 }

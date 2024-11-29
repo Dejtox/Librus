@@ -4,6 +4,7 @@ using System.Drawing.Printing;
 using System.Net.Http.Json;
 using System.Globalization;
 using System;
+using GradeSystem.v1.Client.Pages;
 
 namespace GradeSystem.v1.Client.Services.SubstituteService
 {
@@ -14,47 +15,52 @@ namespace GradeSystem.v1.Client.Services.SubstituteService
             _http = http;
             _navigationManager = navigationManager;
         }
-        public IList<Enrollment> Substitutes { get; set; }=new List<Enrollment>();
-        public IList<Enrollment> Enrollments { get; set; }=new List<Enrollment>();
-        public IList<Subject> AvailableSubjects { get; set; } =new List<Subject>();
         
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
 
-        public async Task CreateSubstitute(Enrollment enrollment)
-        {
-            await _http.PutAsJsonAsync($"api/Substitute/{enrollment.EnrollmentID}", enrollment);
-            _navigationManager.NavigateTo("substitutes");
-        }
+        public IList<Subject> Subjects { get; set; } = new List<Subject>();
 
-        public async Task GetEnrollments()
+        public async Task<List<TeacherDTO>> GetAbsentTeachers()
         {
-            var result = await _http.GetFromJsonAsync<List<Enrollment>>("api/Enrollments");
+            var result = await _http.GetFromJsonAsync<List<TeacherDTO>>("api/Substitute");
             if (result != null)
-                Enrollments = result;
+                return result;
+            throw new Exception("Substitute not found");
         }
 
-        public async Task DeleteEnrollment(int id)
+        public async Task<List<Teacher>> GetTeachers()
         {
-            await _http.DeleteAsync($"api/Enrollments/{id}");
-        }
-
-        public async Task GetSubstitutes()
-        {
-            var result = await _http.GetFromJsonAsync<List<Enrollment>>("api/Substitute");
+            var result = await _http.GetFromJsonAsync<List<Teacher>>("api/Teachers");
             if (result != null)
-                Substitutes = result;
+                return result;
+            throw new Exception("Teacher not found");
         }
 
-        public async Task GetAvailableSubjects(DateTime startDate, DateTime endDate)
+        public async Task DeleteTeacherSubstitute(int id)
         {
-            //przy parametrach tak jest bo js ma format m-d-y, a c# d-m-y 
-            var result = await _http.GetFromJsonAsync<List<Subject>>($"api/Substitute/available_teachers/{startDate:MM-dd-yyyy}/{endDate:MM-dd-yyyy}");
-            if (result != null)
-                AvailableSubjects = result;
+            await _http.PutAsJsonAsync($"api/Substitute/{id}",id);
+            _navigationManager.NavigateTo("/substitutes1", true);
         }
 
-        public async Task<Enrollment> GetEnrollmentById(int id)
+        public async Task CreateTeacherSubstitute(int id, Teacher teacher)
+        {
+            await _http.PutAsJsonAsync($"api/Substitute/add/{id}", teacher);
+            _navigationManager.NavigateTo("/substitutes1",true);
+        }
+
+        public async Task<List<Enrollment>> GetEnrollments(Teacher teacher)
+        {
+            var query = $"api/Substitute/enrollments?id={teacher.TeacherID}&startDate={teacher.StartDate:O}&endDate={teacher.EndDate:O}";
+            var result = await _http.GetFromJsonAsync<List<Enrollment>>(query);
+
+            if (result != null)
+                return result;
+
+            throw new Exception("Enrollments not found");
+        }
+
+        public async Task<Enrollment> GetEnrollment(int id)
         {
             var result = await _http.GetFromJsonAsync<Enrollment>($"api/Enrollments/{id}");
             if (result != null)
@@ -62,31 +68,17 @@ namespace GradeSystem.v1.Client.Services.SubstituteService
             throw new Exception("Enrollment not found");
         }
 
-
-        public async Task DeleteSubstitute(int id)
+        public async Task CreateSubstitute(int enrollmentID, Enrollment substitute)
         {
-            await _http.DeleteAsync($"api/Substitute/{id}");
-            _navigationManager.NavigateTo("substitutes");
+            await _http.PostAsJsonAsync($"api/Substitute/add_substitute/{enrollmentID}", substitute);
+            _navigationManager.NavigateTo("/substitutes1", true);
         }
 
-        public async Task<Enrollment> GetSubstituteById(int id)
+        public async Task GetSubjects()
         {
-            var substitute = await _http.GetFromJsonAsync<Enrollment>($"api/Substitute/{id}");
-            if (substitute != null)
-                return substitute;
-            throw new Exception("Not found");
-        }
-
-        public async Task CreateLeave(Teacher teacher)
-        {
-            await _http.PutAsJsonAsync($"api/Substitute/leave_add/{teacher.TeacherID}", teacher);
-            _navigationManager.NavigateTo("leave");
-        }
-
-        public async Task DeleteLeave(int id,Teacher teacher)
-        {
-            await _http.PutAsJsonAsync($"api/Substitute/leave/{id}", teacher);
-            _navigationManager.NavigateTo("leave");
+            var result = await _http.GetFromJsonAsync<List<Subject>>("api/Subjects");
+            if (result != null)
+                Subjects = result;
         }
     }
 }

@@ -1,74 +1,73 @@
 ﻿@page "/school_trips1"
 @inject NavigationManager navigationManager
 @inject ISchoolTripService SchoolTripService
-
+@inject DialogService DialogService
 
 <PageTitle>School Trips</PageTitle>
 
 <div class="content-container">
-    <div>
-        <div class="content-header">
-            <h3 class="page-header">Trips</h3>
+    <div class="content-header">
+        <p class="page-header">Trips</p>
+    </div>
+    <div class="search-container">
+        <div class="empty-row"></div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+                <RadzenLabel Text="Trip leader" Component="TripLeaderValue" Style="font-weight:bold;width:8%;font-size:17px;"/>
+                <RadzenDropDown @bind-Value=@teacherID Data=@SchoolTripService.Teachers Style="width: 22%; border-radius:15px;" Name="TripLeaderValue" ValueProperty="TeacherID" TextProperty="Name" Placeholder="Search..." Change="@(()=>SearchByTeacher(teacherID))" />
+            </RadzenStack>
         </div>
-        <div class="search-container">
-            <div class="empty-row"></div>
-            <div class="black-line">
-                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" Style="margin-top:20px;margin-bottom:20px;">
-                    <RadzenLabel Text="Trip leader" Component="TripLeaderValue" Style="font-weight:bold;width:150px;"/>
-                    <RadzenDropDown @bind-Value=@teacherID Data=@SchoolTripService.Teachers Style="width: 100%; max-width: 400px; border-radius:15px;" Name="TripLeaderValue" ValueProperty="TeacherID" TextProperty="Name" Placeholder="Search..." Change="@(()=>SearchByTeacher(teacherID))" />
-                </RadzenStack>
-            </div>
-            <div class="black-line">
-                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
-                    <RadzenLabel Text="Grade" Component="ClassValue" Style="font-weight:bold;width:150px;"/>
-                    <RadzenDropDown @bind-Value=@classID Data=@SchoolTripService.Classes Style="width: 100%; max-width: 400px; border-radius:15px;" Name="ClassValue" ValueProperty="ClassID" TextProperty="ClassName" Placeholder="Search..." />
-                </RadzenStack>
-            </div>
-            <div class="center search-margin">
-                <button class="trip-add-button">Show</button>
-            </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+                <RadzenLabel Text="Grade" Component="ClassValue" Style="font-weight:bold;width:8%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@classID Data=@SchoolTripService.Classes Style="width:22%; border-radius:15px;" Name="ClassValue" ValueProperty="ClassID" TextProperty="ClassName" Placeholder="Search..." Change="@(()=>SearchByClass(classID))" />
+            </RadzenStack>
         </div>
-        <div class="add-container center">
-            <button class="trip-add-button search-margin" @onclick="@AddTrip">Add trip</button>
+        <div class="center search-margin">
+            <button class="trip-add-button" onclick="@ShowAll">Show all</button>
         </div>
     </div>
+    <div class="add-container center">
+        <button class="trip-add-button search-margin" style="padding: 10px 100px 10px 100px;" @onclick="@AddTrip">Add trip</button>
+    </div>
     <div class="table_container">
-        <table class=" table table-bordered">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Trip name</th>
-                    <th>Duration</th>
-                    <th>Ppl</th>
-                    <th>G.</th>
-                    <th>Trip leader</th>
-                    <th>Added by</th>
-                    <th>Options</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var trip in filteredSchoolTrips)
-                {
-                    <tr>
-                        <td>1</td>
-                        <td>@trip.Name</td>
-                        <td>@trip.Duration</td>
-                        <td>@trip.Ppl</td>
-                        <td>@string.Join(",", trip.Classes.Select(c => c.Class?.ClassName))</td>
-                        <td>@trip.TripLeader.Name</td>
-                        <td>@trip.AddedBy</td>
-                        <td class="options">
-                            <button type="button" class="icon-button" onclick="@(()=>Edit(trip.SchoolTripID))">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                            <button type="button" class="icon-button" onclick="@(()=>Delete(trip.SchoolTripID))">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <RadzenDataGrid @ref="schoolTripGrid" AllowColumnResize="true" PageSize="3" AllowPaging="true" Data="filteredSchoolTrips" TItem="SchoolTrip" ShowPagingSummary="true" SelectionMode="DataGridSelectionMode.Single"
+                        PagerHorizontalAlign="Radzen.HorizontalAlign.Left" AllowAlternatingRows="false"
+                        Style="border-radius:15px;" RowClick="((args)=>Hello(args.Data.SchoolTripID))" @bind-Value=@selectedItems Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
+        <Columns>
+            <RadzenDataGridColumn Title="No." TItem="SchoolTrip">
+                <Template>
+                    @{
+                        var pageSize = Math.Min(schoolTripGrid.PageSize, schoolTripGrid.View.Count());
+                    }
+                    <RenderOnceComponent CanRender=@(!(index >= pageSize))>
+                    @{
+                        ResetIndex(index >= pageSize);
+                    }
+                    @((schoolTripGrid.CurrentPage * pageSize) + index++ + 1)
+                    </RenderOnceComponent>
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Property="SchoolTrip.Name" Title="Trip Name" TItem="SchoolTrip"/>
+            <RadzenDataGridColumn Property="SchoolTrip.Duration" Title="Duration" TItem="SchoolTrip" />
+            <RadzenDataGridColumn Property="SchoolTrip.Ppl" Title="Ppl." TItem="SchoolTrip" />
+            <RadzenDataGridColumn Property="SchoolTrip.Classess" Title="G." TItem="SchoolTrip" />
+            <RadzenDataGridColumn Property="SchoolTrip.TripLeader.Name" Title="Trip Leader" TItem="SchoolTrip" />
+            <RadzenDataGridColumn Property="SchoolTrip.AddedBy" Title="Added by" TItem="SchoolTrip" />
+            <RadzenDataGridColumn Title="Options" TItem="SchoolTrip">
+                <Template Context="SchoolTrip">
+                     <div class="options">
+                    <button type="button" class="icon-button" onclick="@(()=>Edit(SchoolTrip.SchoolTripID))">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="icon-button" onclick="@(()=>Delete(SchoolTrip.SchoolTripID))">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    </div>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
     </div>
 </div>
 
@@ -77,6 +76,18 @@
     int classID;
     public List<SchoolTrip> schoolTrips { get; set; } = new List<SchoolTrip>();
     public List<SchoolTrip> filteredSchoolTrips { get; set; } = new List<SchoolTrip>();
+    IList<SchoolTrip> selectedItems; //oszukane
+    private int? schoolTripToDeleteId = null;
+
+    RadzenDataGrid<SchoolTrip> schoolTripGrid;
+    int index;
+    void ResetIndex(bool shouldReset)
+    {
+        if (shouldReset)
+        {
+            index = 0;
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -93,7 +104,16 @@
 
     private async void Delete(int id)
     {
-        await SchoolTripService.DeleteSchoolTripByID(id);
+        schoolTripToDeleteId = id;
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await SchoolTripService.DeleteSchoolTripByID(id);
+        }
+        else
+        {
+            schoolTripToDeleteId = null;
+        }
     }
     private void Edit(int id)
     {
@@ -108,6 +128,25 @@
         else
         {
             filteredSchoolTrips = schoolTrips.Where(st => st.TripLeaderID == ID).ToList();
+            ResetIndex(true);
         }
+    }
+    private void SearchByClass(int? ID)
+    {
+        filteredSchoolTrips = schoolTrips.Where(st => st.Classes.Any(c => c.ClassID == ID)).ToList();
+        ResetIndex(true);
+    }
+    private void Hello(int id)
+    {
+        if (schoolTripToDeleteId ==null)
+        {
+            navigationManager.NavigateTo($"/school_trip_summary/{id}");
+        }
+        
+    }
+    private void ShowAll()
+    {
+        filteredSchoolTrips = schoolTrips;
+        ResetIndex(true);
     }
 }

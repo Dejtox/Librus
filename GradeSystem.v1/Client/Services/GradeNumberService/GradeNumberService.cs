@@ -16,6 +16,8 @@ namespace GradeSystem.v1.Client.Services.GradeNumberService
             _navigationManager = navigationManager;
         }
         public IList<GradeNumber> GradeNumbers { get; set; } = new List<GradeNumber>();
+        public IList<GradeType> GradeTypes { get; set; } = new List<GradeType>();
+     
 
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
@@ -53,5 +55,16 @@ namespace GradeSystem.v1.Client.Services.GradeNumberService
             await _http.PutAsJsonAsync($"api/Gradenumber/{id}", gradenumber);
         }
 
+        public async Task PostGradeType(GradeType gradeType)
+        {
+            await _http.PostAsJsonAsync("api/GradeType", gradeType);
+        }
+
+        public async Task GetGradeTypes()
+        {
+            var result = await _http.GetFromJsonAsync<List<GradeType>>("api/GradeType");
+            if (result != null)
+                GradeTypes = result;
+        }
     }
 }

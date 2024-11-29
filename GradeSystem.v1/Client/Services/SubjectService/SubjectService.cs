@@ -64,5 +64,13 @@ namespace GradeSystem.v1.Client.Services.SubjectService
             await _http.PutAsJsonAsync($"api/Subjects/{subject.SubjectID}", subject);
             _navigationManager.NavigateTo("Subjects");
         }
+
+        public async Task<List<Subject>> GetTeacherSubjects(int id)
+        {
+            var result = await _http.GetFromJsonAsync<List<Subject>>($"api/Subjects/teacher_subjects?id={id}");
+            if (result != null)
+                return result;
+            throw new Exception("Subject not found");
+        }
     }
 }

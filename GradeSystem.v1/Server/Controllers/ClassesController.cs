@@ -106,5 +106,11 @@ namespace GradeSystem.v1.Server.Controllers
         {
             return _context.Class.Any(e => e.ClassID == id);
         }
+
+        [HttpGet("students/{id}")]
+        public async Task<ActionResult<IEnumerable<Student>>> GetClassStudents(int id)
+        {
+            return await _context.Student.Where(s=>s.ClassID == id).ToListAsync();
+        }
     }
 }

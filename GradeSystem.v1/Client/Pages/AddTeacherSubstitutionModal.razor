@@ -1,0 +1,48 @@
+﻿@inject ISubstituteService SubstituteService
+@inject DialogService DialogService
+
+<div class="search-container">
+    <div class="empty-row"></div>
+    <div class="black-line">
+        <div class="search-margin l-margin">
+            <RadzenLabel Text="Absent teacher" Component="AbsentTeacher" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenDropDown @bind-Value="@teacher" Data=@teachers Style="width: 30%; border-radius:15px;" Name="AbsentTeacher" TextProperty="Name" Placeholder="Search..." />
+        </div>
+    </div>
+    <RadzenTemplateForm Data="teacher" TItem="Teacher" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+    <div class="black-line">
+        <div class="search-margin l-margin">
+            <RadzenLabel Text="Absent from" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenDatePicker Name="StartDate" @bind-Value="teacher.StartDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="true" />
+            <RadzenLabel Text="to" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenDatePicker Name="StartDate" @bind-Value="teacher.EndDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="false" />
+        </div>
+    </div>
+    <div class="button-container search-margin">
+        <button class="rounded-empty-button" type="submit">Add</button>
+        <button class="rounded-filled-button" type="button" onclick="@Cancel">Cancel</button>
+    </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    Teacher teacher = new Teacher();
+    List<Teacher> teachers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        teachers = await SubstituteService.GetTeachers();
+    }
+    private async Task HandleSubmit()
+    {
+        await SubstituteService.CreateTeacherSubstitute(teacher.TeacherID, teacher);
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+    private void Cancel()
+    {
+        DialogService.Close();
+    }
+}

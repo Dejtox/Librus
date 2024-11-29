@@ -56,13 +56,13 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
         public async Task DeleteSchoolTripByID(int id)
         {
             await _http.DeleteAsync($"api/SchoolTrip/{id}");
-            _navigationManager.NavigateTo("school_trips1");
+            _navigationManager.NavigateTo("school_trips1",true);
         }
 
         public async Task UpdateSchoolTrip(SchoolTrip schoolTrip)
         {
             await _http.PostAsJsonAsync($"api/SchoolTrip/{schoolTrip.SchoolTripID}", schoolTrip);
-            _navigationManager.NavigateTo("school_trips");
+            _navigationManager.NavigateTo("school_trips1");
         }
 
         public async Task<List<Student>> GetStudents(List<int> classes)

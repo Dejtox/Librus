@@ -64,5 +64,13 @@ namespace GradeSystem.v1.Client.Services.ClassService
             await _http.PutAsJsonAsync($"api/Classes/{classs.ClassID}", classs);
             _navigationManager.NavigateTo("Classes");
         }
+
+        public async Task<List<Student>> GetClassStudents(int id)
+        {
+            var result = await _http.GetFromJsonAsync<List<Student>>($"api/Classes/students/{id}");
+            if (result != null)
+                return result;
+            throw new Exception("maozedong");
+        }
     }
 }

@@ -7,6 +7,7 @@ public class Enrollment
     public int SubjectID { get; set; }
     public int ClassID { get; set; }
     public  int? SubEnrollmentID { get; set; }
+
     public Enrollment? SubEnrollment { get; set; }
     public DateTime Date { get; set; } = DateTime.Now;
     public DateTime EndDate { get; set; }

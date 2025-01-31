@@ -2,6 +2,8 @@
 @inject IEnrollmentService EnrollmentService
 @inject IStudentService StudentService
 @inject ILessonsHoursService LessonsHoursService
+@inject ISchoolTripService SchoolTripService
+@inject IEventService EventService
 @inject ISubjectService SubjectService
 @inject NavigationManager NavigationManager
 
@@ -30,27 +32,48 @@
                 <div class="grafictableheadinside">26</div>
             </div>
             <tbody class="graficktableboddymain">
-                            @*
+                            
                 @foreach (var segment in SortedlessonsHours)
                 {
                     bool i = true;
                     <tr class="tablerow">
-                                    
-                        @foreach (var stdevent in StudentsEnrolmentsMon)
-                        {
-                            if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
-                            {
-                                <td class="tablecell">
-                                    <div class="tablecellnumber">@segment.LessonNo</div>
-                                    <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
-                                    <div class="tablecellnumber"></div>
-                                </td>
-                                i = false;
-                            }
-                        }
+                                    @if (Schooltrips.Count > 0)
+                                    {
+                                        foreach (var trip in Schooltrips)
+                                        {
+                                            if (segment.Start >= trip.StartDate && segment.Start < trip.EndDate)
+                                            {
+                                                i = false;
+                                                <td class="tablecell">
+                                                    <div>@trip.Name</div>           @*środek tablecell*@
+                                                </td>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                    @foreach (var stdevent in StudentsEnrolmentsMon)
+                                    {
+                                        if (segment.Start.TimeOfDay >= stdevent.stdlesson.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.stdlesson.EndDate.TimeOfDay)
+                                        {
+                                            <td class="tablecell">          
+                                            @if(stdevent.upcomingexams != null)
+                                                    {
+                                                    <div>@stdevent.upcomingexams.Description  @stdevent.stdlesson.Subject.SubjectName</div> @*środek tablecell*@
+                                                    }
+                                        
+                                            <div class="tablecellnumber">@segment.LessonNo</div>
+                                            <div class="tablecellcontent">@stdevent.stdlesson.Subject.SubjectName</div>
+                                            <div class="tablecellnumber"></div>
+                                        </td>
+                                        i = false;
+                                        }                                                                           
+                                    }
+                                    }
                         @if (i == true)
                         {
-                            <td class="tablecell">
+                            <td class="tablecell">      
                                 <div class="tablecellnumber">@segment.LessonNo</div>
                                 <div class="tablecellcontent"></div>
                                 <div class="tablecellnumber"></div>
@@ -58,7 +81,7 @@
                         }
                     </tr>
                 }
-                                *@
+                                
             </tbody>
         </table>
     </div>
@@ -245,14 +268,15 @@
     </div>
 </div>
 @code {
-    class Evnforday {
-        Enrollment? substitutes;
-        SchoolTrip? schoolTrip;
-        CalendarEvent? upcomingexams;
-        public Evnforday(Enrollment enrollment, SchoolTrip schoolTrip1, CalendarEvent calendarEvent)
+    public class Evnforday {
+        public Enrollment stdlesson;
+        public Enrollment? substitutes;
+
+        public CalendarEvent? upcomingexams;
+        public Evnforday(Enrollment enrollment, Enrollment enrollment1, CalendarEvent calendarEvent)
         {
-            substitutes = enrollment;
-            schoolTrip = schoolTrip1;
+            stdlesson = enrollment;
+            substitutes = enrollment1;
             upcomingexams =calendarEvent;
         }
     }
@@ -262,6 +286,7 @@
     IList<Evnforday> StudentsEnrolmentsThu = new List<Evnforday>();
     IList<Evnforday> StudentsEnrolmentsFri = new List<Evnforday>();
     IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
+    IList<SchoolTrip> Schooltrips = new List<SchoolTrip>();
     DateTime Today = DateTime.Now;
     DateTime UpToDateMonday;
     int ID;
@@ -272,11 +297,14 @@
     {
         await SubjectService.GetSubjects();
         await StudentService.GetStudents();
+        await SchoolTripService.GetSchoolTrips();
+        await EventService.GetCalendarEvents();
         await GetClaimsGetID();
         await EnrollmentService.GetEnrollments();
         await Finduptodatemonday();
         await LessonsHoursService.GetLessonsHours();
         await SortLessonHours();
+        await FillTrips();
     }
 
     async Task Finduptodatemonday()
@@ -305,13 +333,9 @@
                 UpToDateMonday = Today;
             }
         }
-        await Filllistofactivetiescurrentweek();
     }
 
-    async Task Filllistofactivetiescurrentweek()
-    {
 
-    }
 
     async Task SortLessonHours()
     {
@@ -341,7 +365,7 @@
                 {
                     SchoolTrip? schoolTrip = null;
                     CalendarEvent? upcomingexams = null;
-                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    evnfordaytoadd = new Evnforday(enrolment, enrolment, upcomingexams);
                     StudentsEnrolmentsMon.Add(evnfordaytoadd);
                 }
                 temp = UpToDateMonday.AddDays(1);
@@ -349,7 +373,7 @@
                 {
                     SchoolTrip? schoolTrip = null;
                     CalendarEvent? upcomingexams = null;
-                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    evnfordaytoadd = new Evnforday(enrolment, enrolment, upcomingexams);
                     StudentsEnrolmentsTue.Add(evnfordaytoadd);
                 }
                 temp = UpToDateMonday.AddDays(2);
@@ -357,7 +381,7 @@
                 {
                     SchoolTrip? schoolTrip = null;
                     CalendarEvent? upcomingexams = null;
-                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    evnfordaytoadd = new Evnforday(enrolment, enrolment, upcomingexams);
                     StudentsEnrolmentsWen.Add(evnfordaytoadd);
                 }
                 temp = UpToDateMonday.AddDays(3);
@@ -365,7 +389,7 @@
                 {
                     SchoolTrip? schoolTrip = null;
                     CalendarEvent? upcomingexams = null;
-                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    evnfordaytoadd = new Evnforday(enrolment, enrolment, upcomingexams);
                     StudentsEnrolmentsThu.Add(evnfordaytoadd);
                 }
                 temp = UpToDateMonday.AddDays(4);
@@ -373,10 +397,76 @@
                 {
                     SchoolTrip? schoolTrip = null;
                     CalendarEvent? upcomingexams = null;
-                    evnfordaytoadd = new Evnforday(enrolment, schoolTrip, upcomingexams);
+                    evnfordaytoadd = new Evnforday(enrolment, enrolment, upcomingexams);
                     StudentsEnrolmentsFri.Add(evnfordaytoadd);
                 }
             }
+        }
+        Fillinevnts();
+    }
+    async Task FillTrips()
+    {
+        foreach (var trip in SchoolTripService.SchoolTrips)
+        {
+            foreach (var schoolclass in trip.Classes)
+            {
+                if (schoolclass.ClassID == student.ClassID)
+                {
+                    if ((UpToDateMonday <= trip.StartDate && UpToDateMonday.AddDays(5) >= trip.StartDate) || (UpToDateMonday <= trip.EndDate && UpToDateMonday.AddDays(5) >= trip.EndDate))
+                    {
+                        Schooltrips.Add(trip);
+                    }
+                    break;
+                }
+             }
+        }
+    }
+    async Task Fillinevnts()
+    {
+        foreach( var evn in EventService.Events)
+        {
+            if (evn.Description == "Exam")
+            {
+                if (evn.ClassID == student.ClassID)
+                {
+                    foreach (var lesson in StudentsEnrolmentsMon)
+                    {
+                        if (lesson.stdlesson.Date == evn.StartDate)
+                        {
+                            lesson.upcomingexams = evn;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsTue)
+                    {
+                        if (lesson.stdlesson.Date == evn.StartDate)
+                        {
+                            lesson.upcomingexams = evn;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsWen)
+                    {
+                        if (lesson.stdlesson.Date == evn.StartDate)
+                        {
+                            lesson.upcomingexams = evn;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsThu)
+                    {
+                        if (lesson.stdlesson.Date == evn.StartDate)
+                        {
+                            lesson.upcomingexams = evn;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsFri)
+                    {
+                        if (lesson.stdlesson.Date == evn.StartDate)
+                        {
+                            lesson.upcomingexams = evn;
+                        }
+                    }
+                }
+            }
+            
         }
     }
 
@@ -423,6 +513,65 @@
     }
 }
 @*
+
+if (evn.Description != "Exam")
+            {
+                if (evn.ClassID == student.ClassID)
+                {
+                    foreach (var lesson in StudentsEnrolmentsMon)
+                    {
+                        if (lesson.stdlesson.Date >= evn.StartDate && lesson.stdlesson.Date <= evn.EndDate)
+                        {
+                            lesson.schoolTrip = evn;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsTue)
+                    {
+                        if (lesson.stdlesson.Date == evn.StartDate)
+                        {
+                            lesson.upcomingexams = exam;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsWen)
+                    {
+                        if (lesson.stdlesson.Date == exam.StartDate)
+                        {
+                            lesson.upcomingexams = exam;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsThu)
+                    {
+                        if (lesson.stdlesson.Date == exam.StartDate)
+                        {
+                            lesson.upcomingexams = exam;
+                        }
+                    }
+                    foreach (var lesson in StudentsEnrolmentsFri)
+                    {
+                        if (lesson.stdlesson.Date == exam.StartDate)
+                        {
+                            lesson.upcomingexams = exam;
+                        }
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         DateTime temp;
         foreach (var enrolment in EnrollmentService.Enrollments)

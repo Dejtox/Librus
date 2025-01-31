@@ -3,6 +3,8 @@
 @inject IStudentService StudentService
 @inject IEventService EventService
 @inject IEnrollmentService EnrollmentService
+@inject ISchoolTripService SchoolTripService
+@inject ISubjectService SubjectService
 @inject IEventService EventServic
 @inject NavigationManager NavigationManager
 
@@ -21,7 +23,7 @@
                 <option value="/yourscheduleweek">Week<div class="gg-chevron-down"></div></option>
             </select>
 
-        </div>
+        
 
         <div class="Mdays">
             <div class="Mdayhead">Monday</div>
@@ -35,151 +37,194 @@
 
         <div class="Month">
             @for (int j = 1; j < 7; j++)
-            {
-
+                {
                 <div class="MonthRow">
                     @for (int i = 1; i < 8; i++)
-                    {
-                        <div class="Msingle"></div>
-                    }
+                        {
+                            int x = 1;
+                            x = 1;
+                            <div class="Msingle">
+                            @if ((i + (j - 1) * 7) < (((int)SelcetedMonth.DayOfWeek +6 ) %7) +1 )
+                            {
+                                <div class="Msingle"></div>
+                            }
+                            else
+                            {
+                                if ((i + (j - 1) * 7) - (((int)SelcetedMonth.DayOfWeek +6) % 7) +1 > DateTime.DaysInMonth(SelcetedMonth.Year, SelcetedMonth.Month) +1)
+                                {
+                                    <div ></div>
+                                }
+                                else
+                                {
+                                    if (subtest)
+                                    {
+                                        @foreach (var enr in SubstituteEnrlList)
+                                        {
+                                        
+                                            if ((i + (j - 1) * 7) - daydif == enr.Date.Day)
+                                            {
+                                                    <div>@enr.SubEnrollment.Subject </div> @*?rodek tablecell*@
+                                            x--;
+                                            }
+                                        }
+                                    }
+                                    if (examtest)
+                                    {
+                                            @foreach (var test in ExamList)
+                                            {
+                                                if ((i + (j - 1) * 7) - daydif == test.test.StartDate.Day)
+                                                {
+                                                    <div>@test.subject.SubjectName</div>
+                                                    @*?rodek tablecell*@
+                                                    x--;
+                                                }
+                                            }
+                                        }
+                                    if (eventest)
+                                    {
+                                            @foreach (var evn in EvnlList)
+                                            {
+                                                if ((i + (j - 1) * 7) - daydif >= evn.StartDate.Day && (i + (j - 1) * 7) - daydif <= evn.EndDate.Day)
+                                                {
+                                                    <div>@evn.Name</div> @*?rodek tablecell*@
+                                                    x--;
+                                                }
+                                            }
+                                    }
+                                    if(x == 1)
+                                    {
+                                        <div></div>
+                                    }
+                                }
+                            }
+                            </div>
+                        }
                 </div>
 
             }
         </div>
     </div>
+    </div>
+    <div class="sidebox2">
+        <div class="checkboxes">
+            <label class="container123 @(examtest ? "active": "inactive")">
+                Exams
+                <input type="checkbox" @bind="examtest">
+                <span class="checkmark checkmark--1"></span>
+            </label>
+
+            <label class="container123 @(eventest ? "active": "inactive")">
+                Events
+                <input type="checkbox" @bind="eventest">
+                <span class="checkmark checkmark--2"></span>
+            </label>
+
+            <label class="container123 @(subtest ? "active": "inactive")">
+                Substitutions
+                <input type="checkbox" @bind="subtest">
+                <span class="checkmark checkmark--3"></span>
+            </label>
+        </div>
+    </div>
 </div>
 
 
-@code {
-    private class Dayevents
-    {
-        List<Enrollment> enrollments;
-    }
 
+@code {
+    public class Exam
+    {
+        public CalendarEvent test;
+        public Subject subject;
+        public Exam(Subject subjectadd, CalendarEvent testadd)
+        {
+            subject = subjectadd;
+            test = testadd;
+        }
+    }
+    bool subtest = true;
+    bool examtest = true;
+    bool eventest = true;
     int ID;
+    int daydif;
     Student student;
     string Roles;
     DateTime SelcetedMonth;
-    List<List<Enrollment>> MonSubstituteEnrlList;
-    List<List<Enrollment>> TueSubstituteEnrlList;
-    List<List<Enrollment>> WedSubstituteEnrlList;
-    List<List<Enrollment>> ThuSubstituteEnrlList;
-    List<List<Enrollment>> FriSubstituteEnrlList;
-    List<List<Enrollment>> SutSubstituteEnrlList;
-    List<List<Enrollment>> SunSubstituteEnrlList;
+    List<Enrollment> SubstituteEnrlList = new List<Enrollment>();
+    List<Exam> ExamList = new List<Exam>();
+    List<SchoolTrip> EvnlList = new List<SchoolTrip>();
     protected override async Task OnInitializedAsync()
     {
         SelcetedMonth = DateTime.Now;
         SelcetedMonth = new DateTime(SelcetedMonth.Year, SelcetedMonth.Month, 1);
         await GetClaimsGetID();
-        await EnrollmentService.GetEnrollments();        
+        await EventService.GetCalendarEvents();
+        await EnrollmentService.GetEnrollments();
+        await SchoolTripService.GetSchoolTrips();
+        await SubjectService.GetSubjects();
         await FillEnrListDates();
-
+        await FillTests();
+        await FillTrips();
     }
-
-    async Task FillEnrListDates()
+    async Task FillTests()
     {
-
-        if (MonSubstituteEnrlList != null && MonSubstituteEnrlList.Any())
+        @foreach (var evn in EventService.Events)
         {
-            MonSubstituteEnrlList.Clear();
-        }
-        if (TueSubstituteEnrlList != null && TueSubstituteEnrlList.Any())
-        {
-            TueSubstituteEnrlList.Clear();
-        }
-        if (WedSubstituteEnrlList != null && WedSubstituteEnrlList.Any())
-        {
-            WedSubstituteEnrlList.Clear();
-        }
-        if (ThuSubstituteEnrlList != null && ThuSubstituteEnrlList.Any())
-        {
-            ThuSubstituteEnrlList.Clear();
-        }
-        if (FriSubstituteEnrlList != null && FriSubstituteEnrlList.Any())
-        {
-            FriSubstituteEnrlList.Clear();
-        }
-        if (SutSubstituteEnrlList != null && SutSubstituteEnrlList.Any())
-        {
-            SutSubstituteEnrlList.Clear();
-        }
-        if (SunSubstituteEnrlList != null && SunSubstituteEnrlList.Any())
-        {
-            SunSubstituteEnrlList.Clear();
-        }
-        int daysinmonth = DateTime.DaysInMonth(SelcetedMonth.Year, SelcetedMonth.Month);
-        MonSubstituteEnrlList = new List<List<Enrollment>>(6);
-        TueSubstituteEnrlList = new List<List<Enrollment>>(6);
-        WedSubstituteEnrlList = new List<List<Enrollment>>(6);
-        ThuSubstituteEnrlList = new List<List<Enrollment>>(6);
-        FriSubstituteEnrlList = new List<List<Enrollment>>(6);
-        SutSubstituteEnrlList = new List<List<Enrollment>>(6);
-        SunSubstituteEnrlList = new List<List<Enrollment>>(6);
-        for(int i = 0; i<= 6; i++)
-        {
-            MonSubstituteEnrlList.Add(new List<Enrollment>());
-            TueSubstituteEnrlList.Add(new List<Enrollment>());
-            WedSubstituteEnrlList.Add(new List<Enrollment>());
-            ThuSubstituteEnrlList.Add(new List<Enrollment>());
-            FriSubstituteEnrlList.Add(new List<Enrollment>());
-            SutSubstituteEnrlList.Add(new List<Enrollment>());
-            SunSubstituteEnrlList.Add(new List<Enrollment>());
-        }
-        for (int i = 0; i <= daysinmonth; i++)
-        {
-            int mon = 0; int tue = 0; int wed = 0; int thu = 0; int fri = 0; int sat = 0; int sun = 0;
-            foreach (var enr in EnrollmentService.Enrollments)
-            {                
-                if(enr.SubEnrollmentID != null)
+            if (evn.Description == "Exam")
+            {
+                if (student.ClassID == evn.ClassID)
                 {
-                    if (enr.Date.Month == SelcetedMonth.Month)
-                    {                       
-                        if(enr.Date.Day == i+1)
+                    if(evn.StartDate.Month == SelcetedMonth.Month && evn.StartDate.Year == SelcetedMonth.Year)
+                    {
+                        foreach(var subject in SubjectService.Subjects)
                         {
-                            if (enr.Date.DayOfWeek == DayOfWeek.Monday)
+                            if(subject.SubjectID == evn.SubjectID)
                             {
-                                MonSubstituteEnrlList[mon].Add(enr);
-                                mon = mon + 1;
-                            }
-                            if (enr.Date.DayOfWeek == DayOfWeek.Tuesday)
-                            {
-                                MonSubstituteEnrlList[tue].Add(enr);
-                                tue = tue + 1;
-                            }
-                            if (enr.Date.DayOfWeek == DayOfWeek.Wednesday)
-                            {
-                                MonSubstituteEnrlList[wed].Add(enr);
-                                wed = wed + 1;
-                            }
-                            if (enr.Date.DayOfWeek == DayOfWeek.Thursday)
-                            {
-                                MonSubstituteEnrlList[thu].Add(enr);
-                                thu = thu + 1;
-                            }
-                            if (enr.Date.DayOfWeek == DayOfWeek.Friday)
-                            {
-                                MonSubstituteEnrlList[fri].Add(enr);
-                                fri = fri + 1;
-                            }
-                            if (enr.Date.DayOfWeek == DayOfWeek.Saturday)
-                            {
-                                MonSubstituteEnrlList[sat].Add(enr);
-                                sat = sat + 1;
-                            }
-                            if (enr.Date.DayOfWeek == DayOfWeek.Sunday)
-                            {
-                                MonSubstituteEnrlList[sun].Add(enr);
-                                sun = sun + 1;
+                                ExamList.Add(new Exam(subject, evn));
                             }
                         }
+                        
                     }
                 }
             }
         }
     }
 
+    async Task FillTrips()
+    {
+        @foreach (var evn in SchoolTripService.SchoolTrips)
+        {
+            foreach(var schoolclass in evn.Classes)
+            {
+                if (student.ClassID == schoolclass.ClassID)
+                {
+                    if (evn.StartDate.Month == SelcetedMonth.Month && evn.StartDate.Year == SelcetedMonth.Year)
+                    {
+                        EvnlList.Add(evn);
 
+                    }
+                }
+            }
+        }
+    }
+
+    async Task FillEnrListDates()
+    {       
+            SubstituteEnrlList.Clear();
+        int daysinmonth = DateTime.DaysInMonth(SelcetedMonth.Year, SelcetedMonth.Month);
+        SubstituteEnrlList = new List<Enrollment>();
+
+            foreach (var enr in EnrollmentService.Enrollments)
+            {                
+                if(enr.SubEnrollmentID != null)
+                {
+                if (enr.Date.Month == SelcetedMonth.Month && enr.Date.Year == SelcetedMonth.Year)
+                    {                       
+                            SubstituteEnrlList.Add(enr);                    
+                    }
+                }
+            }
+        
+    }
     private void NavigateToPage(ChangeEventArgs e)
     {
         var selectedValue = e.Value.ToString();

@@ -1,5 +1,6 @@
 ﻿@page "/attendanceviewteacherlist"
 @inject ITeacherService TeacherService
+@inject IAttendanceService AttendanceService
 
 <div class="Atableborder">
     <div class="Astudentinfo">
@@ -39,6 +40,7 @@
     protected override async Task OnInitializedAsync()
     {
         await TeacherService.GetTeachers();
+        await AttendanceService.GetAttendances();
 
     }
 

@@ -800,35 +800,19 @@
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
-=======
-      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
->>>>>>> origin/elBranchorP
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Analyzers.props": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
-=======
-      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
->>>>>>> origin/elBranchorP
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/Filipformerge
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.0": {
->>>>>>> origin/elBranchorP
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -2282,35 +2266,19 @@
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
-=======
-      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
->>>>>>> origin/elBranchorP
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Analyzers.props": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
-=======
-      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
->>>>>>> origin/elBranchorP
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/Filipformerge
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.0": {
->>>>>>> origin/elBranchorP
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -4045,17 +4013,10 @@
         "microsoft.net.http.headers.nuspec"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
       "sha512": "XirkjOLc5Vc3HsXRc2Z6ZbQv6l0RvWgJa/31w7XqZ914MoSi3H3OCNRMWFw7H2EYfsnKbokFfhCcysAmUcEOgw==",
       "type": "package",
       "path": "microsoft.net.illink.analyzers/7.0.100-1.23401.1",
-=======
-    "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
-      "sha512": "0GvbEgDGcUQA9KuWcQU1WwYHXt1tBzNr1Nls/M57rM7NA/AndFwCaCEoJpJkmxRY7xLlPDBnmGp8h5+FNqUngg==",
-      "type": "package",
-      "path": "microsoft.net.illink.analyzers/7.0.100-1.23211.1",
->>>>>>> origin/elBranchorP
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4063,7 +4024,6 @@
         "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
         "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
         "build/Microsoft.NET.ILLink.Analyzers.props",
-<<<<<<< HEAD
         "microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
         "microsoft.net.illink.analyzers.nuspec"
       ]
@@ -4072,16 +4032,6 @@
       "sha512": "mI6vCdPEhluLtMn/GV0texEWg5oAPQWCCE4LWspM+Bmy75Nd4EQsziQXrdOFqNeSBQMrxDX9C/O5Xi3kpKSMIw==",
       "type": "package",
       "path": "microsoft.net.illink.tasks/7.0.100-1.23401.1",
-=======
-        "microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
-        "microsoft.net.illink.analyzers.nuspec"
-      ]
-    },
-    "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
-      "sha512": "tvG8XZYLjT0o3WicCyKBZysVWo1jC9HdCFmNRmddx3WbAz0UCsd0qKZqpiEo99VLA8Re+FzWK51OcRldQPbt2Q==",
-      "type": "package",
-      "path": "microsoft.net.illink.tasks/7.0.100-1.23211.1",
->>>>>>> origin/elBranchorP
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4091,11 +4041,7 @@
         "build/6.0_suppressions.xml",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-<<<<<<< HEAD
         "microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
-=======
-        "microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
->>>>>>> origin/elBranchorP
         "microsoft.net.illink.tasks.nuspec",
         "tools/net472/ILLink.Tasks.dll",
         "tools/net472/Mono.Cecil.dll",
@@ -4114,24 +4060,10 @@
         "tools/net7.0/illink.runtimeconfig.json"
       ]
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
     "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
       "sha512": "CABBOqZZEDgiVSjkwUr+pJEGEtQbrT+6dltzJnBDap7mOSvfn53+zwb112hRGB7ynm9ikAocGZTUp+GizbH7XQ==",
       "type": "package",
       "path": "microsoft.net.sdk.webassembly.pack/8.0.5",
-=======
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
-      "sha512": "HI/nGJnpSn8370os+GuviOnCM1RsXB3PQSX6u9RjApncJ5jZZf2qdFRQZM9tUjdDJ/ADmrzBxlV/hKp3CWYMDA==",
-      "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.7",
->>>>>>> origin/Filipformerge
-=======
-    "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.0": {
-      "sha512": "Ch6dilt/TAo3XryG/9LF8Zy4rAT+2HYnks8thWAeNzPNOJs4aSyC6E5yxuBiN49d2eES78h1mSR/KNyOfbptXQ==",
-      "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/9.0.0",
->>>>>>> origin/elBranchorP
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4142,10 +4074,6 @@
         "WasmAppHost/BrowserDebugHost.deps.json",
         "WasmAppHost/BrowserDebugHost.dll",
         "WasmAppHost/BrowserDebugHost.runtimeconfig.json",
-<<<<<<< HEAD
-=======
-        "WasmAppHost/BrowserDebugHost.staticwebassets.endpoints.json",
->>>>>>> origin/elBranchorP
         "WasmAppHost/BrowserDebugProxy.dll",
         "WasmAppHost/Microsoft.CodeAnalysis.CSharp.Scripting.dll",
         "WasmAppHost/Microsoft.CodeAnalysis.CSharp.dll",
@@ -4158,21 +4086,12 @@
         "WasmAppHost/WasmAppHost.deps.json",
         "WasmAppHost/WasmAppHost.dll",
         "WasmAppHost/WasmAppHost.runtimeconfig.json",
-<<<<<<< HEAD
-=======
-        "WasmAppHost/WasmAppHost.staticwebassets.endpoints.json",
->>>>>>> origin/elBranchorP
         "build/Microsoft.NET.Sdk.WebAssembly.Browser.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Browser.targets",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
-<<<<<<< HEAD
-<<<<<<< HEAD
         "microsoft.net.sdk.webassembly.pack.8.0.5.nupkg.sha512",
-=======
-        "microsoft.net.sdk.webassembly.pack.8.0.7.nupkg.sha512",
->>>>>>> origin/Filipformerge
         "microsoft.net.sdk.webassembly.pack.nuspec",
         "tools/net472/Microsoft.Bcl.AsyncInterfaces.dll",
         "tools/net472/Microsoft.Build.dll",
@@ -4209,15 +4128,6 @@
         "tools/net8.0/System.Security.Cryptography.ProtectedData.dll",
         "tools/net8.0/System.Security.Permissions.dll",
         "tools/net8.0/System.Windows.Extensions.dll"
-=======
-        "build/browser.runtimeconfig.template.json",
-        "microsoft.net.sdk.webassembly.pack.9.0.0.nupkg.sha512",
-        "microsoft.net.sdk.webassembly.pack.nuspec",
-        "tools/net472/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
-        "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll",
-        "tools/net9.0/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
-        "tools/net9.0/Microsoft.NET.WebAssembly.Webcil.dll"
->>>>>>> origin/elBranchorP
       ]
     },
     "Microsoft.NETCore.Platforms/2.0.0": {
@@ -6302,19 +6212,9 @@
       "Microsoft.AspNetCore.Components.Authorization >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.5",
-<<<<<<< HEAD
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23401.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23401.1",
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.5",
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.7",
->>>>>>> origin/Filipformerge
-=======
-      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
-      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 9.0.0",
->>>>>>> origin/elBranchorP
       "Radzen.Blazor >= 4.11.0",
       "Radzen.Design >= 0.0.2",
       "Smart.Blazor >= 15.1.1",
@@ -6325,55 +6225,23 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "C:\\Users\\patry\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\fnowa\\.nuget\\packages\\": {},
->>>>>>> origin/Filipformerge
-=======
-    "C:\\Users\\pepci\\.nuget\\packages\\": {},
->>>>>>> origin/elBranchorP
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "projectName": "GradeSystem.v1.Client",
       "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\obj\\",
->>>>>>> origin/Filipformerge
-=======
-      "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\obj\\",
->>>>>>> origin/elBranchorP
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-<<<<<<< HEAD
         "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> origin/Filipformerge
-=======
-        "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> origin/elBranchorP
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6389,18 +6257,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
               "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
-=======
-            "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
->>>>>>> origin/Filipformerge
-=======
-            "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
->>>>>>> origin/elBranchorP
             }
           }
         }
@@ -6413,14 +6271,8 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-<<<<<<< HEAD
         "auditMode": "direct"
       }
-=======
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
->>>>>>> origin/elBranchorP
     },
     "frameworks": {
       "net7.0": {
@@ -6466,35 +6318,19 @@
           "Microsoft.NET.ILLink.Analyzers": {
             "suppressParent": "All",
             "target": "Package",
-<<<<<<< HEAD
             "version": "[7.0.100-1.23401.1, )",
-=======
-            "version": "[7.0.100-1.23211.1, )",
->>>>>>> origin/elBranchorP
             "autoReferenced": true
           },
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-<<<<<<< HEAD
             "version": "[7.0.100-1.23401.1, )",
-=======
-            "version": "[7.0.100-1.23211.1, )",
->>>>>>> origin/elBranchorP
             "autoReferenced": true
           },
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "version": "[8.0.5, )",
-=======
-            "version": "[8.0.7, )",
->>>>>>> origin/Filipformerge
-=======
-            "version": "[9.0.0, )",
->>>>>>> origin/elBranchorP
             "autoReferenced": true
           },
           "Radzen.Blazor": {
@@ -6540,15 +6376,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "version": "[7.0.19, 7.0.19]"
-=======
-            "version": "[7.0.20, 7.0.20]"
->>>>>>> origin/Filipformerge
-=======
-            "version": "[7.0.20, 7.0.20]"
->>>>>>> origin/elBranchorP
           }
         ],
         "frameworkReferences": {
@@ -6556,15 +6384,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
->>>>>>> origin/Filipformerge
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
->>>>>>> origin/elBranchorP
       }
     },
     "runtimes": {
@@ -6572,62 +6392,5 @@
         "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Microsoft.AspNetCore.Components” 7.0.5 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-3fx3-85r4-8j3w",
-      "libraryId": "Microsoft.AspNetCore.Components",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Newtonsoft.Json” 12.0.3 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
-      "libraryId": "Newtonsoft.Json",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    },
-    {
-      "code": "NU1904",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „System.Linq.Dynamic.Core” 1.2.22 ma znane krytyczna luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-w65q-jcmv-28gj",
-      "libraryId": "System.Linq.Dynamic.Core",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „System.Security.Cryptography.Xml” 4.5.0 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-vh55-786g-wjwj",
-      "libraryId": "System.Security.Cryptography.Xml",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „System.Text.Json” 7.0.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-hh2w-p6rv-4g7w",
-      "libraryId": "System.Text.Json",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    }
-  ]
+  }
 }

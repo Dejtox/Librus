@@ -4,9 +4,9 @@
 @inject IClassService ClassService
 @inject IEnrollmentService EnrollmentService
 @inject IAttendanceService AttendanceService
-@inject ILessonsHoursService LessonsHoursService
+        @inject ILessonsHoursService LessonsHoursService
 
-<div class="Atableborder">
+        <div class="Atableborder">
     <div class="Astudentinfo">
         <select  @onchange="ClassHasChaged"  class="Atableborder">
             @foreach (var teacherclass in TeachersClasses)
@@ -50,18 +50,41 @@
                     <div class="Aname">@student.LastName @student.FirstName</div>
                     @for(int j=0; j<7; j++)
                     {
-                        if(j<5)
+                        <div class="Aday Asingle">
+                        @if(j<5)
                         {
                             foreach(var lesshour in SortedlessonsHours)
                             {
-                                foreach (var atd in AttendanceService.Attendances)
+                                <div>
+                                @foreach (var atd in AttendanceService.Attendances)
                                 {
-                                    //if(atd.Enrollment,.)
+
+                                        if (atd.Enrollment.Date.Hour == lesshour.Start.Hour && atd.Enrollment.Date.Minute == lesshour.Start.Minute && atd.Enrollment.Date.DayOfWeek == (DayOfWeek)((j % 7) + 1))
+                                    {
+                                     
+                                        if (atd.Description == "Excused")
+                                        {
+                                            <div>@atd.Description</div>
+                                        }
+                                        if (atd.Description == "Present")
+                                        {
+                                            <div>@atd.Description</div>
+                                        }
+                                        if (atd.Description == "Absent")
+                                        {
+                                            <div>@atd.Description</div>
+                                        }
+                                        if (atd.Description == "Late")
+                                        {
+                                            <div>@atd.Description</div>
+                                        }
+                                    }
                                 }
+                                </div>
                             }
 
                         }
-                        <div class="Aday Asingle"> </div>
+                        </div>
                     }
                     
                 </div>

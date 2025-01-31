@@ -12,28 +12,38 @@
 <div class="mainbox">
     <div class="Msidebox1">
         <div class="Msubsidebox1">
-            <div class="Msubsidemonthyear">
-                <div class="gg-chevron-left"></div>
-                @*<div>@Today.ToString("MMMM") @Today.Year</div>*@
-                <div class="gg-chevron-right"></div>
+            <div class="Msubsideboxheader">
+                <div class="Msubsidemonthyear">
+                    <div class="gg-chevron-left"></div>
+                    <div>@SelcetedMonth.ToString("MMMM") @SelcetedMonth.Year</div>
+                    <div class="gg-chevron-right"></div>
+                </div>
+
+                <select class="Mchangemodes" @onchange="NavigateToPage">
+                    <option selected>Month<div class="gg-chevron-down"></div></option>
+                    <option value="/yourscheduleweek">Week<div class="gg-chevron-down"></div></option>
+                </select>
             </div>
-
-            <select class="Mchangemodes" @onchange="NavigateToPage">
-                <option selected>Month<div class="gg-chevron-down"></div></option>
-                <option value="/yourscheduleweek">Week<div class="gg-chevron-down"></div></option>
-            </select>
-
         
 
-        <div class="Mdays">
-            <div class="Mdayhead">Monday</div>
-            <div class="Mdayhead">Tuesday</div>
-            <div class="Mdayhead">Wednesday</div>
-            <div class="Mdayhead">Thursday</div>
-            <div class="Mdayhead">Friday</div>
-            <div class="Mdayhead">Saturday</div>
-            <div class="Mdayhead">Sunday</div>
+            <div class="Mdays">
+                <div class="Mdayhead">Monday</div>
+                <div class="Mdayhead">Tuesday</div>
+                <div class="Mdayhead">Wednesday</div>
+                <div class="Mdayhead">Thursday</div>
+                <div class="Mdayhead">Friday</div>
+                <div class="Mdayhead">Saturday</div>
+                <div class="Mdayhead">Sunday</div>
+            </div>
+
         </div>
+
+                    <div class="MonthRow">
+                        @for (int i = 1; i < 8; i++)
+                        {
+                            <div class="Msingle"></div>
+                        }
+                    </div>
 
         <div class="Month">
             @for (int j = 1; j < 7; j++)

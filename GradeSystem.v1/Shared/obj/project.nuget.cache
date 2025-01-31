@@ -1,20 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "dgSpecHash": "QTPPeI+0FYM=",
-  "success": true,
-  "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
-=======
   "dgSpecHash": "xsnP4INWkVk=",
   "success": true,
   "projectFilePath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
->>>>>>> origin/Filipformerge
-=======
-  "dgSpecHash": "35gB7Mc6Ut4=",
-  "success": true,
-  "projectFilePath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
->>>>>>> origin/elBranchorP
   "expectedPackageFiles": [],
   "logs": []
 }

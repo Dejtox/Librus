@@ -4,22 +4,25 @@
 @inject IClassService ClassService
 @inject IEnrollmentService EnrollmentService
 @inject IAttendanceService AttendanceService
-@inject ILessonsHoursService LessonsHoursService
+        @inject ILessonsHoursService LessonsHoursService
 
 <div class="Atableborder">
     <div class="Astudentinfo">
-        <select  @onchange="ClassHasChaged"  class="Atableborder">
+        <div>Grade</div>
+        <select @onchange="ClassHasChaged" class="Astudentclass">
             @foreach (var teacherclass in TeachersClasses)
             {
                 <option value="@teacherclass.ClassID">@teacherclass.ClassName</option>
             }
         </select>
+        <div>Period</div>
         <select @onchange="Monthchaged" class="Astudentclass">
             @foreach (var date in SchoolYearMonths)
             {
                 <option value="@date">@date.ToString("MMM") @date.Year</option>
             }
         </select>
+        <div>Days</div>
         <select @onchange="Dayhaschaged" class="Astudentclass">
             @foreach (var mon in Monofinterest)
             {
@@ -48,22 +51,64 @@
                 <div class="Agraderow">
                     <div class="Anumber Anumber--d">1</div>
                     <div class="Aname">@student.LastName @student.FirstName</div>
-                    @for(int j=0; j<7; j++)
+                    @for (int j = 0; j < 7; j++)
                     {
-                        if(j<5)
+                        
+                        <div class="Aday Asingle"> 
+                        @if (j < 5)
                         {
                             foreach(var lesshour in SortedlessonsHours)
                             {
-                                foreach (var atd in AttendanceService.Attendances)
-                                {
-                                    //if(atd.Enrollment,.)
-                                }
+                                <div>
+                                    @foreach (var atd in AttendanceService.Attendances)
+                                    {
+                                        Console.WriteLine("tu");
+                                            if (atd.Enrollment.Date.Hour == lesshour.Start.Hour && atd.Enrollment.Date.Minute == lesshour.Start.Minute && atd.Enrollment.Date.DayOfWeek == (DayOfWeek)((j % 7) + 1))
+                                        {
+
+                                            if (atd.Description == "Excused")
+                                            {
+                                                <div class="yellowsquare">
+                                                    <span class="tooltiptexty">
+                                                        <div>@atd.Description</div>
+                                                    </span>
+                                                </div>
+                                            }
+                                            if (atd.Description == "Present")
+                                            {
+                                                <div class="greensquare">
+                                                    <span class="tooltiptextg">
+                                                        <div>@atd.Description</div>
+                                                    </span>
+                                                </div>
+                                            }
+                                            if (atd.Description == "Absent")
+                                            {
+                                                
+                                                <div class="redsquare">
+                                                    <span class="tooltiptextr">
+                                                        <div>@atd.Description</div>
+                                                    </span>
+                                                </div>
+                                            }
+                                            if (atd.Description == "Late")
+                                            {
+                                                <div class="orangesquare">
+                                                    <span class="tooltiptextb">
+                                                        <div>@atd.Description</div>
+                                                    </span>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                </div>
                             }
 
                         }
-                        <div class="Aday Asingle"> </div>
+                        </div>
+
                     }
-                    
+
                 </div>
             }
         </div>
@@ -104,12 +149,12 @@
         await StudentService.GetStudents();
         await GetClaimsGetID();
         await FillClasses();
-        await FindStdforClass(); 
+        await FindStdforClass();
     }
 
     async Task Dayhaschaged(ChangeEventArgs args)
     {
-        
+
     }
 
     async Task Monthchaged(ChangeEventArgs args)
@@ -144,12 +189,12 @@
         {
             Selceted = Selceted.AddDays(-daydif);
         }
-        
+
         selectedday = Endtime.DayOfWeek;
         if (selectedday != DayOfWeek.Friday)
         {
             if (selectedday == DayOfWeek.Saturday || selectedday == DayOfWeek.Sunday)
-            {              
+            {
                 int daysBackToFriday = (int)selectedday - (int)DayOfWeek.Friday;
                 Endtime = Endtime.AddDays(-daysBackToFriday).Date;
             }
@@ -160,7 +205,7 @@
             }
         }
 
-        for (int i = 0; Selceted.AddDays(i)< Endtime;i = i +7)
+        for (int i = 0; Selceted.AddDays(i) < Endtime; i = i + 7)
         {
             Monofinterest.Add(Selceted.AddDays(i));
         }
@@ -181,11 +226,11 @@
 
     async Task FillClasses()
     {
-        foreach(var schoolclass in ClassService.Classes)
+        foreach (var schoolclass in ClassService.Classes)
         {
-            if(schoolclass.VirtualClass == false)
+            if (schoolclass.VirtualClass == false)
             {
-                if(schoolclass.TeacherID == teacher.TeacherID)
+                if (schoolclass.TeacherID == teacher.TeacherID)
                 {
                     TeachersClasses.Add(schoolclass);
                     selectedclass = schoolclass;
@@ -197,7 +242,7 @@
     async Task FindStdforClass()
     {
         Stdinselectedclass.Clear();
-        foreach(var std in StudentService.Students)
+        foreach (var std in StudentService.Students)
         {
             if (std.ClassID == selectedclass.ClassID)
             {
@@ -217,7 +262,7 @@
         {
             Schoolyearstartdate = new DateTime(Now.Year - 1, 9, 1);
         }
-        for( int i =0; i<10; i++)
+        for (int i = 0; i < 10; i++)
         {
             SchoolYearMonths.Add(Schoolyearstartdate);
             Schoolyearstartdate = Schoolyearstartdate.AddMonths(1);

@@ -32,11 +32,11 @@
                 <div class="grafictableheadinside">26</div>
             </div>
             <tbody class="graficktableboddymain">
-                            
-                @foreach (var segment in SortedlessonsHours)
-                {
-                    bool i = true;
-                    <tr class="tablerow">
+
+                            @foreach (var segment in SortedlessonsHours)
+                            {
+                                bool i = true;
+                                <tr class="tablerow">
                                     @if (Schooltrips.Count > 0)
                                     {
                                         foreach (var trip in Schooltrips)
@@ -53,192 +53,268 @@
                                     else
                                     {
 
-                                    @foreach (var stdevent in StudentsEnrolmentsMon)
-                                    {
-                                        if (segment.Start.TimeOfDay >= stdevent.stdlesson.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.stdlesson.EndDate.TimeOfDay)
+                                        @foreach (var stdevent in StudentsEnrolmentsMon)
                                         {
-                                            <td class="tablecell">          
-                                            @if(stdevent.upcomingexams != null)
+                                            if (segment.Start.TimeOfDay >= stdevent.stdlesson.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.stdlesson.EndDate.TimeOfDay)
+                                            {
+                                                <td class="tablecell">
+                                                    @if (stdevent.upcomingexams != null)
                                                     {
-                                                    <div>@stdevent.upcomingexams.Description  @stdevent.stdlesson.Subject.SubjectName</div> @*środek tablecell*@
+                                                        <div>@stdevent.upcomingexams.Description  @stdevent.stdlesson.Subject.SubjectName</div> @*środek tablecell*@
                                                     }
-                                        
+
+                                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                                    <div class="tablecellcontent">@stdevent.stdlesson.Subject.SubjectName</div>
+                                                    <div class="tablecellnumber"></div>
+                                                </td>
+                                                i = false;
+                                            }
+                                        }
+                                    }
+                                    @if (i == true)
+                                    {
+                                        <td class="tablecell">
                                             <div class="tablecellnumber">@segment.LessonNo</div>
-                                            <div class="tablecellcontent">@stdevent.stdlesson.Subject.SubjectName</div>
+                                            <div class="tablecellcontent"></div>
                                             <div class="tablecellnumber"></div>
                                         </td>
-                                        i = false;
-                                        }                                                                           
                                     }
-                                    }
-                        @if (i == true)
-                        {
-                            <td class="tablecell">      
-                                <div class="tablecellnumber">@segment.LessonNo</div>
-                                <div class="tablecellcontent"></div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        }
-                    </tr>
-                }
-                                
-            </tbody>
-        </table>
-    </div>
-    <div class="tablebox">
-        <table class="grafictable">
-            <div class="grafictablehead">
-                <div class="grafictableheadinside">Tuesday</div>
-                <div class="grafictableheadinside">27</div>
-            </div>
-            <tbody class="graficktableboddymain">
-                            @*
-                @foreach (var segment in SortedlessonsHours)
-                {
-                    bool i = true;
-                    <tr class="tablerow">
-                        @foreach (var stdevent in StudentsEnrolmentsTue)
-                        {
-                            if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
-                            {
-                                <td class="tablecell">
-                                    <div class="tablecellnumber">@segment.LessonNo</div>
-                                    <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
-                                    <div class="tablecellnumber"></div>
-                                </td>
-                                i = false;
+                                </tr>
                             }
-                        }
-                        @if (i == true)
-                        {
-                            <td class="tablecell">
-                                <div class="tablecellnumber">@segment.LessonNo</div>
-                                <div class="tablecellcontent"></div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        }
-                    </tr>
-                }
-                                *@
-            </tbody>
-        </table>
-    </div>
-    <div class="tablebox">
-        <table class="grafictable">
-            <div class="grafictablehead">
-                <div class="grafictableheadinside">Wednesday</div>
-                <div class="grafictableheadinside">28</div>
-            </div>
-            <tbody class="graficktableboddymain">
-                            @*
-                @foreach (var segment in SortedlessonsHours)
-                {
-                    bool i = true;
-                    <tr class="tablerow">
-                        @foreach (var stdevent in StudentsEnrolmentsWen)
-                        {
-                            if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
-                            {
-                                <td class="tablecell">
-                                    <div class="tablecellnumber">@segment.LessonNo</div>
-                                    <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
-                                    <div class="tablecellnumber"></div>
-                                </td>
-                                i = false;
-                            }
-                        }
-                        @if (i == true)
-                        {
-                            <td class="tablecell">
-                                <div class="tablecellnumber">@segment.LessonNo</div>
-                                <div class="tablecellcontent"></div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        }
-                    </tr>
-                }
-                                *@
-            </tbody>
-        </table>
-    </div>
-    <div class="tablebox">
-        <table class="grafictable">
-            <div class="grafictablehead">
-                <div class="grafictableheadinside">Thursday</div>
-                <div class="grafictableheadinside">29</div>
-            </div>
-            <tbody class="graficktableboddymain">
-                @*
-                @foreach (var segment in SortedlessonsHours)
-                {
-                    bool i = true;
-                    <tr class="tablerow">
-                        @foreach (var stdevent in StudentsEnrolmentsThu)
-                        {
-                            if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
-                            {
-                                <td class="tablecell">
-                                    <div class="tablecellnumber">@segment.LessonNo</div>
-                                    <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
-                                    <div class="tablecellnumber"></div>
 
-                                </td>
-                                i = false;
-                            }
-                        }
-                        @if (i == true)
-                        {
-                            <td class="tablecell">
-                                <div class="tablecellnumber">@segment.LessonNo</div>
-                                <div class="tablecellcontent"></div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        }
-                                      
-                    </tr>
-                }
-                        *@
-            </tbody>
-        </table>
-    </div>
-    <div class="tablebox">
-        <table class="grafictable">
-            <div class="grafictablehead">
-                <div class="grafictableheadinside">Friday</div>
-                <div class="grafictableheadinside">30</div>
-            </div>
-            <tbody class="graficktableboddymain">
-                                            @*
-                @foreach (var segment in SortedlessonsHours)
-                {
-                    bool i = true;
-                    <tr class="tablerow">
-                        
-                        @foreach (var stdevent in StudentsEnrolmentsFri)
-                        {
-                            if (segment.Start.TimeOfDay >= stdevent.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.EndDate.TimeOfDay)
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tablebox">
+                    <table class="grafictable">
+                        <div class="grafictablehead">
+                            <div class="grafictableheadinside">Tuesday</div>
+                            <div class="grafictableheadinside">27</div>
+                        </div>
+                        <tbody class="graficktableboddymain">
+                            @foreach (var segment in SortedlessonsHours)
                             {
-                                <td class="tablecell">
-                                    <div class="tablecellnumber">@segment.LessonNo</div>
-                                    <div class="tablecellcontent">@stdevent.Subject.SubjectName</div>
-                                    <div class="tablecellnumber"></div>
-                                </td>
-                                i = false;
+                                bool i = true;
+                                <tr class="tablerow">
+                                    @if (Schooltrips.Count > 0)
+                                    {
+                                        foreach (var trip in Schooltrips)
+                                        {
+                                            if (segment.Start >= trip.StartDate && segment.Start < trip.EndDate)
+                                            {
+                                                i = false;
+                                                <td class="tablecell">
+                                                    <div>@trip.Name</div>           @*środek tablecell*@
+                                                </td>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        @foreach (var stdevent in StudentsEnrolmentsTue)
+                                        {
+                                            if (segment.Start.TimeOfDay >= stdevent.stdlesson.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.stdlesson.EndDate.TimeOfDay)
+                                            {
+                                                <td class="tablecell">
+                                                    @if (stdevent.upcomingexams != null)
+                                                    {
+                                                        <div>@stdevent.upcomingexams.Description  @stdevent.stdlesson.Subject.SubjectName</div> @*środek tablecell*@
+                                                    }
+
+                                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                                    <div class="tablecellcontent">@stdevent.stdlesson.Subject.SubjectName</div>
+                                                    <div class="tablecellnumber"></div>
+                                                </td>
+                                                i = false;
+                                            }
+                                        }
+                                    }
+                                    @if (i == true)
+                                    {
+                                        <td class="tablecell">
+                                            <div class="tablecellnumber">@segment.LessonNo</div>
+                                            <div class="tablecellcontent"></div>
+                                            <div class="tablecellnumber"></div>
+                                        </td>
+                                    }
+                                </tr>
                             }
-                        }
-                        @if (i == true)
-                        {
-                            <td class="tablecell">
-                                <div class="tablecellnumber">@segment.LessonNo</div>
-                                <div class="tablecellcontent"></div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        }
-                               
-                    </tr>
-                }
-                                *@
-            </tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tablebox">
+                    <table class="grafictable">
+                        <div class="grafictablehead">
+                            <div class="grafictableheadinside">Wednesday</div>
+                            <div class="grafictableheadinside">28</div>
+                        </div>
+                        <tbody class="graficktableboddymain">
+                            @foreach (var segment in SortedlessonsHours)
+                            {
+                                bool i = true;
+                                <tr class="tablerow">
+                                    @if (Schooltrips.Count > 0)
+                                    {
+                                        foreach (var trip in Schooltrips)
+                                        {
+                                            if (segment.Start >= trip.StartDate && segment.Start < trip.EndDate)
+                                            {
+                                                i = false;
+                                                <td class="tablecell">
+                                                    <div>@trip.Name</div>           @*środek tablecell*@
+                                                </td>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        @foreach (var stdevent in StudentsEnrolmentsWen)
+                                        {
+                                            if (segment.Start.TimeOfDay >= stdevent.stdlesson.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.stdlesson.EndDate.TimeOfDay)
+                                            {
+                                                <td class="tablecell">
+                                                    @if (stdevent.upcomingexams != null)
+                                                    {
+                                                        <div>@stdevent.upcomingexams.Description  @stdevent.stdlesson.Subject.SubjectName</div> @*środek tablecell*@
+                                                    }
+
+                                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                                    <div class="tablecellcontent">@stdevent.stdlesson.Subject.SubjectName</div>
+                                                    <div class="tablecellnumber"></div>
+                                                </td>
+                                                i = false;
+                                            }
+                                        }
+                                    }
+                                    @if (i == true)
+                                    {
+                                        <td class="tablecell">
+                                            <div class="tablecellnumber">@segment.LessonNo</div>
+                                            <div class="tablecellcontent"></div>
+                                            <div class="tablecellnumber"></div>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tablebox">
+                    <table class="grafictable">
+                        <div class="grafictablehead">
+                            <div class="grafictableheadinside">Thursday</div>
+                            <div class="grafictableheadinside">29</div>
+                        </div>
+                        <tbody class="graficktableboddymain">
+                            @foreach (var segment in SortedlessonsHours)
+                            {
+                                bool i = true;
+                                <tr class="tablerow">
+                                    @if (Schooltrips.Count > 0)
+                                    {
+                                        foreach (var trip in Schooltrips)
+                                        {
+                                            if (segment.Start >= trip.StartDate && segment.Start < trip.EndDate)
+                                            {
+                                                i = false;
+                                                <td class="tablecell">
+                                                    <div>@trip.Name</div>           @*środek tablecell*@
+                                                </td>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        @foreach (var stdevent in StudentsEnrolmentsThu)
+                                        {
+                                            if (segment.Start.TimeOfDay >= stdevent.stdlesson.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.stdlesson.EndDate.TimeOfDay)
+                                            {
+                                                <td class="tablecell">
+                                                    @if (stdevent.upcomingexams != null)
+                                                    {
+                                                        <div>@stdevent.upcomingexams.Description  @stdevent.stdlesson.Subject.SubjectName</div> @*środek tablecell*@
+                                                    }
+
+                                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                                    <div class="tablecellcontent">@stdevent.stdlesson.Subject.SubjectName</div>
+                                                    <div class="tablecellnumber"></div>
+                                                </td>
+                                                i = false;
+                                            }
+                                        }
+                                    }
+                                    @if (i == true)
+                                    {
+                                        <td class="tablecell">
+                                            <div class="tablecellnumber">@segment.LessonNo</div>
+                                            <div class="tablecellcontent"></div>
+                                            <div class="tablecellnumber"></div>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tablebox">
+                    <table class="grafictable">
+                        <div class="grafictablehead">
+                            <div class="grafictableheadinside">Friday</div>
+                            <div class="grafictableheadinside">30</div>
+                        </div>
+                        <tbody class="graficktableboddymain">
+                            @foreach (var segment in SortedlessonsHours)
+                            {
+                                bool i = true;
+                                <tr class="tablerow">
+                                    @if (Schooltrips.Count > 0)
+                                    {
+                                        foreach (var trip in Schooltrips)
+                                        {
+                                            if (segment.Start >= trip.StartDate && segment.Start < trip.EndDate)
+                                            {
+                                                i = false;
+                                                <td class="tablecell">
+                                                    <div>@trip.Name</div>           @*środek tablecell*@
+                                                </td>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        @foreach (var stdevent in StudentsEnrolmentsFri)
+                                        {
+                                            if (segment.Start.TimeOfDay >= stdevent.stdlesson.Date.TimeOfDay && segment.End.TimeOfDay <= stdevent.stdlesson.EndDate.TimeOfDay)
+                                            {
+                                                <td class="tablecell">
+                                                    @if (stdevent.upcomingexams != null)
+                                                    {
+                                                        <div>@stdevent.upcomingexams.Description  @stdevent.stdlesson.Subject.SubjectName</div> @*środek tablecell*@
+                                                    }
+
+                                                    <div class="tablecellnumber">@segment.LessonNo</div>
+                                                    <div class="tablecellcontent">@stdevent.stdlesson.Subject.SubjectName</div>
+                                                    <div class="tablecellnumber"></div>
+                                                </td>
+                                                i = false;
+                                            }
+                                        }
+                                    }
+                                    @if (i == true)
+                                    {
+                                        <td class="tablecell">
+                                            <div class="tablecellnumber">@segment.LessonNo</div>
+                                            <div class="tablecellcontent"></div>
+                                            <div class="tablecellnumber"></div>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
         </table>
     </div>
             </div>

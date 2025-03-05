@@ -1,5 +1,9 @@
 ﻿@page "/AttendanceViewSingleStudent"
-
+@inject ILessonsHoursService LessonsHoursService
+@inject IAttendanceService AttendanceService
+@inject IStudentService StudentService
+@inject IParentService ParentService
+@inject ITeacherService TeacherService
 <div class="Atableborder">
     <div class="Astudentinfo">
         <div class="Astudentname">Student (Regina)</div>
@@ -13,23 +17,78 @@
                 <div class="salessonnumber">Lesson Number</div>
             </div>
             <div>
-                @for(int i =1; i<20; i++)
+                @for (int i = 1; i <= daysinmonth; i++)
                 {
                     <div class="satablerow">
-                        <div class="satabledate">23.05.2024(Thu)</div>
-                        <div class="satableattendance">[][][][][][]</div>
+                        <div class="satabledate">@($"{i:D2}.{Today.Month:D2}.{Today.Year} ({GetDayOfWeek(i)})")</div>
+                        <div class="satableattendance">
+                        @foreach (var lesssonH in LessonsHoursService.LessonsHours)
+                        {
+                            
+                        }
+                        </div>
                     </div>
                 }
             </div>
         </div>
-
+        @*
         <div class="buttonatbox">
             <button class="addattendancebutton"> Add Attendance </button>
             <button class="backbutton"> Back </button>
         </div>
+        *@
     </div>
 </div>
 
 @code {
+    DateTime Today;
+    int daysinmonth;
+    protected override async Task OnInitializedAsync()
+    {
+        Today = DateTime.Now;
+        daysinmonth = DateTime.DaysInMonth(Today.Year, Today.Month);
+        await LessonsHoursService.GetLessonsHours();
+        await AttendanceService.GetAttendances();
+    }
 
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    int ID;
+    int selectedchildID;
+    string Roles;
+    Student studentselected;
+    Teacher teacher;
+
+    string GetDayOfWeek(int i)
+    {
+        var date = new DateTime(Today.Year, Today.Month, i);
+        return date.ToString("ddd");
+    }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+        }
+    }
 }

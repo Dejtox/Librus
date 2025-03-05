@@ -8,7 +8,6 @@
 @inject IEventService EventServic
 @inject NavigationManager NavigationManager
 
-
 <div class="mainbox">
     <div class="Msidebox1">
         <div class="Msubsidebox1">
@@ -24,7 +23,7 @@
                     <option value="/yourscheduleweek">Week<div class="gg-chevron-down"></div></option>
                 </select>
             </div>
-        
+
 
             <div class="Mdays">
                 <div class="Mdayhead">Monday</div>
@@ -36,50 +35,44 @@
                 <div class="Mdayhead">Sunday</div>
             </div>
 
-        </div>
 
+
+
+            <div class="Month">
+                @for (int j = 1; j < 7; j++)
+                {
                     <div class="MonthRow">
                         @for (int i = 1; i < 8; i++)
-                        {
-                            <div class="Msingle"></div>
-                        }
-                    </div>
-
-        <div class="Month">
-            @for (int j = 1; j < 7; j++)
-                {
-                <div class="MonthRow">
-                    @for (int i = 1; i < 8; i++)
                         {
                             int x = 1;
                             x = 1;
                             <div class="Msingle">
-                            @if ((i + (j - 1) * 7) < (((int)SelcetedMonth.DayOfWeek +6 ) %7) +1 )
-                            {
-                                <div class="Msingle"></div>
-                            }
-                            else
-                            {
-                                if ((i + (j - 1) * 7) - (((int)SelcetedMonth.DayOfWeek +6) % 7) +1 > DateTime.DaysInMonth(SelcetedMonth.Year, SelcetedMonth.Month) +1)
+                                @if ((i + (j - 1) * 7) < (((int)SelcetedMonth.DayOfWeek + 6) % 7) + 1)
                                 {
-                                    <div ></div>
+                                    <div></div>
                                 }
                                 else
                                 {
-                                    if (subtest)
+                                    if ((i + (j - 1) * 7) - (((int)SelcetedMonth.DayOfWeek + 6) % 7) + 1 > DateTime.DaysInMonth(SelcetedMonth.Year, SelcetedMonth.Month) + 1)
                                     {
-                                        @foreach (var enr in SubstituteEnrlList)
+                                        <div></div>
+                                    }
+                                    else
+                                    {
+                                        if (subtest)
                                         {
-                                        
-                                            if ((i + (j - 1) * 7) - daydif == enr.Date.Day)
+                                            @foreach (var enr in SubstituteEnrlList)
                                             {
+
+                                                if ((i + (j - 1) * 7) - daydif == enr.Date.Day)
+                                                {
                                                     <div>@enr.SubEnrollment.Subject </div> @*?rodek tablecell*@
-                                            x--;
+                                                    x--;
+                                                }
                                             }
                                         }
-                                    }
-                                    if (examtest)
-                                    {
+                                        if (examtest)
+                                        {
                                             @foreach (var test in ExamList)
                                             {
                                                 if ((i + (j - 1) * 7) - daydif == test.test.StartDate.Day)
@@ -90,8 +83,8 @@
                                                 }
                                             }
                                         }
-                                    if (eventest)
-                                    {
+                                        if (eventest)
+                                        {
                                             @foreach (var evn in EvnlList)
                                             {
                                                 if ((i + (j - 1) * 7) - daydif >= evn.StartDate.Day && (i + (j - 1) * 7) - daydif <= evn.EndDate.Day)
@@ -100,22 +93,24 @@
                                                     x--;
                                                 }
                                             }
-                                    }
-                                    if(x == 1)
-                                    {
-                                        <div></div>
+                                        }
+                                        if (x == 1)
+                                        {
+                                            <div></div>
+                                        }
                                     }
                                 }
-                            }
                             </div>
                         }
-                </div>
+                    </div>
 
-            }
+                }
+            </div>
+
         </div>
     </div>
-    </div>
-    <div class="sidebox2">
+
+    <div class="Msidebox2">
         <div class="checkboxes">
             <label class="container123 @(examtest ? "active": "inactive")">
                 Exams
@@ -136,6 +131,7 @@
             </label>
         </div>
     </div>
+
 </div>
 
 

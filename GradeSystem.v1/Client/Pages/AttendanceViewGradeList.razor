@@ -1,4 +1,5 @@
 ﻿@page "/attendanceviewgradelist"
+@inject ITeacherService TeacherService
 
 <div class="Atableborder">
     <div class="Astudentinfo">
@@ -30,4 +31,46 @@
 
 @code {
 
+    int ID;
+    int selectedchildID;
+    string Roles;
+    Student studentselected;
+    Teacher teacher;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await TeacherService.GetTeachers();
+    }
+
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+
+        }
+    }
 }

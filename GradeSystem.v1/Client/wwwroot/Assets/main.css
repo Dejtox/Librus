@@ -733,6 +733,12 @@ a, .btn-link {
         opacity: 1
     }
 
+.attsquare {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
 .orangesquare {
     height: 20px;
     width: 20px;
@@ -1262,14 +1268,13 @@ a, .btn-link {
     display: flex;
     flex: 1;
     width: 100%;
-    height: 80%;
+    height: 95%;
     border: 1px solid;
     border-color: #D9D9D9;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 10px;
 }
 
 .grafictablehead {
@@ -1339,6 +1344,7 @@ a, .btn-link {
     align-items: center;
     justify-content: center;
 }
+
 
 .tablebox{
     flex:1;
@@ -3184,6 +3190,7 @@ a, .btn-link {
 
 .bot {
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
 }
@@ -3560,6 +3567,7 @@ a, .btn-link {
     height: 50%;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .singlebook {
@@ -3568,9 +3576,7 @@ a, .btn-link {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    margin-left: 3.5%;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -4297,6 +4303,94 @@ a, .btn-link {
 
 }
 
-.AdminButtons {
-    background-color: blue;
+
+/*
+    ADMIN MENU
+*/
+
+.AdminMainBox {
+    height: 100%;
+    width: 100%;
+    border: solid;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
+.AdminTopBar {
+    height: 12%;
+    width: 100%;
+    border-bottom: solid;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.AdminButton {
+    color: #1A2130;
+    flex: 1;
+    padding: 26px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    position: static;
+    transition: background 0.3s;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    margin-left: -11px;
+    margin-right: -11px;
+}
+
+.AdminButton:hover {
+    opacity: 0.8;
+}
+
+.AdminTeachers {
+    background: #FFD23F;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, -28% 100%);
+}
+
+.AdminStudents {
+    background: #5BD091;
+}
+
+.AdminParents {
+    background: #5B67D0;
+}
+
+.AdminSubjects {
+    background: #F94144;
+}
+
+.AdminClasses {
+    background: #F89438;
+}
+
+.AdminEnrollments {
+    background: #A349A4;
+    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+    border-top-right-radius:35px;
+}
+
+
+.AdminDisplay {
+    height: 88%;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.AdminSubDisplay {
+    height: 98%;
+    width: 98%;
+}
+

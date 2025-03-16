@@ -19,16 +19,16 @@
 
         <div class="subatbox">
             <table class="studentattendancetable">
-                <div class="studentattendanceheader">
-                    <div class="sadate">Date</div>
-                    <div class="salessonnumber">Lesson Number</div>
-                </div>
+                <thead class="studentattendanceheader">
+                    <th class="sadate">Date</th>
+                    <th class="salessonnumber">Lesson Number</th>
+                </thead>
                 <tbody>
                     @for (int i = 1; i <= daysinmonth; i++)
                     {
                         var currentDate = new DateTime(Today.Year, Today.Month, i);
-                        <div class="satablerow">
-                            <div class="satabledate">@($"{i:D2}.{Today.Month:D2}.{Today.Year} ({GetDayOfWeek(i)})")</div>
+                        <tr class="satablerow">
+                            <td class="satabledate">@($"{i:D2}.{Today.Month:D2}.{Today.Year} ({GetDayOfWeek(i)})")</td>
                             <div class="satableattendance">
                                 @foreach (var lessonHour in LessonsHoursService.LessonsHours)
                                 {
@@ -63,6 +63,7 @@
                                                         Lesson @lessonHour.LessonNo
                                                         @attendance.Description;
                                                     </span>
+                                                    E
                                                 </div>
                                             </td>
                                         }
@@ -75,6 +76,7 @@
                                                         Lesson @lessonHour.LessonNo
                                                         @attendance.Description;
                                                     </span>
+                                                    P
                                                 </div>
                                             </td>
                                         }
@@ -87,6 +89,7 @@
                                                         Lesson @lessonHour.LessonNo
                                                         @attendance.Description;
                                                     </span>
+                                                    A
                                                 </div>
                                             </td>
                                         }
@@ -99,13 +102,14 @@
                                                         @lessonHour.LessonNo
                                                         @attendance.Description;
                                                     </span>
+                                                    L
                                                 </div>
                                             </td>
                                         }
                                     }
                                 }
                             </div>
-                        </div>
+                        </tr>
                     }
                 </tbody>
             </table>

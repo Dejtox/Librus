@@ -3104,7 +3104,7 @@ a, .btn-link {
 
 /*
     GradesS
-*/
+*/gradesubject
 .tableborder {
     display: flex;
     width: 95%;
@@ -3130,7 +3130,7 @@ a, .btn-link {
 
 .gradesubject {
     height: 100%;
-    width: 27%;
+    width: 20%;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -3139,7 +3139,7 @@ a, .btn-link {
 
 .term {
     height: 100%;
-    width: 35.5%;
+    width: 35%;
     border-left: solid 1px;
     border-right: solid 1px;
     align-items: center;
@@ -3234,7 +3234,14 @@ a, .btn-link {
 
 
 .grade {
-    width: 35.5%;
+    width: 24.5%;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-color: #DBDBDB;
+}
+
+.gradeAverage {
+    width: 10.5%;
     border-left: solid 1px;
     border-right: solid 1px;
     border-color: #DBDBDB;
@@ -3248,7 +3255,7 @@ a, .btn-link {
 }
 
 .subjectgrade {
-    width: 27%;
+    width: 20%;
     align-content: center;
     display: flex;
     justify-content: center;

@@ -1,2 +1,151 @@
 ﻿body {
 }
+
+/* Main container styling */
+/*.tableborder {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}*/
+
+/* Student information section */
+/*.studentinfo {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.studentname {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.studentclass {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 5px;
+}*/
+
+/* Grades table styling */
+/*.gradestable {
+    width: 100%;
+    border-collapse: collapse;
+}*/
+
+/* Header row styling */
+/*.gradeheader {
+    display: flex;
+    background-color: #f0f0f0;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    padding: 10px 0;
+}
+
+.gradesubject {
+    flex: 1;
+    padding: 10px;
+    text-align: left;
+    min-width: 150px;
+}
+
+.term {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.eoy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.top {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.bot {
+    display: flex;
+    justify-content: space-around;
+}
+
+.headergrade {
+    flex: 2;
+    padding: 5px;
+}
+
+.gst {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+}
+
+.gstost {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+}*/
+
+/* Grades display section */
+/*.gradesdisplay {
+    width: 100%;
+}
+
+.graderow {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.subjectgrade {
+    flex: 1;
+    padding: 10px;
+    font-weight: 500;
+    min-width: 150px;
+}
+
+.grade {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.finalgrade {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}*/
+
+    /* Grade display styling */
+    /*.grade p, .finalgrade p {
+        border-radius: 4px;
+        font-weight: 500;
+        min-width: 35px;
+        text-align: center;
+    }*/
+
+/* Helper classes from Bootstrap that are used */
+/*.d-inline-flex {
+    display: inline-flex;
+}
+
+.m-1 {
+    margin: 0.25rem;
+}
+
+.p-1 {
+    padding: 0.25rem;
+}*/

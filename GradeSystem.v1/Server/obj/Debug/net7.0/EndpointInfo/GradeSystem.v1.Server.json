@@ -4626,6 +4626,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "semester": {
+            "type": "integer",
+            "format": "int32"
+          },
           "gradenumber": {
             "$ref": "#/components/schemas/GradeNumber"
           },

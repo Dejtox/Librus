@@ -1900,12 +1900,11 @@ a, .btn-link {
 .CLlesson {
     font-weight: bold;
     height: 8%;
-
 }
+
 .CLdata {
     font-weight: bold;
     height: 8%;
-
 }
 
 .CLsubdisplay {
@@ -1920,20 +1919,17 @@ a, .btn-link {
 
 .CLtablerow {
     width: 100%;
-    height: 30%;
     display: flex;
     flex-direction: row;
     margin-left: 1%;
     margin-top: 1%;
     margin-right: 1%;
     margin-bottom: 1%;
-    flex: 1;
     justify-content: center;
     align-content: center;
-
 }
 
-.CLbuttonname{
+.CLbuttonname {
     margin-top: 20%;
 }
 
@@ -1949,7 +1945,73 @@ a, .btn-link {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease;
 }
+
+    .CLbutton:hover {
+        border: solid 3px;
+        border-color: #1A2130 !important;
+    }
+
+    .CLbutton:active {
+        transform: scale(0.98);
+    }
+
+.CLcontainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.CLleftcontainer {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CLbox {
+    width: 60px;
+    height: 40px;
+    border: 2px solid black;
+}
+
+.CLrightcontainer {
+    width: 80%;
+}
+
+.CLbutcontainer {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.CLstartlesson {
+    background-color: #ffcc00;
+    color: darkblue;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-color: rgb(185, 185, 185);
+    border-radius: 10px;
+    font-size: small;
+    transition: all 0.3s ease;
+}
+
+    .CLstartlesson:hover {
+        background-color: #e6b800;
+    }
+
+    .CLstartlesson:active {
+        background-color: #cca300;
+        transform: scale(0.98);
+    }
+
+.CLbuttoncontainerrow {
+    display: flex;
+    padding: 5px;
+}
+
 
 
 
@@ -4297,6 +4359,94 @@ a, .btn-link {
 
 }
 
-.AdminButtons {
-    background-color: blue;
+/*
+    ADMIN MENU
+*/
+
+.AdminMainBox {
+    height: 100%;
+    width: 100%;
+    border: solid;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.AdminTopBar {
+    height: 12%;
+    width: 100%;
+    border-bottom: solid;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.AdminButton {
+    color: #1A2130;
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    position: static;
+    transition: background 0.3s;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    margin-left: -14px;
+    margin-right: -14px;
+}
+
+    .AdminButton:hover {
+        opacity: 0.8;
+    }
+
+.AdminTeachers {
+    background: #FFD23F;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, -28% 100%);
+}
+
+.AdminStudents {
+    background: #5BD091;
+}
+
+.AdminParents {
+    background: #5B67D0;
+}
+
+.AdminSubjects {
+    background: #F94144;
+}
+
+.AdminClasses {
+    background: #F89438;
+}
+
+.AdminEnrollments {
+    background: #A349A4;
+    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+    border-top-right-radius: 35px;
+}
+
+
+.AdminDisplay {
+    height: 88%;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AdminSubDisplay {
+    height: 98%;
+    width: 98%;
 }

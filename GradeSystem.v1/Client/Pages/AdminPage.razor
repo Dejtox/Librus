@@ -1,56 +1,97 @@
 ﻿@page "/AdminPage"
 
 <div class="subwebsitebody">
-    <div class="AdminButtons">
+    <di class="AdminMainBox">
+        <div class="AdminTopBar">
+            <button class="AdminButton AdminTeachers" @onclick="TeacherButton">
+                Teachers
+            </button>
+            <button class="AdminButton AdminStudents" @onclick="StudentButton">
+                Students
+            </button>
+            <button class="AdminButton AdminParents" @onclick="ParentButton">
+                Parents
+            </button>
+            <button class="AdminButton AdminSubjects" @onclick="SubjectButton">
+                Subjects
+            </button>
+            <button class="AdminButton AdminClasses" @onclick="ClassButton">
+                Classes
+            </button>
+            <button class="AdminButton AdminEnrollments" @onclick="EnrollmentButton">
+                Enrollments
+            </button>
 
-        <div class="sidebar-buttoncontainer">
-            <div class="header-element">
-                <i class="gg-add"></i>
-            </div>
-            <NavLink class="main-menutextcomponet" href="AdminStudents" Match="NavLinkMatch.All">
-                <span class="oi oi-people" aria-hidden="true"></span> Students
-            </NavLink>
         </div>
+        <div class="AdminDisplay">
+            <div class="AdminSubDisplay">
 
-        <div class="sidebar-buttoncontainer">
-            <div class="header-element">
-                <i class="gg-add"></i>
+               @if (Button == "Teacher"){
+                    <AdminTeachers @ref="siteref"></AdminTeachers>
+               }
+               else if(Button=="Student"){
+                    <AdminStudents @ref="siteref1"></AdminStudents>
+               }
+               else if(Button=="Parent"){
+                    <AdminParents @ref="siteref2"></AdminParents>
+               }
+               else if(Button=="Subject"){
+                    <AdminSubjects @ref="siteref3"></AdminSubjects>
+               }
+               else if(Button=="Class"){
+                    <AdminClasses @ref="siteref4"></AdminClasses>
+               }
+               else if(Button=="Enrollment"){
+                    <AdminEnrollments @ref="siteref5"></AdminEnrollments>
+               }
+   
+
             </div>
-            <NavLink class="main-menutextcomponet" href="AdminParents" Match="NavLinkMatch.All">
-                <span class="oi oi-people" aria-hidden="true"></span> Parents
-            </NavLink>
         </div>
-
-        <div class="sidebar-buttoncontainer">
-            <div class="header-element">
-                <i class="gg-add"></i>
-            </div>
-            <NavLink class="main-menutextcomponet" href="AdminTeachers" Match="NavLinkMatch.All">
-                <span class="oi oi-people" aria-hidden="true"></span> Teachers
-            </NavLink>
-        </div>
-
-        <div class="sidebar-buttoncontainer">
-            <div class="header-element">
-                <i class="gg-add"></i>
-            </div>
-            <NavLink class="main-menutextcomponet" href="AdminClasses" Match="NavLinkMatch.All">
-                <span class="oi oi-people" aria-hidden="true"></span> Classes
-            </NavLink>
-        </div>
-
-        <div class="sidebar-buttoncontainer">
-            <div class="header-element">
-                <i class="gg-add"></i>
-            </div>
-            <NavLink class="main-menutextcomponet" href="AdminSubjects" Match="NavLinkMatch.All">
-                <span class="oi oi-people" aria-hidden="true"></span> Subjects
-            </NavLink>
-        </div>
-
-    </div>
+    </di>
 </div>
+
 
 @code {
 
+    private AdminTeachers siteref;
+    private AdminStudents siteref1;
+    private AdminParents siteref2;
+    private AdminSubjects siteref3;
+    private AdminClasses siteref4;
+    private AdminEnrollments siteref5;
+
+
+    public string Button = null;
+
+    public void TeacherButton()
+    {
+        Button = "Teacher";
+    }
+
+    public void StudentButton()
+    {
+        Button = "Student";
+
+    }
+    public void ParentButton()
+    {
+        Button = "Parent";
+
+    }
+    public void SubjectButton()
+    {
+        Button = "Subject";
+
+    }
+    public void ClassButton()
+    {
+        Button = "Class";
+
+    }
+    public void EnrollmentButton()
+    {
+        Button = "Enrollment";
+
+    }
 }

@@ -8,7 +8,11 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows,browser
 build_property.RootNamespace = GradeSystem.v1.Shared
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Shared\
+=======
+build_property.ProjectDir = C:\Users\fnowa\Desktop\Dziennik\Librus\GradeSystem.v1\Shared\
+>>>>>>> origin/AdminPage&CurrentLesson
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 7.0

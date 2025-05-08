@@ -1,68 +1,99 @@
-﻿@* @inherits LayoutComponentBase
+@* @inherits LayoutComponentBase
 @layout MainLayout  *@
 @page "/AdminPage"
 
-@* <div class="content-container">
-    <div class="admin-page-navbar">
-        <NavLink href="AdminTeachers" Match="NavLinkMatch.All" class="diagonal-button">Teachers</NavLink>
-        <NavLink href="AdminTeachers" Match="NavLinkMatch.All" class="diagonal-button" style="clip-path: polygon(20% 0, 100% 0,80% 100%,0 100%);background-color:#4CAF50;">Students</NavLink>
-        <NavLink href="AdminTeachers" Match="NavLinkMatch.All" class="diagonal-button" style="clip-path: polygon(20% 0, 100% 0,80% 100%,0 100%);background-color:#3F51B5;">Parents</NavLink>
-        <NavLink href="AdminTeachers" Match="NavLinkMatch.All" class="diagonal-button" style="clip-path: polygon(20% 0, 100% 0,80% 100%,0 100%);background-color:#F44336;">Subjects</NavLink>
-        <NavLink href="AdminTeachers" Match="NavLinkMatch.All" class="diagonal-button" style="clip-path: polygon(20% 0, 100% 0,80% 100%,0 100%);background-color:#FF9800;">Classes</NavLink>
-        <NavLink href="AdminTeachers" Match="NavLinkMatch.All" class="diagonal-button" style="clip-path: polygon(20% 0, 100% 0,100% 100%,0 100%);background-color:#9C27B0;">Enrollments</NavLink>
-        <svg>
-            
-        </svg>
-    </div>
-</div> *@
-@* <div class="content-container">
-    <div class="admin-page-navbar">
-        <svg viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg" >
-            
-            <NavLink href="AdminTeachers" Match="NavLinkMatch.All"><polygon points="0,0 100,0 80,100 0,100" fill="#FFD835"></polygon><text x="50" y="15" text-anchor="middle" font-size="12" fill="black">Teachers</text></NavLink>
-            <polygon points="100,0 200,0 180,100 80,100" fill="#4CAF50"></polygon>
-            <polygon points="200,0 300,0 280,100 180,100" fill="#3F51B5"></polygon>
-            <polygon points="300,0 400,0 380,100 280,100" fill="#F44336"></polygon>
-            <polygon points="400,0 500,0 480,100 380,100" fill="#FF9800"></polygon>
-            <polygon points="500,0 600,0 600,100 480,100" fill="#9C27B0"></polygon>
-            
-            <text x="150" y="15" text-anchor="middle" font-size="12" fill="black" style="overflow:visible">Students</text>
-            <text x="250" y="15" text-anchor="middle" font-size="12" fill="black">Parents</text>
-            <text x="350" y="15" text-anchor="middle" font-size="12" fill="#000000">Subjects</text>
-            <text x="450" y="15" text-anchor="middle" font-size="12" fill="#000000">Classes</text>
-            <text x="550" y="15" text-anchor="middle" font-size="12" fill="#000000">Enrollments</text>
-        </svg>
-    </div>
-    @Body
-    @* mozna tak albo jakies ify albo po parametrze *@
-@* </div> *@ 
+<div class="subwebsitebody">
+    <di class="AdminMainBox">
+        <div class="AdminTopBar">
+            <button class="AdminButton AdminTeachers" @onclick="TeacherButton">
+                Teachers
+            </button>
+            <button class="AdminButton AdminStudents" @onclick="StudentButton">
+                Students
+            </button>
+            <button class="AdminButton AdminParents" @onclick="ParentButton">
+                Parents
+            </button>
+            <button class="AdminButton AdminSubjects" @onclick="SubjectButton">
+                Subjects
+            </button>
+            <button class="AdminButton AdminClasses" @onclick="ClassButton">
+                Classes
+            </button>
+            <button class="AdminButton AdminEnrollments" @onclick="EnrollmentButton">
+                Enrollments
+            </button>
 
-<div class="content-container">
-    <div class="rz-p-sm-12">
-    <RadzenAccordion>
-        <Items>
-            <RadzenAccordionItem Text="Teachers" Selected=true>
-                <AdminTeachers />
-            </RadzenAccordionItem>
-            <RadzenAccordionItem Text="Students">
-                    <AdminStudents />
-            </RadzenAccordionItem>
-            <RadzenAccordionItem Text="Parents">
-                <AdminParents />
-            </RadzenAccordionItem>
-            <RadzenAccordionItem Text="Subjects">
-                <AdminSubjects />
-            </RadzenAccordionItem>
-            <RadzenAccordionItem Text="Classes">
-                <AdminClasses />
-            </RadzenAccordionItem>
-        </Items>
-    </RadzenAccordion>
-    </div>
+        </div>
+        <div class="AdminDisplay">
+            <div class="AdminSubDisplay">
+
+               @if (Button == "Teacher"){
+                    <AdminTeachers @ref="siteref"></AdminTeachers>
+               }
+               else if(Button=="Student"){
+                    <AdminStudents @ref="siteref1"></AdminStudents>
+               }
+               else if(Button=="Parent"){
+                    <AdminParents @ref="siteref2"></AdminParents>
+               }
+               else if(Button=="Subject"){
+                    <AdminSubjects @ref="siteref3"></AdminSubjects>
+               }
+               else if(Button=="Class"){
+                    <AdminClasses @ref="siteref4"></AdminClasses>
+               }
+               else if(Button=="Enrollment"){
+                    <AdminEnrollments @ref="siteref5"></AdminEnrollments>
+               }
+   
+
+            </div>
+        </div>
+    </di>
 </div>
-
 
 
 @code {
 
+    private AdminTeachers siteref;
+    private AdminStudents siteref1;
+    private AdminParents siteref2;
+    private AdminSubjects siteref3;
+    private AdminClasses siteref4;
+    private AdminEnrollments siteref5;
+
+
+    public string Button = null;
+
+    public void TeacherButton()
+    {
+        Button = "Teacher";
+    }
+
+    public void StudentButton()
+    {
+        Button = "Student";
+
+    }
+    public void ParentButton()
+    {
+        Button = "Parent";
+
+    }
+    public void SubjectButton()
+    {
+        Button = "Subject";
+
+    }
+    public void ClassButton()
+    {
+        Button = "Class";
+
+    }
+    public void EnrollmentButton()
+    {
+        Button = "Enrollment";
+
+    }
 }

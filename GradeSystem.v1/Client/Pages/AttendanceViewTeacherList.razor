@@ -1,6 +1,7 @@
 ﻿@page "/attendanceviewteacherlist"
 @inject ITeacherService TeacherService
 @inject IAttendanceService AttendanceService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
 <div class="Atableborder">
     <div class="Astudentinfo">

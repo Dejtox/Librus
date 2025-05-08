@@ -5,7 +5,7 @@
 @inject IEnrollmentService EnrollmentService
 @inject IAttendanceService AttendanceService
 @inject ILessonsHoursService LessonsHoursService
-
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 @* to nie prowadzi do zadnej strony *@
 
 <div class="Atableborder">

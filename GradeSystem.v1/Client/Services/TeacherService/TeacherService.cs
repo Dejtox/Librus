@@ -21,7 +21,11 @@ namespace GradeSystem.v1.Client.Services.TeacherService
             await _http.PostAsJsonAsync("api/Teachers", teacher );
             _navigationManager.NavigateTo("Teachers");
         }
-
+        public async Task CreateTeacherUser(Teacher teacher)
+        {
+            await _http.PostAsJsonAsync("api/Teachers/teacher_user", teacher);
+            _navigationManager.NavigateTo("AdminPage");
+        }
         public async Task DeleteTeacher(int id)
         {
             await _http.DeleteAsync($"api/Teachers/{id}");
@@ -40,8 +44,15 @@ namespace GradeSystem.v1.Client.Services.TeacherService
         {
             var result = await _http.GetFromJsonAsync<List<Teacher>>("api/Teachers");
             if (result != null)
-                Teachers = result;
-                
+                Teachers = result;              
+        }
+
+        public async Task<List<Teacher>> GetTeacherss()
+        {
+            var result = await _http.GetFromJsonAsync<List<Teacher>>($"api/Teachers");
+            if (result != null)
+                return result;
+            throw new Exception("Teachers not found");
         }
 
         public async Task UpdateTeacher(Teacher teacher)

@@ -1,5 +1,6 @@
 ﻿@page "/gradetypessaddedit"
 @inject IGradeNumberService GradeNumberService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
 @*<button @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>*@
 @if (openbuton == false)

@@ -2,6 +2,7 @@
 @inject ISchoolTripService SchoolTripService
 @inject NavigationManager navigationManager
 @inject DialogService DialogService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <PageTitle>Trip summary</PageTitle>
 

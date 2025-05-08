@@ -3,6 +3,7 @@
 @page "/Book/{QR:int}"
 @inject IBookService BookService
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin, Librarian")]
 
 @if (QR == null)
 {

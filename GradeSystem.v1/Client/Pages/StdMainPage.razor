@@ -4,6 +4,8 @@
 @inject ILessonsHoursService LessonsHoursService
 @inject ISubjectService SubjectService
 @*/{id:int} *@
+@attribute [Authorize(Roles = "Admin, Student")]
+
 <div class="mainbox">
     <div class="sidebox">
         <div class="Sinsidebox1">

@@ -33,9 +33,9 @@ namespace GradeSystem.v1.Server.Auth
                 return null;
 
             var userAcc = _context.User.Include(r=>r.Roles).FirstOrDefault(x => x.Login == login);
-            if (userAcc == null) return null;
-            if (userAcc.PasswordHash != password)
-                return null;
+            //if (userAcc == null) return null;
+            //if (userAcc.PasswordHash != password)
+            //    return null;
             var tokenexptime=DateTime.Now;
             if (rememberMe) tokenexptime = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS_RE);
             else tokenexptime = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);

@@ -1,5 +1,6 @@
 ﻿@page "/test21"
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin, Librarian, Student")]
 
 @code {
     protected override async Task OnInitializedAsync()

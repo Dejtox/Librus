@@ -6,7 +6,7 @@
 @inject IUserService UserService
 @inject NavigationManager NavigationMenager
 @inject AuthenticationStateProvider AuthenticationStateProvider
-
+@attribute [Authorize(Roles = "Admin, Parent")]
 
 
 @foreach (var student in StudentService.Students)

@@ -1,0 +1,69 @@
+﻿@inject DialogService DialogService
+@inject IClassService ClassService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
+<div class="search-container">
+    <RadzenTemplateForm TItem="Class" Data="classs" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Class Name" Style="font-weight:bold;width:10%;font-size:17px;"/>
+                <RadzenTextBox @bind-Value="classs.ClassName" Style="font-weight:bold;font-size:17px;margin:0;" Name="ClassName"/>
+                <RadzenLengthValidator Component="ClassName" Min="3" Text="Class name should be at least 3 characters" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="ClassName" Max="50" Text="Class name should be at most 50 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Virtual class" Style="font-weight:bold;width:10%;font-size:17px;"/>
+                <RadzenCheckBox @bind-Value="classs.VirtualClass" Style="font-weight:bold;font-size:17px;margin:0;"/>
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Teacher" Style="font-weight:bold;width:10%;font-size:17px;"/>
+                <RadzenDropDown @bind-Value=@classs.TeacherID Chips=true Placeholder="Search..." Data=ClassService.Teachers TextProperty="Name" ValueProperty="TeacherID" Style="font-weight:bold;font-size:17px;margin:0;" Name="TeacherDD"/>
+                <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    Class classs = new Class();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID != null)
+        {
+            classs = await ClassService.GetClassByID((int)ID);
+        }
+        await ClassService.GetTeachers();
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            await ClassService.CreateClass(classs);
+        }
+        else
+        {
+            await ClassService.UpdateClass(classs);
+        }
+
+
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

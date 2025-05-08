@@ -1,6 +1,7 @@
 ﻿@page "/additional"
 @using GradeSystem.v1.Client.Data
 @inject ILessonsHoursService LessonsHoursService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9">

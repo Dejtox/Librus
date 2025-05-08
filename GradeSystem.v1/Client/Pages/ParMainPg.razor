@@ -3,6 +3,7 @@
 @inject IParentService ParentService
 @inject IEnrollmentService EnrollmentService
 @inject ILessonsHoursService LessonsHoursService
+@attribute [Authorize(Roles = "Admin, Parent")]
 
 <div class="mainbox">
     <div class="sidebox">

@@ -1,6 +1,97 @@
 ﻿@page "/AdminParents"
-<h3>AdminParents</h3>
+@inject IParentService ParentService
+@inject DialogService DialogService
+@inject IUserService UserService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
+<RadzenDataGrid @ref="ParentGrid" TItem="Parent" Data="ParentService.Parents" AllowFiltering="true" AllowColumnResize="true"
+FilterMode="FilterMode.Advanced" PageSize="5" AllowPaging="true" AllowSorting="true" ColumnWidth="100px"
+FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" TItem="Teacher" AllowAlternatingRows="false" ShowPagingSummary="true"
+LogicalFilterOperator="LogicalFilterOperator.Or" FilterPopupRenderMode="PopupRenderMode.OnDemand" Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
+    <Columns>
+        <RadzenDataGridColumn Title="No." TItem="Parent" Sortable=false Filterable=false>
+            <Template>
+                @{
+                    var pageSize = Math.Min(ParentGrid.PageSize, ParentGrid.View.Count());
+                }
+                <RenderOnceComponent CanRender=@(!(index >= pageSize))>
+                    @{
+                        ResetIndex(index >= pageSize);
+                    }
+                    @((ParentGrid.CurrentPage * pageSize) + index++ + 1)
+                </RenderOnceComponent>
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Title="Name" TItem="Parent" Property="FullName" />
+        <RadzenDataGridColumn Title="Email" TItem="Parent" Property="Email" />
+        <RadzenDataGridColumn Title="PhoneNumber" TItem="Parent" Property="PhoneNumber" />
+        <RadzenDataGridColumn Title="Login" TItem="Parent" Property="User.Login" />
+        <RadzenDataGridColumn Title="Password" TItem="Parent" Property="User.PasswordHash" />
+        <RadzenDataGridColumn Title="Options" TItem="Parent">
+            <Template Context="Parent">
+                <div class="options" style="padding:3px;">
+                    <button type="button" class="icon-button" onclick="@(()=>Edit(Parent.ParentID))">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="icon-button" onclick="@(()=>Delete(Parent.ParentID,Parent.User.UserID))">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+<div class="center search-margin">
+    <button class="trip-add-button" @onclick="AddParent">Add parent</button>
+</div>
 
 @code {
+    RadzenDataGrid<Parent> ParentGrid;
+    int index;
+    void ResetIndex(bool shouldReset)
+    {
+        if (shouldReset)
+        {
+            index = 0;
+        }
+    }
+    //filtercleared
 
+    protected override async Task OnInitializedAsync()
+    {
+        await ParentService.GetParents();
+    }
+    private async Task Edit(int id)
+    {
+        await DialogService.OpenAsync<AddEditParentModal>("Edit parent",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
+    private async Task Delete(int parentID, int userID)
+    {
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await UserService.DeleteUser(userID);
+            await ParentService.DeleteParent(parentID);
+        }
+    }
+    private async Task AddParent()
+    {
+        await DialogService.OpenAsync<AddEditParentModal>("Add parent",
+            null,
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
 }

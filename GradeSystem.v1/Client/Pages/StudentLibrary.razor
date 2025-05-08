@@ -1,5 +1,5 @@
 ﻿@page "/studentlibrary"
-
+@attribute [Authorize(Roles = "Admin, Student")]
 
 <div class="mainlibraryview">
     <div class="booksdisplay">

@@ -1,7 +1,7 @@
 ﻿@page "/extraclass"
 @page "/extraclass/{id:int}"
 @inject IExtraClassesService ExtraClassesService
-@attribute [Authorize(Roles = "Teacher, Parent, Student")]
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 @if (ID == null)
 {

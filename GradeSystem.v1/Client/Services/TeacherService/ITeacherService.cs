@@ -7,10 +7,12 @@
         IList<Teacher> UnavailableTeachers { get; set; }
 
         Task GetTeachers();
+        Task<List<Teacher>> GetTeacherss();
         Task<Teacher> GetTeacherByID(int id);
         Task UpdateTeacher(Teacher teacher);
         Task DeleteTeacher(int id);
         Task CreateTeacher(Teacher teacher);
+        Task CreateTeacherUser(Teacher teacher);
         Task GetAvailableTeachers();
         Task GetUnavailableTeachers();
         Task UpdateTeacherStatus();

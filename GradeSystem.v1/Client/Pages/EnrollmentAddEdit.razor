@@ -1,6 +1,7 @@
 ﻿@page "/enrollment"
 @page "/enrollment/{id:int}"
 @inject IEnrollmentService EnrollmentService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 @if (ID == null)
 {

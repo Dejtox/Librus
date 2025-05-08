@@ -3,6 +3,7 @@
 @inject NavigationManager NavigationManager
 @inject ISchoolTripService SchoolTripService
 @inject DialogService DialogService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <PageTitle>@title</PageTitle>
 <div class="content-container">

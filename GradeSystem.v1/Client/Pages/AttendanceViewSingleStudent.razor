@@ -4,6 +4,8 @@
 @inject IStudentService StudentService
 @inject IParentService ParentService
 @inject ITeacherService TeacherService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
 <div class="Atableborder">
     <div class="Astudentinfo">
         <div class="Astudentname">Student (Regina)</div>

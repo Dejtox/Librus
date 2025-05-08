@@ -4,6 +4,8 @@
 @inject IAttendanceService AttendanceService
 @inject IEnrollmentService EnrollmentService
 @inject ITeacherService TeacherService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
+
 <h3>Enrollment_Attendences</h3>
 <table class="TimeSelectionTable">
     <thead>

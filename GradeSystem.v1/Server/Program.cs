@@ -1,4 +1,5 @@
 ﻿global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using GradeSystem.v1.Server.Data;
@@ -12,6 +13,9 @@ using System.Text;
 using GradeSystem.v1.Server.Auth;
 using GradeSystem.v1.Client.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Options;
+using System.Security.Claims;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +48,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 
 
+
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
@@ -71,9 +76,9 @@ app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 
 app.MapRazorPages();

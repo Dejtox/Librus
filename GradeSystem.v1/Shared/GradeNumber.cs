@@ -1,11 +1,14 @@
 ﻿
-    public class GradeNumber
-    {
-        public int GradeNumberID { get; set; }
+using System.ComponentModel.DataAnnotations;
 
-        public float gradenumber { get; set; }
-        public string GradeName { get; set; } = string.Empty;
-
-
-    }
+public class GradeNumber
+{
+    [Required]
+    public int GradeNumberID { get; set; }
+    [Required]
+    public float gradenumber { get; set; }
+    [Required]
+    [StringLength(50, MinimumLength = 2, ErrorMessage = "Grade name cannot be longer than 50 characters. Required minimum length is 2.")]
+    public string GradeName { get; set; } = string.Empty;
+}
 

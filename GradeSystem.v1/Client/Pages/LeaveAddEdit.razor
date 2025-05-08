@@ -3,7 +3,7 @@
 @inject ISubstituteService SubstituteService
 @inject ILogRegisterService LogRegisterService
 @inject UserLogService userState
-
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <h3>LeaveAddEdit</h3>
 

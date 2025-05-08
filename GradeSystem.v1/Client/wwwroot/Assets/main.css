@@ -4300,3 +4300,41 @@ a, .btn-link {
 .AdminButtons {
     background-color: blue;
 }
+
+.diagonal-button {
+    background-color: #FFD835;
+    color: black;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    clip-path: polygon(0 0, 100% 0,80% 100%,0 100%);
+    padding: 15px 0px 0px 0px;
+    text-decoration: none;
+}
+
+.admin-page-navbar {
+    height: 10%;
+    border-radius: 15px 15px 0px 0px;
+    width:100%;
+    overflow:hidden;
+}
+
+.admin-content-header {
+    height: 5%;
+    background-color: #FFD835;
+    border-bottom: thin solid black;
+    border-top: thin solid black;
+}
+
+.admin-page-header {
+    color: black;
+    margin-left: 1%;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+

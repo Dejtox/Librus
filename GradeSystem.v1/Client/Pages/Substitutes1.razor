@@ -2,6 +2,7 @@
 @inject ISubstituteService SubstituteService
 @inject DialogService DialogService
 @inject NavigationManager navigationManager
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <PageTitle>Substitutes</PageTitle>
 

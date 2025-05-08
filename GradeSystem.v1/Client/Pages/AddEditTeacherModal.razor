@@ -1,0 +1,110 @@
+﻿@inject ITeacherService TeacherService
+@inject IUserService UserService
+@inject DialogService DialogService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
+<div class="search-container">
+    <RadzenTemplateForm TItem="Teacher" Data="teacher" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="First Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="teacher.FirstName" Style="font-weight:bold;font-size:17px;margin:0;" Name="FirstName"/>
+                <RadzenLengthValidator Component="FirstName" Min="3" Text="First name should be at least 3 characters" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="FirstName" Max="100" Text="First name should be at most 100 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Last Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="teacher.LastName" Style="font-weight:bold;font-size:17px;margin:0;" Name="LastName"/>
+                <RadzenLengthValidator Component="LastName" Min="3" Text="Last name should be at least 3 characters" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="LastName" Max="100" Text="Last name should be at most 100 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Email" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="teacher.Email" Style="font-weight:bold;font-size:17px;margin:0;" Name="Email"/>
+                <RadzenEmailValidator Component="Email" Text="Please enter a valid email address" Popup="true" Style="display:block;" />
+                <RadzenRequiredValidator Component="Email" Text="Email is required" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Phone Number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="teacher.PhoneNumber" Style="font-weight:bold;font-size:17px;margin:0;" Name="PhoneNumber"/>
+                <RadzenRegexValidator Component="PhoneNumber" Text="Please enter a valid phone number" Pattern="^\d{9}$" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="PhoneNumber" Min="9" Text="Phone number should have 9 digits" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Login" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="teacher.User.Login" Style="font-weight:bold;font-size:17px;margin:0;" Name="Login"/>
+                <RadzenLengthValidator Component="Login" Min="4" Text="Login should be at least 4 characters" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="Login" Max="25" Text="Login should be at most 25 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="First Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenPassword @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;" Name="Password"/>
+                <RadzenRegexValidator Component="Password" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="Password" Min="12" Text="Password should have at least 12 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Roles" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@roles Multiple=true Chips=true Placeholder="Search..." Data=availableRoles Style="font-weight:bold;font-size:17px;margin:0;" Name="Roles" />
+                <RadzenRequiredValidator Component="Roles" Text="Please select at least one role" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    List<string> availableRoles = new List<string> { "Teacher", "Principal", "Librarian", "Secretary" };
+    List<string> roles { get; set; } = new List<string>();
+    Teacher teacher = new Teacher() { User=new User()};
+    string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{12,}$";
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID != null)
+        {
+            teacher = await TeacherService.GetTeacherByID((int)ID);
+            roles = teacher.User.Roles.Select(x => x.Role).ToList();
+        }
+    }
+
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            var userRoles = roles.Select(x => new Roles { Role = x }).ToList();
+            teacher.User.Roles = userRoles;
+            (teacher.User.PasswordSalt,teacher.User.PasswordHash) = PasswordSecurity.HashPassword(teacher.User.PasswordHash);
+            Console.WriteLine($"Salt:{teacher.User.PasswordSalt}, Hash:{teacher.User.PasswordHash}");
+            await TeacherService.CreateTeacherUser(teacher);
+        }
+        else
+        {
+            await TeacherService.UpdateTeacher(teacher);
+        }
+
+
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

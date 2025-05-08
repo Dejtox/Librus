@@ -7,6 +7,7 @@
 @inject ISubjectService SubjectService
 @inject IEventService EventServic
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <div class="mainbox">
     <div class="Msidebox1">

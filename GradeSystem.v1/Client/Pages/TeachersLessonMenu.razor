@@ -7,6 +7,8 @@
 @inject IGradeNumberService GradeNumberService
 @inject IClassService ClassService
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
+
 <h3>TeachersLessonMenu</h3>
 <div>
     @if (SwitchATGR == "GR")

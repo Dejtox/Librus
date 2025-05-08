@@ -4,6 +4,8 @@
 @inject IAttendanceService AttendanceService
 @inject IEnrollmentService EnrollmentService
 @inject IParentService ParentService
+@attribute [Authorize(Roles = "Admin, Parent, Student")]
+
 <div class="RGtable">
     <div class="RGtableheader">
         <div class="RGtitle">Attendece</div>

@@ -1,5 +1,6 @@
 ﻿@inject ISubstituteService SubstituteService
 @inject DialogService DialogService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
 <div class="search-container">
     <div class="empty-row"></div>

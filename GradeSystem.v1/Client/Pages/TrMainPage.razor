@@ -3,6 +3,7 @@
 @inject ITeacherService TeacherService
 @inject ILessonsHoursService LessonsHoursService
 @inject ISubjectService SubjectService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 @*/{id:int} *@
 
 

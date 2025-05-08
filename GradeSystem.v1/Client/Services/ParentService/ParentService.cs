@@ -21,7 +21,12 @@ namespace GradeSystem.v1.Client.Services.ParentService
             await SetParents(result);
 
         }
+        public async Task CreateParentUser(Parent parent)
+        {
+            var result = await _http.PostAsJsonAsync("api/Parents/parent_user", parent);
+            await SetParents(result);
 
+        }
         private async Task SetParents(HttpResponseMessage result)
         {
             _navigationManager.NavigateTo("Parents");

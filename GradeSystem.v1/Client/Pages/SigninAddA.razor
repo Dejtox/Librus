@@ -3,7 +3,7 @@
 @inject IStudentService StudentService
 @inject IUserService UserService
 @inject NavigationManager NavigationMenager
-@attribute [Authorize(Roles = "Teacher, Parent, Student")]
+@attribute [Authorize(Roles = "Admin, Student, Librarian")]
 
 <div class="ms-depth-16 card">
     <div class="card-content">

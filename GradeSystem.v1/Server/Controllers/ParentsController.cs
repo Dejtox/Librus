@@ -79,7 +79,14 @@ namespace GradeSystem.v1.Server.Controllers
 
             return CreatedAtAction("GetParent", new { id = parent.ParentID }, parent);
         }
+        [HttpPost("parent_user")]
+        public async Task<ActionResult<Parent>> PostParentUser(Parent parent)
+        {
+            _context.Parent.Add(parent);
+            await _context.SaveChangesAsync();
 
+            return CreatedAtAction("GetParent", new { id = parent.ParentID }, parent);
+        }
         // DELETE: api/Parents/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteParent(int id)

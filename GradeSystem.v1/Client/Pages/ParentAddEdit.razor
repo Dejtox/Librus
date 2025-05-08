@@ -2,6 +2,7 @@
 @page "/parent/{id:int}"
 @inject IParentService ParentService
 @inject IUserService UserService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 @if (ID == null)
 {

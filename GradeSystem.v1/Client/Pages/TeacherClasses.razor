@@ -11,8 +11,8 @@
 @inject NavigationManager NavigationMenager
 @inject AuthenticationStateProvider authenticationStateProvider
 @inject NavigationManager navMenager
-
 @inject HttpClient httpClient
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <PageTitle> Classes </PageTitle>
 

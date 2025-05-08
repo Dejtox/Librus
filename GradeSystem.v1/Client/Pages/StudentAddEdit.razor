@@ -2,6 +2,7 @@
 @page "/student/{id:int}"
 @inject IStudentService StudentService
 @inject IUserService UserService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 @if(ID==null)
 {

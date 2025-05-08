@@ -1,5 +1,4 @@
-﻿
-@page "/gradesviewstudent"
+﻿@page "/gradesviewstudent"
 @using System.Security.Claims
 @inject IStudentService StudentService
 @inject IParentService ParentService
@@ -10,6 +9,7 @@
 @inject IJSRuntime js
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationMenager
+@attribute [Authorize(Roles = "Student, Admin, Parent")]
 
 <div class="tableborder">
     <div class="studentinfo">

@@ -4,7 +4,7 @@
 @inject ISubstituteService SubstituteService
 @inject ILogRegisterService LogRegisterService
 @inject UserLogService userState
-
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <PageTitle>Leaves</PageTitle>
 <h3>Leaves</h3>

@@ -20,7 +20,7 @@ namespace GradeSystem.v1.Client.Services.SubjectService
         public async Task CreateSubject(Subject subject)
         {
             await _http.PostAsJsonAsync("api/Subjects", subject);
-            _navigationManager.NavigateTo("Subjects");
+            //_navigationManager.NavigateTo("Subjects");
         }
 
         public async Task DeleteSubject(int id)

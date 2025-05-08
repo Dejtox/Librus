@@ -8,6 +8,7 @@
 @inject IStudentService StudentService
 @using Microsoft.AspNetCore.Components;
 @using System.Text.RegularExpressions;
+@attribute [Authorize(Roles = "Student, Librarian")]
 <h3>BooktheBook</h3>
 <div>
     Name

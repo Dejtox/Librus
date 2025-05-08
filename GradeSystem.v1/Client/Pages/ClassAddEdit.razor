@@ -1,6 +1,7 @@
 ﻿@page "/classs"
 @page "/classs/{id:int}"
 @inject IClassService ClassService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 @if (ID == null)
 {

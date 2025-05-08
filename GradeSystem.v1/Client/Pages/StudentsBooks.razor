@@ -1,6 +1,8 @@
 @page "/BooksOfStudent"
 @inject BookService BookService
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin, Student")]
+
 <h3>StudentsBooks</h3>
 <table>
     <thead>

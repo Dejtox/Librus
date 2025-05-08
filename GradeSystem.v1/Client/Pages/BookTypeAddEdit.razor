@@ -8,8 +8,8 @@
 @using System.Linq;
 @using System.Text;
 @using System.Text.RegularExpressions;
+@attribute [Authorize(Roles = "Admin, Librarian")]
 
-@*dodaj przenoszenie do home dla nieupowaznionych osob/**@
     <div>
     <div>
         <thead>

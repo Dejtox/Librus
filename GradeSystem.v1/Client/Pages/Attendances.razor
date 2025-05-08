@@ -4,6 +4,8 @@
 @inject IStudentService StudentService
 @inject IAttendanceService AttendanceService
 @inject IEnrollmentService EnrollmentService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
 <table class="pagetable">
     <thead>
         <tr>

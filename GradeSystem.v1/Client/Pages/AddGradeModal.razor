@@ -2,9 +2,8 @@
 @inject IStudentService StudentService
 @inject ISubjectService SubjectService
 @inject DialogService DialogService
-
 @inject IGradeNumberService GradeNumberService
-
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
 <div class="search-container">
     <div class="empty-row"></div>

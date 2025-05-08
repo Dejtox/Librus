@@ -23,6 +23,7 @@ namespace GradeSystem.v1.Server.Controllers
 
         // GET: api/Students
         [HttpGet]
+        
         public async Task<ActionResult<IEnumerable<Student>>> GetStudent()
         {
             return await _context.Student.Include(c=>c.Class).Include(p=>p.Parent).Include(u => u.User).ToListAsync();
@@ -81,11 +82,20 @@ namespace GradeSystem.v1.Server.Controllers
         // POST: api/Students
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
             student.Class = null;
             student.Parent = null;
             student.User = null;
+            _context.Student.Add(student);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetStudent", new { id = student.StudentID }, student);
+        }
+        [HttpPost("student_user")]
+        public async Task<ActionResult<Student>> PostStudentUser(Student student)
+        {
             _context.Student.Add(student);
             await _context.SaveChangesAsync();
 

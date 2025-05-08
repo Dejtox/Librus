@@ -1,9 +1,13 @@
 ﻿
-    public class CalendarDay
-    {
-        public int DayNumber { get; set; }
-        public DateTime Date { get; set; }
-        public bool IsEmpty { get; set; }
+using System.ComponentModel.DataAnnotations;
 
-        public List<CalendarEvent> Events { get; set; }
-    }
+public class CalendarDay
+{
+    [Required]
+    public int DayNumber { get; set; }
+    [Required]
+    public DateTime Date { get; set; }
+    [Required]
+    public bool IsEmpty { get; set; }
+    public List<CalendarEvent> Events { get; set; }
+}

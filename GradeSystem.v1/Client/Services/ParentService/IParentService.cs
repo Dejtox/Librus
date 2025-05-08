@@ -13,6 +13,7 @@ namespace GradeSystem.v1.Client.Services.ParentService
         Task GetParents();
 
         Task CreateParent(Parent parent);
+        Task CreateParentUser(Parent parent);
         Task UpdateParent(Parent parent);
         Task DeleteParent(int id);
 

@@ -3,6 +3,8 @@
 @inject ISubstituteService SubstituteService
 @inject ITeacherService TeacherService
 @inject DialogService DialogService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
+
 <PageTitle>Teacher substitutes</PageTitle>
 
 <div class="content-container">

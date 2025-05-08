@@ -4,6 +4,8 @@
 @inject IEnrollmentService EnrollmentService
 @inject ISubstituteService SubstituteService
 @inject ISchoolTripService SchoolTripService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
+
 <h3>Teachergrafic</h3>
 <div>
     <div>

@@ -5,6 +5,7 @@
 @inject IGradeService GradeService
 @inject ISubjectService SubjectService
 @inject IParentService ParentService
+@attribute [Authorize(Roles = "Parent, Admin")]
 
 <div class="RGtable">
 

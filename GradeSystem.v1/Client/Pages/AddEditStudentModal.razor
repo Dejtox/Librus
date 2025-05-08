@@ -1,0 +1,132 @@
+﻿@inject IStudentService StudentService
+@inject IParentService ParentService
+@inject IClassService ClassService
+@inject DialogService DialogService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
+<div class="search-container">
+    <RadzenTemplateForm TItem="Student" Data="student" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="First Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="student.FirstName" Style="font-weight:bold;font-size:17px;margin:0;" Name="FirstName"/>
+                <RadzenLengthValidator Component="FirstName" Min="3" Text="First name should be at least 3 characters" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="FirstName" Max="100" Text="First name should be at most 100 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Last Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="student.LastName" Style="font-weight:bold;font-size:17px;margin:0;" Name="LastName"/>
+                <RadzenLengthValidator Component="LastName" Min="3" Text="Last name should be at least 3 characters" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="LastName" Max="100" Text="Last name should be at most 100 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Pesel" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="student.Pesel" Style="font-weight:bold;font-size:17px;margin:0;" Name="Pesel"/>
+                <RadzenLengthValidator Component="Pesel" Min="11" Max="11"Text="Pesel should have 11 digits" Popup="true" Style="display:block;" />
+                <RadzenRegexValidator Component="Pesel" Text="Please enter a valid pesel number" Pattern="^\d{11}$" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Address" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="student.Address" Style="font-weight:bold;font-size:17px;margin:0;" Name="Email"/>
+                <RadzenEmailValidator Component="Email" Text="Please enter a valid email address" Popup="true" Style="display:block;" />
+                <RadzenRequiredValidator Component="Email" Text="Email is required" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Student Group" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenNumeric @bind-Value="student.StudentGroup" Style="font-weight:bold;font-size:17px;margin:0;" Name="StudentGroup"/>
+                <RadzenRequiredValidator Component="StudentGroup" Text="Student group is required" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Login" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="student.User.Login" Style="font-weight:bold;font-size:17px;margin:0;" Name="Login"/>
+                <RadzenLengthValidator Component="Login" Min="4" Text="Login should be at least 4 characters" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="Login" Max="25" Text="Login should be at most 25 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Password" Style="font-weight:bold;width:10%;font-size:17px;"/>
+                <RadzenPassword @bind-Value="student.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;" Name="Password"/>
+                <RadzenRegexValidator Component="Password" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="true" Style="display:block;" />
+                <RadzenLengthValidator Component="Password" Min="12" Text="Password should have at least 12 characters" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Additional Language" Style="font-weight:bold;width:10%;font-size:17px;"/>
+                <RadzenDropDown @bind-Value=@student.Additional_Language Chips=true Placeholder="Search..." Data=availableLanguages Style="font-weight:bold;font-size:17px;margin:0;" Name="Additional_Language" />
+                <RadzenRequiredValidator Component="Additional_Language" Text="Please select at least one language" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Parent" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@student.ParentID Chips=true Placeholder="Search..." Data=ParentService.Parents TextProperty="FullName" ValueProperty="ParentID" Style="font-weight:bold;font-size:17px;margin:0;" Name="ParentID"/>
+                <RadzenRequiredValidator Component="ParentID" Text="Please select at least one parent" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Class" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@student.ClassID Chips=true Placeholder="Search..." Data=ClassService.Classes TextProperty="ClassName" ValueProperty="ClassID" Style="font-weight:bold;font-size:17px;margin:0;" Name="ClassID"/>
+                <RadzenRequiredValidator Component="ClassID" Text="Please select at least one class" Popup="true" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    List<string> availableLanguages = new List<string> { "English","Polish","French" };
+    Student student = new Student() {User=new User() };
+    string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{12,}$";
+    protected override async Task OnParametersSetAsync()
+    {
+        await ClassService.GetClasses();
+        await ParentService.GetParents();
+        if (ID != null)
+        {
+            student = await StudentService.GetStudentById((int)ID);
+        }
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            // student.ParentID = 1;
+            // student.ClassID = 2;
+            // student.Additional_Language = "English";
+            student.User.Roles = new List<Roles> { new Roles { Role = "Student" } };
+            (student.User.PasswordSalt, student.User.PasswordHash) = PasswordSecurity.HashPassword(student.User.PasswordHash);
+            await StudentService.CreateStudentUser(student);
+        }
+        else
+        {
+            await StudentService.UpdateStudent(student);
+        }
+
+
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

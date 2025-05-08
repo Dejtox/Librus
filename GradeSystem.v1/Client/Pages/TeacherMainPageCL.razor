@@ -1,6 +1,6 @@
 ﻿@page "/teachermainpagecl"
 @inject NavigationManager NavigationManager
-
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary, Librarian, Principal")]
 
 <div class="CLtable">
 

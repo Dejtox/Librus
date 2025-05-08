@@ -52,6 +52,9 @@
             var userSession = await loginResponse.Content.ReadFromJsonAsync<UserSession>();
             var customAuthStateprovider = (CustomAuthenticationStateProvider)authStateProvider;
             await customAuthStateprovider.UpdateAuthenticationState(userSession);
+            var jwtToken = userSession.Token;
+            Console.WriteLine(jwtToken);
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer",jwtToken);
             await StudentService.GetStudents();
             await ParentService.GetParents();
             await TeacherService.GetTeachers();

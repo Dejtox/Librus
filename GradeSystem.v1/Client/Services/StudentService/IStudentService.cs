@@ -14,6 +14,7 @@ namespace GradeSystem.v1.Client.Services.StudentService
         Task GetClasses();
 
         Task CreateStudent(Student student);
+        Task CreateStudentUser(Student student);
         Task UpdateStudent(Student student);
         Task DeleteStudent(int id);
 

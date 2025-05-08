@@ -1,7 +1,7 @@
 ﻿@inject DialogService DialogService
 @inject IClassService ClassService
 @inject IAttendanceService AttendanceService 
-
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 <div>
     <RadzenDataGrid Data="attendances" TItem="Attendance" AllowAlternatingRows="false" Style="border-radius:15px;">
         <Columns>

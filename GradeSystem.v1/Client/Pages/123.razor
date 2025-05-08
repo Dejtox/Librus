@@ -4,7 +4,7 @@
 @inject IBookService BookService
 @inject IFileService FileService 
 @inject NavigationManager NavigationManager
-
+@attribute [Authorize(Roles = "Admin, Teacher, Librarian")]
 
 <h3>BookAddEdit</h3>
 

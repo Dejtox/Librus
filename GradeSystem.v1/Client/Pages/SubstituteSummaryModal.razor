@@ -2,6 +2,7 @@
 @inject DialogService DialogService
 @inject ITeacherService TeacherService
 @inject ISubstituteService SubstituteService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <div>
     <RadzenDataGrid TItem="Enrollment" Data="enrollments" PagerHorizontalAlign="Radzen.HorizontalAlign.Center" AllowAlternatingRows="false" Style="border-radius:15px;">

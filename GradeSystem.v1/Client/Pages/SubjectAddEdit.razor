@@ -1,6 +1,7 @@
 ﻿@page "/subject"
 @page "/subject/{id:int}"
 @inject ISubjectService SubjectService
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 @if (ID == null)
 {
@@ -75,7 +76,7 @@ else
     async Task DelateTeacher()
     {
 
-        await SubjectService.DeleteSubject(subject.TeacherID);
+        await SubjectService.DeleteSubject((int)subject.TeacherID);
 
     }
 

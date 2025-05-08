@@ -3,6 +3,7 @@
 @inject IAttendanceService AttendanceService
 @inject DialogService DialogService
 @inject NavigationManager navigationManager
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
 <div class="search-container">
     <div class="empty-row"></div>

@@ -3,8 +3,7 @@
 @inject IParentService ParentService
 @inject IUserService UserService
 @inject NavigationManager NavigationMenager
-
-
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <div class="container">
     <img />

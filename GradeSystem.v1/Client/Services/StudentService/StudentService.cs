@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazored.SessionStorage;
+using GradeSystem.v1.Client.Auth;
+using GradeSystem.v1.Shared;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 
 namespace GradeSystem.v1.Client.Services.StudentService
@@ -16,13 +20,16 @@ namespace GradeSystem.v1.Client.Services.StudentService
 
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
-
         public async Task CreateStudent(Student student)
         {
             var result = await _http.PostAsJsonAsync("api/Students", student);
             await SetStudents(result);
         }
-
+        public async Task CreateStudentUser(Student student)
+        {
+            var result = await _http.PostAsJsonAsync("api/Students/student_user", student);
+            await SetStudents(result);
+        }
         public async Task DeleteStudent(int id)
         {
             var result = await _http.DeleteAsync($"api/Students/{id}");

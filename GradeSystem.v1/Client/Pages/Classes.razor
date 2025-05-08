@@ -1,6 +1,7 @@
 ﻿@page "/classes"
 @inject IClassService ClassService
 @inject NavigationManager NavigationMenager
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <PageTitle> Classes </PageTitle>
 

@@ -1,7 +1,7 @@
 ﻿@page "/parents"
 @inject IParentService ParentService
 @inject NavigationManager NavigationMenager
-
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 <PageTitle> Parents </PageTitle>
 
 <h3>Parents</h3>

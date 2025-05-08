@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Http;
 @using System.Net.Http.Headers;
+@attribute [Authorize(Roles = "Admin, Librarian, Teacher")]
 @{
     var showClass = IsVisible ? "d-block" : "d-none";
 }

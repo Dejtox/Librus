@@ -1,6 +1,106 @@
 ﻿@page "/AdminClasses"
-<h3>AdminClasses</h3>
+@inject IClassService ClassService
+@inject DialogService DialogService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
+<RadzenDataGrid @ref="ClassGrid" TItem="Class" Data="ClassService.Classes" AllowFiltering="true" AllowColumnResize="true"
+                FilterMode="FilterMode.Advanced" PageSize="5" AllowPaging="true" AllowSorting="true" ColumnWidth="100px"
+                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" TItem="Teacher" AllowAlternatingRows="false" ShowPagingSummary="true"
+                LogicalFilterOperator="LogicalFilterOperator.Or" FilterPopupRenderMode="PopupRenderMode.OnDemand" Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
+    <Columns>
+        <RadzenDataGridColumn Title="No." TItem="Class" Sortable=false Filterable=false>
+            <Template>
+                @{
+                    var pageSize = Math.Min(ClassGrid.PageSize, ClassGrid.View.Count());
+                }
+                <RenderOnceComponent CanRender=@(!(index >= pageSize))>
+                    @{
+                        ResetIndex(index >= pageSize);
+                    }
+                    @((ClassGrid.CurrentPage * pageSize) + index++ + 1)
+                </RenderOnceComponent>
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Title="Class Name" TItem="Class" Property="ClassName" />
+        <RadzenDataGridColumn Title="Teacher" TItem="Class" Property="Teacher.Name" />
+        <RadzenDataGridColumn Title="Teacher" TItem="Class" Property="Teacher.Name" />
+        <RadzenDataGridColumn Title="Np ilość uczniów" TItem="Class"/>
+        <RadzenDataGridColumn Title="Virtual class" TItem="Class">
+            <Template Context="Class">
+                @if (Class.VirtualClass)
+                {
+                    <span>Yes</span>
+                }
+                else
+                {
+                    <span>No</span>
+                }
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Title="Options" TItem="Class">
+            <Template Context="Class">
+                <div class="options" style="padding:3px;">
+                    <button type="button" class="icon-button" onclick="@(()=>Edit(Class.ClassID))">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="icon-button" onclick="@(()=>Delete(Class.ClassID))">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+<div class="center search-margin">
+    <button class="trip-add-button" @onclick="AddClass">Add class</button>
+</div>
 
 @code {
+    RadzenDataGrid<Class> ClassGrid;
+    int index;
+    void ResetIndex(bool shouldReset)
+    {
+        if (shouldReset)
+        {
+            index = 0;
+        }
+    }
+    //filtercleared
 
+    protected override async Task OnInitializedAsync()
+    {
+        await ClassService.GetClasses();
+    }
+    private async Task Edit(int id)
+    {
+        await DialogService.OpenAsync<AddEditClassModal>("Edit class",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
+    private async Task Delete(int classID)
+    {
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await ClassService.DeleteClass(classID);
+        }
+    }
+    private async Task AddClass()
+    {
+        await DialogService.OpenAsync<AddEditClassModal>("Add class",
+            null,
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
 }

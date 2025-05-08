@@ -1,7 +1,92 @@
 ﻿@page "/AdminSubjects"
+@inject ISubjectService SubjectService
+@inject DialogService DialogService
+@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
-<h3>AdminSubjects</h3>
+<RadzenDataGrid @ref="SubjectGrid" TItem="Subject" Data="SubjectService.Subjects" AllowFiltering="true" AllowColumnResize="true"
+                FilterMode="FilterMode.Advanced" PageSize="5" AllowPaging="true" AllowSorting="true" ColumnWidth="100px"
+                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" TItem="Teacher" AllowAlternatingRows="false" ShowPagingSummary="true"
+                LogicalFilterOperator="LogicalFilterOperator.Or" FilterPopupRenderMode="PopupRenderMode.OnDemand" Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
+    <Columns>
+        <RadzenDataGridColumn Title="No." TItem="Subject" Sortable=false Filterable=false>
+            <Template>
+                @{
+                    var pageSize = Math.Min(SubjectGrid.PageSize, SubjectGrid.View.Count());
+                }
+                <RenderOnceComponent CanRender=@(!(index >= pageSize))>
+                    @{
+                        ResetIndex(index >= pageSize);
+                    }
+                    @((SubjectGrid.CurrentPage * pageSize) + index++ + 1)
+                </RenderOnceComponent>
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Title="Name" TItem="Subject" Property="SubjectName" />
+        <RadzenDataGridColumn Title="Teacher" TItem="Subject" Property="Teacher.Name" />
+        <RadzenDataGridColumn Title="Options" TItem="Subject">
+            <Template Context="Subject">
+                <div class="options" style="padding:3px;">
+                    <button type="button" class="icon-button" onclick="@(()=>Edit(Subject.SubjectID))">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="icon-button" onclick="@(()=>Delete(Subject.SubjectID))">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+<div class="center search-margin">
+    <button class="trip-add-button" @onclick="AddSubject">Add subject</button>
+</div>
 
 @code {
+    RadzenDataGrid<Subject> SubjectGrid;
+    int index;
+    void ResetIndex(bool shouldReset)
+    {
+        if (shouldReset)
+        {
+            index = 0;
+        }
+    }
+    //filtercleared
 
+    protected override async Task OnInitializedAsync()
+    {
+        await SubjectService.GetSubjects();
+    }
+    private async Task Edit(int id)
+    {
+        await DialogService.OpenAsync<AddEditSubjectModal>("Edit subject",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
+    private async Task Delete(int subjectID)
+    {
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await SubjectService.DeleteSubject(subjectID);
+        }
+    }
+    private async Task AddSubject()
+    {
+        await DialogService.OpenAsync<AddEditSubjectModal>("Add subject",
+            null,
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
 }

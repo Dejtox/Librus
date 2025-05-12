@@ -52,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkRWRpdENsYXNzTW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pepci/OneDrive/Dokumenty/Projects/LibrusFinal/GradeSystem.v1/Client/Pages/AddEditEnrollmentModal.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkRWRpdEVucm9sbG1lbnRNb2RhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pepci/OneDrive/Dokumenty/Projects/LibrusFinal/GradeSystem.v1/Client/Pages/AddEditGradeNumber.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkRWRpdEdyYWRlTnVtYmVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -198,6 +202,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pepci/OneDrive/Dokumenty/Projects/LibrusFinal/GradeSystem.v1/Client/Pages/EnrollmentAddEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudEFkZEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pepci/OneDrive/Dokumenty/Projects/LibrusFinal/GradeSystem.v1/Client/Pages/Enrollments.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5yb2xsbWVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pepci/OneDrive/Dokumenty/Projects/LibrusFinal/GradeSystem.v1/Client/Pages/Entrollments.razor]

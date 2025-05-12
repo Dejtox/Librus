@@ -2,27 +2,27 @@
 @inject IClassService ClassService
 @attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
-<div class="search-container">
+<div class="search-container-modal">
     <RadzenTemplateForm TItem="Class" Data="classs" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Class Name" Style="font-weight:bold;width:10%;font-size:17px;"/>
-                <RadzenTextBox @bind-Value="classs.ClassName" Style="font-weight:bold;font-size:17px;margin:0;" Name="ClassName"/>
-                <RadzenLengthValidator Component="ClassName" Min="3" Text="Class name should be at least 3 characters" Popup="true" Style="display:block;" />
-                <RadzenLengthValidator Component="ClassName" Max="50" Text="Class name should be at most 50 characters" Popup="true" Style="display:block;" />
+                <RadzenTextBox @bind-Value="classs.ClassName" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="ClassName" />
+                <RadzenLengthValidator Component="ClassName" Min="3" Text="Class name should be at least 3 characters" Popup="false" Style="display:block;" />
+                <RadzenLengthValidator Component="ClassName" Max="50" Text="Class name should be at most 50 characters" Popup="false" Style="display:block;" />
             </RadzenStack>
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Virtual class" Style="font-weight:bold;width:10%;font-size:17px;"/>
-                <RadzenCheckBox @bind-Value="classs.VirtualClass" Style="font-weight:bold;font-size:17px;margin:0;"/>
+                <RadzenCheckBox @bind-Value="classs.VirtualClass" Style="font-weight:bold;font-size:17px;margin:0;" />
             </RadzenStack>
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Teacher" Style="font-weight:bold;width:10%;font-size:17px;"/>
-                <RadzenDropDown @bind-Value=@classs.TeacherID Chips=true Placeholder="Search..." Data=ClassService.Teachers TextProperty="Name" ValueProperty="TeacherID" Style="font-weight:bold;font-size:17px;margin:0;" Name="TeacherDD"/>
-                <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="true" Style="display:block;" />
+                <RadzenDropDown @bind-Value=@classs.TeacherID Chips=true Placeholder="Search..." Data=ClassService.Teachers TextProperty="Name" ValueProperty="TeacherID" Style="font-weight:bold;font-size:17px;margin:0;width:40%;" Name="TeacherDD" />
+                <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="false" Style="display:block;" />
             </RadzenStack>
         </div>
         <div class="button-container search-margin">

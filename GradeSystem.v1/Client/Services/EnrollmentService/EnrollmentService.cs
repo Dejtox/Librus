@@ -14,6 +14,7 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
             _navigationManager = navigationManager;
         }
         public IList<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+        public IList<Enrollment> EnrollmentsWithoutDuplicates { get; set; } = new List<Enrollment>();
         public IList<Subject> Subjects { get; set; } = new List<Subject>();
         public IList<Class> Classes { get; set; } = new List<Class>();
 
@@ -62,7 +63,12 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
             if (result != null)
                 Enrollments = result;
         }
-
+        public async Task GetEnrollmentsWithoutDuplicates()
+        {
+            var result = await _http.GetFromJsonAsync<List<Enrollment>>("api/Enrollments/without_duplicates");
+            if (result != null)
+                EnrollmentsWithoutDuplicates = result;
+        }
         public async Task<Subject> GetSubjectByID(int id)
         {
             var result = await _http.GetFromJsonAsync<Subject>($"api/Subjects/{id}");
@@ -87,6 +93,14 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
         public async Task<List<Enrollment>> GetEnrollmentsByClassID(int classID)
         {
             var result= await _http.GetFromJsonAsync<List<Enrollment>>($"api/Enrollments/get_enrollments_by_classid?classID={classID}");
+            if (result != null)
+                return result;
+            throw new Exception("Enrollment no find");
+        }
+
+        public async Task<List<Enrollment>> GetEnrollmentsWithoutDuplicatesReturn()
+        {
+            var result = await _http.GetFromJsonAsync<List<Enrollment>>("api/Enrollments/without_duplicates");
             if (result != null)
                 return result;
             throw new Exception("Enrollment no find");

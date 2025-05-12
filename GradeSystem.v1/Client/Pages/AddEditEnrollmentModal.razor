@@ -1,0 +1,91 @@
+﻿@inject DialogService DialogService
+@inject IEnrollmentService EnrollmentService
+
+<div class="search-container-modal">
+    <RadzenTemplateForm TItem="Enrollment" Data="enrollment" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Subject" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@enrollment.SubjectID Chips=true Placeholder="Search..." Name="Subject" Data=EnrollmentService.Subjects TextProperty="SubjectName" ValueProperty="SubjectID" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="Subject" Text="Please select subject" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Class" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@enrollment.ClassID Chips=true Placeholder="Search..." Name="Class" Data=EnrollmentService.Classes TextProperty="ClassName" ValueProperty="ClassID" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="Class" Text="Please select class" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Subject Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="enrollment.ClassRoom" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="ClassRoom" />
+                <RadzenLengthValidator Component="ClassRoom" Min="2" Text="Class room should be at least 1 character" Popup="false" Style="" />
+                <RadzenLengthValidator Component="ClassRoom" Max="50" Text="Class room should be at most 50 characters" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Date" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDatePicker TValue="DateTime" Value=@value Change="@(args => value = (DateTime)args)" Name="Date" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="Date" Text="Please select date" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Lesson number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@selectedKey Chips=true Placeholder="Search..." Name="LessonNumber" Data=lessonNumber.Keys Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="LessonNumber" Text="Please select lesson number" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    Enrollment enrollment = new Enrollment();
+    DateTime value = DateTime.Now.Date;
+    DateTime StartDate;
+    Dictionary<int, double> lessonNumber = new Dictionary<int, double>() { {1,480 },{2,525 },{3,570 },{4,615 },{5,660 },{6,705 },{7,750 },{8,795 } };
+    double timeStamp = 45;
+    int selectedKey;
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID != null)
+        {
+            enrollment = await EnrollmentService.GetEnrollmentByID((int)ID);
+        }
+        await EnrollmentService.GetClasses();
+        await EnrollmentService.GetSubjects();
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async Task HandleSubmit()
+    {
+        DateTime date=value.AddMinutes(lessonNumber[selectedKey]);
+        enrollment.Date = date;
+        enrollment.EndDate = enrollment.Date.AddMinutes(timeStamp);
+        if (ID == null)
+        {
+            await EnrollmentService.CreateEnrollment(enrollment);
+        }
+        else
+        {
+            await EnrollmentService.UpdateEnrollment(enrollment);
+        }
+
+
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

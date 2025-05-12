@@ -2,21 +2,21 @@
 @inject ISubjectService SubjectService
 @attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
-<div class="search-container">
+<div class="search-container-modal">
     <RadzenTemplateForm TItem="Subject" Data="subject" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Subject Name" Style="font-weight:bold;width:10%;font-size:17px;" />
-                <RadzenTextBox @bind-Value="subject.SubjectName" Style="font-weight:bold;font-size:17px;margin:0;" Name="SubjectName"/>
-                <RadzenLengthValidator Component="SubjectName" Min="2" Text="Subject name should be at least 2 characters" Popup="true" Style="display:block;" />
-                <RadzenLengthValidator Component="SubjectName" Max="50" Text="Subject name should be at most 50 characters" Popup="true" Style="display:block;" />
+                <RadzenTextBox @bind-Value="subject.SubjectName" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="SubjectName"/>
+                <RadzenLengthValidator Component="SubjectName" Min="2" Text="Subject name should be at least 2 characters" Popup="false" Style="" />
+                <RadzenLengthValidator Component="SubjectName" Max="50" Text="Subject name should be at most 50 characters" Popup="false" Style="" />
             </RadzenStack>
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
-                <RadzenLabel Text="Teacher" Style="font-weight:bold;width:10%;font-size:17px;" />
-                <RadzenDropDown @bind-Value=@subject.TeacherID Chips=true Placeholder="Search..." Name="TeacherDD" Data=SubjectService.Teachers TextProperty="Name" ValueProperty="TeacherID" Style="font-weight:bold;font-size:17px;margin:0;" />
-                <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="true" Style="display:block;" />
+                <RadzenLabel Text="Teacher" Style="font-weight:bold;width:10%;font-size:17px;border-radius:15px;" />
+                <RadzenDropDown @bind-Value=@subject.TeacherID Chips=true Placeholder="Search..." Name="TeacherDD" Data=SubjectService.Teachers TextProperty="Name" ValueProperty="TeacherID" Style="font-weight:bold;font-size:17px;margin:0; width:40%;" />
+                <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="false" Style="" />
             </RadzenStack>
         </div>
         <div class="button-container search-margin">

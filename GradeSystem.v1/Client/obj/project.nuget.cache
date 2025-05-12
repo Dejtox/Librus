@@ -91,12 +91,5 @@
     "C:\\Users\\pepci\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\pepci\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.20\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.20.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Wystąpił problem podczas czytania pliku pamięci podręcznej C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

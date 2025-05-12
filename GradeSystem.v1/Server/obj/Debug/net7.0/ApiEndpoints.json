@@ -680,6 +680,26 @@
     ]
   },
   {
+    "ContainingType": "GradeSystem.v1.Server.Controllers.EnrollmentsController",
+    "Method": "GetEnrollmentWithoutDuplicates",
+    "RelativePath": "api/Enrollments/without_duplicates",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Enrollment, GradeSystem.v1.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "GradeSystem.v1.Server.Controllers.EventsController",
     "Method": "GetEvents",
     "RelativePath": "api/Events",

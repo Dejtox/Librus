@@ -1,0 +1,186 @@
+﻿@page "/enrollments1"
+@inject DialogService DialogService
+@inject IEnrollmentService EnrollmentService
+@* @attribute [Authorize(Roles = "Admin, Teacher, Secretary")] *@
+
+<PageTitle>Enrollements</PageTitle>
+<div class="content-container">
+    <div class="content-header">
+        <p class="page-header">Trips</p>
+    </div>
+    <div class="search-container">
+        <div class="empty-row"></div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin" Style="margin-left:25%;">
+                <RadzenLabel Text="Date from" Component="StartDate" Style="font-weight:bold;font-size:17px;" />
+                <RadzenDatePicker Name="StartDate" @bind-Value="startDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="true" />
+                <RadzenLabel Text="to" Component="EndDate" Style="font-weight:bold;font-size:17px;" />
+                <RadzenDatePicker Name="EndDate" @bind-Value="endDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="true" Change="(()=>SearchByDate(startDate,endDate))" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+                <RadzenLabel Text="Class" Component="TripLeaderValue" Style="font-weight:bold;width:8%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@classID Data=@EnrollmentService.Classes Style="width: 22%; border-radius:15px;" ValueProperty="ClassID" TextProperty="ClassName" Placeholder="Search..." Change="@(()=>SearchByClass(classID))" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+                <RadzenLabel Text="Grade" Component="ClassValue" Style="font-weight:bold;width:8%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@subjectID Data=@EnrollmentService.Subjects Style="width:22%; border-radius:15px;" ValueProperty="SubjectID" TextProperty="SubjectName" Placeholder="Search..." Change="@(()=>SearchBySubject(subjectID))" />
+            </RadzenStack>
+        </div>
+        <div class="center search-margin">
+            <button class="trip-add-button" onclick="@ShowAll">Show all</button>
+        </div>
+    </div>
+    <div class="add-container center">
+        <button class="trip-add-button search-margin" style="padding: 10px 100px 10px 100px;" @onclick="@AddEnrollment">Add trip</button>
+    </div>
+    <div class="table_container">
+        <RadzenDataGrid @ref="enrollmentGrid" AllowColumnResize="true" PageSize="3" AllowPaging="true" Data="filteredEnrollments" TItem="Enrollment" ShowPagingSummary="true" SelectionMode="DataGridSelectionMode.Single"
+        PagerHorizontalAlign="Radzen.HorizontalAlign.Left" AllowAlternatingRows="false"
+        Style="border-radius:15px;" Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
+            <Columns>
+                <RadzenDataGridColumn Title="No." TItem="Enrollment">
+                    <Template>
+                        @{
+                            var pageSize = Math.Min(enrollmentGrid.PageSize, enrollmentGrid.View.Count());
+                        }
+                        <RenderOnceComponent CanRender=@(!(index >= pageSize))>
+                            @{
+                                ResetIndex(index >= pageSize);
+                            }
+                            @((enrollmentGrid.CurrentPage * pageSize) + index++ + 1)
+                        </RenderOnceComponent>
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn Property="Enrollment.Date" Title="Start Date" TItem="Enrollment" />
+                <RadzenDataGridColumn Property="Enrollment.EndDate" Title="End Date" TItem="Enrollment" />
+                <RadzenDataGridColumn Property="Enrollment.ClassRoom" Title="Class Room" TItem="Enrollment" />
+                <RadzenDataGridColumn Property="Enrollment.Class.ClassName" Title="Class" TItem="Enrollment" />
+                <RadzenDataGridColumn Property="Enrollment.Subject.SubjectName" Title="Subject" TItem="Enrollment" />
+                <RadzenDataGridColumn Title="Has Substitution" TItem="Enrollment">
+                    <Template Context="Enrollment">
+                        @if (Enrollment.SubEnrollmentID != null)
+                        {
+                            <p>Yeah</p>
+                        }
+                        else
+                        {
+                            <p>Nah</p>
+                        }
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn Title="Options" TItem="Enrollment">
+                    <Template Context="Enrollment">
+                        <div class="options">
+                            <button type="button" class="icon-button" onclick="@(()=>Edit(Enrollment.EnrollmentID))">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button type="button" class="icon-button" onclick="@(()=>Delete(Enrollment.EnrollmentID))">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</div>
+
+@code {
+    int subjectID;
+    int classID;
+    IList<SchoolTrip> selectedItems; //oszukane
+    private int? enrollmentToDeleteId = null;
+    DateTime startDate;
+    DateTime endDate;
+    public List<Enrollment> enrollments { get; set; } = new List<Enrollment>();
+    public List<Enrollment> filteredEnrollments { get; set; } = new List<Enrollment>();
+    RadzenDataGrid<Enrollment> enrollmentGrid;
+    int index;
+    void ResetIndex(bool shouldReset)
+    {
+        if (shouldReset)
+        {
+            index = 0;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await EnrollmentService.GetClasses();
+        await EnrollmentService.GetSubjects();
+        enrollments = await EnrollmentService.GetEnrollmentsWithoutDuplicatesReturn();
+        filteredEnrollments = enrollments;
+    }
+
+    private async void AddEnrollment()
+    {
+        await DialogService.OpenAsync<AddEditEnrollmentModal>("Add enrollment",
+            null,
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 30%;border-radius: 20px;height: 40%;"
+                });
+    }
+
+    private async void Delete(int id)
+    {
+        enrollmentToDeleteId = id;
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await EnrollmentService.DeleteEnrollment(id);
+        }
+        else
+        {
+            enrollmentToDeleteId = null;
+        }
+    }
+    private async void Edit(int id)
+    {
+        await DialogService.OpenAsync<AddEditEnrollmentModal>("Edit enrollment",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 30%;border-radius: 20px;height: 28%;"
+                });
+    }
+    private void SearchBySubject(int? ID)
+    {
+        if (ID == null)
+        {
+            filteredEnrollments = enrollments;
+        }
+        else
+        {
+            filteredEnrollments = enrollments.Where(st => st.SubjectID == ID).ToList();
+            ResetIndex(true);
+        }
+    }
+    private void SearchByClass(int? ID)
+    {
+        filteredEnrollments = enrollments.Where(st => st.ClassID == ID).ToList();
+        ResetIndex(true);
+    }
+
+    private void ShowAll()
+    {
+        filteredEnrollments = enrollments;
+        ResetIndex(true);
+    }
+
+    private void SearchByDate(DateTime startDate, DateTime endDate)
+    {
+        filteredEnrollments = enrollments.Where(st => st.Date >= startDate && st.EndDate <= endDate).ToList();
+        ResetIndex(true);
+    }
+}

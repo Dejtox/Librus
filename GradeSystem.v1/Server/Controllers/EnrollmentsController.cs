@@ -28,10 +28,14 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollment()
         {
-            Console.WriteLine( "tu");
             return await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).Include(t => t.Subject.Teacher).ToListAsync();
         }
-
+        [HttpGet("without_duplicates")]
+        public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollmentWithoutDuplicates()
+        {
+            var duplicates = await _context.Enrollment.Where(e => e.SubEnrollmentID != null).Select(e => e.SubEnrollmentID).ToListAsync();
+            return await _context.Enrollment.Include(c => c.Class).Include(s => s.Subject).Include(t => t.Subject.Teacher).Include(e => e.SubEnrollment).Where(e => !duplicates.Contains(e.EnrollmentID)).ToListAsync();
+        }
         // GET: api/Enrollments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Enrollment>> GetEnrollment(int id)

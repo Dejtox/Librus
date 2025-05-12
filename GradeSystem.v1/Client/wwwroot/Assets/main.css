@@ -8,7 +8,12 @@
     --studengrafic2: #ebebf0;
     --dateselectyelow: #ffd23f;
 }
-
+.rz-dialog {
+    --rz-dialog-title-padding: 1rem 1rem 1rem 1rem;
+}
+.rz-dropdown {
+    --rz-input-border-radius: 15px;
+}
 html, body {
     padding: 0px;
     overflow: hidden;
@@ -1663,6 +1668,15 @@ a, .btn-link {
     width:96%;
     margin-left:2%;
     margin-right:2%;
+}
+
+.search-container-modal {
+    border: thin solid black;
+    border-color: black;
+    border-radius: 20px;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .add-container {

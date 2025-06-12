@@ -1,0 +1,78 @@
+﻿@inject DialogService DialogService
+@inject IEnrollmentService EnrollmentService
+
+<div class="search-container-modal">
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Teacher" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Subject?.Teacher?.Name" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Date" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Date.ToString("dd.MM.yyyy")" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Grade" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Class?.ClassName" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Lesson number" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@lessonNumber.ToString()" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Subject" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@enrollment.Subject?.SubjectName" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="black-line">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+            <RadzenLabel Text="Lesson topic" Style="font-weight:bold;width:10%;font-size:17px;" />
+            <RadzenText Text="@topic" Style="font-weight:bold;font-size:17px;margin:0;" />
+        </RadzenStack>
+    </div>
+    <div class="button-container search-margin">
+        <button class="rounded-empty-button" type="button" onclick="@AddAttendanceClass">Add attendances</button>
+        <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    Enrollment enrollment = new Enrollment();
+    int lessonNumber = 0;
+    string topic = "topic";
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID!=null)
+        {
+            enrollment = await EnrollmentService.GetEnrollmentByID((int)ID);
+            int minutes = enrollment.Date.Hour * 60 + enrollment.Date.Minute -480;
+            lessonNumber = (minutes / 45) + 1;
+        }
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async Task AddAttendanceClass()
+    {
+        await DialogService.OpenAsync<AddAttendanceClassModal>("Add attendance",
+            new Dictionary<string, object>() { { "ID", enrollment.ClassID },{"EnrollmentID",enrollment.EnrollmentID } },
+            new DialogOptions()
+            {
+                CloseDialogOnOverlayClick = true,
+                Draggable = true,
+                ShowClose = false,
+                Style = "width: 40%;border-radius: 20px;height: 40%;"
+            });
+    }
+}

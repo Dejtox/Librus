@@ -79,6 +79,9 @@
 @code {
     [Parameter]
     public int? ID { get; set; }
+    [Parameter]
+    public int? EnrollmentID { get; set; }
+    bool update = false;
     List<Student> students = new List<Student>();
     List<Attendance> attendances = new List<Attendance>();
     Dictionary<string, bool> states = new Dictionary<string, bool>
@@ -98,7 +101,6 @@
     {
 
         states[desc] = args;
-        //na razie tak bo wg widoku moze ktos miec 2 stany na lekcji wiec idk czy to ma byc po przecinku czy jak(do obgadnia) 
         foreach (var attendance in attendances)
         {
             attendance.Description = args ? desc : ""; 
@@ -107,14 +109,22 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        //enrollment jeszcze wcześniej
-        students = await ClassService.GetClassStudents((int)ID);
-        List<Attendance> attendances2 = new List<Attendance>();
-        foreach(var student in students)
+        var attend = await AttendanceService.GetManyAttendancesByEnrollmentID((int)EnrollmentID);
+        if( attend != null && attend.Count > 0)
         {
-            attendances2.Add(new Attendance() { Student = student, StudentID = student.StudentID, CreatoinDate = DateTime.Now, EnrollmentID = 9 });
+            attendances = attend.ToList();
+            update = true;
         }
-        attendances = attendances2.ToList();
+        else
+        {
+            students = await ClassService.GetClassStudents((int)ID);
+            List<Attendance> attendances2 = new List<Attendance>();
+            foreach (var student in students)
+            {
+                attendances2.Add(new Attendance() { StudentID = student.StudentID, CreatoinDate = DateTime.Now, EnrollmentID = (int)EnrollmentID });
+            }
+            attendances = attendances2.ToList();
+        }
     }
     private void Close()
     {
@@ -122,6 +132,14 @@
     }
     private async Task HandleFakeSubmit()
     {
-        await AttendanceService.CreatManyAttendances(attendances);
+        if (update)
+        {
+            await AttendanceService.UpdateManyAttendances(attendances);
+        }
+        else
+        {
+            await AttendanceService.CreatManyAttendances(attendances);
+        }
+        Close();
     }
 }

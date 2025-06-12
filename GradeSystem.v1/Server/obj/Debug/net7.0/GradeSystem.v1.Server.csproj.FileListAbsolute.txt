@@ -323,12 +323,6 @@ C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets.build.endpoints.json
-C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets\msbuild.GradeSystem.v1.Server.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets\msbuild.GradeSystem.v1.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets\msbuild.build.GradeSystem.v1.Server.props
-C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.GradeSystem.v1.Server.props
-C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.GradeSystem.v1.Server.props
-C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets.pack.json
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSys.255F2581.Up2Date
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.dll
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\refint\GradeSystem.v1.Server.dll
@@ -336,3 +330,4 @@ C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.genruntimeconfig.cache
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\ref\GradeSystem.v1.Server.dll
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets.build.json.cache

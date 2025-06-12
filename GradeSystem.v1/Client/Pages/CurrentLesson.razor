@@ -8,20 +8,20 @@
 @inject IJSRuntime js
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
-
-
+@using System.Timers
+@inject DialogService DialogService
 
 <div class="CLcontainer">
     <div class="CLleftcontainer">
-        <button class="CLstartlesson">Start Lesson</button>
+        <button class="CLstartlesson" onclick="@StartLesson" hidden="@hidden">Start Lesson</button>
         <div class="CLbutcontainer">
             <div class="CLbuttoncontainerrow">
-                <button class="CLbutton" style="background-color: rgb(91,208,145)" @onclick="@(()=>NavigationManager.NavigateTo("/attendances"))">
+                <button class="CLbutton" style="background-color: rgb(91,208,145)" @onclick="@(()=>AddAttendances(10))">
                     <div class="gg-check-r"></div>
                     <div class="CLbuttonname">Attendance</div>
                 </button>
 
-                <button class="CLbutton" style="background-color: rgb(248,148,56)" @onclick="@(()=>NavigationManager.NavigateTo("/tests"))">
+                <button class="CLbutton" style="background-color: rgb(248,148,56)" @onclick="@(()=>AddExam(2,1))">
                     <div class="gg-check-o"></div>
                     <div class="CLbuttonname">Tests</div>
                 </button>
@@ -37,6 +37,12 @@
                     <div class="gg-check-o"></div>
                     <div class="CLbuttonname">Note</div>
                 </button>
+            </div>
+        </div>
+
+        <div style="margin-top:5%;">
+            <div class="CLbutton" style="background-color:rgb(248,148,56)">
+                <div>@FormatTime(TimeLeft)</div>
             </div>
         </div>
     </div>
@@ -114,7 +120,7 @@
     public int? ID { get; set; }
 
     string color = "";
-
+    bool hidden = false;
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
     private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
@@ -122,6 +128,8 @@
     Teacher teacher = new Teacher();
     User user = new User();
 
+    private Timer? timer;
+    private TimeSpan TimeLeft = TimeSpan.FromMinutes(45); 
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
     {
@@ -131,7 +139,7 @@
         await TeacherService.GetTeachers();
         await SubjectService.GetSubjects();
         await GetClaimsGetID();
-        teacher = await TeacherService.GetTeacherByID((int)IDU);
+        //teacher = await TeacherService.GetTeacherByID((int)ID);
     }
 
     protected override async Task OnParametersSetAsync()
@@ -170,5 +178,58 @@
     void CreateGrade()
     {
         NavigationManager.NavigateTo("/grade");
+    }
+    void StartLesson()
+    {
+        if (timer == null)
+        {
+            timer = new Timer(1000); // 1 second interval
+            timer.Elapsed += TimerElapsed;
+            timer.Start();
+            hidden = true;
+        }
+    }
+    private void TimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        if (TimeLeft.TotalSeconds > 0)
+        {
+            TimeLeft = TimeLeft.Subtract(TimeSpan.FromSeconds(1));
+            InvokeAsync(StateHasChanged); // Update UI
+        }
+        else
+        {
+            timer?.Stop();
+            timer?.Dispose();
+            timer = null;
+
+        }
+    }
+    private string FormatTime(TimeSpan time)
+    {
+        return time.ToString(@"mm\:ss");
+    }
+    public async Task AddExam(int SubjectID,int ClassID)
+    {
+        await DialogService.OpenAsync<AddEditExamModal>("Add exam",
+            new Dictionary<string, object>() { { "SubjectID", SubjectID },{"ClassID",ClassID } },
+            new DialogOptions()
+            {
+                CloseDialogOnOverlayClick = true,
+                Draggable = true,
+                ShowClose = false,
+                Style = "width: 40%;border-radius: 20px;height: 40%;"
+            });
+    }
+    public async Task AddAttendances(int id)
+    {
+        await DialogService.OpenAsync<EnrollmentSummaryModal>("Enrollment summary",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+            {
+                CloseDialogOnOverlayClick = true,
+                Draggable = true,
+                ShowClose = false,
+                Style = "width: 40%;border-radius: 20px;height: 40%;"
+            });
     }
 }

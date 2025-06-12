@@ -1,0 +1,92 @@
+﻿@inject DialogService DialogService
+@inject IExamService ExamService
+@inject ISubjectService SubjectService
+@inject IClassService ClassService
+
+<div class="search-container-modal">
+    <RadzenTemplateForm TItem="Exam" Data="exam" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Grade" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenText Text="@exam.Class?.ClassName" Style="font-weight:bold;font-size:17px;margin:0;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Date" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDatePicker TValue="DateTime" Value=@value Change="@(args => value = (DateTime)args)" Name="Date" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="Date" Text="Please select date" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Lesson number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@selectedKey Chips=true Placeholder="Search..." Name="LessonNumber" Data=lessonNumber.Keys Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="LessonNumber" Text="Please select lesson number" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Subject" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenText Text="@exam.Subject?.SubjectName" Style="font-weight:bold;font-size:17px;margin:0;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Description" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="exam.Description" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Description" />
+                <RadzenLengthValidator Component="Description" Min="2" Text="Description should be at least 2 characters" Popup="false" Style="" />
+                <RadzenLengthValidator Component="Description" Max="500" Text="Description should be at most 500 characters" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    [Parameter]
+    public int? SubjectID { get; set; }
+    [Parameter]
+    public int? ClassID { get; set; }
+    public Exam exam { get; set; } = new Exam();
+    Dictionary<int, double> lessonNumber = new Dictionary<int, double>() { { 1, 480 }, { 2, 525 }, { 3, 570 }, { 4, 615 }, { 5, 660 }, { 6, 705 }, { 7, 750 }, { 8, 795 } };
+    int selectedKey;
+    DateTime value = DateTime.Now.Date;
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID != null)
+        {
+            exam = await ExamService.GetExamByID((int)ID);
+        }
+        exam.Subject = await SubjectService.GetSubjectByID((int)SubjectID);
+        exam.Class = await ClassService.GetClassByID((int)ClassID);
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private async Task HandleSubmit()
+    {
+        DateTime date = value.AddMinutes(lessonNumber[selectedKey]);
+        exam.Date = date;
+        if (ID == null)
+        {
+            await ExamService.CreateExam(exam);
+        }
+        else
+        {
+            await ExamService.UpdateExam(exam);
+        }
+
+
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

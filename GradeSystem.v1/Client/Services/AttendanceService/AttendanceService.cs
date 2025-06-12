@@ -127,5 +127,15 @@ namespace GradeSystem.v1.Client.Services.AttendanceService
         {
             await _http.PostAsJsonAsync("api/Attendances/many_attendances", attendances);
         }
+
+        public Task<List<Attendance>> GetManyAttendancesByEnrollmentID(int enrollmentID)
+        {
+            return _http.GetFromJsonAsync<List<Attendance>>($"api/Attendances/many_attendances/{enrollmentID}");
+        }
+
+        public async Task UpdateManyAttendances(List<Attendance> attendances)
+        {
+            await _http.PostAsJsonAsync("api/Attendances/many_attendances_update", attendances);
+        }
     }
 }

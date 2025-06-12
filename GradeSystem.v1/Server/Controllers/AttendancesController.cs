@@ -108,6 +108,26 @@ namespace GradeSystem.v1.Server.Controllers
             //to jak do pobrania bd
             return CreatedAtAction("GetAttendance", new { id = attendances.First().AttendanceID }, attendances.First());
         }
+        [HttpPost("many_attendances_update")]
+        public async Task<IActionResult> PutManyAttendance(List<Attendance> attendances)
+        {
+            foreach (var attendance in attendances)
+            {
+                _context.Entry(attendance).State = EntityState.Modified;
+            }
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+        [HttpGet("many_attendances/{enrollmentId}")]
+        public async Task<ActionResult<List<Attendance>>> GetManyAttendancesByEnrollmentID(int enrollmentId)
+        {
+            var attendances = await _context.Attendance.Where(i => i.EnrollmentID == enrollmentId).ToListAsync();
+            if (attendances == null || !attendances.Any())
+            {
+                return NotFound();
+            }
+            return attendances;
+        }
 
         // DELETE: api/Attendances/5
         [HttpDelete("{id}")]

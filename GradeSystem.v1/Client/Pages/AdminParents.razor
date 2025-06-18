@@ -4,6 +4,8 @@
 @inject IUserService UserService
 @attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
+<div style="background: #5B67D0; width: 100%; height: 3%;"></div>
+
 <RadzenDataGrid @ref="ParentGrid" TItem="Parent" Data="ParentService.Parents" AllowFiltering="true" AllowColumnResize="true"
 FilterMode="FilterMode.Advanced" PageSize="5" AllowPaging="true" AllowSorting="true" ColumnWidth="100px"
 FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" TItem="Teacher" AllowAlternatingRows="false" ShowPagingSummary="true"

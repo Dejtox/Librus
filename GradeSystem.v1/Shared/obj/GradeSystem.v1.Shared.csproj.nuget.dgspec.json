@@ -2,18 +2,23 @@
   "format": 1,
   "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
 =======
 <<<<<<< HEAD
     "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
 >>>>>>> origin/domergepatryk
+=======
+    "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {}
+>>>>>>> origin/FilipFinal
   },
   "projects": {
-    "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+    "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "projectName": "GradeSystem.v1.Shared",
+<<<<<<< HEAD
 <<<<<<< HEAD
         "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
         "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
@@ -36,11 +41,17 @@
         "outputPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\obj\\",
 >>>>>>> origin/DoMergeFilip
 >>>>>>> origin/domergepatryk
+=======
+        "projectPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+>>>>>>> origin/FilipFinal
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
 <<<<<<< HEAD
           "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
 =======
@@ -50,6 +61,9 @@
           "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> origin/DoMergeFilip
 >>>>>>> origin/domergepatryk
+=======
+          "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/FilipFinal
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -76,8 +90,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
+<<<<<<< HEAD
         },
         "SdkAnalysisLevel": "9.0.300"
+=======
+        }
+>>>>>>> origin/FilipFinal
       },
       "frameworks": {
         "net7.0": {
@@ -105,6 +123,7 @@
             }
           },
 <<<<<<< HEAD
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300\\RuntimeIdentifierGraph.json"
 =======
 <<<<<<< HEAD
@@ -113,6 +132,9 @@
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
 >>>>>>> origin/DoMergeFilip
 >>>>>>> origin/domergepatryk
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+>>>>>>> origin/FilipFinal
         }
       }
     }

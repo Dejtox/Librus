@@ -1,14 +1,19 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "ebei0hFV6/w=",
 =======
 <<<<<<< HEAD
   "dgSpecHash": "4OFfLRxRej4=",
 >>>>>>> origin/domergepatryk
+=======
+  "dgSpecHash": "imQnO4tnDqE=",
+>>>>>>> origin/FilipFinal
   "success": true,
-  "projectFilePath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+  "projectFilePath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
   "expectedPackageFiles": [
+<<<<<<< HEAD
 <<<<<<< HEAD
     "C:\\Users\\pepci\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\pepci\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
@@ -530,12 +535,19 @@
   "success": true,
   "projectFilePath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
   "expectedPackageFiles": [
+=======
+>>>>>>> origin/FilipFinal
     "C:\\Users\\fnowa\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\blazored.localstorage\\4.3.0\\blazored.localstorage.4.3.0.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\blazored.sessionstorage\\2.2.0\\blazored.sessionstorage.2.2.0.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\custom.radzen.blazor\\4.3.6\\custom.radzen.blazor.4.3.6.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+<<<<<<< HEAD
+=======
+    "C:\\Users\\fnowa\\.nuget\\packages\\konscious.security.cryptography.argon2\\1.3.1\\konscious.security.cryptography.argon2.1.3.1.nupkg.sha512",
+    "C:\\Users\\fnowa\\.nuget\\packages\\konscious.security.cryptography.blake2\\1.1.1\\konscious.security.cryptography.blake2.1.1.1.nupkg.sha512",
+>>>>>>> origin/FilipFinal
     "C:\\Users\\fnowa\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.9\\microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.9\\microsoft.aspnet.webapi.core.5.2.9.nupkg.sha512",
@@ -786,17 +798,25 @@
     "C:\\Users\\fnowa\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\fnowa\\.nuget\\packages\\tewr.blazor.filereader\\3.3.1.21360\\tewr.blazor.filereader.3.3.1.21360.nupkg.sha512"
+<<<<<<< HEAD
 >>>>>>> origin/DoMergeFilip
 >>>>>>> origin/domergepatryk
+=======
+>>>>>>> origin/FilipFinal
   ],
   "logs": [
     {
       "code": "NU1902",
       "level": "Warning",
+<<<<<<< HEAD
       "message": "Pakiet „System.IdentityModel.Tokens.Jwt” 6.30.1 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
       "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+=======
+      "warningLevel": 1,
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.30.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+>>>>>>> origin/FilipFinal
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         "net7.0"
@@ -805,10 +825,15 @@
     {
       "code": "NU1701",
       "level": "Warning",
+<<<<<<< HEAD
       "message": "Pakiet „Microsoft.AspNet.WebApi.Core 5.2.9” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1” zamiast platformy docelowej projektu „net7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
       "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Server\\GradeSystem.v1.Server.csproj",
+=======
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+>>>>>>> origin/FilipFinal
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
         "net7.0"

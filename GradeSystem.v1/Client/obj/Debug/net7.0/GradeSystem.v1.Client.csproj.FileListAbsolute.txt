@@ -2026,9 +2026,9 @@ C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\Grade
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\refint\GradeSystem.v1.Client.dll
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\GradeSystem.v1.Client.pdb
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\ref\GradeSystem.v1.Client.dll
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\0uoh63o1v1-bdbqjfzetd.gz
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\m53g3suelx-q9tgo4ll79.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\0uoh63o1v1-lg4h9n7ejl.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\m53g3suelx-5j1v7l1eo0.gz
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\jyatd0qr1g-f5slv7cv3f.gz
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\cbep6vg9k6-q382mea2ny.gz
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\hgzxichjiy-u2s50cdp55.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\jyatd0qr1g-539ogl8xw8.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\cbep6vg9k6-sih2r4im9o.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\hgzxichjiy-12yyxhh4nt.gz

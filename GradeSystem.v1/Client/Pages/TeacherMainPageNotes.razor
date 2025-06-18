@@ -1,109 +1,658 @@
 ﻿@page "/teachermainpagenotes"
 @page "/teachermainpagenotes/{id:int}"
 @inject INoteService NoteService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
 
-
-<div class="Nheader">
-    <div class="Ntitle">Notes</div>
-</div>
-
-<div class="NotesMainPage">
-
-    <div class="notetitles"></div>
-
-    <div class="allnotes">
-        
-        @for (int i =1; i<4; i++)
+<div class="notes-container">
+    <div class="notes-header">
+        <div class="notes-title">My Sticky Notes</div>
+        <button class="add-note-btn" @onclick="ShowCreateNoteModal">
+            <span class="add-icon">+</span>
+            Add Note
+        </button>
+    </div>
+    <div class="notes-grid">
+        @if (notes != null && notes.Any())
         {
-            <div class="noterow">
-                <button class="singlenote"></button>
-                <button class="singlenote"></button>
-                <button class="singlenote"></button>
+            @foreach (var note in notes)
+            {
+                <div class="sticky-note @GetNoteColorClass(note.Color)" @onclick="() => EditNote(note)">
+                    <div class="note-header">
+                        <div class="note-title">@note.Title</div>
+                        <button class="delete-btn"
+                                @onclick="(e) => DeleteNoteWithConfirm(e, note)"
+                                @onclick:stopPropagation="true">
+                            ×
+                        </button>
+                    </div>
+                    <div class="note-content">@note.Content</div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="empty-state">
+                <div class="empty-icon">📝</div>
+                <div class="empty-text">No notes yet. Create your first sticky note!</div>
             </div>
         }
-        
-            
     </div>
-
 </div>
 
+@if (showModal)
+{
+    <div class="modal-overlay" @onclick="CloseModal">
+        <div class="modal-content" @onclick:stopPropagation="true">
+            <div class="modal-header">
+                <h3>@(isPreviewing ? "Note Preview" : isEditing ? "Edit Note" : "Create New Note")</h3>
+                <button class="close-btn" @onclick="CloseModal">×</button>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @*
-<EditForm Model="note" OnSubmit="HandleSubmit">
-
-   
-    <div>
-        <label for="notename">Note Name</label>
-        <InputText @bind-Value="note.Title" class="form-control"></InputText>
+            @if (isPreviewing)
+            {
+                <div>
+                    <h4 style="margin-top: 0">@currentNote.Title</h4>
+                    <p>@currentNote.Content</p>
+                    <div class="modal-actions">
+                        <button class="btn btn-secondary" @onclick="CloseModal">Close</button>
+                        <button class="btn btn-primary" @onclick="StartEditing">Edit</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <EditForm Model="currentNote" OnValidSubmit="HandleSubmit">
+                    <DataAnnotationsValidator />
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <InputText @bind-Value="currentNote.Title" class="form-input" />
+                        <ValidationMessage For="@(() => currentNote.Title)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <InputTextArea @bind-Value="currentNote.Content" class="form-textarea" rows="6" />
+                        <ValidationMessage For="@(() => currentNote.Content)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Choose Color</label>
+                        <div class="color-picker">
+                            @foreach (var color in availableColors)
+                            {
+                                <button type="button"
+                                        class="color-option @(currentNote.Color == color.Value ? "selected" : "")"
+                                        style="background-color: @color.Value"
+                                        @onclick="() => SelectColor(color.Value)"
+                                        title="@color.Name">
+                                </button>
+                            }
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            @(isEditing ? "Update Note" : "Create Note")
+                        </button>
+                    </div>
+                </EditForm>
+            }
+        </div>
     </div>
-
-    <div>
-        <label for="notecontent">Note Content</label>
-        <InputText @bind-Value="note.Content" class="form-control"></InputText>
-    </div>
-
-    <br />
-    <button type="submit" class="btn btn-primary">@btnText</button>
-     
-</EditForm>
-    *@
+}
 
 
+<style>
+    .notes-container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        height: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .notes-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #e1e5e9;
+    }
+
+    .notes-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .add-note-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+        .add-note-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+    .add-icon {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .notes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        max-height: 70vh;
+        overflow-y: auto;
+        padding: 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 12px;
+        background: #fafbfc;
+        flex: 1;
+    }
+
+        .notes-grid::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .notes-grid::-webkit-scrollbar-track {
+            background: #f1f3f4;
+            border-radius: 10px;
+        }
+
+        .notes-grid::-webkit-scrollbar-thumb {
+            background: #c1c8cd;
+            border-radius: 10px;
+            border: 2px solid #f1f3f4;
+        }
+
+            .notes-grid::-webkit-scrollbar-thumb:hover {
+                background: #9aa0a6;
+            }
+
+    .sticky-note {
+        background: #ffeaa7;
+        border: none;
+        border-radius: 12px;
+        padding: 15px;
+        height: 120px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transform: rotate(-1deg);
+        overflow: hidden;
+        user-select: none;
+    }
+
+        .sticky-note:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .sticky-note:hover {
+            transform: rotate(0deg) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .sticky-note.yellow {
+            background: #ffeaa7 !important;
+        }
+
+        .sticky-note.pink {
+            background: #fd79a8 !important;
+        }
+
+        .sticky-note.blue {
+            background: #74b9ff !important;
+        }
+
+        .sticky-note.green {
+            background: #00b894 !important;
+        }
+
+        .sticky-note.orange {
+            background: #fdcb6e !important;
+        }
+
+        .sticky-note.purple {
+            background: #a29bfe !important;
+        }
+
+        .sticky-note.red {
+            background: #e17055 !important;
+        }
+
+        .sticky-note.mint {
+            background: #81ecec !important;
+        }
+
+    .note-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        position: relative;
+    }
+
+    .note-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #2d3436;
+        line-height: 1.2;
+        flex: 1;
+        margin-bottom: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .delete-btn {
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        color: #636e72;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.2s ease;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
+
+    .sticky-note:hover .delete-btn {
+        opacity: 1;
+    }
+
+    .delete-btn:hover {
+        background: #e74c3c;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .note-content {
+        flex: 1;
+        color: #2d3436;
+        line-height: 1.3;
+        font-size: 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px 20px;
+        color: #636e72;
+    }
+
+    .empty-icon {
+        font-size: 64px;
+        margin-bottom: 20px;
+    }
+
+    .empty-text {
+        font-size: 18px;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e1e5e9;
+    }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #636e72;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
+
+        .close-btn:hover {
+            background: #f8f9fa;
+            color: #2d3436;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+    .form-input, .form-textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.2s ease;
+        box-sizing: border-box;
+    }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+        font-family: inherit;
+    }
+
+    .color-picker {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .color-option {
+        width: 40px;
+        height: 40px;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: #2d3436;
+            transform: scale(1.1);
+        }
+
+            .color-option.selected::after {
+                content: '✓';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #2d3436;
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+    .modal-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e1e5e9;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .btn-secondary {
+        background: #f8f9fa;
+        color: #636e72;
+    }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+    .validation-message {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+</style>
 
 @code {
-    [Parameter]
-    public int? ID { get; set; }
-
-    Note note = new Note();
-    string btnText = string.Empty;
+    [Parameter] public int? ID { get; set; }
+    private bool isPreviewing = false;
+    private List<Note> notes = new();
+    private Note currentNote = new();
+    private bool showModal = false;
+    private bool isEditing = false;
+    private Random random = new Random();
+    private List<ColorOption> availableColors = new()
+    {
+        new("Yellow", "#ffeaa7"),
+        new("Pink", "#fd79a8"),
+        new("Blue", "#74b9ff"),
+        new("Green", "#00b894"),
+        new("Orange", "#fdcb6e"),
+        new("Purple", "#a29bfe"),
+        new("Red", "#e17055"),
+        new("Mint", "#81ecec")
+    };
+    public class ColorOption
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public ColorOption(string name, string value)
+        {
+            Name = name;
+            Value = value;
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
-        btnText = ID == null ? "Save New Note" : "Update Note";
-        await NoteService.GetTeachers();
+        await LoadNotes();
     }
-
-    protected override async Task OnParametersSetAsync()
+    private async Task LoadNotes()
     {
-        if (ID == null)
+        try
         {
-            await NoteService.GetTeachers();
+            await NoteService.GetNotes();
+            notes = NoteService.Notes?.ToList() ?? new();
         }
-        else
+        catch
         {
-            note = await NoteService.GetNoteByID((int)ID);
+            notes = new();
         }
     }
-    async Task HandleSubmit()
+    private void ShowCreateNoteModal()
     {
-        if (ID == null)
-        {
-            await NoteService.CreateNote(note);
-        }
-        else
-        {
-            await NoteService.UpdateNote(note);
-        }
+        currentNote = new Note { Color = "#ffeaa7" };
+        isEditing = false;
+        showModal = true;
     }
-    async Task DeleteNote()
+    private void EditNote(Note note)
     {
-
-        await NoteService.DeleteNote(note.NoteID);
-
+        currentNote = new Note
+            {
+                NoteID = note.NoteID,
+                Title = note.Title,
+                Content = note.Content,
+                Color = note.Color
+            };
+        isEditing = false;
+        isPreviewing = true;
+        showModal = true;
+    }
+    private void StartEditing()
+    {
+        isPreviewing = false;
+        isEditing = true;
     }
 
+
+    private void CloseModal()
+    {
+        showModal = false;
+        isEditing = false;
+        isPreviewing = false;
+        currentNote = new Note();
+    }
+
+    private void SelectColor(string color)
+    {
+        currentNote.Color = color;
+    }
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(currentNote.Title))
+                currentNote.Title = "Untitled Note";
+            if (isEditing)
+                await NoteService.UpdateNote(currentNote);
+            else
+                await NoteService.CreateNote(currentNote);
+            await LoadNotes();
+            CloseModal();
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving note: {ex.Message}");
+        }
+    }
+    private void HandleDragStart(DragEventArgs e, Note note)
+    {
+        // draggedNote = note;
+        e.DataTransfer.EffectAllowed = "move";
+    }
+    private void HandleDragEnd(DragEventArgs e)
+    {
+        // draggedNote = null;
+    }
+    [JSInvokable]
+    public async Task UpdateNotePosition(int noteId, int x, int y)
+    {
+        var note = notes.FirstOrDefault(n => n.NoteID == noteId);
+        if (note != null)
+        {
+            // if (note.Position == null)
+            //     note.Position = new Position();
+            // note.Position.X = x;
+            // note.Position.Y = y;
+            try
+            {
+                await NoteService.UpdateNote(note);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating note position: {ex.Message}");
+            }
+        }
+    }
+    private async Task DeleteNoteWithConfirm(MouseEventArgs e, Note note)
+    {
+        bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete '{note.Title}'?");
+        if (confirmed)
+        {
+            try
+            {
+                await NoteService.DeleteNote(note.NoteID);
+                await LoadNotes();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting note: {ex.Message}");
+            }
+        }
+    }
+    private string GetNoteColorClass(string color) => color switch
+    {
+        "#ffeaa7" => "yellow",
+        "#fd79a8" => "pink",
+        "#74b9ff" => "blue",
+        "#00b894" => "green",
+        "#fdcb6e" => "orange",
+        "#a29bfe" => "purple",
+        "#e17055" => "red",
+        "#81ecec" => "mint",
+        _ => "yellow"
+    };
+    private int GetRandomX() => random.Next(50, 800);
+    private int GetRandomY() => random.Next(50, 400);
 }

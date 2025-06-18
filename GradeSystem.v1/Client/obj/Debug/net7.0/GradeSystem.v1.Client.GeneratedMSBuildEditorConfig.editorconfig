@@ -92,6 +92,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5QYXJlbnRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Patryk/Desktop/dcd2/Librus/GradeSystem.v1/Client/Pages/AdminStatistics.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5TdGF0aXN0aWNzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Patryk/Desktop/dcd2/Librus/GradeSystem.v1/Client/Pages/AdminStatisticsAttendaces.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5TdGF0aXN0aWNzQXR0ZW5kYWNlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Patryk/Desktop/dcd2/Librus/GradeSystem.v1/Client/Pages/AdminStatisticsAttendancesStudent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5TdGF0aXN0aWNzQXR0ZW5kYW5jZXNTdHVkZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Patryk/Desktop/dcd2/Librus/GradeSystem.v1/Client/Pages/AdminStatisticsEnrollments.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5TdGF0aXN0aWNzRW5yb2xsbWVudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Patryk/Desktop/dcd2/Librus/GradeSystem.v1/Client/Pages/AdminStudents.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5TdHVkZW50cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

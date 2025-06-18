@@ -1,0 +1,308 @@
+﻿@page "/AdminStatistics/Attendances"
+@inject IAttendanceService AttendanceService
+@inject IEnrollmentService EnrollmentService
+@inject ITeacherService TeacherService
+@inject IClassService ClassService
+@inject ISubjectService SubjectService
+@inject IStudentService StudentService
+@inject NavigationManager NavigationManager
+
+<h3>Statystyki</h3>
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Frekwencja Uczniów</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="classSelect" class="form-label">Wybierz Klasę</label>
+                <select id="classSelect" class="form-select" @bind="SelectedClassId" @bind:after="UpdateStats">
+                    <option value="0">--Wybierz klasę--</option>
+                    @foreach (var classObj in ClassService.Classes.OrderBy(c => c.ClassName))
+                    {
+                        <option value="@classObj.ClassID">@classObj.ClassName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="periodSelect" class="form-label">Okres</label>
+                <select id="periodSelect" class="form-select" @bind="SelectedPeriod" @bind:after="UpdateStats">
+                    <option value="all">Cały Rok Szkolny</option>
+                    <option value="semester1">Semestr I</option>
+                    <option value="semester2">Semestr II</option>
+                    <option value="last30">Ostatnie 30 dni</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Ładowanie...</span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Średnia Frekwencja</h5>
+                        <div class="display-4 mt-2 mb-2">@overallAttendancePercentage.ToString("F1")%</div>
+                        <div class="progress mt-2" style="height: 20px;">
+                            <div class="progress-bar @GetProgressBarColor(overallAttendancePercentage)" style="width:@FormatPercentage(overallAttendancePercentage);" role="progressbar" aria-valuenow="@overallAttendancePercentage" aria-valuemin="0" aria-valuemax="100">
+                                @overallAttendancePercentage.ToString("F1")%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Podsumowanie</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <p><strong>Liczba uczniów:</strong> @totalStudents</p>
+                                <p><strong>Liczba zajęć:</strong> @totalLessons</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong>Obecności:</strong> @totalPresences</p>
+                                <p><strong>Nieobecności:</strong> @totalAbsences</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h5>Frekwencja według Klas</h5>
+        <div class="table-responsive mb-4">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Klasa</th>
+                        <th>Liczba Uczniów</th>
+                        <th>Obecności</th>
+                        <th>Nieobecności</th>
+                        <th>Frekwencja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var stat in classAttendanceStats)
+                    {
+                        <tr>
+                            <td>@GetClassName(stat.ClassId)</td>
+                            <td>@stat.StudentCount</td>
+                            <td>@stat.Presences</td>
+                            <td>@stat.Absences</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar @GetProgressBarColor(stat.AttendancePercentage)" role="progressbar" style="width:@FormatPercentage(stat.AttendancePercentage);" aria-valuenow="@stat.AttendancePercentage" aria-valuemin="0" aria-valuemax="100">
+                                        @stat.AttendancePercentage.ToString("F1")%
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (SelectedClassId > 0)
+        {
+            <h5>Frekwencja Uczniów Klasy @GetClassName(SelectedClassId)</h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Uczeń</th>
+                            <th>Obecności</th>
+                            <th>Nieobecności</th>
+                            <th>Frekwencja</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var stat in studentAttendanceStats)
+                        {
+                            <tr>
+                                <td>@GetStudentName(stat.StudentId)</td>
+                                <td>@stat.Presences</td>
+                                <td>@stat.Absences</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar @GetProgressBarColor(stat.AttendancePercentage)" role="progressbar" style="width:@FormatPercentage(stat.AttendancePercentage);" aria-valuenow="@stat.AttendancePercentage" aria-valuemin="0" aria-valuemax="100">
+                                            @stat.AttendancePercentage.ToString("F1")%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" @onclick="() => NavigateToStudentDetails(stat.StudentId)">Szczegóły</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private bool isLoading = true;
+    private int SelectedClassId { get; set; } = 0;
+    private string SelectedPeriod { get; set; } = "all";
+
+    private double overallAttendancePercentage = 0;
+    private int totalStudents = 0;
+    private int totalLessons = 0;
+    private int totalPresences = 0;
+    private int totalAbsences = 0;
+
+    private List<ClassAttendanceStatistic> classAttendanceStats = new();
+    private List<StudentAttendanceStatistic> studentAttendanceStats = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await EnrollmentService.GetEnrollments();
+        await TeacherService.GetTeachers();
+        await SubjectService.GetSubjects();
+        await StudentService.GetStudents();
+        await ClassService.GetClasses();
+        await AttendanceService.GetAttendances();
+
+        CalculateStatistics();
+        isLoading = false;
+    }
+
+    private void UpdateStats() => CalculateStatistics();
+
+    private void CalculateStatistics()
+    {
+        var filteredAttendances = FilterAttendancesByPeriod(AttendanceService.Attendances.ToList());
+        CalculateClassAttendanceStats(filteredAttendances);
+
+        if (SelectedClassId > 0)
+            CalculateStudentAttendanceStats(filteredAttendances);
+        else
+            studentAttendanceStats.Clear();
+
+        totalStudents = studentAttendanceStats.Count > 0
+            ? studentAttendanceStats.Count
+            : StudentService.Students.Where(s => SelectedClassId == 0 || s.ClassID == SelectedClassId).Count();
+
+        totalPresences = classAttendanceStats.Sum(c => c.Presences);
+        totalAbsences = classAttendanceStats.Sum(c => c.Absences);
+        totalLessons = totalPresences + totalAbsences;
+
+        overallAttendancePercentage = totalLessons > 0
+            ? (double)totalPresences / totalLessons * 100
+            : 0;
+    }
+
+    private List<Attendance> FilterAttendancesByPeriod(List<Attendance> attendances) => SelectedPeriod switch
+    {
+        "semester1" => attendances.Where(a => a.CreatoinDate >= new DateTime(2024, 9, 1) && a.CreatoinDate <= new DateTime(2025, 1, 31)).ToList(),
+        "semester2" => attendances.Where(a => a.CreatoinDate >= new DateTime(2025, 2, 1) && a.CreatoinDate <= new DateTime(2025, 6, 30)).ToList(),
+        "last30" => attendances.Where(a => a.CreatoinDate >= DateTime.Now.AddDays(-30)).ToList(),
+        _ => attendances.ToList()
+    };
+
+    private void CalculateClassAttendanceStats(List<Attendance> filteredAttendances)
+    {
+        classAttendanceStats.Clear();
+
+        var classesToProcess = SelectedClassId > 0
+            ? ClassService.Classes.Where(c => c.ClassID == SelectedClassId)
+            : ClassService.Classes;
+
+        foreach (var classObj in classesToProcess)
+        {
+            var studentsInClass = StudentService.Students.Where(s => s.ClassID == classObj.ClassID).ToList();
+            var studentIds = studentsInClass.Select(s => s.StudentID).ToList();
+
+            var classAttendances = filteredAttendances.Where(a => studentIds.Contains(a.StudentID)).ToList();
+            int presences = classAttendances.Count(a => a.Description == "Present");
+            int absences = classAttendances.Count(a => a.Description != "Present");
+
+            double attendancePercentage = (presences + absences) > 0
+                ? (double)presences / (presences + absences) * 100
+                : 0;
+
+            classAttendanceStats.Add(new ClassAttendanceStatistic
+                {
+                    ClassId = classObj.ClassID,
+                    StudentCount = studentsInClass.Count,
+                    Presences = presences,
+                    Absences = absences,
+                    AttendancePercentage = attendancePercentage
+                });
+        }
+
+        classAttendanceStats = classAttendanceStats.OrderByDescending(c => c.AttendancePercentage).ToList();
+    }
+
+    private void CalculateStudentAttendanceStats(List<Attendance> filteredAttendances)
+    {
+        studentAttendanceStats.Clear();
+
+        if (SelectedClassId > 0)
+        {
+            var studentsInClass = StudentService.Students.Where(s => s.ClassID == SelectedClassId).ToList();
+
+            foreach (var student in studentsInClass)
+            {
+                var studentAttendances = filteredAttendances.Where(a => a.StudentID == student.StudentID).ToList();
+                int presences = studentAttendances.Count(a => a.Description == "Present");
+                int absences = studentAttendances.Count(a => a.Description != "Present");
+
+                double attendancePercentage = (presences + absences) > 0
+                    ? (double)presences / (presences + absences) * 100
+                    : 0;
+
+                studentAttendanceStats.Add(new StudentAttendanceStatistic
+                    {
+                        StudentId = student.StudentID,
+                        Presences = presences,
+                        Absences = absences,
+                        AttendancePercentage = attendancePercentage
+                    });
+            }
+
+            studentAttendanceStats = studentAttendanceStats.OrderByDescending(s => s.AttendancePercentage).ToList();
+        }
+    }
+
+    private string FormatPercentage(double percentage)
+    {
+        return percentage.ToString("F1", System.Globalization.CultureInfo.InvariantCulture) + "%";
+    }
+
+    private string GetClassName(int classId) => ClassService.Classes.FirstOrDefault(c => c.ClassID == classId)?.ClassName ?? "";
+    private string GetStudentName(int studentId) => StudentService.Students.FirstOrDefault(s => s.StudentID == studentId) is var student && student != null ? $"{student.FirstName} {student.LastName}" : "";
+    private string GetProgressBarColor(double percentage) => percentage >= 90 ? "bg-success" : percentage >= 75 ? "bg-warning" : "bg-danger";
+    private void NavigateToAdminStatistics() => NavigationManager.NavigateTo("/AdminStatistics");
+    private void NavigateToStudentDetails(int studentId) => NavigationManager.NavigateTo($"/AdminStatistics/Attendances/Student/{studentId}");
+
+    public class ClassAttendanceStatistic
+    {
+        public int ClassId { get; set; }
+        public int StudentCount { get; set; }
+        public int Presences { get; set; }
+        public int Absences { get; set; }
+        public double AttendancePercentage { get; set; }
+    }
+
+    public class StudentAttendanceStatistic
+    {
+        public int StudentId { get; set; }
+        public int Presences { get; set; }
+        public int Absences { get; set; }
+        public double AttendancePercentage { get; set; }
+    }
+}

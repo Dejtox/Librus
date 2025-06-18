@@ -1,0 +1,417 @@
+﻿@page "/AdminStatistics/Attendances/Student/{id:int}"
+@inject ILessonsHoursService LessonsHoursService
+@inject IAttendanceService AttendanceService
+@inject IStudentService StudentService
+@inject IEnrollmentService EnrollmentService
+@inject IParentService ParentService
+@inject ITeacherService TeacherService
+@inject IClassService ClassService
+@inject ISubjectService SubjectService
+@inject NavigationManager NavigationManager
+
+<div class="Atableborder">
+    @if (selectedStudent != null)
+    {
+        <div class="Astudentinfo">
+            <div class="Astudentname">Student (@selectedStudent.FirstName @selectedStudent.LastName)</div>
+            <div class="Astudentname">Grade (@selectedClass?.ClassName)</div>
+        </div>
+
+        <div class="month-navigation">
+            <button class="nav-button" @onclick="PreviousMonth">◀ Previous</button>
+            <h3 class="current-month">@currentDate.ToString("MMMM yyyy")</h3>
+            <button class="nav-button" @onclick="NextMonth">Next ▶</button>
+        </div>
+
+        <div class="statistics-summary">
+            <div class="stat-box"><div class="stat-number">@totalPresent</div><div class="stat-label">Present</div></div>
+            <div class="stat-box"><div class="stat-number">@totalAbsent</div><div class="stat-label">Absent</div></div>
+            <div class="stat-box"><div class="stat-number">@totalLate</div><div class="stat-label">Late</div></div>
+            <div class="stat-box"><div class="stat-number">@totalExcused</div><div class="stat-label">Excused</div></div>
+            <div class="stat-box"><div class="stat-number">@totalLessons</div><div class="stat-label">Total Lessons</div></div>
+            <div class="stat-box attendance-percentage"><div class="stat-number">@attendancePercentage%</div><div class="stat-label">Attendance Rate</div></div>
+        </div>
+
+        <div class="subatbox">
+            <table class="studentattendancetable">
+                <thead class="studentattendanceheader">
+                    <tr>
+                        <th class="sadate">Date</th>
+                        <th class="saattendance">Attendances</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var workDays = GetWorkDaysInMonth();
+                        var currentWeek = -1;
+                    }
+                    @foreach (var workDay in workDays)
+                    {
+                        var weekOfYear = GetWeekOfYear(workDay);
+                        var isNewWeek = weekOfYear != currentWeek;
+                        currentWeek = weekOfYear;
+                        <tr class="satablerow @(isNewWeek ? "week-separator" : "")">
+                            <td class="satabledate">@($"{workDay.Day:D2}.{workDay.Month:D2}.{workDay.Year} ({workDay.ToString("ddd")})")</td>
+                            <td class="satableattendance">
+                                @foreach (var lessonHour in LessonsHoursService.LessonsHours)
+                                {
+                                    var relevantEnrollments = enrollments
+                                    .Where(e => lessonHour.Start >= e.Date &&
+                                    lessonHour.End <= e.EndDate &&
+                                    workDay >= e.Date.Date &&
+                                    workDay <= e.EndDate.Date)
+                                    .ToList();
+
+                                    Attendance attendance = null;
+                                    Subject subject = null;
+
+                                    foreach (var enrollment in relevantEnrollments)
+                                    {
+                                        var att = studentAttendances.FirstOrDefault(a =>
+                                        a.EnrollmentID == enrollment.EnrollmentID &&
+                                        a.StudentID == selectedStudent.StudentID &&
+                                        a.CreatoinDate.Date == workDay.Date);
+
+                                        if (att != null)
+                                        {
+                                            attendance = att;
+                                            subject = subjectDict.ContainsKey(enrollment.SubjectID) ? subjectDict[enrollment.SubjectID] : null;
+                                            break;
+                                        }
+                                    }
+
+                                    if (attendance != null)
+                                    {
+                                        if (attendance.Description == "Excused")
+                                        {
+                                            <div class="bluesquare"><span class="tooltiptextb">@subject?.SubjectName Lesson @lessonHour.LessonNo @attendance.Description</span>E</div>
+                                        }
+                                        else if (attendance.Description == "Present")
+                                        {
+                                            <div class="greensquare"><span class="tooltiptextg">@subject?.SubjectName Lesson @lessonHour.LessonNo @attendance.Description</span>P</div>
+                                        }
+                                        else if (attendance.Description == "Absent")
+                                        {
+                                            <div class="redsquare"><span class="tooltiptextr">@subject?.SubjectName Lesson @lessonHour.LessonNo @attendance.Description</span>A</div>
+                                        }
+                                        else if (attendance.Description == "Late")
+                                        {
+                                            <div class="yellowsquare"><span class="tooltiptexty">@subject?.SubjectName Lesson @lessonHour.LessonNo @attendance.Description</span>L</div>
+                                        }
+                                    }
+                                    else if (relevantEnrollments.Any())
+                                    {
+                                        <div class="empty-lesson"></div>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="buttonatbox">
+                <button class="backbutton" @onclick="GoBack">Back</button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="loading">Loading student data...</div>
+    }
+</div>
+
+<style>
+    /* [styl skrócony – bez zmian w treści] */
+    .month-navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+        gap: 20px;
+    }
+
+    .nav-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+    .current-month {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .statistics-summary {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        gap: 15px;
+    }
+
+    .stat-box {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        min-width: 100px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .stat-number {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        color: #6c757d;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .attendance-percentage .stat-number {
+        color: #28a745;
+    }
+
+    .empty-lesson {
+        width: 30px;
+        height: 30px;
+        border: 1px dashed #ccc;
+        display: inline-block;
+        margin: 2px;
+    }
+
+    .no-lesson {
+        width: 30px;
+        height: 30px;
+        background-color: #f8f9fa;
+        display: inline-block;
+        margin: 2px;
+    }
+
+    .week-separator {
+        border-top: 3px solid #007bff !important;
+    }
+
+        .week-separator:first-child {
+            border-top: none !important;
+        }
+
+    .studentattendancetable {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .studentattendanceheader th {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #dee2e6;
+    }
+
+    .satablerow td {
+        padding: 8px;
+        border: 1px solid #dee2e6;
+        vertical-align: top;
+    }
+
+    .satabledate {
+        font-weight: bold;
+        background-color: #f8f9fa;
+        min-width: 150px;
+        text-align: center;
+    }
+
+    .satableattendance {
+        text-align: left;
+        padding: 5px;
+    }
+
+    .greensquare, .redsquare, .bluesquare, .yellowsquare {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        margin: 2px;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .greensquare {
+        background-color: #28a745;
+    }
+
+    .redsquare {
+        background-color: #dc3545;
+    }
+
+    .bluesquare {
+        background-color: #007bff;
+    }
+
+    .yellowsquare {
+        background-color: #ffc107;
+        color: #212529;
+    }
+
+        .greensquare .tooltiptextg, .redsquare .tooltiptextr, .bluesquare .tooltiptextb, .yellowsquare .tooltiptexty {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 1.2;
+        }
+
+        .greensquare:hover .tooltiptextg, .redsquare:hover .tooltiptextr, .bluesquare:hover .tooltiptextb, .yellowsquare:hover .tooltiptexty {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .greensquare .tooltiptextg::after, .redsquare .tooltiptextr::after, .bluesquare .tooltiptextb::after, .yellowsquare .tooltiptexty::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+</style>
+
+@code {
+    [Parameter] public int id { get; set; }
+    DateTime currentDate = DateTime.Now;
+    Student selectedStudent;
+    Class selectedClass;
+    List<Attendance> studentAttendances = new List<Attendance>();
+    List<Enrollment> enrollments = new List<Enrollment>();
+    Dictionary<int, Subject> subjectDict = new Dictionary<int, Subject>();
+    int totalPresent = 0, totalAbsent = 0, totalLate = 0, totalExcused = 0, totalLessons = 0;
+    double attendancePercentage = 0.0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LessonsHoursService.GetLessonsHours();
+        await AttendanceService.GetAttendances();
+        await EnrollmentService.GetEnrollments();
+        await TeacherService.GetTeachers();
+        await SubjectService.GetSubjects();
+        foreach (var subject in SubjectService.Subjects) subjectDict[subject.SubjectID] = subject;
+        await LoadSelectedStudent();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (id > 0) await LoadSelectedStudent();
+    }
+
+    private async Task LoadSelectedStudent()
+    {
+        if (id > 0)
+        {
+            selectedStudent = await StudentService.GetStudentById(id);
+            if (selectedStudent != null)
+            {
+                selectedClass = await ClassService.GetClassByID(selectedStudent.ClassID);
+                await LoadAttendanceData();
+                CalculateStatistics();
+            }
+        }
+    }
+
+    private async Task LoadAttendanceData()
+    {
+        await AttendanceService.GetAttendances();
+        var startOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
+        var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+        studentAttendances = AttendanceService.Attendances
+            .Where(a => a.StudentID == id && a.CreatoinDate.Date >= startOfMonth.Date && a.CreatoinDate.Date <= endOfMonth.Date).ToList();
+        enrollments = EnrollmentService.Enrollments.Where(e => e.ClassID == selectedStudent.ClassID).ToList();
+    }
+
+    private void CalculateStatistics()
+    {
+        totalPresent = studentAttendances.Count(a => a.Description == "Present");
+        totalAbsent = studentAttendances.Count(a => a.Description == "Absent");
+        totalLate = studentAttendances.Count(a => a.Description == "Late");
+        totalExcused = studentAttendances.Count(a => a.Description == "Excused");
+        totalLessons = studentAttendances.Count;
+        attendancePercentage = totalLessons > 0 ? Math.Round((double)(totalPresent + totalLate) / totalLessons * 100, 1) : 0.0;
+    }
+
+    private List<DateTime> GetWorkDaysInMonth()
+    {
+        var workDays = new List<DateTime>();
+        var daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+        for (int day = 1; day <= daysInMonth; day++)
+        {
+            var date = new DateTime(currentDate.Year, currentDate.Month, day);
+            if ((int)date.DayOfWeek >= 1 && (int)date.DayOfWeek <= 5) workDays.Add(date);
+        }
+        return workDays;
+    }
+
+    private int GetWeekOfYear(DateTime date)
+    {
+        var culture = System.Globalization.CultureInfo.CurrentCulture;
+        var calendar = culture.Calendar;
+        var calendarWeekRule = culture.DateTimeFormat.CalendarWeekRule;
+        var firstDayOfWeek = culture.DateTimeFormat.FirstDayOfWeek;
+        return calendar.GetWeekOfYear(date, calendarWeekRule, firstDayOfWeek);
+    }
+
+    private async Task PreviousMonth()
+    {
+        currentDate = currentDate.AddMonths(-1);
+        await LoadAttendanceData();
+        CalculateStatistics();
+        StateHasChanged();
+    }
+
+    private async Task NextMonth()
+    {
+        currentDate = currentDate.AddMonths(1);
+        await LoadAttendanceData();
+        CalculateStatistics();
+        StateHasChanged();
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/attendanceviewgradelist");
+    }
+}

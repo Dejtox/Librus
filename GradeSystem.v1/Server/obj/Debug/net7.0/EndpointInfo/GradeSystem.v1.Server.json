@@ -4538,6 +4538,10 @@
           },
           "class": {
             "$ref": "#/components/schemas/Class"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

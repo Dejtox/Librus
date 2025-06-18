@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Skg+nDNXycim5yhf76beDlJTK5G23mZYEmgLaumvugY=",
+  "Hash": "XTqThvz11BZFM6OxNOdJocRhpS7wMDK5jRugiWmTnr4=",
   "Source": "GradeSystem.v1.Server",
   "BasePath": "_content/GradeSystem.v1.Server",
   "Mode": "Default",
@@ -24466,8 +24466,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "u2s50cdp55",
-      "Integrity": "Zt200MVNLk1f0/4GgPiZnOgEyjNBU39V7rkwLhCexhM=",
+      "Fingerprint": "12yyxhh4nt",
+      "Integrity": "6ZVvtIXG1+ctNiLtj2Op9jszLzkJ0b9KfdqyumS6MfQ=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.boot.json"
@@ -24634,8 +24634,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "f5slv7cv3f",
-      "Integrity": "w/xh0yGLy6A8yVZ6zJ9WYrtna//aRu/bbOgwEP3PegU=",
+      "Fingerprint": "539ogl8xw8",
+      "Integrity": "AYhJ7xksEGJRBjMVhRgAtt15DLwJTYqGrNEfE56+Wtk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Client.dll"
@@ -24655,8 +24655,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "q382mea2ny",
-      "Integrity": "enzjvMhSXi29fadNOMouZrKBv4/yg0kJJFWxf+Tsx1Q=",
+      "Fingerprint": "sih2r4im9o",
+      "Integrity": "NPAxzO4kvyUZ1bLH9DEv8pid8T4qk1D03Zeo1DDYTlE=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Client.pdb"
@@ -24676,8 +24676,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "bdbqjfzetd",
-      "Integrity": "D/tAaCLJmZ51DSFkeXDvgmQs/dyK8uT0jdxpRr4w7bE=",
+      "Fingerprint": "lg4h9n7ejl",
+      "Integrity": "1YXv9L18cGtVpnw6S5vFMN1tjMHpGsh6DgvzXuJjJbE=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Shared.dll"
@@ -24697,8 +24697,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "q9tgo4ll79",
-      "Integrity": "LjBA+JRr9cJX6Rb+AZsUm+pfRq8UuwAKgJpsv2Kh1NM=",
+      "Fingerprint": "5j1v7l1eo0",
+      "Integrity": "f3v4VHpHp5ru44UMizCShJ5BySZA3L/AP45+nwyIbKs=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Shared.pdb"
@@ -29765,7 +29765,7 @@
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0ra60gl3vf-0gv9yrjrmy.gz"
     },
     {
-      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-bdbqjfzetd.gz",
+      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-lg4h9n7ejl.gz",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\",
@@ -29779,11 +29779,11 @@
       "RelatedAsset": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Shared.dll",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "hv4ccceoeh",
-      "Integrity": "U0AZKC54Xj+y+4L1VhrxtIckqQ1XgKgkRN8Yc5FDVS8=",
+      "Fingerprint": "iwn79kj39q",
+      "Integrity": "wt3qZxQnI88YLBZINAApb1q0e2wqPYkR1j5YtFqZhG8=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-bdbqjfzetd.gz"
+      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-lg4h9n7ejl.gz"
     },
     {
       "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0xe00n2v08-kxj591kajg.gz",
@@ -31403,7 +31403,7 @@
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\c9ecwys1h4-mm1od2xvkp.gz"
     },
     {
-      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-q382mea2ny.gz",
+      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-sih2r4im9o.gz",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\",
@@ -31417,11 +31417,11 @@
       "RelatedAsset": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Client.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "igydbbhpqk",
-      "Integrity": "Tsko+xoAolzwqjgI8wIMH/ejzo12ub715UVcEoW2MGo=",
+      "Fingerprint": "3ut02a15mv",
+      "Integrity": "C5FWbdZjrA1OMfIrOyLoDkegN3lTPkLujz+o4NNArvk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-q382mea2ny.gz"
+      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-sih2r4im9o.gz"
     },
     {
       "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbhqywtx6j-7u4f1vnlb7.gz",
@@ -32306,7 +32306,7 @@
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hcuqkzafut-ofahbp17fk.gz"
     },
     {
-      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-u2s50cdp55.gz",
+      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-12yyxhh4nt.gz",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\",
@@ -32320,11 +32320,11 @@
       "RelatedAsset": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "yr28ocnyc6",
-      "Integrity": "DnjfTXD7dvxbi0ep2arGNDToqQA0DZUB84L00S1EHnc=",
+      "Fingerprint": "7s3elk2d8s",
+      "Integrity": "WZDXBOWW0kPgtUA4ELzSfXyxwyH2EdAO/2zvS5IzrCk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-u2s50cdp55.gz"
+      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-12yyxhh4nt.gz"
     },
     {
       "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hhpywrqw53-kis47j3nts.gz",
@@ -32579,7 +32579,7 @@
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jkadzlbbe2-0youjav31t.gz"
     },
     {
-      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-f5slv7cv3f.gz",
+      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-539ogl8xw8.gz",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\",
@@ -32593,11 +32593,11 @@
       "RelatedAsset": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Client.dll",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "56i7cr9mru",
-      "Integrity": "Q8DT5Cxo3R+SFe2NT/mgO/PKtlD8Ea/7IbZ6y5f0V0Y=",
+      "Fingerprint": "1kpxjjdssj",
+      "Integrity": "XxFMpN1gYYvTaQgpSP29tT9vSaukCFIz445PHXD313g=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-f5slv7cv3f.gz"
+      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-539ogl8xw8.gz"
     },
     {
       "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\k646j2mwj7-pasw3hkp1i.gz",
@@ -32936,7 +32936,7 @@
       "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m04wstwaw4-4575qw5gpx.gz"
     },
     {
-      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-q9tgo4ll79.gz",
+      "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-5j1v7l1eo0.gz",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\",
@@ -32950,11 +32950,11 @@
       "RelatedAsset": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\GradeSystem.v1.Shared.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "g11eltqxwn",
-      "Integrity": "xKUSSTgjnwRjJOiP1Gt3l1nTFy0H8bW5InUvjP77/v8=",
+      "Fingerprint": "rrj6lm5184",
+      "Integrity": "aXmFOTLyUyzVXjUJrR2Zb2Fo/FuGUc4SHo4A/eStKck=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-q9tgo4ll79.gz"
+      "OriginalItemSpec": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-5j1v7l1eo0.gz"
     },
     {
       "Identity": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m6zahl0wxt-ieppv9xdab.gz",
@@ -78301,28 +78301,28 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Zt200MVNLk1f0/4GgPiZnOgEyjNBU39V7rkwLhCexhM=\""
+          "Value": "\"6ZVvtIXG1+ctNiLtj2Op9jszLzkJ0b9KfdqyumS6MfQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 17:08:52 GMT"
+          "Value": "Wed, 18 Jun 2025 13:35:04 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Zt200MVNLk1f0/4GgPiZnOgEyjNBU39V7rkwLhCexhM="
+          "Value": "sha256-6ZVvtIXG1+ctNiLtj2Op9jszLzkJ0b9KfdqyumS6MfQ="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-u2s50cdp55.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-12yyxhh4nt.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000092310533"
+          "Quality": "0.000092327578"
         }
       ],
       "ResponseHeaders": [
@@ -78340,15 +78340,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "10832"
+          "Value": "10830"
         },
         {
           "Name": "ETag",
-          "Value": "\"DnjfTXD7dvxbi0ep2arGNDToqQA0DZUB84L00S1EHnc=\""
+          "Value": "\"WZDXBOWW0kPgtUA4ELzSfXyxwyH2EdAO/2zvS5IzrCk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 08:58:44 GMT"
+          "Value": "Wed, 18 Jun 2025 13:24:22 GMT"
         },
         {
           "Name": "Vary",
@@ -78360,19 +78360,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"Zt200MVNLk1f0/4GgPiZnOgEyjNBU39V7rkwLhCexhM=\""
+          "Value": "W/\"6ZVvtIXG1+ctNiLtj2Op9jszLzkJ0b9KfdqyumS6MfQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Zt200MVNLk1f0/4GgPiZnOgEyjNBU39V7rkwLhCexhM="
+          "Value": "sha256-6ZVvtIXG1+ctNiLtj2Op9jszLzkJ0b9KfdqyumS6MfQ="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-u2s50cdp55.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\hgzxichjiy-12yyxhh4nt.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -78389,7 +78389,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "10832"
+          "Value": "10830"
         },
         {
           "Name": "Content-Type",
@@ -78397,11 +78397,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DnjfTXD7dvxbi0ep2arGNDToqQA0DZUB84L00S1EHnc=\""
+          "Value": "\"WZDXBOWW0kPgtUA4ELzSfXyxwyH2EdAO/2zvS5IzrCk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 08:58:44 GMT"
+          "Value": "Wed, 18 Jun 2025 13:24:22 GMT"
         },
         {
           "Name": "Vary",
@@ -78411,7 +78411,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-DnjfTXD7dvxbi0ep2arGNDToqQA0DZUB84L00S1EHnc="
+          "Value": "sha256-WZDXBOWW0kPgtUA4ELzSfXyxwyH2EdAO/2zvS5IzrCk="
         }
       ]
     },
@@ -79389,7 +79389,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "848896"
+          "Value": "939008"
         },
         {
           "Name": "Content-Type",
@@ -79397,28 +79397,28 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"w/xh0yGLy6A8yVZ6zJ9WYrtna//aRu/bbOgwEP3PegU=\""
+          "Value": "\"AYhJ7xksEGJRBjMVhRgAtt15DLwJTYqGrNEfE56+Wtk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 17:08:51 GMT"
+          "Value": "Wed, 18 Jun 2025 13:35:03 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-w/xh0yGLy6A8yVZ6zJ9WYrtna//aRu/bbOgwEP3PegU="
+          "Value": "sha256-AYhJ7xksEGJRBjMVhRgAtt15DLwJTYqGrNEfE56+Wtk="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Client.dll",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-f5slv7cv3f.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-539ogl8xw8.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000004038120"
+          "Quality": "0.000003713455"
         }
       ],
       "ResponseHeaders": [
@@ -79436,15 +79436,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "247639"
+          "Value": "269290"
         },
         {
           "Name": "ETag",
-          "Value": "\"Q8DT5Cxo3R+SFe2NT/mgO/PKtlD8Ea/7IbZ6y5f0V0Y=\""
+          "Value": "\"XxFMpN1gYYvTaQgpSP29tT9vSaukCFIz445PHXD313g=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 08:58:43 GMT"
+          "Value": "Wed, 18 Jun 2025 13:24:21 GMT"
         },
         {
           "Name": "Vary",
@@ -79456,19 +79456,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"w/xh0yGLy6A8yVZ6zJ9WYrtna//aRu/bbOgwEP3PegU=\""
+          "Value": "W/\"AYhJ7xksEGJRBjMVhRgAtt15DLwJTYqGrNEfE56+Wtk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-w/xh0yGLy6A8yVZ6zJ9WYrtna//aRu/bbOgwEP3PegU="
+          "Value": "sha256-AYhJ7xksEGJRBjMVhRgAtt15DLwJTYqGrNEfE56+Wtk="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Client.dll.gz",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-f5slv7cv3f.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\jyatd0qr1g-539ogl8xw8.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -79485,7 +79485,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "247639"
+          "Value": "269290"
         },
         {
           "Name": "Content-Type",
@@ -79493,11 +79493,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Q8DT5Cxo3R+SFe2NT/mgO/PKtlD8Ea/7IbZ6y5f0V0Y=\""
+          "Value": "\"XxFMpN1gYYvTaQgpSP29tT9vSaukCFIz445PHXD313g=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 08:58:43 GMT"
+          "Value": "Wed, 18 Jun 2025 13:24:21 GMT"
         },
         {
           "Name": "Vary",
@@ -79507,7 +79507,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Q8DT5Cxo3R+SFe2NT/mgO/PKtlD8Ea/7IbZ6y5f0V0Y="
+          "Value": "sha256-XxFMpN1gYYvTaQgpSP29tT9vSaukCFIz445PHXD313g="
         }
       ]
     },
@@ -79526,7 +79526,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "475680"
+          "Value": "511860"
         },
         {
           "Name": "Content-Type",
@@ -79534,28 +79534,28 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"enzjvMhSXi29fadNOMouZrKBv4/yg0kJJFWxf+Tsx1Q=\""
+          "Value": "\"NPAxzO4kvyUZ1bLH9DEv8pid8T4qk1D03Zeo1DDYTlE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 17:08:51 GMT"
+          "Value": "Wed, 18 Jun 2025 13:35:03 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-enzjvMhSXi29fadNOMouZrKBv4/yg0kJJFWxf+Tsx1Q="
+          "Value": "sha256-NPAxzO4kvyUZ1bLH9DEv8pid8T4qk1D03Zeo1DDYTlE="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Client.pdb",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-q382mea2ny.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-sih2r4im9o.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000002905769"
+          "Quality": "0.000002686172"
         }
       ],
       "ResponseHeaders": [
@@ -79573,15 +79573,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "344142"
+          "Value": "372276"
         },
         {
           "Name": "ETag",
-          "Value": "\"Tsko+xoAolzwqjgI8wIMH/ejzo12ub715UVcEoW2MGo=\""
+          "Value": "\"C5FWbdZjrA1OMfIrOyLoDkegN3lTPkLujz+o4NNArvk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 08:58:43 GMT"
+          "Value": "Wed, 18 Jun 2025 13:24:21 GMT"
         },
         {
           "Name": "Vary",
@@ -79593,19 +79593,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"enzjvMhSXi29fadNOMouZrKBv4/yg0kJJFWxf+Tsx1Q=\""
+          "Value": "W/\"NPAxzO4kvyUZ1bLH9DEv8pid8T4qk1D03Zeo1DDYTlE=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-enzjvMhSXi29fadNOMouZrKBv4/yg0kJJFWxf+Tsx1Q="
+          "Value": "sha256-NPAxzO4kvyUZ1bLH9DEv8pid8T4qk1D03Zeo1DDYTlE="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Client.pdb.gz",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-q382mea2ny.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\cbep6vg9k6-sih2r4im9o.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -79622,7 +79622,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "344142"
+          "Value": "372276"
         },
         {
           "Name": "Content-Type",
@@ -79630,11 +79630,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Tsko+xoAolzwqjgI8wIMH/ejzo12ub715UVcEoW2MGo=\""
+          "Value": "\"C5FWbdZjrA1OMfIrOyLoDkegN3lTPkLujz+o4NNArvk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 08:58:43 GMT"
+          "Value": "Wed, 18 Jun 2025 13:24:21 GMT"
         },
         {
           "Name": "Vary",
@@ -79644,7 +79644,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Tsko+xoAolzwqjgI8wIMH/ejzo12ub715UVcEoW2MGo="
+          "Value": "sha256-C5FWbdZjrA1OMfIrOyLoDkegN3lTPkLujz+o4NNArvk="
         }
       ]
     },
@@ -79671,28 +79671,28 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"D/tAaCLJmZ51DSFkeXDvgmQs/dyK8uT0jdxpRr4w7bE=\""
+          "Value": "\"1YXv9L18cGtVpnw6S5vFMN1tjMHpGsh6DgvzXuJjJbE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 16:27:58 GMT"
+          "Value": "Thu, 01 May 2025 09:30:10 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-D/tAaCLJmZ51DSFkeXDvgmQs/dyK8uT0jdxpRr4w7bE="
+          "Value": "sha256-1YXv9L18cGtVpnw6S5vFMN1tjMHpGsh6DgvzXuJjJbE="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Shared.dll",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-bdbqjfzetd.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-lg4h9n7ejl.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000064221951"
+          "Quality": "0.000064016388"
         }
       ],
       "ResponseHeaders": [
@@ -79710,15 +79710,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15570"
+          "Value": "15620"
         },
         {
           "Name": "ETag",
-          "Value": "\"U0AZKC54Xj+y+4L1VhrxtIckqQ1XgKgkRN8Yc5FDVS8=\""
+          "Value": "\"wt3qZxQnI88YLBZINAApb1q0e2wqPYkR1j5YtFqZhG8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 16:27:58 GMT"
+          "Value": "Thu, 01 May 2025 09:30:10 GMT"
         },
         {
           "Name": "Vary",
@@ -79730,19 +79730,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"D/tAaCLJmZ51DSFkeXDvgmQs/dyK8uT0jdxpRr4w7bE=\""
+          "Value": "W/\"1YXv9L18cGtVpnw6S5vFMN1tjMHpGsh6DgvzXuJjJbE=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-D/tAaCLJmZ51DSFkeXDvgmQs/dyK8uT0jdxpRr4w7bE="
+          "Value": "sha256-1YXv9L18cGtVpnw6S5vFMN1tjMHpGsh6DgvzXuJjJbE="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Shared.dll.gz",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-bdbqjfzetd.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\0uoh63o1v1-lg4h9n7ejl.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -79759,7 +79759,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15570"
+          "Value": "15620"
         },
         {
           "Name": "Content-Type",
@@ -79767,11 +79767,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"U0AZKC54Xj+y+4L1VhrxtIckqQ1XgKgkRN8Yc5FDVS8=\""
+          "Value": "\"wt3qZxQnI88YLBZINAApb1q0e2wqPYkR1j5YtFqZhG8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 16:27:58 GMT"
+          "Value": "Thu, 01 May 2025 09:30:10 GMT"
         },
         {
           "Name": "Vary",
@@ -79781,7 +79781,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-U0AZKC54Xj+y+4L1VhrxtIckqQ1XgKgkRN8Yc5FDVS8="
+          "Value": "sha256-wt3qZxQnI88YLBZINAApb1q0e2wqPYkR1j5YtFqZhG8="
         }
       ]
     },
@@ -79800,7 +79800,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "24420"
+          "Value": "24460"
         },
         {
           "Name": "Content-Type",
@@ -79808,28 +79808,28 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LjBA+JRr9cJX6Rb+AZsUm+pfRq8UuwAKgJpsv2Kh1NM=\""
+          "Value": "\"f3v4VHpHp5ru44UMizCShJ5BySZA3L/AP45+nwyIbKs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 16:27:58 GMT"
+          "Value": "Thu, 01 May 2025 09:30:10 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-LjBA+JRr9cJX6Rb+AZsUm+pfRq8UuwAKgJpsv2Kh1NM="
+          "Value": "sha256-f3v4VHpHp5ru44UMizCShJ5BySZA3L/AP45+nwyIbKs="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Shared.pdb",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-q9tgo4ll79.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-5j1v7l1eo0.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000084083074"
+          "Quality": "0.000084026552"
         }
       ],
       "ResponseHeaders": [
@@ -79847,15 +79847,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "11892"
+          "Value": "11900"
         },
         {
           "Name": "ETag",
-          "Value": "\"xKUSSTgjnwRjJOiP1Gt3l1nTFy0H8bW5InUvjP77/v8=\""
+          "Value": "\"aXmFOTLyUyzVXjUJrR2Zb2Fo/FuGUc4SHo4A/eStKck=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 16:27:58 GMT"
+          "Value": "Thu, 01 May 2025 09:30:10 GMT"
         },
         {
           "Name": "Vary",
@@ -79867,19 +79867,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"LjBA+JRr9cJX6Rb+AZsUm+pfRq8UuwAKgJpsv2Kh1NM=\""
+          "Value": "W/\"f3v4VHpHp5ru44UMizCShJ5BySZA3L/AP45+nwyIbKs=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-LjBA+JRr9cJX6Rb+AZsUm+pfRq8UuwAKgJpsv2Kh1NM="
+          "Value": "sha256-f3v4VHpHp5ru44UMizCShJ5BySZA3L/AP45+nwyIbKs="
         }
       ]
     },
     {
       "Route": "_framework/GradeSystem.v1.Shared.pdb.gz",
-      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-q9tgo4ll79.gz",
+      "AssetFile": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\Debug\\net7.0\\compressed\\m53g3suelx-5j1v7l1eo0.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -79896,7 +79896,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "11892"
+          "Value": "11900"
         },
         {
           "Name": "Content-Type",
@@ -79904,11 +79904,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xKUSSTgjnwRjJOiP1Gt3l1nTFy0H8bW5InUvjP77/v8=\""
+          "Value": "\"aXmFOTLyUyzVXjUJrR2Zb2Fo/FuGUc4SHo4A/eStKck=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 16:27:58 GMT"
+          "Value": "Thu, 01 May 2025 09:30:10 GMT"
         },
         {
           "Name": "Vary",
@@ -79918,7 +79918,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-xKUSSTgjnwRjJOiP1Gt3l1nTFy0H8bW5InUvjP77/v8="
+          "Value": "sha256-aXmFOTLyUyzVXjUJrR2Zb2Fo/FuGUc4SHo4A/eStKck="
         }
       ]
     },

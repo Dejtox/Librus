@@ -2,55 +2,159 @@
 @inject ILessonsHoursService LessonsHoursService
 @inject IAttendanceService AttendanceService
 @inject IStudentService StudentService
+@inject IEnrollmentService EnrollmentService
 @inject IParentService ParentService
 @inject ITeacherService TeacherService
 @attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
 
+@inject IClassService ClassService
+@inject ISubjectService SubjectService
+@inject NavigationManager NavigationManager
 <div class="Atableborder">
-    <div class="Astudentinfo">
-        <div class="Astudentname">Student (Regina)</div>
-        <div class="Astudentname">Grade (5)</div>
-    </div>
+    @if (selectedStudent != null)
+    {
+        <div class="Astudentinfo">
+            <div class="Astudentname">Student (@selectedStudent.FirstName @selectedStudent.LastName)</div>
+            <div class="Astudentname">Grade (@selectedClass?.ClassName)</div>
+        </div>
 
-    <div class="subatbox">
-        <div class="studentattendancetable">
-            <div class="studentattendanceheader">
-                <div class="sadate">Date</div>
-                <div class="salessonnumber">Lesson Number</div>
-            </div>
-            <div>
-                @for (int i = 1; i <= daysinmonth; i++)
-                {
-                    <div class="satablerow">
-                        <div class="satabledate">@($"{i:D2}.{Today.Month:D2}.{Today.Year} ({GetDayOfWeek(i)})")</div>
-                        <div class="satableattendance">
-                        @foreach (var lesssonH in LessonsHoursService.LessonsHours)
-                        {
-                            
-                        }
-                        </div>
-                    </div>
-                }
+        <div class="subatbox">
+            <table class="studentattendancetable">
+                <thead class="studentattendanceheader">
+                    <th class="sadate">Date</th>
+                    <th class="salessonnumber">Lesson Number</th>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i <= daysinmonth; i++)
+                    {
+                        var currentDate = new DateTime(Today.Year, Today.Month, i);
+                        <tr class="satablerow">
+                            <td class="satabledate">@($"{i:D2}.{Today.Month:D2}.{Today.Year} ({GetDayOfWeek(i)})")</td>
+                            <div class="satableattendance">
+                                @foreach (var lessonHour in LessonsHoursService.LessonsHours)
+                                {
+                                    var relevantEnrollments = enrollments
+                                    .Where(e => lessonHour.Start >= e.Date &&
+                                    lessonHour.End <= e.EndDate &&
+                                    currentDate == e.Date.Date)
+                                    .ToList();
+                                    Attendance attendance = null;
+                                    Subject subject = null;
+                                    foreach (var enrollment in relevantEnrollments)
+                                    {
+                                        var att = studentAttendances
+                                        .FirstOrDefault(a => a.EnrollmentID == enrollment.EnrollmentID &&
+                                        a.StudentID == selectedStudent.StudentID);
+                                        if (att != null)
+                                        {
+                                            attendance = att;
+                                            subject = subjectDict[enrollment.SubjectID];
+                                            break;
+                                        }
+                                    }
+
+                                    @if (attendance != null)
+                                    {
+                                        @if (attendance.Description == "Excused")
+                                        {
+                                            <td>
+                                                <div class="bluesquare">
+                                                    <span class="tooltiptextb">
+                                                        @subject?.SubjectName
+                                                        Lesson @lessonHour.LessonNo
+                                                        @attendance.Description;
+                                                    </span>
+                                                    E
+                                                </div>
+                                            </td>
+                                        }
+                                        if (attendance.Description == "Present")
+                                        {
+                                            <td>
+                                                <div class="greensquare">
+                                                    <span class="tooltiptextg">
+                                                        @subject?.SubjectName
+                                                        Lesson @lessonHour.LessonNo
+                                                        @attendance.Description;
+                                                    </span>
+                                                    P
+                                                </div>
+                                            </td>
+                                        }
+                                        if (attendance.Description == "Absent")
+                                        {
+                                            <td>
+                                                <div class="redsquare">
+                                                    <span class="tooltiptextr">
+                                                        @subject?.SubjectName
+                                                        Lesson @lessonHour.LessonNo
+                                                        @attendance.Description;
+                                                    </span>
+                                                    A
+                                                </div>
+                                            </td>
+                                        }
+                                        if (attendance.Description == "Late")
+                                        {
+                                            <td>
+                                                <div class="yellowsquare">
+                                                    <span class="tooltiptexty">
+                                                        @subject?.SubjectName
+                                                        @lessonHour.LessonNo
+                                                        @attendance.Description;
+                                                    </span>
+                                                    L
+                                                </div>
+                                            </td>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="buttonatbox">
+                @* <button class="addattendancebutton"> Add Attendance </button> *@
+                <button class="backbutton" @onclick="GoBack"> Back </button>
             </div>
         </div>
-        @*
-        <div class="buttonatbox">
-            <button class="addattendancebutton"> Add Attendance </button>
-            <button class="backbutton"> Back </button>
-        </div>
-        *@
-    </div>
+    }
+    else
+    {
+        <div class="loading">Loading student data...</div>
+    }
 </div>
 
 @code {
+    [Parameter]
+    public int id { get; set; }
+
     DateTime Today;
     int daysinmonth;
+    Student selectedStudent;
+    Class selectedClass;
+    List<Attendance> studentAttendances = new List<Attendance>();
+    List<Enrollment> enrollments = new List<Enrollment>();
+    Dictionary<int, Subject> subjectDict = new Dictionary<int, Subject>();
+
     protected override async Task OnInitializedAsync()
     {
         Today = DateTime.Now;
         daysinmonth = DateTime.DaysInMonth(Today.Year, Today.Month);
         await LessonsHoursService.GetLessonsHours();
         await AttendanceService.GetAttendances();
+        await EnrollmentService.GetEnrollments();
+        await TeacherService.GetTeachers();
+        await SubjectService.GetSubjects();
+        await GetClaimsGetID();
+
+        foreach (var subject in SubjectService.Subjects)
+        {
+            subjectDict[subject.SubjectID] = subject;
+        }
+
+        await LoadSelectedStudent();
     }
 
     [CascadingParameter]
@@ -58,8 +162,32 @@
     int ID;
     int selectedchildID;
     string Roles;
-    Student studentselected;
     Teacher teacher;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (id > 0)
+        {
+            await LoadSelectedStudent();
+        }
+    }
+
+    private async Task LoadSelectedStudent()
+    {
+        if (id > 0)
+        {
+            selectedStudent = await StudentService.GetStudentById(id);
+            if (selectedStudent != null)
+            {
+                selectedClass = await ClassService.GetClassByID(selectedStudent.ClassID);
+
+                await AttendanceService.GetAttendances();
+
+                studentAttendances = AttendanceService.Attendances.Where(a => a.StudentID == id).ToList();
+                enrollments = EnrollmentService.Enrollments.Where(e => e.ClassID == selectedStudent.ClassID).ToList();
+            }
+        }
+    }
 
     string GetDayOfWeek(int i)
     {
@@ -92,5 +220,10 @@
                 }
             }
         }
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/attendanceviewgradelist");
     }
 }

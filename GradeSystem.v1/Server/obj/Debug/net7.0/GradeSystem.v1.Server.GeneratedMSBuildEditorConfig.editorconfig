@@ -11,6 +11,7 @@ build_property.RootNamespace = GradeSystem.v1.Server
 build_property.RootNamespace = GradeSystem.v1.Server
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server\
 =======
 <<<<<<< HEAD
@@ -22,11 +23,15 @@ build_property.ProjectDir = C:\Users\fnowa\Desktop\Librus\Librus\GradeSystem.v1\
 =======
 build_property.ProjectDir = C:\Users\fnowa\Desktop\Dziennik\Librus\GradeSystem.v1\Server\
 >>>>>>> origin/FilipFinal
+=======
+build_property.ProjectDir = C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Server\
+>>>>>>> branchSerman
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\Users\pepci\OneDrive\Dokumenty\Projects\LibrusFinal\GradeSystem.v1\Server
@@ -37,8 +42,14 @@ build_property.MSBuildProjectDirectory = C:\Users\patry\Desktop\ProjekDziennikin
 =======
 build_property.MSBuildProjectDirectory = C:\Users\fnowa\Desktop\Dziennik\Librus\GradeSystem.v1\Server
 >>>>>>> origin/FilipFinal
+=======
+build_property.MSBuildProjectDirectory = C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Server
+>>>>>>> branchSerman
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 7.0
+build_property.EnableCodeStyleSeverity = 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 [C:/Users/pepci/OneDrive/Dokumenty/Projects/LibrusFinal/GradeSystem.v1/Server/Pages/Error.cshtml]
@@ -54,5 +65,8 @@ build_property._RazorSourceGeneratorDebug =
 =======
 [C:/Users/fnowa/Desktop/Dziennik/Librus/GradeSystem.v1/Server/Pages/Error.cshtml]
 >>>>>>> origin/FilipFinal
+=======
+[C:/Users/Patryk/Desktop/dcd2/Librus/GradeSystem.v1/Server/Pages/Error.cshtml]
+>>>>>>> branchSerman
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

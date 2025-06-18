@@ -162,6 +162,7 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.AttendancesController",
+<<<<<<< HEAD
     "Method": "PutManyAttendance",
     "RelativePath": "api/Attendances/many_attendances_update",
     "HttpMethod": "POST",
@@ -204,6 +205,8 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.AttendancesController",
+=======
+>>>>>>> branchSerman
     "Method": "GetAttendanceByStudentIt",
     "RelativePath": "api/Attendances/student/{studentId}",
     "HttpMethod": "GET",
@@ -722,6 +725,7 @@
     ]
   },
   {
+<<<<<<< HEAD
     "ContainingType": "GradeSystem.v1.Server.Controllers.EnrollmentsController",
     "Method": "GetEnrollmentWithoutDuplicates",
     "RelativePath": "api/Enrollments/without_duplicates",
@@ -742,6 +746,8 @@
     ]
   },
   {
+=======
+>>>>>>> branchSerman
     "ContainingType": "GradeSystem.v1.Server.Controllers.EventsController",
     "Method": "GetEvents",
     "RelativePath": "api/Events",
@@ -851,6 +857,7 @@
     "ReturnTypes": []
   },
   {
+<<<<<<< HEAD
     "ContainingType": "GradeSystem.v1.Server.Controllers.ExamController",
     "Method": "GetExams",
     "RelativePath": "api/Exam",
@@ -960,6 +967,8 @@
     "ReturnTypes": []
   },
   {
+=======
+>>>>>>> branchSerman
     "ContainingType": "GradeSystem.v1.Server.Controllers.ExtraClassesController",
     "Method": "GetExtraClasses",
     "RelativePath": "api/ExtraClasses",
@@ -1848,6 +1857,7 @@
     "ReturnTypes": []
   },
   {
+<<<<<<< HEAD
     "ContainingType": "GradeSystem.v1.Server.Controllers.ParentsController",
     "Method": "PostParentUser",
     "RelativePath": "api/Parents/parent_user",
@@ -1874,6 +1884,8 @@
     ]
   },
   {
+=======
+>>>>>>> branchSerman
     "ContainingType": "GradeSystem.v1.Server.Controllers.SchoolTripController",
     "Method": "GetSchoolTrip",
     "RelativePath": "api/SchoolTrip",
@@ -2093,6 +2105,7 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.StudentsController",
+<<<<<<< HEAD
     "Method": "PostStudentUser",
     "RelativePath": "api/Students/student_user",
     "HttpMethod": "POST",
@@ -2119,6 +2132,8 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.StudentsController",
+=======
+>>>>>>> branchSerman
     "Method": "GetTripStudents",
     "RelativePath": "api/Students/trip_students",
     "HttpMethod": "GET",
@@ -2523,6 +2538,7 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.TeachersController",
+<<<<<<< HEAD
     "Method": "PostTeacherUser",
     "RelativePath": "api/Teachers/teacher_user",
     "HttpMethod": "POST",
@@ -2549,6 +2565,8 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.TeachersController",
+=======
+>>>>>>> branchSerman
     "Method": "GetUnavailableTeachers",
     "RelativePath": "api/Teachers/unavailable_teachers",
     "HttpMethod": "GET",

@@ -6,6 +6,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.analyzers\7.0.5\buildTransitive\netstandard2.0\Microsoft.AspNetCore.Components.Analyzers.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.analyzers\7.0.5\buildTransitive\netstandard2.0\Microsoft.AspNetCore.Components.Analyzers.targets')" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Import Project="$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\9.0.5\build\Microsoft.NET.Sdk.WebAssembly.Pack.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\9.0.5\build\Microsoft.NET.Sdk.WebAssembly.Pack.targets')" />
 =======
 <<<<<<< HEAD
@@ -17,6 +18,9 @@
 =======
     <Import Project="$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\8.0.7\build\Microsoft.NET.Sdk.WebAssembly.Pack.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\8.0.7\build\Microsoft.NET.Sdk.WebAssembly.Pack.targets')" />
 >>>>>>> origin/FilipFinal
+=======
+    <Import Project="$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\9.0.2\build\Microsoft.NET.Sdk.WebAssembly.Pack.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\9.0.2\build\Microsoft.NET.Sdk.WebAssembly.Pack.targets')" />
+>>>>>>> branchSerman
     <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly.devserver\7.0.5\build\Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly.devserver\7.0.5\build\Microsoft.AspNetCore.Components.WebAssembly.DevServer.targets')" />
   </ImportGroup>
 </Project>

@@ -1,0 +1,58 @@
+﻿@page "/AdminStatistics"
+@inject NavigationManager NavigationManager
+
+<div class="container-fluid mt-4">
+    <h2>Panel Statystyk Administracyjnych</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="mb-0">Wybierz Rodzaj Statystyk</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-book" style="font-size: 3rem; color: #0d6efd;"></i>
+                                    <h5 class="card-title mt-3">Statystyki Lekcji</h5>
+                                    <p class="card-text">Dane dotyczące postępu w nauczaniu, stopnia realizacji programu w klasach i przedmiotach.</p>
+                                    <button class="btn btn-primary mt-3" @onclick="NavigateToEnrollmentsStats">
+                                        Przejdź do Statystyk Lekcji
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-person-check" style="font-size: 3rem; color: #0d6efd;"></i>
+                                    <h5 class="card-title mt-3">Statystyki Obecności</h5>
+                                    <p class="card-text">Dane dotyczące frekwencji uczniów na zajęciach z podziałem na klasy i przedmioty.</p>
+                                    <button class="btn btn-primary mt-3" @onclick="NavigateToAttendanceStats">
+                                        Przejdź do Statystyk Obecności
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private void NavigateToEnrollmentsStats()
+    {
+        NavigationManager.NavigateTo("/AdminStatistics/Enrollments");
+    }
+
+    private void NavigateToAttendanceStats()
+    {
+        NavigationManager.NavigateTo("/AdminStatistics/Attendances");
+    }
+
+
+}

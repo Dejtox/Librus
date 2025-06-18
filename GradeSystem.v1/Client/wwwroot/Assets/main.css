@@ -744,6 +744,50 @@ a, .btn-link {
     justify-content: center;
     align-items: center;
 }
+.bluesquare {
+    height: 20px;
+    width: 20px;
+    background-color: #2688eb;
+    border-radius: 2px;
+    border: 1px solid black;
+    position: relative;
+    display: inline-block;
+    opacity: 0.7;
+}
+
+    .bluesquare .tooltiptextb {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+        .bluesquare .tooltiptextb::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+    .bluesquare:hover .tooltiptextb {
+        visibility: visible;
+        opacity: 1;
+    }
+
 .orangesquare {
     height: 20px;
     width: 20px;
@@ -3142,7 +3186,7 @@ a, .btn-link {
 
 /*
     GradesS
-*/
+*/gradesubject
 .tableborder {
     display: flex;
     width: 95%;
@@ -3168,7 +3212,7 @@ a, .btn-link {
 
 .gradesubject {
     height: 100%;
-    width: 27%;
+    width: 20%;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -3177,7 +3221,7 @@ a, .btn-link {
 
 .term {
     height: 100%;
-    width: 35.5%;
+    width: 35%;
     border-left: solid 1px;
     border-right: solid 1px;
     align-items: center;
@@ -3273,7 +3317,14 @@ a, .btn-link {
 
 
 .grade {
-    width: 35.5%;
+    width: 24.5%;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-color: #DBDBDB;
+}
+
+.gradeAverage {
+    width: 10.5%;
     border-left: solid 1px;
     border-right: solid 1px;
     border-color: #DBDBDB;
@@ -3287,7 +3338,7 @@ a, .btn-link {
 }
 
 .subjectgrade {
-    width: 27%;
+    width: 20%;
     align-content: center;
     display: flex;
     justify-content: center;

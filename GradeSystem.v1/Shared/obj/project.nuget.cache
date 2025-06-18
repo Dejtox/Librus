@@ -2,6 +2,7 @@
   "version": 2,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "vWZR3AaR9Fo=",
 =======
   "dgSpecHash": "pTRAQJobz08=",
@@ -24,6 +25,11 @@
   "success": true,
   "projectFilePath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
 >>>>>>> origin/DoMergeFilip
+=======
+  "dgSpecHash": "GHrdxlTsaFc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+>>>>>>> branchSerman
   "expectedPackageFiles": [],
 >>>>>>> origin/domergepatryk
 =======

@@ -353,6 +353,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Attendances/many_attendances_update": {
       "post": {
         "tags": [
@@ -442,6 +443,8 @@
         }
       }
     },
+=======
+>>>>>>> branchSerman
     "/api/Book": {
       "get": {
         "tags": [
@@ -1137,6 +1140,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Enrollments/without_duplicates": {
       "get": {
         "tags": [
@@ -1175,6 +1179,8 @@
         }
       }
     },
+=======
+>>>>>>> branchSerman
     "/api/Enrollments/{id}": {
       "get": {
         "tags": [
@@ -1509,6 +1515,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Exam": {
       "get": {
         "tags": [
@@ -1694,6 +1701,8 @@
         }
       }
     },
+=======
+>>>>>>> branchSerman
     "/api/ExtraClasses": {
       "get": {
         "tags": [
@@ -3205,6 +3214,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Parents/parent_user": {
       "post": {
         "tags": [
@@ -3253,6 +3263,8 @@
         }
       }
     },
+=======
+>>>>>>> branchSerman
     "/api/SchoolTrip": {
       "get": {
         "tags": [
@@ -3674,6 +3686,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Students/student_user": {
       "post": {
         "tags": [
@@ -3722,6 +3735,8 @@
         }
       }
     },
+=======
+>>>>>>> branchSerman
     "/api/Subjects": {
       "get": {
         "tags": [
@@ -4349,6 +4364,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Teachers/teacher_user": {
       "post": {
         "tags": [
@@ -4397,6 +4413,8 @@
         }
       }
     },
+=======
+>>>>>>> branchSerman
     "/api/Teachers/available_teachers": {
       "get": {
         "tags": [
@@ -4760,6 +4778,7 @@
   "components": {
     "schemas": {
       "Attendance": {
+<<<<<<< HEAD
         "required": [
           "attendanceID",
           "creatoinDate",
@@ -4767,6 +4786,8 @@
           "enrollmentID",
           "studentID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "attendanceID": {
@@ -4782,9 +4803,14 @@
             "format": "int32"
           },
           "description": {
+<<<<<<< HEAD
             "maxLength": 1000,
             "minLength": 1,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "student": {
             "$ref": "#/components/schemas/Student"
@@ -4800,12 +4826,15 @@
         "additionalProperties": false
       },
       "Book": {
+<<<<<<< HEAD
         "required": [
           "bookID",
           "isBoocked",
           "isBorowed",
           "qrCode"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "bookID": {
@@ -4854,6 +4883,7 @@
         "additionalProperties": false
       },
       "BookType": {
+<<<<<<< HEAD
         "required": [
           "amountOfBooks",
           "author",
@@ -4862,6 +4892,8 @@
           "edition",
           "title"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "bookTypeID": {
@@ -4869,6 +4901,7 @@
             "format": "int32"
           },
           "title": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -4886,12 +4919,31 @@
           "description": {
             "maxLength": 1000,
             "minLength": 0,
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "edition": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+>>>>>>> branchSerman
             "type": "string",
             "nullable": true
           },
           "cover": {
+<<<<<<< HEAD
             "minLength": 1,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "amountOfBooks": {
             "type": "integer",
@@ -4916,6 +4968,7 @@
         "additionalProperties": false
       },
       "CalendarEvent": {
+<<<<<<< HEAD
         "required": [
           "calendarEventID",
           "classID",
@@ -4926,6 +4979,8 @@
           "subjectID",
           "title"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "calendarEventID": {
@@ -4938,12 +4993,21 @@
           },
           "subjectID": {
             "type": "integer",
+<<<<<<< HEAD
             "format": "int32"
           },
           "title": {
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
+=======
+            "format": "int32",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "startDate": {
             "type": "string",
@@ -4954,6 +5018,7 @@
             "format": "date-time"
           },
           "color": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -4962,6 +5027,14 @@
             "maxLength": 1000,
             "minLength": 3,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "class": {
             "$ref": "#/components/schemas/Class"
@@ -4970,12 +5043,15 @@
         "additionalProperties": false
       },
       "Class": {
+<<<<<<< HEAD
         "required": [
           "classID",
           "className",
           "teacherID",
           "virtualClass"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "classID": {
@@ -4987,9 +5063,14 @@
             "format": "int32"
           },
           "className": {
+<<<<<<< HEAD
             "maxLength": 50,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "teacher": {
             "$ref": "#/components/schemas/Teacher"
@@ -5001,6 +5082,7 @@
         "additionalProperties": false
       },
       "Enrollment": {
+<<<<<<< HEAD
         "required": [
           "classID",
           "classRoom",
@@ -5009,6 +5091,8 @@
           "enrollmentID",
           "subjectID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "enrollmentID": {
@@ -5040,6 +5124,7 @@
             "format": "date-time"
           },
           "classRoom": {
+<<<<<<< HEAD
             "maxLength": 50,
             "minLength": 1,
             "type": "string"
@@ -5072,6 +5157,10 @@
           "classID": {
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "subject": {
             "$ref": "#/components/schemas/Subject"
@@ -5082,15 +5171,19 @@
           "description": {
             "type": "string",
             "nullable": true
+<<<<<<< HEAD
           },
           "date": {
             "type": "string",
             "format": "date-time"
+=======
+>>>>>>> branchSerman
           }
         },
         "additionalProperties": false
       },
       "ExtraClasses": {
+<<<<<<< HEAD
         "required": [
           "classRoom",
           "currentCapasity",
@@ -5101,6 +5194,8 @@
           "maxCapasity",
           "teacherID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "extraClassesID": {
@@ -5120,6 +5215,7 @@
             "format": "int32"
           },
           "extraClassesName": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -5128,15 +5224,28 @@
             "maxLength": 1000,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "extraClassesDescription": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "extraClassesDate": {
             "type": "string",
             "format": "date-time"
           },
           "classRoom": {
+<<<<<<< HEAD
             "maxLength": 50,
             "minLength": 1,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "teacher": {
             "$ref": "#/components/schemas/Teacher"
@@ -5145,12 +5254,15 @@
         "additionalProperties": false
       },
       "ExtraClassesList": {
+<<<<<<< HEAD
         "required": [
           "dateTime",
           "extraClassesID",
           "extraClassesListID",
           "studentID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "extraClassesListID": {
@@ -5179,6 +5291,7 @@
         "additionalProperties": false
       },
       "Grade": {
+<<<<<<< HEAD
         "required": [
           "dateOfGrading",
           "description",
@@ -5189,6 +5302,8 @@
           "studentID",
           "subjectID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "gradeID": {
@@ -5203,6 +5318,13 @@
             "type": "integer",
             "format": "int32"
           },
+<<<<<<< HEAD
+=======
+          "semester": {
+            "type": "integer",
+            "format": "int32"
+          },
+>>>>>>> branchSerman
           "gradenumber": {
             "$ref": "#/components/schemas/GradeNumber"
           },
@@ -5218,9 +5340,14 @@
             "format": "int32"
           },
           "description": {
+<<<<<<< HEAD
             "maxLength": 1000,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "gradeWeight": {
             "type": "integer",
@@ -5240,11 +5367,14 @@
         "additionalProperties": false
       },
       "GradeNumber": {
+<<<<<<< HEAD
         "required": [
           "gradeName",
           "gradenumber",
           "gradeNumberID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "gradeNumberID": {
@@ -5256,20 +5386,28 @@
             "format": "float"
           },
           "gradeName": {
+<<<<<<< HEAD
             "maxLength": 50,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           }
         },
         "additionalProperties": false
       },
       "GradeType": {
+<<<<<<< HEAD
         "required": [
           "color",
           "gradeTypeId",
           "gradeTypeName",
           "gradeWeight"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "gradeTypeId": {
@@ -5281,6 +5419,7 @@
             "format": "float"
           },
           "gradeTypeName": {
+<<<<<<< HEAD
             "maxLength": 50,
             "minLength": 2,
             "type": "string"
@@ -5288,16 +5427,27 @@
           "color": {
             "minLength": 1,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           }
         },
         "additionalProperties": false
       },
       "Guardians": {
+<<<<<<< HEAD
         "required": [
           "guardiansID",
           "schoolTripID",
           "teacherID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "guardiansID": {
@@ -5319,12 +5469,15 @@
         "additionalProperties": false
       },
       "LessonsHours": {
+<<<<<<< HEAD
         "required": [
           "end",
           "id",
           "lessonNo",
           "start"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "id": {
@@ -5394,6 +5547,7 @@
         "additionalProperties": false
       },
       "Note": {
+<<<<<<< HEAD
         "required": [
           "category",
           "color",
@@ -5402,6 +5556,8 @@
           "teacherID",
           "title"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "noteID": {
@@ -5418,6 +5574,7 @@
             "nullable": true
           },
           "title": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -5435,11 +5592,28 @@
           "color": {
             "minLength": 1,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           }
         },
         "additionalProperties": false
       },
       "Parent": {
+<<<<<<< HEAD
         "required": [
           "email",
           "firstName",
@@ -5448,6 +5622,8 @@
           "phoneNumber",
           "userID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "parentID": {
@@ -5460,6 +5636,7 @@
             "nullable": true
           },
           "lastName": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -5478,6 +5655,22 @@
             "minLength": 1,
             "type": "string",
             "format": "tel"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "userID": {
             "type": "integer",
@@ -5485,21 +5678,27 @@
           },
           "user": {
             "$ref": "#/components/schemas/User"
+<<<<<<< HEAD
           },
           "fullName": {
             "type": "string",
             "nullable": true,
             "readOnly": true
+=======
+>>>>>>> branchSerman
           }
         },
         "additionalProperties": false
       },
       "Roles": {
+<<<<<<< HEAD
         "required": [
           "role",
           "rolesID",
           "userID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "rolesID": {
@@ -5507,8 +5706,13 @@
             "format": "int32"
           },
           "role": {
+<<<<<<< HEAD
             "minLength": 1,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "userID": {
             "type": "integer",
@@ -5518,6 +5722,7 @@
         "additionalProperties": false
       },
       "SchoolTrip": {
+<<<<<<< HEAD
         "required": [
           "addedBy",
           "additionalInfo",
@@ -5531,6 +5736,8 @@
           "transportation",
           "tripLeaderID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "schoolTripID": {
@@ -5538,6 +5745,7 @@
             "format": "int32"
           },
           "name": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -5561,6 +5769,26 @@
             "maxLength": 500,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "purpose": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalInfo": {
+            "type": "string",
+            "nullable": true
+          },
+          "transportation": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "tripLeaderID": {
             "type": "integer",
@@ -5570,9 +5798,14 @@
             "$ref": "#/components/schemas/Teacher"
           },
           "addedBy": {
+<<<<<<< HEAD
             "maxLength": 200,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "startDate": {
             "type": "string",
@@ -5590,9 +5823,14 @@
             "nullable": true
           },
           "nonSchoolGuardians": {
+<<<<<<< HEAD
             "maxLength": 3000,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "classes": {
             "type": "array",
@@ -5628,11 +5866,14 @@
         "additionalProperties": false
       },
       "SchoolTripClasses": {
+<<<<<<< HEAD
         "required": [
           "classID",
           "schoolTripClassesID",
           "schoolTripID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "schoolTripClassesID": {
@@ -5654,11 +5895,14 @@
         "additionalProperties": false
       },
       "SchoolTripStudents": {
+<<<<<<< HEAD
         "required": [
           "schoolTripID",
           "schoolTripStudentsID",
           "studentID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "schoolTripStudentsID": {
@@ -5680,6 +5924,7 @@
         "additionalProperties": false
       },
       "Student": {
+<<<<<<< HEAD
         "required": [
           "additional_Language",
           "address",
@@ -5692,6 +5937,8 @@
           "studentID",
           "userID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "studentID": {
@@ -5707,6 +5954,7 @@
             "format": "int32"
           },
           "lastName": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -5725,6 +5973,22 @@
             "minLength": 1,
             "type": "string",
             "format": "email"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "pesel": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "userID": {
             "type": "integer",
@@ -5735,9 +5999,14 @@
             "format": "int32"
           },
           "additional_Language": {
+<<<<<<< HEAD
             "maxLength": 50,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "parent": {
             "$ref": "#/components/schemas/Parent"
@@ -5752,21 +6021,27 @@
             "type": "string",
             "nullable": true,
             "readOnly": true
+<<<<<<< HEAD
           },
           "fullName": {
             "type": "string",
             "nullable": true,
             "readOnly": true
+=======
+>>>>>>> branchSerman
           }
         },
         "additionalProperties": false
       },
       "Subject": {
+<<<<<<< HEAD
         "required": [
           "subjectID",
           "subjectName",
           "teacherID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "subjectID": {
@@ -5778,9 +6053,14 @@
             "format": "int32"
           },
           "subjectName": {
+<<<<<<< HEAD
             "maxLength": 50,
             "minLength": 2,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "teacher": {
             "$ref": "#/components/schemas/Teacher"
@@ -5789,6 +6069,7 @@
         "additionalProperties": false
       },
       "Teacher": {
+<<<<<<< HEAD
         "required": [
           "email",
           "firstName",
@@ -5797,6 +6078,8 @@
           "teacherID",
           "userID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "teacherID": {
@@ -5804,6 +6087,7 @@
             "format": "int32"
           },
           "lastName": {
+<<<<<<< HEAD
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
@@ -5822,6 +6106,22 @@
             "minLength": 1,
             "type": "string",
             "format": "email"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "userID": {
             "type": "integer",
@@ -5889,12 +6189,15 @@
         "additionalProperties": false
       },
       "User": {
+<<<<<<< HEAD
         "required": [
           "login",
           "passwordHash",
           "passwordSalt",
           "userID"
         ],
+=======
+>>>>>>> branchSerman
         "type": "object",
         "properties": {
           "userID": {
@@ -5902,6 +6205,7 @@
             "format": "int32"
           },
           "login": {
+<<<<<<< HEAD
             "maxLength": 25,
             "minLength": 4,
             "type": "string"
@@ -5913,6 +6217,14 @@
           "passwordSalt": {
             "minLength": 1,
             "type": "string"
+=======
+            "type": "string",
+            "nullable": true
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+>>>>>>> branchSerman
           },
           "roles": {
             "type": "array",
@@ -5920,11 +6232,14 @@
               "$ref": "#/components/schemas/Roles"
             },
             "nullable": true
+<<<<<<< HEAD
           },
           "roless": {
             "type": "string",
             "nullable": true,
             "readOnly": true
+=======
+>>>>>>> branchSerman
           }
         },
         "additionalProperties": false

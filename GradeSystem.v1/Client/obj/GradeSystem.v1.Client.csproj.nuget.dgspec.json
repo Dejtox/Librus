@@ -3,6 +3,7 @@
   "restore": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {}
 =======
 <<<<<<< HEAD
@@ -46,11 +47,25 @@
         "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Client\\obj\\",
 >>>>>>> origin/FilipFinal
+=======
+    "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "projectName": "GradeSystem.v1.Client",
+        "projectPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
+        "packagesPath": "C:\\Users\\Patryk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\",
+>>>>>>> branchSerman
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -64,6 +79,9 @@
 =======
           "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> origin/FilipFinal
+=======
+          "C:\\Users\\Patryk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> branchSerman
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -81,6 +99,7 @@
             "projectReferences": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
                 "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
 =======
@@ -96,6 +115,10 @@
               "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
                 "projectPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
 >>>>>>> origin/FilipFinal
+=======
+              "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+                "projectPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
+>>>>>>> branchSerman
               }
             }
           }
@@ -110,11 +133,16 @@
           "auditLevel": "low",
           "auditMode": "direct"
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
         "SdkAnalysisLevel": "9.0.300"
 =======
         }
 >>>>>>> origin/FilipFinal
+=======
+        },
+        "SdkAnalysisLevel": "9.0.200"
+>>>>>>> branchSerman
       },
       "frameworks": {
         "net7.0": {
@@ -164,18 +192,19 @@
             "Microsoft.NET.ILLink.Analyzers": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23401.1, )",
+              "version": "[7.0.100-1.23211.1, )",
               "autoReferenced": true
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.100-1.23401.1, )",
+              "version": "[7.0.100-1.23211.1, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               "version": "[9.0.5, )",
@@ -189,6 +218,9 @@
 =======
               "version": "[8.0.7, )",
 >>>>>>> origin/FilipFinal
+=======
+              "version": "[9.0.2, )",
+>>>>>>> branchSerman
               "autoReferenced": true
             },
             "Radzen.Blazor": {
@@ -235,6 +267,7 @@
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
 <<<<<<< HEAD
+<<<<<<< HEAD
               "version": "[7.0.20, 7.0.20]"
 =======
 <<<<<<< HEAD
@@ -243,6 +276,9 @@
               "version": "[7.0.20, 7.0.20]"
 >>>>>>> origin/DoMergeFilip
 >>>>>>> origin/domergepatryk
+=======
+              "version": "[7.0.20, 7.0.20]"
+>>>>>>> branchSerman
             }
           ],
           "frameworkReferences": {
@@ -250,6 +286,7 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300\\RuntimeIdentifierGraph.json"
@@ -263,6 +300,9 @@
 =======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
 >>>>>>> origin/FilipFinal
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+>>>>>>> branchSerman
         }
       },
       "runtimes": {
@@ -271,6 +311,7 @@
         }
       }
     },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
@@ -310,11 +351,22 @@
         "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\obj\\",
 >>>>>>> origin/FilipFinal
+=======
+    "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "projectName": "GradeSystem.v1.Shared",
+        "projectPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+        "packagesPath": "C:\\Users\\Patryk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+>>>>>>> branchSerman
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -328,6 +380,9 @@
 =======
           "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> origin/FilipFinal
+=======
+          "C:\\Users\\Patryk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> branchSerman
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -355,11 +410,16 @@
           "auditLevel": "low",
           "auditMode": "direct"
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
         "SdkAnalysisLevel": "9.0.300"
 =======
         }
 >>>>>>> origin/FilipFinal
+=======
+        },
+        "SdkAnalysisLevel": "9.0.200"
+>>>>>>> branchSerman
       },
       "frameworks": {
         "net7.0": {
@@ -388,6 +448,7 @@
           },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300\\RuntimeIdentifierGraph.json"
 =======
 <<<<<<< HEAD
@@ -399,6 +460,9 @@
 =======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
 >>>>>>> origin/FilipFinal
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+>>>>>>> branchSerman
         }
       }
     }

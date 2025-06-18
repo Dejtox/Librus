@@ -1,4 +1,5 @@
-﻿@page "/gradesviewstudent"
+@page "/gradesviewstudent"
+@page "/gradesviewstudent/{id:int}"
 @using System.Security.Claims
 @inject IStudentService StudentService
 @inject IParentService ParentService
@@ -6,6 +7,8 @@
 @inject ISubjectService SubjectService
 @inject IUserService UserService
 @inject ITeacherService TeacherService
+@inject IGradeNumberService GradeNumberService
+@inject IEnrollmentService EnrollmentService
 @inject IJSRuntime js
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationMenager
@@ -14,12 +17,11 @@
 <div class="tableborder">
     <div class="studentinfo">
 
-       <div class="studentname">Student (@student.FirstName @student.LastName)</div>
-       @if(student.Class != null)
+        <div class="studentname">Student (@student.FirstName @student.LastName)</div>
+        @if(student.Class != null)
         {
             <div class="studentclass">Grade (@student.Class.ClassName)</div>
         }
-        
 
     </div>
     <div class="gradestable">
@@ -51,84 +53,81 @@
 
         </div>
         <div class="gradesdisplay">
-           @foreach (var subject in SubjectService.Subjects)
-           {
+            @foreach (var subject in studentSubjects)
+            {
                 <div class="graderow">
                     <div class="subjectgrade">@subject.SubjectName</div>
                     <div class="grade">
-                        @foreach (var grade in GradeService.Grades)
+                        @foreach (var grade in GradeService.Grades.Where(g => g.Semester == 1 && g.StudentID == student.StudentID))
                         {
                             if(subject.SubjectID == grade.SubjectID)
                             {
                                 if(IDU == grade.StudentID)
                                 {
-                                    if (grade.GradeWeight == 1)
-                                    {
-                                        color = "blue";
-                                    }
-                                    else if (grade.GradeWeight == 2)
-                                    {
-                                        color = "green";
-                                    }
-                                    else if (grade.GradeWeight >= 3)
-                                    {
-                                        color = "yellow";
-                                    }
-                                    <p style="background-color:@color;" class="d-inline-flex m-1 p-1">@grade.Gradenumber.GradeName</p>
+                                    var gradeType = GradeNumberService.GradeTypes.FirstOrDefault(gt => gt.GradeTypeId == grade.GradeTypeId);
+                                    color = gradeType?.color ?? "grey";
+                                    <p @onclick="() => ShowGrade(grade.GradeID)" style="background-color:@color; cursor: pointer;" class="d-inline-flex m-1 p-1">@grade.Gradenumber.GradeName</p>
                                 }
                             }
                         }
-                    </div
+                    </div>
+
+                    <div class="gradeAverage">
+                        @{
+                            var term1Grades = GradeService.Grades.Where(g => g.SubjectID == subject.SubjectID && g.StudentID == student.StudentID && g.Semester == 1).ToList();
+                            var term1Average = WeightAverageCalc(term1Grades);
+
+                            <p style="background-color:lightgrey;" class="d-inline-flex m-1 p-1">@(term1Average > 0 ? term1Average.ToString() : "-")</p>
+                        }
+                    </div>
+
                     <div class="grade">
-                        @foreach (var grade in GradeService.Grades)
+                        @foreach (var grade in GradeService.Grades.Where(g => g.Semester == 2 && g.StudentID == student.StudentID))
                         {
                             if (subject.SubjectID == grade.SubjectID)
                             {
                                 if (IDU == grade.StudentID)
                                 {
-                                    if (grade.GradeWeight == 1)
-                                    {
-                                        color = "blue";
-                                    }
-                                    else if (grade.GradeWeight == 2)
-                                    {
-                                        color = "green";
-                                    }
-                                    else if (grade.GradeWeight >= 3)
-                                    {
-                                        color = "yellow";
-                                    }
-                                    <p style="background-color:@color;" class="d-inline-flex m-1 p-1">@grade.Gradenumber.GradeName</p>
+                                    var gradeType = GradeNumberService.GradeTypes.FirstOrDefault(gt => gt.GradeTypeId == grade.GradeTypeId);
+                                    color = gradeType?.color ?? "grey";
+                                    <p @onclick="() => ShowGrade(grade.GradeID)" style="background-color:@color; cursor: pointer;" class="d-inline-flex m-1 p-1">@grade.Gradenumber.GradeName</p>
                                 }
                             }
                         }
                     </div>
+
+                    <div class="gradeAverage">
+                        @{
+                            var term2Grades = GradeService.Grades.Where(g => g.SubjectID == subject.SubjectID && g.StudentID == student.StudentID && g.Semester == 2).ToList();
+                            var term2Average = WeightAverageCalc(term2Grades);
+
+                            <p style="background-color:lightgrey;" class="d-inline-flex m-1 p-1">@(term2Average > 0 ? term2Average.ToString() : "-")</p>
+                        }
+                    </div>
+
                     <div class="finalgrade">
-                        @foreach (var grade in GradeService.Grades)
-                        {
-                            if (subject.SubjectID == grade.SubjectID)
-                            {
-                                if (IDU == grade.StudentID)
-                                {
-                                    if (grade.GradeWeight == 1)
-                                    {
-                                        color = "blue";
-                                    }
-                                    else if (grade.GradeWeight == 2)
-                                    {
-                                        color = "green";
-                                    }
-                                    else if (grade.GradeWeight >= 3)
-                                    {
-                                        color = "yellow";
-                                    }
-                                    <p style="background-color:@color;" class="d-inline-flex m-1 p-1">@grade.Gradenumber.GradeName</p>
-                                }
-                            }
+                        @{
+                            var studentSubjectGrades = GradeService.Grades.Where(g => g.SubjectID == subject.SubjectID && g.StudentID == student.StudentID).ToList();
+                            var totalAverage = WeightAverageCalc(studentSubjectGrades);
+
+                            <p style="background-color:lightgrey;" class="d-inline-flex m-1 p-1">@(totalAverage > 0 ? totalAverage.ToString() : "-")</p>
                         }
                     </div>
+                    @* <div> *@
+                    @*     @{ *@
+                    @*         if (totalAverage > 0) *@
+                    @*         { *@
+                    @*             var proposedGrade = ProposedGradeCalc(totalAverage); *@
+                    @*             <p style="background-color:lightgrey;" class="d-inline-flex m-1 p-1">(@proposedGrade)</p> *@
+                    @*         } *@
+                    @*         else *@
+                    @*         { *@
+                    @*             <p style="background-color:lightgrey;" class="d-inline-flex m-1 p-1">(-)</p> *@
+                    @*         } *@
+                    @*     } *@
+                    @* </div> *@
                 </div>
-           }
+            }
         </div>
     </div>
 </div>
@@ -144,6 +143,8 @@
 
     Student student = new Student();
     User user = new User();
+    List<Subject> studentSubjects = new List<Subject>();
+    List<Enrollment> studentEnrollments = new List<Enrollment>();
 
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
@@ -152,10 +153,35 @@
         await StudentService.GetStudents();
         await ParentService.GetParents();
         await GradeService.GetGrades();
+        await GradeNumberService.GetGradeTypes();
+        await GradeNumberService.GetGradeNumbers();
         await TeacherService.GetTeachers();
         await SubjectService.GetSubjects();
         await GetClaimsGetID();
         student = await StudentService.GetStudentById((int)IDU);
+        studentEnrollments = await EnrollmentService.GetEnrollmentsByClassID(student.ClassID);
+        // await EnrollmentService.GetEnrollments();
+        LoadStudentSubjects();
+    }
+
+    private void LoadStudentSubjects()
+    {
+        if (student != null && student.ClassID > 0)
+        {
+            var subjectIds = studentEnrollments
+                .Where(e => e.ClassID == student.ClassID)
+                .Select(e => e.SubjectID)
+                .Distinct()
+                .ToList();
+
+            studentSubjects = SubjectService.Subjects
+                .Where(s => subjectIds.Contains(s.SubjectID))
+                .ToList();
+        }
+        else
+        {
+            studentSubjects = new List<Subject>();
+        }
     }
 
     protected override async Task OnParametersSetAsync()
@@ -169,6 +195,13 @@
         {
             student = await StudentService.GetStudentById((int)ID);
             user = await UserService.GetUserByID(student.UserID);
+
+            if (student != null && student.ClassID > 0)
+            {
+                studentEnrollments = await EnrollmentService.GetEnrollmentsByClassID(student.ClassID);
+                // await EnrollmentService.GetEnrollments();
+                LoadStudentSubjects();
+            }
         }
 
         await GetClaimsGetID();
@@ -196,4 +229,46 @@
     {
         NavigationMenager.NavigateTo("/grade");
     }
+
+    private double WeightAverageCalc(List<Grade> grades)
+    {
+        if (!grades.Any())
+        {
+            return 0;
+        }
+
+        double weightedSum = 0;
+        double totalWeight = 0;
+
+        foreach (var grade in grades)
+        {
+            var gradeNumber = GradeNumberService.GradeNumbers.FirstOrDefault(gn => gn.GradeNumberID == grade.GradeNumberID);
+
+            if (gradeNumber != null)
+            {
+                double gradeValue = gradeNumber.gradenumber;
+                double weight = grade.GradeWeight;
+
+                weightedSum += gradeValue * weight;
+                totalWeight += weight;
+            }
+        }
+
+        return totalWeight > 0 ? Math.Round(weightedSum / totalWeight, 2) : 0;
+    }
+
+    // private int ProposedGradeCalc(double average)
+    // {
+    //     int proposedGrade;
+    //     if (average % 1 < 0.6)
+    //     {
+    //         proposedGrade = (int)Math.Floor(average);
+    //     }
+    //     else
+    //     {
+    //         proposedGrade = (int)Math.Ceiling(average);
+    //     }
+
+    //     return proposedGrade;
+    // }
 }

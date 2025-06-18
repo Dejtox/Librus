@@ -11,6 +11,7 @@ public class Grade
     public int StudentID { get; set; }
     [Required]
     public int SubjectID { get; set; }
+    public int Semester { get; set; }
 
     public GradeNumber? Gradenumber { get; set; }
     

@@ -114,6 +114,7 @@
   "packageFolders": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "C:\\Users\\pepci\\.nuget\\packages\\": {},
 =======
 <<<<<<< HEAD
@@ -125,11 +126,15 @@
 =======
     "C:\\Users\\fnowa\\.nuget\\packages\\": {},
 >>>>>>> origin/FilipFinal
+=======
+    "C:\\Users\\Patryk\\.nuget\\packages\\": {},
+>>>>>>> branchSerman
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
@@ -159,11 +164,19 @@
       "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\obj\\",
 >>>>>>> origin/FilipFinal
+=======
+      "projectUniqueName": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "projectName": "GradeSystem.v1.Shared",
+      "projectPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+      "packagesPath": "C:\\Users\\Patryk\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\obj\\",
+>>>>>>> branchSerman
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -177,6 +190,9 @@
 =======
         "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> origin/FilipFinal
+=======
+        "C:\\Users\\Patryk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> branchSerman
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -204,11 +220,16 @@
         "auditLevel": "low",
         "auditMode": "direct"
 <<<<<<< HEAD
+<<<<<<< HEAD
       },
       "SdkAnalysisLevel": "9.0.300"
 =======
       }
 >>>>>>> origin/FilipFinal
+=======
+      },
+      "SdkAnalysisLevel": "9.0.200"
+>>>>>>> branchSerman
     },
     "frameworks": {
       "net7.0": {
@@ -237,6 +258,7 @@
         },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300\\RuntimeIdentifierGraph.json"
 =======
 <<<<<<< HEAD
@@ -248,6 +270,9 @@
 =======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
 >>>>>>> origin/FilipFinal
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+>>>>>>> branchSerman
       }
     }
   }

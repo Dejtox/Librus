@@ -1,76 +1,146 @@
-﻿@page "/attendanceviewgradelist"
+@page "/attendanceviewgradelist"
+@using System.Security.Claims
+@inject IClassService ClassService
 @inject ITeacherService TeacherService
+@inject IStudentService StudentService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
 
 <div class="Atableborder">
     <div class="Astudentinfo">
-        <div class="Astudentname">Grade (5)</div>
-    </div>
-    <div class="studentlisttable">
-        <div class="studentlisttableheader">
-            <div class="studentatnumberhead">No.</div>
-            <div class="studentatnamehead">Name</div>
-            <div></div>
-        </div>
-        <div class="studentlisttablelist">
-            @for(int i=1; i<20; i++)
-            {
-                <div class="studentatrow">
-                    <div class="studentatnumber">1</div>
-                    <div class="studentatname">John</div>
-                    <div class="showattendance">
-                        <button class="showattendancebutton">Show Attendance</button>
-                    </div>
-                </div>
-            }
+        <div class="Astudentname">
+            <select value="@selectedClassId" @onchange="HandleClassChange" class="grade-select">
+                <option value="0">Select Grade</option>
+                @if (teacherClasses != null)
+                {
+                    @foreach (var classItem in teacherClasses)
+                    {
+                        <option value="@classItem.ClassID">@classItem.ClassName</option>
+                    }
+                }
+            </select>
         </div>
     </div>
+
+    @if (selectedClassId > 0 && classStudents != null)
+    {
+        <div class="studentlisttable">
+            <div class="studentlisttableheader">
+                <div class="studentatnumberhead">No.</div>
+                <div class="studentatnamehead">Name</div>
+                <div></div>
+            </div>
+            <div class="studentlisttablelist">
+                @if (classStudents.Any())
+                {
+                    @for (int i = 0; i < classStudents.Count; i++)
+                    {
+                        var student = classStudents[i];
+                        var index = i+1;
+
+                        <div class="studentatrow">
+                            <div class="studentatnumber">@index</div>
+                            <div class="studentatname">@student.FirstName @student.LastName</div>
+                            <div class="showattendance">
+                                <button @onclick="() => ShowAttendance(student.StudentID)" class="showattendancebutton">Show Attendance</button>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="nostudents">No students found in this grade.</div>
+                }
+            </div>
+        </div>
+    }
 </div>
 
 
 
 
 @code {
-
-    int ID;
-    int selectedchildID;
-    string Roles;
-    Student studentselected;
-    Teacher teacher;
+    private List<Student> classStudents = new List<Student>();
+    private List<Class> teacherClasses = new List<Class>();
+    private int currentTeacherId;
+    private int selectedClassId = 0;
+    private int userIDFromEmail = 0;
+    Teacher teacher = new Teacher();
 
     protected override async Task OnInitializedAsync()
     {
+        await ClassService.GetClasses();
         await TeacherService.GetTeachers();
-    }
 
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
 
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationState { get; set; }
-
-    private async Task GetClaimsGetID()
-    {
-        var user = (await authenticationState).User;
-        foreach (var claim in user.Claims)
+        if (user.Identity != null && user.Identity.IsAuthenticated)
         {
-            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
-            {
-                ID = Int32.Parse(claim.Value);
-            }
-            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
-            {
-                Roles = claim.Value;
-            }
-        };
+            var emailClaim = user.FindFirst(ClaimTypes.Email) ??
+                            user.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
 
-        if (Roles == "Teacher")
-        {
-            foreach (var teacherpom in TeacherService.Teachers)
+            if (emailClaim != null && int.TryParse(emailClaim.Value, out int userId))
             {
-                if (teacherpom.TeacherID == ID)
+                userIDFromEmail = userId;
+
+                teacher = await TeacherService.GetTeacherByID(userIDFromEmail);
+
+                if (teacher != null)
                 {
-                    teacher = teacherpom;
+                    teacherClasses = ClassService.Classes
+                        .Where(c => c.TeacherID == teacher.TeacherID)
+                        .ToList();
                 }
             }
+        }
+    }
 
+    private async Task HandleClassChange(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out int classId))
+        {
+            selectedClassId = classId;
+            await LoadStudents();
+        }
+    }
+
+    private async Task LoadStudents()
+    {
+        if (selectedClassId > 0)
+        {
+            if (StudentService.Students == null || !StudentService.Students.Any())
+            {
+                await StudentService.GetStudents();
+            }
+
+            classStudents = StudentService.Students
+                .Where(s => s.ClassID == selectedClassId)
+                .ToList();
+        }
+        else
+        {
+            classStudents.Clear();
+        }
+        StateHasChanged();
+    }
+
+    void ShowAttendance(int StudentID)
+    {
+        // NavigationManager.NavigateTo($"/AttendanceViewSingleStudent/{StudentID}");
+        NavigationManager.NavigateTo($"/AttendanceViewSingleStudent/{StudentID}");
+    }
+
+    protected async Task OnSelectedClassChanged()
+    {
+        await LoadStudents();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (selectedClassId > 0)
+        {
+            await LoadStudents();
         }
     }
 }

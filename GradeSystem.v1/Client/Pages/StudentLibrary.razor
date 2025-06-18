@@ -1,28 +1,81 @@
 ﻿@page "/studentlibrary"
-
+@inject IBookService BookService
+@inject IStudentService StudentService
+@inject IBookServiceSupport BookServiceSupport
+@inject NavigationManager NavigationManager
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Text;
+@using System.Text.RegularExpressions;
 
 <div class="mainlibraryview">
     <div class="booksdisplay">
-        @for(int i =1; i<3; i++)
+        @foreach (var booktype in BookServiceSupport.BookList)
         {
-            <div class="bookrow">
+            @for (int j = 0; j < 4; j=j)
+            {
+            string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg";
+                <div class="bookrow">
 
-                @for (int j = 1; j < 5; j++)
+                        <div class="singlebook">
+                            <div class="bookcover">
+                                <img src=@imgurl class="bookimg">
+                            </div>
+                            <div class="bookbuttons">
+                                <button class="bookreserve">Reserve</button>
+
+                            @if (booktype.AmountOfBooks > 0)
+                            {
+                                bool pom = false;
+                                foreach (var book in booktype.Books)
+                                {
+
+
+                                    if (book.StudentId == ID)
+                                    {
+                                        pom = true;
+                                        break;
+                                    }
+
+                                }
+                                <h3>
+                                    @if (!pom)
+                                    {
+                                        <button class="bookreserve" @onclick="(()=>Reserve(booktype.Books[0]))">Reserve</button>
+                                    }
+                                    else
+                                    {
+                                        <button disabled class="bookreserve">Reservetion limit reached</button>
+                                    }
+                                </h3>
+
+
+                            }
+
+                                <div class="bookavailability">@booktype.AmountOfBooks</div>
+                            </div>
+                            <div class="booktitle">@booktype.Title</div>
+                            <div class="bookauthor">@booktype.Author</div>
+                            <div class="bookauthor">@booktype.Edition</div>
+                        </div>
+
+
+               
+                else
                 {
-                    <div class="singlebook">
-                        <div class="bookcover">
-                            <img src="https://ksiegarnia-tuliszkow.pl/userdata/public/gfx/1781962/Chlopcy-z-Placu-Broni.jpg" class="bookimg">
-                        </div>
-                        <div class="bookbuttons">
-                            <button class="bookreserve">Reserve</button>
-                            <button class="bookavailability">Availibility</button>
-                        </div>
-                        <div class="booktitle">Chłopcy z Placu Broni</div>
-                        <div class="bookauthor">Ferenc Molnar</div>
-                    </div>
+                    <a>Out of stock</a>
                 }
-
-            </div>
+                @if(j>=4)
+                    {
+                        j = 0;
+                    }else
+                    {
+                        j = j + 1;
+                    }
+                    </div>
+                
+            }
 
         }
     
@@ -33,8 +86,26 @@
 
     <div class="sidelibrarybox">
         <div class="buttonboxlib">
-            <button class="yourbooksbutt">Your books</button>
-            <button class="yourbooksreserv">Your reservations</button>
+            @if (yourbooks == true)
+            {
+                <div><button @onclick="BorrowBooks">Borrow Books</button></div>
+            }
+            else
+            {
+                <button disabled>Borrow Books</button>
+            }
+            @if (yourbooks == false)
+            {
+                <div><button @onclick="YourBooks">Your Books</button></div>
+            }
+            else
+            {
+                <button disabled>Your Books</button>
+            }
+            <div>
+                <input @oninput="FillTable" />
+                @btnText
+            </div>
             <button class="searchforbook">Search</button>
         </div>
         <div class="bookview">
@@ -50,5 +121,116 @@
 
 
 @code {
-    
+    @code {
+
+        IList<BookView> BookAmount = new List<BookView>();
+
+        // FillTable wykrywa przycisk które są naciskane na klawiaturze by automatycznie updatowac wyświetlana liste.
+        async Task FillTable(ChangeEventArgs args)
+        {
+
+
+            btnText = args.Value.ToString();
+
+            await BookServiceSupport.UpdateList(isawailable, btnText);
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            await StudentService.GetStudents();
+            await GetClaimsGetID();
+            await BookService.GetBooks();
+            await BookServiceSupport.UpdateList(isawailable, btnText);
+        }
+
+        string bar;
+        bool isawailable = false;
+        bool yourbooks = false;
+        string btnText = string.Empty;
+        int ID;
+        Student student;
+        BookType booktype;
+        BookType booktype2;
+        string Roles;
+        void EditBook(int QR)
+        {
+            NavigationManager.NavigateTo($"Book/{QR}");
+        }
+        void AddBook()
+        {
+            NavigationManager.NavigateTo($"Book");
+        }
+
+        async Task DoUpdateList()
+        {
+            await BookServiceSupport.UpdateList(isawailable, btnText);
+        }
+
+        [CascadingParameter]
+        private Task<AuthenticationState> authenticationState { get; set; }
+
+        private async Task GetClaimsGetID()
+        {
+            var user = (await authenticationState).User;
+            foreach (var claim in user.Claims)
+            {
+                if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+                {
+                    ID = Int32.Parse(claim.Value);
+                }
+                if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+                {
+                    Roles = claim.Value;
+                }
+            };
+
+            if (Roles == "Parent")
+            {
+                foreach (var studentpom in StudentService.Students)
+                {
+                    if (studentpom.ParentID == ID)
+                    {
+                        student = studentpom;
+                    }
+                }
+
+            }
+            else
+            {
+                if (Roles == "Student")
+                {
+                    foreach (var studentpom in StudentService.Students)
+                    {
+                        if (studentpom.StudentID == ID)
+                        {
+                            student = studentpom;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+        async Task BorrowBooks()
+        {
+            yourbooks = false;
+            await BookServiceSupport.UpdateList(isawailable, btnText);
+        }
+
+        async Task YourBooks()
+        {
+            yourbooks = true;
+            await BookServiceSupport.UpdateList(isawailable, btnText);
+        }
+
+        async Task Reserve(Book book)
+        {
+            book.StudentId = ID;
+            book.IsBoocked = true;
+            await BookService.UpdateBook(book);
+            await BookServiceSupport.UpdateList(isawailable, btnText);
+        }
+        //                    <td><button class="btn btn-primary" @onclick="(()=>BookTheBook(Book))">Reservate</button></td>
+    }
 }

@@ -15,10 +15,17 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70575050476351ffb2203d2ba9f854cb5b77dee7")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+675f4dbb17dad337b67a7a5c217aae9cb74dbbc0")]
 >>>>>>> Branchpatrykk
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d07c54ed4b1f53f9b6be9731295c44c35ef5d17")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5461b1297c45aa1f888f289f049a561d9c309994")]
+>>>>>>> origin/DoMergeFilip
+>>>>>>> origin/domergepatryk
 [assembly: System.Reflection.AssemblyProductAttribute("GradeSystem.v1.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GradeSystem.v1.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

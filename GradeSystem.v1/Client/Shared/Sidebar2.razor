@@ -21,6 +21,7 @@
         </div>
     </div>
     </AuthorizeView>
+<<<<<<< HEAD
 
     <AuthorizeView Roles="Student">
     <div class="sidebar-buttoncontainer">
@@ -34,6 +35,33 @@
         </div>
     </div>
     </AuthorizeView>
+=======
+    <AuthorizeView Roles="Parent">
+        <div class="sidebar-buttoncontainer">
+            <div class="nav-item @(IsActive("home") ? "active" : "")">
+                <NavLink class="nav-test" href="ParMainPage" Match="NavLinkMatch.All">
+                    <div class="header-element">
+                        <div class="gg-home-alt"></div>
+                    </div>
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+        </div>
+    </AuthorizeView>
+    <AuthorizeView Roles="Student">
+        <div class="sidebar-buttoncontainer">
+            <div class="nav-item @(IsActive("home") ? "active" : "")">
+                <NavLink class="nav-test" href="trmainpage" Match="NavLinkMatch.All">
+                    <div class="header-element">
+                        <div class="gg-home-alt"></div>
+                    </div>
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+        </div>
+    </AuthorizeView>
+
+>>>>>>> origin/domergepatryk
 
     <AuthorizeView Roles="Student">
     <div class="sidebar-buttoncontainer">
@@ -46,9 +74,12 @@
             </NavLink>
         </div>
     </div>
+<<<<<<< HEAD
     </AuthorizeView>
 
     @*  Nie podlczona strona attendence  *@
+=======
+>>>>>>> origin/domergepatryk
     <AuthorizeView Roles="Student">
     <div class="sidebar-buttoncontainer">
         <div class="nav-item @(IsActive("home") ? "active" : "")">
@@ -61,7 +92,10 @@
         </div>
     </div>
     </AuthorizeView>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/domergepatryk
     <AuthorizeView Roles="Student">
     <div class="sidebar-buttoncontainer">
         <div class="nav-item @(IsActive("home") ? "active" : "")">
@@ -74,8 +108,31 @@
         </div>
     </div>
     </AuthorizeView>
+<<<<<<< HEAD
 
     <AuthorizeView Roles="Student">
+=======
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="stdmainpage" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-box"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Materials
+            </NavLink>
+        </div>
+    </div>
+    <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="YourScheduleWeek" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-file-document"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Class schedule
+            </NavLink>
+        </div>
+    </div>
+>>>>>>> origin/domergepatryk
     <div class="sidebar-buttoncontainer">
         <div class="nav-item @(IsActive("home") ? "active" : "")">
             <NavLink class="nav-test" href="YourScheduleMonth" Match="NavLinkMatch.All">

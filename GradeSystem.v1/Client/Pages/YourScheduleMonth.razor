@@ -76,11 +76,11 @@
                                         {
                                             @foreach (var test in ExamList)
                                             {
-                                                if ((i + (j - 1) * 7) - daydif == test.test.StartDate.Day)
+                                        
+                                                if ((i + (j - 1) * 7) - daydif == enr.Date.Day)
                                                 {
-                                                    <div>@test.subject.SubjectName</div>
-                                                    @*?rodek tablecell*@
-                                                    x--;
+                                                        <div>@enr.SubEnrollment.Subject </div> @*?rodek tablecell*@
+                                                x--;
                                                 }
                                             }
                                         }
@@ -90,8 +90,12 @@
                                             {
                                                 if ((i + (j - 1) * 7) - daydif >= evn.StartDate.Day && (i + (j - 1) * 7) - daydif <= evn.EndDate.Day)
                                                 {
-                                                    <div>@evn.Name</div> @*?rodek tablecell*@
-                                                    x--;
+                                                    if ((i + (j - 1) * 7) - daydif == test.test.StartDate.Day)
+                                                    {
+                                                        <div>@test.subject.SubjectName</div>
+                                                        @*?rodek tablecell*@
+                                                        x--;
+                                                    }
                                                 }
                                             }
                                         }
@@ -134,7 +138,6 @@
     </div>
 
 </div>
-
 
 
 @code {

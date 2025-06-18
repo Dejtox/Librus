@@ -58,11 +58,10 @@
                         <div class="Aday Asingle">
                             @if (j < 5)
                             {
-                                
-                                foreach (var lesshour in SortedlessonsHours)
-                                {
-                                    <div>
-                                        @foreach (var atd in AttendanceService.Attendances)
+                                <div class="attsquare">
+                                    @foreach (var atd in AttendanceService.Attendances)
+                                    {
+                                            if (atd.Enrollment.Date.Hour == lesshour.Start.Hour && atd.Enrollment.Date.Minute == lesshour.Start.Minute && atd.Enrollment.Date.DayOfWeek == (DayOfWeek)((j % 7) + 1))
                                         {
                                             if (student.StudentID == atd.StudentID)
                                             {

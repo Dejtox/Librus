@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "vWZR3AaR9Fo=",
   "success": true,
   "projectFilePath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
@@ -8,5 +9,17 @@
     "C:\\Users\\pepci\\.nuget\\packages\\konscious.security.cryptography.blake2\\1.1.1\\konscious.security.cryptography.blake2.1.1.1.nupkg.sha512",
     "C:\\Users\\pepci\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512"
   ],
+=======
+<<<<<<< HEAD
+  "dgSpecHash": "QTPPeI+0FYM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+=======
+  "dgSpecHash": "xsnP4INWkVk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+>>>>>>> origin/DoMergeFilip
+  "expectedPackageFiles": [],
+>>>>>>> origin/domergepatryk
   "logs": []
 }

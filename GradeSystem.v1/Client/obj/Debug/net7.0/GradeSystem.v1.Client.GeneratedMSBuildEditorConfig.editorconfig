@@ -340,7 +340,15 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RkUGFyTGFzdEF0dGVuZGVybmNlc21haW5wYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [C:/Users/pepci/OneDrive/Dokumenty/Projects/LibrusFinal/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
+=======
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/StdParschelude.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RkUGFyc2NoZWx1ZGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/patry/Desktop/ProjekDziennikinocnik/filbru/Librus/GradeSystem.v1/Client/Pages/StudentAddEdit.razor]
+>>>>>>> Branchpatrykk
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudEFkZEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 

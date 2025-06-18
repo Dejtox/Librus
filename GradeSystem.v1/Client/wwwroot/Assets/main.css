@@ -4419,7 +4419,6 @@ a, .btn-link {
 .AdminTopBar {
     height: 12%;
     width: 100%;
-    border-bottom: solid;
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -4436,22 +4435,24 @@ a, .btn-link {
     text-align: center;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 20px;
     position: static;
-    transition: background 0.3s;
-    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    transition: background 0.3s, transform 0.2s;
+    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
     margin-left: -14px;
     margin-right: -14px;
+    background-color: transparent;
 }
 
-    .AdminButton:hover {
-        opacity: 0.8;
+    .AdminButton.active {
+        transform: scale(1.25);
+        font-weight: bold;
     }
+
 
 .AdminTeachers {
     background: #FFD23F;
-    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, -28% 100%);
+    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, -28% 100%);
 }
 
 .AdminStudents {
@@ -4478,14 +4479,8 @@ a, .btn-link {
 
 
 .AdminDisplay {
-    height: 88%;
-    width: 98%;
+    height: 100%;
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.AdminSubDisplay {
-    height: 98%;
-    width: 98%;
+    flex-direction: column;
 }

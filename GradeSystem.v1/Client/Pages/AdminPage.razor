@@ -1,32 +1,30 @@
-@* @inherits LayoutComponentBase
-@layout MainLayout  *@
+
 @page "/AdminPage"
 
 <div class="subwebsitebody">
     <di class="AdminMainBox">
         <div class="AdminTopBar">
-            <button class="AdminButton AdminTeachers" @onclick="TeacherButton">
+            <button class="AdminButton AdminTeachers @(Button == "Teacher" ? "active" : "")" @onclick="TeacherButton">
                 Teachers
             </button>
-            <button class="AdminButton AdminStudents" @onclick="StudentButton">
+            <button class="AdminButton AdminStudents @(Button == "Student" ? "active" : "")" @onclick="StudentButton">
                 Students
             </button>
-            <button class="AdminButton AdminParents" @onclick="ParentButton">
+            <button class="AdminButton AdminParents @(Button == "Parent" ? "active" : "")" @onclick="ParentButton">
                 Parents
             </button>
-            <button class="AdminButton AdminSubjects" @onclick="SubjectButton">
+            <button class="AdminButton AdminSubjects @(Button == "Subject" ? "active" : "")" @onclick="SubjectButton">
                 Subjects
             </button>
-            <button class="AdminButton AdminClasses" @onclick="ClassButton">
+            <button class="AdminButton AdminClasses @(Button == "Class" ? "active" : "")" @onclick="ClassButton">
                 Classes
             </button>
-            <button class="AdminButton AdminEnrollments" @onclick="EnrollmentButton">
+            <button class="AdminButton AdminEnrollments @(Button == "Enrollment" ? "active" : "")" @onclick="EnrollmentButton">
                 Enrollments
             </button>
-
         </div>
+
         <div class="AdminDisplay">
-            <div class="AdminSubDisplay">
 
                @if (Button == "Teacher"){
                     <AdminTeachers @ref="siteref"></AdminTeachers>
@@ -47,12 +45,11 @@
                     <AdminEnrollments @ref="siteref5"></AdminEnrollments>
                }
    
-
-            </div>
         </div>
     </di>
 </div>
-@* <div class="content-container">
+@*
+ <div class="content-container">
     <div class="rz-p-sm-12">
         <RadzenAccordion>
             <Items>
@@ -74,11 +71,10 @@
             </Items>
         </RadzenAccordion>
     </div>
-</div> *@
-
+</div> 
+*@
 
 @code {
-
     private AdminTeachers siteref;
     private AdminStudents siteref1;
     private AdminParents siteref2;
@@ -86,37 +82,12 @@
     private AdminClasses siteref4;
     private AdminEnrollments siteref5;
 
-
     public string Button = null;
 
-    public void TeacherButton()
-    {
-        Button = "Teacher";
-    }
-
-    public void StudentButton()
-    {
-        Button = "Student";
-
-    }
-    public void ParentButton()
-    {
-        Button = "Parent";
-
-    }
-    public void SubjectButton()
-    {
-        Button = "Subject";
-
-    }
-    public void ClassButton()
-    {
-        Button = "Class";
-
-    }
-    public void EnrollmentButton()
-    {
-        Button = "Enrollment";
-
-    }
+    public void TeacherButton() => Button = "Teacher";
+    public void StudentButton() => Button = "Student";
+    public void ParentButton() => Button = "Parent";
+    public void SubjectButton() => Button = "Subject";
+    public void ClassButton() => Button = "Class";
+    public void EnrollmentButton() => Button = "Enrollment";
 }

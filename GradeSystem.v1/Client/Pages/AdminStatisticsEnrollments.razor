@@ -189,8 +189,8 @@
         var groupedEnrollments = EnrollmentService.Enrollments.GroupBy(e => new { e.ClassID, e.SubjectID })
         .Select(g => new ClassSubjectStatistic
             {
-                ClassID = g.Key.ClassID,
-                SubjectID = g.Key.SubjectID,
+                ClassID = (int)g.Key.ClassID,
+                SubjectID = (int)g.Key.SubjectID,
                 TotalLessons = g.Count(),
                 CompletedLessons = g.Count(e => !string.IsNullOrEmpty(e.Description))
             }).ToList();
@@ -219,7 +219,7 @@
     private int GetSubjectTeacherId(int subjectId)
     {
         var subject = SubjectService.Subjects.FirstOrDefault(s => s.SubjectID == subjectId);
-        return subject != null ? subject.TeacherID : 0;
+        return subject != null ? (int)subject.TeacherID : 0;
     }
 
     private string GetTeacherName(int teacherId)

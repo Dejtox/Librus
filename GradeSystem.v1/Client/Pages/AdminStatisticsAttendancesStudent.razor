@@ -75,7 +75,7 @@
                                         if (att != null)
                                         {
                                             attendance = att;
-                                            subject = subjectDict.ContainsKey(enrollment.SubjectID) ? subjectDict[enrollment.SubjectID] : null;
+                                            subject = subjectDict.ContainsKey((int)enrollment.SubjectID) ? subjectDict[(int)enrollment.SubjectID] : null;
                                             break;
                                         }
                                     }

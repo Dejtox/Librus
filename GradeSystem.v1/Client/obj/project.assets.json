@@ -830,35 +830,19 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Analyzers.props": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.5": {
-=======
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/FilipFinal
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.2": {
->>>>>>> branchSerman
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -2354,35 +2338,19 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Analyzers.props": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
+      "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.5": {
-=======
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/FilipFinal
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.2": {
->>>>>>> branchSerman
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -4167,10 +4135,10 @@
         "microsoft.net.http.headers.nuspec"
       ]
     },
-    "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23211.1": {
-      "sha512": "0GvbEgDGcUQA9KuWcQU1WwYHXt1tBzNr1Nls/M57rM7NA/AndFwCaCEoJpJkmxRY7xLlPDBnmGp8h5+FNqUngg==",
+    "Microsoft.NET.ILLink.Analyzers/7.0.100-1.23401.1": {
+      "sha512": "XirkjOLc5Vc3HsXRc2Z6ZbQv6l0RvWgJa/31w7XqZ914MoSi3H3OCNRMWFw7H2EYfsnKbokFfhCcysAmUcEOgw==",
       "type": "package",
-      "path": "microsoft.net.illink.analyzers/7.0.100-1.23211.1",
+      "path": "microsoft.net.illink.analyzers/7.0.100-1.23401.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4178,14 +4146,14 @@
         "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
         "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
         "build/Microsoft.NET.ILLink.Analyzers.props",
-        "microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+        "microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
         "microsoft.net.illink.analyzers.nuspec"
       ]
     },
-    "Microsoft.NET.ILLink.Tasks/7.0.100-1.23211.1": {
-      "sha512": "tvG8XZYLjT0o3WicCyKBZysVWo1jC9HdCFmNRmddx3WbAz0UCsd0qKZqpiEo99VLA8Re+FzWK51OcRldQPbt2Q==",
+    "Microsoft.NET.ILLink.Tasks/7.0.100-1.23401.1": {
+      "sha512": "mI6vCdPEhluLtMn/GV0texEWg5oAPQWCCE4LWspM+Bmy75Nd4EQsziQXrdOFqNeSBQMrxDX9C/O5Xi3kpKSMIw==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/7.0.100-1.23211.1",
+      "path": "microsoft.net.illink.tasks/7.0.100-1.23401.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4195,7 +4163,7 @@
         "build/6.0_suppressions.xml",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
+        "microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net472/ILLink.Tasks.dll",
         "tools/net472/Mono.Cecil.dll",
@@ -4214,38 +4182,10 @@
         "tools/net7.0/illink.runtimeconfig.json"
       ]
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.5": {
-      "sha512": "h1210SGJTqvciPbSMEJjSRa4yc+zCEDeyoc9o3Fc5hScP9v+26INSOMLf4OwNw+oTz4nAwBo+rc5V4FQLWB1pQ==",
-      "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/9.0.5",
-=======
-<<<<<<< HEAD
     "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
       "sha512": "CABBOqZZEDgiVSjkwUr+pJEGEtQbrT+6dltzJnBDap7mOSvfn53+zwb112hRGB7ynm9ikAocGZTUp+GizbH7XQ==",
       "type": "package",
       "path": "microsoft.net.sdk.webassembly.pack/8.0.5",
-=======
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
-      "sha512": "HI/nGJnpSn8370os+GuviOnCM1RsXB3PQSX6u9RjApncJ5jZZf2qdFRQZM9tUjdDJ/ADmrzBxlV/hKp3CWYMDA==",
-      "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.7",
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
-      "sha512": "HI/nGJnpSn8370os+GuviOnCM1RsXB3PQSX6u9RjApncJ5jZZf2qdFRQZM9tUjdDJ/ADmrzBxlV/hKp3CWYMDA==",
-      "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.7",
->>>>>>> origin/FilipFinal
-=======
-    "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.2": {
-      "sha512": "svOs6YArbcpL06ZWj+b4hNVlJC5m37ydSgS+1XJWJzQu5fdT7ToEOaik1yiNo9AD357PBEiUJWTlrIcwdF8IeA==",
-      "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/9.0.2",
->>>>>>> branchSerman
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4256,7 +4196,6 @@
         "WasmAppHost/BrowserDebugHost.deps.json",
         "WasmAppHost/BrowserDebugHost.dll",
         "WasmAppHost/BrowserDebugHost.runtimeconfig.json",
-        "WasmAppHost/BrowserDebugHost.staticwebassets.endpoints.json",
         "WasmAppHost/BrowserDebugProxy.dll",
         "WasmAppHost/Microsoft.CodeAnalysis.CSharp.Scripting.dll",
         "WasmAppHost/Microsoft.CodeAnalysis.CSharp.dll",
@@ -4269,36 +4208,48 @@
         "WasmAppHost/WasmAppHost.deps.json",
         "WasmAppHost/WasmAppHost.dll",
         "WasmAppHost/WasmAppHost.runtimeconfig.json",
-        "WasmAppHost/WasmAppHost.staticwebassets.endpoints.json",
         "build/Microsoft.NET.Sdk.WebAssembly.Browser.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Browser.targets",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "build/browser.runtimeconfig.template.json",
-        "microsoft.net.sdk.webassembly.pack.9.0.5.nupkg.sha512",
-=======
-<<<<<<< HEAD
         "microsoft.net.sdk.webassembly.pack.8.0.5.nupkg.sha512",
-=======
-        "microsoft.net.sdk.webassembly.pack.8.0.7.nupkg.sha512",
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-        "microsoft.net.sdk.webassembly.pack.8.0.7.nupkg.sha512",
->>>>>>> origin/FilipFinal
-=======
-        "build/browser.runtimeconfig.template.json",
-        "microsoft.net.sdk.webassembly.pack.9.0.2.nupkg.sha512",
->>>>>>> branchSerman
         "microsoft.net.sdk.webassembly.pack.nuspec",
+        "tools/net472/Microsoft.Bcl.AsyncInterfaces.dll",
+        "tools/net472/Microsoft.Build.dll",
+        "tools/net472/Microsoft.IO.Redist.dll",
         "tools/net472/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
+        "tools/net472/Microsoft.NET.StringTools.dll",
         "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll",
-        "tools/net9.0/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
-        "tools/net9.0/Microsoft.NET.WebAssembly.Webcil.dll"
+        "tools/net472/Microsoft.VisualStudio.Setup.Configuration.Interop.dll",
+        "tools/net472/System.Buffers.dll",
+        "tools/net472/System.Collections.Immutable.dll",
+        "tools/net472/System.Configuration.ConfigurationManager.dll",
+        "tools/net472/System.Memory.dll",
+        "tools/net472/System.Numerics.Vectors.dll",
+        "tools/net472/System.Reflection.Metadata.dll",
+        "tools/net472/System.Reflection.MetadataLoadContext.dll",
+        "tools/net472/System.Runtime.CompilerServices.Unsafe.dll",
+        "tools/net472/System.Security.AccessControl.dll",
+        "tools/net472/System.Security.Permissions.dll",
+        "tools/net472/System.Security.Principal.Windows.dll",
+        "tools/net472/System.Text.Encodings.Web.dll",
+        "tools/net472/System.Text.Json.dll",
+        "tools/net472/System.Threading.Tasks.Dataflow.dll",
+        "tools/net472/System.Threading.Tasks.Extensions.dll",
+        "tools/net472/System.ValueTuple.dll",
+        "tools/net8.0/Microsoft.Build.dll",
+        "tools/net8.0/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
+        "tools/net8.0/Microsoft.NET.StringTools.dll",
+        "tools/net8.0/Microsoft.NET.WebAssembly.Webcil.dll",
+        "tools/net8.0/Microsoft.Win32.SystemEvents.dll",
+        "tools/net8.0/System.Configuration.ConfigurationManager.dll",
+        "tools/net8.0/System.Diagnostics.EventLog.dll",
+        "tools/net8.0/System.Drawing.Common.dll",
+        "tools/net8.0/System.Reflection.MetadataLoadContext.dll",
+        "tools/net8.0/System.Security.Cryptography.ProtectedData.dll",
+        "tools/net8.0/System.Security.Permissions.dll",
+        "tools/net8.0/System.Windows.Extensions.dll"
       ]
     },
     "Microsoft.NETCore.Platforms/2.0.0": {
@@ -6407,31 +6358,9 @@
       "Microsoft.AspNetCore.Components.Authorization >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.5",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
-      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 9.0.5",
-=======
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23401.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23401.1",
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.5",
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.7",
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23401.1",
-      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23401.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.7",
->>>>>>> origin/FilipFinal
-=======
-      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
-      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 9.0.2",
->>>>>>> branchSerman
       "Radzen.Blazor >= 4.11.0",
       "Radzen.Design >= 0.0.2",
       "Smart.Blazor >= 15.1.1",
@@ -6442,87 +6371,23 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "C:\\Users\\pepci\\.nuget\\packages\\": {},
-=======
-<<<<<<< HEAD
     "C:\\Users\\patry\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\fnowa\\.nuget\\packages\\": {},
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-    "C:\\Users\\fnowa\\.nuget\\packages\\": {},
->>>>>>> origin/FilipFinal
-=======
-    "C:\\Users\\Patryk\\.nuget\\packages\\": {},
->>>>>>> branchSerman
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\obj\\",
-=======
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "projectName": "GradeSystem.v1.Client",
       "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Client\\obj\\",
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-      "projectUniqueName": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Client\\obj\\",
->>>>>>> origin/FilipFinal
-=======
-      "projectUniqueName": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\Patryk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Client\\obj\\",
->>>>>>> branchSerman
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-<<<<<<< HEAD
         "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-        "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> origin/FilipFinal
-=======
-        "C:\\Users\\Patryk\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> branchSerman
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6538,28 +6403,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
-=======
-<<<<<<< HEAD
             "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
               "projectPath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
-=======
-            "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\fnowa\\Desktop\\Librus\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-            "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
->>>>>>> origin/FilipFinal
-=======
-            "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\Patryk\\Desktop\\dcd2\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
->>>>>>> branchSerman
             }
           }
         }
@@ -6573,17 +6418,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-<<<<<<< HEAD
-<<<<<<< HEAD
-      },
-      "SdkAnalysisLevel": "9.0.300"
-=======
       }
->>>>>>> origin/FilipFinal
-=======
-      },
-      "SdkAnalysisLevel": "9.0.200"
->>>>>>> branchSerman
     },
     "frameworks": {
       "net7.0": {
@@ -6633,35 +6468,19 @@
           "Microsoft.NET.ILLink.Analyzers": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.100-1.23211.1, )",
+            "version": "[7.0.100-1.23401.1, )",
             "autoReferenced": true
           },
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.100-1.23211.1, )",
+            "version": "[7.0.100-1.23401.1, )",
             "autoReferenced": true
           },
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "version": "[9.0.5, )",
-=======
-<<<<<<< HEAD
             "version": "[8.0.5, )",
-=======
-            "version": "[8.0.7, )",
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-            "version": "[8.0.7, )",
->>>>>>> origin/FilipFinal
-=======
-            "version": "[9.0.2, )",
->>>>>>> branchSerman
             "autoReferenced": true
           },
           "Radzen.Blazor": {
@@ -6707,19 +6526,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "version": "[7.0.20, 7.0.20]"
-=======
-<<<<<<< HEAD
             "version": "[7.0.19, 7.0.19]"
-=======
-            "version": "[7.0.20, 7.0.20]"
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-            "version": "[7.0.20, 7.0.20]"
->>>>>>> branchSerman
           }
         ],
         "frameworkReferences": {
@@ -6727,23 +6534,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300\\RuntimeIdentifierGraph.json"
-=======
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
->>>>>>> origin/DoMergeFilip
->>>>>>> origin/domergepatryk
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
->>>>>>> origin/FilipFinal
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
->>>>>>> branchSerman
       }
     },
     "runtimes": {

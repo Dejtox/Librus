@@ -5,7 +5,7 @@
 @inject IEnrollmentService EnrollmentService
 @inject IAttendanceService AttendanceService
 @inject ILessonsHoursService LessonsHoursService
-@attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+
 @* to nie prowadzi do zadnej strony *@
 
 <div class="Atableborder">
@@ -54,56 +54,57 @@
                     <div class="Anumber Anumber--d">1</div>
                     <div class="Aname">@student.LastName @student.FirstName</div>
                     @for (int j = 0; j < 7; j++)
-                    {                        
+                    {
                         <div class="Aday Asingle">
                             @if (j < 5)
                             {
-                                <div class="attsquare">
-                                    @foreach (var atd in AttendanceService.Attendances)
-                                    {
-                                            if (atd.Enrollment.Date.Hour == lesshour.Start.Hour && atd.Enrollment.Date.Minute == lesshour.Start.Minute && atd.Enrollment.Date.DayOfWeek == (DayOfWeek)((j % 7) + 1))
+
+                                foreach (var lesshour in SortedlessonsHours)
+                                {
+                                    <div>
+                                        @foreach (var atd in AttendanceService.Attendances)
                                         {
                                             if (student.StudentID == atd.StudentID)
                                             {
                                                 if (atd.Enrollment.Date.Year == Selceted.Year && atd.Enrollment.Date.Month == Selceted.Month && atd.Enrollment.Date.Day == Selceted.AddDays(j).Day)
                                                 {
-                                                if (atd.Enrollment.Date.Hour == lesshour.Start.Hour && atd.Enrollment.Date.Minute == lesshour.Start.Minute && atd.Enrollment.Date.DayOfWeek == (DayOfWeek)((j % 7) + 1))
-                                                {
-
-                                                    if (atd.Description == "Excused")
-                                                    {
-                                                        <div class="yellowsquare">
-                                                            <span class="tooltiptexty">
-                                                                <div>@atd.Description</div>
-                                                            </span>
-                                                        </div>
-                                                    }
-                                                    if (atd.Description == "Present")
-                                                    {
-                                                        <div class="greensquare">
-                                                            <span class="tooltiptextg">
-                                                                <div>@atd.Description</div>
-                                                            </span>
-                                                        </div>
-                                                    }
-                                                    if (atd.Description == "Absent")
+                                                    if (atd.Enrollment.Date.Hour == lesshour.Start.Hour && atd.Enrollment.Date.Minute == lesshour.Start.Minute && atd.Enrollment.Date.DayOfWeek == (DayOfWeek)((j % 7) + 1))
                                                     {
 
-                                                        <div class="redsquare">
-                                                            <span class="tooltiptextr">
-                                                                <div>@atd.Description</div>
-                                                            </span>
-                                                        </div>
+                                                        if (atd.Description == "Excused")
+                                                        {
+                                                            <div class="yellowsquare">
+                                                                <span class="tooltiptexty">
+                                                                    <div>@atd.Description</div>
+                                                                </span>
+                                                            </div>
+                                                        }
+                                                        if (atd.Description == "Present")
+                                                        {
+                                                            <div class="greensquare">
+                                                                <span class="tooltiptextg">
+                                                                    <div>@atd.Description</div>
+                                                                </span>
+                                                            </div>
+                                                        }
+                                                        if (atd.Description == "Absent")
+                                                        {
+
+                                                            <div class="redsquare">
+                                                                <span class="tooltiptextr">
+                                                                    <div>@atd.Description</div>
+                                                                </span>
+                                                            </div>
+                                                        }
+                                                        if (atd.Description == "Late")
+                                                        {
+                                                            <div class="orangesquare">
+                                                                <span class="tooltiptextb">
+                                                                    <div>@atd.Description</div>
+                                                                </span>
+                                                            </div>
+                                                        }
                                                     }
-                                                    if (atd.Description == "Late")
-                                                    {
-                                                        <div class="orangesquare">
-                                                            <span class="tooltiptextb">
-                                                                <div>@atd.Description</div>
-                                                            </span>
-                                                        </div>
-                                                    }
-                                                }
                                                 }
                                             }
                                         }

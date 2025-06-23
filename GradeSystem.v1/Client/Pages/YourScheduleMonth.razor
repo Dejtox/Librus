@@ -7,7 +7,6 @@
 @inject ISubjectService SubjectService
 @inject IEventService EventServic
 @inject NavigationManager NavigationManager
-@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <div class="mainbox">
     <div class="Msidebox1">
@@ -76,11 +75,11 @@
                                         {
                                             @foreach (var test in ExamList)
                                             {
-                                        
-                                                if ((i + (j - 1) * 7) - daydif == enr.Date.Day)
+                                                if ((i + (j - 1) * 7) - daydif == test.test.StartDate.Day)
                                                 {
-                                                        <div>@enr.SubEnrollment.Subject </div> @*?rodek tablecell*@
-                                                x--;
+                                                    <div>@test.subject.SubjectName</div>
+                                                    @*?rodek tablecell*@
+                                                    x--;
                                                 }
                                             }
                                         }
@@ -90,12 +89,8 @@
                                             {
                                                 if ((i + (j - 1) * 7) - daydif >= evn.StartDate.Day && (i + (j - 1) * 7) - daydif <= evn.EndDate.Day)
                                                 {
-                                                    if ((i + (j - 1) * 7) - daydif == test.test.StartDate.Day)
-                                                    {
-                                                        <div>@test.subject.SubjectName</div>
-                                                        @*?rodek tablecell*@
-                                                        x--;
-                                                    }
+                                                    <div>@evn.Name</div> @*?rodek tablecell*@
+                                                    x--;
                                                 }
                                             }
                                         }
@@ -138,6 +133,7 @@
     </div>
 
 </div>
+
 
 
 @code {
@@ -183,16 +179,16 @@
             {
                 if (student.ClassID == evn.ClassID)
                 {
-                    if(evn.StartDate.Month == SelcetedMonth.Month && evn.StartDate.Year == SelcetedMonth.Year)
+                    if (evn.StartDate.Month == SelcetedMonth.Month && evn.StartDate.Year == SelcetedMonth.Year)
                     {
-                        foreach(var subject in SubjectService.Subjects)
+                        foreach (var subject in SubjectService.Subjects)
                         {
-                            if(subject.SubjectID == evn.SubjectID)
+                            if (subject.SubjectID == evn.SubjectID)
                             {
                                 ExamList.Add(new Exam(subject, evn));
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -203,7 +199,7 @@
     {
         @foreach (var evn in SchoolTripService.SchoolTrips)
         {
-            foreach(var schoolclass in evn.Classes)
+            foreach (var schoolclass in evn.Classes)
             {
                 if (student.ClassID == schoolclass.ClassID)
                 {
@@ -218,22 +214,22 @@
     }
 
     async Task FillEnrListDates()
-    {       
-            SubstituteEnrlList.Clear();
+    {
+        SubstituteEnrlList.Clear();
         int daysinmonth = DateTime.DaysInMonth(SelcetedMonth.Year, SelcetedMonth.Month);
         SubstituteEnrlList = new List<Enrollment>();
 
-            foreach (var enr in EnrollmentService.Enrollments)
-            {                
-                if(enr.SubEnrollmentID != null)
-                {
+        foreach (var enr in EnrollmentService.Enrollments)
+        {
+            if (enr.SubEnrollmentID != null)
+            {
                 if (enr.Date.Month == SelcetedMonth.Month && enr.Date.Year == SelcetedMonth.Year)
-                    {                       
-                            SubstituteEnrlList.Add(enr);                    
-                    }
+                {
+                    SubstituteEnrlList.Add(enr);
                 }
             }
-        
+        }
+
     }
     private void NavigateToPage(ChangeEventArgs e)
     {

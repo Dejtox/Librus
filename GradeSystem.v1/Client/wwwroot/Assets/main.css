@@ -159,7 +159,6 @@ color: #ffffff;
 }*/
 .container-fluid {
     height: 100vh;
-    background-color: #f4f4f4;  
 }
 
 .login-box {
@@ -3825,7 +3824,7 @@ a, .btn-link {
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10%;
+    justify-content: space-around;
 }
 
 .rz-dialog-titlebar {
@@ -3889,6 +3888,205 @@ a, .btn-link {
     font-size: x-small;
     padding: 1%;
 }
+
+
+
+.styled-table {
+    width: 30%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 50px auto;
+    text-align: center;
+}
+
+    .styled-table thead tr {
+        background-color: #4a90e2;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+        justify-content: space-around;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 16px 20px;
+        border-bottom: 1px solid #dddddd;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f8ff;
+    }
+
+
+.top-title {
+    background-color: #1A2130;
+    color: white;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 18px;
+    text-align: center;
+}
+
+
+.edit-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: auto;
+}
+
+    .edit-button:hover {
+        background-color: #357ac9;
+        transform: scale(1.05);
+    }
+
+
+
+
+
+
+
+.search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+    .search-bar input {
+        width: 300px;
+        padding: 10px 14px;
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        font-size: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+/* Grid layout */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* Book Card */
+.book-card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+}
+
+    .book-card:hover {
+        transform: scale(1.03);
+    }
+
+/* Cover Image */
+.book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Buttons */
+.book-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+    gap: 10px;
+}
+
+.reserve-btn,
+.book-btn {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.reserve-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+    .reserve-btn:hover {
+        background-color: #ddd;
+    }
+
+.book-btn {
+    background-color: #ffb100;
+    color: #fff;
+}
+
+    .book-btn:hover {
+        background-color: #e09a00;
+    }
+
+/* Availability */
+.availability {
+    display: flex;
+    gap: 10px;
+    margin: 5px 0;
+    justify-content: center;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.available {
+    background-color: #e6f9e9;
+    color: #26a65b;
+    border: 1px solid #26a65b;
+}
+
+.unavailable {
+    background-color: #ffe6e6;
+    color: #c0392b;
+    border: 1px solid #c0392b;
+}
+
+/* Book Meta */
+.book-meta {
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .book-meta h4 {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .book-meta p {
+        font-size: 0.85rem;
+        color: #666;
+    }
+
 
 /*
     Attendance
@@ -4435,21 +4633,6 @@ a, .btn-link {
     ADMIN MENU
 */
 
-.AdminMainBox {
-    height: 100%;
-    width: 100%;
-    border: solid;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-/*
-    ADMIN MENU
-*/
 
 .AdminMainBox {
     height: 100%;
@@ -4463,7 +4646,7 @@ a, .btn-link {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-}
+ 
 .AdminTopBar {
     height: 12%;
     width: 100%;
@@ -4493,9 +4676,7 @@ a, .btn-link {
     margin-right: -11px;
 }
 
-.AdminButton:hover {
-    opacity: 0.8;
-}
+
 
 .AdminTeachers {
     background: #FFD23F;
@@ -4526,12 +4707,14 @@ a, .btn-link {
 
 
 .AdminDisplay {
-    height: 88%;
-    width: 98%;
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
 }
+
+
 .AdminSubDisplay {
     height: 98%;
     width: 98%;
@@ -4639,10 +4822,3 @@ a, .btn-link {
     border-top-right-radius: 35px;
 }
 
-
-.AdminDisplay {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}

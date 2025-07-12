@@ -34,31 +34,6 @@
     </div>
     </AuthorizeView>
 
-    <AuthorizeView Roles="Parent">
-        <div class="sidebar-buttoncontainer">
-            <div class="nav-item @(IsActive("home") ? "active" : "")">
-                <NavLink class="nav-test" href="ParMainPage" Match="NavLinkMatch.All">
-                    <div class="header-element">
-                        <div class="gg-home-alt"></div>
-                    </div>
-                    <span class="oi oi-home" aria-hidden="true"></span> Home
-                </NavLink>
-            </div>
-        </div>
-    </AuthorizeView>
-    <AuthorizeView Roles="Student">
-        <div class="sidebar-buttoncontainer">
-            <div class="nav-item @(IsActive("home") ? "active" : "")">
-                <NavLink class="nav-test" href="trmainpage" Match="NavLinkMatch.All">
-                    <div class="header-element">
-                        <div class="gg-home-alt"></div>
-                    </div>
-                    <span class="oi oi-home" aria-hidden="true"></span> Home
-                </NavLink>
-            </div>
-        </div>
-    </AuthorizeView>
-
     <AuthorizeView Roles="Student">
     <div class="sidebar-buttoncontainer">
         <div class="nav-item @(IsActive("home") ? "active" : "")">
@@ -108,16 +83,7 @@
             </NavLink>
         </div>
     </div>
-    <div class="sidebar-buttoncontainer">
-        <div class="nav-item @(IsActive("home") ? "active" : "")">
-            <NavLink class="nav-test" href="YourScheduleWeek" Match="NavLinkMatch.All">
-                <div class="header-element">
-                    <div class="gg-file-document"></div>
-                </div>
-                <span class="oi oi-people" aria-hidden="true"></span> Class schedule
-            </NavLink>
-        </div>
-    </div>
+
     <div class="sidebar-buttoncontainer">
         <div class="nav-item @(IsActive("home") ? "active" : "")">
             <NavLink class="nav-test" href="YourScheduleMonth" Match="NavLinkMatch.All">
@@ -161,6 +127,54 @@
                         <div class="gg-home-alt"></div>
                     </div>
                     <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+        </div>
+    </AuthorizeView>
+    <AuthorizeView Roles="Parent">
+        <div class="sidebar-buttoncontainer">
+            <div class="nav-item @(IsActive("home") ? "active" : "")">
+                <NavLink class="nav-test" href="stdparschelude" Match="NavLinkMatch.All">
+                    <div class="header-element">
+                        <div class="gg-file-document"></div>
+                    </div>
+                    <span class="oi oi-people" aria-hidden="true"></span> Class schedule
+                </NavLink>
+            </div>
+        </div>
+    </AuthorizeView>
+    <AuthorizeView Roles="Parent">
+        <div class="sidebar-buttoncontainer">
+            <div class="nav-item @(IsActive("home") ? "active" : "")">
+                <NavLink class="nav-test" href="gradesviewstudent" Match="NavLinkMatch.All">
+                    <div class="header-element">
+                        <div class="gg-check-o"></div>
+                    </div>
+                    <span class="oi oi-people" aria-hidden="true"></span> Grades
+                </NavLink>
+            </div>
+        </div>
+    </AuthorizeView>
+    <AuthorizeView Roles="Parent">
+            <div class="sidebar-buttoncontainer">
+        <div class="nav-item @(IsActive("home") ? "active" : "")">
+            <NavLink class="nav-test" href="attendance" Match="NavLinkMatch.All">
+                <div class="header-element">
+                    <div class="gg-user"></div>
+                </div>
+                <span class="oi oi-people" aria-hidden="true"></span> Attendance
+            </NavLink>
+        </div>
+    </div>
+    </AuthorizeView>
+    <AuthorizeView Roles="Parent">
+        <div class="sidebar-buttoncontainer">
+            <div class="nav-item @(IsActive("home") ? "active" : "")">
+                <NavLink class="nav-test" href="YourScheduleMonth" Match="NavLinkMatch.All">
+                    <div class="header-element">
+                        <div class="gg-calendar"></div>
+                    </div>
+                    <span class="oi oi-people" aria-hidden="true"></span> Calendar
                 </NavLink>
             </div>
         </div>

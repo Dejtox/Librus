@@ -13,60 +13,58 @@
 
 <div class="mainlibraryview">
     <div class="booksdisplay">
-         @foreach (var segment in segments)
-            {
-            string imgurl1 = @segment.bookType.Title + @segment.bookType.Author + segment.bookType.Edition + ".jpg";
-            <div class="bookrow">
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search" />
+        </div>
 
-               
-
-            </div>
-            }
-    </div>
-
-
-    @for (int j = 0; j < 4; j++)
-    {
-        <div class="singlebook">
-            <div class="bookcover">
-                <img src="https://ksiegarnia-tuliszkow.pl/userdata/public/gfx/1781962/Chlopcy-z-Placu-Broni.jpg" class="bookimg">
-            </div>
-            <div class="bookbuttons bookbuttonst">
-                <div class="bookbuttonsrow">
-                    <button class="bookavailability">Availibility</button>
-                    <button class="bookedit">
-                        <div class="gg-pen"></div>
-                        <div class="gg-trash"></div>
-                    </button>
+        <div class="book-grid">
+            <div class="book-card">
+                <img src="https://www.justwatch.com/images/poster/308793523/s718/12-monkeys.jpg" alt="Book Cover" class="book-cover" />
+                <div class="book-buttons">
+                    <button class="reserve-btn">Reserve</button>
+                    <button class="book-btn">Book</button>
                 </div>
-
+                <div class="availability">
+                    <span class="badge available">2/10 Available</span>
+                    <span class="badge unavailable">0/10 Available</span>
+                </div>
+                <div class="book-meta">
+                    <h4>Chlopcy z Placu Broni</h4>
+                    <p>Ferenc Molnar</p>
+                </div>
             </div>
-            <div class="booktitle">Chłopcy z Placu Broni</div>
-            <div class="bookauthor">Ferenc Molnar</div>
         </div>
-    }
-
-
-
-
-    <div class="gg-border-style-solid"></div>
-
-    <div class="sidelibrarybox">
-        <div class="buttonboxlib">
-            <button class="searchforbook">Search</button>
-            <button class="yourbooksbutt">Add book</button>
-            <button class="yourbooksreserv">Edit book</button>
-        </div>
-        <div class="bookview">
-            <img src="https://www.justwatch.com/images/poster/308793523/s718/12-monkeys.jpg" class="bookimgview">
-            <div class="booknameview">Twelve Monkeys</div>
-            <div class="bookauthorview">John Newman</div>
-            <div class="bookdescview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec viverra arcu, ut facilisis libero. Maecenas hendrerit tincidunt lorem, id iaculis metus vehicula in. Integer sit amet eros non tortor congue varius. Etiam condimentum ligula vel imperdiet commodo. Cras commodo mi at est porta dapibus. Fusce finibus scelerisque nulla, ut suscipit sapien fringilla et.</div>
-        </div>
+     
+    </div>
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th colspan="3" class="top-title">Title</th>
+            </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Active</td>
+                    <td><button class="edit-button">Edytyj</button></td>
+                </tr>
+            </tbody>
+        </table>
 
 
     </div>
-</div>
+    
+
+
+
+
+    
 
 <BookAddEditPopup @ref="popupref"></BookAddEditPopup>
 <AddBookPopup @ref="popuprefadd"></AddBookPopup>

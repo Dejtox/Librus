@@ -6,7 +6,10 @@
 @inject ISchoolTripService SchoolTripService
 @inject ISubjectService SubjectService
 @inject IEventService EventServic
+@inject IParentService ParentService
 @inject NavigationManager NavigationManager
+
+
 
 <div class="mainbox">
     <div class="Msidebox1">
@@ -151,8 +154,11 @@
     bool examtest = true;
     bool eventest = true;
     int ID;
+    int selectedchildID;
     int daydif;
     Student student;
+    Parent parent;
+    Parent parenttoedit;
     string Roles;
     DateTime SelcetedMonth;
     List<Enrollment> SubstituteEnrlList = new List<Enrollment>();
@@ -213,6 +219,7 @@
         }
     }
 
+
     async Task FillEnrListDates()
     {
         SubstituteEnrlList.Clear();
@@ -231,6 +238,8 @@
         }
 
     }
+
+
     private void NavigateToPage(ChangeEventArgs e)
     {
         var selectedValue = e.Value.ToString();
@@ -267,6 +276,20 @@
                 if (studentpom.StudentID == ID)
                 {
                     student = studentpom;
+                }
+            }
+        }
+        if (Roles == "Parent")
+        {
+            foreach (var studentpom in ParentService.Parents)
+            {
+                if (studentpom.ParentID == ID)
+                {
+                    parent = studentpom;
+                    if (parent.LastSelectedChildId.Value != null)
+                    {
+                        selectedchildID = parent.LastSelectedChildId.Value;
+                    }
                 }
             }
         }

@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "wuAIYqwyo7kBWMt5llbUTQ9vSG86KfCwn7TLwn0q6ywnIx+1ZzHhsiSzmRZdTngq5Ja0OiSI5RBSul+TcuswLw==",
+  "dgSpecHash": "d+74qx/oPR4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\marci\\Projjekty\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
+  "projectFilePath": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\marci\\.nuget\\packages\\konscious.security.cryptography.argon2\\1.3.1\\konscious.security.cryptography.argon2.1.3.1.nupkg.sha512",
-    "C:\\Users\\marci\\.nuget\\packages\\konscious.security.cryptography.blake2\\1.1.1\\konscious.security.cryptography.blake2.1.1.1.nupkg.sha512",
-    "C:\\Users\\marci\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512"
+    "C:\\Users\\patry\\.nuget\\packages\\konscious.security.cryptography.argon2\\1.3.1\\konscious.security.cryptography.argon2.1.3.1.nupkg.sha512",
+    "C:\\Users\\patry\\.nuget\\packages\\konscious.security.cryptography.blake2\\1.1.1\\konscious.security.cryptography.blake2.1.1.1.nupkg.sha512",
+    "C:\\Users\\patry\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512"
   ],
   "logs": []
 }

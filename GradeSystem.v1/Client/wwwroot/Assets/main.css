@@ -4646,3 +4646,10 @@ a, .btn-link {
     display: flex;
     flex-direction: column;
 }
+
+.rz-form-field.rz-variant-outlined {
+    border: dashed 1px #B3CAD3 !important;
+    border-radius: 15px !important;
+    background-color: red !important;
+}
+

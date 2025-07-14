@@ -8,7 +8,7 @@ public class Class
     [Required]
     public int? TeacherID { get; set; }
     [Required]
-    [StringLength(50, MinimumLength = 2, ErrorMessage = "Class name cannot be longer than 50 characters. Required minimum length is 2.")]
+    [StringLength(50, MinimumLength = 1, ErrorMessage = "Class name cannot be longer than 50 characters. Required minimum length is 1.")]
     public string ClassName { get; set; } = string.Empty;
     public Teacher? Teacher { get; set; }
     [Required]

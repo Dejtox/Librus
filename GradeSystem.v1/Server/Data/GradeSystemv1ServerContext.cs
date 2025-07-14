@@ -43,5 +43,6 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Note> Note { get; set; }
         public DbSet<Exam> Exam { get; set; }
+        public DbSet<ChatMessage> ChatMessage { get; set; }
     }
 }

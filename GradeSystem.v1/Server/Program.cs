@@ -15,6 +15,9 @@ using GradeSystem.v1.Client.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using GradeSystem.v1.Server.Hubs;
+using GradeSystem.v1.Server.Providers;
+using Microsoft.AspNetCore.SignalR;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,8 +49,13 @@ builder.Services.AddAuthentication(o =>
 });
 builder.Services.AddEndpointsApiExplorer();
 
-
-
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
+builder.Services.AddResponseCompression(options =>
+    options.MimeTypes = ResponseCompressionDefaults
+    .MimeTypes
+    .Concat(new[] { "application/octet-stream" })
+);
 
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
@@ -69,7 +77,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 };
-
+app.MapHub<ChatHub>("/chathub");
 app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();

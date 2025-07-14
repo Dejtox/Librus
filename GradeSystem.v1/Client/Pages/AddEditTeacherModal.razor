@@ -2,6 +2,7 @@
 @inject IUserService UserService
 @inject DialogService DialogService
 @attribute [Authorize(Roles = "Teacher, Admin, Assistant")]
+@inject NavigationManager navigationManager
 
 <div class="search-container-modal">
     <RadzenTemplateForm TItem="Teacher" Data="teacher" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
@@ -47,10 +48,21 @@
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
-                <RadzenLabel Text="First Name" Style="font-weight:bold;width:10%;font-size:17px;" />
-                <RadzenPassword @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Password" />
+                <RadzenLabel Text="Password" Style="font-weight:bold;width:10%;font-size:17px;" />
+@*                 <RadzenFormField Style="width:40%;border-radius:15px;background-color:red;">
+                    <ChildContent>
+                        <RadzenPassword @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=visible />
+                        <RadzenTextBox @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible />
+                    </ChildContent>
+                    <End>
+                        <RadzenButton Icon="@(visible ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" />
+                    </End>
+                </RadzenFormField>    *@
+                <RadzenPassword @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenTextBox @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenButton Icon="@(visible ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" Style="margin-left:-50px;" />
                 <RadzenRegexValidator Component="Password" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="false" Style="" />
-                <RadzenLengthValidator Component="Password" Min="12" Text="Password should have at least 12 characters" Popup="false" Style="" />
+                <RadzenLengthValidator Component="Password" Min="8" Text="Password should have at least 8 characters" Popup="false" Style="" />
             </RadzenStack>
         </div>
         <div class="black-line">
@@ -61,18 +73,22 @@
             </RadzenStack>
         </div>
         <div class="button-container search-margin">
-            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-empty-button" type="submit" disabled=@disabled>Confirm</button>
             <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
         </div>
     </RadzenTemplateForm>
 </div>
+
+
 @code {
     [Parameter]
     public int? ID { get; set; }
     List<string> availableRoles = new List<string> { "Teacher", "Principal", "Librarian", "Secretary" };
     List<string> roles { get; set; } = new List<string>();
     Teacher teacher = new Teacher() { User=new User()};
-    string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{12,}$";
+    string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{8,}$";
+    bool visible = true;
+    bool disabled = false;
     protected override async Task OnParametersSetAsync()
     {
         if (ID != null)
@@ -90,15 +106,33 @@
     {
         if (ID == null)
         {
-            var userRoles = roles.Select(x => new Roles { Role = x }).ToList();
-            teacher.User.Roles = userRoles;
-            (teacher.User.PasswordSalt,teacher.User.PasswordHash) = PasswordSecurity.HashPassword(teacher.User.PasswordHash);
-            Console.WriteLine($"Salt:{teacher.User.PasswordSalt}, Hash:{teacher.User.PasswordHash}");
-            await TeacherService.CreateTeacherUser(teacher);
+            try
+            {
+                disabled = true;
+                var userRoles = roles.Select(x => new Roles { Role = x }).ToList();
+                teacher.User.Roles = userRoles;
+                (teacher.User.PasswordSalt, teacher.User.PasswordHash) = PasswordSecurity.HashPassword(teacher.User.PasswordHash);
+                Console.WriteLine($"Salt:{teacher.User.PasswordSalt}, Hash:{teacher.User.PasswordHash}");
+                await TeacherService.CreateTeacherUser(teacher);
+            }
+            finally
+            {
+                disabled = false;
+                navigationManager.NavigateTo("/AdminPage",true);
+            }
         }
         else
         {
-            await TeacherService.UpdateTeacher(teacher);
+            try
+            {
+                disabled = true;
+                await TeacherService.UpdateTeacher(teacher);
+            }
+            finally
+            {
+                disabled = false;
+                navigationManager.NavigateTo("/AdminPage", true);
+            }
         }
 
 
@@ -106,5 +140,9 @@
     private void InvalidSubmit()
     {
 
+    }
+    private void TogglePassword()
+    {
+        visible = !visible;
     }
 }

@@ -23,6 +23,7 @@ global using GradeSystem.v1.Client.Services.BookTypeService;
 global using GradeSystem.v1.Client.Services.UserLogService;
 global using GradeSystem.v1.Client.Services.LogRegisterService;
 global using GradeSystem.v1.Client.Services.ExamService;
+global using GradeSystem.v1.Client.Services.ChatMessageService;
 global using Radzen;
 
 using GradeSystem.v1.Client;
@@ -32,6 +33,7 @@ using Blazored.SessionStorage;
 using System.Reflection;
 using GradeSystem.v1.Client.Auth;
 using Syncfusion.Blazor;
+
 
 
 
@@ -66,6 +68,7 @@ builder.Services.AddScoped<ISubstituteService, SubstituteService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<ILogRegisterService, LogRegisterService>();
 builder.Services.AddScoped<IExamService, ExamService>();
+builder.Services.AddScoped<IChatMessageService, ChatMessageService>();
 builder.Services.AddScoped<UserLogService>();
 builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();

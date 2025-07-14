@@ -1,0 +1,65 @@
+﻿@page "/chat"
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider authStateProvider
+@inject IChatMessageService chatMessageService
+
+<h3>chat</h3>
+<input type="text" @bind="newMessage" placeholder="Type your message here..." />
+<button @onclick="Send">Send</button>
+
+<ul>
+    @foreach(var message in messages)
+    {
+    <li>@message.SenderID: @message.Content</li>
+    }
+</ul>
+
+@code {
+    private HubConnection hubConnection;
+    private List<ChatMessage> messages = new List<ChatMessage>();
+    private string newMessage="";
+    //do testu tak to pobranie id
+    private int senderID = 1;
+    private int receiverID = 2;
+    protected override async Task OnInitializedAsync()
+    {
+        messages = await chatMessageService.GetChatMessages(senderID, receiverID);
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(navigationManager.ToAbsoluteUri("/chathub"), options =>
+            {
+                options.AccessTokenProvider = async () =>
+                {
+                    var customAuthStateprovider = (CustomAuthenticationStateProvider)authStateProvider;
+                    return await customAuthStateprovider.GetToken();
+                };
+            })
+            .Build();
+        hubConnection.On<ChatMessage>("ReceiveMessage", (message) =>
+        {
+            messages.Add(message);
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    private async Task Send()
+    {
+        if (!string.IsNullOrWhiteSpace(newMessage))
+        {
+            var message = new ChatMessage
+            {
+
+                SenderID = senderID,
+                ReceiverID = receiverID,
+                Content = newMessage,
+                SentAt = DateTime.Now
+            };
+            //w try catch mozna
+            await chatMessageService.CreateChatMessage(message);
+            await hubConnection.SendAsync("SendMessage", message);
+            //messages.Add(message);
+            newMessage = string.Empty;
+        }
+    }   
+}

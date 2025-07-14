@@ -2,6 +2,8 @@
 @inject IEnrollmentService EnrollmentService
 @inject DialogService DialogService
 
+<div style="background: #A349A4; width: 100%; height: 3%;"></div>
+
 <RadzenDataGrid @ref="EnrollmentGrid" TItem="Enrollment" Data="EnrollmentService.EnrollmentsWithoutDuplicates" AllowFiltering="true" AllowColumnResize="true"
                 FilterMode="FilterMode.Advanced" PageSize="5" AllowPaging="true" AllowSorting="true" ColumnWidth="100px"
                 FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" TItem="Teacher" AllowAlternatingRows="false" ShowPagingSummary="true"

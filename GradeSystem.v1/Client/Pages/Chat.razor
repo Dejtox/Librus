@@ -1,4 +1,295 @@
-﻿@page "/chat"
+﻿<style>
+    .chat-app {
+        display: flex;
+        height: 600px;
+        border: 1px solid #ccc;
+        font-family: Arial, sans-serif;
+    }
+
+    .chat-sidebar {
+        width: 250px;
+        border-right: 1px solid #ccc;
+        background-color: #f8f8f8;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .chat-sidebar input {
+            margin: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+    .user-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+    }
+
+        .user-list li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+            .user-list li.active, .user-list li:hover {
+                background-color: #e0e0e0;
+            }
+
+    .chat-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+
+    .chat-header {
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+    }
+
+    .chat-messages {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .message {
+        max-width: 60%;
+        padding: 8px 12px;
+        border-radius: 16px;
+        font-size: 14px;
+    }
+
+        .message.sent {
+            align-self: flex-end;
+            background-color: #dcf8c6;
+        }
+
+        .message.received {
+            align-self: flex-start;
+            background-color: #e5e5ea;
+        }
+
+    .meta {
+        font-size: 10px;
+        color: gray;
+        text-align: right;
+    }
+
+    .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+    }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            margin-right: 8px;
+        }
+
+        .chat-input button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background-color: #0b93f6;
+            color: white;
+            cursor: pointer;
+        }
+
+            .chat-input button:hover {
+                background-color: #007ad9;
+            }
+
+    .no-chat-selected {
+        margin: auto;
+        font-size: 18px;
+        color: #888;
+    }
+
+</style>
+
+
+
+@page "/chat"
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider authStateProvider
+@inject IChatMessageService chatMessageService
+
+<h3>Chat Demo</h3>
+
+<div class="chat-app">
+    <div class="chat-sidebar">
+        <input type="text" placeholder="Search..." @bind="searchText" @bind:event="oninput" />
+        <ul class="user-list">
+            @foreach (var user in FilteredUsers)
+            {
+                <li @onclick="@(() => SelectUser(user))" class="@(user.ID == receiverID ? "active" : "")">
+                    <span>@user.Name</span>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="chat-main">
+        @if (receiverID != 0)
+        {
+            <div class="chat-header">
+                Chat with @selectedUser.Name
+            </div>
+
+            <div class="chat-messages">
+                @foreach (var message in messages)
+                {
+                    <div class="message @(message.SenderID == senderID ? "sent" : "received")">
+                        <div>@message.Content</div>
+                        <div class="meta">@message.SentAt.ToShortTimeString()</div>
+                    </div>
+                }
+            </div>
+
+            <div class="chat-input">
+                <input type="text" @bind="newMessage" @bind:event="oninput" placeholder="Type a message..." />
+                <button @onclick="Send">Send</button>
+            </div>
+        }
+        else
+        {
+            <div class="no-chat-selected">
+                Select a user to start chatting
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<User> availableUsers = new();
+    private List<ChatMessage> messages = new();
+    private int senderID = 1;
+    private int receiverID = 0;
+    private User selectedUser;
+    private string newMessage = "";
+    private string searchText = "";
+
+    protected override void OnInitialized()
+    {
+        var randomNames = new[] { "John", "Anna", "Mike", "Kate", "Tom", "Sara", "David", "Julia", "Chris", "Laura" };
+        var rnd = new Random();
+
+        for (int i = 1; i <= 10; i++)
+        {
+            availableUsers.Add(new User
+                {
+                    ID = i,
+                    Name = randomNames[rnd.Next(randomNames.Length)]
+                });
+        }
+    }
+
+    private IEnumerable<User> FilteredUsers =>
+        availableUsers.Where(u => string.IsNullOrWhiteSpace(searchText) || u.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+
+    private void SelectUser(User user)
+    {
+        receiverID = user.ID;
+        selectedUser = user;
+        messages = new List<ChatMessage>();
+
+        // Add some fake chat history
+        messages.Add(new ChatMessage { SenderID = receiverID, ReceiverID = senderID, Content = "O Hi there!", SentAt = DateTime.Now.AddMinutes(-5) });
+        messages.Add(new ChatMessage { SenderID = senderID, ReceiverID = receiverID, Content = "Obiwan Kenobi!", SentAt = DateTime.Now.AddMinutes(-4) });
+    }
+
+    private void Send()
+    {
+        if (!string.IsNullOrWhiteSpace(newMessage))
+        {
+            messages.Add(new ChatMessage
+                {
+                    SenderID = senderID,
+                    ReceiverID = receiverID,
+                    Content = newMessage,
+                    SentAt = DateTime.Now
+                });
+            newMessage = "";
+        }
+    }
+
+    public class User
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class ChatMessage
+    {
+        public int SenderID { get; set; }
+        public int ReceiverID { get; set; }
+        public string Content { get; set; }
+        public DateTime SentAt { get; set; }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+@page "/chat"
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider authStateProvider
 @inject IChatMessageService chatMessageService
@@ -63,3 +354,4 @@
         }
     }   
 }
+-->

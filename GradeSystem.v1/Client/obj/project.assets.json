@@ -976,11 +976,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.5": {
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/domergepatryk
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -2638,11 +2634,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.5": {
-=======
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
->>>>>>> origin/domergepatryk
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -4648,17 +4640,10 @@
         "tools/net7.0/illink.runtimeconfig.json"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.5": {
       "sha512": "h1210SGJTqvciPbSMEJjSRa4yc+zCEDeyoc9o3Fc5hScP9v+26INSOMLf4OwNw+oTz4nAwBo+rc5V4FQLWB1pQ==",
       "type": "package",
       "path": "microsoft.net.sdk.webassembly.pack/9.0.5",
-=======
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.7": {
-      "sha512": "HI/nGJnpSn8370os+GuviOnCM1RsXB3PQSX6u9RjApncJ5jZZf2qdFRQZM9tUjdDJ/ADmrzBxlV/hKp3CWYMDA==",
-      "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.7",
->>>>>>> origin/domergepatryk
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4688,12 +4673,8 @@
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
-<<<<<<< HEAD
         "build/browser.runtimeconfig.template.json",
         "microsoft.net.sdk.webassembly.pack.9.0.5.nupkg.sha512",
-=======
-        "microsoft.net.sdk.webassembly.pack.8.0.7.nupkg.sha512",
->>>>>>> origin/domergepatryk
         "microsoft.net.sdk.webassembly.pack.nuspec",
         "tools/net472/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
         "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll",
@@ -6836,16 +6817,10 @@
       "Microsoft.AspNetCore.Components.Authorization >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.5",
-<<<<<<< HEAD
       "Microsoft.AspNetCore.SignalR.Client >= 7.0.20",
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
       "Microsoft.NET.Sdk.WebAssembly.Pack >= 9.0.5",
-=======
-      "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23401.1",
-      "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23401.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.7",
->>>>>>> origin/domergepatryk
       "Radzen.Blazor >= 4.11.0",
       "Radzen.Design >= 0.0.2",
       "Smart.Blazor >= 15.1.1",
@@ -6856,39 +6831,23 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\pepci\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\fnowa\\.nuget\\packages\\": {},
->>>>>>> origin/domergepatryk
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "projectName": "GradeSystem.v1.Client",
       "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
       "packagesPath": "C:\\Users\\pepci\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Client\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "projectName": "GradeSystem.v1.Client",
-      "projectPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Client\\GradeSystem.v1.Client.csproj",
-      "packagesPath": "C:\\Users\\fnowa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Client\\obj\\",
->>>>>>> origin/domergepatryk
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\pepci\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\fnowa\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> origin/domergepatryk
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6904,13 +6863,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-<<<<<<< HEAD
             "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
               "projectPath": "C:\\Users\\pepci\\OneDrive\\Dokumenty\\Projects\\LibrusFinal\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
-=======
-            "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj": {
-              "projectPath": "C:\\Users\\fnowa\\Desktop\\Dziennik\\Librus\\GradeSystem.v1\\Shared\\GradeSystem.v1.Shared.csproj"
->>>>>>> origin/domergepatryk
             }
           }
         }
@@ -6991,11 +6945,7 @@
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-<<<<<<< HEAD
             "version": "[9.0.5, )",
-=======
-            "version": "[8.0.7, )",
->>>>>>> origin/domergepatryk
             "autoReferenced": true
           },
           "Radzen.Blazor": {
@@ -7049,11 +6999,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
->>>>>>> origin/domergepatryk
       }
     },
     "runtimes": {

@@ -1,0 +1,326 @@
+﻿@page "/AddSchool"
+@inject NavigationManager NavigationManager
+@inject ISchoolService SchoolService
+@inject DialogService DialogService
+@inject ITeacherService TeacherService
+
+<PageTitle>Add School</PageTitle>
+
+<div class="content-container">
+    <div class="content-header">
+        <p class="page-header">Add School</p>
+    </div>
+    <div class="search-container">
+        <div class="empty-row"></div>
+        <RadzenTemplateForm TItem="SchoolDTO" Data="schoolDTO" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+            <div hidden="@ShowUsers">
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Admin First Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Admin.FirstName" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="FirstNameA" />
+                        <RadzenLengthValidator Component="FirstNameA" Min="3" Text="First name should be at least 3 characters" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="FirstNameA" Max="100" Text="First name should be at most 100 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Admin Last Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Admin.LastName" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="LastNameA" />
+                        <RadzenLengthValidator Component="LastNameA" Min="3" Text="Last name should be at least 3 characters" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="LastNameA" Max="100" Text="Last name should be at most 100 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Admin Email" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Admin.Email" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="EmailA" />
+                        <RadzenEmailValidator Component="EmailA" Text="Please enter a valid email address" Popup="false" Style="" />
+                        <RadzenRequiredValidator Component="EmailA" Text="Email is required" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line"
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Admin Phone Number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Admin.PhoneNumber" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="PhoneNumberA" />
+                        <RadzenRegexValidator Component="PhoneNumberA" Text="Please enter a valid phone number" Pattern="^\d{9}$" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="PhoneNumberA" Min="9" Text="Phone number should have 9 digits" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Admin Login" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Admin.User.Login" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="LoginA" />
+                        <RadzenLengthValidator Component="LoginA" Min="4" Text="Login should be at least 4 characters" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="LoginA" Max="25" Text="Login should be at most 25 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Admin Password" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenPassword @bind-Value="schoolDTO.Admin.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="PasswordA" Visible=visibleA Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Admin.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="PasswordA" Visible=!visibleA Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                        <RadzenButton Icon="@(visibleA ? "visibility" : "visibility_off")" Click="TogglePasswordA" Variant="Variant.Text" Size="ButtonSize.Small" Style="margin-left:-50px;" />
+                        <RadzenRegexValidator Component="PasswordA" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="PasswordA" Min="8" Text="Password should have at least 8 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Principal First Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Principal.FirstName" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="FirstNameP" />
+                        <RadzenLengthValidator Component="FirstNameP" Min="3" Text="First name should be at least 3 characters" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="FirstNameP" Max="100" Text="First name should be at most 100 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Principal Last Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Principal.LastName" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="LastNameP" />
+                        <RadzenLengthValidator Component="LastNameP" Min="3" Text="Last name should be at least 3 characters" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="LastNameP" Max="100" Text="Last name should be at most 100 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Principal Email" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Principal.Email" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="EmailP" />
+                        <RadzenEmailValidator Component="EmailP" Text="Please enter a valid email address" Popup="false" Style="" />
+                        <RadzenRequiredValidator Component="EmailP" Text="Email is required" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line"
+                        <div class="search-margin l-margin">
+                            <RadzenLabel Text="Principal Phone Number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                            <RadzenTextBox @bind-Value="schoolDTO.Principal.PhoneNumber" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="PhoneNumberP" />
+                            <RadzenRegexValidator Component="PhoneNumberP" Text="Please enter a valid phone number" Pattern="^\d{9}$" Popup="false" Style="" />
+                            <RadzenLengthValidator Component="PhoneNumberP" Min="9" Text="Phone number should have 9 digits" Popup="false" Style="" />
+                        </div>
+                    </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Principal Login" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Principal.User.Login" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="LoginP" />
+                        <RadzenLengthValidator Component="LoginP" Min="4" Text="Login should be at least 4 characters" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="LoginP" Max="25" Text="Login should be at most 25 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Principal Password" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenPassword @bind-Value="schoolDTO.Principal.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="PasswordP" Visible=visibleP Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                        <RadzenTextBox @bind-Value="schoolDTO.Principal.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="PasswordP" Visible=!visibleP Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                        <RadzenButton Icon="@(visibleP ? "visibility" : "visibility_off")" Click="TogglePasswordP" Variant="Variant.Text" Size="ButtonSize.Small" Style="margin-left:-50px;" />
+                        <RadzenRegexValidator Component="PasswordP" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="false" Style="" />
+                        <RadzenLengthValidator Component="PasswordP" Min="8" Text="Password should have at least 8 characters" Popup="false" Style="" />
+                    </div>
+                </div>
+                <div class="button-container search-margin">
+                    <button class="rounded-empty-button" type="button" onclick="@(()=>Toggle(1))">Next</button>
+                </div>
+            </div>
+            <div hidden="@ShowSchool1">
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="School Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.Name" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="SchoolName" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Abbreviation" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.NameAbbreviation" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Abbreviation" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="School Type" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenDropDown @bind-Value="schoolDTO.School.SchoolType" Data="@schoolType" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;;" Name="SchoolType" Placeholder="Select school type" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="School Number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenNumeric @bind-Value="schoolDTO.School.SchoolNumber" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="SchoolNumber" />
+                    </div> 
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Education years" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenNumeric @bind-Value="schoolDTO.School.EducationYears" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="EducationYears" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Patron" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.Patron" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Patron" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Description" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.Description" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Description" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Location" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.Location" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Location" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="City" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.City" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="City" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Street" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.Street" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Street" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="House Number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.HouseNumber" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="HouseNumber" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Zip Code" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.ZipCode" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="ZipCode" />
+                    </div>
+                </div>
+                <div class="button-container search-margin">
+                    <button class="rounded-empty-button" type="button" onclick="@(()=>Toggle(2))">Next</button>
+                    <button class="rounded-filled-button" type="button" onclick="@(()=>Toggle(0))">Previous</button>
+                </div>
+            </div>
+            <div hidden="@ShowSchool2">
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Email" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.Email" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Email" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Phone Number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.PhoneNumber" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="PhoneNumber" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Fax" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenNumeric @bind-Value="schoolDTO.School.Fax" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Fax" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="NIP" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenNumeric @bind-Value="schoolDTO.School.NIP" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="NIP" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="REGON" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenNumeric @bind-Value="schoolDTO.School.REGON" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="REGON" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Bank" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenTextBox @bind-Value="schoolDTO.School.Bank" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Bank" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Bank Account" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenNumeric @bind-Value="schoolDTO.School.BankAccountNumber" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="BankAcc" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="OKE Number" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenNumeric @bind-Value="schoolDTO.School.OKENumber" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="OKE" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="Learning Form" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenDropDown @bind-Value="schoolDTO.School.LearningForm" Data="@learningForms" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Learning Form" Placeholder="Select learning form" />
+                    </div>
+                </div>
+                <div class="black-line">
+                    <div class="search-margin l-margin">
+                        <RadzenLabel Text="School Status" Style="font-weight:bold;width:10%;font-size:17px;" />
+                        <RadzenDropDown @bind-Value="schoolDTO.School.Status" Data="@statuses" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Status" Placeholder="Select school status" />
+                    </div>
+                </div>
+                <div class="button-container search-margin">
+                    <button class="rounded-empty-button" type="submit" disabled="@disabled">Confirm</button>
+                    <button class="rounded-filled-button" type="button" onclick="@(()=>Toggle(1))">Previous</button>
+                </div>
+            </div>
+        </RadzenTemplateForm>
+    </div>
+</div>
+
+@code {
+    SchoolDTO schoolDTO = new SchoolDTO() { Admin=new Teacher() { User=new User()},Principal=new Teacher() {User=new User() },School=new School()};
+    private bool ShowUsers = false;
+    private bool ShowSchool1 = true;
+    private bool ShowSchool2 = true;
+    bool visibleA = true;
+    bool visibleP = true;
+    bool disabled = false;
+    string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{8,}$";
+    List<string> schoolType = new List<string> { "Primary School", "Secondary School", "High School", "Vocational School" };
+    List<string> learningForms = new List<string> { "Full-time", "Part-time", "Extramural" };
+    List<string> statuses = new List<string> { "Public", "Private"};
+
+    private void TogglePasswordA()
+    {
+        visibleA = !visibleA;
+    }
+    private void TogglePasswordP()
+    {
+        visibleP = !visibleP;
+    }
+    private void Toggle(int x)
+    {
+        ShowUsers = x != 0;
+        ShowSchool1 = x != 1;
+        ShowSchool2 = x != 2;
+    }
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            //dialog moze byc tez 
+            disabled = true;
+            schoolDTO.Admin.User.Roles = new List<Roles> { new Roles { Role="Admin"} };
+            (schoolDTO.Admin.User.PasswordSalt, schoolDTO.Admin.User.PasswordHash) = PasswordSecurity.HashPassword(schoolDTO.Admin.User.PasswordHash);
+            await TeacherService.CreateTeacherUser(schoolDTO.Admin);
+            schoolDTO.Principal.User.Roles = new List<Roles> { new Roles { Role = "Principal" } };
+            (schoolDTO.Principal.User.PasswordSalt, schoolDTO.Principal.User.PasswordHash) = PasswordSecurity.HashPassword(schoolDTO.Principal.User.PasswordHash);
+            var teacher=await TeacherService.CreateTeacherUser(schoolDTO.Principal);
+            schoolDTO.School.PrincipalID = teacher.TeacherID;
+            schoolDTO.School.Principal = null;
+            await SchoolService.CreateSchool(schoolDTO.School);
+        }
+        catch (Exception ex)
+        {
+            // Handle the exception, e.g., log it or show a message to the user
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+        finally
+        {
+            disabled = false;
+        }
+    }
+    private async Task InvalidSubmit()
+    {
+        await DialogService.Alert("Incorrect data in form.", "Validation", new AlertOptions() { OkButtonText = "Ok", ShowClose = false, Style = "border-radius:20px;" });
+    }
+}

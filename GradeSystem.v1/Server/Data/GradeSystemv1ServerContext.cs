@@ -44,5 +44,7 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<Note> Note { get; set; }
         public DbSet<Exam> Exam { get; set; }
         public DbSet<ChatMessage> ChatMessage { get; set; }
+        public DbSet<AccessCode> AccessCode { get; set; }
+        public DbSet<School> School { get; set; }
     }
 }

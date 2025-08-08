@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Json;
 
 namespace GradeSystem.v1.Client.Services.TeacherService
@@ -20,9 +21,15 @@ namespace GradeSystem.v1.Client.Services.TeacherService
         {
             await _http.PostAsJsonAsync("api/Teachers", teacher );
         }
-        public async Task CreateTeacherUser(Teacher teacher)
+        public async Task<Teacher?> CreateTeacherUser(Teacher teacher)
         {
-            await _http.PostAsJsonAsync("api/Teachers/teacher_user", teacher);
+            var response= await _http.PostAsJsonAsync("api/Teachers/teacher_user", teacher);
+            if(response.IsSuccessStatusCode)
+            {
+                var teacherCreated = await response.Content.ReadFromJsonAsync<Teacher>();
+                return teacherCreated;
+            }
+            return null;
         }
         public async Task DeleteTeacher(int id)
         {

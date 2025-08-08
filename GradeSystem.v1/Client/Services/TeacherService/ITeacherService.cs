@@ -12,7 +12,7 @@
         Task UpdateTeacher(Teacher teacher);
         Task DeleteTeacher(int id);
         Task CreateTeacher(Teacher teacher);
-        Task CreateTeacherUser(Teacher teacher);
+        Task<Teacher?> CreateTeacherUser(Teacher teacher);
         Task GetAvailableTeachers();
         Task GetUnavailableTeachers();
         Task UpdateTeacherStatus();

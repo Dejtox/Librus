@@ -330,3 +330,4 @@ C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.pdb
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.genruntimeconfig.cache
 C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net7.0\ref\GradeSystem.v1.Server.dll
+C:\Users\patry\Desktop\ProjekDziennikinocnik\filbru\Librus\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.MvcApplicationPartsAssemblyInfo.cs

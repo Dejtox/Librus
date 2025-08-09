@@ -1,5 +1,6 @@
 @page "/teacherlibrary"
 @inject IBookService BookService
+@inject IBookTypeService BookTypeService
 @inject IStudentService StudentService
 @inject IBookServiceSupport BookServiceSupport
 @inject NavigationManager NavigationManager
@@ -9,35 +10,53 @@
 @using System.Text;
 @using System.Text.RegularExpressions;
 @attribute [Authorize(Roles = "Admin, Teacher, Librarian")]
+<div class="mainlibraryview">
+    <div class="booksdisplay">
+        @foreach (var segment in segments)
+        {
+            @for (int j = 0; j < 4; j=j)
+            {
+            string imgurl = "/Img/" + @booktype.Title + @booktype.Author + @booktype.Edition + ".jpg";
+                string imgrul = "https://www.justwatch.com/images/poster/308793523/s718/12-monkeys.jpg";
+                <div class="bookrow">
 
+                    <div class="book-grid">
+                        <div class="book-card">
+                            <img src=@imgurl alt ="Book Cover" class="book-cover" />
+                            <div class="book-buttons">
+                                <button class="reserve-btn" @onclick="() => EditBooks(segment.bookType.BookTypeID)">Edit</button>
+                                <button class="book-btn">Lend</button>
+                            </div>
+                            <div class="availability">
+                                <span class="badge available">@segment.bookType.AmountOfBooks / @segment.numberofbooks  Available</span>
+                                <span class="badge unavailable">@segment.numberofborowed / @segment.numberofbooks Borowed</span>
+                            </div>
+                            <div class="book-meta">
+                                <h4>@segment.bookType.Title</h4>
+                                <p>@segment.bookType.Author</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                
+            }
 
+        }
+    
+    </div>
+</div>
 <div class="mainlibraryview">
     <div class="booksdisplay">
         
         <div class="search-bar">
-            <input type="text" placeholder="Search" />
+            <input type="text" @oninput="FillTable" />
         </div>
 
-        <div class="book-grid">
-            <div class="book-card">
-                <img src="https://www.justwatch.com/images/poster/308793523/s718/12-monkeys.jpg" alt="Book Cover" class="book-cover" />
-                <div class="book-buttons">
-                    <button class="reserve-btn">Reserve</button>
-                    <button class="book-btn">Book</button>
-                </div>
-                <div class="availability">
-                    <span class="badge available">2/10 Available</span>
-                    <span class="badge unavailable">0/10 Available</span>
-                </div>
-                <div class="book-meta">
-                    <h4>Chlopcy z Placu Broni</h4>
-                    <p>Ferenc Molnar</p>
-                </div>
-            </div>
-        </div>
      
     </div>
-        <table class="styled-table">
+    @if (showbooks == true)
+    {
+    <table class="styled-table">
             <thead>
             <tr>
                 <th colspan="3" class="top-title">Title</th>
@@ -50,13 +69,67 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Active</td>
-                    <td><button class="edit-button">Edytyj</button></td>
+                    @foreach(var book in BookService.Books)
+                    {
+                        if (Selectedbooktypeid == book.BookTypeID)
+                        {                                               
+                            <td>@book.BookID</td>
+                            if(book.IsBoocked)
+                            {
+                                <td>Boocked</td>
+                            }
+                            else if(book.IsBorowed)
+                            {
+                                <td>Borowed</td>
+                            }
+                            else
+                            {
+                                <td>Available</td>
+                            }
+                            <td><button  @onclick="(()=>EditBook(book))" class="edit-button">Edytyj</button></td>
+                        }
+                    }
                 </tr>
             </tbody>
         </table>
+    }
+    else
+    {
+        <div class="sidelibrarybox">
+            <div class="buttonboxlib">
+                @if (yourbooks == true)
+                {
+                    <div><button>Borrow Books</button></div>
+                }
+                else
+                {
+                    <button disabled>Borrow Books</button>
+                }
+                @if (yourbooks == false)
+                {
+                    <div><button>Your Books</button></div>
+                }
+                else
+                {
+                    <button disabled>Your Books</button>
+                }
+                <div>
+                    <input @oninput="FillTable" />
+                    @btnText
+                </div>
+                <button class="searchforbook">Search</button>
+            </div>
+            <div class="bookview">
+                <img src="https://www.justwatch.com/images/poster/308793523/s718/12-monkeys.jpg" class="bookimgview">
+                <div class="booknameview">Twelve Monkeys</div>
+                <div class="bookauthorview">John Newman</div>
+                <div class="bookdescview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec viverra arcu, ut facilisis libero. Maecenas hendrerit tincidunt lorem, id iaculis metus vehicula in. Integer sit amet eros non tortor congue varius. Etiam condimentum ligula vel imperdiet commodo. Cras commodo mi at est porta dapibus. Fusce finibus scelerisque nulla, ut suscipit sapien fringilla et.</div>
+            </div>
 
+
+        </div>
+        
+    }
 
     </div>
     
@@ -66,8 +139,6 @@
 
     
 
-<BookAddEditPopup @ref="popupref"></BookAddEditPopup>
-<AddBookPopup @ref="popuprefadd"></AddBookPopup>
 @code {
 
     void GoToBookType()
@@ -103,6 +174,8 @@
     bool yourbooks = false;
     string btnText = string.Empty;
     int ID;
+    bool showbooks = false;
+    int? Selectedbooktypeid = null;
     Student student;
     BookType booktype;
     BookType booktype2;
@@ -110,8 +183,8 @@
     private List<Segmentt> segments = new List<Segmentt>();
     private class Segmentt
     {
-        public int Id { get; set; }
-        public bool IsCollapsed { get; set; }
+        public int? numberofbooks { get; set; }
+        public int? numberofborowed { get; set; }
         public BookType bookType { get; set; }
     }
 
@@ -121,44 +194,55 @@
         await CreateSegments();
     }
 
+
+
     async Task CreateSegments()
     {
-        int i = 0;
-
-        foreach (var booktype in BookServiceSupport.BookList)
+        if (segments.Count > 0)
         {
-            for (int z = 0; z < booktype.Books.Count; z++)
-            {
-                if (booktype.Books[z].StudentId != null)
+            segments.Clear();
+        }
+        foreach (var booktype in BookServiceSupport.LiblarianBookList)
+        {
+            var segment = new Segmentt
                 {
-                    booktype.Books[z].Student = await StudentService.GetStudentById((int)booktype.Books[z].StudentId);
+                    numberofbooks = 0,
+                    numberofborowed = 0,
+                    bookType = booktype
+                };
+
+            segments.Add(segment);
+        }
+        foreach (var book in BookService.Books)
+        {
+            foreach(var booktype in segments)
+            {
+                if(book.BookTypeID == booktype.bookType.BookTypeID)
+                {
+                    if (booktype.bookType.Books == null)
+                    {
+                        booktype.bookType.Books = new List<Book>();
+                    }
+                    booktype.numberofbooks += 1;
+                    if(book.IsBorowed)
+                    {
+                        booktype.numberofborowed += 1;
+                    }
                 }
             }
-            segments.Add(new Segmentt { Id = i, bookType = booktype, IsCollapsed = true });
-
-            i++;
-        }
-        i = 0;
-    }
-
-    private void ToggleCollapse(int segmentId)
-    {
-        var segment = segments.FirstOrDefault(s => s.Id == segmentId);
-        if (segment != null)
-        {
-            segment.IsCollapsed = !segment.IsCollapsed;
         }
     }
 
-    private string GetCollapseClass(int segmentId)
-    {
-        var segment = segments.FirstOrDefault(s => s.Id == segmentId);
-        return segment != null && segment.IsCollapsed ? "collapse" : "collapse show";
-    }
 
     async Task EditBook(Book book)
     {
         showedit(book);
+    }
+
+    async Task EditBooks(int booktypeid)
+    {
+        Selectedbooktypeid = booktypeid;
+        showbooks = true;
     }
 
     private void showedit(Book book)

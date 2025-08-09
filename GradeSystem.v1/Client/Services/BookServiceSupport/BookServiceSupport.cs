@@ -106,7 +106,6 @@ namespace GradeSystem.v1.Client.Services.BookServiceSupport
             }
             if (par == 0)
             {
-                await Console.Out.WriteLineAsync(title);
                 LiblarianBookList = TypeService.BookTypes;
             }
             else

@@ -23,17 +23,17 @@ namespace GradeSystem.v1.Client.Services.StudentService
         public async Task CreateStudent(Student student)
         {
             var result = await _http.PostAsJsonAsync("api/Students", student);
-            await SetStudents(result);
+            //await SetStudents(result);
         }
         public async Task CreateStudentUser(Student student)
         {
             var result = await _http.PostAsJsonAsync("api/Students/student_user", student);
-            await SetStudents(result);
+           // await SetStudents(result);
         }
         public async Task DeleteStudent(int id)
         {
             var result = await _http.DeleteAsync($"api/Students/{id}");
-            await SetStudents(result);
+            //await SetStudents(result);
         }
 
 
@@ -70,7 +70,7 @@ namespace GradeSystem.v1.Client.Services.StudentService
         public async Task UpdateStudent(Student student)
         {
             var result = await _http.PutAsJsonAsync($"api/Students/{student.StudentID}", student);
-            await SetStudents(result);
+            //await SetStudents(result);
         }
         private async Task SetStudents(HttpResponseMessage result)
         {

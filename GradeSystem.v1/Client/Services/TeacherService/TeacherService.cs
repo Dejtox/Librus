@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Json;
 
 namespace GradeSystem.v1.Client.Services.TeacherService
@@ -19,17 +20,20 @@ namespace GradeSystem.v1.Client.Services.TeacherService
         public async Task CreateTeacher(Teacher teacher)
         {
             await _http.PostAsJsonAsync("api/Teachers", teacher );
-            _navigationManager.NavigateTo("Teachers");
         }
-        public async Task CreateTeacherUser(Teacher teacher)
+        public async Task<Teacher?> CreateTeacherUser(Teacher teacher)
         {
-            await _http.PostAsJsonAsync("api/Teachers/teacher_user", teacher);
-            _navigationManager.NavigateTo("AdminPage");
+            var response= await _http.PostAsJsonAsync("api/Teachers/teacher_user", teacher);
+            if(response.IsSuccessStatusCode)
+            {
+                var teacherCreated = await response.Content.ReadFromJsonAsync<Teacher>();
+                return teacherCreated;
+            }
+            return null;
         }
         public async Task DeleteTeacher(int id)
         {
             await _http.DeleteAsync($"api/Teachers/{id}");
-            _navigationManager.NavigateTo("Teachers");
         }
 
         public async Task<Teacher> GetTeacherByID(int id)
@@ -58,7 +62,6 @@ namespace GradeSystem.v1.Client.Services.TeacherService
         public async Task UpdateTeacher(Teacher teacher)
         {
             await _http.PutAsJsonAsync($"api/Teachers/{teacher.TeacherID}", teacher );
-            _navigationManager.NavigateTo("Teachers");
         }
 
         public async Task GetAvailableTeachers()

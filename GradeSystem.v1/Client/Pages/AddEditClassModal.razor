@@ -8,7 +8,7 @@
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Class Name" Style="font-weight:bold;width:10%;font-size:17px;"/>
                 <RadzenTextBox @bind-Value="classs.ClassName" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="ClassName" />
-                <RadzenLengthValidator Component="ClassName" Min="3" Text="Class name should be at least 3 characters" Popup="false" Style="display:block;" />
+                <RadzenLengthValidator Component="ClassName" Min="1" Text="Class name should be at least 1 characters" Popup="false" Style="display:block;" />
                 <RadzenLengthValidator Component="ClassName" Max="50" Text="Class name should be at most 50 characters" Popup="false" Style="display:block;" />
             </RadzenStack>
         </div>

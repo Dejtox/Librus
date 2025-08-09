@@ -18,13 +18,13 @@ namespace GradeSystem.v1.Client.Services.ParentService
         public async Task CreateParent(Parent parent)
         {
             var result = await _http.PostAsJsonAsync("api/Parents", parent);
-            await SetParents(result);
+            //await SetParents(result);
 
         }
         public async Task CreateParentUser(Parent parent)
         {
             var result = await _http.PostAsJsonAsync("api/Parents/parent_user", parent);
-            await SetParents(result);
+            //await SetParents(result);
 
         }
         private async Task SetParents(HttpResponseMessage result)
@@ -35,7 +35,7 @@ namespace GradeSystem.v1.Client.Services.ParentService
         public async Task DeleteParent(int id)
         {
             var result = await _http.DeleteAsync($"api/Parents/{id}");
-            await SetParents(result);
+           // await SetParents(result);
         }
 
         public async Task<Parent> GetParentById(int id)

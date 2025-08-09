@@ -1,0 +1,37 @@
+﻿@page "/AccessCode"
+@inject ISchoolService SchoolService
+@inject NavigationManager NavigationManager
+
+<div class="search-container">
+    <div> 
+        <p>Enter access code</p>
+    </div>
+    <RadzenTemplateForm Submit="ConfirmAccessCode" TItem="string">
+        <RadzenStack Orientation="Radzen.Orientation.Vertical" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+            <RadzenTextBox @bind-Value="accessCode" Placeholder="Access Code" Style="font-weight:bold;width:8%;font-size:17px;" />
+            <button class="rounded-filled-button" type="submit" onclick="@ConfirmAccessCode">Confirm</button>
+        </RadzenStack>
+    </RadzenTemplateForm>
+    <RadzenText Visible="@visibile">Invalid access code</RadzenText>
+</div>
+
+@code {
+    string accessCode = "";
+    bool visibile = false;
+    //forma ostatecznie pewnie sie wywali bo nie lapie value za pierwszym i dodalem do przycisku i tak metode
+    private async Task ConfirmAccessCode()
+    {
+        var result = await SchoolService.UseAccessCode(accessCode);///uzyje sie ostatecznie po wizardzie
+        if(result.StatusCode==System.Net.HttpStatusCode.NoContent)
+        {
+            visibile = false;
+            NavigationManager.NavigateTo("AddSchool");
+        }
+        else
+        {
+            visibile = true;
+            
+        }
+
+    }
+}

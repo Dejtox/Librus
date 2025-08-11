@@ -25,14 +25,6 @@
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
-                <RadzenLabel Text="Pesel" Style="font-weight:bold;width:15%;font-size:17px;" />
-                <RadzenTextBox @bind-Value="student.Pesel" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Pesel" />
-                <RadzenLengthValidator Component="Pesel" Min="11" Max="11"Text="Pesel should have 11 digits" Popup="false" Style="" />
-                <RadzenRegexValidator Component="Pesel" Text="Please enter a valid pesel number" Pattern="^\d{11}$" Popup="false" Style="" />
-            </RadzenStack>
-        </div>
-        <div class="black-line">
-            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Address" Style="font-weight:bold;width:15%;font-size:17px;" />
                 <RadzenTextBox @bind-Value="student.Address" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Email" />
                 <RadzenEmailValidator Component="Email" Text="Please enter a valid email address" Popup="false" Style="" />

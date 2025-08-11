@@ -1,8 +1,10 @@
 ﻿@page "/gradesviewteacher"
+@page "/gradesviewteacher{id:int}"
 @using System.Security.Claims
 @inject IStudentService StudentService
 @inject IGradeService GradeService
 @inject ISubjectService SubjectService
+@inject IClassService ClassService
 @inject IUserService UserService
 @inject ITeacherService TeacherService
 @inject IJSRuntime js
@@ -12,10 +14,31 @@
 <div class="Ttableborder">
     <div class="Tstudentinfo">
 
-       <div class="Tstudentname">Grade (class)</div>
+       <div class="Tstudentname">Class
+            <select value="@selectedClassId" @onchange="HandleClassChange" class="grade-select">
+                <option value="0">Select Grade</option>
+                @foreach (var classItem in ClassService.Classes)
+                    {
+                        <option value="@classItem.ClassID">@classItem.ClassName</option>
+                    }
+                
+            </select>
+       </div>
        @if(teacher.TeacherID != null)
         {
-            <div class="Tstudentclass">Subject (subject)</div>
+            <div class="Tstudentclass">Subject
+                <select value="@selectedsubjectId" @onchange="HandlesubjectChange" class="grade-select">
+                    <option value="0">Select Grade</option>
+                    @foreach (var classItem in SubjectService.Subjects)
+                    {
+                        if (teacher.TeacherID == classItem.SubjectID)
+                        {
+                            <option value="@classItem.SubjectID">@classItem.SubjectName</option>
+                        }
+                    }
+
+                </select>
+            </div>
         }
         
 
@@ -73,18 +96,16 @@
 
 
 @code {
-    [Parameter]
-    public int? ID { get; set; }
 
+
+    int selectedClassId;
+    int selectedsubjectId;
     string color = "";
-
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationState { get; set; }
-    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+    int ID;
+    string Roles;
 
     Teacher teacher = new Teacher();
     User user = new User();
-
     string btnText = string.Empty;
     protected override async Task OnInitializedAsync()
     {
@@ -92,28 +113,13 @@
         await StudentService.GetStudents();
         await GradeService.GetGrades();
         await TeacherService.GetTeachers();
+        await ClassService.GetClasses();
         await SubjectService.GetSubjects();
         await GetClaimsGetID();
-        teacher = await TeacherService.GetTeacherByID((int)IDU);
     }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        if (ID == null)
-        {
-            await TeacherService.GetTeachers();
-        }
-        else
-        {
-            teacher = await TeacherService.GetTeacherByID((int)ID);
-            user = await UserService.GetUserByID(teacher.UserID);
-        }
-
-        await GetClaimsGetID();
-        await base.OnParametersSetAsync();
-    }
-
-    int IDU;
     private async Task GetClaimsGetID()
     {
         var user = (await authenticationState).User;
@@ -121,9 +127,43 @@
         {
             if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
             {
-                IDU = Int32.Parse(claim.Value);
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
             }
         };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+        }
+    }
+
+
+    private async Task HandleClassChange(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out int classId))
+        {
+            selectedClassId = classId;
+            // await LoadStudents();
+        }
+    }
+
+    private async Task HandlesubjectChange(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out int subId))
+        {
+            selectedsubjectId = subId;
+            // await LoadStudents();
+        }
     }
 
     void ShowGrade(int id)

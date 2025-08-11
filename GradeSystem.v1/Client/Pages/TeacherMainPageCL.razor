@@ -1,5 +1,7 @@
 ﻿@page "/teachermainpagecl"
+@inject IEnrollmentService EnrollmentService
 @inject NavigationManager NavigationManager
+@inject ITeacherService TeacherService
 @attribute [Authorize(Roles = "Admin, Teacher, Secretary, Librarian, Principal")]
 
 <div class="CLtable">
@@ -60,5 +62,58 @@
     </div>
 </div>
 @code {
+    int ID;
+    string Roles;
+    Teacher teacher;
+    protected override async Task OnInitializedAsync()
+    {
+        @EnrollmentService.GetEnrollments()
+        ;
+        await GetClaimsGetID();
+        await Finderolment();
+    }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
 
+    private async Task  Finderolment()
+    {
+        DateTime dateTimenow = DateTime.Now;
+        foreach(var enr in EnrollmentService.Enrollments)
+        {
+            if(enr.Subject.TeacherID == teacher.TeacherID)
+            {
+                if(enr.Date.)
+                {
+                    
+                }
+            }
+        }
+    }
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                ID = Int32.Parse(claim.Value);
+            }
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                Roles = claim.Value;
+            }
+        };
+
+        if (Roles == "Teacher")
+        {
+            foreach (var teacherpom in TeacherService.Teachers)
+            {
+                if (teacherpom.TeacherID == ID)
+                {
+                    teacher = teacherpom;
+                }
+            }
+        }
+    }
 }

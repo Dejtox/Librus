@@ -15,12 +15,8 @@ public class Student
     [Required]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "First name cannot be longer than 100 characters. Required minimum length is 2.")]
     public string FirstName {get; set; } = string.Empty;
-    [Required]
-    [StringLength(11, MinimumLength = 11, ErrorMessage = "11 numbers needed")]
-    public string Pesel { get; set; } = string.Empty;
-    [Required]
-    [EmailAddress(ErrorMessage = "Invalid Email Address")]
-    public string Address { get; set; } = string.Empty;
+
+
     [Required]
     public int UserID { get; set; }
     [Required]
@@ -28,7 +24,7 @@ public class Student
     [Required]
     [StringLength(50, MinimumLength = 2, ErrorMessage = "Language cannot be longer than 50 characters. Required minimum length is 2.")]
     public string Additional_Language { get; set; } = string.Empty;
-
+    public string? Address { get; set; } = string.Empty;
     public Parent? Parent {get; set; }
     public Class? Class {get; set; }
     public User? User { get; set; }

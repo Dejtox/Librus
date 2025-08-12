@@ -9,64 +9,47 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationMenager
 
-<div class="Ttableborder">
-    <div class="Tstudentinfo">
-
-       <div class="Tstudentname">Grade (class)</div>
-       @if(teacher.TeacherID != null)
-        {
-            <div class="Tstudentclass">Subject (subject)</div>
-        }
-        
-
+<div class="TT-container">
+    <div class="TT-header">
+        <span>Grade (class)</span>
+        <span>Subject (subject)</span>
     </div>
-    <div class="Tgradestable">
-        <div class="Tgradeheader">
-            <button class="Taddgrade"><div class="gg-add"></div></button>
-            <div class="Tnumber">No.</div>
-            <div class="Tname">Name</div>
-            <div class="Tterm">
-                <div class="Ttop">Term 1</div>
-                <div class="Tbot">
-                    <div class="headergrade">Grades</div>
-                    <div class="gst">Av.</div>
-                    <div class="gst">I</div>
-                </div>
-            </div>
-            <div class="Tterm">
-                <div class="Ttop">Term 2</div>
-                <div class="Tbot">
-                    <div class="headergrade">Grades</div>
-                    <div class="gst">Av.</div>
-                    <div class="gst">II</div>
-                </div>
-            </div>
-            <div class="Teoy">
-                <div class="Ttop">EOY</div> 
-                <div class="Tbot">av.</div>
-            </div>
 
-        </div>
-        <div class="Tgradesdisplay">
-           @for(int i = 1; i<21; i++)
-           {
-                <div class="Tgraderow">
-                    <button class="Taddgrade Taddgrade--d"><div class="gg-add"></div></button>
-                    <div class="Tnumber Tnumber--d">1</div>
-                    <div class="Tname">Name</div>
-                    <div class="Tgrade">
-                        <div class="Tgradevalue">2</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
-                    </div>
-                    <div class="Tgrade">
-                        <div class="Tgradevalue">3</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
-                    </div>
-                    <div class="Tfinalgrade">2.5</div>
+    <div class="TT-table">
+        <div class="TT-row TT-row--head">
+            <button class="TT-add"><div class="TT-icon-add"></div></button>
+            <div>No.</div>
+            <div>Name</div>
+            <div class="TT-term">
+                <div class="TT-term-title">Term 1</div>
+                <div class="TT-term-cols">
+                    <span>Grades</span>
+                    <span>Av.</span>
+                    <span>I</span>
                 </div>
-           }
+            </div>
+            <div class="TT-term">
+                <div class="TT-term-title">Term 2</div>
+                <div class="TT-term-cols">
+                    <span>Grades</span>
+                    <span>Av.</span>
+                    <span>II</span>
+                </div>
+            </div>
+            <div class="TT-final">
+                <span>EOY</span>
+                <span>av.</span>
+            </div>
+        </div>
+
+        <!-- Example rows -->
+        <div class="TT-row">
+            <button class="TT-add TT-add--row"><div class="TT-icon-add"></div></button>
+            <div>1</div>
+            <div>Name</div>
+            <div class="TT-grades">2 <span>2</span> <span>2</span></div>
+            <div class="TT-grades">3 <span>3</span> <span>3</span></div>
+            <div class="TT-final">2.5</div>
         </div>
     </div>
 </div>

@@ -1086,9 +1086,40 @@ a, .btn-link {
     height: 40px;
 }
 
-.logoutbutton:hover{
-   
+.button {
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
+
+.button-login {
+    background-color: #FFD43B; 
+    color: #1E1E1E; 
+    border: none;
+}
+
+    .button-login:hover {
+        background-color: #ffcc00;
+    }
+
+.button-logout {
+    background-color: transparent;
+    color: #FFD43B;
+    border: 2px solid #FFD43B;
+}
+
+    .button-logout:hover {
+        background-color: #FFD43B;
+        color: #1E1E1E;
+    }
+
+
 
 .main-menutextcomponet {
     display: flex;
@@ -1136,12 +1167,32 @@ a, .btn-link {
 }
 
 .header-element-top {
-    color: var(--mainpagetext);
     display: flex;
     border: solid 2px;
     border-radius: 10px;
-    padding: 8px;
+    padding: 10px;
+    margin-right: 20px;
 }
+
+.header-nav-test {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+    .header-nav-test:hover {
+        color: #FFD23F;
+        text-decoration: none;
+    }
+
+    .header-nav-test.active {
+        color: #FFD23F;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        gap: 5px;
+    }
+
 
 .header-menu {
     justify-content: right;
@@ -2323,7 +2374,6 @@ a, .btn-link {
     position: relative;
     width: 18px; 
     border-radius: 2px;
-    color: white;
 }
 
     .gg-mail::after {
@@ -2492,32 +2542,45 @@ a, .btn-link {
     box-sizing: border-box;
     position: relative;
     display: block;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border: 2px solid;
-    transform: scale(var(--ggs, 1));
-    border-radius: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-    .gg-add::after,
-    .gg-add::before {
+    .gg-add::before,
+    .gg-add::after {
         content: "";
-        display: block;
-        box-sizing: border-box;
         position: absolute;
-        width: 10px;
-        height: 2px;
         background: currentColor;
-        border-radius: 5px;
-        top: 8px;
-        left: 4px;
+        border-radius: 2px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .gg-add::before {
+        width: 12px;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .gg-add::after {
         width: 2px;
-        height: 10px;
-        top: 4px;
-        left: 8px;
+        height: 12px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .gg-add:hover {
+        background-color: var(--accent, #ffd43b);
+        color: white;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        transform: scale(1.1);
     }
 
 
@@ -3356,191 +3419,145 @@ a, .btn-link {
 */
 
 
+:root {
+    --TT-border: #dcdcdc;
+    --TT-header-bg: #f1f1f1;
+    --TT-accent: #ffd43b;
+}
 
-.Ttableborder {
-    display: flex;
-    width: 95%;
-    height: 95%;
-    border: solid;
-    border-radius: 10px;
-    margin: 1%;
-    flex-direction: column;
-    align-items: center;
+/* Container */
+.TT-container {
+    border: 1px solid var(--TT-border);
+    border-radius: 8px;
     overflow: hidden;
-    border-color: #A8C2CD;
+    width: 95%;
+    margin: 1rem auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
-.Tgradestable {
-    height: 90%;
-    width: 90%;
-    border: solid 2px;
-    border-radius: 10px;
-    margin-top: 1vh;
-    overflow: auto;
-    border-color: #DBDBDB;
-}
-
-.Tname {
-    height: 100%;
-    width: 20%;
-    align-items: center;
-    flex-direction: column;
-    border-bottom: solid 1px;
-    display: flex;
-    justify-content: center;
-    border-color: #DBDBDB;
-}
-
-.Tterm {
-    height: 100%;
-    width: 31%;
-    border-left: solid 1px;
-    border-right: solid 1px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    border-color: white;
-}
-
-.Teoy {
-    height: 100%;
-    width: 10%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.Tnumber {
-    height: 100%;
-    width: 8%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #DBDBDB;
-    border-left: solid 1px;
-    border-right: solid 1px;
-    border-color: white;
-}
-
-.Tnumber--d {
-    background-color: white;
-    border-bottom: solid 1px;
-    border-left: solid 1px;
-    border-right: solid 1px;
-    border-color: #DBDBDB;
-    width : 8%;
-}
-
-.Taddgrade {
-    height: 100%;
-    width: 5%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #DBDBDB;
-    border-color: #DBDBDB;
-    border-right: solid 1px white;
-    border-bottom: solid 1px #DBDBDB;
-}
-
-.Taddgrade--d {
-    background-color: white;
-    border-color: #DBDBDB;
-    border-right: solid 1px white;
-    border-left: solid 1px white;
-    border-bottom: solid 1px #DBDBDB;
-    border-top: solid 1px white;
-}
-
-.Tgradeheader {
-    height: 10%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    border-bottom: solid 1px;
-    background-color: #DBDBDB;
-    border-color: #DBDBDB;
-}
-
-.Tgradesdisplay {
-    height: 90%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.Tstudentinfo {
-    height: 7%;
-    width: 100%;
+/* Top info header */
+.TT-header {
+    background-color: #2c3e50;
     color: white;
+    padding: 0.5rem 1rem;
     font-weight: bold;
     display: flex;
-    background-color: var(--primarymainmenu);
-    justify-content: left;
+    gap: 1rem;
+}
+
+/* Table layout */
+.TT-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.TT-row {
+    display: grid;
+    grid-template-columns: 50px 50px 1fr 150px 150px 80px;
     align-items: center;
-    border-bottom: solid 2px;
-    border-color: #A8C2CD;
+    border-bottom: 1px solid var(--TT-border);
 }
 
-.Tstudentname {
-    margin-left: 2%;
-    margin-right: 2%;
+.TT-row--head {
+    background: var(--TT-header-bg);
+    font-weight: bold;
 }
 
-.Tstudentclass {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.Ttop {
-    width: 100%;
+/* Term section */
+.TT-term {
     display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-left: 1px solid var(--TT-border);
+}
+
+.TT-term-title {
+    border-bottom: 1px solid var(--TT-border);
+    background: var(--TT-header-bg);
+}
+
+.TT-term-cols {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Grades cells */
+.TT-grades {
+    display: flex;
+    justify-content: space-around;
+    border-left: 1px solid var(--TT-border);
+}
+
+.TT-final {
+    text-align: center;
+    border-left: 1px solid var(--TT-border);
+}
+
+/* Add button styles */
+.TT-add {
+    background: var(--TT-header-bg);
+    border: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    border-bottom: solid 1px;
-    border-color: white;
+    cursor: pointer;
 }
 
-.Tbot {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
+.TT-add--row {
+    background: white;
 }
 
-.Tgrade {
-    width: 31%;
-    display: flex;
-    flex-direction: row;
-    border-left: solid 1px;
-    border-right: solid 1px;
-    border-bottom: solid 1px;
-    border-color: #DBDBDB;
+.TT-add:hover {
+    background: var(--TT-accent);
 }
 
-.Tgradevalue{
-    width: 70%;
+/* Plus icon */
+.TT-icon-add {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--TT-accent);
+    border-radius: 50%;
+    background-color: white;
+    color: var(--TT-accent);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.Tgraderow {
-    display: flex;
-    flex-direction: row;
-}
+    .TT-icon-add::before,
+    .TT-icon-add::after {
+        content: "";
+        position: absolute;
+        background: currentColor;
+        border-radius: 2px;
+        transition: background-color 0.2s ease-in-out;
+    }
 
-.Tsubjectgrade {
-    width: 20%;
-    border-bottom: solid 1px;
-    align-content: center;
-    display: flex;
-    justify-content: center;
-    border-color: #DBDBDB;
-}
+    .TT-icon-add::before {
+        width: 12px;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.Tfinalgrade {
-    width: 10%;
-    border-bottom: solid 1px;
-    border-color: #DBDBDB;
+    .TT-icon-add::after {
+        width: 2px;
+        height: 12px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+.TT-add:hover .TT-icon-add {
+    background-color: var(--TT-accent);
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    transform: scale(1.1);
 }
 
 

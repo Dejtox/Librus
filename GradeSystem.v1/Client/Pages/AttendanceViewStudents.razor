@@ -7,6 +7,9 @@
 @inject ILessonsHoursService LessonsHoursService
 
 @* to nie prowadzi do zadnej strony *@
+@{
+    int studentCounter = 1;
+}
 
 <div class="Atableborder">
     <div class="Astudentinfo">
@@ -51,7 +54,8 @@
             @foreach (var student in Stdinselectedclass)
             {
                 <div class="Agraderow">
-                    <div class="Anumber Anumber--d">1</div>
+                    <div class="Anumber Anumber--d">@studentCounter.</div>
+                    @{studentCounter++;}
                     <div class="Aname">@student.LastName @student.FirstName</div>
                     @for (int j = 0; j < 7; j++)
                     {

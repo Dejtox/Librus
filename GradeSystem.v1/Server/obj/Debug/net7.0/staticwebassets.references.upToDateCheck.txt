@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
@@ -43,3 +44,18 @@ C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Client\
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+=======
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
+>>>>>>> domergepatryk

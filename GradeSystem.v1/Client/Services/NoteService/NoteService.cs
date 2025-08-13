@@ -21,13 +21,13 @@ namespace GradeSystem.v1.Client.Services.NoteService
         {
 
             await _http.PostAsJsonAsync("api/Notes", notes);
-            _navigationManager.NavigateTo("Notes");
+            //_navigationManager.NavigateTo("Notes");
         }
 
         public async Task DeleteNote(int id)
         {
             await _http.DeleteAsync($"api/Notes/{id}");
-            _navigationManager.NavigateTo("Notes");
+            //_navigationManager.NavigateTo("Notes");
         }
 
         public async Task<Note> GetNoteByID(int id)
@@ -48,7 +48,7 @@ namespace GradeSystem.v1.Client.Services.NoteService
         public async Task UpdateNote(Note notes)
         {
             await _http.PutAsJsonAsync($"api/Notes/{notes.NoteID}", notes);
-            _navigationManager.NavigateTo("Notes");
+            //_navigationManager.NavigateTo("Notes");
         }
 
         public async Task GetTeachers()

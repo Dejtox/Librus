@@ -1599,7 +1599,8 @@ a, .btn-link {
 
 .RGdata {
     border: 1px solid;
-    width: 75%;
+    width: 87%;
+    height: 16%;
     border-radius: 10px;
     display: flex;
     margin-right: 5%;
@@ -1615,13 +1616,15 @@ a, .btn-link {
 
 .RGgrade {
     border: 1px solid;
-    width: 25%;
+    width: 13%;
+    height: 16%;
     border-radius: 10px;
     text-align: center;
     margin-left: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
 }
 
 
@@ -4398,6 +4401,377 @@ a, .btn-link {
     background-color: white;
     border-radius: 10px;
     border-color: #FFD23F;
+}
+
+/*NEW SINGLE STUDENT ATTENDANCE*/
+/* Main container styling */
+.Atableborder {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+/* Student info section */
+.Astudentinfo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Astudentname {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+    .Astudentname:last-child {
+        margin-bottom: 0;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+/* Subject attendance box */
+.subatbox {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+}
+
+/* Main attendance table */
+.studentattendancetable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table header */
+.studentattendanceheader {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+    .studentattendanceheader th {
+        color: white;
+        font-weight: 600;
+        padding: 15px 10px;
+        text-align: center;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+.sadate {
+    width: 200px;
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.salessonnumber {
+    width: auto;
+}
+
+/* Table rows */
+.satablerow {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+    .satablerow:hover {
+        background-color: #f8f9fa;
+    }
+
+    .satablerow:last-child {
+        border-bottom: none;
+    }
+
+/* Date column */
+.satabledate {
+    padding: 12px 15px;
+    font-weight: 500;
+    color: #495057;
+    background: #f8f9fa;
+    border-right: 2px solid #dee2e6;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+/* Attendance cells container */
+.satableattendance {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px;
+    align-items: center;
+    min-height: 50px;
+}
+
+    .satableattendance td {
+        margin: 0;
+        padding: 0;
+    }
+
+/* Attendance status squares */
+.greensquare, .redsquare, .bluesquare, .yellowsquare {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    margin: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.greensquare {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+    .greensquare:hover {
+        background: linear-gradient(135deg, #218838, #1ea776);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+.redsquare {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+}
+
+    .redsquare:hover {
+        background: linear-gradient(135deg, #c82333, #dc2f2f);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+.bluesquare {
+    background: linear-gradient(135deg, #007bff, #17a2b8);
+}
+
+    .bluesquare:hover {
+        background: linear-gradient(135deg, #0056b3, #138496);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+.yellowsquare {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+}
+
+    .yellowsquare:hover {
+        background: linear-gradient(135deg, #e0a800, #e8590c);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+/* Tooltip styling */
+.tooltiptextg, .tooltiptextr, .tooltiptextb, .tooltiptexty {
+    visibility: hidden;
+    width: 200px;
+    background-color: rgba(33, 37, 41, 0.95);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+    line-height: 1.4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+    .tooltiptextg::after, .tooltiptextr::after, .tooltiptextb::after, .tooltiptexty::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(33, 37, 41, 0.95) transparent transparent transparent;
+    }
+
+.greensquare:hover .tooltiptextg,
+.redsquare:hover .tooltiptextr,
+.bluesquare:hover .tooltiptextb,
+.yellowsquare:hover .tooltiptexty {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Button container */
+.buttonatbox {
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Back button */
+.backbutton {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .backbutton:hover {
+        background: linear-gradient(135deg, #5a6268, #343a40);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .backbutton:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+/* Add attendance button (commented out but styled for future use) */
+.addattendancebutton {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+}
+
+    .addattendancebutton:hover {
+        background: linear-gradient(135deg, #218838, #1ea776);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+/* Loading state */
+.loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+    .loading::after {
+        content: '...';
+        animation: dots 2s infinite;
+    }
+
+@keyframes dots {
+    0%, 20% {
+        color: transparent;
+        text-shadow: .25em 0 0 transparent, .5em 0 0 transparent;
+    }
+
+    40% {
+        color: #6c757d;
+        text-shadow: .25em 0 0 transparent, .5em 0 0 transparent;
+    }
+
+    60% {
+        text-shadow: .25em 0 0 #6c757d, .5em 0 0 transparent;
+    }
+
+    80%, 100% {
+        text-shadow: .25em 0 0 #6c757d, .5em 0 0 #6c757d;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .Atableborder {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .Astudentinfo {
+        padding: 15px;
+    }
+
+    .Astudentname {
+        font-size: 16px;
+    }
+
+    .studentattendancetable {
+        font-size: 12px;
+    }
+
+    .satabledate {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .greensquare, .redsquare, .bluesquare, .yellowsquare {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .studentattendanceheader th {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+
+    .satableattendance {
+        gap: 2px;
+        padding: 6px;
+    }
+
+    .tooltiptextg, .tooltiptextr, .tooltiptextb, .tooltiptexty {
+        width: 150px;
+        margin-left: -75px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .greensquare, .redsquare, .bluesquare, .yellowsquare {
+        width: 25px;
+        height: 25px;
+        font-size: 11px;
+    }
+
+    .sadate {
+        width: 150px;
+    }
+
+    .satabledate {
+        font-size: 11px;
+    }
 }
 
 

@@ -479,6 +479,7 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.ChatMessageController",
+<<<<<<< HEAD
     "Method": "GetChatMessage",
     "RelativePath": "api/ChatMessage/{id}",
     "HttpMethod": "GET",
@@ -505,6 +506,8 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.ChatMessageController",
+=======
+>>>>>>> domergepatryk
     "Method": "GetChatMessages",
     "RelativePath": "api/ChatMessage/{senderID}/{receiverID}",
     "HttpMethod": "GET",
@@ -780,6 +783,7 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.EnrollmentsController",
+<<<<<<< HEAD
     "Method": "PostManyEnrollments",
     "RelativePath": "api/Enrollments/create_many",
     "HttpMethod": "POST",
@@ -806,6 +810,8 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.EnrollmentsController",
+=======
+>>>>>>> domergepatryk
     "Method": "GetEnrollmentsByClassID",
     "RelativePath": "api/Enrollments/get_enrollments_by_classid",
     "HttpMethod": "GET",
@@ -2202,6 +2208,7 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.SchoolController",
+<<<<<<< HEAD
     "Method": "CreateDayOff",
     "RelativePath": "api/School/create_dayoff",
     "HttpMethod": "POST",
@@ -2274,6 +2281,8 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.SchoolController",
+=======
+>>>>>>> domergepatryk
     "Method": "UseAccessCode",
     "RelativePath": "api/School/use_access_code/{accessCode}",
     "HttpMethod": "PUT",

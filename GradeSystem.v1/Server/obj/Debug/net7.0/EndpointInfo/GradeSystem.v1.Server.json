@@ -925,6 +925,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/ChatMessage/{id}": {
       "get": {
         "tags": [
@@ -965,6 +966,8 @@
         }
       }
     },
+=======
+>>>>>>> domergepatryk
     "/api/Classes": {
       "get": {
         "tags": [
@@ -1422,6 +1425,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Enrollments/create_many": {
       "post": {
         "tags": [
@@ -1488,6 +1492,8 @@
         }
       }
     },
+=======
+>>>>>>> domergepatryk
     "/api/Enrollments/get_enrollments_by_classid": {
       "get": {
         "tags": [
@@ -3857,6 +3863,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/School/create_dayoff": {
       "post": {
         "tags": [
@@ -4009,6 +4016,8 @@
         }
       }
     },
+=======
+>>>>>>> domergepatryk
     "/api/SchoolTrip": {
       "get": {
         "tags": [
@@ -5814,6 +5823,7 @@
         },
         "additionalProperties": false
       },
+<<<<<<< HEAD
       "DayOff": {
         "type": "object",
         "properties": {
@@ -5835,6 +5845,12 @@
       "Enrollment": {
         "required": [
           "classID",
+=======
+      "Enrollment": {
+        "required": [
+          "classID",
+          "classRoom",
+>>>>>>> domergepatryk
           "date",
           "endDate",
           "enrollmentID",
@@ -5871,8 +5887,14 @@
             "format": "date-time"
           },
           "classRoom": {
+<<<<<<< HEAD
             "type": "string",
             "nullable": true
+=======
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+>>>>>>> domergepatryk
           },
           "subject": {
             "$ref": "#/components/schemas/Subject"
@@ -6720,10 +6742,13 @@
             "minLength": 2,
             "type": "string"
           },
+<<<<<<< HEAD
           "grade": {
             "type": "string",
             "nullable": true
           },
+=======
+>>>>>>> domergepatryk
           "teacher": {
             "$ref": "#/components/schemas/Teacher"
           }

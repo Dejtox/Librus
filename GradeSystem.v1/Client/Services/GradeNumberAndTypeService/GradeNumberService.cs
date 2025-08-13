@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using System.Data;
 using System.Net.Http.Json;
@@ -17,7 +16,7 @@ namespace GradeSystem.v1.Client.Services.GradeNumberService
         }
         public IList<GradeNumber> GradeNumbers { get; set; } = new List<GradeNumber>();
         public IList<GradeType> GradeTypes { get; set; } = new List<GradeType>();
-     
+
 
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;

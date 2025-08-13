@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using System.Data;
 using System.Net.Http.Json;
@@ -17,7 +16,7 @@ namespace GradeSystem.v1.Client.Services.GradeNumberService
         }
         public IList<GradeNumber> GradeNumbers { get; set; } = new List<GradeNumber>();
         public IList<GradeType> GradeTypes { get; set; } = new List<GradeType>();
-     
+
 
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
@@ -26,10 +25,24 @@ namespace GradeSystem.v1.Client.Services.GradeNumberService
         {
             await _http.DeleteAsync($"api/Gradenumber/{id}");
         }
+        public async Task DeleteGradeType(int id)
+        {
+            await _http.DeleteAsync($"api/Gradetype/{id}");
+        }
 
         public async Task<GradeNumber> GetGradeNumberById(int id)
         {
             var result = await _http.GetFromJsonAsync<GradeNumber>($"api/Gradenumber/{id}");
+            if (result != null)
+            {
+                return result;
+            }
+            throw new Exception("BookType Not Find");
+
+        }
+        public async Task<GradeType> GetGradeTypeById(int id)
+        {
+            var result = await _http.GetFromJsonAsync<GradeType>($"api/Gradetype/{id}");
             if (result != null)
             {
                 return result;
@@ -58,6 +71,11 @@ namespace GradeSystem.v1.Client.Services.GradeNumberService
         public async Task PostGradeType(GradeType gradeType)
         {
             await _http.PostAsJsonAsync("api/GradeType", gradeType);
+        }
+
+        public async Task PutGradeType(int id, GradeType gradeType)
+        {
+            await _http.PutAsJsonAsync($"api/GradeType/{id}", gradeType);
         }
 
         public async Task GetGradeTypes()

@@ -5,7 +5,7 @@
 @inject IGradeService GradeService
 @inject ISubjectService SubjectService
 @inject IParentService ParentService
-@attribute [Authorize(Roles = "Parent, Admin")]
+@attribute [Authorize(Roles = "Parent, Student, Admin")]
 
 <div class="RGtable">
 
@@ -17,52 +17,58 @@
     <div class="RGdisplay">
 
         <div class="RGsubdisplay">
+            @if (LastSixGrades.Count >= 1)
+            {
+                @foreach (var Grade in LastSixGrades)
+                {
+                    <div class="RGtablerow">
 
-        @foreach (var Grade in LastSixGrades)
-        {
-        <div class="RGtablerow"> 
+                        <div class="RGdata">
 
-            <div class="RGdata">
+                            <div class="RGLeft">
+                                <div class="RGdatetime">
 
-                <div class="RGLeft">
-                    <div class="RGdatetime">
+                                    <div>@Grade.DateOfGrading.ToString("ddd", CultureInfo.InvariantCulture)</div>
+                                    <div>, &nbsp;</div>
+                                    <div>@Grade.DateOfGrading.Day</div>
+                                    <div>.</div>
 
-                        <div>@Grade.DateOfGrading.ToString("ddd", CultureInfo.InvariantCulture)</div>
-                                <div>, &nbsp;</div>
-                        <div>@Grade.DateOfGrading.Day</div>
-                        <div>.</div>
-             
-                        @if(Grade.DateOfGrading.Month>=10)
-                        {
-                                <div>@Grade.DateOfGrading.Month</div>
-                        }
-                        else
-                        {
-                                <div>0</div>
-                                <div>@Grade.DateOfGrading.Month</div>
-                        }
-                    
+                                    @if (Grade.DateOfGrading.Month >= 10)
+                                    {
+                                        <div>@Grade.DateOfGrading.Month</div>
+                                    }
+                                    else
+                                    {
+                                        <div>0</div>
+                                        <div>@Grade.DateOfGrading.Month</div>
+                                    }
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="RGRight">
+                                <div class="RGsubject">@Grade.Subject.SubjectName</div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="RGgrade" style="background-color: @GetGradeTypeColor(Grade.GradeTypeId)">
+                            @Grade.Gradenumber.GradeName
+                        </div>
+
                     </div>
-                </div>
-
-          
-
-
-                <div class="RGRight">
-                    <div class="RGsubject">@Grade.Subject.SubjectName</div>
-                </div>
-
-
-
-            </div>
-
-
-                    <div class="RGgrade">@Grade.Gradenumber.GradeName</div>
-           
-    </div>
-    }
-
-    </div>
+                }
+            }
+            else
+            {
+                <div>No grades were added lately.</div>
+            }
+        </div>
 
     </div>
 
@@ -77,6 +83,7 @@
         await GradeNumberService.GetGradeNumbers();
         await ParentService.GetParents();
         await GradeService.GetGrades();
+        await GradeNumberService.GetGradeTypes();
         await StudentService.GetStudents();
         await SubjectService.GetSubjects();
         await GetClaimsGetID();
@@ -92,11 +99,11 @@
 
         DateTime Today = DateTime.Now;
 
-        foreach(var grade in GradeService.Grades)
+        foreach (var grade in GradeService.Grades)
         {
-            if(grade.StudentID == student.StudentID)
+            if (grade.StudentID == student.StudentID)
             {
-                if(grade.DateOfGrading <= Today && grade.DateOfGrading >= Today.AddDays(-365))
+                if (grade.DateOfGrading <= Today && grade.DateOfGrading >= Today.AddDays(-30))
                 {
                     RecentStudentGrades.Add(grade);
                 }
@@ -115,7 +122,7 @@
         Grade ClosestGrade;
         DateTime DateTimeToday = DateTime.Today;
 
-        for(int i = 1; i<=6; i++)
+        for (int i = 1; i <= 6; i++)
         {
             ClosestGrade = RecentStudentGrades[0];
 
@@ -131,7 +138,7 @@
 
                 if (TimeDifferenceA < TimeDifferenceB)
                 {
-                    ClosestGrade = grade; 
+                    ClosestGrade = grade;
                 }
 
             }
@@ -140,7 +147,12 @@
         }
     }
 
-
+    private string GetGradeTypeColor(int gradeTypeId)
+    {
+        var gradeType = GradeNumberService.GradeTypes?.FirstOrDefault(gt =>gt.GradeTypeId == gradeTypeId);
+        
+        return gradeType?.color ?? "lightgrey";
+    }
 
     int selectedchildID;
     int ID;
@@ -166,7 +178,8 @@
             {
                 Roles = claim.Value;
             }
-        };
+        }
+        ;
 
         if (Roles == "Student")
         {

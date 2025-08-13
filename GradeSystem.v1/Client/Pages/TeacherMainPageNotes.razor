@@ -1,17 +1,14 @@
-@*
 @page "/teachermainpagenotes"
 @page "/teachermainpagenotes/{id:int}"
 @inject INoteService NoteService
 @attribute [Authorize(Roles = "Admin, Teacher, Secretary, Librarian, Principal")]
 @inject IJSRuntime JSRuntime
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<<<<<<< HEAD
-=======
 <div class="Nheader">
     <div class="Ntitle">Notes</div>
 </div>
->>>>>>> origin/domergepatryk
 
 <div class="notes-container">
     <div class="notes-header">
@@ -24,18 +21,33 @@
     <div class="notes-grid">
         @if (notes != null && notes.Any())
         {
-            @foreach (var note in notes)
+            @for (int i = 0; i < notes.Count; i++)
             {
-                <div class="sticky-note @GetNoteColorClass(note.Color)" @onclick="() => EditNote(note)">
+                var note = notes[i];
+                var index = i;
+
+                <div class="sticky-note @GetNoteColorClass(note.Color) @(draggedNote?.NoteID == note.NoteID ? "dragging" : "")"
+                     draggable="true"
+                     @ondragstart="(e) => HandleDragStart(e, note)"
+                     @ondragover="HandleDragOver"
+                     @ondragover:preventDefault="true"
+                     @ondrop="(e) => HandleDrop(e, index)"
+                     @ondrop:preventDefault="true"
+                     @ondragend="HandleDragEnd"
+                     @onclick="() => EditNote(note)">
+
                     <div class="note-header">
                         <div class="note-title">@note.Title</div>
+                        <div class="note-position">@note.Position</div>
                         <button class="delete-btn"
                                 @onclick="(e) => DeleteNoteWithConfirm(e, note)"
                                 @onclick:stopPropagation="true">
                             ×
                         </button>
                     </div>
+
                     <div class="note-content">@note.Content</div>
+                    <div class="drag-handle">⋮⋮</div>
                 </div>
             }
         }
@@ -46,72 +58,73 @@
                 <div class="empty-text">No notes yet. Create your first sticky note!</div>
             </div>
         }
-    </div>
-</div>
 
-@if (showModal)
-{
-    <div class="modal-overlay" @onclick="CloseModal">
-        <div class="modal-content" @onclick:stopPropagation="true">
-            <div class="modal-header">
-                <h3>@(isPreviewing ? "Note Preview" : isEditing ? "Edit Note" : "Create New Note")</h3>
-                <button class="close-btn" @onclick="CloseModal">×</button>
-            </div>
-
-            @if (isPreviewing)
-            {
-                <div>
-                    <h4 style="margin-top: 0">@currentNote.Title</h4>
-                    <p>@currentNote.Content</p>
-                    <div class="modal-actions">
-                        <button class="btn btn-secondary" @onclick="CloseModal">Close</button>
-                        <button class="btn btn-primary" @onclick="StartEditing">Edit</button>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <EditForm Model="currentNote" OnValidSubmit="HandleSubmit">
-                    <DataAnnotationsValidator />
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <InputText @bind-Value="currentNote.Title" class="form-input" />
-                        <ValidationMessage For="@(() => currentNote.Title)" />
-                    </div>
-                    <div class="form-group">
-                        <label for="content">Content</label>
-                        <InputTextArea @bind-Value="currentNote.Content" class="form-textarea" rows="6" />
-                        <ValidationMessage For="@(() => currentNote.Content)" />
-                    </div>
-                    <div class="form-group">
-                        <label>Choose Color</label>
-                        <div class="color-picker">
-                            @foreach (var color in availableColors)
-                            {
-                                <button type="button"
-                                        class="color-option @(currentNote.Color == color.Value ? "selected" : "")"
-                                        style="background-color: @color.Value"
-                                        @onclick="() => SelectColor(color.Value)"
-                                        title="@color.Name">
-                                </button>
-                            }
-                        </div>
-                    </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">
-                            @(isEditing ? "Update Note" : "Create Note")
-                        </button>
-                    </div>
-                </EditForm>
-            }
         </div>
     </div>
-}
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/domergepatryk
+        @if (showModal)
+        {
+            <div class="modal-overlay" @onclick="CloseModal">
+                <div class="modal-content" @onclick:stopPropagation="true">
+                    <div class="modal-header">
+                        <h3>@(isPreviewing ? "Note Preview" : isEditing ? "Edit Note" : "Create New Note")</h3>
+                        <button class="close-btn" @onclick="CloseModal">×</button>
+                    </div>
+
+                    @if (isPreviewing)
+                    {
+                        <div>
+                            <h4 style="margin-top: 0">@currentNote.Title</h4>
+                            <p>@currentNote.Content</p>
+                            <div class="modal-actions">
+                                <button class="btn btn-secondary" @onclick="CloseModal">Close</button>
+                                <button class="btn btn-primary" @onclick="StartEditing">Edit</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm Model="currentNote" OnValidSubmit="HandleSubmit">
+                            <DataAnnotationsValidator />
+
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <InputText @bind-Value="currentNote.Title" class="form-input" />
+                                <ValidationMessage For="@(() => currentNote.Title)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <InputTextArea @bind-Value="currentNote.Content" class="form-textarea" rows="6" />
+                                <ValidationMessage For="@(() => currentNote.Content)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Choose Color</label>
+                                <div class="color-picker">
+                                    @foreach (var color in availableColors)
+                                    {
+                                        <button type="button"
+                                                class="color-option @(currentNote.Color == color.Value ? "selected" : "")"
+                                                style="background-color: @color.Value"
+                                                @onclick="() => SelectColor(color.Value)"
+                                                title="@color.Name">
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="modal-actions">
+                                <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">
+                                    @(isEditing ? "Update Note" : "Create Note")
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        }
 
 <style>
     .notes-container {
@@ -514,8 +527,10 @@
     private bool showModal = false;
     private bool isEditing = false;
     private Random random = new Random();
-    private List<ColorOption> availableColors = new()
-    {
+    private Note? draggedNote = null;
+    private int currentTeacherID = 0;
+
+    private List<ColorOption> availableColors = new() {
         new("Yellow", "#ffeaa7"),
         new("Pink", "#fd79a8"),
         new("Blue", "#74b9ff"),
@@ -525,57 +540,113 @@
         new("Red", "#e17055"),
         new("Mint", "#81ecec")
     };
+
     public class ColorOption
     {
         public string Name { get; set; }
         public string Value { get; set; }
-        public ColorOption(string name, string value)
-        {
-            Name = name;
-            Value = value;
-        }
+        public ColorOption(string name, string value) { Name = name; Value = value; }
     }
+
     protected override async Task OnInitializedAsync()
     {
+        await GetCurrentTeacherID();
         await LoadNotes();
     }
+
+    private async Task GetCurrentTeacherID()
+    {
+        try
+        {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            if (user.Identity.IsAuthenticated)
+            {
+                var teacherIdClaim = user.FindFirst("TeacherID")?.Value;
+                if (int.TryParse(teacherIdClaim, out int teacherId))
+                {
+                    currentTeacherID = teacherId;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting teacher ID: {ex.Message}");
+        }
+    }
+
     private async Task LoadNotes()
     {
         try
         {
             await NoteService.GetNotes();
-            notes = NoteService.Notes?.ToList() ?? new();
+            var allNotes = NoteService.Notes?.ToList() ?? new();
+
+            // Filter notes by current teacher ID
+            notes = allNotes.Where(n => n.TeacherID == currentTeacherID).ToList();
+
+            // Assign positions to notes that don't have them
+            await AssignMissingPositions();
+
+            // Sort notes by position (ascending - position 1 first)
+            notes = notes.OrderBy(n => n.Position ?? int.MaxValue).ToList();
         }
-        catch
+        catch (Exception ex)
         {
+            Console.WriteLine($"Error loading notes: {ex.Message}");
             notes = new();
         }
     }
+
+    private async Task AssignMissingPositions()
+    {
+        var notesWithoutPosition = notes.Where(n => n.Position == null).ToList();
+        if (notesWithoutPosition.Any())
+        {
+            var maxPosition = notes.Where(n => n.Position.HasValue).Max(n => n.Position) ?? 0;
+
+            foreach (var note in notesWithoutPosition)
+            {
+                note.Position = ++maxPosition;
+                await NoteService.UpdateNote(note);
+            }
+        }
+    }
+
     private void ShowCreateNoteModal()
     {
-        currentNote = new Note { Color = "#ffeaa7" };
+        currentNote = new Note
+            {
+                Color = "#ffeaa7",
+                Category = "General",
+                TeacherID = currentTeacherID
+            };
         isEditing = false;
         showModal = true;
     }
+
     private void EditNote(Note note)
     {
         currentNote = new Note
             {
                 NoteID = note.NoteID,
+                TeacherID = note.TeacherID,
                 Title = note.Title,
                 Content = note.Content,
-                Color = note.Color
+                Color = note.Color,
+                Category = note.Category,
+                Position = note.Position
             };
         isEditing = false;
         isPreviewing = true;
         showModal = true;
     }
+
     private void StartEditing()
     {
         isPreviewing = false;
         isEditing = true;
     }
-
 
     private void CloseModal()
     {
@@ -589,16 +660,30 @@
     {
         currentNote.Color = color;
     }
+
     private async Task HandleSubmit()
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(currentNote.Title))
-                currentNote.Title = "Untitled Note";
+            if (string.IsNullOrWhiteSpace(currentNote.Title)) currentNote.Title = "Untitled Note";
+            if (string.IsNullOrWhiteSpace(currentNote.Category)) currentNote.Category = "General";
+
+            currentNote.TeacherID = currentTeacherID;
+
             if (isEditing)
+            {
+                // For existing notes, move to position 1 and shift others
+                await MoveNoteToTop(currentNote);
                 await NoteService.UpdateNote(currentNote);
+            }
             else
+            {
+                // For new notes, set position to 1 and shift others
+                await ShiftPositionsForNewNote();
+                currentNote.Position = 1;
                 await NoteService.CreateNote(currentNote);
+            }
+
             await LoadNotes();
             CloseModal();
             StateHasChanged();
@@ -608,35 +693,115 @@
             Console.WriteLine($"Error saving note: {ex.Message}");
         }
     }
-    private void HandleDragStart(DragEventArgs e, Note note)
+
+    private async Task MoveNoteToTop(Note noteToMove)
     {
-        // draggedNote = note;
-        e.DataTransfer.EffectAllowed = "move";
-    }
-    private void HandleDragEnd(DragEventArgs e)
-    {
-        // draggedNote = null;
-    }
-    [JSInvokable]
-    public async Task UpdateNotePosition(int noteId, int x, int y)
-    {
-        var note = notes.FirstOrDefault(n => n.NoteID == noteId);
-        if (note != null)
+        var currentPosition = noteToMove.Position ?? int.MaxValue;
+
+        // Shift all notes with position < currentPosition down by 1
+        foreach (var note in notes.Where(n => n.NoteID != noteToMove.NoteID && n.Position < currentPosition))
         {
-            // if (note.Position == null)
-            //     note.Position = new Position();
-            // note.Position.X = x;
-            // note.Position.Y = y;
-            try
+            note.Position++;
+            await NoteService.UpdateNote(note);
+        }
+
+        noteToMove.Position = 1;
+    }
+
+    private async Task ShiftPositionsForNewNote()
+    {
+        // Shift all existing notes down by 1 position
+        foreach (var note in notes)
+        {
+            if (note.Position.HasValue)
             {
+                note.Position++;
                 await NoteService.UpdateNote(note);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error updating note position: {ex.Message}");
             }
         }
     }
+
+    private void HandleDragStart(DragEventArgs e, Note note)
+    {
+        draggedNote = note;
+        e.DataTransfer.EffectAllowed = "move";
+        // e.DataTransfer.SetData("text/plain", note.NoteID.ToString());
+    }
+
+    private void HandleDragOver(DragEventArgs e)
+    {
+        e.DataTransfer.DropEffect = "move";
+    }
+
+    private async Task HandleDrop(DragEventArgs e, int dropIndex)
+    {
+        if (draggedNote != null)
+        {
+            var draggedIndex = notes.FindIndex(n => n.NoteID == draggedNote.NoteID);
+
+            if (draggedIndex != dropIndex && draggedIndex >= 0)
+            {
+                await ReorderNotes(draggedIndex, dropIndex);
+                await LoadNotes();
+                StateHasChanged();
+            }
+        }
+
+        draggedNote = null;
+    }
+
+    private void HandleDragEnd(DragEventArgs e)
+    {
+        draggedNote = null;
+    }
+
+    private async Task ReorderNotes(int fromIndex, int toIndex)
+    {
+        try
+        {
+            var draggedNote = notes[fromIndex];
+            var targetNote = notes[toIndex];
+            var newPosition = targetNote.Position ?? (toIndex + 1);
+
+            if (fromIndex < toIndex)
+            {
+                // Moving down in the list (increasing position)
+                // Shift notes between fromIndex+1 and toIndex up (decrease position)
+                for (int i = fromIndex + 1; i <= toIndex; i++)
+                {
+                    var note = notes[i];
+                    if (note.Position.HasValue && note.NoteID != draggedNote.NoteID)
+                    {
+                        note.Position--;
+                        await NoteService.UpdateNote(note);
+                    }
+                }
+            }
+            else
+            {
+                // Moving up in the list (decreasing position)
+                // Shift notes between toIndex and fromIndex-1 down (increase position)
+                for (int i = toIndex; i < fromIndex; i++)
+                {
+                    var note = notes[i];
+                    if (note.Position.HasValue && note.NoteID != draggedNote.NoteID)
+                    {
+                        note.Position++;
+                        await NoteService.UpdateNote(note);
+                    }
+                }
+            }
+
+            // Set the dragged note's new position
+            draggedNote.Position = newPosition;
+            await NoteService.UpdateNote(draggedNote);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error reordering notes: {ex.Message}");
+        }
+    }
+
     private async Task DeleteNoteWithConfirm(MouseEventArgs e, Note note)
     {
         bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete '{note.Title}'?");
@@ -645,6 +810,7 @@
             try
             {
                 await NoteService.DeleteNote(note.NoteID);
+                await ShiftPositionsAfterDelete(note.Position ?? 0);
                 await LoadNotes();
             }
             catch (Exception ex)
@@ -653,6 +819,17 @@
             }
         }
     }
+
+    private async Task ShiftPositionsAfterDelete(int deletedPosition)
+    {
+        // Shift all notes with position > deletedPosition up by 1 (decrease position)
+        foreach (var note in notes.Where(n => n.Position > deletedPosition))
+        {
+            note.Position--;
+            await NoteService.UpdateNote(note);
+        }
+    }
+
     private string GetNoteColorClass(string color) => color switch
     {
         "#ffeaa7" => "yellow",
@@ -665,7 +842,7 @@
         "#81ecec" => "mint",
         _ => "yellow"
     };
+
     private int GetRandomX() => random.Next(50, 800);
     private int GetRandomY() => random.Next(50, 400);
 }
-*@

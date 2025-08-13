@@ -8,7 +8,8 @@
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Grade" Style="font-weight:bold;width:10%;font-size:17px;" />
-                <RadzenText Text="@exam.Class?.ClassName" Style="font-weight:bold;font-size:17px;margin:0;" />
+                <RadzenDropDown @bind-Value=@exam.ClassID Chips=true Placeholder="Search..." Name="Grade" Data=ClassService.Classes  ValueProperty="ClassName" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="Grade" Text="Please select grade" Popup="false" Style="" />
             </RadzenStack>
         </div>
         <div class="black-line">
@@ -28,7 +29,8 @@
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Subject" Style="font-weight:bold;width:10%;font-size:17px;" />
-                <RadzenText Text="@exam.Subject?.SubjectName" Style="font-weight:bold;font-size:17px;margin:0;" />
+                <RadzenDropDown @bind-Value=@exam.SubjectID Chips=true Placeholder="Search..." Name="Subject" Data=SubjectService.Subjects ValueProperty="SubjectName" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenRequiredValidator Component="Subject" Text="Please select subject" Popup="false" Style="" />
             </RadzenStack>
         </div>
         <div class="black-line">
@@ -63,6 +65,8 @@
         {
             exam = await ExamService.GetExamByID((int)ID);
         }
+        await SubjectService.GetSubjects();
+        await ClassService.GetClasses();
         exam.Subject = await SubjectService.GetSubjectByID((int)SubjectID);
         exam.Class = await ClassService.GetClassByID((int)ClassID);
     }

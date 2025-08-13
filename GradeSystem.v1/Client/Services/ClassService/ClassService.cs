@@ -20,13 +20,11 @@ namespace GradeSystem.v1.Client.Services.ClassService
         public async Task CreateClass(Class classs)
         {
             await _http.PostAsJsonAsync("api/Classes", classs);
-            _navigationManager.NavigateTo("Classes");
         }
 
         public async Task DeleteClass(int id)
         {
             await _http.DeleteAsync($"api/Classes/{id}");
-            _navigationManager.NavigateTo("Classes");
         }
 
         public async Task<Class> GetClassByID(int id)
@@ -62,7 +60,6 @@ namespace GradeSystem.v1.Client.Services.ClassService
         public async Task UpdateClass(Class classs)
         {
             await _http.PutAsJsonAsync($"api/Classes/{classs.ClassID}", classs);
-            _navigationManager.NavigateTo("Classes");
         }
 
         public async Task<List<Student>> GetClassStudents(int id)

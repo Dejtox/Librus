@@ -98,6 +98,33 @@ namespace GradeSystem.v1.Server.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetEnrollment", new { id = enrollment.EnrollmentID }, enrollment);
         }
+        [HttpPost("create_many")]
+        public async Task<ActionResult<IEnumerable<Enrollment>>> PostManyEnrollments(IEnumerable<Enrollment> enrollments)
+        {
+            using (var transaction = await _context.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    foreach (var enrollment in enrollments)
+                    {
+                        enrollment.Class = null;
+                        enrollment.Subject = null;
+                        _context.Enrollment.Add(enrollment);
+                    }
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return BadRequest(ex.Message);
+                }
+            }
+            return Ok(enrollments);
+            //_context.Enrollment.AddRange(enrollments);
+            //await _context.SaveChangesAsync();
+            //return Ok();
+        }
 
         // DELETE: api/Enrollments/5
         [HttpDelete("{id}")]

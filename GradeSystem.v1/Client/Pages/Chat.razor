@@ -124,6 +124,9 @@
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider authStateProvider
 @inject IChatMessageService chatMessageService
+@inject ITeacherService TeacherService
+@inject IParentService ParentService
+@inject IStudentService StudentService
 
 <h3>Chat Demo</h3>
 
@@ -133,8 +136,8 @@
         <ul class="user-list">
             @foreach (var user in FilteredUsers)
             {
-                <li @onclick="@(() => SelectUser(user))" class="@(user.ID == receiverID ? "active" : "")">
-                    <span>@user.Name</span>
+                <li @onclick="@(async _ => await SelectUser(user))" class="@(user.UserID == receiverID ? "active" : "")">
+                    <span>@user.FullName</span>
                 </li>
             }
         </ul>
@@ -144,7 +147,7 @@
         @if (receiverID != 0)
         {
             <div class="chat-header">
-                Chat with @selectedUser.Name
+                Chat with @selectedUser.FullName
             </div>
 
             <div class="chat-messages">
@@ -159,7 +162,7 @@
 
             <div class="chat-input">
                 <input type="text" @bind="newMessage" @bind:event="oninput" placeholder="Type a message..." />
-                <button @onclick="Send">Send</button>
+                <button @onclick="@(async _=>await Send())">Send</button>
             </div>
         }
         else
@@ -172,159 +175,51 @@
 </div>
 
 @code {
-    private List<User> availableUsers = new();
-    private List<ChatMessage> messages = new();
-    private int senderID = 1;
-    private int receiverID = 0;
-    private User selectedUser;
-    private string newMessage = "";
-    private string searchText = "";
-
-    protected override void OnInitialized()
-    {
-        var randomNames = new[] { "John", "Anna", "Mike", "Kate", "Tom", "Sara", "David", "Julia", "Chris", "Laura" };
-        var rnd = new Random();
-
-        for (int i = 1; i <= 10; i++)
-        {
-            availableUsers.Add(new User
-                {
-                    ID = i,
-                    Name = randomNames[rnd.Next(randomNames.Length)]
-                });
-        }
-    }
-
-    private IEnumerable<User> FilteredUsers =>
-        availableUsers.Where(u => string.IsNullOrWhiteSpace(searchText) || u.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase));
-
-    private void SelectUser(User user)
-    {
-        receiverID = user.ID;
-        selectedUser = user;
-        messages = new List<ChatMessage>();
-
-        // Add some fake chat history
-        messages.Add(new ChatMessage { SenderID = receiverID, ReceiverID = senderID, Content = "O Hi there!", SentAt = DateTime.Now.AddMinutes(-5) });
-        messages.Add(new ChatMessage { SenderID = senderID, ReceiverID = receiverID, Content = "Obiwan Kenobi!", SentAt = DateTime.Now.AddMinutes(-4) });
-    }
-
-    private void Send()
-    {
-        if (!string.IsNullOrWhiteSpace(newMessage))
-        {
-            messages.Add(new ChatMessage
-                {
-                    SenderID = senderID,
-                    ReceiverID = receiverID,
-                    Content = newMessage,
-                    SentAt = DateTime.Now
-                });
-            newMessage = "";
-        }
-    }
-
-    public class User
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class ChatMessage
-    {
-        public int SenderID { get; set; }
-        public int ReceiverID { get; set; }
-        public string Content { get; set; }
-        public DateTime SentAt { get; set; }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-@page "/chat"
-@inject NavigationManager navigationManager
-@inject AuthenticationStateProvider authStateProvider
-@inject IChatMessageService chatMessageService
-
-<h3>chat</h3>
-<input type="text" @bind="newMessage" placeholder="Type your message here..." />
-<button @onclick="Send">Send</button>
-
-<ul>
-    @foreach(var message in messages)
-    {
-    <li>@message.SenderID: @message.Content</li>
-    }
-</ul>
-
-@code {
     private HubConnection hubConnection;
     private List<ChatMessage> messages = new List<ChatMessage>();
-    private string newMessage="";
-    //do testu tak to pobranie id
-    private int senderID = 1;
-    private int receiverID = 2;
+    private int senderID = 0;
+    private int receiverID = 0;
+    private ChatUser selectedUser;
+    private string newMessage = "";
+    private string searchText = "";
+    private List<ChatUser> chatUsers = new List<ChatUser>();
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+
+    private async Task GetClaimsGetID()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                senderID = Int32.Parse(claim.Value);
+            }
+        }        
+    }
     protected override async Task OnInitializedAsync()
     {
-        messages = await chatMessageService.GetChatMessages(senderID, receiverID);
+        await TeacherService.GetTeachers();
+        await ParentService.GetParents();
+        await StudentService.GetStudents();
+        await GetClaimsGetID();
+        chatUsers=TeacherService.Teachers
+            .Select(t => new ChatUser { UserID = t.UserID, FullName = t.Name })
+            .Concat(ParentService.Parents.Select(p => new ChatUser { UserID = p.UserID, FullName = p.FullName }))
+            .Concat(StudentService.Students.Select(s => new ChatUser { UserID = s.UserID, FullName = s.Name }))
+            .ToList();
         hubConnection = new HubConnectionBuilder()
-            .WithUrl(navigationManager.ToAbsoluteUri("/chathub"), options =>
+        .WithUrl(navigationManager.ToAbsoluteUri("/chathub"), options =>
+        {
+            options.AccessTokenProvider = async () =>
             {
-                options.AccessTokenProvider = async () =>
-                {
-                    var customAuthStateprovider = (CustomAuthenticationStateProvider)authStateProvider;
-                    return await customAuthStateprovider.GetToken();
-                };
-            })
-            .Build();
+                var customAuthStateprovider = (CustomAuthenticationStateProvider)authStateProvider;
+                return await customAuthStateprovider.GetToken();
+            };
+        })
+        .Build();
         hubConnection.On<ChatMessage>("ReceiveMessage", (message) =>
         {
             messages.Add(message);
@@ -332,6 +227,15 @@
         });
 
         await hubConnection.StartAsync();
+    }
+    private IEnumerable<ChatUser> FilteredUsers =>
+        chatUsers.Where(u => string.IsNullOrWhiteSpace(searchText) || u.FullName.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+
+    private async Task SelectUser(ChatUser user)
+    {
+        receiverID = user.UserID;
+        selectedUser = user;
+        messages = await chatMessageService.GetChatMessages(senderID, receiverID);
     }
 
     private async Task Send()
@@ -346,12 +250,12 @@
                 Content = newMessage,
                 SentAt = DateTime.Now
             };
-            //w try catch mozna
             await chatMessageService.CreateChatMessage(message);
             await hubConnection.SendAsync("SendMessage", message);
-            //messages.Add(message);
-            newMessage = string.Empty;
+            messages.Add(message);
+            await InvokeAsync(StateHasChanged);
+            newMessage = string.Empty;            
         }
     }   
 }
--->
+

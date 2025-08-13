@@ -2,6 +2,8 @@
 {
     public interface ISchoolService
     {
+        IList<DayOff> DayOffs { get; set; }
+        Task GetDayOffs();
         Task<School> GetSchoolByID(int schoolID);
         Task<List<School>> GetSchools();
         Task CreateSchool(School school);
@@ -13,5 +15,7 @@
         Task UpdateAccessCode(AccessCode accessCode);
         Task DeleteAccessCode(int id);
         Task<HttpResponseMessage> UseAccessCode(string accessCode);
+        Task CreateDayOff(DayOff dayOff);
+        Task CreateManyDayOffs(List<DayOff> dayOffs);
     }
 }

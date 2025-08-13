@@ -164,5 +164,26 @@ namespace GradeSystem.v1.Server.Controllers
         {
             return _context.AccessCode.Any(e => e.ID == id);
         }
+
+        [HttpPost("create_dayoff")]
+        public async Task<ActionResult<DayOff>> CreateDayOff(DayOff dayOff)
+        {
+            _context.DayOff.Add(dayOff);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetDayOff", new { id = dayOff.DayOffID }, dayOff);
+        }
+        [HttpPost("create_many_dayoffs")]
+        public async Task<ActionResult<IEnumerable<DayOff>>> CreateManyDayOffs(IEnumerable<DayOff> dayOffs)
+        {
+            //albo transaakcja
+            _context.DayOff.AddRange(dayOffs);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetDayOffs", dayOffs);
+        }
+        [HttpGet("get_dayoffs")]
+        public async Task<ActionResult<IEnumerable<DayOff>>> GetDayOffs()
+        {
+            return await _context.DayOff.ToListAsync();
+        }
     }
 }

@@ -246,6 +246,19 @@
         </div>
     </AuthorizeView>
 
+@*     <AuthorizeView Roles="">@*@
+        <div class="sidebar-buttoncontainer">
+            <div class="nav-item @(IsActive("home") ? "active" : "")">
+                <NavLink class="nav-test" href="startschoolyear" Match="NavLinkMatch.All">
+                    <div class="header-element">
+                        <div class="gg-box"></div>
+                    </div>
+                    <span class="oi oi-people" aria-hidden="true"></span> Start school year
+                </NavLink>
+            </div>
+        </div>
+@*     </AuthorizeView> *@
+
     <div class="sidebar-buttoncontainer logoutbutton">
         <NavLink class="main-menutextcomponet" href="home" Match="NavLinkMatch.All" style="color: black;">
                 <span class="gg-log-out" style="color: black;"></span>

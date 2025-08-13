@@ -7,25 +7,21 @@ namespace GradeSystem.v1.Client.Services.LessonsHoursService
 {
     public class LessonsHoursService : ILessonsHoursService
     {
-        public LessonsHoursService(HttpClient http, NavigationManager navigationManager)
+        public LessonsHoursService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<LessonsHours> LessonsHours { get; set; } = new List<LessonsHours>();
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task CreateLessonsHours(LessonsHours lessonsHours)
         {
             await _http.PostAsJsonAsync("api/LessonsHours", lessonsHours);
-            _navigationManager.NavigateTo("plan");
         }
 
         public async Task DeleteLessonsHours(int id)
         {
             await _http.DeleteAsync($"api/LessonsHours/{id}");
-            _navigationManager.NavigateTo("plan");
         }
 
         public async Task GetLessonsHours()
@@ -47,7 +43,6 @@ namespace GradeSystem.v1.Client.Services.LessonsHoursService
         public async Task UpdateLessonsHours(LessonsHours lessonsHours)
         {
             await _http.PutAsJsonAsync($"api/LessonsHours/{lessonsHours.ID}", lessonsHours);
-            _navigationManager.NavigateTo("plan");
         }
     }
 }

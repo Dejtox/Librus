@@ -18,7 +18,7 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpGet("{senderID}/{receiverID}")]
         public async Task<ActionResult<IEnumerable<ChatMessage>>> GetChatMessages(int senderID,int receiverID)
         {
-            return await _context.ChatMessage.Include(c => c.Sender).Include(r => r.Receiver).Where(m=>m.SenderID==senderID&&m.ReceiverID==receiverID).ToListAsync();
+            return await _context.ChatMessage.Include(c => c.Sender).Include(r => r.Receiver).Where(m=>(m.SenderID==senderID&&m.ReceiverID==receiverID)||(m.SenderID==receiverID && m.ReceiverID==senderID)).ToListAsync();
         }
         [HttpPost]
         public async Task<ActionResult<ChatMessage>> PostChatMessage(ChatMessage chatMessage)
@@ -29,7 +29,12 @@ namespace GradeSystem.v1.Server.Controllers
             }
             _context.ChatMessage.Add(chatMessage);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetChatMessages), new { id = chatMessage.ID }, chatMessage);
+            return CreatedAtAction("GetChatMessage", new { id = chatMessage.ID }, chatMessage);
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ChatMessage>> GetChatMessage(int id)
+        {
+            return await _context.ChatMessage.Include(c => c.Sender).Include(r => r.Receiver).FirstOrDefaultAsync(m => m.ID == id);
         }
     }
 }

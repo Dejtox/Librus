@@ -18,6 +18,7 @@
         Task UpdateEnrollment(Enrollment enrollment);
         Task DeleteEnrollment(int id);
         Task CreateEnrollment(Enrollment enrollment);
+        Task CreatManyEnrollments(List<Enrollment> enrollments);
         Task<List<Enrollment>> GetEnrollmentsByClassID(int classID);
         Task<List<Enrollment>> GetEnrollmentsWithoutDuplicatesReturn();
     }

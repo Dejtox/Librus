@@ -20,13 +20,11 @@ namespace GradeSystem.v1.Client.Services.SubjectService
         public async Task CreateSubject(Subject subject)
         {
             await _http.PostAsJsonAsync("api/Subjects", subject);
-            //_navigationManager.NavigateTo("Subjects");
         }
 
         public async Task DeleteSubject(int id)
         {
             await _http.DeleteAsync($"api/Subjects/{id}");
-            _navigationManager.NavigateTo("Subjects");
         }
 
         public async Task<Subject> GetSubjectByID(int id)
@@ -71,6 +69,14 @@ namespace GradeSystem.v1.Client.Services.SubjectService
             if (result != null)
                 return result;
             throw new Exception("Subject not found");
+        }
+
+        public async Task<List<Subject>> GetAllSubjects()
+        {
+            var result = await _http.GetFromJsonAsync<List<Subject>>("api/Subjects");
+            if (result != null)
+                return result;
+            throw new Exception("Subjects not found");
         }
     }
 }

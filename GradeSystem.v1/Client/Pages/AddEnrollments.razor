@@ -1,0 +1,248 @@
+﻿@page "/AddEnrollments"
+@inject IEnrollmentService EnrollmentService
+@inject ISubjectService SubjectService
+@inject ILessonsHoursService LessonsHoursService
+@inject ISchoolService SchoolService
+@inject DragService Drag
+
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+    <RadzenLabel Text="Select class" Component="Class" Style="font-weight:bold;width:8%;font-size:17px;" />
+    <RadzenDropDown @bind-Value=@ClassID Data=@EnrollmentService.Classes Style="width: 22%; border-radius:15px;" ValueProperty="ClassID" TextProperty="ClassName" Placeholder="Search..." Change="(()=>SelectClass(ClassID))"/>
+</RadzenStack>
+<button onclick="@HandleSubmit">Add enrollments</button>
+
+<div>
+    <table>
+        <thead>
+        <th>Subjects</th>
+        </thead>
+        <tbody>
+            @foreach(Subject subject in FilteredSubjects)
+            {
+                <tr draggable="true" @ondragstart="(()=>{Drag.Subject=subject.SubjectName;Drag.ID=subject.SubjectID;})">
+                    <td>@subject.SubjectName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="sidebox sideboxschedule">
+    <div class="studentschedule">
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Monday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (int j in index)
+                    {
+                        <tr class="tablerow">
+                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j,"Monday"))">
+                                <div class="tablecellnumber">@(j + 1)</div>
+                                <div class="tablecellcontent">@Monday[j]?.Name</div>
+                                <div class="tablecellnumber"></div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Tuesday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (int j in index)
+                    {
+                        <tr class="tablerow">
+                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Tuesday"))">
+                                <div class="tablecellnumber">@(j + 1)</div>
+                                <div class="tablecellcontent">@Tuesday[j]?.Name</div>
+                                <div class="tablecellnumber"></div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Wednesday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (int j in index)
+                    {
+                        <tr class="tablerow">
+                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Wednesday"))">
+                                <div class="tablecellnumber">@(j + 1)</div>
+                                <div class="tablecellcontent">@Wednesday[j]?.Name</div>
+                                <div class="tablecellnumber"></div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Thursday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (int j in index)
+                    {
+                        <tr class="tablerow">
+                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Thursday"))">
+                                <div class="tablecellnumber">@(j + 1)</div>
+                                <div class="tablecellcontent">@Thursday[j]?.Name</div>
+                                <div class="tablecellnumber"></div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tablebox">
+            <table class="grafictable">
+                <thead class="grafictablehead">
+                <th class="grafictableheadinside">Friday</th>
+                </thead>
+                <tbody class="graficktableboddymain">
+                    @foreach (int j in index)
+                    {
+                        <tr class="tablerow">
+                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Friday"))">
+                                <div class="tablecellnumber">@(j + 1)</div>
+                                <div class="tablecellcontent">@Friday[j]?.Name</div>
+                                <div class="tablecellnumber"></div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    public string Classs { get; set; }
+    public int ClassID { get; set; }
+    private int[] index = { 0, 1, 2, 3, 4, 5, 6, 7 };
+    List<Subject> Subjects { get; set; } = new List<Subject>();
+    List<Subject> FilteredSubjects = new List<Subject>();
+    public record Lesson(int Id, string? Name);
+
+    private Lesson?[] Monday = new Lesson?[8];
+    private Lesson?[] Tuesday = new Lesson?[8];
+    private Lesson?[] Wednesday = new Lesson?[8];
+    private Lesson?[] Thursday = new Lesson?[8];
+    private Lesson?[] Friday = new Lesson?[8];
+
+    List<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
+    Dictionary<string, Lesson?[]> schedule = new Dictionary<string, Lesson?[]>();
+    List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        schedule.Add("Monday", Monday);
+        schedule.Add("Tuesday", Tuesday);
+        schedule.Add("Wednesday", Wednesday);
+        schedule.Add("Thursday", Thursday);
+        schedule.Add("Friday", Friday);
+        await EnrollmentService.GetClasses();
+        await LessonsHoursService.GetLessonsHours();
+        Subjects = await SubjectService.GetAllSubjects();
+        await SchoolService.GetDayOffs();
+        await SortLessonHours();
+    }
+
+    private async Task SortLessonHours()
+    {
+        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
+        {
+            foreach (var segment in LessonsHoursService.LessonsHours)
+            {
+                if (segment.LessonNo == i + 1)
+                {
+                    SortedlessonsHours.Add(segment);
+                }
+            }
+        }
+    }
+    private async Task HandleDrop(int index,string day)
+    {
+        if (!schedule.TryGetValue(day, out var dayArray)) return;
+        if (!string.IsNullOrWhiteSpace(Drag.Subject))
+        {   
+            dayArray[index] = new Lesson((int)Drag.ID, Drag.Subject);
+            Drag.Subject = null;
+            Drag.ID = null;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+    private static DateTime FirstOnOrAfter(DateTime givenStart, DayOfWeek targetDay)
+    {
+        int delta = ((int)targetDay - (int)givenStart.DayOfWeek + 7) % 7;
+        return givenStart.Date.AddDays(delta);
+    }
+    private async Task HandleSubmit()
+    {
+        var days = new (Lesson?[] Slots, DayOfWeek Dow)[]
+        {
+        (Monday,    DayOfWeek.Monday),
+        (Tuesday,   DayOfWeek.Tuesday),
+        (Wednesday, DayOfWeek.Wednesday),
+        (Thursday,  DayOfWeek.Thursday),
+        (Friday,    DayOfWeek.Friday)
+        };
+        //to mozna np z danych modelu szkola
+        DateTime startDate = new DateTime(2025, 8, 11);//25
+        DateTime endDate = new DateTime(2025, 9, 20);//2026 6 28
+        for (int i = 0; i < 8; i++)
+        {
+            var startTime = SortedlessonsHours[i].Start.TimeOfDay;
+            var endTime = SortedlessonsHours[i].End.TimeOfDay;
+
+            foreach (var (slotsArray, dow) in days)
+            {
+                var slot = slotsArray[i];
+                if (slot is null) continue;
+                DateTime firstDate = FirstOnOrAfter(startDate, dow);
+                for (DateTime d=firstDate; d < endDate; d=d.AddDays(7))
+                {
+                    var start = d.Date + startTime;
+                    var end = d.Date + endTime;
+                    Enrollments.Add(new Enrollment
+                    {
+                        ClassID = ClassID,
+                        SubjectID = slot.Id,
+                        Date = start,
+                        EndDate = end
+                    });
+                }
+            }
+        }
+        var dayOffs = new HashSet<DateTime>(SchoolService.DayOffs.Select(d => d.Date.Date));
+        Enrollments.RemoveAll(e => dayOffs.Contains(e.Date.Date));
+        await EnrollmentService.CreatManyEnrollments(Enrollments);
+    }
+    private void SelectClass(int ClassID)
+    {
+        var classs = EnrollmentService.Classes.FirstOrDefault(c => c.ClassID == ClassID);
+        for(int i = 0; i < 8; i++)
+        {
+            Monday[i] = null;
+            Tuesday[i] = null;
+            Wednesday[i] = null;
+            Thursday[i] = null;
+            Friday[i] = null;
+        }
+        string grade = classs.ClassName[0].ToString();
+        FilteredSubjects = Subjects.Where(s => s.Grade == grade).ToList();
+    }
+}

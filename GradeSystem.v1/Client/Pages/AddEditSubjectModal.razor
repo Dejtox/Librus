@@ -14,6 +14,12 @@
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Grade" Style="font-weight:bold;width:10%;font-size:17px;border-radius:15px;" />
+                <RadzenDropDown @bind-Value=@subject.Grade Chips=true Placeholder="Search..." Name="Grade" Data=grades  Style="font-weight:bold;font-size:17px;margin:0; width:40%;" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Teacher" Style="font-weight:bold;width:10%;font-size:17px;border-radius:15px;" />
                 <RadzenDropDown @bind-Value=@subject.TeacherID Chips=true Placeholder="Search..." Name="TeacherDD" Data=SubjectService.Teachers TextProperty="Name" ValueProperty="TeacherID" Style="font-weight:bold;font-size:17px;margin:0; width:40%;" />
                 <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="false" Style="" />
@@ -30,7 +36,7 @@
     [Parameter]
     public int? ID { get; set; }
     Subject subject = new Subject();
-
+    string[] grades = new string[] { "1", "2", "3", "4", "5", "6", "7", "8" };
     protected override async Task OnParametersSetAsync()
     {
         if (ID != null)

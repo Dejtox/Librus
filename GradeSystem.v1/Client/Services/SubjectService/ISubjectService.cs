@@ -13,6 +13,7 @@
         Task UpdateSubject(Subject subject);
         Task DeleteSubject(int id);
         Task CreateSubject(Subject subject);
+        Task<List<Subject>> GetAllSubjects();
         Task<List<Subject>> GetTeacherSubjects(int id);
     }
 }

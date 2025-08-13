@@ -46,5 +46,6 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<ChatMessage> ChatMessage { get; set; }
         public DbSet<AccessCode> AccessCode { get; set; }
         public DbSet<School> School { get; set; }
+        public DbSet<DayOff> DayOff { get; set; }
     }
 }

@@ -1,0 +1,90 @@
+﻿@inject DialogService DialogService
+@inject ISchoolService SchoolService
+
+<div class="search-container-modal">
+    <RadzenTemplateForm TItem="DayOff" Data="dayOff" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div hidden="@hidden">
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="From" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenDatePicker TValue="DateTime" Value=@startDate Change="@(args => startDate = (DateTime)args)" Name="Date" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                </RadzenStack>
+            </div>
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="To" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenDatePicker TValue="DateTime" Value=@endDate Change="@(args => endDate = (DateTime)args)" Name="Datee" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                </RadzenStack>
+            </div>
+        </div>
+        <div class="black-line" hidden="@(!hidden)">
+            <div class="black-line">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                    <RadzenLabel Text="Date" Style="font-weight:bold;width:10%;font-size:17px;" />
+                    <RadzenDatePicker TValue="DateTime" Value=@startDate Change="@(args => startDate = (DateTime)args)" Name="Dateee" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                </RadzenStack>
+            </div>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Description" Style="font-weight:bold;width:10%;font-size:17px;border-radius:15px;" />
+                <RadzenTextBox @bind-Value="dayOff.Description" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Description" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-filled-button" type="button" onclick="@ToggleHidden">Add many day offs</button>
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    public DayOff dayOff = new DayOff();
+    bool hidden = true;
+    DateTime startDate = DateTime.Now.Date;
+    DateTime endDate = DateTime.Now.Date;
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    private void ToggleHidden()
+    {
+        hidden = !hidden;
+    }
+    private async Task HandleSubmit()
+    {
+        if (ID == null)
+        {
+            if(hidden)
+            {
+                dayOff.Date = startDate;
+                await SchoolService.CreateDayOff(dayOff);
+            }
+            else
+            {
+                for(DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+                {
+                    DayOff newDayOff = new DayOff
+                    {
+                        Date = date,
+                        Description = dayOff.Description
+                    };
+                    await SchoolService.CreateDayOff(newDayOff);
+                }
+            }
+        }
+        else
+        {
+            
+        }
+
+
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

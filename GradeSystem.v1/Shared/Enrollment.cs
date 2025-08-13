@@ -17,9 +17,9 @@ public class Enrollment
     public DateTime Date { get; set; } = DateTime.Now;
     [Required]
     public DateTime EndDate { get; set; }
-    [Required]
-    [StringLength(50, MinimumLength = 1, ErrorMessage = "Class room name cannot be longer than 50 characters. Required minimum length is 1.")]
-    public string ClassRoom { get; set; } = string.Empty;
+    //[Required]
+    //[StringLength(50, MinimumLength = 1, ErrorMessage = "Class room name cannot be longer than 50 characters. Required minimum length is 1.")]
+    public string? ClassRoom { get; set; } = string.Empty;
     //[Required]
     //[StringLength(100, MinimumLength = 1, ErrorMessage = "Lesson topic cannot be longer than 100 characters. Required minimum length is 1.")]
     //public string LessonTopic { get; set; } = string.Empty;
@@ -27,6 +27,6 @@ public class Enrollment
     public Subject? Subject { get; set; }
     public Class? Class { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }

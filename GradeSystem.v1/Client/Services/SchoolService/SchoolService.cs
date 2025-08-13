@@ -7,15 +7,27 @@ namespace GradeSystem.v1.Client.Services.SchoolService
     public class SchoolService : ISchoolService
     {
         private readonly HttpClient _httpClient;
-        private readonly NavigationManager _navigationManager;
-        public SchoolService(HttpClient httpClient, NavigationManager navigationManager)
+        public SchoolService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _navigationManager = navigationManager;
         }
+
+        public IList<DayOff> DayOffs { get; set; } = new List<DayOff>();
+
+
         public async Task CreateAccessCode(AccessCode accessCode)
         {
             await _httpClient.PostAsJsonAsync("api/School/access_code", accessCode);
+        }
+
+        public async Task CreateDayOff(DayOff dayOff)
+        {
+            await _httpClient.PostAsJsonAsync("api/School/create_dayoff", dayOff);
+        }
+
+        public async Task CreateManyDayOffs(List<DayOff> dayOffs)
+        {
+            await _httpClient.PostAsJsonAsync("api/School/create_many_dayoffs", dayOffs);
         }
 
         public async Task CreateSchool(School school)
@@ -47,6 +59,19 @@ namespace GradeSystem.v1.Client.Services.SchoolService
             if (result != null)
                 return result;
             throw new Exception("Access codes not found");
+        }
+
+        public async Task GetDayOffs()
+        {
+            var result = await _httpClient.GetFromJsonAsync<List<DayOff>>("api/School/get_dayoffs");
+            if (result != null)
+            {
+                DayOffs = result;
+            }
+            else
+            {
+                throw new Exception("Day offs not found");
+            }
         }
 
         public async Task<School> GetSchoolByID(int schoolID)

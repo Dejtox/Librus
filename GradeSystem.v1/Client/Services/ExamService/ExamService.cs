@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
+using static System.Net.WebRequestMethods;
 
 namespace GradeSystem.v1.Client.Services.ExamService
 {
@@ -27,9 +28,11 @@ namespace GradeSystem.v1.Client.Services.ExamService
             await _httpClient.DeleteAsync($"api/Exam/{id}");
         }
 
-        public Task GetClasses()
+        public async Task GetClasses()
         {
-            throw new NotImplementedException();
+            var result = await _httpClient.GetFromJsonAsync<List<Class>>("api/Classes");
+            if (result != null)
+                Classes = result;
         }
 
         public async Task<Exam> GetExamByID(int id)

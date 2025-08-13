@@ -8,10 +8,9 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
 {
     public class EnrollmentService : IEnrollmentService
     {
-        public EnrollmentService(HttpClient http, NavigationManager navigationManager)
+        public EnrollmentService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
         public IList<Enrollment> EnrollmentsWithoutDuplicates { get; set; } = new List<Enrollment>();
@@ -19,19 +18,15 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
         public IList<Class> Classes { get; set; } = new List<Class>();
 
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task CreateEnrollment(Enrollment enrollment)
         {
-
             await _http.PostAsJsonAsync("api/Enrollments", enrollment);
-            _navigationManager.NavigateTo("enrollments");
         }
 
         public async Task DeleteEnrollment(int id)
         {
             await _http.DeleteAsync($"api/Enrollments/{id}");
-            _navigationManager.NavigateTo("enrollments");
         }
 
         public async Task<Class> GetClassByID(int id)
@@ -87,7 +82,6 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
         public async Task UpdateEnrollment(Enrollment enrollment)
         {
             await _http.PutAsJsonAsync($"api/Enrollments/{enrollment.EnrollmentID}", enrollment);
-            _navigationManager.NavigateTo("enrollments");
         }
 
         public async Task<List<Enrollment>> GetEnrollmentsByClassID(int classID)
@@ -104,6 +98,11 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
             if (result != null)
                 return result;
             throw new Exception("Enrollment no find");
+        }
+
+        public async Task CreatManyEnrollments(List<Enrollment> enrollments)
+        {
+            await _http.PostAsJsonAsync("api/Enrollments/create_many", enrollments);
         }
     }
 }

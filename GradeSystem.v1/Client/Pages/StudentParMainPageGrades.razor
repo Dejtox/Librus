@@ -2,10 +2,10 @@
 @using System.Globalization;
 @inject IStudentService StudentService
 @inject IGradeNumberService GradeNumberService
-@inject IGradeService GradeService
+@inject IGradeService GradeService 
 @inject ISubjectService SubjectService
 @inject IParentService ParentService
-@attribute [Authorize(Roles = "Parent, Admin")]
+@attribute [Authorize(Roles = "Parent, Student, Admin")]
 
 <div class="RGtable">
 
@@ -17,7 +17,8 @@
     <div class="RGdisplay">
 
         <div class="RGsubdisplay">
-
+            @if (LastSixGrades.Count >= 1)
+            {
         @foreach (var Grade in LastSixGrades)
         {
         <div class="RGtablerow"> 
@@ -55,14 +56,16 @@
 
 
             </div>
-
-
+           
                     <div class="RGgrade">@Grade.Gradenumber.GradeName</div>
            
     </div>
-    }
-
-    </div>
+                }
+            }else
+            {
+                <div>No grades were added lately.</div>
+            }
+        </div>
 
     </div>
 
@@ -96,7 +99,7 @@
         {
             if(grade.StudentID == student.StudentID)
             {
-                if(grade.DateOfGrading <= Today && grade.DateOfGrading >= Today.AddDays(-365))
+                if(grade.DateOfGrading <= Today && grade.DateOfGrading >= Today.AddDays(-30))
                 {
                     RecentStudentGrades.Add(grade);
                 }

@@ -1,10 +1,11 @@
 ﻿@page "/gradesviewteacher"
-@*@page "/gradesviewteacher{id:int}"*@
+@page "/gradesviewteacher/{EnrolmentId:int}"
 @using System.Security.Claims
 @inject IStudentService StudentService
 @inject IGradeService GradeService
 @inject ISubjectService SubjectService
 @inject IClassService ClassService
+@inject IEnrollmentService EnrollmentService
 @inject IUserService UserService
 @inject ITeacherService TeacherService
 @inject IJSRuntime js
@@ -26,19 +27,23 @@
        </div>
        @if(teacher.TeacherID != null)
         {
+            if (selectedsubjectId != null)
+            {
             <div class="Tstudentclass">Subject
                 <select value="@selectedsubjectId" @onchange="HandlesubjectChange" class="grade-select">
-                    <option value="0">Select Grade</option>
+                    
                     @foreach (var classItem in SubjectService.Subjects)
                     {
-                        if (teacher.TeacherID == classItem.SubjectID)
+
+                        if (teacher.TeacherID == classItem.TeacherID)
                         {
-                            <option value="@classItem.SubjectID">@classItem.SubjectName</option>
+                                <option value="@classItem.SubjectID">@classItem.SubjectName @classItem.Grade</option>
                         }
                     }
 
                 </select>
             </div>
+            }
         }
         
 
@@ -71,24 +76,46 @@
 
         </div>
         <div class="Tgradesdisplay">
-           @for(int i = 1; i<21; i++)
+           @foreach(var student in StudentService.Students)
            {
-                <div class="Tgraderow">
-                    <button class="Taddgrade Taddgrade--d"><div class="gg-add"></div></button>
-                    <div class="Tnumber Tnumber--d">1</div>
-                    <div class="Tname">Name</div>
-                    <div class="Tgrade">
-                        <div class="Tgradevalue">2</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
+                int i = 0;
+                if (student.ClassID == selectedClassId)
+                {
+                    <div class="Tgraderow">
+                        <button class="Taddgrade Taddgrade--d"><div class="gg-add"></div></button>
+                        @i = i++;
+                        <div class="Tnumber Tnumber--d">i</div>
+                        <div class="Tname">@student.Name </div>
+                        <div class="Tgrade">
+                            @foreach (var grade in GradeService.Grades)
+                            {
+                                if (grade.StudentID == student.StudentID)
+                                {
+                                    <button class="Tgradevalue">@grade.Gradenumber.GradeName</button>
+                                }
+                            }
+                                    @foreach(var grade in GradeService.Grades)
+                                    {
+                                    <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
+                                    }
+                                    @if(0==1)
+                                    {
+                                        <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>               //dodać tu oceny końcowe
+                                    }
+                                    else
+                                    {
+                                        <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
+                                    }
+
+                        </div>
+                        <div class="Tgrade">
+                            <div class="Tgradevalue">3</div>
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
+                        </div>
+                        <div class="Tfinalgrade">2.5</div>
                     </div>
-                    <div class="Tgrade">
-                        <div class="Tgradevalue">3</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
-                        <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
-                    </div>
-                    <div class="Tfinalgrade">2.5</div>
-                </div>
+                }                
            }
         </div>
     </div>
@@ -96,7 +123,8 @@
 
 
 @code {
-
+    [Parameter]
+    public int? EnrolmentId { get; set; }
 
     int selectedClassId;
     int selectedsubjectId;
@@ -113,9 +141,15 @@
         await StudentService.GetStudents();
         await GradeService.GetGrades();
         await TeacherService.GetTeachers();
+        await GetClaimsGetID();
         await ClassService.GetClasses();
         await SubjectService.GetSubjects();
-        await GetClaimsGetID();
+        await EnrollmentService.GetEnrollments();
+        if (EnrolmentId.HasValue)
+        {
+            await Findenrolment(EnrolmentId.Value);
+        }
+
     }
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
@@ -134,7 +168,6 @@
                 Roles = claim.Value;
             }
         };
-
         if (Roles == "Teacher")
         {
             foreach (var teacherpom in TeacherService.Teachers)
@@ -147,6 +180,17 @@
         }
     }
 
+    async Task Findenrolment(int enrolid)
+    {
+        foreach (var enr in EnrollmentService.Enrollments)
+        {
+            if(enr.EnrollmentID == enrolid)
+            {
+                selectedsubjectId = enr.Subject.SubjectID;
+                break;
+            }
+        }
+    }
 
     private async Task HandleClassChange(ChangeEventArgs e)
     {
@@ -166,12 +210,5 @@
         }
     }
 
-    void ShowGrade(int id)
-    {
-        NavigationMenager.NavigateTo($"grade/{id}");
-    }
-    void CreateGrade()
-    {
-        NavigationMenager.NavigateTo("/grade");
-    }
+
 }

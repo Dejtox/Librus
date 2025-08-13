@@ -37,7 +37,7 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<Guardians> Guardians { get; set; }
         public DbSet<SchoolTripStudents> SchoolTripStudents { get; set; }
         public DbSet<SchoolTripClasses> SchoolTripClasses { get; set; }
-
+        public DbSet<Syllabus> Syllabus { get; set; }
         public DbSet<GradeNumber> GradeNumber { get; set; }
         public DbSet<GradeType> GradeType { get; set; }
         public DbSet<Roles> Roles { get; set; }
@@ -46,5 +46,7 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<ChatMessage> ChatMessage { get; set; }
         public DbSet<AccessCode> AccessCode { get; set; }
         public DbSet<School> School { get; set; }
+
+
     }
 }

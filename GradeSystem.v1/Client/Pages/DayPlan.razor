@@ -119,7 +119,6 @@
     {
         var eventsall = EntrollmentService.Enrollments;
         var events = eventsall.Where(e => e.ClassID == student.ClassID);
-        Console.WriteLine(events.Count());
         string data = string.Empty;
         foreach (var lesson in LessonsHoursService.LessonsHours)
         {

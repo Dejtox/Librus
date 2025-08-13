@@ -12,6 +12,8 @@ public class Enrollment
     public int? ClassID { get; set; }
     public  int? SubEnrollmentID { get; set; }
 
+    public bool? Issubbstitut { get; set; }
+
     public Enrollment? SubEnrollment { get; set; }
     [Required]
     public DateTime Date { get; set; } = DateTime.Now;
@@ -27,6 +29,6 @@ public class Enrollment
     public Subject? Subject { get; set; }
     public Class? Class { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }

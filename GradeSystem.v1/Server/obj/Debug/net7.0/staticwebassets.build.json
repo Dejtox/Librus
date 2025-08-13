@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fIuGRzV+P3PcIPyjNtFK/Jux7mkaxpfdGUT2zSpA60c=",
+  "Hash": "vNeD6W+OjtLS0mThG/p2qG6kaFMDglDxJJydozRm62w=",
   "Source": "GradeSystem.v1.Server",
   "BasePath": "_content/GradeSystem.v1.Server",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "GradeSystem.v1.Client",
       "GetPublishAssetsTargets": "ComputeFilesToPublish;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "_PublishingBlazorWasmProject=true;BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true;Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "_PublishingBlazorWasmProject=true;BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true",
       "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "RuntimeIdentifier;SelfContained;WebPublishProfileFile;TargetFramework"
     }
   ],
@@ -447,25 +447,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.5\\staticwebassets\\AuthenticationService.js"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\dark.css",
-      "SourceId": "Radzen.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\",
-      "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/dark.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\dark.css"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\dark-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
@@ -485,12 +466,12 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\dark-base.css"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\default.css",
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\dark.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/default.css",
+      "RelativePath": "css/dark.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -501,7 +482,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\default.css"
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\dark.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\default-base.css",
@@ -523,12 +504,12 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\default-base.css"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\humanistic.css",
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\default.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/humanistic.css",
+      "RelativePath": "css/default.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -539,7 +520,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\humanistic.css"
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\default.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\humanistic-base.css",
@@ -561,12 +542,12 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\humanistic-base.css"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\material.css",
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\humanistic.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/material.css",
+      "RelativePath": "css/humanistic.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -577,7 +558,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\material.css"
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\humanistic.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\material-base.css",
@@ -599,12 +580,12 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\material-base.css"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\software.css",
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\material.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/software.css",
+      "RelativePath": "css/material.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -615,7 +596,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\software.css"
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\material.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\software-base.css",
@@ -637,12 +618,12 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\software-base.css"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\standard.css",
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\software.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/standard.css",
+      "RelativePath": "css/software.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -653,7 +634,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\standard.css"
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\software.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\standard-base.css",
@@ -673,6 +654,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\standard-base.css"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\standard.css",
+      "SourceId": "Radzen.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\",
+      "BasePath": "_content/Radzen.Blazor",
+      "RelativePath": "css/standard.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\css\\standard.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\fonts\\MaterialIcons-Regular.woff",
@@ -1074,25 +1074,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\radzen.blazor\\4.11.0\\staticwebassets\\Radzen.Blazor.js"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\bootstrap\\_bootstrap_vars.scss",
-      "SourceId": "Smart.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
-      "BasePath": "_content/Smart.Blazor",
-      "RelativePath": "css/bootstrap/_bootstrap_vars.scss",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\bootstrap\\_bootstrap_vars.scss"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\bootstrap\\_bootstrap_vars_dark.scss",
       "SourceId": "Smart.Blazor",
       "SourceType": "Package",
@@ -1129,6 +1110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\bootstrap\\_bootstrap_vars_light.scss"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\bootstrap\\_bootstrap_vars.scss",
+      "SourceId": "Smart.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
+      "BasePath": "_content/Smart.Blazor",
+      "RelativePath": "css/bootstrap/_bootstrap_vars.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\bootstrap\\_bootstrap_vars.scss"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\bootstrap\\_mixins.scss",
@@ -5159,25 +5159,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_switchbutton.scss"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_table.scss",
-      "SourceId": "Smart.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
-      "BasePath": "_content/Smart.Blazor",
-      "RelativePath": "css/default/scss/rtl/_table.scss",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_table.scss"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_table_outline_level.scss",
       "SourceId": "Smart.Blazor",
       "SourceType": "Package",
@@ -5195,6 +5176,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_table_outline_level.scss"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_table.scss",
+      "SourceId": "Smart.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
+      "BasePath": "_content/Smart.Blazor",
+      "RelativePath": "css/default/scss/rtl/_table.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_table.scss"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\rtl\\_tabs.scss",
@@ -7040,25 +7040,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\splitter\\_shadow_dom.scss"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\table\\_colors.scss",
-      "SourceId": "Smart.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
-      "BasePath": "_content/Smart.Blazor",
-      "RelativePath": "css/default/scss/table/_colors.scss",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\table\\_colors.scss"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\table\\_colors_hover.scss",
       "SourceId": "Smart.Blazor",
       "SourceType": "Package",
@@ -7076,6 +7057,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\table\\_colors_hover.scss"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\table\\_colors.scss",
+      "SourceId": "Smart.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
+      "BasePath": "_content/Smart.Blazor",
+      "RelativePath": "css/default/scss/table/_colors.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\table\\_colors.scss"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\default\\scss\\table\\_outline_level.scss",
@@ -9472,25 +9472,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.dark-turquoise.css"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.default.css",
-      "SourceId": "Smart.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
-      "BasePath": "_content/Smart.Blazor",
-      "RelativePath": "css/smart.default.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.default.css"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.default-dev.css",
       "SourceId": "Smart.Blazor",
       "SourceType": "Package",
@@ -9508,6 +9489,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.default-dev.css"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.default.css",
+      "SourceId": "Smart.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
+      "BasePath": "_content/Smart.Blazor",
+      "RelativePath": "css/smart.default.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.default.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\css\\smart.fluent.css",
@@ -13956,25 +13956,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.editor.js"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.element.js",
-      "SourceId": "Smart.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
-      "BasePath": "_content/Smart.Blazor",
-      "RelativePath": "js/smart.element.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.element.js"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.element-polyfills.js",
       "SourceId": "Smart.Blazor",
       "SourceType": "Package",
@@ -13992,6 +13973,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.element-polyfills.js"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.element.js",
+      "SourceId": "Smart.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
+      "BasePath": "_content/Smart.Blazor",
+      "RelativePath": "js/smart.element.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.element.js"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\smart.elements.js",
@@ -19200,25 +19200,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.dark-turquoise.css"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.default.css",
-      "SourceId": "Smart.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
-      "BasePath": "_content/Smart.Blazor",
-      "RelativePath": "js/styles/smart.default.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.default.css"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.default-dev.css",
       "SourceId": "Smart.Blazor",
       "SourceType": "Package",
@@ -19236,6 +19217,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.default-dev.css"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.default.css",
+      "SourceId": "Smart.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\",
+      "BasePath": "_content/Smart.Blazor",
+      "RelativePath": "js/styles/smart.default.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.default.css"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\smart.blazor\\15.1.1\\staticwebassets\\js\\styles\\smart.green.css",
@@ -21385,25 +21385,6 @@
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\scripts\\svgbase.min.js"
     },
     {
-      "Identity": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\scripts\\syncfusion-blazor.min.js",
-      "SourceId": "Syncfusion.Blazor.Core",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\",
-      "BasePath": "_content/Syncfusion.Blazor.Core",
-      "RelativePath": "scripts/syncfusion-blazor.min.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\scripts\\syncfusion-blazor.min.js"
-    },
-    {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\scripts\\syncfusion-blazor-base.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
@@ -21421,6 +21402,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\scripts\\syncfusion-blazor-base.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\scripts\\syncfusion-blazor.min.js",
+      "SourceId": "Syncfusion.Blazor.Core",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\",
+      "BasePath": "_content/Syncfusion.Blazor.Core",
+      "RelativePath": "scripts/syncfusion-blazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.core\\26.1.35\\staticwebassets\\scripts\\syncfusion-blazor.min.js"
     },
     {
       "Identity": "C:\\Users\\patry\\.nuget\\packages\\syncfusion.blazor.data\\26.1.35\\staticwebassets\\scripts\\data.min.js",
@@ -31930,6 +31930,25 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "GradeSystem.v1.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
+    },
+    {
       "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "GradeSystem.v1.Client",
       "SourceType": "Project",
@@ -32042,25 +32061,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
-    },
-    {
-      "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "GradeSystem.v1.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "C:\\Users\\patry\\Desktop\\ProjekDziennikinocnik\\filbru\\Librus\\GradeSystem.v1\\Client\\wwwroot\\css\\open-iconic\\ICON-LICENSE",

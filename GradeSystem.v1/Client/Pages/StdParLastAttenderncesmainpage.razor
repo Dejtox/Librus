@@ -8,7 +8,7 @@
 
 <div class="RGtable">
     <div class="RGtableheader">
-        <div class="RGtitle">Attendece</div>
+        <div class="RGtitle">Attendance</div>
     </div>
 @*
 <div>
@@ -44,7 +44,7 @@
 </div>
 *@
     <div class="dateselectbotommenu">
-    @if (SelectedDate.Day - 4 > 0)
+    @if (SelectedDate.Day  > 1)
     {
         <div class="dateselectspace">
             <div></div>
@@ -67,38 +67,54 @@
             </div>
     }
 
-    @if (SelectedDate.Day - 3 >= 0)
+    @if (SelectedDate.Day - 3 > 0)
     {
             <div class="dateselectspace">
                 <div class="dateselectbutton">@SelectedDate.AddDays(-3).ToString("ddd", CultureInfo.InvariantCulture)</div>
                 <div>
-                    <button class="dateselectbutton">@(SelectedDate.Day - 3)</button>
+                    <div class="dateselectbutton">@(SelectedDate.Day - 3)</div>
                 </div>
             </div>
-    }
-    @if (SelectedDate.Day - 2 >= 0)
+        }
+        else
+        {
+            <div class="dateselectspace">
+            </div>
+        }
+        
+        @if (SelectedDate.Day - 2 > 0)
     {
             <div class="dateselectspace">
                 <div class="dateselectbutton">@SelectedDate.AddDays(-2).ToString("ddd", CultureInfo.InvariantCulture)</div>
                 <div>
-                    <button class="dateselectbutton">@(SelectedDate.Day - 2)</button>
+                    <div class="dateselectbutton">@(SelectedDate.Day - 2)</div>
                 </div>
             </div>
     }
-    @if (SelectedDate.Day - 1 >= 0)
+        else
+        {
+            <div class="dateselectspace">
+            </div>
+        }
+    @if (SelectedDate.Day - 1 > 0)
     {
             <div class="dateselectspace">
                 <div class="dateselectbutton">@SelectedDate.AddDays(-1).ToString("ddd", CultureInfo.InvariantCulture)</div>
                 <div>
-                    <button class="dateselectbutton">@(SelectedDate.Day - 1)</button>
+                    <div class="dateselectbutton">@(SelectedDate.Day - 1)</div>
                 </div>
             </div>
     }
+        else
+        {
+            <div class="dateselectspace">
+            </div>
+        }
         <div class="dateselectspace">
             <div class="dateselectbutton">
                 @SelectedDate.ToString("ddd", CultureInfo.InvariantCulture)</div>
             <div>
-                <button class="dateselectbutton">@SelectedDate.Day</button>
+                <div class="dateselectbutton">@SelectedDate.Day</div>
             </div>
         </div>
     @if (SelectedDate.Day + 1 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
@@ -106,30 +122,46 @@
             <div class="dateselectspace">
                 <div class="dateselectbutton">@SelectedDate.AddDays(1).ToString("ddd", CultureInfo.InvariantCulture)</div>
                 <div>
-                    <button class="dateselectbutton">@SelectedDate.AddDays(1).Day </button>
+                    <div class="dateselectbutton">@SelectedDate.AddDays(1).Day </div>
                 </div>
             </div>
     }
+        else
+        {
+            <div class="dateselectspace">
+            </div>
+        }
     @if (SelectedDate.Day + 2 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
     {
             <div class="dateselectspace">
                 <div class="dateselectbutton">@SelectedDate.AddDays(2).ToString("ddd", CultureInfo.InvariantCulture)</div>
                 <div>
-                    <button class="dateselectbutton">@SelectedDate.AddDays(2).Day </button>
+                    <div class="dateselectbutton">@SelectedDate.AddDays(2).Day </div>
                 </div>
             </div>
     }
+        else
+        {
+            <div class="dateselectspace">
+            </div>
+        }
     @if (SelectedDate.Day + 3 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
     {
             <div class="dateselectspace">
                 <div class="dateselectbutton">@SelectedDate.AddDays(3).ToString("ddd", CultureInfo.InvariantCulture)</div>
                 <div>
-                    <button class="dateselectbutton">@SelectedDate.AddDays(3).Day </button>
+                    <div class="dateselectbutton">@SelectedDate.AddDays(3).Day </div>
                 </div> 
             </div>
     }
-    @if (SelectedDate.Day + 4 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+        else
+        {
+            <div class="dateselectspace">
+            </div>
+        }
+        @if (SelectedDate.Day < DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
     {
+            Console.WriteLine(SelectedDate.Day);
             <div class="dateselectspace">
                 <div></div>
                 <div>
@@ -286,7 +318,6 @@
     {
         Events.Clear();
         int i = 0;
-        Console.WriteLine(Atdlist.Count + "Atdlist");
         foreach (var evn in Atdlist)
         {
             if (evn.Enrollment.Date.Month == SelectedDate.Month & evn.Enrollment.Date.Year == SelectedDate.Year)
@@ -320,7 +351,6 @@
                 
             }
         }
-        Console.WriteLine(Events.Count + "events");
         StateHasChanged();
     }
 

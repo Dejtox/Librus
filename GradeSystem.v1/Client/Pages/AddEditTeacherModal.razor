@@ -112,7 +112,6 @@
                 var userRoles = roles.Select(x => new Roles { Role = x }).ToList();
                 teacher.User.Roles = userRoles;
                 (teacher.User.PasswordSalt, teacher.User.PasswordHash) = PasswordSecurity.HashPassword(teacher.User.PasswordHash);
-                Console.WriteLine($"Salt:{teacher.User.PasswordSalt}, Hash:{teacher.User.PasswordHash}");
                 await TeacherService.CreateTeacherUser(teacher);
             }
             finally

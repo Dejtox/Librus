@@ -75,7 +75,6 @@ namespace GradeSystem.v1.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Note>> PostClass(Note note)
         {
-            Console.WriteLine("bylem tu EZ");
             _context.Note.Add(note);
             await _context.SaveChangesAsync();
 

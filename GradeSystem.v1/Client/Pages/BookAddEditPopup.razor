@@ -43,7 +43,6 @@
     {
         book = bookvar;
         book.BookType = await BookTypeService.GetBookTypeByID((int)book.BookTypeID);
-        Console.WriteLine(book.BookType);
         IsVisible = true;
         StateHasChanged();
     }

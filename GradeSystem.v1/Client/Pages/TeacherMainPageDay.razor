@@ -13,24 +13,38 @@
     </div>
 
     <div class="TEdisplay">
-        
+
         <div class="DateToday">@Today.DayOfWeek, @Today.ToString("dd.MM") </div>
 
         <div class="TEsubdisplay">
-
-            @foreach (var incominglessons in EnrollmentsToday)
+            @foreach (var lessonhour in SortedlessonsHours)
+            {
+                bool i = true;
+                @foreach (var enrl in EnrolmentsFortoday)
+                {
+                    if (lessonhour.Start.TimeOfDay >= enrl.Date.TimeOfDay && lessonhour.End.TimeOfDay <= enrl.EndDate.TimeOfDay)
                     {
-
                         <div class="TEtablerow">
 
                             <div class="TEdata">
-                                <div class="TEsubject">@incominglessons.Subject</div>
+                                <div class="TEsubject">@lessonhour.LessonNo @enrl.Subject.SubjectName</div>
 
-                                <div class="TEclass">(@incominglessons.MyClass)</div>
+                                <div class="TEclass">(@enrl.Class.ClassName)</div>
                             </div>
                         </div>
-
+                        i = false;
                     }
+                }
+                @if (i == true)
+                {
+                    <div class="TEtablerow">
+                        <div class="TEdata">
+                            <div class="TEsubject">@lessonhour.LessonNo</div>
+                        </div>
+                    </div>
+                }
+
+            }
 
         </div>
 
@@ -50,6 +64,7 @@
         Today = DateTime.Now;
         await GetClaimsGetID();
         await SortEnrollments();
+        await SortLessonHours();
     }
 
 
@@ -59,64 +74,38 @@
     Class classes;
     string Roles;
     DateTime Today = DateTime.Now;
-
-    List<IncomingLesson> EnrollmentsToday = new List<IncomingLesson>();
-
+    IList<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
+    IList<Enrollment> EnrolmentsFortoday = new List<Enrollment>();
 
     async Task SortEnrollments()
     {
-        foreach (var lessonhour in LessonsHoursService.LessonsHours)
+        foreach (var enrl in EnrollmentService.Enrollments)
         {
-
-            IncomingLesson inc = new IncomingLesson(0, "", "");
-
-            EnrollmentsToday.Add(inc);
-
-            foreach (var enrollment in EnrollmentService.Enrollments)
+            if (enrl.Subject.TeacherID == teacher.TeacherID)
             {
-
-
-                if (Today.Day == enrollment.Date.Day && Today.Month == enrollment.Date.Month && Today.Year == enrollment.Date.Year && enrollment.Class.TeacherID == ID)
+                if (enrl.Date.Month == Today.Month && enrl.Date.Day == Today.Day)
                 {
-
-                    if (enrollment.Date.Hour == lessonhour.Start.Hour && enrollment.Date.Minute == lessonhour.Start.Minute)
-                    {
-
-                        IncomingLesson inc1 = new IncomingLesson(enrollment.EnrollmentID, enrollment.Subject.SubjectName, enrollment.Class.ClassName);
-
-                        EnrollmentsToday[lessonhour.LessonNo - 1] = inc1;
-
-                        break;
-                    }
-
+                    EnrolmentsFortoday.Add(enrl);
                 }
-                
             }
-   
-
         }
-
 
     }
 
-    public class IncomingLesson
+
+    async Task SortLessonHours()
     {
-        public int ID;
-        public string Subject;
-        public string MyClass; 
-
-        public IncomingLesson(int iD, string subject, string myclass)
+        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
         {
-            ID = iD;
-            Subject = subject;
-            MyClass = myclass;
+            foreach (var segment in LessonsHoursService.LessonsHours)
+            {
+                if (segment.LessonNo == i + 1)
+                {
+                    SortedlessonsHours.Add(segment);
+                }
+            }
         }
     }
-
-    IncomingLesson incominglesson = new IncomingLesson(0," "," ");
-
-
-
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }

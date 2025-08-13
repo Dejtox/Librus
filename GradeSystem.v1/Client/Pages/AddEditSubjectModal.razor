@@ -25,6 +25,14 @@
                 <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="false" Style="" />
             </RadzenStack>
         </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Subject Name" Style="font-weight:bold;width:10%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="subject.Grade" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="SubjectGrade" />
+                <RadzenLengthValidator Component="SubjectName" Min="1" Text="Subject name should be at least 2 characters" Popup="false" Style="" />
+                <RadzenLengthValidator Component="SubjectName" Max="50" Text="Subject name should be at most 50 characters" Popup="false" Style="" />
+            </RadzenStack>
+        </div>
         <div class="button-container search-margin">
             <button class="rounded-empty-button" type="submit">Confirm</button>
             <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>

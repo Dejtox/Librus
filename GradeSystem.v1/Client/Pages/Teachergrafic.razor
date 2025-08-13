@@ -40,7 +40,7 @@
 <div>
     @if (SelectedDate.Day - 4 > 0)
     {
-        <button type="button" class="btn-close" aria-label="Close" @onclick="Lower">h</button>
+        <button type="button" class="btn-close" aria-label="Close" @onclick="Higher">h</button>
     }
     else
     {
@@ -62,7 +62,7 @@
     {<button>@SelectedDate.AddDays(3).Day </button>}
     @if(SelectedDate.Day + 4 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
     {
-        <button type="button" class="btn-close" aria-label="Close" @onclick="Higher">l</button>
+        <button type="button" class="btn-close" aria-label="Close" @onclick="Lower">l</button>
     }
     else
     {
@@ -205,14 +205,12 @@
     {
         int i = Convert.ToInt32(e.Value.ToString());
         SelectedDate.Year.Equals(i);
-        Console.WriteLine(i);
         await NewDate();
     }
     async Task SelectMonth(ChangeEventArgs e)
     {
         int month = Convert.ToInt32(e.Value.ToString());
         SelectedDate = new DateTime(SelectedDate.Year, month, 4);
-        Console.WriteLine(SelectedDate.Month);
         await NewDate();
     }
     async Task MoveTo(int id)

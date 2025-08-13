@@ -2,6 +2,7 @@
 @inject IEnrollmentService EnrollmentService
 @inject NavigationManager NavigationManager
 @inject ITeacherService TeacherService
+@inject ILessonsHoursService LessonsHoursService
 @attribute [Authorize(Roles = "Admin, Teacher, Secretary, Librarian, Principal")]
 
 <div class="CLtable">
@@ -26,7 +27,7 @@
                     <div class="gg-check-r"></div>
                     <div class="CLbuttonname">Attendance</div>
                 </button>
-                <button class="CLbutton" style="background-color: rgb(248,148,56)" @onclick="@(()=>NavigationManager.NavigateTo("/gradesviewteacher"))">
+                <button class="CLbutton" style="background-color: rgb(248,148,56)" @onclick="@(()=>NavigationManager.NavigateTo("/gradesviewteacher/"+ enrollment.EnrollmentID))">
                     <div class="gg-check-o"></div>
                     <div class="CLbuttonname">Grades</div>
                 </button>
@@ -65,12 +66,15 @@
     int ID;
     string Roles;
     Teacher teacher;
+    Enrollment enrollment;
     protected override async Task OnInitializedAsync()
     {
         await EnrollmentService.GetEnrollments();
         await GetClaimsGetID();
         await Finderolment();
+
     }
+
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
 
@@ -81,13 +85,18 @@
         {
             if(enr.Subject.TeacherID == teacher.TeacherID)
             {
-                if(enr.Date.Year == dateTimenow.Year)
+                if (enr.Date.Year == dateTimenow.Year && enr.Date.Month == dateTimenow.Month && enr.Date.Day == dateTimenow.Day)
                 {
-                    
+                    if(enr.Date < dateTimenow && enr.EndDate > dateTimenow)
+                    {
+                        enrollment = enr;
+                    }
                 }
             }
         }
     }
+
+
 
     private async Task GetClaimsGetID()
     {

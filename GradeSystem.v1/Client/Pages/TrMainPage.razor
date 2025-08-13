@@ -281,9 +281,43 @@
                 UpToDateMonday = Today;
             }
         }
-
+        await Filllistofactivetiescurrentweek();
     }
-
+    async Task Filllistofactivetiescurrentweek()
+    {
+        DateTime temp;
+        foreach (var enrolment in EnrollmentService.Enrollments)
+        {
+            if (enrolment.Subject.TeacherID == teacher.TeacherID)
+            {
+                temp = UpToDateMonday;
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    TchEnrolmentsMon.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(1);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    TchEnrolmentsTue.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(2);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    TchEnrolmentsWen.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(3);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    TchEnrolmentsThu.Add(enrolment);
+                }
+                temp = UpToDateMonday.AddDays(4);
+                if (enrolment.Date.Day == temp.Day && enrolment.Date.Month == temp.Month)
+                {
+                    TchEnrolmentsFri.Add(enrolment);
+                }
+            }
+        }
+    }
 
     async Task SortLessonHours()
     {

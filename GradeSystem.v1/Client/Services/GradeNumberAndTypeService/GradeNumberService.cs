@@ -9,17 +9,15 @@ namespace GradeSystem.v1.Client.Services.GradeNumberService
 {
     public class GradeNumberService : IGradeNumberService
     {
-        public GradeNumberService(HttpClient http, NavigationManager navigationManager)
+        public GradeNumberService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<GradeNumber> GradeNumbers { get; set; } = new List<GradeNumber>();
         public IList<GradeType> GradeTypes { get; set; } = new List<GradeType>();
 
 
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task DeleteGradeNumber(int id)
         {

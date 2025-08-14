@@ -7,27 +7,23 @@ namespace GradeSystem.v1.Client.Services.EventService
 {
     public class EventService : IEventService
     {
-        public EventService(HttpClient http, NavigationManager navigationManager)
+        public EventService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<CalendarEvent> Events { get; set; } = new List<CalendarEvent>();
         public IList<Class> Classes { get; set; } = new List<Class>();
 
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task CreateCalendarEvent(CalendarEvent CalendarEvent)
         {
             await _http.PostAsJsonAsync("api/Events", CalendarEvent);
-            _navigationManager.NavigateTo("calendar");
         }
 
         public async Task DeleteCalendarEvent(int id)
         {
             await _http.DeleteAsync($"api/Events/{id}");
-            _navigationManager.NavigateTo("calendar");
         }
 
 
@@ -49,7 +45,6 @@ namespace GradeSystem.v1.Client.Services.EventService
         public async Task UpdateCalendarEvent(CalendarEvent CalendarEvent)
         {
             await _http.PutAsJsonAsync($"api/Events/{CalendarEvent.CalendarEventID}", CalendarEvent);
-            _navigationManager.NavigateTo("calendar");
         }
 
         public async Task GetClasses()

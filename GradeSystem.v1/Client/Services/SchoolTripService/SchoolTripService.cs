@@ -8,11 +8,9 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
     public class SchoolTripService : ISchoolTripService
     {
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
-        public SchoolTripService(HttpClient http,NavigationManager navigationManager) 
+        public SchoolTripService(HttpClient http) 
         {
             _http = http;
-            _navigationManager= navigationManager;
         }
         public IList<SchoolTrip> SchoolTrips { get;set; }=new List<SchoolTrip>();
         public IList<Teacher> Teachers { get;set; } =new List<Teacher>();
@@ -21,7 +19,6 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
         public async Task CreateSchoolTrip(SchoolTrip schoolTrip)
         {
             await _http.PostAsJsonAsync("api/SchoolTrip", schoolTrip);
-            _navigationManager.NavigateTo("school_trips1");
         }
 
         public async Task GetClasses()
@@ -56,13 +53,11 @@ namespace GradeSystem.v1.Client.Services.SchoolTripService
         public async Task DeleteSchoolTripByID(int id)
         {
             await _http.DeleteAsync($"api/SchoolTrip/{id}");
-            _navigationManager.NavigateTo("school_trips1",true);
         }
 
         public async Task UpdateSchoolTrip(SchoolTrip schoolTrip)
         {
             await _http.PostAsJsonAsync($"api/SchoolTrip/{schoolTrip.SchoolTripID}", schoolTrip);
-            _navigationManager.NavigateTo("school_trips1");
         }
 
         public async Task<List<Student>> GetStudents(List<int> classes)

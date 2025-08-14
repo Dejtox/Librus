@@ -3,6 +3,7 @@
 @inject ISubjectService SubjectService
 @inject ILessonsHoursService LessonsHoursService
 @inject ISchoolService SchoolService
+@inject NavigationManager NavigationManager
 @inject DragService Drag
 
 <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
@@ -230,6 +231,7 @@
         var dayOffs = new HashSet<DateTime>(SchoolService.DayOffs.Select(d => d.Date.Date));
         Enrollments.RemoveAll(e => dayOffs.Contains(e.Date.Date));
         await EnrollmentService.CreatManyEnrollments(Enrollments);
+        NavigationManager.NavigateTo("/AddEnrollments", true);
     }
     private void SelectClass(int ClassID)
     {

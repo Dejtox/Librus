@@ -7,10 +7,9 @@ namespace GradeSystem.v1.Client.Services.AttendanceService
 {
     public class AttendanceService : IAttendanceService
     {
-        public AttendanceService(HttpClient http, NavigationManager navigationManager)
+        public AttendanceService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<Attendance> Attendances { get; set; } = new List<Attendance>();
         public IList<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
@@ -19,7 +18,6 @@ namespace GradeSystem.v1.Client.Services.AttendanceService
         public List<Attendance> LocalAttendances { get; set; } = new List<Attendance>();
 
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task CreateAttendance(Attendance attendance)
         {

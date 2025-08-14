@@ -7,16 +7,13 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesListService
 
     public class ExtraClassesListService : IExtraClassesListService
     {
-        public ExtraClassesListService(HttpClient http, NavigationManager navigationManager)
+        public ExtraClassesListService(HttpClient http)
         {
-                _http = http;
-                _navigationManager = navigationManager;
-            
+                _http = http;          
         }
 
         private readonly HttpClient _http;
         
-        private readonly NavigationManager _navigationManager;
 
 
         public IList<ExtraClassesList> ExtraClassesLists{ get; set; } = new List<ExtraClassesList>();
@@ -26,13 +23,11 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesListService
         public async Task CreateExtraClassesList(ExtraClassesList extraClassesList)
         {
             await _http.PostAsJsonAsync("api/ExtraClassesLists", extraClassesList);
-            _navigationManager.NavigateTo("ExtraClassesList");
         }
 
         public async Task DeleteExtraClassesList(int id)
         {
             await _http.DeleteAsync( $"api/ExtraClassesLists/{id}");
-            _navigationManager.NavigateTo("ExtraClassesList");
         }
 
         public async Task GetExtraClasses()
@@ -75,7 +70,6 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesListService
         public async Task UpdateExtraClassesList(ExtraClassesList extraClassesList)
         {
             await _http.PutAsJsonAsync($"api/ExtraClassesLists{extraClassesList.ExtraClassesListID}", extraClassesList);
-            _navigationManager.NavigateTo("ExtraClassesList");
         }
     }
 }

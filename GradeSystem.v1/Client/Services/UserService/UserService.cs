@@ -11,20 +11,18 @@ namespace GradeSystem.v1.Client.Services.UserService
         public IList<Student> Students { get;set; } = new List<Student>();
         public IList<Parent> Parents { get; set; } = new List<Parent>();
         private readonly HttpClient _http;
-        public UserService(HttpClient http, NavigationManager navigationManager)
+        public UserService(HttpClient http)
         {
             _http = http;
         }
         public async Task CreateUser(UserDto user)
         {
             await _http.PostAsJsonAsync("api/Users", user);
-            //_navigationManager.NavigateTo("Teachers");
         }
 
         public async Task DeleteUser(int id)
         {
             await _http.DeleteAsync($"api/Users/{id}");
-            //_navigationManager.NavigateTo("Teachers");
         }
 
         public async Task GetParents()
@@ -66,7 +64,6 @@ namespace GradeSystem.v1.Client.Services.UserService
         public async Task UpdateUser(User user)
         {
             await _http.PutAsJsonAsync($"api/Users/{user.UserID}", user);
-            //_navigationManager.NavigateTo("Teachers");
         }
 
         public async Task<User> GetUserByLogin(string login)

@@ -1,10 +1,11 @@
-﻿@page "/CurrentLesson"
+﻿@page "/CurrentLesson/{enrlid:int}"
 @using System.Security.Claims
 @inject IStudentService StudentService
 @inject IGradeService GradeService
 @inject ISubjectService SubjectService
 @inject IUserService UserService
 @inject ITeacherService TeacherService
+@inject IEnrollmentService EnrollmentService
 @inject IJSRuntime js
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
@@ -21,7 +22,7 @@
                     <div class="CLbuttonname">Attendance</div>
                 </button>
 
-                <button class="CLbutton" style="background-color: rgb(248,148,56)" @onclick="@(()=>AddExam(2,1))">
+                <button class="CLbutton" style="background-color: rgb(248,148,56)" @onclick="@AddExam">
                     <div class="gg-check-o"></div>
                     <div class="CLbuttonname">Tests</div>
                 </button>
@@ -118,7 +119,8 @@
 @code {
     [Parameter]
     public int? ID { get; set; }
-
+    [Parameter]
+    public int? enrlid { get; set; }
     string color = "";
     bool hidden = false;
     [CascadingParameter]
@@ -208,10 +210,10 @@
     {
         return time.ToString(@"mm\:ss");
     }
-    public async Task AddExam(int SubjectID,int ClassID)
+    public async Task AddExam()
     {
         await DialogService.OpenAsync<AddEditExamModal>("Add exam",
-            new Dictionary<string, object>() { { "SubjectID", SubjectID },{"ClassID",ClassID } },
+            new Dictionary<string, object>() { { "EnrollmentID", enrlid }},
             new DialogOptions()
             {
                 CloseDialogOnOverlayClick = true,

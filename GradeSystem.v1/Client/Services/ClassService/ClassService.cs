@@ -8,15 +8,13 @@ namespace GradeSystem.v1.Client.Services.ClassService
 {
     public class ClassService : IClassService
     {
-        public ClassService(HttpClient http, NavigationManager navigationManager)
+        public ClassService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<Class> Classes { get; set; } = new List<Class>();
         public IList<Teacher> Teachers { get; set; } = new List<Teacher>();
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
         public async Task CreateClass(Class classs)
         {
             await _http.PostAsJsonAsync("api/Classes", classs);

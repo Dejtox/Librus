@@ -11,5 +11,6 @@
         Task UpdateLessonsHours(LessonsHours lessonsHours);
         Task DeleteLessonsHours(int id);
         Task CreateLessonsHours(LessonsHours lessonsHours);
+        Task SortLessonHour(List<LessonsHours> lessonHour);
     }
 }

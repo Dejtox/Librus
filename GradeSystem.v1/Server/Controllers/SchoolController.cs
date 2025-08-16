@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GradeSystem.v1.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SchoolController : ControllerBase
@@ -172,6 +173,17 @@ namespace GradeSystem.v1.Server.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetDayOff", new { id = dayOff.DayOffID }, dayOff);
         }
+        [HttpGet("get_dayoff/{id}")]
+        public async Task<ActionResult<DayOff>> GetDayOff(int id)
+        {
+            var dayOff = await _context.DayOff.FindAsync(id);
+            if (dayOff == null)
+            {
+                return NotFound();
+            }
+            return dayOff;
+        }
+
         [HttpPost("create_many_dayoffs")]
         public async Task<ActionResult<IEnumerable<DayOff>>> CreateManyDayOffs(IEnumerable<DayOff> dayOffs)
         {

@@ -15,14 +15,14 @@
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Date" Style="font-weight:bold;width:10%;font-size:17px;" />
                 <RadzenDatePicker TValue="DateTime" Value=@dateTime1 Name="Date" CurrentDateChanged="OnCurrentDateChanged"
-                                  Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" DateFormat="yyyy/MM/dd" />
+                                  Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" DateFormat="yyyy/MM/dd" ReadOnly="true"/>
                 <RadzenRequiredValidator Component="Date" Text="Please select date" Popup="false" Style="" />
             </RadzenStack>
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Lesson number" Style="font-weight:bold;width:10%;font-size:17px;" />
-                <RadzenDropDown @bind-Value=@selectedKey Chips=true Placeholder="Search..." Name="LessonNumber" Data=LessonsHoursService.LessonsHours TextProperty="LessonNo" ValueProperty="LessonNo" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                <RadzenDropDown @bind-Value=@selectedKey Chips=true Placeholder="Search..." Name="LessonNumber" Data=LessonsHoursService.LessonsHours TextProperty="LessonNo" ValueProperty="LessonNo" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" ReadOnly="true" />
                 <RadzenRequiredValidator Component="LessonNumber" Text="Please select lesson number" Popup="false" Style="" />
             </RadzenStack>
         </div>
@@ -73,6 +73,8 @@
         if(EnrollmentID != null)
         {
             Enrollment enrollment = await EnrollmentService.GetEnrollmentByID((int)EnrollmentID);
+            dateTime1 = enrollment.Date;
+            selectedKey = LessonsHoursService.LessonsHours.FirstOrDefault(ls => ls.Start.TimeOfDay == enrollment.Date.TimeOfDay).LessonNo;
             exam.SubjectID = (int)enrollment.SubjectID;
             exam.ClassID = (int)enrollment.ClassID;
             grade = enrollment.Class;
@@ -85,7 +87,7 @@
     }
     private async Task HandleSubmit()
     {
-        exam.Date = dateTime1 + LessonsHoursService.LessonsHours[selectedKey - 1].Start.TimeOfDay;
+        exam.Date = dateTime1 + LessonsHoursService.LessonsHours[selectedKey-1].Start.TimeOfDay;
         if (ID == null)
         {
             await ExamService.CreateExam(exam);

@@ -17,11 +17,14 @@ namespace GradeSystem.v1.Client.Extencion
         public static async Task<T> ReadEncryptedAsync<T>(this ISessionStorageService sessionStorageService, string key)
         {
             var base64Json = await sessionStorageService.GetItemAsync<string>(key);
+            if (string.IsNullOrEmpty(base64Json))
+            {
+                return default(T);
+            }
             var itemJasonBytes = Convert.FromBase64String(base64Json);
             var itemJason = Encoding.UTF8.GetString(itemJasonBytes);
             var item = JsonSerializer.Deserialize<T>(itemJason);
             return item;
-
         }
     }
 }

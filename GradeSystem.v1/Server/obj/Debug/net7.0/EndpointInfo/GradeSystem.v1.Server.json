@@ -3905,6 +3905,46 @@
         }
       }
     },
+    "/api/School/get_dayoff/{id}": {
+      "get": {
+        "tags": [
+          "School"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOff"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOff"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOff"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/School/create_many_dayoffs": {
       "post": {
         "tags": [
@@ -6000,6 +6040,11 @@
         "additionalProperties": false
       },
       "DayOff": {
+        "required": [
+          "date",
+          "dayOffID",
+          "description"
+        ],
         "type": "object",
         "properties": {
           "dayOffID": {
@@ -6011,8 +6056,9 @@
             "format": "date-time"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 500,
+            "minLength": 2,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -6079,6 +6125,8 @@
       "Exam": {
         "required": [
           "classID",
+          "date",
+          "description",
           "examID",
           "subjectID"
         ],
@@ -6103,8 +6151,9 @@
             "$ref": "#/components/schemas/Class"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 500,
+            "minLength": 2,
+            "type": "string"
           },
           "date": {
             "type": "string",

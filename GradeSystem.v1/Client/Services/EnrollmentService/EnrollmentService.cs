@@ -1,16 +1,21 @@
-﻿using GradeSystem.v1.Client.Pages;
+﻿using Blazored.SessionStorage;
+using GradeSystem.v1.Client.Extencion;
+using GradeSystem.v1.Client.Pages;
+using GradeSystem.v1.Shared;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
-
 
 namespace GradeSystem.v1.Client.Services.EnrollmentService
 {
     public class EnrollmentService : IEnrollmentService
     {
-        public EnrollmentService(HttpClient http)
+        private readonly ISessionStorageService _sessionStorageService;
+        public EnrollmentService(HttpClient http, ISessionStorageService sessionStorageService)
         {
             _http = http;
+            _sessionStorageService = sessionStorageService;
+
         }
         public IList<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
         public IList<Enrollment> EnrollmentsWithoutDuplicates { get; set; } = new List<Enrollment>();

@@ -60,7 +60,7 @@
         attendance.StudentID = student.StudentID;
         attendance.CreatoinDate = DateTime.Now;
         await AttendanceService.CreateAttendance(attendance);
-        navigationManager.NavigateTo("/addstuff");
+        Close();
     }
     private void InvalidSubmit()
     {

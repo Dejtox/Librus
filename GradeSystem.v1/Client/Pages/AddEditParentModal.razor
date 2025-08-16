@@ -48,8 +48,8 @@
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Password" Style="font-weight:bold;width:10%;font-size:17px;" />
-                <RadzenPassword @bind-Value="parent.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Password" Visible=visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
-                <RadzenTextBox @bind-Value="parent.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenPassword @bind-Value="password" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Password" Visible=visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenTextBox @bind-Value="password" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
                 <RadzenButton Icon="@(visible ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" Style="margin-left:-50px;" />
                 <RadzenRegexValidator Component="Password" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="false" Style="" />
                 <RadzenLengthValidator Component="Password" Min="8" Text="Password should have at least 8 characters" Popup="false" Style="" />
@@ -69,6 +69,7 @@
     string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{8,}$";
     bool visible = true;
     bool hidden = false;
+    string password = string.Empty;
     protected override async Task OnParametersSetAsync()
     {
         if (ID != null)
@@ -89,25 +90,29 @@
                 hidden = true;
                 parent.User.Roles = new List<Roles>(){
                 new Roles { Role = "Parent" }};
-                (parent.User.PasswordSalt, parent.User.PasswordHash) = PasswordSecurity.HashPassword(parent.User.PasswordHash);
+                (parent.User.PasswordSalt, parent.User.PasswordHash) = PasswordSecurity.HashPassword(password);
                 await ParentService.CreateParentUser(parent);
             }
             finally
             {
                 hidden = false;
-                navigationManager.NavigateTo("/AdminPage",true);
+                Close();
             }
         }
         else
         {
             try
             {
+                if (!string.IsNullOrEmpty(password))
+                {
+                    (parent.User.PasswordSalt, parent.User.PasswordHash) = PasswordSecurity.HashPassword(password);
+                }
                 await ParentService.UpdateParent(parent);
             }
             finally
             {
                 hidden = false;
-                navigationManager.NavigateTo("/AdminPage", true);
+                Close();
             }
         }
     }

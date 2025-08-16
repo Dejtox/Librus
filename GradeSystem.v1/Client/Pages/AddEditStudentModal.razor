@@ -49,8 +49,8 @@
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Password" Style="font-weight:bold;width:15%;font-size:17px;"/>
-                <RadzenPassword @bind-Value="student.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Password" Visible=visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
-                <RadzenTextBox @bind-Value="student.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenPassword @bind-Value="password" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Password" Visible=visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenTextBox @bind-Value="password" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
                 <RadzenButton Icon="@(visible ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" Style="margin-left:-50px;" />
                 <RadzenRegexValidator Component="Password" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="false" Style="" />
                 <RadzenLengthValidator Component="Password" Min="8" Text="Password should have at least 8 characters" Popup="false" Style="" />
@@ -91,6 +91,7 @@
     string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{8,}$";
     bool visible = true;
     bool disabled = false;
+    string password = string.Empty;
     protected override async Task OnParametersSetAsync()
     {
         await ClassService.GetClasses();
@@ -98,6 +99,7 @@
         if (ID != null)
         {
             student = await StudentService.GetStudentById((int)ID);
+            
         }
     }
     private void Close()
@@ -112,13 +114,13 @@
             {
                 disabled = true;
                 student.User.Roles = new List<Roles> { new Roles { Role = "Student" } };
-                (student.User.PasswordSalt, student.User.PasswordHash) = PasswordSecurity.HashPassword(student.User.PasswordHash);
+                (student.User.PasswordSalt, student.User.PasswordHash) = PasswordSecurity.HashPassword(password);
                 await StudentService.CreateStudentUser(student);
             }
             finally
             {
                 disabled = false;
-                navigationManager.NavigateTo("/AdminPage", true);
+                Close();
             }
         }
         else
@@ -126,12 +128,16 @@
             try
             {
                 disabled = true;
+                if (!string.IsNullOrEmpty(password))
+                {
+                    (student.User.PasswordSalt, student.User.PasswordHash) = PasswordSecurity.HashPassword(password);
+                }
                 await StudentService.UpdateStudent(student);
             }
             finally
             {
                 disabled = false;
-                navigationManager.NavigateTo("/AdminPage",true);
+                Close();
             }
         }
 

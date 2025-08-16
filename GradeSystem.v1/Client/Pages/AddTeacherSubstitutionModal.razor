@@ -37,6 +37,7 @@
     private async Task HandleSubmit()
     {
         await SubstituteService.CreateTeacherSubstitute(teacher.TeacherID, teacher);
+        Cancel();
     }
     private void InvalidSubmit()
     {

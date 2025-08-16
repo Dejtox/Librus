@@ -78,6 +78,7 @@
     private async void HandleSubmit()
     {
         await SubstituteService.CreateSubstitute((int)ID, subEnrollment);
+        Close();
     }
     private void InvalidSubmit()
     {

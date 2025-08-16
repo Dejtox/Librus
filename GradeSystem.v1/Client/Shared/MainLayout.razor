@@ -99,9 +99,16 @@
     List<Student> ParStudents = new List<Student>();
     protected override async Task OnInitializedAsync()
     {
-        await ParentService.GetParents();
-        await ParentService.GetStudents();
-        await GetClaimsGetID();
+        var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvicder;
+        var status = await customAuthStateProvider.GetAuthenticationStateAsync();
+        
+        if(status.User.Identity!=null)
+        {
+            await ParentService.GetParents();
+            await ParentService.GetStudents();
+            await GetClaimsGetID();
+        }
+
     }
 
     private async Task Logout()

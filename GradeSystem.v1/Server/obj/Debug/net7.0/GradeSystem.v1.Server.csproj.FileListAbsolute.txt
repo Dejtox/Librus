@@ -682,3 +682,7 @@ C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\GradeSystem.v1.Server.genruntimeconfig.cache
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\ref\GradeSystem.v1.Server.dll
 C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\rpswa.dswa.cache.json
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\rjimswa.dswa.cache.json
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\rjsmrazor.dswa.cache.json
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Server\obj\Debug\net7.0\rjsmcshtml.dswa.cache.json

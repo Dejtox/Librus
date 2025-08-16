@@ -7,6 +7,7 @@ using Smart.Blazor;
 
 namespace GradeSystem.v1.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BookTypeController : ControllerBase

@@ -9,7 +9,7 @@ using GradeSystem.v1.Server.Data;
 
 namespace GradeSystem.v1.Server.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class NotesController : ControllerBase

@@ -2254,6 +2254,32 @@
   },
   {
     "ContainingType": "GradeSystem.v1.Server.Controllers.SchoolController",
+    "Method": "GetDayOff",
+    "RelativePath": "api/School/get_dayoff/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DayOff",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GradeSystem.v1.Server.Controllers.SchoolController",
     "Method": "GetDayOffs",
     "RelativePath": "api/School/get_dayoffs",
     "HttpMethod": "GET",

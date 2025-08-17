@@ -28,7 +28,7 @@ namespace GradeSystem.v1.Client.Services.LessonsHoursService
         {
             var result = await _http.GetFromJsonAsync<List<LessonsHours>>("api/LessonsHours");
             if (result != null)
-                LessonsHours = result;
+                await SortLessonHour(result);
         }
 
         public async Task<LessonsHours> GetLessonsHoursByID(int id)
@@ -44,5 +44,21 @@ namespace GradeSystem.v1.Client.Services.LessonsHoursService
         {
             await _http.PutAsJsonAsync($"api/LessonsHours/{lessonsHours.ID}", lessonsHours);
         }
+
+        public async Task SortLessonHour(List<LessonsHours> lessonHour)
+        {
+
+            for (int i = 0; i < lessonHour.Count; i = i + 1)
+            {
+                foreach (var segment in lessonHour)
+                {
+                    if (segment.LessonNo == i + 1)
+                    {
+                        LessonsHours.Add(segment);
+                    }
+                }
+            }
+        }
+    
     }
 }

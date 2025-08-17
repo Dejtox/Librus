@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
 namespace GradeSystem.v1.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SubstituteController : ControllerBase

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GradeSystem.v1.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TeachersController : ControllerBase

@@ -7,32 +7,32 @@
             <div class="black-line">
                 <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                     <RadzenLabel Text="From" Style="font-weight:bold;width:10%;font-size:17px;" />
-                    <RadzenDatePicker TValue="DateTime" Value=@startDate Change="@(args => startDate = (DateTime)args)" Name="Date" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                    <RadzenDatePicker TValue="DateTime" Value=@startDate Name="Date" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" CurrentDateChanged="@((args) => OnCurrentDateChanged(args, true))" DateFormat="yyyy/MM/dd" />
                 </RadzenStack>
             </div>
             <div class="black-line">
                 <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                     <RadzenLabel Text="To" Style="font-weight:bold;width:10%;font-size:17px;" />
-                    <RadzenDatePicker TValue="DateTime" Value=@endDate Change="@(args => endDate = (DateTime)args)" Name="Datee" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                    <RadzenDatePicker TValue="DateTime" Value=@endDate Name="Datee" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" CurrentDateChanged="@((args) => OnCurrentDateChanged(args, false))" DateFormat="yyyy/MM/dd" />
                 </RadzenStack>
             </div>
         </div>
         <div class="black-line" hidden="@(!hidden)">
-            <div class="black-line">
                 <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                     <RadzenLabel Text="Date" Style="font-weight:bold;width:10%;font-size:17px;" />
-                    <RadzenDatePicker TValue="DateTime" Value=@startDate Change="@(args => startDate = (DateTime)args)" Name="Dateee" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" />
+                    <RadzenDatePicker TValue="DateTime" Value=@startDate Name="Dateee" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" CurrentDateChanged="@((args) => OnCurrentDateChanged(args, true))" DateFormat="yyyy/MM/dd" />
                 </RadzenStack>
-            </div>
         </div>
         <div class="black-line">
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
                 <RadzenLabel Text="Description" Style="font-weight:bold;width:10%;font-size:17px;border-radius:15px;" />
                 <RadzenTextBox @bind-Value="dayOff.Description" Style="font-weight:bold;font-size:17px;margin:0;border-radius:15px;width:40%;" Name="Description" />
+                <RadzenLengthValidator Component="Description" Min="2" Text="Description should be at least 2 characters" Popup="false" Style="" />
+                <RadzenLengthValidator Component="Description" Max="500" Text="Description should be at most 500 characters" Popup="false" Style="" />
             </RadzenStack>
         </div>
         <div class="button-container search-margin">
-            <button class="rounded-filled-button" type="button" onclick="@ToggleHidden">Add many day offs</button>
+            <button class="rounded-filled-button" type="button" onclick="@ToggleHidden">@buttonText</button>
             <button class="rounded-empty-button" type="submit">Confirm</button>
             <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
         </div>
@@ -44,15 +44,24 @@
     public int? ID { get; set; }
     public DayOff dayOff = new DayOff();
     bool hidden = true;
+    string buttonText = "Add many day offs";
     DateTime startDate = DateTime.Now.Date;
     DateTime endDate = DateTime.Now.Date;
     private void Close()
     {
         DialogService.Close();
     }
+    void OnCurrentDateChanged(DateTime args,bool date)
+    {
+        if(date)
+            startDate = new DateTime(args.Year, args.Month, args.Day);
+        else
+            endDate = new DateTime(args.Year, args.Month, args.Day);
+    }
     private void ToggleHidden()
     {
         hidden = !hidden;
+        buttonText = hidden ? "Add many day offs" : "Add single day off";
     }
     private async Task HandleSubmit()
     {
@@ -78,9 +87,9 @@
         }
         else
         {
-            
-        }
 
+        }
+        Close();
 
     }
     private void InvalidSubmit()

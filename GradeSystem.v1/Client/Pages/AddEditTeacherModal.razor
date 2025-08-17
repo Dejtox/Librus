@@ -58,8 +58,8 @@
                         <RadzenButton Icon="@(visible ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" />
                     </End>
                 </RadzenFormField>    *@
-                <RadzenPassword @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
-                <RadzenTextBox @bind-Value="teacher.User.PasswordHash" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenPassword @bind-Value="password" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
+                <RadzenTextBox @bind-Value="password" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Password" Visible=!visible Placeholder="Minimum 8 characters, one uppercase letter, one special character" />
                 <RadzenButton Icon="@(visible ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" Style="margin-left:-50px;" />
                 <RadzenRegexValidator Component="Password" Text="Please enter a valid password" Pattern="@passwordPattern" Popup="false" Style="" />
                 <RadzenLengthValidator Component="Password" Min="8" Text="Password should have at least 8 characters" Popup="false" Style="" />
@@ -87,6 +87,7 @@
     List<string> roles { get; set; } = new List<string>();
     Teacher teacher = new Teacher() { User=new User()};
     string passwordPattern = "^(?=.*[A-Z])(?=.*[@!#$%^&*()_\\-+=\\[\\]{};':\"<>\\\\|,./?]).{8,}$";
+    string password = string.Empty;
     bool visible = true;
     bool disabled = false;
     protected override async Task OnParametersSetAsync()
@@ -111,13 +112,13 @@
                 disabled = true;
                 var userRoles = roles.Select(x => new Roles { Role = x }).ToList();
                 teacher.User.Roles = userRoles;
-                (teacher.User.PasswordSalt, teacher.User.PasswordHash) = PasswordSecurity.HashPassword(teacher.User.PasswordHash);
+                (teacher.User.PasswordSalt, teacher.User.PasswordHash) = PasswordSecurity.HashPassword(password);
                 await TeacherService.CreateTeacherUser(teacher);
             }
             finally
             {
                 disabled = false;
-                navigationManager.NavigateTo("/AdminPage",true);
+                Close();
             }
         }
         else
@@ -125,12 +126,16 @@
             try
             {
                 disabled = true;
+                if(!string.IsNullOrEmpty(password))
+                {
+                    (teacher.User.PasswordSalt, teacher.User.PasswordHash) = PasswordSecurity.HashPassword(password);
+                }
                 await TeacherService.UpdateTeacher(teacher);
             }
             finally
             {
                 disabled = false;
-                navigationManager.NavigateTo("/AdminPage", true);
+                Close();
             }
         }
 

@@ -3,6 +3,7 @@
 @inject ISubjectService SubjectService
 @inject ILessonsHoursService LessonsHoursService
 @inject ISchoolService SchoolService
+@inject NavigationManager NavigationManager
 @inject DragService Drag
 
 <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
@@ -143,7 +144,6 @@
     private Lesson?[] Thursday = new Lesson?[8];
     private Lesson?[] Friday = new Lesson?[8];
 
-    List<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
     Dictionary<string, Lesson?[]> schedule = new Dictionary<string, Lesson?[]>();
     List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
@@ -158,22 +158,8 @@
         await LessonsHoursService.GetLessonsHours();
         Subjects = await SubjectService.GetAllSubjects();
         await SchoolService.GetDayOffs();
-        await SortLessonHours();
     }
 
-    private async Task SortLessonHours()
-    {
-        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
-        {
-            foreach (var segment in LessonsHoursService.LessonsHours)
-            {
-                if (segment.LessonNo == i + 1)
-                {
-                    SortedlessonsHours.Add(segment);
-                }
-            }
-        }
-    }
     private async Task HandleDrop(int index,string day)
     {
         if (!schedule.TryGetValue(day, out var dayArray)) return;
@@ -201,12 +187,12 @@
         (Friday,    DayOfWeek.Friday)
         };
         //to mozna np z danych modelu szkola
-        DateTime startDate = new DateTime(2025, 8, 11);//25
-        DateTime endDate = new DateTime(2025, 9, 20);//2026 6 28
+        DateTime startDate = new DateTime(2025, 8, 25);//25
+        DateTime endDate = new DateTime(2026, 6, 28);//2026 6 28
         for (int i = 0; i < 8; i++)
         {
-            var startTime = SortedlessonsHours[i].Start.TimeOfDay;
-            var endTime = SortedlessonsHours[i].End.TimeOfDay;
+            var startTime = LessonsHoursService.LessonsHours[i].Start.TimeOfDay;
+            var endTime = LessonsHoursService.LessonsHours[i].End.TimeOfDay;
 
             foreach (var (slotsArray, dow) in days)
             {
@@ -230,6 +216,7 @@
         var dayOffs = new HashSet<DateTime>(SchoolService.DayOffs.Select(d => d.Date.Date));
         Enrollments.RemoveAll(e => dayOffs.Contains(e.Date.Date));
         await EnrollmentService.CreatManyEnrollments(Enrollments);
+        NavigationManager.NavigateTo("/AddEnrollments", true);
     }
     private void SelectClass(int ClassID)
     {

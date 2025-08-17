@@ -97,6 +97,7 @@
     {
         grade.GradeWeight = 0;
         await GradeService.CreateGrade(grade);
+        Close();
     }
     private void Close()
     {

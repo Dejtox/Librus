@@ -5,37 +5,26 @@ namespace GradeSystem.v1.Client.Services.ParentService
 {
     public class ParentService : IParentService
     {
-        public ParentService(HttpClient http, NavigationManager navigationManager)
+        public ParentService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<Parent> Parents { get; set; } = new List<Parent>();
         public IList<Student> Students { get; set; } = new List<Student>();
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task CreateParent(Parent parent)
         {
             var result = await _http.PostAsJsonAsync("api/Parents", parent);
-            //await SetParents(result);
-
         }
         public async Task CreateParentUser(Parent parent)
         {
             var result = await _http.PostAsJsonAsync("api/Parents/parent_user", parent);
-            //await SetParents(result);
-
-        }
-        private async Task SetParents(HttpResponseMessage result)
-        {
-            _navigationManager.NavigateTo("Parents");
         }
 
         public async Task DeleteParent(int id)
         {
             var result = await _http.DeleteAsync($"api/Parents/{id}");
-           // await SetParents(result);
         }
 
         public async Task<Parent> GetParentById(int id)

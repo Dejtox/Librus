@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GradeSystem.v1.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LogRegisterController : ControllerBase

@@ -7,13 +7,11 @@ namespace GradeSystem.v1.Client.Services.ExamService
 {
     public class ExamService : IExamService
     {
-        public ExamService(HttpClient httpClient, NavigationManager navigationManager)
+        public ExamService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _navigationManager = navigationManager;
         }
         private readonly HttpClient _httpClient;
-        private readonly NavigationManager _navigationManager;
         public IList<Exam> Exams { get; set; } = new List<Exam>();
         public IList<Subject> Subjects { get; set; }=new List<Subject>();
         public IList<Class> Classes { get; set; } = new List<Class>();

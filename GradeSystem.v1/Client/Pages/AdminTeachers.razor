@@ -9,7 +9,7 @@
 
 
 <RadzenDataGrid @ref="TeacherGrid" TItem="Teacher" Data="TeacherService.Teachers" AllowFiltering="true" AllowColumnResize="true"
-FilterMode="FilterMode.Advanced" PageSize="5" AllowPaging="true" AllowSorting="true" ColumnWidth="100px"
+FilterMode="FilterMode.Advanced" PageSize="10" AllowPaging="true" AllowSorting="true" ColumnWidth="100px"
 FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" TItem="Teacher" AllowAlternatingRows="false" ShowPagingSummary="true" 
 LogicalFilterOperator="LogicalFilterOperator.Or" FilterPopupRenderMode="PopupRenderMode.OnDemand" Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
     <Columns>

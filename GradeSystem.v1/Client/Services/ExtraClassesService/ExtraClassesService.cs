@@ -7,26 +7,22 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesService
 {
     public class ExtraClassesService : IExtraClassesService
     {
-        public ExtraClassesService(HttpClient http, NavigationManager navigationManager)
+        public ExtraClassesService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<ExtraClasses> ExtraClasses { get; set; } = new List<ExtraClasses>();
         public IList<Teacher> Teacher { get; set; } = new List<Teacher>();
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task CreateExtraClasses(ExtraClasses extraClasses)
         {
             await _http.PostAsJsonAsync("api/ExtraClasses", extraClasses);
-            _navigationManager.NavigateTo("additional");
         }
 
         public async Task DeleteExtraClasses(int id)
         {
             await _http.DeleteAsync($"api/ExtraClasses/{id}");
-            _navigationManager.NavigateTo("additional");
         }
 
         public async Task GetExtraClasses()
@@ -55,7 +51,6 @@ namespace GradeSystem.v1.Client.Services.ExtraClassesService
         public async Task UpdateExtraClasses(ExtraClasses extraClasses)
         {
             await _http.PutAsJsonAsync($"api/ExtraClasses/{extraClasses.ExtraClassesID}", extraClasses);
-            _navigationManager.NavigateTo("additional");
         }
     }
 }

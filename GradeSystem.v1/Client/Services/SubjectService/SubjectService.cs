@@ -7,15 +7,13 @@ namespace GradeSystem.v1.Client.Services.SubjectService
 {
     public class SubjectService : ISubjectService
     {
-        public SubjectService(HttpClient http, NavigationManager navigationManager)
+        public SubjectService(HttpClient http)
         {
             _http = http;
-            _navigationManager = navigationManager;
         }
         public IList<Subject> Subjects { get; set; } = new List<Subject>();
         public IList<Teacher> Teachers { get; set; } = new List<Teacher>();
         private readonly HttpClient _http;
-        private readonly NavigationManager _navigationManager;
 
         public async Task CreateSubject(Subject subject)
         {
@@ -60,7 +58,6 @@ namespace GradeSystem.v1.Client.Services.SubjectService
         public async Task UpdateSubject(Subject subject)
         {
             await _http.PutAsJsonAsync($"api/Subjects/{subject.SubjectID}", subject);
-            _navigationManager.NavigateTo("Subjects");
         }
 
         public async Task<List<Subject>> GetTeacherSubjects(int id)

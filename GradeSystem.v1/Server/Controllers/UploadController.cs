@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 
 namespace GradeSystem.v1.Server.Controllers
 {
+    [Authorize]
     [Route("api/upload")]
     [ApiController]
     public class UploadController : ControllerBase

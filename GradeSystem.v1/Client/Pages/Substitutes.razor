@@ -1,51 +1,183 @@
-﻿@* @page "/substitutes"
+﻿@page "/substitutes"
 @inject ISubstituteService SubstituteService
-@inject NavigationManager NavigationManager
+@inject DialogService DialogService
+@inject NavigationManager navigationManager
+@attribute [Authorize(Roles = "Admin, Teacher, Secretary")]
 
 <PageTitle>Substitutes</PageTitle>
-<h3>Substitutes</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Substitute Date</th>
-            <th>Class Name</th>
-            <th>Subject Name</th>
-            <th>Class Room</th>
-            <th>Status</th>
-            <th>Edit</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var substitute in SubstituteService.Substitutes)
-        {
-            <tr>
-                <td>@substitute.Date</td>
-                <td>@substitute.Class.ClassName</td>
-                <td>@substitute.Subject.SubjectName</td>
-                <td>@substitute.ClassRoom</td>
-                <td>@substitute.Status</td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(()=>EditSubstitute(substitute.EnrollmentID))"><i class="oi oi-pencil"></i></button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<button class="btn btn-primary" @onclick="CreateSubstitute">Create New</button>
+
+<div class="content-container">
+    <div class="content-header">
+        <p class="page-header">Substitutes</p>
+    </div>
+    <div class="search-container" style="width:80%;margin-left:10%;margin-right:10%;">
+        <div class="empty-row"></div>
+        <div class="black-line">
+            <div class="search-margin l-margin">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin">
+                    <RadzenLabel Text="Teacher substituted" Component="TeacherSub" Style="font-weight:bold;font-size:17px;" />
+                    <RadzenDropDown Data=@teacherDTOs Style="width: 22%; border-radius:15px;" Name="TeacherSub" ValueProperty="ID" Placeholder="Search..." TextProperty="Name" @bind-Value="teacherID" Change="(()=>SearchByTeacher(teacherID))" />
+                </RadzenStack>
+            </div>
+        </div>
+        <div class="black-line">
+            <div class="search-margin l-margin">
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin">
+                    <RadzenLabel Text="Date from" Component="StartDate" Style="font-weight:bold;font-size:17px;" />
+                    <RadzenDatePicker Name="StartDate" @bind-Value="startDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="true" />
+                    <RadzenLabel Text="to" Component="EndDate" Style="font-weight:bold;font-size:17px;" />
+                    <RadzenDatePicker Name="EndDate" @bind-Value="endDate" Style="width: 30%;border-radius:15px;" Placeholder="Select date" ShowTime="true"  Change="(()=>SearchByDate(startDate,endDate))"/>
+                </RadzenStack>
+            </div>
+        </div>
+        <div class="center search-margin">
+            <button class="trip-add-button" @onclick="ShowAll">Show all</button>
+        </div>
+    </div>
+    <div class="add-container center">
+        <button class="trip-add-button search-margin" style="padding: 10px 100px 10px 100px;" @onclick="@AddSubstitution">Add substitution</button>
+    </div>
+    <div class="table_container">
+        <RadzenDataGrid TItem="TeacherDTO" @ref=TeacherDTOGrid Data="filteredTeacherDTOs" PageSize="3" ShowPagingSummary="true" Style="border-radius:15px;" AllowPaging="true" PagerHorizontalAlign="Radzen.HorizontalAlign.Left" AllowAlternatingRows="false" Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
+            <Columns>
+                <RadzenDataGridColumn Title="No." TItem="TeacherDTO">
+                <Template>
+                    @{
+                            var pageSize = Math.Min(TeacherDTOGrid.PageSize, TeacherDTOGrid.View.Count());
+                    }
+                    <RenderOnceComponent CanRender=@(!(index >= pageSize))>
+                    @{
+                        ResetIndex(index >= pageSize);
+                    }
+                    @((TeacherDTOGrid.CurrentPage * pageSize) + index++ + 1)
+                    </RenderOnceComponent>
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Property="TeacherDTO.Name" Title="Absent teacher" TItem="TeacherDTO"/>
+            <RadzenDataGridColumn Property="TeacherDTO.Duration" Title="Absence duration" TItem="TeacherDTO" />
+            <RadzenDataGridColumn Property="TeacherDTO.AbsentHours" Title="No. of hours absent" TItem="TeacherDTO" />
+            <RadzenDataGridColumn Property="TeacherDTO.AssignHours" Title="No. of hours to assign" TItem="TeacherDTO" />
+            <RadzenDataGridColumn Title="Options" TItem="TeacherDTO" Width="30%">
+                <Template Context="TeacherDTO" >
+                    <div class="options" style="padding:3px;">
+                        @if(TeacherDTO.AssignHours==0)
+                        {
+                                <button style="padding:5px;width:30%;" class="rounded-filled-button" @onclick="(()=>ShowEnrollments(TeacherDTO.ID))">Edit</button>
+                        } 
+                        else
+                        {
+                                <button class="rounded-filled-button" style="padding:5px;width:30%;" @onclick="(()=>ShowEnrollments(TeacherDTO.ID))">Assign</button>
+                        }
+                            <button class="rounded-empty-button" style="padding:5px; width:30%;" onclick="@(()=>Preview(TeacherDTO.ID))">Preview</button>
+                        <button type="button" class="icon-button" onclick="@(()=>Edit(TeacherDTO.ID))">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                        <button type="button" class="icon-button" onclick="@(()=>Delete(TeacherDTO.ID))">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </Template>
+            </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</div>
+
 @code {
+    List<Teacher> teachers { get; set; }
+    DateTime startDate;
+    DateTime endDate;
+    List<TeacherDTO> teacherDTOs { get; set; }
+    List<TeacherDTO> filteredTeacherDTOs = new List<TeacherDTO>();
+    RadzenDataGrid<TeacherDTO> TeacherDTOGrid;
+    int index;
+    private int? substituteDeleteId = null;
+    int teacherID;
+    void ResetIndex(bool shouldReset)
+    {
+        if (shouldReset)
+        {
+            index = 0;
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
-        await SubstituteService.GetSubstitutes();
+        await SubstituteService.GetTeachers();
+        teacherDTOs = await SubstituteService.GetAbsentTeachers();
+        filteredTeacherDTOs = teacherDTOs;
     }
-
-    void EditSubstitute(int id)
+    private async Task AddSubstitution()
     {
-        NavigationManager.NavigateTo($"substitute_edit/{id}");
+        await DialogService.OpenAsync<AddTeacherSubstitutionModal>("Add substitution",
+            null,
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;" });
     }
-
-    void CreateSubstitute()
+    private async void Delete(int id)
     {
-        NavigationManager.NavigateTo("/substitute_select");
+        substituteDeleteId = id;
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await SubstituteService.DeleteTeacherSubstitute(id);
+        }
+        else
+        {
+            substituteDeleteId = null;
+        }
+    }
+    private async Task Edit(int id)
+    {
+        await DialogService.OpenAsync<EditTeacherSubstitutionModal>("Edit substitution",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
+    }
+    private void ShowAll()
+    {
+        filteredTeacherDTOs = teacherDTOs;
+        ResetIndex(true);
+    }
+    private void SearchByTeacher(int? ID)
+    {
+        if (ID == null)
+        {
+            filteredTeacherDTOs = teacherDTOs;
+        }
+        else
+        {
+            filteredTeacherDTOs = teacherDTOs.Where(st => st.ID == ID).ToList();
+            ResetIndex(true);
+        }
+    }
+    private void SearchByDate(DateTime startDate, DateTime endDate)
+    {
+        filteredTeacherDTOs = teacherDTOs.Where(e => !(e.EndDate <= startDate || e.StartDate >= endDate)).ToList();
+        ResetIndex(true);
+    }
+    private void ShowEnrollments(int id)
+    {
+        navigationManager.NavigateTo($"/substitutes2/{id}");
+    }
+    private async Task Preview(int id)
+    {
+        await DialogService.OpenAsync<SubstituteSummaryModal>("Substitution summary",
+            new Dictionary<string, object>() { { "ID", id } },
+            new DialogOptions()
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Draggable = true,
+                    ShowClose = false,
+                    Style = "width: 40%;border-radius: 20px;height: 40%;"
+                });
     }
 }
- *@

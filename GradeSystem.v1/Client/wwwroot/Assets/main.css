@@ -1115,6 +1115,7 @@ a, .btn-link {
 .websidebody {
     height: 97%;
     width: 97%;
+    overflow: hidden;
 }
 
 .hellouser {

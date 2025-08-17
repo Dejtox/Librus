@@ -1,4 +1,4 @@
-﻿@page "/teachermainpageday"
+@page "/teachermainpageday"
 @inject ITeacherService TeacherService
 @inject ISubjectService SubjectService
 @inject IEnrollmentService EnrollmentService
@@ -27,9 +27,7 @@
                     {
                         <div class="TEtablerow">
                             <button class="TEdata" @onclick="@(() => MoveTo(enrl.EnrollmentID))">
-                                <div class="TEsubject">@lessonhour.LessonNo @enrl.Subject.SubjectName</div>
-
-                                <div class="TEclass">(@enrl.Class.ClassName)</div>
+                                <div class="TEsubject">@lessonhour.LessonNo. @enrl.Subject.SubjectName (@enrl.Class.ClassName)</div>
                             </button>
                         </div>
                         i = false;
@@ -39,7 +37,7 @@
                 {
                     <div class="TEtablerow">
                         <div class="TEdata">
-                            <div class="TEsubject">@lessonhour.LessonNo</div>
+                            <div class="TEsubject">@lessonhour.LessonNo.</div>
                         </div>
                     </div>
                 }

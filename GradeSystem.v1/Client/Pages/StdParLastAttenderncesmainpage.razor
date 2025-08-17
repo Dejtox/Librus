@@ -6,204 +6,177 @@
 @inject IParentService ParentService
 @attribute [Authorize(Roles = "Admin, Parent, Student")]
 
-<div class="RGtable">
-    <div class="RGtableheader">
-        <div class="RGtitle">Attendance</div>
+<div class="attendance-container">
+    <div class="attendance-header">
+        <div class="attendance-title">Attendance</div>
     </div>
-@*
-<div>
-    <div>
-       
-        <div>
-            <select name="" id="" class="fluent-input" @onchange="SelectYear">
-                @for (int i = 2022; i < 2024; i++)
-                {
-                    <option>@i</option>
-                }
-            </select>
-        </div>
-        <div>
-            <select name="" id="" class="fluent-input" @onchange="SelectMonth">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">Sepetemper</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-            </select>
-        </div>
 
-        
-    </div>
-</div>
-*@
-    <div class="dateselectbotommenu">
-    @if (SelectedDate.Day  > 1)
-    {
-        <div class="dateselectspace">
-            <div></div>
-            <div>
-                    <button type="button" class="dateselectbutton" aria-label="Close" @onclick="Lower">
-                        <div class="gg-chevron-left"></div>
-                    </button>
-            </div>
-        </div>
-    }
-    else
-    {
-            <div class="dateselectspace">
+    <div class="date-selector-menu">
+        @if (SelectedDate.Day > 1)
+        {
+            <div class="date-selector-item">
                 <div></div>
                 <div>
-                    <button disabled class="dateselectbutton">
+                    <button type="button" class="date-nav-button" aria-label="Previous" @onclick="Lower">
                         <div class="gg-chevron-left"></div>
                     </button>
-                </div>
-            </div>
-    }
-
-    @if (SelectedDate.Day - 3 > 0)
-    {
-            <div class="dateselectspace">
-                <div class="dateselectbutton">@SelectedDate.AddDays(-3).ToString("ddd", CultureInfo.InvariantCulture)</div>
-                <div>
-                    <div class="dateselectbutton">@(SelectedDate.Day - 3)</div>
                 </div>
             </div>
         }
         else
         {
-            <div class="dateselectspace">
+            <div class="date-selector-item">
+                <div></div>
+                <div>
+                    <button disabled class="date-nav-button">
+                        <div class="gg-chevron-left"></div>
+                    </button>
+                </div>
             </div>
         }
-        
+
+        @if (SelectedDate.Day - 3 > 0)
+        {
+            <div class="date-selector-item" @onclick="@(() => SelectDate(SelectedDate.AddDays(-3)))">
+                <div class="date-display-button">@SelectedDate.AddDays(-3).ToString("ddd", CultureInfo.InvariantCulture)</div>
+                <div>
+                    <div class="date-display-button @(IsToday(SelectedDate.AddDays(-3)) ? "today-date" : "")">@(SelectedDate.Day - 3)</div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="date-selector-item"></div>
+        }
+
         @if (SelectedDate.Day - 2 > 0)
-    {
-            <div class="dateselectspace">
-                <div class="dateselectbutton">@SelectedDate.AddDays(-2).ToString("ddd", CultureInfo.InvariantCulture)</div>
-                <div>
-                    <div class="dateselectbutton">@(SelectedDate.Day - 2)</div>
-                </div>
-            </div>
-    }
-        else
         {
-            <div class="dateselectspace">
+            <div class="date-selector-item" @onclick="@(() => SelectDate(SelectedDate.AddDays(-2)))">
+                <div class="date-display-button">@SelectedDate.AddDays(-2).ToString("ddd", CultureInfo.InvariantCulture)</div>
+                <div>
+                    <div class="date-display-button @(IsToday(SelectedDate.AddDays(-2)) ? "today-date" : "")">@(SelectedDate.Day - 2)</div>
+                </div>
             </div>
         }
-    @if (SelectedDate.Day - 1 > 0)
-    {
-            <div class="dateselectspace">
-                <div class="dateselectbutton">@SelectedDate.AddDays(-1).ToString("ddd", CultureInfo.InvariantCulture)</div>
-                <div>
-                    <div class="dateselectbutton">@(SelectedDate.Day - 1)</div>
-                </div>
-            </div>
-    }
         else
         {
-            <div class="dateselectspace">
-            </div>
+            <div class="date-selector-item"></div>
         }
-        <div class="dateselectspace">
-            <div class="dateselectbutton">
-                @SelectedDate.ToString("ddd", CultureInfo.InvariantCulture)</div>
-            <div>
-                <div class="dateselectbutton">@SelectedDate.Day</div>
-            </div>
-        </div>
-    @if (SelectedDate.Day + 1 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
-    {
-            <div class="dateselectspace">
-                <div class="dateselectbutton">@SelectedDate.AddDays(1).ToString("ddd", CultureInfo.InvariantCulture)</div>
-                <div>
-                    <div class="dateselectbutton">@SelectedDate.AddDays(1).Day </div>
-                </div>
-            </div>
-    }
-        else
-        {
-            <div class="dateselectspace">
-            </div>
-        }
-    @if (SelectedDate.Day + 2 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
-    {
-            <div class="dateselectspace">
-                <div class="dateselectbutton">@SelectedDate.AddDays(2).ToString("ddd", CultureInfo.InvariantCulture)</div>
-                <div>
-                    <div class="dateselectbutton">@SelectedDate.AddDays(2).Day </div>
-                </div>
-            </div>
-    }
-        else
-        {
-            <div class="dateselectspace">
-            </div>
-        }
-    @if (SelectedDate.Day + 3 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
-    {
-            <div class="dateselectspace">
-                <div class="dateselectbutton">@SelectedDate.AddDays(3).ToString("ddd", CultureInfo.InvariantCulture)</div>
-                <div>
-                    <div class="dateselectbutton">@SelectedDate.AddDays(3).Day </div>
-                </div> 
-            </div>
-    }
-        else
-        {
-            <div class="dateselectspace">
-            </div>
-        }
-        @if (SelectedDate.Day < DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
-    {
-            Console.WriteLine(SelectedDate.Day);
-            <div class="dateselectspace">
-                <div></div>
-                <div>
-                    <button type="button" class="dateselectbutton" aria-label="Close" @onclick="Higher">
-                        <div class="gg-chevron-right"></div>
-                    </button>
-                </div>
-            </div>
-    }
-    else
-    {
-            <div class="dateselectspace">
-                <div></div>
-                <div>
-                    <button disabled class="dateselectbutton">
-                        <div class="gg-chevron-right"></div>
-                    </button>
-                </div>
-            </div>
-    }  
-    </div>
-    <div class ="dataselcettable">
-        <div class="RGtable">
-            @foreach (var dalyevent in Events)
-        {
 
-            if (dalyevent.Enrollment.Date.Day == SelectedDate.Day)
-            {
-                <div class="RGtablerow">
-                        <div class="dataselecttablesub">
-                            <div>@dalyevent.Enrollment.Subject.SubjectName</div>
-                        </div>
-                        <div class="dataslecettablestat">
-                            <div>@dalyevent.Description</div>
-                        </div>
-                </div>              
-            }
+        @if (SelectedDate.Day - 1 > 0)
+        {
+            <div class="date-selector-item" @onclick="@(() => SelectDate(SelectedDate.AddDays(-1)))">
+                <div class="date-display-button">@SelectedDate.AddDays(-1).ToString("ddd", CultureInfo.InvariantCulture)</div>
+                <div>
+                    <div class="date-display-button @(IsToday(SelectedDate.AddDays(-1)) ? "today-date" : "")">@(SelectedDate.Day - 1)</div>
+                </div>
+            </div>
         }
+        else
+        {
+            <div class="date-selector-item"></div>
+        }
+
+        <!-- Currently selected date -->
+        <div class="date-selector-item selected-date">
+            <div class="date-display-button">@SelectedDate.ToString("ddd", CultureInfo.InvariantCulture)</div>
+            <div>
+                <div class="date-display-button @(IsToday(SelectedDate) ? "today-date" : "")">@SelectedDate.Day</div>
+            </div>
+        </div>
+
+        @if (SelectedDate.Day + 1 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+        {
+            <div class="date-selector-item" @onclick="@(() => SelectDate(SelectedDate.AddDays(1)))">
+                <div class="date-display-button">@SelectedDate.AddDays(1).ToString("ddd", CultureInfo.InvariantCulture)</div>
+                <div>
+                    <div class="date-display-button @(IsToday(SelectedDate.AddDays(1)) ? "today-date" : "")">@SelectedDate.AddDays(1).Day</div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="date-selector-item"></div>
+        }
+
+        @if (SelectedDate.Day + 2 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+        {
+            <div class="date-selector-item" @onclick="@(() => SelectDate(SelectedDate.AddDays(2)))">
+                <div class="date-display-button">@SelectedDate.AddDays(2).ToString("ddd", CultureInfo.InvariantCulture)</div>
+                <div>
+                    <div class="date-display-button @(IsToday(SelectedDate.AddDays(2)) ? "today-date" : "")">@SelectedDate.AddDays(2).Day</div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="date-selector-item"></div>
+        }
+
+        @if (SelectedDate.Day + 3 <= DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+        {
+            <div class="date-selector-item" @onclick="@(() => SelectDate(SelectedDate.AddDays(3)))">
+                <div class="date-display-button">@SelectedDate.AddDays(3).ToString("ddd", CultureInfo.InvariantCulture)</div>
+                <div>
+                    <div class="date-display-button @(IsToday(SelectedDate.AddDays(3)) ? "today-date" : "")">@SelectedDate.AddDays(3).Day</div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="date-selector-item"></div>
+        }
+
+        @if (SelectedDate.Day < DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month))
+        {
+            <div class="date-selector-item">
+                <div></div>
+                <div>
+                    <button type="button" class="date-nav-button" aria-label="Next" @onclick="Higher">
+                        <div class="gg-chevron-right"></div>
+                    </button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="date-selector-item">
+                <div></div>
+                <div>
+                    <button disabled class="date-nav-button">
+                        <div class="gg-chevron-right"></div>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="attendance-data-container">
+        <div class="attendance-list">
+            @foreach (var dailyEvent in Events)
+            {
+                @if (dailyEvent.Enrollment.Date.Day == SelectedDate.Day)
+                {
+                    <div class="attendance-row">
+                        <div class="subject-info">
+                            <div>@dailyEvent.Enrollment.Subject.SubjectName</div>
+                        </div>
+                        <div class="attendance-status" style="background-color: @GetAttendanceColor(dailyEvent.Description)">
+                            <div>@dailyEvent.Description</div>
+                        </div>
+                    </div>
+                }
+            }
+            @if (!Events.Any(e => e.Enrollment.Date.Day == SelectedDate.Day))
+            {
+                <div class="no-attendance">
+                    <p>No attendance records for this date.</p>
+                </div>
+            }
         </div>
     </div>
-    
 </div>
+
 @code {
     int ID;
     int selectedchildID;
@@ -216,14 +189,13 @@
     List<Attendance> Events = new List<Attendance>();
     List<Attendance> Atdlist = new List<Attendance>();
 
-
     protected override async Task OnInitializedAsync()
     {
         SelectedDate = DateTime.Now;
         await EnrollmentService.GetEnrollments();
         await StudentService.GetStudents();
         await ParentService.GetParents();
-        await AttendanceService.GetAttendances();  
+        await AttendanceService.GetAttendances();
         await GetClaimsGetID();
         await Filllastattendeces();
         await NewDate();
@@ -268,21 +240,46 @@
                     {
                         selectedchildID = parent.LastSelectedChildId.Value;
                         student = await StudentService.GetStudentById(selectedchildID);
-
                     }
                 }
             }
         }
     }
+
     private void Lower()
     {
         SelectedDate = SelectedDate.AddDays(-1);
         StateHasChanged();
     }
+
     private void Higher()
     {
         SelectedDate = SelectedDate.AddDays(1);
         StateHasChanged();
+    }
+
+    private void SelectDate(DateTime newDate)
+    {
+        SelectedDate = newDate;
+        StateHasChanged();
+    }
+
+    private string GetAttendanceColor(string description)
+    {
+        return description?.ToLower() switch
+        {
+            var desc when desc.Contains("present") => "#008000", // green
+            var desc when desc.Contains("late") => "#0000FF", // blue
+            var desc when desc.Contains("unexcused") => "#F08080", // lightcoral
+            var desc when desc.Contains("excused") => "#FFA500", // orange
+            _ => "#6c757d" // default gray
+        };
+    }
+
+    private bool IsToday(DateTime date)
+    {
+        DateTime today = DateTime.Today;
+        return date.Date == today;
     }
 
     async Task Filllastattendeces()
@@ -294,18 +291,16 @@
                 Atdlist.Add(evn);
             }
         }
-
-
         Addenrolmentstoatd();
     }
 
     async Task Addenrolmentstoatd()
     {
-        foreach(var atd in Atdlist)
+        foreach (var atd in Atdlist)
         {
-            foreach(var enr in EnrollmentService.Enrollments)
+            foreach (var enr in EnrollmentService.Enrollments)
             {
-                if(atd.EnrollmentID == enr.EnrollmentID)
+                if (atd.EnrollmentID == enr.EnrollmentID)
                 {
                     atd.Enrollment = enr;
                 }
@@ -322,33 +317,32 @@
         {
             if (evn.Enrollment.Date.Month == SelectedDate.Month & evn.Enrollment.Date.Year == SelectedDate.Year)
             {
-                    if (Events.Count != 0)
+                if (Events.Count != 0)
+                {
+                    foreach (var evnt in Events)
                     {
-                        foreach (var evnt in Events)
+                        if (DateTime.Compare(evn.Enrollment.Date, evnt.Enrollment.Date) < 0)
                         {
-                            if (DateTime.Compare(evn.Enrollment.Date, evnt.Enrollment.Date) < 0)
+                            Events.Insert(i, evn);
+                            i = 0;
+                            break;
+                        }
+                        else
+                        {
+                            i++;
+                            if (Events.Count <= i)
                             {
-                                Events.Insert(i, evn);
+                                Events.Add(evn);
                                 i = 0;
                                 break;
                             }
-                            else
-                            {
-                                i++;
-                                if (Events.Count <= i)
-                                {
-                                    Events.Add(evn);
-                                    i = 0;
-                                    break;
-                                }
-                            }
                         }
                     }
-                    else
-                    {
-                        Events.Add(evn);
-                    }
-                
+                }
+                else
+                {
+                    Events.Add(evn);
+                }
             }
         }
         StateHasChanged();
@@ -360,13 +354,11 @@
         SelectedDate.Year.Equals(i);
         await NewDate();
     }
+
     async Task SelectMonth(ChangeEventArgs e)
     {
         int month = Convert.ToInt32(e.Value.ToString());
         SelectedDate = new DateTime(SelectedDate.Year, month, 4);
         await NewDate();
     }
-    
-
-
 }

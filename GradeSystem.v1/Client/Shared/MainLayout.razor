@@ -54,13 +54,13 @@
                                 }
                             </AuthorizeView>/>
                         </div>
-                        <div class="header-element-top">
-                            <i class="gg-search"></i>
-                        </div>
-                        <div class="header-element-top">
-                            <i class="gg-bell"></i>
-                        </div>
-                        <NavLink class="nav-test" href="chat" Match="NavLinkMatch.All">
+                        @* <div class="header-element-top"> *@
+                        @*     <i class="gg-search"></i> *@
+                        @* </div> *@
+                        @* <div class="header-element-top"> *@
+                        @*     <i class="gg-bell"></i> *@
+                        @* </div> *@
+                        <NavLink class="header-nav-test" href="chat" Match="NavLinkMatch.All">
                         <div class="header-element-top">
                             <i class="gg-mail"></i>
                         </div>
@@ -68,10 +68,10 @@
                         <div class="header-element">
                             <AuthorizeView>
                                 <Authorized>
-                                    <a @onclick="Logout" href="javascript:void(0)">Logout</a>                                  
+                                    <button @onclick="Logout" href="javascript:void(0)" class="button button-logout">Logout</button>
                                 </Authorized>
                                 <NotAuthorized>
-                                    <button @onclick="GoToRandomLoginPage">Login</button>
+                                    <button @onclick="GoToRandomLoginPage" class="button button-login">Login</button>
                                 </NotAuthorized>
                             </AuthorizeView>
                         </div>

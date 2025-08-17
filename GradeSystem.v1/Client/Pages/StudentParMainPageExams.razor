@@ -15,19 +15,30 @@
         {
             <div class="loading">Loading exams...</div>
         }
-        else if (upcomingExams?.Any() == true)
+        else if (groupedExams?.Any() == true)
         {
-            @foreach (var exam in upcomingExams)
+            @foreach (var dateGroup in groupedExams)
             {
-                <div class="exam-item">
-                    <div class="exam-subject">
-                        @GetSubjectName(exam.SubjectID)
+                <div class="date-section">
+                    <div class="date-header">
+                        @GetFormattedDateHeader(dateGroup.Key)
                     </div>
-                    <div class="exam-description">
-                        @exam.Description
-                    </div>
-                    <div class="exam-date">
-                        @exam.Date.ToString("MMM dd, yyyy")
+                    <div class="exams-list">
+                        @foreach (var exam in dateGroup.Value)
+                        {
+                            <div class="exam-row">
+                                <div class="exam-left">
+                                    <div class="time-stripe" style="background-color: @GetExamColor(exam.SubjectID)">
+                                        @exam.Date.ToString("HH:mm")
+                                    </div>
+                                </div>
+                                <div class="exam-right">
+                                    <div class="subject-name">
+                                        @GetSubjectName(exam.SubjectID)
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             }
@@ -45,16 +56,23 @@
     Student student;
     Parent parent;
     private List<Exam> upcomingExams = new List<Exam>();
+    private Dictionary<DateTime, List<Exam>> groupedExams = new Dictionary<DateTime, List<Exam>>();
     private Student currentStudent;
     private bool isLoading = true;
     string Roles;
+
+    // Color palette for different subjects
+    private readonly string[] subjectColors = {
+        "#3498db", "#e74c3c", "#2ecc71", "#f39c12", "#9b59b6",
+        "#1abc9c", "#e67e22", "#34495e", "#e91e63", "#00bcd4"
+    };
 
     protected override async Task OnInitializedAsync()
     {
         await StudentService.GetStudents();
         await ParentService.GetParents();
         await ExamService.GetExams();
-        await ExamService.GetSubjects();
+        await SubjectService.GetSubjects();
         await GetClaimsGetID();
         await LoadUpcomingExams();
     }
@@ -98,7 +116,6 @@
                     {
                         selectedchildID = parent.LastSelectedChildId.Value;
                         student = await StudentService.GetStudentById(selectedchildID);
-
                     }
                 }
             }
@@ -110,23 +127,23 @@
         try
         {
             isLoading = true;
-            Console.WriteLine("CYCKI");
 
             if (student != null)
             {
-                Console.Write(student);
+                Console.Write(student.ClassID);
 
                 // Filter exams by student's class and get upcoming ones
                 var today = DateTime.Today;
                 upcomingExams = ExamService.Exams
                     .Where(exam => exam.ClassID == student.ClassID && exam.Date >= today)
                     .OrderBy(exam => exam.Date)
-                    .Take(5)
+                    .Take(10) // Increased to show more exams
                     .ToList();
-            }
-            else
-            {
-                Console.WriteLine("DUPA");
+
+                // Group exams by date
+                groupedExams = upcomingExams
+                    .GroupBy(exam => exam.Date.Date)
+                    .ToDictionary(group => group.Key, group => group.OrderBy(e => e.Date).ToList());
             }
         }
         catch (Exception ex)
@@ -142,7 +159,21 @@
 
     private string GetSubjectName(int subjectID)
     {
-        var subject = ExamService.Subjects?.FirstOrDefault(s => s.SubjectID == subjectID);
+        var subject = SubjectService.Subjects?.FirstOrDefault(s => s.SubjectID == subjectID);
         return subject?.SubjectName ?? "Unknown Subject";
+    }
+
+    private string GetFormattedDateHeader(DateTime date)
+    {
+        var dayOfWeek = date.ToString("dddd", System.Globalization.CultureInfo.CurrentCulture);
+        var formattedDate = date.ToString("dd.MM");
+        return $"{dayOfWeek}, {formattedDate}";
+    }
+
+    private string GetExamColor(int subjectID)
+    {
+        // Use subject ID to consistently assign colors
+        var colorIndex = subjectID % subjectColors.Length;
+        return subjectColors[colorIndex];
     }
 }

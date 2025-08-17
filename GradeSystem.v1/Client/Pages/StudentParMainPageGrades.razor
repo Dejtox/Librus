@@ -2,7 +2,7 @@
 @using System.Globalization;
 @inject IStudentService StudentService
 @inject IGradeNumberService GradeNumberService
-@inject IGradeService GradeService 
+@inject IGradeService GradeService
 @inject ISubjectService SubjectService
 @inject IParentService ParentService
 @attribute [Authorize(Roles = "Parent, Student, Admin")]
@@ -28,8 +28,6 @@
                             <div class="RGLeft">
                                 <div class="RGdatetime">
 
-                                    <div>@Grade.DateOfGrading.ToString("ddd", CultureInfo.InvariantCulture)</div>
-                                    <div>, &nbsp;</div>
                                     <div>@Grade.DateOfGrading.Day</div>
                                     <div>.</div>
 
@@ -46,18 +44,13 @@
                                 </div>
                             </div>
 
-
-
-
                             <div class="RGRight">
                                 <div class="RGsubject">@Grade.Subject.SubjectName</div>
                             </div>
 
-
-
                         </div>
 
-                        <div class="RGgrade" style="background-color: @GetGradeTypeColor(Grade.GradeTypeId)">
+                        <div class="RGgrade" style="background-color: @GetLighterGradeTypeColor(Grade.GradeTypeId); color: white;">
                             @Grade.Gradenumber.GradeName
                         </div>
 
@@ -73,8 +66,6 @@
     </div>
 
 </div>
-
-
 
 @code {
 
@@ -92,66 +83,105 @@
 
     List<Grade> LastSixGrades = new List<Grade>();
 
-    List<Grade> RecentStudentGrades = new List<Grade>();
-
     async Task AddGradesToRecentGrades()
     {
+        // Get all grades for the student
+        var studentGrades = GradeService.Grades
+            .Where(grade => grade.StudentID == student.StudentID)
+            .OrderByDescending(grade => grade.DateOfGrading)
+            .Take(6)
+            .ToList();
 
-        DateTime Today = DateTime.Now;
-
-        foreach (var grade in GradeService.Grades)
-        {
-            if (grade.StudentID == student.StudentID)
-            {
-                if (grade.DateOfGrading <= Today && grade.DateOfGrading >= Today.AddDays(-30))
-                {
-                    RecentStudentGrades.Add(grade);
-                }
-
-            }
-        }
-        AddLastSixGrades();
+        LastSixGrades = studentGrades;
     }
 
-
-
-
-    async Task AddLastSixGrades()
+    private string GetLighterGradeTypeColor(int gradeTypeId)
     {
+        var gradeType = GradeNumberService.GradeTypes?.FirstOrDefault(gt => gt.GradeTypeId == gradeTypeId);
 
-        Grade ClosestGrade;
-        DateTime DateTimeToday = DateTime.Today;
-
-        for (int i = 1; i <= 6; i++)
+        if (gradeType?.color != null)
         {
-            ClosestGrade = RecentStudentGrades[0];
-
-            TimeSpan TimeDifferenceA;
-            TimeSpan TimeDifferenceB;
-
-
-            foreach (var grade in RecentStudentGrades)
-            {
-
-                TimeDifferenceA = DateTimeToday - grade.DateOfGrading;
-                TimeDifferenceB = DateTimeToday - ClosestGrade.DateOfGrading;
-
-                if (TimeDifferenceA < TimeDifferenceB)
-                {
-                    ClosestGrade = grade;
-                }
-
-            }
-            LastSixGrades.Add(ClosestGrade);
-            RecentStudentGrades.Remove(ClosestGrade);
+            // Convert hex color to lighter version
+            string originalColor = gradeType.color;
+            return ConvertToLighterColor(originalColor);
         }
+
+        return "lightgrey";
     }
 
-    private string GetGradeTypeColor(int gradeTypeId)
+    private string ConvertToLighterColor(string colorName)
     {
-        var gradeType = GradeNumberService.GradeTypes?.FirstOrDefault(gt =>gt.GradeTypeId == gradeTypeId);
-        
-        return gradeType?.color ?? "lightgrey";
+        // Dictionary mapping color names to hex values
+        var colorMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            {"red", "#FF0000"},
+            {"green", "#008000"},
+            {"blue", "#0000FF"},
+            {"yellow", "#FFFF00"},
+            {"orange", "#FFA500"},
+            {"purple", "#800080"},
+            {"pink", "#FFC0CB"},
+            {"brown", "#A52A2A"},
+            {"gray", "#808080"},
+            {"grey", "#808080"},
+            {"black", "#000000"},
+            {"white", "#FFFFFF"},
+            {"cyan", "#00FFFF"},
+            {"magenta", "#FF00FF"},
+            {"lime", "#00FF00"},
+            {"maroon", "#800000"},
+            {"navy", "#000080"},
+            {"olive", "#808000"},
+            {"teal", "#008080"},
+            {"silver", "#C0C0C0"},
+            {"gold", "#FFD700"},
+            {"indigo", "#4B0082"},
+            {"violet", "#8A2BE2"}
+        };
+
+        // Try to get hex value from color name
+        string hexColor;
+        if (colorMap.ContainsKey(colorName))
+        {
+            hexColor = colorMap[colorName];
+        }
+        else if (colorName.StartsWith("#"))
+        {
+            // Already a hex color
+            hexColor = colorName;
+        }
+        else
+        {
+            // Unknown color, return default
+            return "#D3D3D3"; // light grey
+        }
+
+        // Remove # if present
+        hexColor = hexColor.TrimStart('#');
+
+        // Parse hex color
+        if (hexColor.Length == 6)
+        {
+            try
+            {
+                int r = Convert.ToInt32(hexColor.Substring(0, 2), 16);
+                int g = Convert.ToInt32(hexColor.Substring(2, 2), 16);
+                int b = Convert.ToInt32(hexColor.Substring(4, 2), 16);
+
+                // Make color lighter by blending with white (increase each component by 50%)
+                // r = Math.Min(255, r + (int)((255 - r) * 0.5));
+                // g = Math.Min(255, g + (int)((255 - g) * 0.5));
+                // b = Math.Min(255, b + (int)((255 - b) * 0.5));
+
+                return $"#{r:X2}{g:X2}{b:X2}";
+            }
+            catch
+            {
+                return "#D3D3D3"; // light grey fallback
+            }
+        }
+
+        return "#D3D3D3"; // light grey fallback
     }
 
     int selectedchildID;
@@ -160,9 +190,7 @@
     Student student;
     Parent parent;
 
-
     [CascadingParameter]
-
     private Task<AuthenticationState> authenticationState { get; set; }
 
     private async Task GetClaimsGetID()
@@ -179,7 +207,6 @@
                 Roles = claim.Value;
             }
         }
-        ;
 
         if (Roles == "Student")
         {
@@ -202,19 +229,9 @@
                     {
                         selectedchildID = parent.LastSelectedChildId.Value;
                         student = await StudentService.GetStudentById(selectedchildID);
-
                     }
                 }
             }
         }
     }
-
 }
-
-
-
-
-
-
-
-

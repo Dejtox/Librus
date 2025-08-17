@@ -4,6 +4,7 @@
 @inject IEnrollmentService EnrollmentService
 @inject IClassService ClassService
 @inject ILessonsHoursService LessonsHoursService
+@inject NavigationManager NavigationManager
 @attribute [Authorize(Roles = "Admin, Teacher, Secretary, Librarian, Principal")]
 
 <div class="TEtable">
@@ -25,12 +26,9 @@
                     if (lessonhour.Start.TimeOfDay >= enrl.Date.TimeOfDay && lessonhour.End.TimeOfDay <= enrl.EndDate.TimeOfDay)
                     {
                         <div class="TEtablerow">
-
-                            <div class="TEdata">
-                                <div class="TEsubject">@lessonhour.LessonNo @enrl.Subject.SubjectName</div>
-
-                                <div class="TEclass">(@enrl.Class.ClassName)</div>
-                            </div>
+                            <button class="TEdata" @onclick="@(() => MoveTo(enrl.EnrollmentID))">
+                                <div class="TEsubject">@lessonhour.LessonNo. @enrl.Subject.SubjectName (@enrl.Class.ClassName)</div>
+                            </button>
                         </div>
                         i = false;
                     }
@@ -39,7 +37,7 @@
                 {
                     <div class="TEtablerow">
                         <div class="TEdata">
-                            <div class="TEsubject">@lessonhour.LessonNo</div>
+                            <div class="TEsubject">@lessonhour.LessonNo.</div>
                         </div>
                     </div>
                 }
@@ -123,7 +121,8 @@
             {
                 Roles = claim.Value;
             }
-        };
+        }
+        ;
 
         if (Roles == "Teacher")
         {
@@ -136,7 +135,10 @@
             }
         }
     }
-
+    async Task MoveTo(int id)
+    {
+        NavigationManager.NavigateTo($"CurrentLesson/{id}");
+    }
 
 
 }

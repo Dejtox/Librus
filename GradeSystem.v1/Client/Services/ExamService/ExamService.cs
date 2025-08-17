@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
@@ -15,7 +14,7 @@ namespace GradeSystem.v1.Client.Services.ExamService
         private readonly HttpClient _httpClient;
         private readonly NavigationManager _navigationManager;
         public IList<Exam> Exams { get; set; } = new List<Exam>();
-        public IList<Subject> Subjects { get; set; }=new List<Subject>();
+        public IList<Subject> Subjects { get; set; } = new List<Subject>();
         public IList<Class> Classes { get; set; } = new List<Class>();
 
         public async Task CreateExam(Exam exam)
@@ -37,12 +36,14 @@ namespace GradeSystem.v1.Client.Services.ExamService
 
         public async Task<Exam> GetExamByID(int id)
         {
-           return await _httpClient.GetFromJsonAsync<Exam>($"api/Exam/{id}");
+            return await _httpClient.GetFromJsonAsync<Exam>($"api/Exam/{id}");
         }
 
-        public Task GetExams()
+        public async Task GetExams()
         {
-            throw new NotImplementedException();
+            var result = await _httpClient.GetFromJsonAsync<List<Exam>>("api/Exam");
+            if (result != null)
+                Exams = result;
         }
 
         public Task GetSubjects()

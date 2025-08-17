@@ -417,19 +417,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     inline-size: inherit;
     width: 100%;
     height: 35px;
-    margin: 12px 0px;
+    margin: 12px 0;
     border: 2px solid #f4ad1c;
     border-radius: 4px;
     background: white;
     text-align: center;
     font-weight: 600;
-    .fluent-input:focus
-
-{
-    outline: none;
-    border: 2px solid #10264e;
 }
 
+    .fluent-input:focus {
+        outline: none;
+        border: 2px solid #10264e;
+    }
 }
 
 
@@ -3379,7 +3378,7 @@ a, .btn-link {
 }
 
 .Tgradestable {
-    height: 90%;
+    height: 96%;
     width: 90%;
     border: solid 2px;
     border-radius: 10px;
@@ -3402,6 +3401,16 @@ a, .btn-link {
 .Tterm {
     height: 100%;
     width: 31%;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-color: white;
+}
+.Ttermbig {
+    height: 100%;
+    width: 67%;
     border-left: solid 1px;
     border-right: solid 1px;
     align-items: center;
@@ -3512,12 +3521,38 @@ a, .btn-link {
 
 .Tbot {
     width: 100%;
+    hight: 70%;
     display: flex;
     justify-content: center;
 }
 
 .Tgrade {
     width: 31%;
+    display: flex;
+    flex-direction: row;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-bottom: solid 1px;
+    border-color: #DBDBDB;
+}
+.flex-containersmallforTgrades {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.flex-containerforTgrades {
+    width: 70%; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    box-sizing: border-box; 
+}
+
+.Tgradebig {
+    width: 67%;
     display: flex;
     flex-direction: row;
     border-left: solid 1px;
@@ -5021,12 +5056,15 @@ a, .btn-link {
 .AddStudentForm {
 }
 
-
+.makerow {
+    display: flex;
+    gap: 10px;
+    width: 90%;
+    hight: 90%;
+}
 /*
     ADMIN MENU
 */
-
-
 .AdminMainBox {
     height: 100%;
     width: 100%;
@@ -5039,6 +5077,7 @@ a, .btn-link {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
     .AdminTopBar
 
 {
@@ -5215,8 +5254,7 @@ a, .btn-link {
     clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
     border-top-right-radius: 35px;
 }
-<<<<<<< HEAD
-=======
+
 
 
 .AdminDisplay {
@@ -5324,4 +5362,158 @@ a, .btn-link {
         .input-area button:hover {
             background-color: #007ad9;
         }
->>>>>>> Bladzmergemtest
+
+.Tgradeheadersmall {
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px #D0D0D0;
+    background-color: #D0D0D0;
+    border-color: #D0D0D0;
+    width: auto;
+    min-width: fit-content;
+    white-space: nowrap;
+}
+
+    /* ====== Karta/formularz ====== */
+    .form-card {
+    --border: #d7d7d7;
+    --border-strong: #bdbdbd;
+    --text: #111;
+    --muted: #6b6b6b;
+    --bg: #fff;
+    --yellow: #f3c32b;
+    --radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 0 rgba(0,0,0,.08);
+    max-width: 560px;
+    margin: 12px auto;
+    overflow: hidden;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    color: var(--text);
+}
+
+.form-card__body {
+    padding: 10px 10px 0 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 10px;
+    border-top: 1px solid var(--border);
+}
+
+    .form-row:first-child {
+        border-top: 0;
+    }
+
+.form-row--textarea {
+    align-items: start;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.static-text {
+    font-size: 14px;
+    padding: 6px 0;
+}
+
+/* ====== Pola formularza ====== */
+.ui-input,
+.ui-select,
+.ui-textarea {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.2;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 9px 12px;
+    background: #fff;
+    color: var(--text);
+    outline: none;
+}
+
+    .ui-input:focus,
+    .ui-select:focus,
+    .ui-textarea:focus {
+        border-color: #9b9b9b;
+        box-shadow: 0 0 0 2px rgba(0,0,0,.06);
+    }
+
+/* Select z własną strzałką */
+.ui-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 34px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px 18px;
+}
+
+/* Większa wysokość dla textarea jak na makiecie */
+.ui-textarea {
+    min-height: 110px;
+    resize: vertical;
+    padding: 10px 12px;
+}
+
+/* ====== Stopka/przyciski ====== */
+.form-card__footer {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* na makiecie są centralnie na dole */
+    padding: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.btn {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 999px; /* kapsułka */
+    border: 1.5px solid #000;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 2px 0 rgba(0,0,0,.1);
+    transition: transform .03s ease, box-shadow .15s ease, background .15s ease;
+}
+
+    .btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 0 rgba(0,0,0,.08);
+    }
+
+.btn-outline {
+    /* biały przycisk „Confirm” */
+}
+
+.btn-warning {
+    background: var(--yellow);
+}
+
+.btn:hover {
+    filter: brightness(0.98);
+}
+
+/* ====== Responsywność (małe ekrany) ====== */
+@media (max-width: 520px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-label {
+        margin-bottom: 4px;
+    }
+}

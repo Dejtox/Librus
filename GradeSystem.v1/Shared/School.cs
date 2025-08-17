@@ -27,4 +27,6 @@
     public string LearningForm { get; set; } = string.Empty;
     public string Status { get; set; } = string.Empty;//publiczna niep[ubliczna
     public int BankAccountNumber { get; set; }
+
+    public DateTime ChangeOfSmestrDate { get; set; }
 }

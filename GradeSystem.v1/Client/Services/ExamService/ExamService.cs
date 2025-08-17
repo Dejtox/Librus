@@ -40,9 +40,11 @@ namespace GradeSystem.v1.Client.Services.ExamService
            return await _httpClient.GetFromJsonAsync<Exam>($"api/Exam/{id}");
         }
 
-        public Task GetExams()
+        public async Task GetExams()
         {
-            throw new NotImplementedException();
+            var result = await _httpClient.GetFromJsonAsync<List<Exam>>("api/Exam");
+            if (result != null)
+                Exams = result;
         }
 
         public Task GetSubjects()

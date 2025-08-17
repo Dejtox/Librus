@@ -3,6 +3,7 @@
 @using System.Security.Claims
 @inject IStudentService StudentService
 @inject IGradeService GradeService
+@inject IGradeNumberService GradeNumberService
 @inject ISubjectService SubjectService
 @inject IClassService ClassService
 @inject IEnrollmentService EnrollmentService
@@ -13,128 +14,448 @@
 @inject NavigationManager NavigationMenager
 
 <div class="Ttableborder">
-    <div class="Tstudentinfo">
 
-       <div class="Tstudentname">Class
+    <div class="Tstudentinfo">
+        <div class="Tstudentname">
+            Class
             <select value="@selectedClassId" @onchange="HandleClassChange" class="grade-select">
-                <option value="0">Select Grade</option>
                 @foreach (var classItem in ClassService.Classes)
-                    {
-                        <option value="@classItem.ClassID">@classItem.ClassName</option>
-                    }
-                
+                {
+                    <option value="@classItem.ClassID">@classItem.ClassName</option>
+                }
             </select>
-       </div>
-       @if(teacher.TeacherID != null)
+        </div>
+        @if (teacher.TeacherID != null)
         {
             if (selectedsubjectId != null)
             {
-            <div class="Tstudentclass">Subject
-                <select value="@selectedsubjectId" @onchange="HandlesubjectChange" class="grade-select">
-                    
-                    @foreach (var classItem in SubjectService.Subjects)
-                    {
+                <div class="Tstudentclass">
+                    Subject
+                    <select value="@selectedsubjectId" @onchange="HandlesubjectChange" class="grade-select">
 
-                        if (teacher.TeacherID == classItem.TeacherID)
+                        @foreach (var classItem in SubjectService.Subjects)
                         {
-                                <option value="@classItem.SubjectID">@classItem.SubjectName @classItem.Grade</option>
-                        }
-                    }
 
-                </select>
-            </div>
+                            if (teacher.TeacherID == classItem.TeacherID)
+                            {
+                                <option value="@classItem.SubjectID">@classItem.SubjectName @classItem.Grade</option>
+                            }
+                        }
+
+                    </select>
+                </div>
             }
         }
-        
+
 
     </div>
-    <div class="Tgradestable">
-        <div class="Tgradeheader">
-            <button class="Taddgrade"><div class="gg-add"></div></button>
-            <div class="Tnumber">No.</div>
-            <div class="Tname">Name</div>
-            <div class="Tterm">
-                <div class="Ttop">Term 1</div>
-                <div class="Tbot">
-                    <div class="headergrade">Grades</div>
-                    <div class="gst">Av.</div>
-                    <div class="gst">I</div>
+    @if (isedited == false)
+    {
+        <div class="Tgradestable">
+            <div class="Tgradeheader">
+                <button class="Taddgrade" @onclick="async () => await Addserialgrades()"><div class="gg-add"></div></button>
+                <div class="Tnumber">No.</div>
+                <div class="Tname">Name</div>
+                <div class="Tterm">
+                    <div class="Ttop">Term 1</div>
+                    <div class="Tbot">
+                        <div class="headergrade">Grades</div>
+                        <div class="gst">Av.</div>
+                        <div class="gst">I</div>
+                    </div>
                 </div>
-            </div>
-            <div class="Tterm">
-                <div class="Ttop">Term 2</div>
-                <div class="Tbot">
-                    <div class="headergrade">Grades</div>
-                    <div class="gst">Av.</div>
-                    <div class="gst">II</div>
+                <div class="Tterm">
+                    <div class="Ttop">Term 2</div>
+                    <div class="Tbot">
+                        <div class="headergrade">Grades</div>
+                        <div class="gst">Av.</div>
+                        <div class="gst">II</div>
+                    </div>
                 </div>
-            </div>
-            <div class="Teoy">
-                <div class="Ttop">EOY</div> 
-                <div class="Tbot">av.</div>
-            </div>
 
-        </div>
-        <div class="Tgradesdisplay">
-           @foreach(var student in StudentService.Students)
-           {
-                int i = 0;
-                if (student.ClassID == selectedClassId)
+                <div class="Teoy">
+                    <div class="Ttop">EOY</div>
+                    <div class="Tbot">av.</div>
+                </div>
+            </div>
+            <div class="Tgradesdisplay">
+                @foreach (var stdgrdlist in studentGrades)
                 {
                     <div class="Tgraderow">
-                        <button class="Taddgrade Taddgrade--d"><div class="gg-add"></div></button>
-                        @i = i++;
-                        <div class="Tnumber Tnumber--d">i</div>
-                        <div class="Tname">@student.Name </div>
+                        <button class="Taddgrade Taddgrade--d" @onclick="() => Addgrade(stdgrdlist.Student)"><div class="gg-add"></div></button>
+                        <div class="Tnumber Tnumber--d">@stdgrdlist.index</div>
+                        <div class="Tname">@stdgrdlist.Student.Name </div>
                         <div class="Tgrade">
-                            @foreach (var grade in GradeService.Grades)
-                            {
-                                if (grade.StudentID == student.StudentID)
+                            <div class="flex-containersmallforTgrades">
+                                @foreach (var grade in stdgrdlist.Grades)
                                 {
-                                    <button class="Tgradevalue">@grade.Gradenumber.GradeName</button>
+                                    if(grade.Semester == 1)
+                                    {
+                                        <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
+                                    }
+                                }
+                            </div>
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB"><div>@stdgrdlist.avrages1.ToString("0.00")</div> </div>
+                            @if (0 == 1)
+                            {
+                                <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>
+                                //dodać tu oceny końcowe
+                            }
+                            else
+                            {
+                                <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
+                            }
+
+                        </div>
+                        <div class="Tgrade">
+                            <div class="flex-containersmallforTgrades">
+                                @foreach (var grade in stdgrdlist.Grades)
+                                {
+                                    if (grade.Semester == 2)
+                                    {
+                                        <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
+                                    }
+                                }
+                            </div>
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB"><div>@stdgrdlist.avrages2.ToString("0.00")</div> </div>
+                            @if (0 == 1)
+                            {
+                                <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>
+                                //dodać tu oceny końcowe
+                            }
+                            else
+                            {
+                                <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
+                            }
+                        </div>
+
+                        <div class="Tfinalgrade"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="makerow">
+            <div class="Tgradestable">
+                <div class="Tgradeheader">
+                    <div class="Taddgrade"></div>
+                    <div class="Tnumber">No.</div>
+                    <div class="Tname">Name</div>
+                    @if (0 == 0)
+                    {
+                        <div class="Ttermbig">
+                            <div class="Ttop">Term 1</div>
+                            <div class="Tbot">
+                                <div class="headergrade">Grades</div>
+                                <div class="gst">Av.</div>
+                                <div class="gst">I</div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="Ttermbig">
+                            <div class="Ttop">Term 2</div>
+                            <div class="Tbot">
+                                <div class="headergrade">Grades</div>
+                                <div class="gst">Av.</div>
+                                <div class="gst">II</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="Tgradesdisplay">
+                    @foreach (var stdgrdlist in studentGrades)
+                    {
+                        <div class="Tgraderow">
+                            @if (multigradeadded)
+                            {
+                                <select @onchange="@(e => Addgradetomltigradelist(e, stdgrdlist.Student))" class="grade-select">
+                                    <option value=0>Dont addd</option>
+                                    @foreach (var gradenumber in GradeNumberService.GradeNumbers)
+                                    {
+                                        <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
+                                    }
+                                </select>
+                            }
+                            else if (isgradebeingedited)
+                            {
+                                if (gradeforediting.StudentID == stdgrdlist.Student.StudentID)
+                                {
+                                    <select @onchange="@(e => Editstudentandgradenumb(e, stdgrdlist.Student))" class="grade-select">
+                                    <option value=0>Dont addd</option>
+                                    @foreach (var gradenumber in GradeNumberService.GradeNumbers)
+                                    {
+                                        <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
+                                    }
+                                    </select>
                                 }
                             }
-                                    @foreach(var grade in GradeService.Grades)
+                            else if (gradeforadding.StudentID == stdgrdlist.Student.StudentID)
+                            {
+                                    <select @onchange="@(e => Addstudentandgradenumb(e, stdgrdlist.Student))" class="grade-select">
+                                        <option value=0>Dont addd</option>
+                                        @foreach (var gradenumber in GradeNumberService.GradeNumbers)
+                                        {
+                                            <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
+                                        }
+                                    </select>
+                            }
+                            else
+                            {
+                                <div class="Taddgrade Taddgrade--d"></div>
+                            }
+                            <div class="Tnumber Tnumber--d">@stdgrdlist.index</div>
+                            <div class="Tname">@stdgrdlist.Student.Name </div>
+                            @if (0 == 0)
+                            {
+                                <div class="Tgradebig">
+                                    <div class="flex-containerforTgrades">
+
+                                        @foreach (var grade in stdgrdlist.Grades)
+                                        {
+                                            if(grade.Semester == 1 && grade.Gradenumber!=null)
+                                            {
+                                                <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
+                                            }
+                                        }
+                                    </div>
+                                    <div style="width: 15%; border-left: solid 1px #DBDBDB"><div>@stdgrdlist.avrages1.ToString("0.00")</div> </div>
+                                    @if (0 == 1)
                                     {
-                                    <div style="width: 15%; border-left: solid 1px #DBDBDB">2</div>
-                                    }
-                                    @if(0==1)
-                                    {
-                                        <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>               //dodać tu oceny końcowe
+                                        <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>
+                                        //dodać tu oceny końcowe
                                     }
                                     else
                                     {
                                         <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
                                     }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="Tgradebig">
+                                    <div class="flex-containerforTgrades">
+
+                                        @foreach (var grade in stdgrdlist.Grades)
+                                        {
+                                            if (grade.Semester == 2)
+                                            {
+                                                <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
+                                            }
+                                        }
+                                    </div>
+                                    <div style="width: 15%; border-left: solid 1px #DBDBDB"><div>@stdgrdlist.avrages2.ToString("0.00")</div> </div>
+                                    @if (0 == 1)
+                                    {
+                                        <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>
+                                        //dodać tu oceny końcowe
+                                    }
+                                    else
+                                    {
+                                        <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
+                                    }
+                                </div>
+
+                                <div class="Tfinalgrade"></div>
+                            }
+                        </div>
+                    }
+                </div>
+                <div>
+                </div>
+            </div>
+
+            <div>
+
+                <div class="form-card">
+                    <div class="form-card__body">
+                        @if (multigradeadded)
+                        {
+                            <div class="form-row">
+                                <label class="form-label" for="name">Grades for Students</label>
+                            </div>
+                        }
+                        else if (isgradebeingedited)
+                        {
+                            if (gradeforediting.Student != null)
+                            {
+                                <div class="form-row">
+                                    <label class="form-label" for="name">@gradeforediting.Student.Name</label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-row">
+                                    <label class="form-label" for="name"></label>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="form-row">
+                                <label class="form-label" for="name">@editedstudent.Name</label>
+                            </div>
+                        }
+                        <div class="form-row">
+                            <label class="form-label" for="subject">@selsubject.SubjectName @selsubject.Grade;</label>
+                        </div>
+                        @if (isgradebeingedited == true)
+                        {
+                        <div class="form-row">
+                            <label class="form-label" for="type">Type</label>
+                                <select id="type" value="@gradeforediting.GradeTypeId" @onchange="Addgradetype" class="ui-select">
+                                @foreach (var gradetype in GradeNumberService.GradeTypes)
+                                {
+                                    <option value="@gradetype.GradeTypeId">@gradetype.GradeTypeName</option>
+                                }
+                            </select>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-row">
+                                <label class="form-label" for="type">Type</label>
+                                <select id="type" value="@gradeforadding.GradeTypeId" @onchange="Addgradetype" class="ui-select">
+                                    @foreach (var gradetype in GradeNumberService.GradeTypes)
+                                    {
+                                        <option value="@gradetype.GradeTypeId">@gradetype.GradeTypeName</option>
+                                    }
+                                </select>
+                            </div>
+                        }
+                        <div class="form-row">
+                            @if (multigradeadded || multigradeadded)
+                            {
+
+                                @if (multigradeadded)
+                                {
+                                    <label class="form-label" for="grade">Add Multiple Grades</label>
+                                }
+                                @if (isgradebeingedited)
+                                {
+                                    <label class="form-label" for="grade">@gradeforediting.Gradenumber.GradeName</label>
+                                }
+                            }
+                            else
+                            {
+                                <label class="form-label" for="grade">
+                                    Add  Grade
+                                    @if (gradeforadding.Gradenumber != null)
+                                    {
+                                    @if (gradeforadding.Gradenumber.GradeName.Length >= 0)
+                                    {
+                                        @gradeforadding.Gradenumber.GradeName
+                                    }
+                                    }
+                                </label>
+                            }
+
 
                         </div>
-                        <div class="Tgrade">
-                            <div class="Tgradevalue">3</div>
-                            <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
-                            <div style="width: 15%; border-left: solid 1px #DBDBDB">3</div>
-                        </div>
-                        <div class="Tfinalgrade">2.5</div>
+
+                        @if (isgradebeingedited)
+                        {
+                            <div class="form-row">
+                                <label class="form-label" for="date">Date</label>
+
+                                <div id="date" class="static-text">@gradeforediting.DateOfGrading.ToString("yyyy-MM-dd HH:mm")</div>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-row">
+                                <label class="form-label" for="date">Date</label>
+
+                                <div id="date" class="static-text">@dateTimedzis.ToString("yyyy-MM-dd HH:mm")</div>
+
+                            </div>
+                        }
+                        @if (isgradebeingedited)
+                        {
+                            <div class="form-row form-row--textarea">
+                                <label class="form-label" value="@gradeforediting.Description" for="description">Description</label>
+                                <textarea @oninput="Description" id="description" class="ui-textarea" rows="4" placeholder="">@gradeforediting.Description</textarea>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-row form-row--textarea">
+                                <label class="form-label" for="description">Description</label>
+                                <textarea @oninput="Description" id="description" class="ui-textarea" rows="4" placeholder=""></textarea>
+                            </div>
+                        }
                     </div>
-                }                
-           }
-        </div>
-    </div>
-</div>
 
+                    <div class="form-card__footer">
+                        <button type="button" class="btn btn-outline" @onclick="() => HandleSubmit()">Confirm</button>
+                        <button type="button" class="btn btn-warning" @onclick="() => Close()">Cancel</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    }
+</div>
 
 @code {
     [Parameter]
     public int? EnrolmentId { get; set; }
-
+    Enrollment enrollment;
+    Subject selsubject;
+    Grade gradeforadding = new Grade();
+    Grade gradeforediting;
+    DateTime dateTimedzis;
     int selectedClassId;
     int selectedsubjectId;
     string color = "";
+
     int ID;
     string Roles;
-
+    string Textadd;
+    bool isedited = false;
+    bool isgradebeingedited = false;
+    bool multigradeadded = false;
     Teacher teacher = new Teacher();
+    Student editedstudent;
     User user = new User();
     string btnText = string.Empty;
+    public IList<StudentGrade> studentGrades { get; set; } = new List<StudentGrade>();
+    public class StudentGrade
+    {
+        public Student Student { get; set; }
+        public float avrages1 { get; set; }
+        public float avrages2 { get; set; }
+        public IList<Grade> Grades { get; set; } = new List<Grade>();
+        public int index { get; set; }
+        public StudentGrade() { } // pusty konstruktor
+
+        public StudentGrade(Student student, Grade grade,int inde)
+        {
+            Student = student;
+            Grades.Add(grade);
+            index = inde;
+        }
+    }
+
+    public IList<Multigradeadd> Multigradelist { get; set; } = new List<Multigradeadd>();
+    public class Multigradeadd
+    {
+        public GradeNumber Gradenumber { get; set; } = new GradeNumber();
+        public Student Student { get; set; } = new Student();
+
+        public Multigradeadd(GradeNumber gradenumber, Student student)
+        {
+            Gradenumber = gradenumber;
+            Student = student;
+        }
+    }
+
+
     protected override async Task OnInitializedAsync()
     {
         btnText = ID == null ? "Save New Parent" : "Update Parent";
@@ -144,10 +465,16 @@
         await GetClaimsGetID();
         await ClassService.GetClasses();
         await SubjectService.GetSubjects();
+        await GradeNumberService.GetGradeTypes();
+        await GradeNumberService.GetGradeNumbers();
         await EnrollmentService.GetEnrollments();
         if (EnrolmentId.HasValue)
         {
             await Findenrolment(EnrolmentId.Value);
+        }
+        else
+        {
+            await Findanylesson();
         }
 
     }
@@ -180,15 +507,124 @@
         }
     }
 
+    async Task Findanylesson()
+    {
+        @foreach (var sub in SubjectService.Subjects)
+        {
+            bool found = false;
+            if (sub.TeacherID == teacher.TeacherID)
+            {
+                @foreach (var enrol in EnrollmentService.Enrollments)
+                {
+                    if (enrol.SubjectID == sub.SubjectID)
+                    {
+                        selectedsubjectId = sub.SubjectID;
+                        selsubject = sub;
+                        selectedClassId = enrol.Class.ClassID;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found == true)
+            {
+                break;
+            }
+        }
+        await FillstudentGrades();
+    }
+
     async Task Findenrolment(int enrolid)
     {
         foreach (var enr in EnrollmentService.Enrollments)
         {
-            if(enr.EnrollmentID == enrolid)
+            if (enr.EnrollmentID == enrolid)
             {
                 selectedsubjectId = enr.Subject.SubjectID;
+                selectedClassId = enr.Class.ClassID;
                 break;
             }
+        }
+        await FillstudentGrades();
+    }
+
+    async Task FillstudentGrades()
+    {
+        int indexcount ;
+        indexcount = 1;
+        if (studentGrades.Count > 0)
+        {
+            studentGrades.Clear();
+        }
+        foreach (var std in StudentService.Students)
+        {
+            if (selectedClassId == std.ClassID)
+            {
+                studentGrades.Add(new StudentGrade
+                    {
+                        Student = std,
+                        index = indexcount,
+                        Grades = new List<Grade>()
+                    });
+            }
+            indexcount++;
+        }
+        await FillGradesInStudentGrades();
+    }
+
+    async Task FillGradesInStudentGrades()
+    {
+        await GradeService.GetGrades();
+        foreach (var std in studentGrades)
+        {
+            foreach (var grd in GradeService.Grades)
+            {
+                if (selectedsubjectId == grd.SubjectID)
+                {
+                    if (grd.StudentID == std.Student.StudentID)
+                    {
+                        std.Grades.Add(grd);
+                    }
+                }
+            }
+        }
+        await Countavrages();
+    }
+
+    private async Task Countavrages()  // dodać jakąś logike sprawdzania semstrów
+    {
+        float sumwart = 0;
+        float sumwag = 0;
+        foreach (var std in studentGrades)
+        {
+            foreach (var grade in std.Grades)
+            {
+                if(grade.Semester == 1)
+                {
+                    sumwart = sumwart + (grade.Gradenumber.gradenumber * grade.Gradetype.GradeWeight);
+                    sumwag = sumwag + grade.Gradetype.GradeWeight;
+                }
+            }
+            if (sumwag != 0)
+            {
+                std.avrages1 = sumwart / sumwag;
+            }
+            sumwart = 0;
+            sumwag = 0;
+            foreach (var grade in std.Grades)
+            {
+                if (grade.Semester == 2)
+                {
+                    sumwart = sumwart + (grade.Gradenumber.gradenumber * grade.Gradetype.GradeWeight);
+                    sumwag = sumwag + grade.Gradetype.GradeWeight;
+                }
+            }
+            if (sumwag != 0)
+            {
+                std.avrages2 = sumwart / sumwag;
+            }
+            sumwart = 0;
+            sumwag = 0;
         }
     }
 
@@ -196,8 +632,17 @@
     {
         if (int.TryParse(e.Value.ToString(), out int classId))
         {
+            Textadd = string.Empty;
+            multigradeadded = false;
+            isgradebeingedited = false;
+            isedited = false;
+            gradeforadding.Description = string.Empty;
+            Multigradelist.Clear();
             selectedClassId = classId;
-            // await LoadStudents();
+            await FillstudentGrades();
+            Grade gradeForAdding1 = new Grade();
+            gradeforadding = gradeForAdding1;
+            gradeforediting = gradeForAdding1;
         }
     }
 
@@ -205,10 +650,212 @@
     {
         if (int.TryParse(e.Value.ToString(), out int subId))
         {
+            Textadd = string.Empty;
+            multigradeadded = false;
+            isgradebeingedited = false;
+            isedited = false;
+            gradeforadding.Description = string.Empty;
             selectedsubjectId = subId;
-            // await LoadStudents();
+            Multigradelist.Clear();
+            selsubject = await SubjectService.GetSubjectByID(subId);
+            await FillstudentGrades();
+            Grade gradeForAdding1 = new Grade();
+            gradeforadding = gradeForAdding1;
+            gradeforediting = gradeForAdding1;
         }
     }
 
+    private async Task Addserialgrades()
+    {
+        isedited = true;
+        multigradeadded = true;
+        dateTimedzis = DateTime.Now;
+    }
 
+    private async Task Addgrade(Student student)
+    {
+        isedited = true;
+        editedstudent = student;
+        dateTimedzis = DateTime.Now;
+    }
+
+    private async Task Editgrade(Grade grade)
+    {
+        gradeforediting = grade;
+        isedited = true;
+        isgradebeingedited = true;
+    }
+
+    private async Task Addgradetomltigradelist(ChangeEventArgs e, Student studenttoadd)
+    {
+        GradeNumber grttemp;
+        bool studfound =false;
+        if (int.TryParse(e.Value.ToString(), out int gradetypeIdforlist))
+        {
+            if (gradetypeIdforlist == 0)
+            {
+                if (Multigradelist.Count > 0)
+                {
+                    foreach (var multgrad in Multigradelist)
+                    {
+                        if (studenttoadd.StudentID == multgrad.Student.StudentID)
+                        {
+                            Multigradelist.Remove(multgrad);
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (Multigradelist.Count > 0)
+                {
+                    foreach (var multgrad in Multigradelist)
+                    {
+                        if (studenttoadd.StudentID == multgrad.Student.StudentID)
+                        {
+                            @foreach (var gradetypeforlist in GradeNumberService.GradeNumbers)
+                            {
+                                if (gradetypeIdforlist == gradetypeforlist.GradeNumberID)
+                                {
+                                    grttemp = gradetypeforlist;
+                                    multgrad.Gradenumber = grttemp;
+                                    studfound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (studfound)
+                        {
+                            break;
+                        }
+                    }
+                }
+                
+                if (studfound == false)
+                {
+                    @foreach (var gradetypeforlist in GradeNumberService.GradeNumbers)
+                    {
+                        if (gradetypeIdforlist == gradetypeforlist.GradeNumberID)
+                        {
+                            grttemp = gradetypeforlist;
+                            Multigradelist.Add(new Multigradeadd(grttemp, studenttoadd));
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    studfound = true;
+                }
+
+            }
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        Grade forsend;
+        if(isgradebeingedited)
+        {
+            forsend = gradeforediting;
+            forsend.Student = null;
+            forsend.Gradetype = null;
+            forsend.Gradenumber = null;
+            await GradeService.UpdateGrade(forsend);
+        }
+        else if (multigradeadded)
+        {
+            gradeforadding.GradeWeight = 0;    // usunać po pokazie
+            gradeforadding.DateOfGrading = dateTimedzis;
+            gradeforadding.Semester = 1; //dodac ustawianiesemestru
+            gradeforadding.SubjectID = selectedsubjectId;
+            foreach (var stdgrd in Multigradelist)
+            {
+                gradeforadding.StudentID = stdgrd.Student.StudentID;
+                gradeforadding.GradeNumberID = stdgrd.Gradenumber.GradeNumberID;
+                await GradeService.CreateGrade(gradeforadding);
+            }
+        }else
+        {
+            gradeforadding.GradeWeight = 0;    // usunać po pokazie 
+            gradeforadding.DateOfGrading = dateTimedzis;
+            gradeforadding.Semester = 1; //dodac ustawianiesemestru
+            gradeforadding.SubjectID = selectedsubjectId;
+            await GradeService.CreateGrade(gradeforadding);
+        }
+        Textadd = string.Empty;
+        multigradeadded = false;
+        isgradebeingedited = false;
+        isedited = false;
+        Multigradelist.Clear();
+        Grade gradeForAdding1 = new Grade();
+        gradeforediting = gradeForAdding1;
+        gradeforadding = gradeForAdding1;
+        await FillstudentGrades();
+    }
+
+    private async Task Description(ChangeEventArgs e)
+    {
+        if (isgradebeingedited)
+        {
+            Textadd = e.Value.ToString();
+            gradeforediting.Description = Textadd;
+        }
+        else
+        {
+            Textadd = e.Value.ToString();
+            gradeforadding.Description = Textadd;
+        }
+
+    }
+
+    private async Task Addgradetype(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out int classId))
+        {
+            if (isgradebeingedited == true)
+            {
+                gradeforediting.GradeTypeId = classId;
+            }
+            else
+            {
+                gradeforadding.GradeTypeId = classId;
+            }
+        }
+    }
+
+    private async Task Addstudentandgradenumb(ChangeEventArgs e, Student studenttoadd)
+    {
+        if (int.TryParse(e.Value.ToString(), out int gradenumbId))
+        {
+            gradeforadding.GradeNumberID = gradenumbId;
+            gradeforadding.StudentID = studenttoadd.StudentID;
+        }
+
+    }
+
+    private async Task Editstudentandgradenumb(ChangeEventArgs e, Student studenttoadd)
+    {
+        if (int.TryParse(e.Value.ToString(), out int gradenumbId))
+        {
+            gradeforediting.GradeNumberID = gradenumbId;
+            gradeforediting.StudentID = studenttoadd.StudentID;
+        }
+
+    }
+
+    private async Task Close()
+    {
+        Textadd = string.Empty;
+        multigradeadded = false;
+        isgradebeingedited = false;
+        isedited = false;
+        gradeforadding.Description = string.Empty;
+        Multigradelist.Clear();
+        Grade gradeForAdding1 = new Grade();
+        gradeforadding = gradeForAdding1;
+        gradeforediting = gradeForAdding1;
+    }
 }
+

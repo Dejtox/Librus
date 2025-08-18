@@ -5,128 +5,160 @@
 @inject ISchoolService SchoolService
 @inject DragService Drag
 
-<RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="SSYAEsearch-margin">
     <RadzenLabel Text="Select class" Component="Class" Style="font-weight:bold;width:8%;font-size:17px;" />
-    <RadzenDropDown @bind-Value=@ClassID Data=@EnrollmentService.Classes Style="width: 22%; border-radius:15px;" ValueProperty="ClassID" TextProperty="ClassName" Placeholder="Search..." Change="(()=>SelectClass(ClassID))"/>
+    <RadzenDropDown @bind-Value=@ClassID Data=@EnrollmentService.Classes Style="width: 22%; border-radius:15px;" ValueProperty="ClassID" TextProperty="ClassName" Placeholder="Search..." Change="(()=>SelectClass(ClassID))" />
 </RadzenStack>
 <button onclick="@HandleSubmit">Add enrollments</button>
 
-<div>
-    <table>
-        <thead>
-        <th>Subjects</th>
-        </thead>
-        <tbody>
-            @foreach(Subject subject in FilteredSubjects)
+<div class="SSYAEmain-container">
+    <div class="SSYAEsubjects-container">
+        <h3 class="SSYAEsubjects-header">Subjects</h3>
+        <div class="SSYAEsubjects-list">
+            @foreach (Subject subject in FilteredSubjects)
             {
-                <tr draggable="true" @ondragstart="(()=>{Drag.Subject=subject.SubjectName;Drag.ID=subject.SubjectID;})">
-                    <td>@subject.SubjectName</td>
-                </tr>
+                <div draggable="true"
+                     class="SSYAEsubject-item"
+                     data-subject-id="@subject.SubjectID"
+                     @ondragstart="(()=>{Drag.Subject=subject.SubjectName;Drag.ID=subject.SubjectID;})"
+                     @ondrag="HandleDragMove"
+                     style="background: @GetSubjectColorByName(subject.SubjectName);">
+                    @subject.SubjectName
+                </div>
             }
-        </tbody>
-    </table>
-</div>
-
-<div class="sidebox sideboxschedule">
-    <div class="studentschedule">
-        <div class="tablebox">
-            <table class="grafictable">
-                <thead class="grafictablehead">
-                <th class="grafictableheadinside">Monday</th>
-                </thead>
-                <tbody class="graficktableboddymain">
-                    @foreach (int j in index)
-                    {
-                        <tr class="tablerow">
-                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j,"Monday"))">
-                                <div class="tablecellnumber">@(j + 1)</div>
-                                <div class="tablecellcontent">@Monday[j]?.Name</div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="tablebox">
-            <table class="grafictable">
-                <thead class="grafictablehead">
-                <th class="grafictableheadinside">Tuesday</th>
-                </thead>
-                <tbody class="graficktableboddymain">
-                    @foreach (int j in index)
-                    {
-                        <tr class="tablerow">
-                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Tuesday"))">
-                                <div class="tablecellnumber">@(j + 1)</div>
-                                <div class="tablecellcontent">@Tuesday[j]?.Name</div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="tablebox">
-            <table class="grafictable">
-                <thead class="grafictablehead">
-                <th class="grafictableheadinside">Wednesday</th>
-                </thead>
-                <tbody class="graficktableboddymain">
-                    @foreach (int j in index)
-                    {
-                        <tr class="tablerow">
-                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Wednesday"))">
-                                <div class="tablecellnumber">@(j + 1)</div>
-                                <div class="tablecellcontent">@Wednesday[j]?.Name</div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="tablebox">
-            <table class="grafictable">
-                <thead class="grafictablehead">
-                <th class="grafictableheadinside">Thursday</th>
-                </thead>
-                <tbody class="graficktableboddymain">
-                    @foreach (int j in index)
-                    {
-                        <tr class="tablerow">
-                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Thursday"))">
-                                <div class="tablecellnumber">@(j + 1)</div>
-                                <div class="tablecellcontent">@Thursday[j]?.Name</div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-
-        <div class="tablebox">
-            <table class="grafictable">
-                <thead class="grafictablehead">
-                <th class="grafictableheadinside">Friday</th>
-                </thead>
-                <tbody class="graficktableboddymain">
-                    @foreach (int j in index)
-                    {
-                        <tr class="tablerow">
-                            <td class="tablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Friday"))">
-                                <div class="tablecellnumber">@(j + 1)</div>
-                                <div class="tablecellcontent">@Friday[j]?.Name</div>
-                                <div class="tablecellnumber"></div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
         </div>
     </div>
 
+    <div class="SSYAEsidebox SSYAEsideboxschedule">
+        <div class="SSYAEstudentschedule">
+            <div class="SSYAEtablebox">
+                <table class="SSYAEgrafictable">
+                    <thead class="SSYAEgrafictablehead">
+                    <th class="SSYAEgrafictableheadinside">Monday</th>
+                    </thead>
+                    <tbody class="SSYAEgraficktableboddymain">
+                        @foreach (int j in index)
+                        {
+                            <tr class="SSYAEtablerow">
+                                <td class="SSYAEtablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j,"Monday"))">
+                                    <div class="SSYAEtablecellnumber">@(j + 1)</div>
+                                    <div class="SSYAEtablecellcontent" style="background: @(Monday[j]?.Id != null ? GetSubjectColor((int)Monday[j].Id) : "transparent");">
+                                        @Monday[j]?.Name
+                                        @if (Monday[j] != null)
+                                        {
+                                            <button class="SSYAEremove-button" @onclick="() => RemoveMondayLesson(j)" title="Remove lesson">×</button>
+                                        }
+                                    </div>
+                                    <div class="SSYAEtablecellnumber"></div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="SSYAEtablebox">
+                <table class="SSYAEgrafictable">
+                    <thead class="SSYAEgrafictablehead">
+                    <th class="SSYAEgrafictableheadinside">Tuesday</th>
+                    </thead>
+                    <tbody class="SSYAEgraficktableboddymain">
+                        @foreach (int j in index)
+                        {
+                            <tr class="SSYAEtablerow">
+                                <td class="SSYAEtablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Tuesday"))">
+                                    <div class="SSYAEtablecellnumber">@(j + 1)</div>
+                                    <div class="SSYAEtablecellcontent" style="background: @(Tuesday[j]?.Id != null ? GetSubjectColor((int)Tuesday[j].Id) : "transparent");">
+                                        @Tuesday[j]?.Name
+                                        @if (Tuesday[j] != null)
+                                        {
+                                            <button class="SSYAEremove-button" @onclick="() => RemoveTuesdayLesson(j)" title="Remove lesson">×</button>
+                                        }
+                                    </div>
+                                    <div class="SSYAEtablecellnumber"></div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="SSYAEtablebox">
+                <table class="SSYAEgrafictable">
+                    <thead class="SSYAEgrafictablehead">
+                    <th class="SSYAEgrafictableheadinside">Wednesday</th>
+                    </thead>
+                    <tbody class="SSYAEgraficktableboddymain">
+                        @foreach (int j in index)
+                        {
+                            <tr class="SSYAEtablerow">
+                                <td class="SSYAEtablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Wednesday"))">
+                                    <div class="SSYAEtablecellnumber">@(j + 1)</div>
+                                    <div class="SSYAEtablecellcontent" style="background: @(Wednesday[j]?.Id != null ? GetSubjectColor((int)Wednesday[j].Id) : "transparent");">
+                                        @Wednesday[j]?.Name
+                                        @if (Wednesday[j] != null)
+                                        {
+                                            <button class="SSYAEremove-button" @onclick="() => RemoveWednesdayLesson(j)" title="Remove lesson">×</button>
+                                        }
+                                    </div>
+                                    <div class="SSYAEtablecellnumber"></div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="SSYAEtablebox">
+                <table class="SSYAEgrafictable">
+                    <thead class="SSYAEgrafictablehead">
+                    <th class="SSYAEgrafictableheadinside">Thursday</th>
+                    </thead>
+                    <tbody class="SSYAEgraficktableboddymain">
+                        @foreach (int j in index)
+                        {
+                            <tr class="SSYAEtablerow">
+                                <td class="SSYAEtablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Thursday"))">
+                                    <div class="SSYAEtablecellnumber">@(j + 1)</div>
+                                    <div class="SSYAEtablecellcontent" style="background: @(Thursday[j]?.Id != null ? GetSubjectColor((int)Thursday[j].Id) : "transparent");">
+                                        @Thursday[j]?.Name
+                                        @if (Thursday[j] != null)
+                                        {
+                                            <button class="SSYAEremove-button" @onclick="() => RemoveThursdayLesson(j)" title="Remove lesson">×</button>
+                                        }
+                                    </div>
+                                    <div class="SSYAEtablecellnumber"></div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="SSYAEtablebox">
+                <table class="SSYAEgrafictable">
+                    <thead class="SSYAEgrafictablehead">
+                    <th class="SSYAEgrafictableheadinside">Friday</th>
+                    </thead>
+                    <tbody class="SSYAEgraficktableboddymain">
+                        @foreach (int j in index)
+                        {
+                            <tr class="SSYAEtablerow">
+                                <td class="SSYAEtablecell" ondragover="event.preventDefault();" @ondrop="@(async _ => await HandleDrop(j, "Friday"))">
+                                    <div class="SSYAEtablecellnumber">@(j + 1)</div>
+                                    <div class="SSYAEtablecellcontent" style="background: @(Friday[j]?.Id != null ? GetSubjectColor((int)Friday[j].Id) : "transparent");">
+                                        @Friday[j]?.Name
+                                        @if (Friday[j] != null)
+                                        {
+                                            <button class="SSYAEremove-button" @onclick="() => RemoveFridayLesson(j)" title="Remove lesson">×</button>
+                                        }
+                                    </div>
+                                    <div class="SSYAEtablecellnumber"></div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 @code {
@@ -146,6 +178,102 @@
     List<LessonsHours> SortedlessonsHours = new List<LessonsHours>();
     Dictionary<string, Lesson?[]> schedule = new Dictionary<string, Lesson?[]>();
     List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+
+    // Color mapping for specific subjects
+    private readonly Dictionary<string, string> subjectColors = new Dictionary<string, string>
+    {
+        { "Matematyka", "#45B7D1" },           // Blue
+        { "Informatyka", "#4ECDC4" },          // Teal
+        { "Język polski", "#FF6B6B" },          // Red
+        { "WOS", "#96CEB4" },                  // Green
+        { "Historia", "#FFEAA7" },              // Yellow
+        { "Biologia", "#DDA0DD" },             // Plum
+        { "Przyroda", "#98D8C8" },             // Mint
+        { "Chemia", "#F7DC6F" },               // Light Yellow
+        { "Fizyka", "#BB8FCE" },               // Light Purple
+        { "Język angielski", "#85C1E9" },      // Light Blue
+        { "Język niemiecki", "#F8C471" },      // Orange
+        { "Plastyka", "#F1948A" },             // Pink
+        { "Technika", "#82E0AA" },             // Light Green
+        { "Wychowanie fizyczne", "#AED6F1" },  // Sky Blue
+        { "Muzyka", "#D7BDE2" },               // Lavender
+        { "Geografia", "#A3E4D7" }             // Aqua
+    };
+
+    private string GetSubjectColor(int subjectId)
+    {
+        // Find the subject by ID first
+        var subject = FilteredSubjects.FirstOrDefault(s => s.SubjectID == subjectId);
+        if (subject != null && subjectColors.ContainsKey(subject.SubjectName))
+        {
+            return subjectColors[subject.SubjectName];
+        }
+
+        // Fallback colors if subject not found in mapping
+        string[] fallbackColors = {
+            "#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7",
+            "#DDA0DD", "#98D8C8", "#F7DC6F", "#BB8FCE", "#85C1E9",
+            "#F8C471", "#F1948A", "#82E0AA", "#AED6F1", "#D7BDE2", "#A3E4D7"
+    };
+
+        int colorIndex = Math.Abs(subjectId.GetHashCode()) % fallbackColors.Length;
+        return fallbackColors[colorIndex];
+    }
+
+    private string GetSubjectColorByName(string subjectName)
+    {
+        if (subjectColors.ContainsKey(subjectName))
+        {
+            return subjectColors[subjectName];
+        }
+
+        // Fallback color if subject not found
+        return "#95A5A6"; // Gray
+    }
+
+    private void HandleDragMove()
+    {
+        // This method can be used for additional drag behavior if needed
+    }
+
+    private async Task RemoveLesson(int index, string day)
+    {
+        if (schedule.TryGetValue(day, out var dayArray))
+        {
+            dayArray[index] = null;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async Task RemoveMondayLesson(int index)
+    {
+        Monday[index] = null;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task RemoveTuesdayLesson(int index)
+    {
+        Tuesday[index] = null;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task RemoveWednesdayLesson(int index)
+    {
+        Wednesday[index] = null;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task RemoveThursdayLesson(int index)
+    {
+        Thursday[index] = null;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task RemoveFridayLesson(int index)
+    {
+        Friday[index] = null;
+        await InvokeAsync(StateHasChanged);
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -174,11 +302,11 @@
             }
         }
     }
-    private async Task HandleDrop(int index,string day)
+    private async Task HandleDrop(int index, string day)
     {
         if (!schedule.TryGetValue(day, out var dayArray)) return;
         if (!string.IsNullOrWhiteSpace(Drag.Subject))
-        {   
+        {
             dayArray[index] = new Lesson((int)Drag.ID, Drag.Subject);
             Drag.Subject = null;
             Drag.ID = null;
@@ -213,17 +341,17 @@
                 var slot = slotsArray[i];
                 if (slot is null) continue;
                 DateTime firstDate = FirstOnOrAfter(startDate, dow);
-                for (DateTime d=firstDate; d < endDate; d=d.AddDays(7))
+                for (DateTime d = firstDate; d < endDate; d = d.AddDays(7))
                 {
                     var start = d.Date + startTime;
                     var end = d.Date + endTime;
                     Enrollments.Add(new Enrollment
-                    {
-                        ClassID = ClassID,
-                        SubjectID = slot.Id,
-                        Date = start,
-                        EndDate = end
-                    });
+                        {
+                            ClassID = ClassID,
+                            SubjectID = slot.Id,
+                            Date = start,
+                            EndDate = end
+                        });
                 }
             }
         }
@@ -234,7 +362,7 @@
     private void SelectClass(int ClassID)
     {
         var classs = EnrollmentService.Classes.FirstOrDefault(c => c.ClassID == ClassID);
-        for(int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++)
         {
             Monday[i] = null;
             Tuesday[i] = null;

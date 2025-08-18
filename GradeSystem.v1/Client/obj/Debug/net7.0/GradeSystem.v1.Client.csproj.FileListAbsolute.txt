@@ -1039,8 +1039,8 @@ C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compr
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\vpu28c3ngs-tptq2av103.gz
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\xho8ns9yjt-lfu7j35m59.gz
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\lpixlpyx4m-7cxe8oq9xu.gz
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\0uoh63o1v1-9qhxzsv50f.gz
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\m53g3suelx-efgswpm5mt.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\0uoh63o1v1-cxsqt6974p.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\m53g3suelx-lct4uqpn49.gz
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\staticwebassets.build.endpoints.json
@@ -1056,6 +1056,6 @@ C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\Grade
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\refint\GradeSystem.v1.Client.dll
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\GradeSystem.v1.Client.pdb
 C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\ref\GradeSystem.v1.Client.dll
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\jyatd0qr1g-3g9ucswt92.gz
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\cbep6vg9k6-8vwmcbiyru.gz
-C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\hgzxichjiy-nyaavnvdkn.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\jyatd0qr1g-2xiajr31lc.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\cbep6vg9k6-0ksf6nkjx6.gz
+C:\Users\Patryk\Desktop\dcd2\Librus\GradeSystem.v1\Client\obj\Debug\net7.0\compressed\hgzxichjiy-ubwmzu0plp.gz

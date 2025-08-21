@@ -18,7 +18,7 @@
         <button class="CLstartlesson" onclick="@StartLesson" hidden="@hidden">Start Lesson</button>
         <div class="CLbutcontainer">
             <div class="CLbuttoncontainerrow">
-                <button class="CLbutton" style="background-color: rgb(91,208,145)" @onclick="@(()=>AddAttendances(10))">
+                <button class="CLbutton" style="background-color: rgb(91,208,145)" @onclick="@(()=>AddAttendances((int)@enrlid))">
                     <div class="gg-check-r"></div>
                     <div class="CLbuttonname">Attendance</div>
                 </button>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="CLbuttoncontainerrow">
-                <button class="CLbutton" style="background-color: rgb(91,103,208)" @onclick="@(()=>NavigationManager.NavigateTo("/materials"))">
+                <button class="CLbutton" style="background-color: rgb(91,103,208)" @onclick="@(()=>NavigationManager.NavigateTo("https://drive.google.com/drive/folders/1Y9Pyid0296UbUu-LTWMNQ3Fx9oiUHT73"))">
                     <div class="gg-check-r"></div>
                     <div class="CLbuttonname">Materials</div>
                 </button>
@@ -50,7 +50,10 @@
     </div>
 
     <div class="CLrightcontainer">
-
+        @if(teacher!=null)
+        {
+            <GradesViewTeacher EnrolmentId="enrlid"></GradesViewTeacher>
+        }
     </div>
 
 </div>
@@ -86,13 +89,13 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        if (ID == null)
+        if (IDU == null)
         {
             await TeacherService.GetTeachers();
         }
         else
         {
-            teacher = await TeacherService.GetTeacherByID((int)ID);
+            teacher = await TeacherService.GetTeacherByID((int)IDU);
             user = await UserService.GetUserByID(teacher.UserID);
         }
 

@@ -20,11 +20,14 @@ public class Grade
     public int GradeNumberID { get; set; }
     [Required]
     public int GradeTypeId { get; set; }
+
+    public int? CorectedGradeID { get; set; }
+
+    public bool IsRetakenGrade { get; set; } = false;
+
     [Required]
     [StringLength(1000, MinimumLength = 1, ErrorMessage = "Grade name cannot be longer than 1000 characters. Required minimum length is 1.")]
     public string Description { get; set; } = string.Empty;
-    [Required]
-    public int GradeWeight { get; set; }
     public Student? Student { get; set; }
     public Subject? Subject { get; set; }
     [Required]

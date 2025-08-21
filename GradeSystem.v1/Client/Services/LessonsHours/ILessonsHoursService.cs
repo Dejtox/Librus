@@ -3,7 +3,7 @@
     public interface ILessonsHoursService
     {
         IList<LessonsHours> LessonsHours { get; set; }
-
+        IList<LessonsHours> SortedLessonsHours { get; set; }
 
         Task GetLessonsHours();
         Task<LessonsHours> GetLessonsHoursByID(int id);

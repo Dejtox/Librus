@@ -318,16 +318,7 @@
 
     async Task SortLessonHours()
     {
-        for(int i =0; i<LessonsHoursService.LessonsHours.Count; i=i+1)
-        {
-            foreach (var segment in LessonsHoursService.LessonsHours)
-            {
-                if(segment.LessonNo == i+1)
-                {
-                    SortedlessonsHours.Add(segment);
-                }
-            }
-        }
+        SortedlessonsHours = LessonsHoursService.SortedLessonsHours;
     }
     //kom
     async Task Setemptylessonhour()

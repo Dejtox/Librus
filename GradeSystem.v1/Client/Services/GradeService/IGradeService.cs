@@ -17,5 +17,7 @@
         Task UpdateGrade(Grade grade);
         Task DeleteGrade(int id);
         Task CreateGrade(Grade grade);
+
+        Task<int> CreateGradeAndReturnId(Grade grade);
     }
 }

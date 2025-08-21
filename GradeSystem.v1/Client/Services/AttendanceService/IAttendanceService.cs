@@ -16,7 +16,7 @@ namespace GradeSystem.v1.Client.Services.AttendanceService
         Task<Enrollment> GetEnrollmentByID(int id);
         Task<String> GetAttendanceByStudent(int studentId, Enrollment enrollment);
         Task<Student> GetStudentByID(int id);
-        Task<List<Attendance>> GetManyAttendancesByEnrollmentID(int enrollmentID);
+        Task<List<Attendance>?> GetManyAttendancesByEnrollmentID(int enrollmentID);
 
         Task UpdateAttendance(Attendance attendance);
         Task DeleteAttendance(int id);

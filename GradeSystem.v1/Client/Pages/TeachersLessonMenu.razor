@@ -310,7 +310,6 @@ else
                 gradetoadd.Subject = enrollment.Subject;
                 gradetoadd.SubjectID = enrollment.Subject.SubjectID;
                 gradetoadd.Description = description;
-                gradetoadd.GradeWeight = gradeweight;
                 gradetoadd.Gradenumber = seg.tempgradenumber;
                 gradetoadd.GradeNumberID = seg.tempgradenumber.GradeNumberID;
                 await GradeService.CreateGrade(gradetoadd);

@@ -12,6 +12,7 @@ namespace GradeSystem.v1.Client.Services.LessonsHoursService
             _http = http;
         }
         public IList<LessonsHours> LessonsHours { get; set; } = new List<LessonsHours>();
+        public IList<LessonsHours> SortedLessonsHours { get; set; } = new List<LessonsHours>();
         private readonly HttpClient _http;
 
         public async Task CreateLessonsHours(LessonsHours lessonsHours)
@@ -28,6 +29,7 @@ namespace GradeSystem.v1.Client.Services.LessonsHoursService
         {
             var result = await _http.GetFromJsonAsync<List<LessonsHours>>("api/LessonsHours");
             if (result != null)
+                LessonsHours = result;
                 await SortLessonHour(result);
         }
 
@@ -47,17 +49,21 @@ namespace GradeSystem.v1.Client.Services.LessonsHoursService
 
         public async Task SortLessonHour(List<LessonsHours> lessonHour)
         {
+            SortedLessonsHours.Clear();
+            for (int i = 0; i < LessonsHours.Count; i = i + 1)
 
-            for (int i = 0; i < lessonHour.Count; i = i + 1)
             {
-                foreach (var segment in lessonHour)
+                foreach (var segment in LessonsHours)
                 {
                     if (segment.LessonNo == i + 1)
                     {
-                        LessonsHours.Add(segment);
+                        Console.WriteLine( "tu");
+                        SortedLessonsHours.Add(segment);
+
                     }
                 }
             }
+            Console.WriteLine(SortedLessonsHours.Count);
         }
     
     }

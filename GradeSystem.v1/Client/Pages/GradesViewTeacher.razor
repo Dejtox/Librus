@@ -184,13 +184,14 @@
                             {
                                 if (gradeforediting.StudentID == stdgrdlist.Student.StudentID)
                                 {
-                                    <select @onchange="@(e => Editstudentandgradenumb(e, stdgrdlist.Student))" class="grade-select">
-                                    <option value=0>Dont addd</option>
-                                    @foreach (var gradenumber in GradeNumberService.GradeNumbers)
-                                    {
-                                        <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
-                                    }
-                                    </select>
+                                        <select @onchange="@(e => Editstudentandgradenumb(e, stdgrdlist.Student))" class="grade-select">
+                                            <option value=0>Dont addd</option>
+                                            @foreach (var gradenumber in GradeNumberService.GradeNumbers)
+                                            {
+                                                <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
+                                            }
+                                        </select>
+
                                 }
                             }
                             else if (gradeforadding.StudentID == stdgrdlist.Student.StudentID)
@@ -327,7 +328,7 @@
                             </div>
                         }
                         <div class="form-row">
-                            @if (multigradeadded || multigradeadded)
+                            @if (multigradeadded || isgradebeingedited)
                             {
 
                                 @if (multigradeadded)
@@ -336,7 +337,10 @@
                                 }
                                 @if (isgradebeingedited)
                                 {
-                                    <label class="form-label" for="grade">@gradeforediting.Gradenumber.GradeName</label>
+                                    <div>
+                                        <InputCheckbox Value="isCorrected" ValueChanged="OnCorrectedChanged" ValueExpression="@(() => isCorrected)" /> Corrected
+                                        <InputCheckbox Value="isRetake" ValueChanged="OnRetakeChanged" ValueExpression="@(() => isRetake)" /> Retake
+                                    </div>
                                 }
                             }
                             else
@@ -409,12 +413,14 @@
     Subject selsubject;
     Grade gradeforadding = new Grade();
     Grade gradeforediting;
+    Grade gradeforeditinguntached;
     DateTime dateTimedzis;
     int selectedClassId;
     int selectedsubjectId;
     string color = "";
-
-    int ID;
+    bool isRetake = false;
+    bool isCorrected = true;
+    int ID { get; set; }
     string Roles;
     string Textadd;
     bool isedited = false;
@@ -756,17 +762,32 @@
     private async Task HandleSubmit()
     {
         Grade forsend;
+        int cratedid;
         if(isgradebeingedited)
         {
-            forsend = gradeforediting;
-            forsend.Student = null;
-            forsend.Gradetype = null;
-            forsend.Gradenumber = null;
-            await GradeService.UpdateGrade(forsend);
+            if (isRetake)
+            {
+                forsend = gradeforediting;
+                forsend.Student = null;
+                forsend.Gradetype = null;
+                forsend.Gradenumber = null;
+                forsend.IsRetakenGrade = true;
+                cratedid = await GradeService.CreateGradeAndReturnId(gradeforediting);
+                forsend = gradeforeditinguntached;
+                forsend.CorectedGradeID = cratedid;
+                await GradeService.UpdateGrade(gradeforediting);
+            }
+            else
+            {
+                forsend = gradeforediting;
+                forsend.Student = null;
+                forsend.Gradetype = null;
+                forsend.Gradenumber = null;
+                await GradeService.UpdateGrade(forsend);
+            }
         }
         else if (multigradeadded)
         {
-            gradeforadding.GradeWeight = 0;    // usunać po pokazie
             gradeforadding.DateOfGrading = dateTimedzis;
             gradeforadding.Semester = 1; //dodac ustawianiesemestru
             gradeforadding.SubjectID = selectedsubjectId;
@@ -778,7 +799,6 @@
             }
         }else
         {
-            gradeforadding.GradeWeight = 0;    // usunać po pokazie 
             gradeforadding.DateOfGrading = dateTimedzis;
             gradeforadding.Semester = 1; //dodac ustawianiesemestru
             gradeforadding.SubjectID = selectedsubjectId;
@@ -840,7 +860,6 @@
         if (int.TryParse(e.Value.ToString(), out int gradenumbId))
         {
             gradeforediting.GradeNumberID = gradenumbId;
-            gradeforediting.StudentID = studenttoadd.StudentID;
         }
 
     }
@@ -857,5 +876,22 @@
         gradeforadding = gradeForAdding1;
         gradeforediting = gradeForAdding1;
     }
+
+
+    private void OnCorrectedChanged(bool value)
+    {
+        isCorrected = value;
+        if (isCorrected)
+            isRetake = false;
+    }
+
+    private void OnRetakeChanged(bool value)
+    {
+        isRetake = value;
+        if (isRetake)
+            isCorrected = false;
+    }
 }
+
+
 

@@ -3141,10 +3141,7 @@
           "Syncfusion.Blazor.Schedule": "21.2.4"
         },
         "runtime": {
-          "GradeSystem.v1.Client.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "GradeSystem.v1.Client.dll": {}
         }
       },
       "GradeSystem.v1.Shared/1.0.0": {
@@ -3153,10 +3150,7 @@
           "Microsoft.Extensions.Http": "7.0.0"
         },
         "runtime": {
-          "GradeSystem.v1.Shared.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "GradeSystem.v1.Shared.dll": {}
         }
       }
     }

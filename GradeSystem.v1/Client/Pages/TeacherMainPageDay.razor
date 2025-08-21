@@ -20,6 +20,7 @@
         <div class="TEsubdisplay">
             @foreach (var lessonhour in SortedlessonsHours)
             {
+                Console.WriteLine(SortedlessonsHours.Count());
                 bool i = true;
                 @foreach (var enrl in EnrolmentsFortoday)
                 {
@@ -27,7 +28,9 @@
                     {
                         <div class="TEtablerow">
                             <button class="TEdata" @onclick="@(() => MoveTo(enrl.EnrollmentID))">
-                                <div class="TEsubject">@lessonhour.LessonNo. @enrl.Subject.SubjectName (@enrl.Class.ClassName)</div>
+                                <div class="TEsubject">@lessonhour.LessonNo @enrl.Subject.SubjectName</div>
+
+                                <div class="TEclass">(@enrl.Class.ClassName)</div>
                             </button>
                         </div>
                         i = false;
@@ -37,7 +40,7 @@
                 {
                     <div class="TEtablerow">
                         <div class="TEdata">
-                            <div class="TEsubject">@lessonhour.LessonNo.</div>
+                            <div class="TEsubject">@lessonhour.LessonNo</div>
                         </div>
                     </div>
                 }
@@ -95,16 +98,7 @@
 
     async Task SortLessonHours()
     {
-        for (int i = 0; i < LessonsHoursService.LessonsHours.Count; i = i + 1)
-        {
-            foreach (var segment in LessonsHoursService.LessonsHours)
-            {
-                if (segment.LessonNo == i + 1)
-                {
-                    SortedlessonsHours.Add(segment);
-                }
-            }
-        }
+        SortedlessonsHours = LessonsHoursService.SortedLessonsHours;
     }
 
     [CascadingParameter]
@@ -123,8 +117,7 @@
             {
                 Roles = claim.Value;
             }
-        }
-        ;
+        };
 
         if (Roles == "Teacher")
         {

@@ -83,5 +83,16 @@ namespace GradeSystem.v1.Client.Services.GradeService
         {
             await _http.PutAsJsonAsync($"api/Grades/{grade.GradeID}", grade);
         }
+
+        public async Task<int> CreateGradeAndReturnId(Grade grade)
+        {
+            var response = await _http.PostAsJsonAsync("api/Grades", grade);
+            if (response.IsSuccessStatusCode)
+            {
+                var createdGrade = await response.Content.ReadFromJsonAsync<Grade>();
+                Console.WriteLine(createdGrade ); 
+            }
+            throw new Exception("Nie udało się utworzyć oceny");
+        }
     }
 }

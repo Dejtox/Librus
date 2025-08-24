@@ -84,6 +84,7 @@ namespace GradeSystem.v1.Server.Controllers
             grade.Student = null;
             grade.Subject = null;
             grade.Gradenumber = null;
+            grade.Gradetype = null;
             _context.Grade.Add(grade);
             await _context.SaveChangesAsync();
 

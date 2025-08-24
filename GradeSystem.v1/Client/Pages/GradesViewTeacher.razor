@@ -688,6 +688,7 @@
     private async Task Editgrade(Grade grade)
     {
         gradeforediting = grade;
+        gradeforeditinguntached = grade;
         isedited = true;
         isgradebeingedited = true;
     }
@@ -761,21 +762,32 @@
 
     private async Task HandleSubmit()
     {
-        Grade forsend;
+        Grade forsend = new Grade();
         int cratedid;
         if(isgradebeingedited)
         {
             if (isRetake)
             {
-                forsend = gradeforediting;
+                forsend = new Grade();
+                forsend.StudentID = gradeforeditinguntached.StudentID;
+                forsend.SubjectID = gradeforeditinguntached.SubjectID;
+                forsend.GradeNumberID = gradeforeditinguntached.GradeNumberID;
+                forsend.GradeTypeId = gradeforeditinguntached.GradeTypeId;
+                forsend.Semester = gradeforeditinguntached.Semester;
+                forsend.DateOfGrading = gradeforeditinguntached.DateOfGrading;
+                forsend.Description = gradeforeditinguntached.Description;
+                forsend.DateOfGrading = gradeforeditinguntached.DateOfGrading;
                 forsend.Student = null;
                 forsend.Gradetype = null;
                 forsend.Gradenumber = null;
                 forsend.IsRetakenGrade = true;
-                cratedid = await GradeService.CreateGradeAndReturnId(gradeforediting);
+                cratedid = await GradeService.CreateGradeAndReturnId(forsend);
                 forsend = gradeforeditinguntached;
                 forsend.CorectedGradeID = cratedid;
-                await GradeService.UpdateGrade(gradeforediting);
+                forsend.Student = null;
+                forsend.Gradetype = null;
+                forsend.Gradenumber = null;
+                await GradeService.UpdateGrade(forsend);
             }
             else
             {

@@ -90,7 +90,7 @@ namespace GradeSystem.v1.Client.Services.GradeService
             if (response.IsSuccessStatusCode)
             {
                 var createdGrade = await response.Content.ReadFromJsonAsync<Grade>();
-                Console.WriteLine(createdGrade ); 
+                return createdGrade.GradeID; 
             }
             throw new Exception("Nie udało się utworzyć oceny");
         }

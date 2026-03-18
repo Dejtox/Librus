@@ -4,7 +4,8 @@
     {
         Task<BookType> GetBookTypeByID(int BookTypeID);
         Task GetBookTypes();
-        Task CreateBookType(BookType booktype);
+        Task<BookType> CreateBookType(BookType booktype);
+
         Task UpdateBookType(BookType booktype);
         Task DeleteBookType(int id);
         

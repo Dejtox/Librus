@@ -17,7 +17,7 @@ namespace GradeSystem.v1.Client.Services.FileService
                 throw new Exception("File Not Find");
             }
             else
-            {     
+            {
                 var file =  response.Content.ReadAsStream();
                 return file;
             }
@@ -30,6 +30,7 @@ namespace GradeSystem.v1.Client.Services.FileService
         }
         public async Task<string> UploadProductImage(MultipartFormDataContent content)
         {
+            Console.WriteLine("tu2");
             var postResult = await _client.PostAsync("api/upload", content);
             var postContent = await postResult.Content.ReadAsStringAsync();
             if (!postResult.IsSuccessStatusCode)

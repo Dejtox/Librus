@@ -43,5 +43,15 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+    <script>
+        window.BlazorDownloadFile = (filename, contentType, contentBase64) => {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = `data:${contentType};base64,${contentBase64}`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+    </script>
 </body>
 </html>

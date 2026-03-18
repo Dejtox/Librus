@@ -35,11 +35,19 @@ namespace GradeSystem.v1.Client.Services.BookTypeService
             throw new Exception("BookType Not Find");
         }
 
-        public async Task CreateBookType(BookType booktype)
+        public async Task<BookType> CreateBookType(BookType booktype)
         {
-            var result = await _http.PostAsJsonAsync("api/BookType", booktype);
+            var response = await _http.PostAsJsonAsync("api/BookType", booktype);
+            response.EnsureSuccessStatusCode();
 
+            var createdBookType = await response.Content.ReadFromJsonAsync<BookType>();
+
+            if (createdBookType == null)
+                throw new Exception("Nie udało się utworzyć typu książki");
+
+            return createdBookType;
         }
+
 
         public async Task UpdateBookType(BookType booktype)
         {

@@ -5,55 +5,87 @@
 @inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Http;
 @using System.Net.Http.Headers;
-@attribute [Authorize(Roles = "Admin, Librarian, Teacher")]
+@*@attribute [Authorize(Roles = "Admin, Librarian, Teacher")]*@
 @{
     var showClass = IsVisible ? "d-block" : "d-none";
 }
+<div class="modal-overlay" @onmouseup="StopDrag" @onmousemove="OnDrag">
+    <div class="modal-content" style="top:@topPx; left:@leftPx;" @onmousedown="StartDrag">
+        <div class="modal-header">
+            <strong class="modal-title">
+                @(AllDataIn ? "Do You Want To Save New BookType" : "You Can't Save This BookType")
+            </strong>
+            <button class="close-button" @onclick="Close">×</button>
+        </div>
 
-<div class="toast-container p-3 @showClass" data-bs-autohide="true" data-bs-delay="5000">
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
+        <div class="modal-body">
             @if (AllDataIn)
             {
-                <strong class="me-auto">Do You Whant To Save New BookType </strong>
-            }
-            else
-            {
-                <strong class="me-auto">You Can't Save This BookType</strong>
-            }
-        </div>
-        @if (AllDataIn)
-        {
-            <div class="toast-body">
-                Title @Title <br>
-                Author @Author <br>
-                Editon @Edition <br>
+                <p>Title: @Title</p>
+                <p>Author: @Author</p>
+                <p>Edition: @Edition</p>
+
                 <label for="Img">Img</label>
                 <InputFile OnChange="@HandleSelected" multiple />
+
                 @if (ImgUrl != null)
                 {
                     <div>
-                        <img src="@ImgUrl" style="width:300px" />
+                        <img src="@ImgUrl" style="width: 100%; max-width: 300px;" />
                     </div>
                 }
-                <br>
-                Amount <input type="number" min="0" value="0" @oninput=amoutchange></input> @Amount<br>
-                @message <br>
-                <button type="button" class="btn-close" aria-label="Close" @onclick="Save">Save</button>
-                <button type="button" class="btn-close" aria-label="Close" @onclick="Close">Cancel</button>
-            </div>
-        }
-        else
-        {
-            <div class="toast-body">
-                Title,Author and Edtion must be filed.<br>
-            <button type="button" class="btn-close" aria-label="Close" @onclick="Close">Cancel</button>
-            </div>
-        }
+
+            <br />
+            Amount:
+                <input type="number" min="0" value="@Amount" @oninput="amoutchange" />
+
+                <p>@message</p>
+
+                <button class="btn btn-primary" @onclick="Save">Save</button>
+                <button class="btn btn-secondary" @onclick="Close">Cancel</button>
+            }
+            else
+            {
+                <p>Title, Author and Edition must be filled.</p>
+                <button class="btn btn-secondary" @onclick="Close">Cancel</button>
+            }
+        </div>
     </div>
 </div>
+}
 
 @code {
+    // Drag logic
+    private double offsetX;
+    private double offsetY;
+    private bool dragging = false;
+    private double top = 100;
+    private double left = 100;
+    private string topPx => $"{top}px";
+    private string leftPx => $"{left}px";
+
+    private void StartDrag(MouseEventArgs e)
+    {
+        dragging = true;
+        offsetX = e.ClientX - left;
+        offsetY = e.ClientY - top;
+    }
+
+    private void StopDrag(MouseEventArgs e)
+    {
+        dragging = false;
+    }
+
+    private void OnDrag(MouseEventArgs e)
+    {
+        if (dragging)
+        {
+            left = e.ClientX - offsetX;
+            top = e.ClientY - offsetY;
+            StateHasChanged();
+        }
+    }
+
     [Parameter]
     public bool IsVisible { get; set; }
 
@@ -161,7 +193,6 @@
         IsVisible = false;
         AllDataIn = true;
         StateHasChanged();
-        NavigationManager.NavigateTo("/test");
     }
 
     private async Task HandleSelected(InputFileChangeEventArgs e)

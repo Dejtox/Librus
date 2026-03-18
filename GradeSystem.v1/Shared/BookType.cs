@@ -13,10 +13,10 @@ public class BookType
     [Required]
     public int BookTypeID { get; set; }
     [Required]
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Title cannot be longer than 100 characters. Required minimum length is 2.")]
+    [StringLength(100, MinimumLength = 1, ErrorMessage = "Title cannot be longer than 100 characters. Required minimum length is 2.")]
     public string Title { get; set; } = string.Empty;
     [Required]
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Author cannot be longer than 100 characters. Required minimum length is 2.")]
+    [StringLength(100, MinimumLength = 1, ErrorMessage = "Author cannot be longer than 100 characters. Required minimum length is 2.")]
     public string Author { get; set; } = string.Empty;
     [Required]
     [StringLength(100, MinimumLength = 1, ErrorMessage = "Edition cannot be longer than 100 characters. Required minimum length is 1.")]

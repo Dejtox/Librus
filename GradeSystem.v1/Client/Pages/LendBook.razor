@@ -1,0 +1,146 @@
+﻿@page "/LendBook/{QrId:int}"
+@inject IBookService BookService
+@inject IStudentService StudentService
+@inject IBookServiceSupport BookServiceSupport
+@inject IBookTypeService BookTypeService
+@inject IClassService ClassService
+@inject NavigationManager NavigationManager
+
+<h3>Wypożyczenie książki</h3>
+
+@if (book != null)
+{
+    <div class="mb-3">
+        <b>Book:</b> @book.BookType.Title
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Klasa</label>
+        <select class="form-select" @bind="SelectedClassId" @bind:after="OnClassSelected">
+            <option value="0">-- wybierz klasę --</option>
+            @foreach (var c in ClassesStd)
+            {
+                <option value="@c.Classs.ClassID">@c.Classs.ClassName</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Uczeń</label>
+        <select class="form-select" @bind="SelectedStudentId" disabled="@(SelectedClassId == 0)">
+            <option value="0">-- wybierz ucznia --</option>
+
+            @foreach (var s in FilteredStudents)
+            {
+                <option value="@s.StudentID">@s.FirstName @s.LastName</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Data zwrotu</label>
+        <InputDate class="form-control" @bind-Value="returndate" />
+    </div>
+
+    <button class="btn btn-primary"
+            disabled="@(SelectedStudentId == 0)"
+            @onclick="Save">
+        Save
+    </button>
+
+    @if (!string.IsNullOrWhiteSpace(Message))
+    {
+        <div class="alert alert-info mt-3">@Message</div>
+    }
+}
+
+@code {
+    [Parameter] public int QrId { get; set; }
+
+    Book book;
+
+    // default: teraz + 2 tygodnie
+    DateTime returndate = DateTime.Now.AddDays(14);
+
+    int SelectedClassId = 0;
+    int SelectedStudentId = 0;
+
+    public string? Message { get; set; }
+
+    public List<ClassStd> ClassesStd { get; set; } = new();
+    public List<Student> FilteredStudents { get; set; } = new();
+
+    public class ClassStd
+    {
+        public Class Classs { get; set; }
+        public List<Student> Students { get; set; }
+
+        public ClassStd(Class classs, List<Student> students)
+        {
+            Classs = classs;
+            Students = students ?? new List<Student>();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await StudentService.GetStudents();
+        await ClassService.GetClasses();
+        book = await BookService.GetBookByQR(QrId);
+
+        FillClasses();
+    }
+
+    void FillClasses()
+    {
+        ClassesStd.Clear();
+
+        foreach (var classinservice in ClassService.Classes)
+        {
+            var studentsInClass = StudentService.Students
+                .Where(std => std.ClassID == classinservice.ClassID)
+                .ToList();
+
+            ClassesStd.Add(new ClassStd(classinservice, studentsInClass));
+        }
+    }
+
+    void OnClassSelected()
+    {
+        // po zmianie klasy resetujemy ucznia
+        SelectedStudentId = 0;
+
+        var selected = ClassesStd.FirstOrDefault(c => c.Classs.ClassID == SelectedClassId);
+        FilteredStudents = selected?.Students ?? new List<Student>();
+    }
+
+    async Task Save()
+    {
+        Message = null;
+
+        if (SelectedStudentId == 0)
+        {
+            Message = "Wybierz ucznia.";
+            return;
+        }
+
+        await updatebook(book);
+        Message = "Zapisano wypożyczenie ✅";
+    }
+
+    async Task updatebook(Book bookforupdate)
+    {
+        if (SelectedStudentId != 0)
+        {
+            bookforupdate.StudentId = SelectedStudentId;
+            bookforupdate.IsBorowed = true;
+            bookforupdate.BorowingDate = DateTime.Now;
+            bookforupdate.ReturnDate = returndate;
+
+            // jeśli UpdateBook jest async, zmień na: await BookService.UpdateBook(bookforupdate);
+            BookService.UpdateBook(bookforupdate);
+        }
+
+        await Task.CompletedTask;
+    }
+}

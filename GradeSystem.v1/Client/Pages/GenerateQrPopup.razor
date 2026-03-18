@@ -1,0 +1,96 @@
+﻿@using QRCoder
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+@inject IQRService QrService
+
+@if (isVisible && currentBook != null)
+{
+    <div class="generateqr-modal-overlay" @onmouseup="StopDrag" @onmousemove="OnDrag">
+        <div class="generateqr-modal-content" style="top:@topPx; left:@leftPx;" @onmousedown="StartDrag">
+            <div class="modal-header justify-content-center">
+                <h5 class="modal-title text-center">QR Code </h5>
+            </div>
+            <div class="modal-body text-center">
+                <img src="data:image/png;base64,@qrImageBase64"
+                     alt="QR Code"
+                     style="max-width: 200px; height: auto; display: block; margin: 0 auto;" />
+                <p class="mt-2" style="word-break: break-all; font-size: 0.85rem;">
+                    @fullUrl
+                </p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success" @onclick="DownloadPdf">Download PDF</button>
+                    <button class="btn btn-warning" @onclick="Close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@code {
+    private bool isVisible = false;
+    private Book currentBook;
+    private string qrImageBase64;
+    private string fullUrl;
+
+    private double offsetX;
+    private double offsetY;
+    private bool dragging = false;
+    private double top = 100;
+    private double left = 100;
+    private string topPx => $"{top}px";
+    private string leftPx => $"{left}px";
+
+    public void ShowQr(Book book)
+    {
+        currentBook = book;
+        fullUrl = $"{NavigationManager.BaseUri}LendBook/{book.QRCode}";
+
+        using var qrGenerator = new QRCodeGenerator();
+        using var qrData = qrGenerator.CreateQrCode(fullUrl, QRCodeGenerator.ECCLevel.Q);
+        using var qrCode = new PngByteQRCode(qrData);
+        var qrBytes = qrCode.GetGraphic(20);
+        qrImageBase64 = Convert.ToBase64String(qrBytes);
+
+        isVisible = true;
+        StateHasChanged();
+    }
+
+    void Close() => isVisible = false;
+
+    async Task DownloadPdf()
+    {
+        var qrCode = currentBook.QRCode.ToString();
+        var fileName = $"QRCode_{qrCode}.pdf";
+        var fileBytes = await QrService.DownloadQrPdfAsync(qrCode);
+
+        await JS.InvokeVoidAsync("BlazorDownloadFile",
+            fileName,
+            "application/pdf",
+            Convert.ToBase64String(fileBytes));
+    }
+
+    private void StartDrag(MouseEventArgs e)
+    {
+        dragging = true;
+        offsetX = e.ClientX - left;
+        offsetY = e.ClientY - top;
+    }
+
+    private void StopDrag(MouseEventArgs e)
+    {
+        dragging = false;
+    }
+
+    private void OnDrag(MouseEventArgs e)
+    {
+        if (dragging)
+        {
+            left = e.ClientX - offsetX;
+            top = e.ClientY - offsetY;
+            StateHasChanged();
+        }
+    }
+}

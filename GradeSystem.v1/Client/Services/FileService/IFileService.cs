@@ -2,6 +2,7 @@
 {
     public interface IFileService
     {
+        
         Task<string> UploadProductImage(MultipartFormDataContent content);
 
         Task<Stream> Getimage(string Filename);

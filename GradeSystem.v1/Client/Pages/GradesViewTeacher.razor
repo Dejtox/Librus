@@ -85,48 +85,101 @@
                         <button class="Taddgrade Taddgrade--d" @onclick="() => Addgrade(stdgrdlist.Student)"><div class="gg-add"></div></button>
                         <div class="Tnumber Tnumber--d">@stdgrdlist.index</div>
                         <div class="Tname">@stdgrdlist.Student.Name </div>
-                        <div class="Tgrade">
-                            <div class="flex-containersmallforTgrades">
-                                @foreach (var grade in stdgrdlist.Grades)
-                                {
-                                    if(grade.Semester == 1)
-                                    {
-                                        <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
-                                    }
-                                }
-                            </div>
-                            <div style="width: 15%; border-left: solid 1px #DBDBDB"><div>@stdgrdlist.avrages1.ToString("0.00")</div> </div>
-                            @if (0 == 1)
-                            {
-                                <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>
-                                //dodać tu oceny końcowe
-                            }
-                            else
-                            {
-                                <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
-                            }
 
-                        </div>
+                        <!-- Term 1 -->
                         <div class="Tgrade">
                             <div class="flex-containersmallforTgrades">
-                                @foreach (var grade in stdgrdlist.Grades)
+                                @foreach (var gradeGroup in stdgrdlist.Grades)
                                 {
-                                    if (grade.Semester == 2)
+                                    var gradesInSemester = gradeGroup.Where(g => g.Semester == 1).ToList();
+                                    if (gradesInSemester.Count == 1)
                                     {
-                                        <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
+                                        <div class="gradesTooltip">
+                                            @{
+                                                var grade = gradesInSemester[0];
+                                            }
+                                        <button class="Tgradevalue" style="background-color:@grade.Gradetype.color" @onclick="() => Editgrade(grade)">
+                                            @grade.Gradenumber.GradeName
+                                        </button>
+                                        <span class="gradesTooltip__bubble" role="tooltip">
+                                            @gradesInSemester[0].Gradetype.GradeTypeName
+                                        </span>
+                                        </div>
+                                    }
+                                    else if (gradesInSemester.Count > 1)
+                                    {
+                                        <div class="gradesTooltip">
+                                        @for (int i = 0; i < gradesInSemester.Count; i++)
+                                        {
+                                            var grade = gradesInSemester[i];
+                                            string classes = "Tgradevalue Tgradevalue--group";
+                                            if (i == 0) classes += " Tgradevalue--first";
+                                            if (i == gradesInSemester.Count - 1) classes += " Tgradevalue--last";
+
+                                                <button class="@classes" style="background-color:@grade.Gradetype.color" @onclick="() => Editgrade(grade)">
+                                                @grade.Gradenumber.GradeName
+                                            </button>
+                                        }
+                                            <span class="gradesTooltip__bubble" role="tooltip">
+                                                @gradesInSemester[0].Gradetype.GradeTypeName
+                                            </span>
+                                        </div>
                                     }
                                 }
+
                             </div>
-                            <div style="width: 15%; border-left: solid 1px #DBDBDB"><div>@stdgrdlist.avrages2.ToString("0.00")</div> </div>
-                            @if (0 == 1)
-                            {
-                                <button style="width: 15%; border-left: solid 1px #DBDBDB">2</button>
-                                //dodać tu oceny końcowe
-                            }
-                            else
-                            {
-                                <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
-                            }
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB">
+                                <div>@stdgrdlist.avrages1.ToString("0.00")</div>
+                            </div>
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
+                        </div>
+
+                        <!-- Term 2 -->
+                        <div class="Tgrade">
+                            <div class="flex-containersmallforTgrades">
+                                @foreach (var gradeGroup in stdgrdlist.Grades)
+                                {
+                                    var gradesInSemester = gradeGroup.Where(g => g.Semester == 2).ToList();
+                                    if (gradesInSemester.Count == 1)
+                                    {
+                                        <div class="gradesTooltip">
+                                        @{
+                                            var grade = gradesInSemester[0];
+                                        }
+                                        <button class="Tgradevalue" style="background-color:@grade.Gradetype.color" @onclick="() => Editgrade(grade)">
+                                            @grade.Gradenumber.GradeName
+                                        </button>
+                                            <span class="gradesTooltip__bubble" role="tooltip">
+                                                @gradesInSemester[0].Gradetype.GradeTypeName
+                                            </span>
+                                        </div>
+                                    }
+                                    else if (gradesInSemester.Count > 1)
+                                    {
+                                            <div class="gradesTooltip">
+                                        @for (int i = 0; i < gradesInSemester.Count; i++)
+                                        {
+                                            var grade = gradesInSemester[i];
+                                            string classes = "Tgradevalue Tgradevalue--group";
+                                            if (i == 0) classes += " Tgradevalue--first";
+                                            if (i == gradesInSemester.Count - 1) classes += " Tgradevalue--last";
+
+                                                <button class="@classes" style="background-color:@grade.Gradetype.color" @onclick="() => Editgrade(grade)">
+                                                @grade.Gradenumber.GradeName
+                                            </button>
+                                        }
+                                            <span class="gradesTooltip__bubble" role="tooltip">
+                                                @gradesInSemester[0].Gradetype.GradeTypeName
+                                            </span>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB">
+                                <div>@stdgrdlist.avrages2.ToString("0.00")</div>
+                            </div>
+                            <div style="width: 15%; border-left: solid 1px #DBDBDB"></div>
                         </div>
 
                         <div class="Tfinalgrade"></div>
@@ -172,41 +225,46 @@
                         <div class="Tgraderow">
                             @if (multigradeadded)
                             {
+                                <div class="Tnumber Tnumber--d">
                                 <select @onchange="@(e => Addgradetomltigradelist(e, stdgrdlist.Student))" class="grade-select">
-                                    <option value=0>Dont addd</option>
+                                    <option value=0>-</option>
                                     @foreach (var gradenumber in GradeNumberService.GradeNumbers)
                                     {
                                         <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
                                     }
                                 </select>
+                                </div>
                             }
                             else if (isgradebeingedited)
                             {
-                                if (gradeforediting.StudentID == stdgrdlist.Student.StudentID)
-                                {
+                                <div class="Tnumber Tnumber--d">
+                                    @if (gradeforediting?.StudentID == stdgrdlist.Student.StudentID)
+                                    {
                                         <select @onchange="@(e => Editstudentandgradenumb(e, stdgrdlist.Student))" class="grade-select">
-                                            <option value=0>Dont addd</option>
+                                            <option value=0>-</option>
                                             @foreach (var gradenumber in GradeNumberService.GradeNumbers)
                                             {
                                                 <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
                                             }
                                         </select>
-
-                                }
+                                    }
+                               </div>
                             }
-                            else if (gradeforadding.StudentID == stdgrdlist.Student.StudentID)
+                            else if (editedstudent.StudentID == stdgrdlist.Student.StudentID)
                             {
+                                <div class="Tnumber Tnumber--d">
                                     <select @onchange="@(e => Addstudentandgradenumb(e, stdgrdlist.Student))" class="grade-select">
-                                        <option value=0>Dont addd</option>
+                                        <option value=0>-</option>
                                         @foreach (var gradenumber in GradeNumberService.GradeNumbers)
                                         {
                                             <option value="@gradenumber.GradeNumberID">@gradenumber.GradeName </option>
                                         }
                                     </select>
+                                </div>
                             }
                             else
                             {
-                                <div class="Taddgrade Taddgrade--d"></div>
+                                <div class="Tnumber Tnumber--d"></div>
                             }
                             <div class="Tnumber Tnumber--d">@stdgrdlist.index</div>
                             <div class="Tname">@stdgrdlist.Student.Name </div>
@@ -215,11 +273,44 @@
                                 <div class="Tgradebig">
                                     <div class="flex-containerforTgrades">
 
-                                        @foreach (var grade in stdgrdlist.Grades)
+                                        @foreach (var gradeGroup in stdgrdlist.Grades)
                                         {
-                                            if(grade.Semester == 1 && grade.Gradenumber!=null)
+                                            var gradesInSemester = gradeGroup.Where(g => g.Semester == 1).ToList();
+                                            if (gradesInSemester.Count == 1)
                                             {
-                                                <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
+                                                <div class="gradesTooltip">
+                                                    @{
+                                                var grade = gradesInSemester[0];
+                                                    }
+                                                <button class="Tgradevalue" style="background-color:@grade.Gradetype.color" @onclick="() => Editgrade(grade)">
+                                                    @grade.Gradenumber.GradeName
+                                                </button>
+                                                    <span class="gradesTooltip__bubble" role="tooltip">
+                                                        @gradesInSemester[0].Gradetype.GradeTypeName
+                                                    </span>
+                                                </div>
+                                            }
+                                            else if (gradesInSemester.Count > 1)
+                                            {
+                                                <div class="gradesTooltip">
+                                                    @for (int i = 0; i < gradesInSemester.Count; i++)
+                                                    {
+                                                        var grade = gradesInSemester[i];
+                                                        string classes = "Tgradevalue Tgradevalue--group";
+                                                        if (i == 0) classes += " Tgradevalue--first";
+                                                        if (i == gradesInSemester.Count - 1) classes += " Tgradevalue--last";
+
+                                                        <button class="@classes"
+                                                                style="background-color:@grade.Gradetype.color"
+                                                                @onclick="() => Editgrade(grade)">
+                                                            @grade.Gradenumber.GradeName
+                                                        </button>
+                                                    }
+
+                                                    <span class="gradesTooltip__bubble" role="tooltip">
+                                                        @gradesInSemester[0].Gradetype.GradeTypeName
+                                                    </span>
+                                                </div>
                                             }
                                         }
                                     </div>
@@ -239,12 +330,41 @@
                             {
                                 <div class="Tgradebig">
                                     <div class="flex-containerforTgrades">
-
-                                        @foreach (var grade in stdgrdlist.Grades)
+                                        @foreach (var gradeGroup in stdgrdlist.Grades)
                                         {
-                                            if (grade.Semester == 2)
+                                            var gradesInSemester = gradeGroup.Where(g => g.Semester == 2).ToList();
+                                            if (gradesInSemester.Count == 1)
                                             {
-                                                <button class="Tgradevalue" @onclick="() => Editgrade(grade)">@grade.Gradenumber.GradeName</button>
+                                                <div class="gradesTooltip">
+                                                    @{
+                                                        var grade = gradesInSemester[0];
+                                                    }
+                                                <button class="Tgradevalue" style="background-color:@grade.Gradetype.color" @onclick="() => Editgrade(grade)">
+                                                    @grade.Gradenumber.GradeName
+                                                </button>
+                                                    <span class="gradesTooltip__bubble" role="tooltip">
+                                                        @gradesInSemester[0].Gradetype.GradeTypeName
+                                                    </span>
+                                                </div>
+                                            }
+                                            else if (gradesInSemester.Count > 1)
+                                            {
+                                                <div class="gradesTooltip">
+                                                @for (int i = 0; i < gradesInSemester.Count; i++)
+                                                {
+                                                    var grade = gradesInSemester[i];
+                                                    string classes = "Tgradevalue Tgradevalue--group";
+                                                    if (i == 0) classes += " Tgradevalue--first";
+                                                    if (i == gradesInSemester.Count - 1) classes += " Tgradevalue--last";
+
+                                                        <button class="@classes" style="background-color:@grade.Gradetype.color" @onclick="() => Editgrade(grade)">
+                                                        @grade.Gradenumber.GradeName
+                                                    </button>
+                                                }
+                                                    <span class="gradesTooltip__bubble" role="tooltip">
+                                                        @gradesInSemester[0].Gradetype.GradeTypeName
+                                                    </span>
+                                                </div>
                                             }
                                         }
                                     </div>
@@ -400,7 +520,6 @@
                     </div>
                 </div>
 
-
             </div>
         </div>
     }
@@ -413,7 +532,7 @@
     Subject selsubject;
     Grade gradeforadding = new Grade();
     Grade gradeforediting;
-    Grade gradeforeditinguntached;
+    Grade gradeforeditinguntached = new Grade();
     DateTime dateTimedzis;
     int selectedClassId;
     int selectedsubjectId;
@@ -421,32 +540,35 @@
     bool isRetake = false;
     bool isCorrected = true;
     int ID { get; set; }
+    int magickproblemsolver = new int();
     string Roles;
     string Textadd;
     bool isedited = false;
     bool isgradebeingedited = false;
     bool multigradeadded = false;
     Teacher teacher = new Teacher();
-    Student editedstudent;
+    Student? editedstudent;
     User user = new User();
     string btnText = string.Empty;
     public IList<StudentGrade> studentGrades { get; set; } = new List<StudentGrade>();
+    public IList<Grade> ListforMultigrade { get; set; } = new List<Grade>();
+    public Grade Lastgrade = new Grade();
     public class StudentGrade
     {
         public Student Student { get; set; }
         public float avrages1 { get; set; }
         public float avrages2 { get; set; }
-        public IList<Grade> Grades { get; set; } = new List<Grade>();
+        public IList<List<Grade>> Grades { get; set; } = new List<List<Grade>>();
         public int index { get; set; }
-        public StudentGrade() { } // pusty konstruktor
-
-        public StudentGrade(Student student, Grade grade,int inde)
+        public StudentGrade() { }
+        public StudentGrade(Student student, Grade grade, int inde)
         {
             Student = student;
-            Grades.Add(grade);
+            Grades.Add(new List<Grade> { grade }); 
             index = inde;
         }
     }
+
 
     public IList<Multigradeadd> Multigradelist { get; set; } = new List<Multigradeadd>();
     public class Multigradeadd
@@ -570,7 +692,7 @@
                     {
                         Student = std,
                         index = indexcount,
-                        Grades = new List<Grade>()
+                        Grades = new List<List<Grade>>()
                     });
             }
             indexcount++;
@@ -585,11 +707,17 @@
         {
             foreach (var grd in GradeService.Grades)
             {
-                if (selectedsubjectId == grd.SubjectID)
+                if (grd.IsRetakenGrade != true && selectedsubjectId == grd.SubjectID && grd.StudentID == std.Student.StudentID)
                 {
-                    if (grd.StudentID == std.Student.StudentID)
+                    if (grd.CorectedGradeID != null)
                     {
-                        std.Grades.Add(grd);
+                        ListforMultigrade.Clear();
+                        await CreatelistOfCorectedGrades(grd);
+                        std.Grades.Add(new List<Grade>(ListforMultigrade));
+                    }
+                    else
+                    {
+                        std.Grades.Add(new List<Grade> { grd });
                     }
                 }
             }
@@ -597,42 +725,109 @@
         await Countavrages();
     }
 
-    private async Task Countavrages()  // dodać jakąś logike sprawdzania semstrów
+    async Task CreatelistOfCorectedGrades(Grade firstgrade)
     {
-        float sumwart = 0;
-        float sumwag = 0;
+        ListforMultigrade.Add(firstgrade);
+        if (firstgrade.CorectedGradeID!=null)
+        {
+            await CreatelistOfCorectedGrades(await GradeService.GetGradeByID(firstgrade.CorectedGradeID.Value));
+        }
+
+    }
+
+    private async Task Countavrages()
+    {
+        float sumwart, sumwag;
+
         foreach (var std in studentGrades)
         {
-            foreach (var grade in std.Grades)
-            {
-                if(grade.Semester == 1)
-                {
-                    sumwart = sumwart + (grade.Gradenumber.gradenumber * grade.Gradetype.GradeWeight);
-                    sumwag = sumwag + grade.Gradetype.GradeWeight;
-                }
-            }
-            if (sumwag != 0)
-            {
-                std.avrages1 = sumwart / sumwag;
-            }
             sumwart = 0;
             sumwag = 0;
-            foreach (var grade in std.Grades)
+
+            // SEMESTR 1
+            foreach (var gradeGroup in std.Grades)
             {
-                if (grade.Semester == 2)
+                // filtruj tylko oceny z semestru 1
+                var gradesInSemester = gradeGroup.Where(g => g.Semester == 1).ToList();
+
+                if (gradesInSemester.Count > 0)
                 {
-                    sumwart = sumwart + (grade.Gradenumber.gradenumber * grade.Gradetype.GradeWeight);
-                    sumwag = sumwag + grade.Gradetype.GradeWeight;
+                    float groupValue = 0;
+                    float groupWeight = 0;
+
+                    if (gradesInSemester.Count == 1)
+                    {
+                        var grade = gradesInSemester[0];
+                        groupValue = grade.Gradenumber.gradenumber;
+                        groupWeight = grade.Gradetype.GradeWeight;
+                    }
+                    else
+                    {
+                        // poprawka – średnia ocen w grupie
+                        float localSum = 0;
+                        float localWeight = 0;
+
+                        foreach (var grade in gradesInSemester)
+                        {
+                            localSum += grade.Gradenumber.gradenumber * grade.Gradetype.GradeWeight;
+                            localWeight += grade.Gradetype.GradeWeight;
+                        }
+
+                        groupValue = localSum / localWeight;
+                        groupWeight = localWeight / gradesInSemester.Count; // traktujemy całą grupę jako 1 ocena
+                    }
+
+                    sumwart += groupValue * groupWeight;
+                    sumwag += groupWeight;
                 }
             }
-            if (sumwag != 0)
-            {
-                std.avrages2 = sumwart / sumwag;
-            }
+
+            std.avrages1 = sumwag != 0 ? sumwart / sumwag : 0;
+
+            // SEMESTR 2
             sumwart = 0;
             sumwag = 0;
+
+            foreach (var gradeGroup in std.Grades)
+            {
+                var gradesInSemester = gradeGroup.Where(g => g.Semester == 2).ToList();
+
+                if (gradesInSemester.Count > 0)
+                {
+                    float groupValue = 0;
+                    float groupWeight = 0;
+
+                    if (gradesInSemester.Count == 1)
+                    {
+                        var grade = gradesInSemester[0];
+                        groupValue = grade.Gradenumber.gradenumber;
+                        groupWeight = grade.Gradetype.GradeWeight;
+                    }
+                    else
+                    {
+                        float localSum = 0;
+                        float localWeight = 0;
+
+                        foreach (var grade in gradesInSemester)
+                        {
+                            localSum += grade.Gradenumber.gradenumber * grade.Gradetype.GradeWeight;
+                            localWeight += grade.Gradetype.GradeWeight;
+                        }
+
+                        groupValue = localSum / localWeight;
+                        groupWeight = localWeight / gradesInSemester.Count;
+                    }
+
+                    sumwart += groupValue * groupWeight;
+                    sumwag += groupWeight;
+                }
+            }
+
+            std.avrages2 = sumwag != 0 ? sumwart / sumwag : 0;
         }
     }
+
+
 
     private async Task HandleClassChange(ChangeEventArgs e)
     {
@@ -685,10 +880,11 @@
         dateTimedzis = DateTime.Now;
     }
 
-    private async Task Editgrade(Grade grade)
+    private void Editgrade(Grade grade)
     {
         gradeforediting = grade;
         gradeforeditinguntached = grade;
+        magickproblemsolver = gradeforeditinguntached.GradeNumberID;
         isedited = true;
         isgradebeingedited = true;
     }
@@ -738,10 +934,10 @@
                         }
                     }
                 }
-                
+
                 if (studfound == false)
                 {
-                    @foreach (var gradetypeforlist in GradeNumberService.GradeNumbers)
+                    foreach (var gradetypeforlist in GradeNumberService.GradeNumbers)
                     {
                         if (gradetypeIdforlist == gradetypeforlist.GradeNumberID)
                         {
@@ -762,6 +958,7 @@
 
     private async Task HandleSubmit()
     {
+        Console.WriteLine(gradeforeditinguntached.GradeNumberID);
         Grade forsend = new Grade();
         int cratedid;
         if(isgradebeingedited)
@@ -769,6 +966,7 @@
             if (isRetake)
             {
                 forsend = new Grade();
+                Grade gradeforupdate;
                 forsend.StudentID = gradeforeditinguntached.StudentID;
                 forsend.SubjectID = gradeforeditinguntached.SubjectID;
                 forsend.GradeNumberID = gradeforeditinguntached.GradeNumberID;
@@ -781,13 +979,13 @@
                 forsend.Gradetype = null;
                 forsend.Gradenumber = null;
                 forsend.IsRetakenGrade = true;
-                cratedid = await GradeService.CreateGradeAndReturnId(forsend);
-                forsend = gradeforeditinguntached;
-                forsend.CorectedGradeID = cratedid;
-                forsend.Student = null;
-                forsend.Gradetype = null;
-                forsend.Gradenumber = null;
-                await GradeService.UpdateGrade(forsend);
+                await FillListForSubbmit(gradeforeditinguntached.GradeID);
+                Lastgrade.CorectedGradeID = await GradeService.CreateGradeAndReturnId(forsend);
+                Lastgrade.Subject = null;
+                Lastgrade.Gradenumber = null;
+                Lastgrade.Gradetype = null;
+                Lastgrade.Student = null;
+                await GradeService.UpdateGrade(Lastgrade);
             }
             else
             {
@@ -819,11 +1017,13 @@
         Textadd = string.Empty;
         multigradeadded = false;
         isgradebeingedited = false;
+        editedstudent = null;
         isedited = false;
         Multigradelist.Clear();
         Grade gradeForAdding1 = new Grade();
         gradeforediting = gradeForAdding1;
         gradeforadding = gradeForAdding1;
+        magickproblemsolver = 0;
         await FillstudentGrades();
     }
 
@@ -887,6 +1087,20 @@
         Grade gradeForAdding1 = new Grade();
         gradeforadding = gradeForAdding1;
         gradeforediting = gradeForAdding1;
+    }
+
+    async Task FillListForSubbmit(int x)
+    {
+        Grade tempgrade;
+        tempgrade = await GradeService.GetGradeByID(x);
+        if(tempgrade.CorectedGradeID != null)
+        {
+            await FillListForSubbmit(tempgrade.CorectedGradeID.Value);
+        }
+        else
+        {
+            Lastgrade = tempgrade;
+        }
     }
 
 

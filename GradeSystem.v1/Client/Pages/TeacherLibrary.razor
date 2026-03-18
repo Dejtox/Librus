@@ -9,7 +9,7 @@
 @using System.Linq;
 @using System.Text;
 @using System.Text.RegularExpressions;
-@attribute [Authorize(Roles = "Admin, Teacher, Librarian")]
+@*@attribute [Authorize(Roles = "Admin, Teacher, Librarian")]*@
 <div class="mainlibraryview">
     <div class="booksdisplay">
         @foreach (var segment in segments)
@@ -256,7 +256,7 @@
 
     private void showeAdd(BookType booktype)
     {
-        popuprefadd.ShowBookAdd(booktype);
+        //popuprefadd.ShowBookAdd(booktype);
     }
 
     async Task ReturnToAvailable(Book book)

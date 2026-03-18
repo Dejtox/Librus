@@ -3,49 +3,124 @@
 @inject IBookService BookService
 @inject IFileService FileService
 @inject NavigationManager NavigationManager
-@using Microsoft.AspNetCore.Http;
-@using System.Net.Http.Headers;
-@attribute [Authorize(Roles = "Teacher, Admin, Librarian")]
+@using Microsoft.AspNetCore.Http
+@using System.Net.Http.Headers
 
-@{
-    var showClass = IsVisible ? "d-block" : "d-none";
-}
-<div class="toast-container p-3 @showClass" data-bs-autohide="true" data-bs-delay="5000">
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto">How many books would you like to add </strong>
+@if (IsVisible)
+{
+    <div class="modal-overlay" @onmouseup="StopDrag" @onmousemove="OnDrag">
+        <div class="modal-content-forpopupbook" style="top:@topPx; left:@leftPx;" @onmousedown="StartDrag">
+            <div class="modal-header">
+                <strong class="modal-title">@((IsEditMode ? "Add books to existing type" : "Create new book type"))</strong>
+                <button class="close-button" @onclick="Close">×</button>
+            </div>
+            <div class="modal-body form-grid-booktypepopup">
+    @if (booktype != null)
+    {
+        <div class="form-group-booktypepopup">
+            <label>Title:</label>
+            <input type="text" @bind="booktype.Title" class="form-control-booktypepopup" />
         </div>
 
-        
-            <div class="toast-body">
-            Amount <input type="number" min="0" value="0" @oninput=amoutchange></input> @Amount<br>
-            <button type="button" class="btn-close" aria-label="Close" @onclick="Save">Save</button>
-                <button type="button" class="btn-close" aria-label="Close" @onclick="Close">Cancel</button>
-            </div>
-        
+        <div class="form-group-booktypepopup">
+            <label>Author:</label>
+            <input type="text" @bind="booktype.Author" class="form-control-booktypepopup" />
+        </div>
+
+        <div class="form-group-booktypepopup">
+            <label>Edition:</label>
+            <input type="text" @bind="booktype.Edition" class="form-control-booktypepopup" />
+        </div>
+
+        <div class="form-group-booktypepopup">
+            <label>Description:</label>
+            <textarea @bind="booktype.Description" class="form-control-booktypepopup" rows="3"></textarea>
+        </div>
+    }
+
+    <div class="form-group-booktypepopup">
+        <label>Add Amount:</label>
+        <input type="number" min="0" value="@Amount" @oninput="amoutchange" class="form-control-booktypepopup" />
+    </div>
+
+    <div class="form-group-booktypepopup">
+        <label>Add Cover</label>
+        <InputFile OnChange="OnFileSelected" />
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(previewImageBase64))
+    {
+        <div class="image-preview-booktypepopup">
+            <img src="@previewImageBase64" alt="Cover preview" />
+        </div>
+    }
+    else if (!string.IsNullOrWhiteSpace(previewErrorMessage))
+    {
+        <div class="image-preview-booktypepopup error-text">
+            @previewErrorMessage
+        </div>
+    }
+
+    <div class="form-buttons-booktypepopup">
+        <button class="btn-booktypepopup btn-primary-booktypepopup" @onclick="SaveNewBookType">Save</button>
+        <button class="btn-booktypepopup btn-secondary-booktypepopup" @onclick="Close">Cancel</button>
     </div>
 </div>
+        </div>
+    </div>
+}
+
 @code {
     [Parameter]
     public bool IsVisible { get; set; }
 
-    public bool AllDataIn = true;
-
     [Parameter]
     public EventCallback<bool> IsVisibleChanged { get; set; }
 
+    public bool AllDataIn = true;
     Book book = new Book();
     int Amount = 0;
     string message = string.Empty;
+    string fname = string.Empty;
     public string ImgUrl { get; set; }
     public EventCallback<string> OnChange { get; set; }
-    BookType booktype ;
+    IBrowserFile? selectedFile;
+    BookType booktype;
+    bool IsEditMode = false;
+    string? previewImageBase64;
+    string? previewErrorMessage;
 
-    public async void ShowBookAdd(BookType booktypevar)
+    public void ShowBookAdd(BookType bt)
     {
-        booktype = booktypevar;
+        IsEditMode = true;
+        booktype = new BookType
+            {
+                BookTypeID = bt.BookTypeID,
+                Title = bt.Title,
+                Author = bt.Author,
+                Edition = bt.Edition,
+                Description = bt.Description,
+                Cover = bt.Cover,
+                AmountOfBooks = bt.AmountOfBooks,
+                BookIds = bt.BookIds ?? new List<int>(),
+                Books = bt.Books ?? new List<Book>()
+            };
         IsVisible = true;
         StateHasChanged();
+    }
+
+    public async Task ShowBookAdd()
+    {
+        IsEditMode = false;
+        booktype = new BookType
+            {
+                BookIds = new List<int>(),
+                Books = new List<Book>(),
+                AmountOfBooks = 0
+            };
+        IsVisible = true;
+        StateHasChanged();
+        await Task.CompletedTask;
     }
 
     private void Close()
@@ -53,54 +128,185 @@
         IsVisible = false;
         AllDataIn = true;
         Amount = 0;
+        previewImageBase64 = null;
+        previewErrorMessage = null;
+        selectedFile = null;
         StateHasChanged();
     }
+
     async Task amoutchange(ChangeEventArgs args)
     {
-        string temp = args.Value.ToString();
-        try
-        {
-            Amount = Int32.Parse(temp);
-        }
-        catch (FormatException e)
-        {
-            Amount = 0;
-        }
-        if (Amount < 0)
+        string temp = args.Value?.ToString() ?? "0";
+        if (!int.TryParse(temp, out Amount) || Amount < 0)
         {
             Amount = 0;
         }
     }
-    async Task Save()
+
+    async Task SaveNewBookType()
     {
-        book.IsBorowed = false;
-        book.IsBoocked = false;
-        book.StudentId = null;
-        book.ReturnDate = null;
-        book.ReservationDate = null;
-        book.BorowingDate = null;
-        book.QRCode = 1; //tu bedzie generacja QR
-        book.Student = null;
-        book.BookType = booktype;
-        book.BookTypeID = booktype.BookTypeID;
-        for (int tem = 0; tem < Amount; tem++)
+        if (selectedFile != null)
         {
-            Book booktemp = new Book();
-            int idtemp = 0;
-            await BookService.CreateBook(book);
-            await BookService.GetLastBookAdded();
-            booktemp = BookService.LastBookAdded;
-            idtemp = booktemp.BookID;
-            (booktype.BookIds).Add(idtemp);
-            (booktype.Books).Add(booktemp);
-            booktype.AmountOfBooks = booktype.AmountOfBooks + 1;
-            await BookTypeService.UpdateBookType(booktype);
-            booktemp.QRCode = booktemp.BookID; //te 2 linnie wywalimy jak bedzie tworzenie qrkodow
-            await BookService.UpdateBook(booktemp); // 2
+            fname = $"{booktype?.Title}{booktype?.Author}{booktype?.Edition}.jpg";
+            await HandleSelected(); // upload pliku przy zapisie
+            booktype.Cover = ImgUrl;
         }
+
+        if (!IsEditMode)
+        {
+            if (string.IsNullOrWhiteSpace(booktype.Cover))
+            {
+                booktype.Cover = $"/Img/{booktype.Title}{booktype.Author}{booktype.Edition}.jpg";
+            }
+
+            booktype.AmountOfBooks = 0;
+            booktype.BookIds = new List<int>();
+            booktype.Books = new List<Book>();
+            Console.WriteLine(booktype);
+            booktype = await BookTypeService.CreateBookType(booktype);
+        }
+
+        for (int i = 0; i < Amount; i++)
+        {
+            var newBook = new Book
+                {
+                    IsBorowed = false,
+                    IsBoocked = false,
+                    StudentId = null,
+                    ReturnDate = null,
+                    ReservationDate = null,
+                    BorowingDate = null,
+                    QRCode = 1,
+                    Student = null,
+                    BookType = booktype,
+                    BookTypeID = booktype.BookTypeID
+                };
+
+            await BookService.CreateBook(newBook);
+            await BookService.GetLastBookAdded();
+            var booktemp = BookService.LastBookAdded;
+
+            booktemp.QRCode = booktemp.BookID;
+            await BookService.UpdateBook(booktemp);
+
+            booktype.BookIds?.Add(booktemp.BookID);
+            booktype.Books?.Add(booktemp);
+            booktype.AmountOfBooks++;
+        }
+
+        if (IsEditMode)
+        {
+            await BookTypeService.UpdateBookType(booktype);
+        }
+
         Amount = 0;
         IsVisible = false;
         AllDataIn = true;
+        previewImageBase64 = null;
+        previewErrorMessage = null;
+        selectedFile = null;
         StateHasChanged();
     }
+
+    private double offsetX;
+    private double offsetY;
+    private bool dragging = false;
+    private double top = 100;
+    private double left = 100;
+    private string topPx => $"{top}px";
+    private string leftPx => $"{left}px";
+
+    private void StartDrag(MouseEventArgs e)
+    {
+        dragging = true;
+        offsetX = e.ClientX - left;
+        offsetY = e.ClientY - top;
+    }
+
+    private void StopDrag(MouseEventArgs e)
+    {
+        dragging = false;
+    }
+
+    private void OnDrag(MouseEventArgs e)
+    {
+        if (dragging)
+        {
+            left = e.ClientX - offsetX;
+            top = e.ClientY - offsetY;
+            StateHasChanged();
+        }
+    }
+
+    async void OnFileSelected(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+
+        if (booktype != null)
+        {
+            var cleanTitle = CleanFileName(booktype.Title);
+            var cleanAuthor = CleanFileName(booktype.Author);
+            var cleanEdition = CleanFileName(booktype.Edition);
+            fname = $"{cleanTitle}_{cleanAuthor}_{cleanEdition}.jpg";
+        }
+
+        try
+        {
+            var resizedFile = await selectedFile.RequestImageFileAsync("image/png", 300, 500);
+            using var stream = resizedFile.OpenReadStream(maxAllowedSize: 512 * 1024);
+            using var ms = new MemoryStream();
+            await stream.CopyToAsync(ms);
+            var bytes = ms.ToArray();
+            previewImageBase64 = $"data:image/png;base64,{Convert.ToBase64String(bytes)}";
+            previewErrorMessage = null;
+        }
+        catch
+        {
+            previewImageBase64 = null;
+            previewErrorMessage = "File is too large to preview, but it will still be uploaded when you save.";
+        }
+
+        StateHasChanged();
+    }
+
+
+    private async Task HandleSelected()
+    {
+        if (selectedFile != null)
+        {
+            var resizedFile = await selectedFile.RequestImageFileAsync("image/png", 300, 500);
+
+            using (var ms = resizedFile.OpenReadStream(resizedFile.Size))
+            {
+                var content = new MultipartFormDataContent();
+                content.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+                content.Add(new StreamContent(ms, Convert.ToInt32(resizedFile.Size)), "image", fname);
+
+                ImgUrl = await FileService.UploadProductImage(content);
+                await OnChange.InvokeAsync(ImgUrl);
+            }
+        }
+    }
+
+    private string CleanFileName(string input)
+    {
+        foreach (char c in Path.GetInvalidFileNameChars())
+        {
+            input = input.Replace(c, '_');
+        }
+        return input.Replace(" ", "_"); // możesz też dodać np. ToLower()
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+            

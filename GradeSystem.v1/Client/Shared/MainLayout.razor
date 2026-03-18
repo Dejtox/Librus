@@ -3,6 +3,7 @@
 @inject NavigationManager navMenager
 @inject IParentService ParentService
 
+
 <div class="mainpage">
 
     <main>
@@ -52,8 +53,16 @@
                                         }
                                     </select>
                                 }
-                            </AuthorizeView>/>
+                            </AuthorizeView>
                         </div>
+                        <div>
+                            <AuthorizeView Roles="Parent">
+                                <div class="header-element-top i">
+                                    <i class="fa-solid fa-money-bill-1-wave"></i>
+                                </div>
+                            </AuthorizeView>
+                        </div>
+                        
                         @* <div class="header-element-top"> *@
                         @*     <i class="gg-search"></i> *@
                         @* </div> *@

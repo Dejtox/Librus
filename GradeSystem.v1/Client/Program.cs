@@ -14,6 +14,7 @@ global using GradeSystem.v1.Client.Services.ExtraClassesService;
 global using GradeSystem.v1.Client.Services.ExtraClassesListService;
 global using GradeSystem.v1.Client.Services.LessonsHoursService;
 global using GradeSystem.v1.Client.Services.BookService;
+global using GradeSystem.v1.Client.Services.QRService;
 global using Microsoft.AspNetCore.Components.Authorization;
 global using GradeSystem.v1.Client.Services.EventService;
 global using GradeSystem.v1.Client.Services.FileService;
@@ -36,6 +37,7 @@ using Blazored.SessionStorage;
 using System.Reflection;
 using GradeSystem.v1.Client.Auth;
 using Syncfusion.Blazor;
+using GradeSystem.v1.Client.Services.QRService;
 
 
 
@@ -71,6 +73,7 @@ builder.Services.AddScoped<IExtraClassesService, ExtraClassesService>();
 builder.Services.AddScoped<IExtraClassesListService, ExtraClassesListService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ILessonsHoursService, LessonsHoursService>();
+builder.Services.AddScoped<IQRService, QRService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<ISchoolTripService, SchoolTripService>();
 builder.Services.AddScoped<INoteService, NoteService>();

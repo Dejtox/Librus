@@ -68,14 +68,14 @@ namespace GradeSystem.v1.Server.Controllers
 
         [HttpPost]
         [ActionName(nameof(PostBookType))]
-        public async Task<ActionResult<Book>> PostBookType(BookType booktype)
+        public async Task<ActionResult<BookType>> PostBookType(BookType booktype)
         {
             booktype.Books = new List<Book>();
             booktype.BookIds = new List<int>();
             _context.BookType.Add(booktype);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBook", new { id = booktype.BookTypeID }, booktype);
+            return CreatedAtAction("GetBookTypeById", new { id = booktype.BookTypeID }, booktype);
         }
 
         [HttpDelete("{id}")]

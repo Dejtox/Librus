@@ -28,33 +28,35 @@ namespace GradeSystem.v1.Server.Controllers
             try
             {
                 var file = Request.Form.Files[0];
+                if (file == null || file.Length == 0)
+                    return BadRequest("Nie przesłano pliku.");
+
+
                 var folderName = Path.Combine("StaticFiles", "Images");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                var rawName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName?.Trim('"');
+                if (string.IsNullOrWhiteSpace(rawName))
+                    return BadRequest("Brak nazwy pliku.");
 
-                if (file.Length > 0)
+                var fileName = Path.GetFileName(rawName);
+                var fullPath = Path.Combine(pathToSave, fileName);
+                var dbPath = Path.Combine(folderName, fileName); 
+                if (!Directory.Exists(pathToSave))
+                    Directory.CreateDirectory(pathToSave);
+
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                  // var fileName = "TempName_0.jpg";
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    var dbPath = Path.Combine(folderName, fileName);
-
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
-
-                    return Ok(dbPath);
+                    file.CopyTo(stream);
                 }
-                else
-                {
-                    return BadRequest();
-                }
+
+                return Ok(dbPath);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex}");
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
         [HttpDelete("{imageName}")]
         public IActionResult DeleteImage(string imageName)
         {

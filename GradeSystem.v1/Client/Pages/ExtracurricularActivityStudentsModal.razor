@@ -1,0 +1,58 @@
+﻿@inject DialogService DialogService
+@inject IExtracurricularActivityService ExtracurricularActivityService
+
+<RadzenGrid Data="@Students" TItem="ExtracurricularActivityStudents">
+    <Columns>
+        <RadzenGridColumn TItem="ExtracurricularActivityStudents" Property="Student.FullName" Title="Student Name" />
+        <RadzenGridColumn TItem="ExtracurricularActivityStudents" Property="IsReserve" Title="On the reserved list?" />
+        <RadzenGridColumn TItem="ExtracurricularActivityStudents" Title="Options">
+            <Template Context="ExtracurricularActivityStudents">
+                <div class="options">
+                    <button type="button" class="icon-button" onclick="@(async () => await Edit(ExtracurricularActivityStudents.ExtracurricularActivityStudentsID))">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="icon-button" onclick="@(async () => await Delete(ExtracurricularActivityStudents.StudentID))">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </Template>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>
+<div class="button-container search-margin">
+    <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+</div>
+@code {
+    [Parameter]
+    public int? ActivityID { get; set; }
+    List<ExtracurricularActivityStudents> Students { get; set; } = new List<ExtracurricularActivityStudents>();
+    protected override async Task OnParametersSetAsync()
+    { 
+        Students = await ExtracurricularActivityService.GetAllExtracurricularActivityStudents((int)ActivityID);
+    }
+    void Close()
+    {
+        DialogService.Close();
+    }
+    async Task Edit(int id)
+    {
+        var result = await DialogService.Confirm("Do you want to change this student's participation status in the activity?", "Confirm Edit", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            var student = Students.FirstOrDefault(s => s.ExtracurricularActivityStudentsID == id);
+            await ExtracurricularActivityService.UpdateExtracurricularActivityStudent(id, student);
+            Students = await ExtracurricularActivityService.GetAllExtracurricularActivityStudents((int)ActivityID);
+            StateHasChanged();
+        }
+    }
+    async Task Delete(int id)
+    {
+        var result = await DialogService.Confirm("Are you sure you want to delete this student from the activity?", "Confirm Delete", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue&&result.Value)
+        {
+            await ExtracurricularActivityService.DeleteExtracurricularActivityStudent(id,(int)ActivityID);
+            Students = await ExtracurricularActivityService.GetAllExtracurricularActivityStudents((int)ActivityID);
+            StateHasChanged();
+        }
+    }
+}

@@ -1,4 +1,4 @@
-@page "/CurrentLesson"
+@* @page "/CurrentLesson" *@
 @page "/CurrentLesson/{enrlid:int}"
 @using System.Security.Claims
 @inject IStudentService StudentService
@@ -12,6 +12,8 @@
 @inject NavigationManager NavigationManager
 @using System.Timers
 @inject DialogService DialogService
+@inject IAuthorizationService AuthorizationService
+
 
 <div class="CLcontainer">
     <div class="CLleftcontainer">
@@ -84,11 +86,20 @@
         await TeacherService.GetTeachers();
         await SubjectService.GetSubjects();
         await GetClaimsGetID();
-        //teacher = await TeacherService.GetTeacherByID((int)ID);
+        //teacher = await TeacherService.GetTeacherByID((int)ID);       
     }
 
     protected override async Task OnParametersSetAsync()
     {
+
+        Enrollment enrollment = await EnrollmentService.GetEnrollmentByID((int)enrlid);
+        var authorizationResult = await AuthorizationService.AuthorizeAsync((await authenticationState).User, enrollment, "IsEnrollmentOwnerPolicy");
+        if (!authorizationResult.Succeeded)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+
+        //TO to do wywalenia tbh, ale zostawiam bo mo¿e coœ z tym kminiliœcie dunno
         if (IDU == null)
         {
             await TeacherService.GetTeachers();

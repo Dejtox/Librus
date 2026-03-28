@@ -51,10 +51,23 @@ namespace GradeSystem.v1.Client.Services.EnrollmentService
 
         public async Task<Enrollment> GetEnrollmentByID(int id)
         {
-            var result = await _http.GetFromJsonAsync<Enrollment>($"api/Enrollments/{id}");
-            if (result != null)
-                return result;
-            throw new Exception("Enrollment not found");
+            //var result = await _http.GetFromJsonAsync<Enrollment>($"api/Enrollments/{id}");          
+            //if (result != null)
+            //    return result;
+            //throw new Exception("Enrollment not found");
+            try
+            {
+                var response = await _http.GetAsync($"api/Enrollments/{id}");
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound) 
+                {
+                    return null;
+                }
+                return await response.Content.ReadFromJsonAsync<Enrollment>();
+            }
+            catch (HttpRequestException ex)
+            { 
+                return null;
+            }
         }
 
         public async Task GetEnrollments()

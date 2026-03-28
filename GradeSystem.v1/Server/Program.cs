@@ -1,8 +1,8 @@
 ﻿global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Authorization;
+global using GradeSystem.v1.Server.Data;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
-using GradeSystem.v1.Server.Data;
 using GradeSystem.v1.Server.Controllers;
 using GradeSystem.v1.Client;
 using Microsoft.AspNetCore.Identity;
@@ -51,6 +51,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
+
 builder.Services.AddResponseCompression(options =>
     options.MimeTypes = ResponseCompressionDefaults
     .MimeTypes

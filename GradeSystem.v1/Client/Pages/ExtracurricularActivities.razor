@@ -1,0 +1,273 @@
+﻿@page "/extracurricular-activities"
+@inject NavigationManager navigationManager
+@inject ITeacherService TeacherService
+@inject IStudentService StudentService
+@inject IExtracurricularActivityService ExtracurricularActivityService
+@inject DialogService DialogService
+@using GradeSystem.v1.Client.Shared
+
+<PageTitle>Extracurricular Activities</PageTitle>
+
+<div class="content-container">
+    <div class="content-header">
+        <p class="page-header">Extracurricular Activities</p>
+    </div>
+    <div class="search-container">
+        <div class="empty-row"></div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" class="search-margin">
+                <RadzenLabel Text="Search by Teacher" Component="TeacherValue" Style="font-weight:bold;width:8%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@teacherID Data=@TeacherService.Teachers Style="width: 22%; border-radius:15px;" Name="TeacherID" ValueProperty="TeacherID" TextProperty="Name" Placeholder="Search..." Change="@(() => SearchByTeacher(teacherID))" />
+            </RadzenStack>
+        </div>
+        <div class="center search-margin">
+            <button class="trip-add-button" onclick="@ShowAll">Show all</button>
+        </div>
+    </div>
+    <div class="add-container center">
+        @if (role == "Admin" || role == "Teacher")
+        {
+            <button class="trip-add-button search-margin" style="padding: 10px 100px 10px 100px;" @onclick="@AddActivity">Add extracurricular activity</button>
+        }
+        else if(role=="Student")
+        {
+            <button class="trip-add-button search-margin" style="padding: 10px 100px 10px 100px;" @onclick="@ShowMyEnrollments">Show my enrollments/reserves</button>
+        }
+    </div>
+    <div class="table_container">
+        <RadzenDataGrid @ref="extracurricularActivityGrid" AllowColumnResize="true" PageSize="3" AllowPaging="true" Data="filteredExtracurricularActivities" TItem="ExtracurricularActivity" ShowPagingSummary="true" SelectionMode="DataGridSelectionMode.Single"
+                        PagerHorizontalAlign="Radzen.HorizontalAlign.Left" AllowAlternatingRows="false"
+                        Style="border-radius:15px;" RowClick="(async (args)=>await Hello(args.Data.ExtracurricularActivityID))" @bind-Value=@selectedItems Sort="@(args => ResetIndex(true))" Page="@(args => ResetIndex(true))" Filter="@(args => ResetIndex(true))">
+            <Columns>
+                <RadzenDataGridColumn Title="No." TItem="ExtracurricularActivity">
+                    <Template>
+                        @{
+                            var pageSize = Math.Min(extracurricularActivityGrid.PageSize, extracurricularActivityGrid.View.Count());
+                        }
+                        <RenderOnceComponent CanRender=@(!(index >= pageSize))>
+                            @{
+                                ResetIndex(index >= pageSize);
+                            }
+                            @((extracurricularActivityGrid.CurrentPage * pageSize) + index++ + 1)
+                        </RenderOnceComponent>
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn Property="ExtracurricularActivity.Name" Title="Activity Name" TItem="ExtracurricularActivity" />
+                <RadzenDataGridColumn Property="ExtracurricularActivity.Description" Title="Activity Description" TItem="ExtracurricularActivity" />
+                <RadzenDataGridColumn Property="ExtracurricularActivity.Location" Title="Activity Location" TItem="ExtracurricularActivity" />
+                <RadzenDataGridColumn Property="ExtracurricularActivity.Teacher.Name" Title="Teacher" TItem="ExtracurricularActivity" />
+                <RadzenDataGridColumn Property="ExtracurricularActivity.Duration" Title="Duration" TItem="ExtracurricularActivity" />
+                <RadzenDataGridColumn Property="ExtracurricularActivity.MaxParticipants" Title="Max Participants" TItem="ExtracurricularActivity" />
+                <RadzenDataGridColumn Property="ExtracurricularActivity.SlotsLeft" Title="Slots left" TItem="ExtracurricularActivity" />
+                <RadzenDataGridColumn Title="Options" TItem="ExtracurricularActivity">
+                    <Template Context="ExtracurricularActivity">
+                        @if (role == "Admin" || role == "Teacher")
+                        {
+                            <div class="options">
+                                <button type="button" class="icon-button" onclick="@(async () => await Delete(ExtracurricularActivity.ExtracurricularActivityID))">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        }
+                        else if(role=="Student")
+                        {
+                            <div class="options">
+                                @if(ExtracurricularActivity.Participants.Any(p => p.StudentID == id && p.IsReserve==false))
+                                {
+                                    <button type="button" style="padding:5px;width:30%;" class="rounded-filled-button" @onclick="(async () => await UnEnroll(ExtracurricularActivity.ExtracurricularActivityID))">Unenroll</button>
+                                }
+                                else if(ExtracurricularActivity.Participants.Any(p => p.StudentID == id && p.IsReserve))
+                                {
+                                    <button type="button" class="rounded-empty-button" style="padding:5px; width:30%;" @onclick="(async () => await UnEnroll(ExtracurricularActivity.ExtracurricularActivityID))">Cancel</button>
+                                }
+                                else if(ExtracurricularActivity.SlotsLeft==0)
+                                {
+                                    <button type="button" class="rounded-empty-button" style="padding:5px; width:30%;" @onclick="(async () => await Enroll(true, ExtracurricularActivity.ExtracurricularActivityID))">Reserve</button>
+                                }
+                                else
+                                {
+                                    <button type="button" style="padding:5px;width:30%;" class="rounded-filled-button" @onclick="(async () => await Enroll(false, ExtracurricularActivity.ExtracurricularActivityID))">Enroll</button>
+                                }
+                            </div>
+                        }
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</div>
+
+@code {
+    int teacherID;
+    int index;
+    public List<ExtracurricularActivity> extracurricularActivities { get; set; } = new List<ExtracurricularActivity>();
+    public List<ExtracurricularActivity> filteredExtracurricularActivities { get; set; } = new List<ExtracurricularActivity>();
+    RadzenDataGrid<ExtracurricularActivity> extracurricularActivityGrid;
+    IList<ExtracurricularActivity> selectedItems; //oszukane
+    private int? activityToDeleteId = null;
+    string role;
+    int id;
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    void ResetIndex(bool shouldReset)
+    {
+        if (shouldReset)
+        {
+            index = 0;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await TeacherService.GetTeachers();
+        extracurricularActivities= await ExtracurricularActivityService.GetAllExtracurricularActivities();
+        filteredExtracurricularActivities = extracurricularActivities;
+        await GetClaimsGetRole();
+    }
+    private async Task GetClaimsGetRole()
+    {
+        var user = (await authenticationState).User;
+        foreach (var claim in user.Claims)
+        {
+            if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+            {
+                role = claim.Value;
+            }
+            if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")
+            {
+                id = int.Parse(claim.Value);
+            }
+        }
+
+    }
+    private void ShowMyEnrollments()
+    {
+        filteredExtracurricularActivities = extracurricularActivities.FindAll(e => e.Participants.Any(es => es.StudentID == id)).ToList();
+        ResetIndex(true);
+    }
+    private void SearchByTeacher(int? ID)
+    {
+        if (ID == null)
+        {
+            filteredExtracurricularActivities = extracurricularActivities;
+        }
+        else
+        {
+            filteredExtracurricularActivities = extracurricularActivities.Where(e => e.TeacherID == ID).ToList();
+            ResetIndex(true);
+        }
+    }
+
+    private void ShowAll()
+    {
+        filteredExtracurricularActivities = extracurricularActivities;
+        ResetIndex(true);
+    }
+
+    private async Task AddActivity()
+    {
+        await DialogService.OpenAsync<AddEditExtracurricularActivity>("Add activity",
+            null,
+            new DialogOptions()
+            {
+                CloseDialogOnOverlayClick = true,
+                Draggable = true,
+                ShowClose = false,
+                Style = "width: 30%;border-radius: 20px;height: 45%;"
+            });
+    }
+    private async Task Edit(int? ID)
+    {
+        activityToDeleteId = ID;
+        await DialogService.OpenAsync<AddEditExtracurricularActivity>("Edit activity",
+            new Dictionary<string, object>() { { "ID", ID } },
+            new DialogOptions()
+            {
+                CloseDialogOnOverlayClick = true,
+                Draggable = true,
+                ShowClose = false,
+                Style = "width: 30%;border-radius: 20px;height: 45%;"
+            });
+        activityToDeleteId = null;
+    }
+    private async Task Hello(int id)
+    {
+        if (activityToDeleteId == null && role != "Student")
+        {
+            await DialogService.OpenAsync<ExtracurricularActivityStudentsModal>("Enrolled students",
+            new Dictionary<string, object>() { { "ActivityID", id } },
+            new DialogOptions()
+            {
+                CloseDialogOnOverlayClick = true,
+                Draggable = true,
+                ShowClose = false,
+                Style = "width: 30%;border-radius: 20px;height: 45%;"
+            });
+        }
+
+    }
+    private async Task Delete(int id)
+    {
+        activityToDeleteId = id;
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await ExtracurricularActivityService.DeleteExtracurricularActivity((int)activityToDeleteId);
+            navigationManager.NavigateTo("/extracurricular-activities", true);
+        }
+        else
+        {
+            activityToDeleteId = null;
+        }
+    }
+    private async Task Enroll(bool isReserve,int ActivityID)
+    {
+        activityToDeleteId = ActivityID;
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if(result.HasValue && result.Value)
+        {
+            ExtracurricularActivityStudents activityStudents = new ExtracurricularActivityStudents
+            {
+                ExtracurricularActivityID = ActivityID,
+                StudentID = id,
+                IsReserve = isReserve,
+                JoinedAt = DateTime.Now
+            };
+            await ExtracurricularActivityService.CreateExtracurricularActivityStudent(activityStudents);
+            navigationManager.NavigateTo("/extracurricular-activities", true);
+        }
+        else
+        {
+            activityToDeleteId = null;
+        }
+    }
+    private async Task UnEnroll(int ActivityID)
+    {
+        activityToDeleteId = ActivityID;
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            await ExtracurricularActivityService.DeleteExtracurricularActivityStudent(id, ActivityID);
+            navigationManager.NavigateTo("/extracurricular-activities", true);
+        }
+        else
+        {
+            activityToDeleteId = null;
+        }
+    }
+    private async Task UpdateStatus(int ActivityID)
+    {
+        activityToDeleteId = ActivityID;
+        var result = await DialogService.Confirm("Are you sure?", "Confirmation", new ConfirmOptions { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (result.HasValue && result.Value)
+        {
+            var student = extracurricularActivities.FirstOrDefault(e => e.ExtracurricularActivityID == ActivityID).Participants.FirstOrDefault(p => p.StudentID == id);
+            await ExtracurricularActivityService.UpdateExtracurricularActivityStudent(student.ExtracurricularActivityStudentsID, student);
+            navigationManager.NavigateTo("/extracurricular-activities", true);
+        }
+        else
+        {
+            activityToDeleteId = null;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\GradeSystem.v1.Shared.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\GradeSystem.v1.Shared.deps.json
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\GradeSystem.v1.Shared.pdb
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Konscious.Security.Cryptography.Blake2.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Microsoft.Extensions.Http.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Microsoft.Extensions.Logging.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Microsoft.Extensions.Options.dll
+C:\Users\pepci\OneDrive\Dokumenty\Projects\LibbbbrusFinal\GradeSystem.v1\Shared\bin\Release\net7.0\publish\Microsoft.Extensions.Primitives.dll

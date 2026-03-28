@@ -1,0 +1,140 @@
+﻿@inject DialogService DialogService
+@inject IExtracurricularActivityService ExtracurricularActivityService
+@inject ITeacherService TeacherService
+@inject NavigationManager navigationManager
+
+<div class="search-container-modal">
+    <RadzenTemplateForm TItem="ExtracurricularActivity" Data="activity" Submit="HandleSubmit" InvalidSubmit="InvalidSubmit">
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Name" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="activity.Name" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Name" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Description" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="activity.Description" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Description" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Location" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenTextBox @bind-Value="activity.Location" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Location" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Max Participants" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenNumeric @bind-Value="activity.MaxParticipants" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="Max" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="From" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDatePicker TValue="DateTime" @bind-Value="startDate" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="StartDate" CurrentDateChanged="@(args => OnCurrentDateChanged("StartDate", args))" DateFormat="yyyy/MM/dd" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="To" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDatePicker TValue="DateTime" @bind-Value="endDate" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="EndDate" CurrentDateChanged="@(args => OnCurrentDateChanged("EndDate", args))" DateFormat="yyyy/MM/dd" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="From" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDatePicker TValue="DateTime" @bind-Value="startTime" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="StartDate"  ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="To" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDatePicker TValue="DateTime" @bind-Value="endTime" Style="font-weight:bold;font-size:17px;margin:0;width:40%;border-radius:15px;" Name="EndDate" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Day of week" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@activity.DayOfWeek Chips=true Data=daysOfWeek Style="font-weight:bold;font-size:17px;margin:0;width:40%;" Name="DaysofWeek" />
+            </RadzenStack>
+        </div>
+        <div class="black-line">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" AlignItems="AlignItems.Center" class="search-margin l-margin">
+                <RadzenLabel Text="Teacher" Style="font-weight:bold;width:15%;font-size:17px;" />
+                <RadzenDropDown @bind-Value=@activity.TeacherID Chips=true Placeholder="Search..." Data=TeacherService.Teachers TextProperty="Name" ValueProperty="TeacherID" Style="font-weight:bold;font-size:17px;margin:0;width:40%;" Name="TeacherDD" />
+                <RadzenRequiredValidator Component="TeacherDD" Text="Please select at least one teacher" Popup="false" Style="display:block;" />
+            </RadzenStack>
+        </div>
+        <div class="button-container search-margin">
+            <button class="rounded-empty-button" type="submit">Confirm</button>
+            <button class="rounded-filled-button" type="button" onclick="@Close">Cancel</button>
+        </div>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ID { get; set; }
+    DateTime startDate = DateTime.Now.Date;
+    DateTime endDate = DateTime.Now.Date;
+    DateTime startTime = DateTime.Now;
+    DateTime endTime = DateTime.Now;
+    List<DayOfWeek> daysOfWeek = new List<DayOfWeek>()
+    {
+      DayOfWeek.Monday,
+      DayOfWeek.Tuesday,
+      DayOfWeek.Wednesday,
+      DayOfWeek.Thursday,
+      DayOfWeek.Friday,
+    };
+    ExtracurricularActivity activity = new ExtracurricularActivity() { DayOfWeek=DayOfWeek.Monday};
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ID != null)
+        {
+            activity = await ExtracurricularActivityService.GetExtracurricularActivity((int)ID);
+            startDate = activity.StartDate.Date;
+            endDate = activity.EndDate.Date;
+            startTime = activity.StartDate;
+            endTime = activity.EndDate;
+        }
+        await TeacherService.GetTeachers();
+    }
+    private void Close()
+    {
+        DialogService.Close();
+    }
+    void OnCurrentDateChanged(string casee,DateTime args)
+    {
+        switch (casee)
+        {
+            case "StartDate":
+                startDate = new DateTime(args.Year, args.Month, args.Day);
+                break;
+            case "EndDate":
+                endDate = new DateTime(args.Year, args.Month, args.Day);
+                break;
+        }
+    }
+    private async Task HandleSubmit()
+    {
+        activity.StartDate = startDate.Date + startTime.TimeOfDay;
+        activity.EndDate = endDate.Date + endTime.TimeOfDay;
+        if (ID == null)
+        {
+            await ExtracurricularActivityService.CreateExtracurricularActivity(activity);
+        }
+        else
+        {
+            //await ClassService.UpdateClass(classs);
+        }
+        navigationManager.NavigateTo("/extracurricular-activities", true);
+        Close();
+    }
+    private void InvalidSubmit()
+    {
+
+    }
+}

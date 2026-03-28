@@ -47,5 +47,8 @@ namespace GradeSystem.v1.Server.Data
         public DbSet<AccessCode> AccessCode { get; set; }
         public DbSet<School> School { get; set; }
         public DbSet<DayOff> DayOff { get; set; }
+        public DbSet<ExtracurricularActivity> ExtracurricularActivity { get; set; }
+        public DbSet<ExtracurricularActivityStudents> ExtracurricularActivityStudents { get; set; }
+        public DbSet<ExtraActivity> ExtraActivity { get; set; }
     }
 }

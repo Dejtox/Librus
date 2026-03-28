@@ -26,6 +26,7 @@ global using GradeSystem.v1.Client.Services.LogRegisterService;
 global using GradeSystem.v1.Client.Services.ExamService;
 global using GradeSystem.v1.Client.Services.ChatMessageService;
 global using GradeSystem.v1.Client.Services.SchoolService;
+global using GradeSystem.v1.Client.Services.ExtracurricularActivityService;
 global using GradeSystem.v1.Client.Services;
 global using Radzen;
 
@@ -36,6 +37,8 @@ using Blazored.SessionStorage;
 using System.Reflection;
 using GradeSystem.v1.Client.Auth;
 using Syncfusion.Blazor;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 
@@ -52,6 +55,7 @@ builder.Services.AddHttpClient("AuthorizedClient", client =>
 {
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
 })
+//builder.HostEnvironment.BaseAddresspo
 .AddHttpMessageHandler<JwtAuthorizationMessageHandler>();
 builder.Services.AddScoped(sp =>
     sp.GetRequiredService<IHttpClientFactory>()
@@ -84,6 +88,7 @@ builder.Services.AddScoped<ILogRegisterService, LogRegisterService>();
 builder.Services.AddScoped<IExamService, ExamService>();
 builder.Services.AddScoped<IChatMessageService, ChatMessageService>();
 builder.Services.AddScoped<ISchoolService, SchoolService>();
+builder.Services.AddScoped<IExtracurricularActivityService, ExtracurricularActivityService>();
 builder.Services.AddScoped<DragService>();
 builder.Services.AddScoped<UserLogService>();
 builder.Services.AddBlazoredSessionStorage();
@@ -93,6 +98,16 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddAuthentication();
 builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<IAuthorizationHandler, IsEnrollmentOwner>();
+builder.Services.AddAuthenticationCore();
+builder.Services.AddAuthorizationCore(config =>
+{
+    config.AddPolicy("IsEnrollmentOwnerPolicy", policyBuilder =>
+    {
+        policyBuilder.Requirements.Add(new IsEnrollmentOwnerRequirement());
+    });
+});
+
 
 
 
